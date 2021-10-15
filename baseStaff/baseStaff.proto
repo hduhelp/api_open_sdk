@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package baseStaff;
+
+message Info {
+  string StaffID = 1;
+  string StaffName = 2;
+}
+
+message InfoMapList {
+  map<string, Info> Items = 1;
+}
