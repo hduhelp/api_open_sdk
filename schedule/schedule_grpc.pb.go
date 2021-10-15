@@ -14,86 +14,86 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ScheduleServerClient is the client API for ScheduleServer service.
+// SchedulerClient is the client API for Scheduler service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ScheduleServerClient interface {
+type SchedulerClient interface {
 	StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Schedule, error)
 }
 
-type scheduleServerClient struct {
+type schedulerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewScheduleServerClient(cc grpc.ClientConnInterface) ScheduleServerClient {
-	return &scheduleServerClient{cc}
+func NewSchedulerClient(cc grpc.ClientConnInterface) SchedulerClient {
+	return &schedulerClient{cc}
 }
 
-func (c *scheduleServerClient) StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Schedule, error) {
+func (c *schedulerClient) StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Schedule, error) {
 	out := new(Schedule)
-	err := c.cc.Invoke(ctx, "/schedule.ScheduleServer/StaffGetScheduleHandler", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/schedule.Scheduler/StaffGetScheduleHandler", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ScheduleServerServer is the server API for ScheduleServer service.
-// All implementations must embed UnimplementedScheduleServerServer
+// SchedulerServer is the server API for Scheduler service.
+// All implementations must embed UnimplementedSchedulerServer
 // for forward compatibility
-type ScheduleServerServer interface {
+type SchedulerServer interface {
 	StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Schedule, error)
-	mustEmbedUnimplementedScheduleServerServer()
+	mustEmbedUnimplementedSchedulerServer()
 }
 
-// UnimplementedScheduleServerServer must be embedded to have forward compatible implementations.
-type UnimplementedScheduleServerServer struct {
+// UnimplementedSchedulerServer must be embedded to have forward compatible implementations.
+type UnimplementedSchedulerServer struct {
 }
 
-func (UnimplementedScheduleServerServer) StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Schedule, error) {
+func (UnimplementedSchedulerServer) StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Schedule, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StaffGetScheduleHandler not implemented")
 }
-func (UnimplementedScheduleServerServer) mustEmbedUnimplementedScheduleServerServer() {}
+func (UnimplementedSchedulerServer) mustEmbedUnimplementedSchedulerServer() {}
 
-// UnsafeScheduleServerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ScheduleServerServer will
+// UnsafeSchedulerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SchedulerServer will
 // result in compilation errors.
-type UnsafeScheduleServerServer interface {
-	mustEmbedUnimplementedScheduleServerServer()
+type UnsafeSchedulerServer interface {
+	mustEmbedUnimplementedSchedulerServer()
 }
 
-func RegisterScheduleServerServer(s grpc.ServiceRegistrar, srv ScheduleServerServer) {
-	s.RegisterService(&ScheduleServer_ServiceDesc, srv)
+func RegisterSchedulerServer(s grpc.ServiceRegistrar, srv SchedulerServer) {
+	s.RegisterService(&Scheduler_ServiceDesc, srv)
 }
 
-func _ScheduleServer_StaffGetScheduleHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Scheduler_StaffGetScheduleHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ScheduleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ScheduleServerServer).StaffGetScheduleHandler(ctx, in)
+		return srv.(SchedulerServer).StaffGetScheduleHandler(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/schedule.ScheduleServer/StaffGetScheduleHandler",
+		FullMethod: "/schedule.Scheduler/StaffGetScheduleHandler",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ScheduleServerServer).StaffGetScheduleHandler(ctx, req.(*ScheduleRequest))
+		return srv.(SchedulerServer).StaffGetScheduleHandler(ctx, req.(*ScheduleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ScheduleServer_ServiceDesc is the grpc.ServiceDesc for ScheduleServer service.
+// Scheduler_ServiceDesc is the grpc.ServiceDesc for Scheduler service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ScheduleServer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "schedule.ScheduleServer",
-	HandlerType: (*ScheduleServerServer)(nil),
+var Scheduler_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "schedule.Scheduler",
+	HandlerType: (*SchedulerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "StaffGetScheduleHandler",
-			Handler:    _ScheduleServer_StaffGetScheduleHandler_Handler,
+			Handler:    _Scheduler_StaffGetScheduleHandler_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
