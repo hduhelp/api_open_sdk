@@ -10,7 +10,7 @@ service Scheduler {
 }
 
 message ScheduleRequest {
-  string StaffID = 1;
+  baseStaff.Staff Staff = 1;
   int32 Semester = 2;
   int32 SchoolYear = 3;
 }

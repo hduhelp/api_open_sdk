@@ -2,8 +2,6 @@ package baseStaff
 
 import "encoding/json"
 
-//type InfoMapList map[string]*Info
-
 func (m InfoMapList) Append(list ...*Info) {
 	for _, v := range list {
 		m.Items[v.StaffID] = v

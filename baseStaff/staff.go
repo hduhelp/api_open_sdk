@@ -1,27 +1,22 @@
 package baseStaff
 
-type Type uint
-
-const (
-	TypeStudent Type = iota
-	TypeTeacher
-)
-
-type Staff struct {
-	ID   string
-	Type Type
+func UndergraduateStudent(staffID string) Staff {
+	return Staff{
+		ID:   staffID,
+		Type: Type_Undergraduate,
+	}
 }
 
 func Teacher(staffID string) Staff {
 	return Staff{
 		ID:   staffID,
-		Type: TypeTeacher,
+		Type: Type_Teacher,
 	}
 }
 
-func Student(staffID string) Staff {
+func PostgraduateStudent(staffID string) Staff {
 	return Staff{
 		ID:   staffID,
-		Type: TypeStudent,
+		Type: Type_Postgraduate,
 	}
 }

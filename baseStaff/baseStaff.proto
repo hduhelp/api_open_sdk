@@ -2,6 +2,17 @@ syntax = "proto3";
 
 package baseStaff;
 
+message Staff {
+  string ID = 1;
+  Type Type = 2;
+}
+
+enum Type {
+    Undergraduate = 0;
+    Teacher = 1;
+    Postgraduate = 2;
+}
+
 message Info {
   string StaffID = 1;
   string StaffName = 2;
