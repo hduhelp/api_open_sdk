@@ -8,7 +8,7 @@ import (
 )
 
 type CourseQuery struct {
-	QueryStaff baseStaff.Staff
+	QueryStaff *baseStaff.Staff
 	Queries    []Queryable
 	time.Time
 	dater schoolTime.SchoolDater
@@ -17,10 +17,10 @@ type CourseQuery struct {
 }
 
 type Queryable interface {
-	GetCourses(staff baseStaff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
+	GetCourses(staff *baseStaff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
 }
 
-func NewCourseQuery(staff baseStaff.Staff, d schoolTime.SchoolDater, t time.Time, q ...Queryable) *CourseQuery {
+func NewCourseQuery(staff *baseStaff.Staff, d schoolTime.SchoolDater, t time.Time, q ...Queryable) *CourseQuery {
 	return &CourseQuery{
 		QueryStaff: staff,
 		Time:       t,
