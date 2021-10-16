@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package schoolTime;
 
+option go_package = "github.com/hduhelp/api_open_sdk/schoolTime";
+
 message SchoolYear {
   int32 Year = 1;
 }

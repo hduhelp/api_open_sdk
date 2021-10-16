@@ -2,8 +2,10 @@ syntax = "proto3";
 
 package schedule;
 
-import "github.com/hduhelp/api_open_sdk/baseStaff/baseStaff.proto";
-import "github.com/hduhelp/api_open_sdk/schoolTime/schoolTime.proto";
+option go_package = "github.com/hduhelp/api_open_sdk/schedule";
+
+import "baseStaff/baseStaff.proto";
+import "schoolTime/schoolTime.proto";
 
 service Scheduler {
   rpc StaffGetScheduleHandler(ScheduleRequest) returns (Schedule){}
