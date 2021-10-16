@@ -16,6 +16,10 @@ message ScheduleRequest {
 }
 
 message Schedule {
+  map<string, ScheduleItem> Items = 1;
+}
+
+message ScheduleItem {
   string ClassID = 1;
   string ClassName = 2;
   string CourseID = 3;

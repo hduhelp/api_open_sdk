@@ -6,16 +6,16 @@ import (
 	"time"
 )
 
-func (m *Schedule) AddMember(r CourseReader, t baseStaff.Type) {
+func (m *ScheduleItem) AddMember(r CourseReader, t baseStaff.Type) {
 	switch t {
-	case baseStaff.TypeTeacher:
+	case baseStaff.Type_Teacher:
 		m.AddStudent(r)
-	case baseStaff.TypeStudent:
+	case baseStaff.Type_Undergraduate, baseStaff.Type_Postgraduate:
 		m.AddTeacher(r)
 	}
 }
 
-func (m *Schedule) AddTeacher(r CourseReader) {
+func (m *ScheduleItem) AddTeacher(r CourseReader) {
 	if m.Teachers == nil {
 		m.Teachers = &baseStaff.InfoMapList{
 			Items: map[string]*baseStaff.Info{},
@@ -24,7 +24,7 @@ func (m *Schedule) AddTeacher(r CourseReader) {
 	m.Teachers.Append(r.TeacherInfo())
 }
 
-func (m *Schedule) AddStudent(r CourseReader) {
+func (m *ScheduleItem) AddStudent(r CourseReader) {
 	if m.Students == nil {
 		m.Students = &baseStaff.InfoMapList{
 			Items: map[string]*baseStaff.Info{},
@@ -35,7 +35,7 @@ func (m *Schedule) AddStudent(r CourseReader) {
 
 type CourseReader interface {
 	ScheduleID() string
-	CourseInfo(t time.Time) *Schedule
+	CourseInfo(t time.Time) *ScheduleItem
 	TeacherInfo() *baseStaff.Info
 	StudentInfo() *baseStaff.Info
 }
@@ -48,11 +48,9 @@ type Students struct {
 	baseStaff.InfoMapList
 }
 
-type Courses map[string]*Schedule
-
-func (c Courses) MarshalJSON() ([]byte, error) {
-	list := make([]*Schedule, 0)
-	for _, v := range c {
+func (m Schedule) MarshalJSON() ([]byte, error) {
+	list := make([]*ScheduleItem, 0)
+	for _, v := range m.Items {
 		list = append(list, v)
 	}
 	return json.Marshal(list)
