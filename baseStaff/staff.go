@@ -1,21 +1,21 @@
 package baseStaff
 
-func UndergraduateStudent(staffID string) Staff {
-	return Staff{
+func Undergraduate(staffID string) *Staff {
+	return &Staff{
 		ID:   staffID,
 		Type: Type_Undergraduate,
 	}
 }
 
-func Teacher(staffID string) Staff {
-	return Staff{
+func Teacher(staffID string) *Staff {
+	return &Staff{
 		ID:   staffID,
 		Type: Type_Teacher,
 	}
 }
 
-func PostgraduateStudent(staffID string) Staff {
-	return Staff{
+func Postgraduate(staffID string) *Staff {
+	return &Staff{
 		ID:   staffID,
 		Type: Type_Postgraduate,
 	}
