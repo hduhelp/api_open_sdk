@@ -3,14 +3,17 @@ package schedule
 import (
 	"encoding/json"
 	"github.com/hduhelp/api_open_sdk/baseStaff"
-	"time"
+	"github.com/hduhelp/api_open_sdk/schoolTime"
 )
 
+// AddMember 添加课程人员
 func (m *ScheduleItem) AddMember(r CourseReader, t baseStaff.Type) {
 	switch t {
 	case baseStaff.Type_Teacher:
+		//教师展示上课学生
 		m.AddStudent(r)
 	case baseStaff.Type_Undergraduate, baseStaff.Type_Postgraduate:
+		//学生添加展示授课教师
 		m.AddTeacher(r)
 	}
 }
@@ -35,7 +38,7 @@ func (m *ScheduleItem) AddStudent(r CourseReader) {
 
 type CourseReader interface {
 	ScheduleID() string
-	CourseInfo(t time.Time) *ScheduleItem
+	CourseInfo(schoolDate *schoolTime.SchoolDate) *ScheduleItem
 	TeacherInfo() *baseStaff.Info
 	StudentInfo() *baseStaff.Info
 }

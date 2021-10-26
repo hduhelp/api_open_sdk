@@ -15,6 +15,9 @@ message ScheduleRequest {
   baseStaff.Staff Staff = 1;
   int32 Semester = 2;
   int32 SchoolYear = 3;
+  int64 Timestamp = 4;
+  int32 Week = 5;
+  int32 Weekday = 6;
 }
 
 message Schedule {

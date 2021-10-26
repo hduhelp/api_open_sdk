@@ -6,6 +6,7 @@ import (
 )
 
 type SchoolDate struct {
+	time.Time
 	types.Date
 	*SchoolYear
 	*Semester
