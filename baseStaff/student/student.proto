@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package student;
+
+option go_package = "github.com/hduhelp/api_open_sdk/baseStaff/student";
+
+import "baseStaff/baseStaff.proto" ;
+import "school/school.proto" ;
+import "baseStaff/teacher/teacher.proto" ;
+
+message Info {
+  baseStaff.Info Staff = 1;
+  string ClassId = 2 ;
+  school.Unit Unit = 3;
+  school.Major Major = 4;
+  teacher.Info Teacher = 5;
+}
+
+message DormInfo {
+  string Building = 1 ;
+  string Room = 2 ;
+  string Bed = 3 ;
+}
+
+message NeedyInfo{
+  baseStaff.Info Staff = 1;
+  uint32 Sex = 3;
+  bool IsNeedyStudent = 4;
+  message Nested{
+    uint32 SchoolYear = 1;
+    bool IsNeedyStudent = 2;
+  }
+  repeated Nested items = 5;
+}

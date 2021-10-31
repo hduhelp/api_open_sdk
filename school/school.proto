@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package school;
+
+option go_package = "github.com/hduhelp/api_open_sdk/school";
+
+message Unit {
+  string Code = 1 ;
+  string Name = 2 ;
+}
+
+message Major {
+  string Code = 1 ;
+  string Name = 2 ;
+}

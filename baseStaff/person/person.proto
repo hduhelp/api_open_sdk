@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package person;
+
+option go_package = "github.com/hduhelp/api_open_sdk/baseStaff/person";
+
+import "baseStaff/baseStaff.proto";
+
+message Info {
+  baseStaff.Staff Staff = 1 ;
+  string Name = 2 ;
+  string StaffState = 3 ;
+  string UnitCode = 4 ;
+}
