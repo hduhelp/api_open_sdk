@@ -8,6 +8,11 @@ import "baseStaff/baseStaff.proto" ;
 import "school/school.proto" ;
 import "baseStaff/teacher/teacher.proto" ;
 
+service StudentServer {
+  rpc BirthdayHandler(baseStaff.Staff) returns (BirthdayResponse) {}
+  rpc BirthdaysHandler(BirthdaysRequest) returns (BirthdaysResponse) {}
+}
+
 message Info {
   baseStaff.Info Staff = 1;
   string ClassId = 2 ;
@@ -31,4 +36,20 @@ message NeedyInfo{
     bool IsNeedyStudent = 2;
   }
   repeated Nested items = 5;
+}
+
+message BirthdaysRequest {
+  baseStaff.Type Type = 1;
+  int32 Month = 2;
+  int32 Day = 3;
+}
+
+message BirthdayResponse {
+  string StaffId = 1;
+  string Name = 2;
+  string Birthday = 3;
+}
+
+message BirthdaysResponse {
+  repeated BirthdayResponse Birthdays = 1;
 }
