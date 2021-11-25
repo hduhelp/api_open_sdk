@@ -13,7 +13,6 @@ func (j *Jsonp) UnmarshalJSON(bytes []byte) error {
 	var callback string
 	var callbackIndex int
 	var jsonpBytes []byte
-	var data interface{}
 
 	for i, v := range bytes {
 		if v == '(' {
@@ -26,14 +25,14 @@ func (j *Jsonp) UnmarshalJSON(bytes []byte) error {
 		}
 	}
 
-	if err := json.Unmarshal(jsonpBytes, &data); err != nil {
+	if err := json.Unmarshal(jsonpBytes, &j.Data); err != nil {
 		return err
 	}
 
 	*j = Jsonp{
 		JsonpJSON: render.JsonpJSON{
 			Callback: callback,
-			Data:     data,
+			Data:     j.Data,
 		},
 	}
 	return nil
