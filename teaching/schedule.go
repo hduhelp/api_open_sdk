@@ -69,7 +69,7 @@ type Students struct {
 	baseStaff.InfoMapList
 }
 
-func (x *Course) MarshalJSON() ([]byte, error) {
+func (x *Courses) MarshalJSON() ([]byte, error) {
 	list := make([]*CourseItem, 0)
 	for _, v := range x.Items {
 		list = append(list, v)

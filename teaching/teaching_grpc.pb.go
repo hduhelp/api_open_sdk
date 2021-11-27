@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TeachingServerClient interface {
-	StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Course, error)
+	StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Courses, error)
 }
 
 type teachingServerClient struct {
@@ -29,8 +29,8 @@ func NewTeachingServerClient(cc grpc.ClientConnInterface) TeachingServerClient {
 	return &teachingServerClient{cc}
 }
 
-func (c *teachingServerClient) StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Course, error) {
-	out := new(Course)
+func (c *teachingServerClient) StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Courses, error) {
+	out := new(Courses)
 	err := c.cc.Invoke(ctx, "/teaching.TeachingServer/StaffGetScheduleHandler", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (c *teachingServerClient) StaffGetScheduleHandler(ctx context.Context, in *
 // All implementations must embed UnimplementedTeachingServerServer
 // for forward compatibility
 type TeachingServerServer interface {
-	StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Course, error)
+	StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Courses, error)
 	mustEmbedUnimplementedTeachingServerServer()
 }
 
@@ -50,7 +50,7 @@ type TeachingServerServer interface {
 type UnimplementedTeachingServerServer struct {
 }
 
-func (UnimplementedTeachingServerServer) StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Course, error) {
+func (UnimplementedTeachingServerServer) StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Courses, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StaffGetScheduleHandler not implemented")
 }
 func (UnimplementedTeachingServerServer) mustEmbedUnimplementedTeachingServerServer() {}

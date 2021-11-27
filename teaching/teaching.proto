@@ -8,7 +8,7 @@ import "baseStaff/baseStaff.proto";
 import "schoolTime/schoolTime.proto";
 
 service TeachingServer {
-  rpc StaffGetScheduleHandler(ScheduleRequest) returns (Course){}
+  rpc StaffGetScheduleHandler(ScheduleRequest) returns (Courses){}
 }
 
 message ScheduleRequest {
@@ -20,7 +20,7 @@ message ScheduleRequest {
   int32 Weekday = 6;
 }
 
-message Course {
+message Courses {
   map<string, CourseItem> Items = 1;
 }
 

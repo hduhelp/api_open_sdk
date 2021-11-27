@@ -12,7 +12,7 @@ type CourseQuery struct {
 
 	*schoolTime.SchoolDate
 
-	*Course
+	*Courses
 }
 
 type Queryable interface {
@@ -23,7 +23,7 @@ func NewCourseQuery(staff *baseStaff.Staff, st *schoolTime.SchoolDate, q ...Quer
 	return &CourseQuery{
 		QueryStaff: staff,
 		SchoolDate: st,
-		Course:     &Course{Items: map[string]*CourseItem{}},
+		Courses:    &Courses{Items: map[string]*CourseItem{}},
 		Queries:    q,
 	}
 }
@@ -48,13 +48,13 @@ func (q *CourseQuery) GetCourses() (*CourseQuery, error) {
 		}
 		courseReaders = append(courseReaders, courses...)
 	}
-	q.Course.Items = make(map[string]*CourseItem)
+	q.Courses.Items = make(map[string]*CourseItem)
 	//合并课程信息内容到标准课程信息中
 	for _, v := range courseReaders {
-		if q.Course.Items[v.CourseID()] == nil {
-			q.Course.Items[v.CourseID()] = v.CourseInfo()
+		if q.Courses.Items[v.CourseID()] == nil {
+			q.Courses.Items[v.CourseID()] = v.CourseInfo()
 		} else {
-			q.Course.Items[v.CourseID()].AddSchedule(v.ScheduleReader(), q)
+			q.Courses.Items[v.CourseID()].AddSchedule(v.ScheduleReader(), q)
 		}
 	}
 	return q, nil
