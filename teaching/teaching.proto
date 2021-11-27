@@ -34,8 +34,6 @@ message CourseItem {
   schoolTime.SchoolYear SchoolYear = 7;
   schoolTime.Semester Semester = 8;
   Schedule Schedule = 9;
-
-  bool IsThisWeek = 10;
 }
 
 message Schedule {
@@ -46,16 +44,17 @@ message ScheduleItem {
   repeated int32 Week = 1;
   int32 WeekDay = 2 ;
   repeated int32 Section = 3;
+  bool IsThisWeek = 4;
 
-  int64 StartTime = 4;
-  int64 EndTime = 5;
+  int64 StartTime = 5;
+  int64 EndTime = 6;
 
-  baseStaff.InfoMapList Teachers = 6;
-  baseStaff.InfoMapList Students = 7;
+  baseStaff.InfoMapList Teachers = 7;
+  baseStaff.InfoMapList Students = 8;
 
-  string Location = 8;
-  int32 SeatsNum = 9;
-  string Commit = 10;
+  string Location = 9;
+  int32 SeatsNum = 10;
+  string Commit = 11;
 }
 
 message StaffInfo {
