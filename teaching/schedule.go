@@ -13,9 +13,8 @@ func (x *CourseItem) AddSchedule(r ScheduleReader, q *CourseQuery) {
 	}
 	if x.Schedule.Items[r.ScheduleID()] == nil {
 		x.Schedule.Items[r.ScheduleID()] = r.ScheduleInfo(q.SchoolDate)
-	} else {
-		x.Schedule.Items[r.ScheduleID()].AddMember(r, q.QueryStaff.Type)
 	}
+	x.Schedule.Items[r.ScheduleID()].AddMember(r, q.QueryStaff.Type)
 }
 
 // AddMember 添加课程人员
@@ -49,6 +48,7 @@ func (x *ScheduleItem) AddStudent(r ScheduleReader) {
 }
 
 type CourseReader interface {
+	// CourseID 课程ID
 	CourseID() string
 	CourseInfo() *CourseItem
 	ScheduleReader() ScheduleReader
