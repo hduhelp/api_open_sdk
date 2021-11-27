@@ -51,7 +51,7 @@ func (x *ScheduleItem) AddStudent(r ScheduleReader) {
 type CourseReader interface {
 	CourseID() string
 	CourseInfo() *CourseItem
-	ScheduleInfo() ScheduleReader
+	ScheduleReader() ScheduleReader
 }
 
 type ScheduleReader interface {

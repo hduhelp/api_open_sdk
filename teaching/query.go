@@ -54,7 +54,7 @@ func (q *CourseQuery) GetCourses() (*CourseQuery, error) {
 		if q.Course.Items[v.CourseID()] == nil {
 			q.Course.Items[v.CourseID()] = v.CourseInfo()
 		} else {
-			q.Course.Items[v.CourseID()].AddSchedule(v.ScheduleInfo(), q)
+			q.Course.Items[v.CourseID()].AddSchedule(v.ScheduleReader(), q)
 		}
 	}
 	return q, nil
