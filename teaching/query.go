@@ -1,4 +1,4 @@
-package schedule
+package teaching
 
 import (
 	"errors"
@@ -12,7 +12,7 @@ type CourseQuery struct {
 
 	*schoolTime.SchoolDate
 
-	*Schedule
+	*Course
 }
 
 type Queryable interface {
@@ -23,12 +23,12 @@ func NewCourseQuery(staff *baseStaff.Staff, st *schoolTime.SchoolDate, q ...Quer
 	return &CourseQuery{
 		QueryStaff: staff,
 		SchoolDate: st,
-		Schedule:   &Schedule{Items: map[string]*ScheduleItem{}},
+		Course:     &Course{Items: map[string]*CourseItem{}},
 		Queries:    q,
 	}
 }
 
-func (q CourseQuery) GetCourses() (CourseQuery, error) {
+func (q *CourseQuery) GetCourses() (*CourseQuery, error) {
 	if q.QueryStaff.ID == "" {
 		return q, errors.New("staffID cannot be nil")
 	}
@@ -48,13 +48,14 @@ func (q CourseQuery) GetCourses() (CourseQuery, error) {
 		}
 		courseReaders = append(courseReaders, courses...)
 	}
-	//合并课程信息内容到标准
+	q.Course.Items = make(map[string]*CourseItem)
+	//合并课程信息内容到标准课程信息中
 	for _, v := range courseReaders {
-		scheduleID := v.ScheduleID()
-		if q.Schedule.Items[scheduleID] == nil {
-			q.Schedule.Items[scheduleID] = v.CourseInfo(q.SchoolDate)
+		if q.Course.Items[v.CourseID()] == nil {
+			q.Course.Items[v.CourseID()] = v.CourseInfo()
+		} else {
+			q.Course.Items[v.CourseID()].AddSchedule(v.ScheduleInfo(), q)
 		}
-		q.Schedule.Items[scheduleID].AddMember(v, q.QueryStaff.Type)
 	}
 	return q, nil
 }

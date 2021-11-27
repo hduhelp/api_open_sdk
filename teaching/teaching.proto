@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package teaching;
+
+option go_package = "github.com/hduhelp/api_open_sdk/teaching";
+
+import "baseStaff/baseStaff.proto";
+import "schoolTime/schoolTime.proto";
+
+service TeachingServer {
+  rpc StaffGetScheduleHandler(ScheduleRequest) returns (Course){}
+}
+
+message ScheduleRequest {
+  baseStaff.Staff Staff = 1;
+  int32 Semester = 2;
+  int32 SchoolYear = 3;
+  int64 Timestamp = 4;
+  int32 Week = 5;
+  int32 Weekday = 6;
+}
+
+message Course {
+  map<string, CourseItem> Items = 1;
+}
+
+message CourseItem {
+  string ClassID = 1;
+  string ClassName = 2;
+  string CourseID = 3;
+  string CourseName = 4;
+  string ClassTime = 5;
+  string Credit = 6;
+  schoolTime.SchoolYear SchoolYear = 7;
+  schoolTime.Semester Semester = 8;
+  Schedule Schedule = 9;
+
+  bool IsThisWeek = 10;
+}
+
+message Schedule {
+  map<string, ScheduleItem> Items = 1;
+}
+
+message ScheduleItem {
+  repeated int32 Week = 1;
+  int32 WeekDay = 2 ;
+  repeated int32 Section = 3;
+
+  int64 StartTime = 4;
+  int64 EndTime = 5;
+
+  baseStaff.InfoMapList Teachers = 6;
+  baseStaff.InfoMapList Students = 7;
+
+  string Location = 8;
+  int32 SeatsNum = 9;
+  string Commit = 10;
+}
+
+message StaffInfo {
+  string StaffID = 1;
+  string StaffName = 2;
+  string Commit = 3;
+}
