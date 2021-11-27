@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func (Semester) GormDataType() string {
+func (*Semester) GormDataType() string {
 	return "string"
 }
 
@@ -29,7 +29,7 @@ func CastSemester(in interface{}) *Semester {
 	}
 }
 
-func (m *Semester) UnmarshalJSON(data []byte) error {
+func (x *Semester) UnmarshalJSON(data []byte) error {
 	y := new(interface{})
 	if err := json.Unmarshal(data, y); err != nil {
 		return err
@@ -38,25 +38,27 @@ func (m *Semester) UnmarshalJSON(data []byte) error {
 	if castSemester.Num == 0 {
 		return errors.New("cast semester error")
 	} else {
-		*m = *castSemester
+		*x = Semester{Num: castSemester.Num}
 		return nil
 	}
 }
 
-func (m Semester) MarshalJSON() ([]byte, error) {
-	return json.Marshal(m.Num)
+func (x *Semester) MarshalJSON() ([]byte, error) {
+	return json.Marshal(x.Num)
 }
 
-func (m *Semester) Scan(src interface{}) error {
+func (x *Semester) Scan(src interface{}) error {
 	castSemester := CastSemester(src)
 	if castSemester.Num == 0 {
 		return errors.New("cast schoolYear error")
 	} else {
-		*m = *castSemester
+		*x = Semester{
+			Num: castSemester.Num,
+		}
 		return nil
 	}
 }
 
-func (m Semester) Value() (driver.Value, error) {
-	return m.Num, nil
+func (x *Semester) Value() (driver.Value, error) {
+	return x.Num, nil
 }

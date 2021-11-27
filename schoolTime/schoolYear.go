@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func (SchoolYear) GormDataType() string {
+func (*SchoolYear) GormDataType() string {
 	return "string"
 }
 
@@ -33,15 +33,15 @@ func CastSchoolYear(in interface{}) *SchoolYear {
 	}
 }
 
-func (m SchoolYear) ShortName() string {
-	return strconv.Itoa(int(m.Year))
+func (x *SchoolYear) ShortName() string {
+	return strconv.Itoa(int(x.Year))
 }
 
-func (m SchoolYear) FullName() string {
-	return fmt.Sprintf("%d-%d", m.Year, m.Year+1)
+func (x *SchoolYear) FullName() string {
+	return fmt.Sprintf("%d-%d", x.Year, x.Year+1)
 }
 
-func (m *SchoolYear) UnmarshalJSON(data []byte) error {
+func (x *SchoolYear) UnmarshalJSON(data []byte) error {
 	y := new(interface{})
 	if err := json.Unmarshal(data, y); err != nil {
 		return err
@@ -50,25 +50,29 @@ func (m *SchoolYear) UnmarshalJSON(data []byte) error {
 	if st.Year == 0 {
 		return errors.New("cast schoolYear error")
 	} else {
-		*m = *st
+		*x = SchoolYear{
+			Year: st.Year,
+		}
 		return nil
 	}
 }
 
-func (m SchoolYear) MarshalJSON() ([]byte, error) {
-	return json.Marshal(m.FullName())
+func (x *SchoolYear) MarshalJSON() ([]byte, error) {
+	return json.Marshal(x.FullName())
 }
 
-func (m *SchoolYear) Scan(src interface{}) error {
+func (x *SchoolYear) Scan(src interface{}) error {
 	st := CastSchoolYear(src)
 	if st.Year == 0 {
 		return errors.New("cast schoolYear error")
 	} else {
-		*m = *st
+		*x = SchoolYear{
+			Year: st.Year,
+		}
 		return nil
 	}
 }
 
-func (m SchoolYear) Value() (driver.Value, error) {
-	return m.FullName(), nil
+func (x *SchoolYear) Value() (driver.Value, error) {
+	return x.FullName(), nil
 }
