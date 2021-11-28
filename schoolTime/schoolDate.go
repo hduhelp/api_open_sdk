@@ -41,5 +41,5 @@ type TimeToSchoolDater interface {
 
 // SchoolDateToDater 从学校日期获得日期
 type SchoolDateToDater interface {
-	GetSchoolDateFrom(schoolDate *SchoolDate, weekDay int32) (*SchoolDate, error)
+	GetSchoolDateFrom(schoolDate *SchoolDate, weekDay int32) (*types.Date, error)
 }

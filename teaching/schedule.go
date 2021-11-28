@@ -29,8 +29,8 @@ func (x *ScheduleItem) SetTime(q *CourseQuery) {
 	if err != nil {
 		return
 	}
-	x.StartTime = q.SectionReader.StartTime(d.Date(), FirstOfArray(x.Section)).Unix()
-	x.EndTime = q.SectionReader.EndTime(d.Date(), LastOfArray(x.Section)).Unix()
+	x.StartTime = q.SectionReader.StartTime(d, FirstOfArray(x.Section)).Unix()
+	x.EndTime = q.SectionReader.EndTime(d, LastOfArray(x.Section)).Unix()
 	x.IsThisWeek = true
 }
 
