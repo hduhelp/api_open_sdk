@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/hduhelp/api_open_sdk/baseStaff"
 	"github.com/hduhelp/api_open_sdk/schoolTime"
+	"sort"
 )
 
 // AddSchedule 添加课表
@@ -69,18 +70,48 @@ type Students struct {
 	baseStaff.InfoMapList
 }
 
+type CourseItems []*CourseItem
+
+func (c CourseItems) Len() int {
+	return len(c)
+}
+
+func (c CourseItems) Less(i, j int) bool {
+	return c[i].CourseID < c[j].CourseID
+}
+
+func (c CourseItems) Swap(i, j int) {
+	c[i], c[j] = c[j], c[i]
+}
+
 func (x *Courses) MarshalJSON() ([]byte, error) {
-	list := make([]*CourseItem, 0)
+	list := CourseItems{}
 	for _, v := range x.Items {
 		list = append(list, v)
 	}
+	sort.Sort(list)
 	return json.Marshal(list)
 }
 
+type ScheduleItems []*ScheduleItem
+
+func (c ScheduleItems) Len() int {
+	return len(c)
+}
+
+func (c ScheduleItems) Less(i, j int) bool {
+	return c[i].WeekDay < c[j].WeekDay
+}
+
+func (c ScheduleItems) Swap(i, j int) {
+	c[i], c[j] = c[j], c[i]
+}
+
 func (x *Schedule) MarshalJSON() ([]byte, error) {
-	list := make([]*ScheduleItem, 0)
+	list := ScheduleItems{}
 	for _, v := range x.Items {
 		list = append(list, v)
 	}
+	sort.Sort(list)
 	return json.Marshal(list)
 }
