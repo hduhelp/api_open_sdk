@@ -3,7 +3,6 @@ package teaching
 import (
 	"encoding/json"
 	"github.com/hduhelp/api_open_sdk/baseStaff"
-	"github.com/hduhelp/api_open_sdk/schoolTime"
 	"sort"
 )
 
@@ -13,7 +12,7 @@ func (x *CourseItem) AddSchedule(q *CourseQuery, r ScheduleReader) {
 		x.Schedule = &Schedule{Items: map[string]*ScheduleItem{}}
 	}
 	if x.Schedule.Items[r.ScheduleID()] == nil {
-		x.Schedule.Items[r.ScheduleID()] = r.ScheduleInfo(q.SchoolDate)
+		x.Schedule.Items[r.ScheduleID()] = r.ScheduleInfo()
 		x.Schedule.Items[r.ScheduleID()].SetTime(q)
 	}
 
@@ -73,7 +72,7 @@ type CourseReader interface {
 
 type ScheduleReader interface {
 	ScheduleID() string
-	ScheduleInfo(schoolDate *schoolTime.SchoolDate) *ScheduleItem
+	ScheduleInfo() *ScheduleItem
 	TeacherInfo() *baseStaff.Info
 	StudentInfo() *baseStaff.Info
 }
