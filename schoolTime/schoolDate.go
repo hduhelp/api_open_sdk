@@ -25,7 +25,7 @@ func (d SchoolDate) Date() *types.Date {
 	return d.d
 }
 
-func (SchoolDate) FromTime(t time.Time, handler SchoolDater) (*SchoolDate, error) {
+func (SchoolDate) FromTime(t time.Time, handler TimeToSchoolDater) (*SchoolDate, error) {
 	d := handler.GetSchoolDateFromTime(t)
 	d.d = types.DateFromTime(t)
 	if !d.Valid() {
@@ -34,7 +34,12 @@ func (SchoolDate) FromTime(t time.Time, handler SchoolDater) (*SchoolDate, error
 	return d, nil
 }
 
-// SchoolDater 学校日期接口，从时间获得学年、学期
-type SchoolDater interface {
+// TimeToSchoolDater 学校日期接口，从时间获得学年、学期
+type TimeToSchoolDater interface {
 	GetSchoolDateFromTime(t time.Time) *SchoolDate
+}
+
+// SchoolDateToDater 从学校日期获得日期
+type SchoolDateToDater interface {
+	GetSchoolDateFrom(schoolDate *SchoolDate, weekDay int32) (*SchoolDate, error)
 }

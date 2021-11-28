@@ -12,6 +12,9 @@ type CourseQuery struct {
 
 	*schoolTime.SchoolDate
 
+	schoolTime.SchoolDateToDater
+	schoolTime.SectionReader
+
 	*Courses
 }
 
@@ -19,12 +22,18 @@ type Queryable interface {
 	GetCourses(staff *baseStaff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
 }
 
-func NewCourseQuery(staff *baseStaff.Staff, st *schoolTime.SchoolDate, q ...Queryable) *CourseQuery {
+func NewCourseQuery(staff *baseStaff.Staff,
+	st *schoolTime.SchoolDate,
+	dater schoolTime.SchoolDateToDater,
+	sectionReader schoolTime.SectionReader,
+	q ...Queryable) *CourseQuery {
 	return &CourseQuery{
-		QueryStaff: staff,
-		SchoolDate: st,
-		Courses:    &Courses{Items: map[string]*CourseItem{}},
-		Queries:    q,
+		QueryStaff:        staff,
+		SchoolDate:        st,
+		SchoolDateToDater: dater,
+		SectionReader:     sectionReader,
+		Courses:           &Courses{Items: map[string]*CourseItem{}},
+		Queries:           q,
 	}
 }
 
@@ -54,7 +63,7 @@ func (q *CourseQuery) GetCourses() (*CourseQuery, error) {
 		if q.Courses.Items[v.CourseID()] == nil {
 			q.Courses.Items[v.CourseID()] = v.CourseInfo()
 		}
-		q.Courses.Items[v.CourseID()].AddSchedule(v.ScheduleReader(), q)
+		q.Courses.Items[v.CourseID()].AddSchedule(q, v.ScheduleReader())
 	}
 	return q, nil
 }

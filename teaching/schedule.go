@@ -8,19 +8,35 @@ import (
 )
 
 // AddSchedule 添加课表
-func (x *CourseItem) AddSchedule(r ScheduleReader, q *CourseQuery) {
+func (x *CourseItem) AddSchedule(q *CourseQuery, r ScheduleReader) {
 	if x.Schedule == nil {
 		x.Schedule = &Schedule{Items: map[string]*ScheduleItem{}}
 	}
 	if x.Schedule.Items[r.ScheduleID()] == nil {
 		x.Schedule.Items[r.ScheduleID()] = r.ScheduleInfo(q.SchoolDate)
+		x.Schedule.Items[r.ScheduleID()].SetTime(q)
 	}
-	x.Schedule.Items[r.ScheduleID()].AddMember(r, q.QueryStaff.Type)
+
+	x.Schedule.Items[r.ScheduleID()].AddMember(q, r)
+}
+
+func (x *ScheduleItem) SetTime(q *CourseQuery) {
+	//非当前周课程 跳过时间赋值
+	if _, ok := InArray(x.Week, q.SchoolDate.Week); !ok {
+		return
+	}
+	d, err := q.SchoolDateToDater.GetSchoolDateFrom(q.SchoolDate, x.WeekDay)
+	if err != nil {
+		return
+	}
+	x.StartTime = q.SectionReader.StartTime(d.Date(), FirstOfArray(x.Section)).Unix()
+	x.EndTime = q.SectionReader.EndTime(d.Date(), LastOfArray(x.Section)).Unix()
+	x.IsThisWeek = true
 }
 
 // AddMember 添加课程人员
-func (x *ScheduleItem) AddMember(r ScheduleReader, t baseStaff.Type) {
-	switch t {
+func (x *ScheduleItem) AddMember(q *CourseQuery, r ScheduleReader) {
+	switch q.QueryStaff.Type {
 	case baseStaff.Type_Teacher:
 		//教师展示上课学生
 		x.AddStudent(r)
