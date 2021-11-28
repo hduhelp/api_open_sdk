@@ -17,6 +17,10 @@ func CastSemester(in interface{}) *Semester {
 		return &Semester{
 			Num: in.(int32),
 		}
+	case float32, float64:
+		return &Semester{
+			Num: int32(in.(float64)),
+		}
 	case string:
 		if v, err := strconv.Atoi(in.(string)); err == nil {
 			return &Semester{
@@ -30,11 +34,11 @@ func CastSemester(in interface{}) *Semester {
 }
 
 func (x *Semester) UnmarshalJSON(data []byte) error {
-	y := new(interface{})
-	if err := json.Unmarshal(data, y); err != nil {
+	var v interface{}
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	castSemester := CastSemester(y)
+	castSemester := CastSemester(v)
 	if castSemester.Num == 0 {
 		return errors.New("cast semester error")
 	} else {

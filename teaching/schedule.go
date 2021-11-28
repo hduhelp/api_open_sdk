@@ -2,6 +2,7 @@ package teaching
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/hduhelp/api_open_sdk/baseStaff"
 	"sort"
 )
@@ -108,6 +109,19 @@ func (x *Courses) MarshalJSON() ([]byte, error) {
 	return json.Marshal(list)
 }
 
+func (x *Courses) UnmarshalJSON(bytes []byte) error {
+	*x = Courses{Items: map[string]*CourseItem{}}
+	list := CourseItems{}
+	err := json.Unmarshal(bytes, &list)
+	if err != nil {
+		return err
+	}
+	for _, v := range list {
+		x.Items[v.CourseID] = v
+	}
+	return nil
+}
+
 type ScheduleItems []*ScheduleItem
 
 func (c ScheduleItems) Len() int {
@@ -129,4 +143,17 @@ func (x *Schedule) MarshalJSON() ([]byte, error) {
 	}
 	sort.Sort(list)
 	return json.Marshal(list)
+}
+
+func (x *Schedule) UnmarshalJSON(bytes []byte) error {
+	*x = Schedule{Items: map[string]*ScheduleItem{}}
+	list := ScheduleItems{}
+	err := json.Unmarshal(bytes, &list)
+	if err != nil {
+		return err
+	}
+	for _, v := range list {
+		x.Items[fmt.Sprint(v.Week, v.WeekDay, v.Section)] = v
+	}
+	return nil
 }

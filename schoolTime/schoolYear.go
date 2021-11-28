@@ -42,11 +42,11 @@ func (x *SchoolYear) FullName() string {
 }
 
 func (x *SchoolYear) UnmarshalJSON(data []byte) error {
-	y := new(interface{})
-	if err := json.Unmarshal(data, y); err != nil {
+	var v interface{}
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	st := CastSchoolYear(y)
+	st := CastSchoolYear(v)
 	if st.Year == 0 {
 		return errors.New("cast schoolYear error")
 	} else {
