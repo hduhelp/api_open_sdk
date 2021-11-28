@@ -10,7 +10,7 @@ type SchoolDate struct {
 	d          *types.Date
 	SchoolYear *SchoolYear
 	Semester   *Semester
-	Week       int
+	Week       int32
 }
 
 func (d SchoolDate) Valid() bool {
