@@ -25,8 +25,8 @@ func (d SchoolDate) Date() *types.Date {
 	return d.d
 }
 
-func (d *SchoolDate) FromTime(t time.Time, handler SchoolDater) (*SchoolDate, error) {
-	*d = *handler.GetSchoolDateFromTime(t)
+func (SchoolDate) FromTime(t time.Time, handler SchoolDater) (*SchoolDate, error) {
+	d := handler.GetSchoolDateFromTime(t)
 	d.d = types.DateFromTime(t)
 	if !d.Valid() {
 		return nil, errors.New("invalid school date")
