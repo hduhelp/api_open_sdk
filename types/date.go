@@ -18,8 +18,8 @@ func DateFromString(str string) (*Date, error) {
 	}, nil
 }
 
-func DateFromTime(t time.Time) Date {
-	return Date{
+func DateFromTime(t time.Time) *Date {
+	return &Date{
 		Time: t,
 	}
 }
