@@ -3,6 +3,7 @@ module github.com/hduhelp/api_open_sdk
 go 1.17
 
 require (
+	github.com/gin-gonic/gin v1.7.4
 	github.com/parnurzeal/gorequest v0.2.16
 	google.golang.org/grpc v1.41.0
 	google.golang.org/protobuf v1.27.1
@@ -11,7 +12,6 @@ require (
 require (
 	github.com/elazarl/goproxy v0.0.0-20210801061803-8e322dfb79c4 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.7.4 // indirect
 	github.com/go-playground/locales v0.13.0 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/go-playground/validator/v10 v10.4.1 // indirect

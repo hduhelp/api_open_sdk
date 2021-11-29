@@ -1,6 +1,9 @@
 
 all: generate-proto
 
+docker-run:
+	docker run -v $(shell pwd):/go/src/github.com/hduhelp/api_open_sdk -w /go/src/github.com/hduhelp/api_open_sdk --rm proto-builder sh -c 'make generate-proto'
+
 generate-proto:
 	protoc --proto_path=$(GOPATH)/src:. --go_out=$(GOPATH)/src --go-grpc_out=$(GOPATH)/src baseStaff/baseStaff.proto
 	protoc --proto_path=$(GOPATH)/src:. --go_out=$(GOPATH)/src --go-grpc_out=$(GOPATH)/src baseStaff/student/student.proto
