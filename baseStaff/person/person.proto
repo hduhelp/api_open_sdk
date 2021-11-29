@@ -6,9 +6,15 @@ option go_package = "github.com/hduhelp/api_open_sdk/baseStaff/person";
 
 import "baseStaff/baseStaff.proto";
 
+service PersonServer {
+  rpc StaffGetPersonInfoHandler(baseStaff.Staff) returns (Info){}
+}
+
 message Info {
-  baseStaff.Staff Staff = 1 ;
-  string Name = 2 ;
-  string StaffState = 3 ;
-  string UnitCode = 4 ;
+  string StaffID = 1;
+  baseStaff.Type StaffType = 2;
+  string StaffName = 3 ;
+  string StaffState = 4 ;
+  string UnitCode = 5 ;
+  string UnitName = 6 ;
 }
