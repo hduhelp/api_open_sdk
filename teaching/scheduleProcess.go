@@ -2,10 +2,8 @@ package teaching
 
 import "sort"
 
-// FilterThisWeek 过滤出本周课程, 会原地修改原课表
-// 注意：只是根据接口返回的 IsThisWeek 字段来判断是否是本周课程
-// 如果采用的是salmon base 优先级 3 的请求方式，则需要自己计算是否是本周课程
-func (courses *Courses) FilterThisWeek() *Courses {
+// FilterBySchedule 根据 Schedule 的属性判断函数过滤符合要求的课表
+func (courses *Courses) FilterBySchedule(remain func(s *ScheduleItem) bool) *Courses {
 	if len(courses.Items) == 0 {
 		return courses
 	}
@@ -14,12 +12,22 @@ func (courses *Courses) FilterThisWeek() *Courses {
 			continue
 		}
 		for scheduleID, schedule := range course.Schedule.Items {
-			if !schedule.IsThisWeek {
+			if !remain(schedule) {
 				delete(course.Schedule.Items, scheduleID)
 			}
 		}
 	}
 	return courses
+}
+
+// FilterThisWeek 过滤出本周课程, 会原地修改原课表
+// 注意：只是根据接口返回的 IsThisWeek 字段来判断是否是本周课程
+// 如果采用的是salmon base 优先级 3 的请求方式，则需要自己计算是否是本周课程
+func (courses *Courses) FilterThisWeek() *Courses {
+	remainThisWeek := func(s *ScheduleItem) bool {
+		return s.IsThisWeek
+	}
+	return courses.FilterBySchedule(remainThisWeek)
 }
 
 // FilterByWeekdays 过滤出星期几的课程，会原地修改原课表
@@ -32,20 +40,11 @@ func (courses *Courses) FilterByWeekdays(weekdays ...int32) *Courses {
 		}
 		return false
 	}
-	if len(courses.Items) == 0 {
-		return courses
+
+	remainWeekday := func(s *ScheduleItem) bool {
+		return in(s.WeekDay, weekdays)
 	}
-	for _, course := range courses.Items {
-		if course.Schedule == nil {
-			continue
-		}
-		for scheduleID, schedule := range course.Schedule.Items {
-			if !in(schedule.WeekDay, weekdays) {
-				delete(course.Schedule.Items, scheduleID)
-			}
-		}
-	}
-	return courses
+	return courses.FilterBySchedule(remainWeekday)
 }
 
 func (schedule *ScheduleItem) StartSection() int {
