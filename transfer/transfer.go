@@ -125,7 +125,7 @@ func (r *Request) EndStruct(data interface{}) (int, int, error) {
 
 func (r *Request) End() (*Response, error) {
 	var in interface{}
-	_, _, err := r.EndStruct(&in)
+	_, _, err := r.EndStruct(in)
 	return r.ResponseData, err
 }
 
