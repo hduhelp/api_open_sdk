@@ -21,7 +21,7 @@ type Response struct {
 
 type Request struct {
 	*gorequest.SuperAgent
-	response *Response
+	ResponseData *Response
 	*http.Response
 
 	*body
@@ -107,11 +107,11 @@ func (r *Request) doneWithError(code int, err error) {
 
 func (r *Request) EndStruct(data interface{}) (int, int, error) {
 	r.make()
-	r.response = new(Response)
-	r.response.Data = data
+	r.ResponseData = new(Response)
+	r.ResponseData.Data = data
 	if !r.done {
 		var errs []error
-		r.Response, _, errs = r.SuperAgent.EndStruct(&r.response)
+		r.Response, _, errs = r.SuperAgent.EndStruct(&r.ResponseData)
 		if len(errs) != 0 {
 			r.doneWithError(50000, errs[0])
 			if r.Response == nil {
@@ -120,7 +120,13 @@ func (r *Request) EndStruct(data interface{}) (int, int, error) {
 			return 50000, r.Response.StatusCode, errs[0]
 		}
 	}
-	return r.response.Error, r.Response.StatusCode, nil
+	return r.ResponseData.Error, r.Response.StatusCode, nil
+}
+
+func (r *Request) End() (*Response, error) {
+	var in interface{}
+	_, _, err := r.EndStruct(&in)
+	return r.ResponseData, err
 }
 
 func (r Request) timestampStr() string {
