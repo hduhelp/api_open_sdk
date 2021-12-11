@@ -19,6 +19,35 @@ type Response struct {
 	Msg   string      `json:"msg"`
 }
 
+func (r *Response) UnmarshalJSON(bytes []byte) error {
+	d := struct {
+		Cache bool        `json:"cache"`
+		Data  interface{} `json:"data"`
+		Error int         `json:"error"`
+		Msg   string      `json:"msg"`
+	}{
+		Data: r.Data,
+	}
+	if err := json.Unmarshal(bytes, &d); err == nil {
+		*r = d
+		return err
+	}
+	d.Data = nil
+	err := json.Unmarshal(bytes, &d)
+	*r = d
+	return err
+}
+
+func (r Response) error() *ResponseError {
+	if r.Error == 0 {
+		return nil
+	}
+	return &ResponseError{
+		string: r.Msg,
+		int:    r.Error,
+	}
+}
+
 type Request struct {
 	*gorequest.SuperAgent
 	ResponseData *Response
@@ -89,13 +118,13 @@ func (r *Request) make() {
 		"body":      base64.StdEncoding.EncodeToString(dataBodyB),
 	}
 
-	r.setToken()
 	r.SuperAgent.
 		Post(instance.endpoint).
 		Set("sign", "sign "+r.sign()).
 		Set("x-hduhelp-cache", "no-cache").
 		Query(queries).
 		Send(r.body)
+	r.setToken()
 	return
 }
 
@@ -120,7 +149,7 @@ func (r *Request) EndStruct(data interface{}) (int, int, error) {
 			return 50000, r.Response.StatusCode, errs[0]
 		}
 	}
-	return r.ResponseData.Error, r.Response.StatusCode, nil
+	return r.ResponseData.Error, r.Response.StatusCode, r.ResponseData.error()
 }
 
 func (r *Request) End() (*Response, error) {
