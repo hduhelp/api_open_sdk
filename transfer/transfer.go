@@ -38,7 +38,7 @@ func (r *Response) UnmarshalJSON(bytes []byte) error {
 	return err
 }
 
-func (r Response) error() *ResponseError {
+func (r Response) error() error {
 	if r.Error == 0 {
 		return nil
 	}
