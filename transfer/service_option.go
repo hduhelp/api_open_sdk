@@ -7,12 +7,12 @@ import (
 	"net/url"
 )
 
-type option interface {
+type serviceOption interface {
 	apply()
 }
 
-func Endpoint(e string) OptionFunc {
-	return func() {
+func Endpoint(e string) ServiceOptionFunc {
+	return func(s *Server) {
 		uri, err := url.ParseRequestURI(e)
 		if err != nil {
 			log.Fatalln(errors.Wrap(err, "transfer: invalid endpoint url"))
@@ -22,12 +22,18 @@ func Endpoint(e string) OptionFunc {
 			log.Fatalln("transfer: could not connect to server: ", err)
 		}
 		defer conn.Close()
-		instance.endpoint = e
+		s.endpoint = e
 	}
 }
 
-type OptionFunc func()
+func Debug() ServiceOptionFunc {
+	return func(s *Server) {
+		s.debug = true
+	}
+}
 
-func (o OptionFunc) apply() {
-	o()
+type ServiceOptionFunc func(*Server)
+
+func (o ServiceOptionFunc) apply() {
+	o(instance)
 }

@@ -51,6 +51,8 @@ func (r Response) error() *ResponseError {
 type Request struct {
 	*gorequest.SuperAgent
 	ResponseData *Response
+	RawData      string
+
 	*http.Response
 
 	*body
@@ -134,13 +136,20 @@ func (r *Request) doneWithError(code int, err error) {
 	r.done = true
 }
 
+func (r *Request) AddHeader(key, value string) *Request {
+	r.SuperAgent.Set(key, value)
+	return r
+}
+
 func (r *Request) EndStruct(data interface{}) (int, int, error) {
+	var bytes []byte
 	r.make()
 	r.ResponseData = new(Response)
 	r.ResponseData.Data = data
 	if !r.done {
 		var errs []error
-		r.Response, _, errs = r.SuperAgent.EndStruct(&r.ResponseData)
+		r.Response, bytes, errs = r.SuperAgent.EndStruct(&r.ResponseData)
+		r.RawData = string(bytes)
 		if len(errs) != 0 {
 			r.doneWithError(50000, errs[0])
 			if r.Response == nil {
