@@ -22,6 +22,7 @@ type StudentServerClient interface {
 	BirthdayHandler(ctx context.Context, in *baseStaff.Staff, opts ...grpc.CallOption) (*BirthdayResponse, error)
 	BirthdaysHandler(ctx context.Context, in *BirthdaysRequest, opts ...grpc.CallOption) (*BirthdaysResponse, error)
 	GateAccessHandler(ctx context.Context, in *GateAccessRequest, opts ...grpc.CallOption) (*GateAccessResponse, error)
+	StudentStaySchoolHandler(ctx context.Context, in *baseStaff.Staff, opts ...grpc.CallOption) (*StudentStaySchool, error)
 }
 
 type studentServerClient struct {
@@ -59,6 +60,15 @@ func (c *studentServerClient) GateAccessHandler(ctx context.Context, in *GateAcc
 	return out, nil
 }
 
+func (c *studentServerClient) StudentStaySchoolHandler(ctx context.Context, in *baseStaff.Staff, opts ...grpc.CallOption) (*StudentStaySchool, error) {
+	out := new(StudentStaySchool)
+	err := c.cc.Invoke(ctx, "/student.StudentServer/StudentStaySchoolHandler", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StudentServerServer is the server API for StudentServer service.
 // All implementations must embed UnimplementedStudentServerServer
 // for forward compatibility
@@ -66,6 +76,7 @@ type StudentServerServer interface {
 	BirthdayHandler(context.Context, *baseStaff.Staff) (*BirthdayResponse, error)
 	BirthdaysHandler(context.Context, *BirthdaysRequest) (*BirthdaysResponse, error)
 	GateAccessHandler(context.Context, *GateAccessRequest) (*GateAccessResponse, error)
+	StudentStaySchoolHandler(context.Context, *baseStaff.Staff) (*StudentStaySchool, error)
 	mustEmbedUnimplementedStudentServerServer()
 }
 
@@ -81,6 +92,9 @@ func (UnimplementedStudentServerServer) BirthdaysHandler(context.Context, *Birth
 }
 func (UnimplementedStudentServerServer) GateAccessHandler(context.Context, *GateAccessRequest) (*GateAccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GateAccessHandler not implemented")
+}
+func (UnimplementedStudentServerServer) StudentStaySchoolHandler(context.Context, *baseStaff.Staff) (*StudentStaySchool, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StudentStaySchoolHandler not implemented")
 }
 func (UnimplementedStudentServerServer) mustEmbedUnimplementedStudentServerServer() {}
 
@@ -149,6 +163,24 @@ func _StudentServer_GateAccessHandler_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StudentServer_StudentStaySchoolHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(baseStaff.Staff)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StudentServerServer).StudentStaySchoolHandler(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/student.StudentServer/StudentStaySchoolHandler",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StudentServerServer).StudentStaySchoolHandler(ctx, req.(*baseStaff.Staff))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StudentServer_ServiceDesc is the grpc.ServiceDesc for StudentServer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -167,6 +199,10 @@ var StudentServer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GateAccessHandler",
 			Handler:    _StudentServer_GateAccessHandler_Handler,
+		},
+		{
+			MethodName: "StudentStaySchoolHandler",
+			Handler:    _StudentServer_StudentStaySchoolHandler_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

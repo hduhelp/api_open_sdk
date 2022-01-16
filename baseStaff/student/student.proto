@@ -12,6 +12,7 @@ service StudentServer {
   rpc BirthdayHandler(baseStaff.Staff) returns (BirthdayResponse) {}
   rpc BirthdaysHandler(BirthdaysRequest) returns (BirthdaysResponse) {}
   rpc GateAccessHandler (GateAccessRequest) returns (GateAccessResponse) {}
+  rpc StudentStaySchoolHandler (baseStaff.Staff) returns (StudentStaySchool) {}
 }
 
 message Info {
@@ -85,4 +86,22 @@ message GateAccessRequest {
 message GateAccessResponse {
   bool Done = 1;
   string Message = 2;
+}
+
+message StudentStaySchool{
+  string StaffID = 1;
+  string StaffName = 2;
+  string ReportTime = 3;
+  string Reason = 4;
+  string Time1Start = 5;
+  string Time1End = 6;
+  string Time2Start = 7;
+  string Time2End = 8;
+  string TeacherStatus = 9;
+  string TeacherRemark = 10;
+  string TeacherReviewTime = 11;
+  string UnitStatus = 12;
+  string UnitRemark = 13;
+  string UnitReviewTime = 14;
+  string CancelStatus = 15;
 }
