@@ -30,7 +30,7 @@ message CheckinRecord {
   types.Timestamp CreatedAt = 3;
   types.Timestamp Modified = 4;
   string Modifier = 5;
-  Content Content = 6;
+  types.JSON Content = 6;//健康打卡内容JSON
   types.Timestamp ReportTime = 7;
   string Province = 8;
   string City = 9;
@@ -44,10 +44,6 @@ message CheckinRecord {
   string SchoolID = 15;
 }
 
-//健康打卡内容JSON
-message Content {
-  string Value = 1;
-}
 
 //健康码
 message HealthCode {
