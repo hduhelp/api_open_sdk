@@ -11,6 +11,7 @@ import "baseStaff/teacher/teacher.proto" ;
 service StudentServer {
   rpc BirthdayHandler(baseStaff.Staff) returns (BirthdayResponse) {}
   rpc BirthdaysHandler(BirthdaysRequest) returns (BirthdaysResponse) {}
+  rpc GateAccessHandler (GateAccessRequest) returns (GateAccessResponse) {}
 }
 
 message Info {
@@ -52,4 +53,36 @@ message BirthdayResponse {
 
 message BirthdaysResponse {
   repeated BirthdayResponse Birthdays = 1;
+}
+
+message StudentStaySchoolReply{
+  string StaffID = 1;
+  string StaffName = 2;
+  string ReportTime = 3;
+  string Reason = 4;
+  string Time1Start = 5;
+  string Time1End = 6;
+  string Time2Start = 7;
+  string Time2End = 8;
+  string TeacherStatus = 9;
+  string TeacherRemark = 10;
+  string TeacherReviewTime = 11;
+  string UnitStatus = 12;
+  string UnitRemark = 13;
+  string UnitReviewTime = 14;
+  string CancelStatus = 15;
+}
+
+message GateAccessRequest {
+  string StaffId = 1;
+  string DayOffType = 2;
+  string DayOffName = 3;
+  string TimeStart = 4;
+  string TimeEnd = 5;
+  string Uid = 6;
+}
+
+message GateAccessResponse {
+  bool Done = 1;
+  string Message = 2;
 }

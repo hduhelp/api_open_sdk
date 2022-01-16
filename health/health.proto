@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package health;
+
+option go_package = "github.com/hduhelp/api_open_sdk/health";
+
+import "github.com/hduhelp/api_open_sdk/types/types.proto";
+import "github.com/hduhelp/api_open_sdk/baseStaff/baseStaff.proto";
+
+service HealthService {
+  rpc GetCheckinRecord(StaffIDWithTimestampRequest) returns (CheckinRecord) {}
+  rpc GetCheckinRecords(baseStaff.Staff) returns (CheckinRecords) {}
+  rpc GetHealthCode(baseStaff.Staff) returns (StudentHealthCode) {}
+}
+
+message StaffIDWithTimestampRequest {
+  string StaffID = 1;
+  string Date = 2;
+}
+
+message CheckinRecords {
+  repeated CheckinRecord Items = 1;
+}
+
+//健康打卡记录
+message CheckinRecord {
+  int64 ID = 1;
+  string Creator = 2;
+  types.Timestamp CreatedAt = 3;
+  types.Timestamp Modified = 4;
+  string Modifier = 5;
+  Content Content = 6;
+  types.Timestamp ReportTime = 7;
+  string Province = 8;
+  string City = 9;
+  string Country = 10;
+
+  string StaffID = 11;
+  string StaffName = 12;
+  string StaffType = 13;
+  string Unit = 14;
+
+  string SchoolID = 15;
+}
+
+//健康打卡内容JSON
+message Content {
+  string Value = 1;
+}
+
+//健康码老
+message StudentHealthCode {
+  string StaffId = 1;
+  string StaffName = 2;
+  string PhoneNum = 3 ;
+  string CodeStatus = 4;
+  string Location = 5;
+  string Reason = 6;
+  string FirstApplyTime = 7;
+  string FirstGrantTime = 8;
+  string LastUpdateTime = 9;
+  string ServerUpdateTime = 10;
+}

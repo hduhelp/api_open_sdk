@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type StudentServerClient interface {
 	BirthdayHandler(ctx context.Context, in *baseStaff.Staff, opts ...grpc.CallOption) (*BirthdayResponse, error)
 	BirthdaysHandler(ctx context.Context, in *BirthdaysRequest, opts ...grpc.CallOption) (*BirthdaysResponse, error)
+	GateAccessHandler(ctx context.Context, in *GateAccessRequest, opts ...grpc.CallOption) (*GateAccessResponse, error)
 }
 
 type studentServerClient struct {
@@ -49,12 +50,22 @@ func (c *studentServerClient) BirthdaysHandler(ctx context.Context, in *Birthday
 	return out, nil
 }
 
+func (c *studentServerClient) GateAccessHandler(ctx context.Context, in *GateAccessRequest, opts ...grpc.CallOption) (*GateAccessResponse, error) {
+	out := new(GateAccessResponse)
+	err := c.cc.Invoke(ctx, "/student.StudentServer/GateAccessHandler", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StudentServerServer is the server API for StudentServer service.
 // All implementations must embed UnimplementedStudentServerServer
 // for forward compatibility
 type StudentServerServer interface {
 	BirthdayHandler(context.Context, *baseStaff.Staff) (*BirthdayResponse, error)
 	BirthdaysHandler(context.Context, *BirthdaysRequest) (*BirthdaysResponse, error)
+	GateAccessHandler(context.Context, *GateAccessRequest) (*GateAccessResponse, error)
 	mustEmbedUnimplementedStudentServerServer()
 }
 
@@ -67,6 +78,9 @@ func (UnimplementedStudentServerServer) BirthdayHandler(context.Context, *baseSt
 }
 func (UnimplementedStudentServerServer) BirthdaysHandler(context.Context, *BirthdaysRequest) (*BirthdaysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BirthdaysHandler not implemented")
+}
+func (UnimplementedStudentServerServer) GateAccessHandler(context.Context, *GateAccessRequest) (*GateAccessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GateAccessHandler not implemented")
 }
 func (UnimplementedStudentServerServer) mustEmbedUnimplementedStudentServerServer() {}
 
@@ -117,6 +131,24 @@ func _StudentServer_BirthdaysHandler_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StudentServer_GateAccessHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GateAccessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StudentServerServer).GateAccessHandler(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/student.StudentServer/GateAccessHandler",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StudentServerServer).GateAccessHandler(ctx, req.(*GateAccessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StudentServer_ServiceDesc is the grpc.ServiceDesc for StudentServer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -131,6 +163,10 @@ var StudentServer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BirthdaysHandler",
 			Handler:    _StudentServer_BirthdaysHandler_Handler,
+		},
+		{
+			MethodName: "GateAccessHandler",
+			Handler:    _StudentServer_GateAccessHandler_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
