@@ -22,6 +22,7 @@ type HealthServiceClient interface {
 	GetCheckinRecord(ctx context.Context, in *StaffIDWithTimestampRequest, opts ...grpc.CallOption) (*CheckinRecord, error)
 	GetCheckinRecords(ctx context.Context, in *baseStaff.Staff, opts ...grpc.CallOption) (*CheckinRecords, error)
 	GetHealthCode(ctx context.Context, in *baseStaff.Staff, opts ...grpc.CallOption) (*StudentHealthCode, error)
+	GetHealthCodeV2(ctx context.Context, in *baseStaff.Staff, opts ...grpc.CallOption) (*HealthCode, error)
 }
 
 type healthServiceClient struct {
@@ -59,6 +60,15 @@ func (c *healthServiceClient) GetHealthCode(ctx context.Context, in *baseStaff.S
 	return out, nil
 }
 
+func (c *healthServiceClient) GetHealthCodeV2(ctx context.Context, in *baseStaff.Staff, opts ...grpc.CallOption) (*HealthCode, error) {
+	out := new(HealthCode)
+	err := c.cc.Invoke(ctx, "/health.HealthService/GetHealthCodeV2", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HealthServiceServer is the server API for HealthService service.
 // All implementations must embed UnimplementedHealthServiceServer
 // for forward compatibility
@@ -66,6 +76,7 @@ type HealthServiceServer interface {
 	GetCheckinRecord(context.Context, *StaffIDWithTimestampRequest) (*CheckinRecord, error)
 	GetCheckinRecords(context.Context, *baseStaff.Staff) (*CheckinRecords, error)
 	GetHealthCode(context.Context, *baseStaff.Staff) (*StudentHealthCode, error)
+	GetHealthCodeV2(context.Context, *baseStaff.Staff) (*HealthCode, error)
 	mustEmbedUnimplementedHealthServiceServer()
 }
 
@@ -81,6 +92,9 @@ func (UnimplementedHealthServiceServer) GetCheckinRecords(context.Context, *base
 }
 func (UnimplementedHealthServiceServer) GetHealthCode(context.Context, *baseStaff.Staff) (*StudentHealthCode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHealthCode not implemented")
+}
+func (UnimplementedHealthServiceServer) GetHealthCodeV2(context.Context, *baseStaff.Staff) (*HealthCode, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHealthCodeV2 not implemented")
 }
 func (UnimplementedHealthServiceServer) mustEmbedUnimplementedHealthServiceServer() {}
 
@@ -149,6 +163,24 @@ func _HealthService_GetHealthCode_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HealthService_GetHealthCodeV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(baseStaff.Staff)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServiceServer).GetHealthCodeV2(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/health.HealthService/GetHealthCodeV2",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServiceServer).GetHealthCodeV2(ctx, req.(*baseStaff.Staff))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HealthService_ServiceDesc is the grpc.ServiceDesc for HealthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -167,6 +199,10 @@ var HealthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetHealthCode",
 			Handler:    _HealthService_GetHealthCode_Handler,
+		},
+		{
+			MethodName: "GetHealthCodeV2",
+			Handler:    _HealthService_GetHealthCodeV2_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
