@@ -61,18 +61,28 @@ type Request struct {
 	done bool
 	error
 	code int
+
+	options []interface {
+		apply(*Request)
+	}
 }
 
-func Get(appID string, path string, param map[string]string, staffID string) (resp *Request) {
-	return NewRequest(instance.appID, appID, path, param, staffID, "GET", nil)
+func Get(appID string, path string, param map[string]string, staffID string, options ...interface {
+	apply(*Request)
+}) (resp *Request) {
+	return NewRequest(instance.appID, appID, path, param, staffID, http.MethodGet, nil, options...)
 }
 
-func Post(appID string, path string, param map[string]string, staffID string, postForm interface{}) (resp *Request) {
-	return NewRequest(instance.appID, appID, path, param, staffID, "POST", postForm)
+func Post(appID string, path string, param map[string]string, staffID string, postForm interface{}, options ...interface {
+	apply(*Request)
+}) (resp *Request) {
+	return NewRequest(instance.appID, appID, path, param, staffID, http.MethodPost, postForm, options...)
 }
 
-func Put(appID string, path string, param map[string]string, staffID string, postForm interface{}) (resp *Request) {
-	return NewRequest(instance.appID, appID, path, param, staffID, "PUT", postForm)
+func Put(appID string, path string, param map[string]string, staffID string, postForm interface{}, options ...interface {
+	apply(*Request)
+}) (resp *Request) {
+	return NewRequest(instance.appID, appID, path, param, staffID, http.MethodPut, postForm, options...)
 }
 
 type body struct {
@@ -86,7 +96,10 @@ type body struct {
 	PostForm  interface{}       `json:"postForm"`
 }
 
-func NewRequest(from string, to string, path string, param map[string]string, staffID string, method string, postBody interface{}) *Request {
+func NewRequest(from string, to string, path string, param map[string]string,
+	staffID string, method string, postBody interface{}, options ...interface {
+		apply(*Request)
+	}) *Request {
 	request := &Request{
 		SuperAgent: gorequest.New(),
 	}
@@ -102,6 +115,7 @@ func NewRequest(from string, to string, path string, param map[string]string, st
 		Method:    method,
 		PostForm:  postBody,
 	}
+	request.options = options
 	return request
 }
 
@@ -126,6 +140,9 @@ func (r *Request) make() {
 		Set("x-hduhelp-cache", "no-cache").
 		Query(queries).
 		Send(r.body)
+	for _, option := range r.options {
+		option.apply(r)
+	}
 	r.setToken()
 	return
 }

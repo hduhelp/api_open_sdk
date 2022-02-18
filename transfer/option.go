@@ -7,10 +7,6 @@ import (
 	"net/url"
 )
 
-type serviceOption interface {
-	apply()
-}
-
 func Endpoint(e string) ServiceOptionFunc {
 	return func(s *Server) {
 		uri, err := url.ParseRequestURI(e)
@@ -36,4 +32,22 @@ type ServiceOptionFunc func(*Server)
 
 func (o ServiceOptionFunc) apply() {
 	o(instance)
+}
+
+type School struct {
+	string
+}
+
+func (s School) apply(request *Request) {
+	request.SuperAgent.Set("x-hduhelp-school", s.string)
+}
+
+type Cache struct {
+	bool
+}
+
+func (s Cache) apply(request *Request) {
+	if !s.bool {
+		request.SuperAgent.Header.Del("x-hduhelp-cache")
+	}
 }

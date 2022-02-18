@@ -10,7 +10,9 @@ type Server struct {
 	debug bool
 }
 
-func Init(appID, appKey string, options ...serviceOption) {
+func Init(appID, appKey string, options ...interface {
+	apply()
+}) {
 	instance = defaultServer()
 	instance.appID = appID
 	instance.appKey = appKey
