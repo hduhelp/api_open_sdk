@@ -6,8 +6,8 @@ import (
 )
 
 type CoursesCustomLess struct {
-	Courses
-	less func(c CourseItems, i, j int) bool
+	*Courses
+	Less func(c CourseItems, i, j int) bool
 }
 
 func (x *CoursesCustomLess) MarshalJSON() ([]byte, error) {
@@ -16,7 +16,7 @@ func (x *CoursesCustomLess) MarshalJSON() ([]byte, error) {
 		list = append(list, v)
 	}
 	sort.Slice(list, func(i, j int) bool {
-		return x.less(list, i, j)
+		return x.Less(list, i, j)
 	})
 	return json.Marshal(list)
 }
