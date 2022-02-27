@@ -88,24 +88,14 @@ type Students struct {
 
 type CourseItems []*CourseItem
 
-func (c CourseItems) Len() int {
-	return len(c)
-}
-
-func (c CourseItems) Less(i, j int) bool {
-	return c[i].CourseID < c[j].CourseID
-}
-
-func (c CourseItems) Swap(i, j int) {
-	c[i], c[j] = c[j], c[i]
-}
-
 func (x *Courses) MarshalJSON() ([]byte, error) {
 	list := CourseItems{}
 	for _, v := range x.Items {
 		list = append(list, v)
 	}
-	sort.Sort(list)
+	sort.Slice(list, func(i, j int) bool {
+		return courseItemsLess(list, i, j)
+	})
 	return json.Marshal(list)
 }
 
@@ -124,24 +114,14 @@ func (x *Courses) UnmarshalJSON(bytes []byte) error {
 
 type ScheduleItems []*ScheduleItem
 
-func (c ScheduleItems) Len() int {
-	return len(c)
-}
-
-func (c ScheduleItems) Less(i, j int) bool {
-	return c[i].WeekDay < c[j].WeekDay
-}
-
-func (c ScheduleItems) Swap(i, j int) {
-	c[i], c[j] = c[j], c[i]
-}
-
 func (x *Schedule) MarshalJSON() ([]byte, error) {
 	list := ScheduleItems{}
 	for _, v := range x.Items {
 		list = append(list, v)
 	}
-	sort.Sort(list)
+	sort.SliceStable(list, func(i, j int) bool {
+		return scheduleItemsLess(list, i, j)
+	})
 	return json.Marshal(list)
 }
 
