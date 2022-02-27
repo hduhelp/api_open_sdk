@@ -41,7 +41,7 @@ func (x *CourseItem) minStartTime() int64 {
 	}
 	min := int64(0)
 	for _, v := range x.Schedule.Items {
-		if v.StartTime < min {
+		if min == 0 || v.StartTime < min {
 			min = v.StartTime
 		}
 	}
