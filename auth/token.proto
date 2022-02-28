@@ -4,7 +4,7 @@ package auth;
 
 option go_package = "github.com/hduhelp/api_open_sdk/auth";
 
-enum Type {
-    OriginToken = 0;
-    OauthToken = 1;
+enum TokenType {
+    Origin = 0;
+    OAuth = 1;
 }

@@ -33,6 +33,10 @@ func CastSchoolYear(in interface{}) *SchoolYear {
 	}
 }
 
+func (x *SchoolYear) IsZero() bool {
+	return x == nil || x.Year == 0
+}
+
 func (x *SchoolYear) ShortName() string {
 	return strconv.Itoa(int(x.Year))
 }

@@ -33,6 +33,10 @@ func CastSemester(in interface{}) *Semester {
 	}
 }
 
+func (x *Semester) IsZero() bool {
+	return x == nil || x.Num == 0
+}
+
 func (x *Semester) UnmarshalJSON(data []byte) error {
 	var v interface{}
 	if err := json.Unmarshal(data, &v); err != nil {

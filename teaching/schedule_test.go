@@ -1,6 +1,9 @@
 package teaching
 
 import (
+	"fmt"
+	"github.com/hduhelp/api_open_sdk/baseStaff"
+	"reflect"
 	"testing"
 )
 
@@ -65,6 +68,53 @@ func TestSchedule_UnmarshalJSON(t *testing.T) {
 			}
 			if err := x.UnmarshalJSON(tt.args.bytes); (err != nil) != tt.wantErr {
 				t.Errorf("UnmarshalJSON() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestSchedule_MarshalJSON(t *testing.T) {
+	type fields struct {
+		Items map[string]*ScheduleItem
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		want    []byte
+		wantErr bool
+	}{
+		{
+			name: "test",
+			fields: fields{
+				Items: map[string]*ScheduleItem{
+					"1": {
+						EndTime:    1638358500,
+						IsThisWeek: true,
+						Location:   "6-中227",
+						Section:    []int32{3, 4},
+						StartTime:  1638352800,
+						Teachers:   &baseStaff.InfoMapList{},
+						Week:       []int32{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17},
+						WeekDay:    3,
+					},
+				},
+			},
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			x := &Schedule{
+				Items: tt.fields.Items,
+			}
+			got, err := x.MarshalJSON()
+			fmt.Println(string(got))
+			if (err != nil) != tt.wantErr {
+				t.Errorf("MarshalJSON() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MarshalJSON() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
