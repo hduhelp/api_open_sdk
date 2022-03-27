@@ -36,6 +36,8 @@ func (x *ScheduleItem) SetTime(q *CourseQuery) {
 
 // AddMember 添加课程人员
 func (x *ScheduleItem) AddMember(q *CourseQuery, r ScheduleReader) {
+	// 初始化 Teachers 和 Students ，保证非空，防止调用方出现空指针错误
+	x.InitMember()
 	switch q.QueryStaff.Type {
 	case baseStaff.Type_Teacher:
 		//教师展示上课学生
@@ -46,21 +48,24 @@ func (x *ScheduleItem) AddMember(q *CourseQuery, r ScheduleReader) {
 	}
 }
 
-func (x *ScheduleItem) AddTeacher(r ScheduleReader) {
+func (x *ScheduleItem) InitMember() {
 	if x.Teachers == nil {
 		x.Teachers = &baseStaff.InfoMapList{
 			Items: map[string]*baseStaff.Info{},
 		}
 	}
-	x.Teachers.Append(r.TeacherInfo())
-}
-
-func (x *ScheduleItem) AddStudent(r ScheduleReader) {
 	if x.Students == nil {
 		x.Students = &baseStaff.InfoMapList{
 			Items: map[string]*baseStaff.Info{},
 		}
 	}
+}
+
+func (x *ScheduleItem) AddTeacher(r ScheduleReader) {
+	x.Teachers.Append(r.TeacherInfo())
+}
+
+func (x *ScheduleItem) AddStudent(r ScheduleReader) {
 	x.Students.Append(r.StudentInfo())
 }
 
