@@ -1,22 +1,30 @@
 package teaching
 
-import "sort"
+import (
+	"sort"
+	"time"
+)
 
-// FilterBySchedule 根据 Schedule 的属性判断函数过滤符合要求的课表
-func (courses *Courses) FilterBySchedule(remain func(s *ScheduleItem) bool) *Courses {
-	if len(courses.Items) == 0 {
-		return courses
-	}
+type RemainFunc func(s *ScheduleItem) bool
+
+// FilterBySchedule 根据 Schedule 的属性判断函数过滤符合要求的课表, 会原地修改课表
+func (courses *Courses) FilterBySchedule(remains ...RemainFunc) *Courses {
 	for _, course := range courses.Items {
-		if course.Schedule == nil {
-			continue
-		}
 		for scheduleID, schedule := range course.Schedule.Items {
-			if !remain(schedule) {
-				delete(course.Schedule.Items, scheduleID)
+			for _, remain := range remains {
+				if !remain(schedule) {
+					delete(course.Schedule.Items, scheduleID)
+					break
+				}
 			}
 		}
 	}
+	for key, course := range courses.Items {
+		if len(course.Schedule.Items) == 0 {
+			delete(courses.Items, key)
+		}
+	}
+
 	return courses
 }
 
@@ -24,14 +32,21 @@ func (courses *Courses) FilterBySchedule(remain func(s *ScheduleItem) bool) *Cou
 // 注意：只是根据接口返回的 IsThisWeek 字段来判断是否是本周课程
 // 如果采用的是salmon base 优先级 3 的请求方式，则需要自己计算是否是本周课程
 func (courses *Courses) FilterThisWeek() *Courses {
-	remainThisWeek := func(s *ScheduleItem) bool {
-		return s.IsThisWeek
-	}
-	return courses.FilterBySchedule(remainThisWeek)
+	return courses.FilterBySchedule(RemainThisWeek)
 }
 
 // FilterByWeekdays 过滤出星期几的课程，会原地修改原课表
 func (courses *Courses) FilterByWeekdays(weekdays ...int32) *Courses {
+	return courses.FilterBySchedule(RemainByWeekdays(weekdays...))
+}
+
+// RemainThisWeek 留下本星期的课程
+func RemainThisWeek(s *ScheduleItem) bool {
+	return s.IsThisWeek
+}
+
+// RemainByWeekdays 留下指定星期几的课程
+func RemainByWeekdays(weekdays ...int32) RemainFunc {
 	in := func(i int32, list []int32) bool {
 		for _, v := range list {
 			if i == v {
@@ -40,11 +55,16 @@ func (courses *Courses) FilterByWeekdays(weekdays ...int32) *Courses {
 		}
 		return false
 	}
-
-	remainWeekday := func(s *ScheduleItem) bool {
+	return func(s *ScheduleItem) bool {
 		return in(s.WeekDay, weekdays)
 	}
-	return courses.FilterBySchedule(remainWeekday)
+}
+
+// RemainByDay 留下当天的课程
+func RemainByDay(day time.Time) RemainFunc {
+	return func(s *ScheduleItem) bool {
+		return day.Format("2006-01-02") == time.Unix(s.StartTime, 0).Format("2006-01-02")
+	}
 }
 
 func (schedule *ScheduleItem) StartSection() int {
@@ -118,21 +138,24 @@ func (s scheduleWithCourseSlice) Swap(i, j int) {
 
 func DefaultSort(s1, s2 *ScheduleItem) bool {
 	// 只考虑本周课程
-	// 先按星期升序，再按开始节次升序
+	// 依次按星期升序，开始节次升序，结束节次升序
 	switch {
 	case s1.WeekDay < s2.WeekDay:
 		return true
 	case s1.WeekDay > s2.WeekDay:
 		return false
-	case s1.WeekDay == s2.WeekDay:
-		switch {
-		case s1.StartSection() < s2.StartSection():
-			return true
-		case s1.StartSection() > s2.StartSection():
-			return false
-		default:
-			return true
-		}
+	}
+	switch {
+	case s1.StartSection() < s2.StartSection():
+		return true
+	case s1.StartSection() > s2.StartSection():
+		return false
+	}
+	switch {
+	case s1.EndSection() < s2.EndSection():
+		return true
+	case s1.EndSection() < s2.EndSection():
+		return false
 	}
 	return true
 }
