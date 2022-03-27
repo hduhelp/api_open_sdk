@@ -82,11 +82,6 @@ type scheduleWithCourse struct {
 
 type ScheduleLess func(s1, s2 *ScheduleItem) bool
 
-type scheduleWithCourseSlice struct {
-	schedules []*scheduleWithCourse
-	less      ScheduleLess
-}
-
 // Iterator 遍历课表，返回课程名，ScheduleItem，可自定义排序方法
 // 用法详见 test
 func (courses *Courses) Iterator(less ScheduleLess) func() (courseName string, schedule *ScheduleItem, ok bool) {
@@ -97,43 +92,29 @@ func (courses *Courses) Iterator(less ScheduleLess) func() (courseName string, s
 	}
 	index := 0
 	// 把课表拉平
-	schedules := scheduleWithCourseSlice{less: less}
+	schedules := make([]*scheduleWithCourse, 0, len(courses.Items))
 	for _, course := range courses.Items {
 		if course.Schedule == nil {
 			continue
 		}
 		for _, schedule := range course.Schedule.Items {
-			schedules.append(&scheduleWithCourse{CourseName: course.CourseName, ScheduleItem: schedule})
+			schedules = append(schedules, &scheduleWithCourse{CourseName: course.CourseName, ScheduleItem: schedule})
 		}
 	}
 
-	length := schedules.Len()
-	sort.Sort(schedules)
+	length := len(schedules)
+	sort.Slice(schedules, func(i, j int) bool {
+		return less(schedules[i].ScheduleItem, schedules[j].ScheduleItem)
+	})
 
 	return func() (courseName string, schedule *ScheduleItem, ok bool) {
 		if index >= length {
 			return
 		}
-		courseName, schedule, ok = schedules.schedules[index].CourseName, schedules.schedules[index].ScheduleItem, true
+		courseName, schedule, ok = schedules[index].CourseName, schedules[index].ScheduleItem, true
 		index++
 		return
 	}
-}
-
-func (s *scheduleWithCourseSlice) append(item *scheduleWithCourse) {
-	s.schedules = append(s.schedules, item)
-}
-
-func (s scheduleWithCourseSlice) Len() int {
-	return len(s.schedules)
-}
-
-func (s scheduleWithCourseSlice) Less(i, j int) bool {
-	return s.less(s.schedules[i].ScheduleItem, s.schedules[j].ScheduleItem)
-}
-
-func (s scheduleWithCourseSlice) Swap(i, j int) {
-	s.schedules[i], s.schedules[j] = s.schedules[j], s.schedules[i]
 }
 
 func DefaultSort(s1, s2 *ScheduleItem) bool {
