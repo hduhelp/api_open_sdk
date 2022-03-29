@@ -18,7 +18,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TeachingServerClient interface {
-	StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Courses, error)
+	GetScheduleRequest(ctx context.Context, in *GetScheduleRequestRequest, opts ...grpc.CallOption) (*Courses, error)
+	GetClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*Classrooms, error)
+	GetClassroomUsages(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomUsages, error)
+	GetUnusedClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*Classrooms, error)
 }
 
 type teachingServerClient struct {
@@ -29,9 +32,36 @@ func NewTeachingServerClient(cc grpc.ClientConnInterface) TeachingServerClient {
 	return &teachingServerClient{cc}
 }
 
-func (c *teachingServerClient) StaffGetScheduleHandler(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*Courses, error) {
+func (c *teachingServerClient) GetScheduleRequest(ctx context.Context, in *GetScheduleRequestRequest, opts ...grpc.CallOption) (*Courses, error) {
 	out := new(Courses)
-	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/StaffGetScheduleHandler", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/GetScheduleRequest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teachingServerClient) GetClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*Classrooms, error) {
+	out := new(Classrooms)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/GetClassrooms", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teachingServerClient) GetClassroomUsages(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomUsages, error) {
+	out := new(ClassroomUsages)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/GetClassroomUsages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teachingServerClient) GetUnusedClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*Classrooms, error) {
+	out := new(Classrooms)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/GetUnusedClassrooms", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -42,15 +72,27 @@ func (c *teachingServerClient) StaffGetScheduleHandler(ctx context.Context, in *
 // All implementations should embed UnimplementedTeachingServerServer
 // for forward compatibility
 type TeachingServerServer interface {
-	StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Courses, error)
+	GetScheduleRequest(context.Context, *GetScheduleRequestRequest) (*Courses, error)
+	GetClassrooms(context.Context, *ClassroomRequest) (*Classrooms, error)
+	GetClassroomUsages(context.Context, *ClassroomRequest) (*ClassroomUsages, error)
+	GetUnusedClassrooms(context.Context, *ClassroomRequest) (*Classrooms, error)
 }
 
 // UnimplementedTeachingServerServer should be embedded to have forward compatible implementations.
 type UnimplementedTeachingServerServer struct {
 }
 
-func (UnimplementedTeachingServerServer) StaffGetScheduleHandler(context.Context, *ScheduleRequest) (*Courses, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StaffGetScheduleHandler not implemented")
+func (UnimplementedTeachingServerServer) GetScheduleRequest(context.Context, *GetScheduleRequestRequest) (*Courses, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScheduleRequest not implemented")
+}
+func (UnimplementedTeachingServerServer) GetClassrooms(context.Context, *ClassroomRequest) (*Classrooms, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClassrooms not implemented")
+}
+func (UnimplementedTeachingServerServer) GetClassroomUsages(context.Context, *ClassroomRequest) (*ClassroomUsages, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClassroomUsages not implemented")
+}
+func (UnimplementedTeachingServerServer) GetUnusedClassrooms(context.Context, *ClassroomRequest) (*Classrooms, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnusedClassrooms not implemented")
 }
 
 // UnsafeTeachingServerServer may be embedded to opt out of forward compatibility for this service.
@@ -64,20 +106,74 @@ func RegisterTeachingServerServer(s grpc.ServiceRegistrar, srv TeachingServerSer
 	s.RegisterService(&TeachingServer_ServiceDesc, srv)
 }
 
-func _TeachingServer_StaffGetScheduleHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ScheduleRequest)
+func _TeachingServer_GetScheduleRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetScheduleRequestRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeachingServerServer).StaffGetScheduleHandler(ctx, in)
+		return srv.(TeachingServerServer).GetScheduleRequest(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.teaching.v1.TeachingServer/StaffGetScheduleHandler",
+		FullMethod: "/campusapis.teaching.v1.TeachingServer/GetScheduleRequest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServerServer).StaffGetScheduleHandler(ctx, req.(*ScheduleRequest))
+		return srv.(TeachingServerServer).GetScheduleRequest(ctx, req.(*GetScheduleRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingServer_GetClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClassroomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServerServer).GetClassrooms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingServer/GetClassrooms",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServerServer).GetClassrooms(ctx, req.(*ClassroomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingServer_GetClassroomUsages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClassroomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServerServer).GetClassroomUsages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingServer/GetClassroomUsages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServerServer).GetClassroomUsages(ctx, req.(*ClassroomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingServer_GetUnusedClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClassroomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServerServer).GetUnusedClassrooms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingServer/GetUnusedClassrooms",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServerServer).GetUnusedClassrooms(ctx, req.(*ClassroomRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -90,8 +186,20 @@ var TeachingServer_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TeachingServerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "StaffGetScheduleHandler",
-			Handler:    _TeachingServer_StaffGetScheduleHandler_Handler,
+			MethodName: "GetScheduleRequest",
+			Handler:    _TeachingServer_GetScheduleRequest_Handler,
+		},
+		{
+			MethodName: "GetClassrooms",
+			Handler:    _TeachingServer_GetClassrooms_Handler,
+		},
+		{
+			MethodName: "GetClassroomUsages",
+			Handler:    _TeachingServer_GetClassroomUsages_Handler,
+		},
+		{
+			MethodName: "GetUnusedClassrooms",
+			Handler:    _TeachingServer_GetUnusedClassrooms_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
