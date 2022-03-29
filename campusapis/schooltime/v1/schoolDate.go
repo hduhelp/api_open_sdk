@@ -1,4 +1,4 @@
-package schoolTime
+package schooltimev1
 
 import (
 	"errors"

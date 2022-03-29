@@ -1,4 +1,4 @@
-package apiv1
+package schooltimev1
 
 import (
 	"database/sql/driver"

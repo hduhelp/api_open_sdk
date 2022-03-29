@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package campusapis.health.api.v1;
+package campusapis.health.v1;
 
-option go_package = "./health/api/v1";
+option go_package = "./health/v1";
 
 import "baseStaff/baseStaff.proto";
 import "google/protobuf/empty.proto";

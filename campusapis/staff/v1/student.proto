@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package campusapis.staff.api.v1;
+package campusapis.staff.v1;
 
-option go_package = "./staff/api/v1";
+option go_package = "./staff/v1";
 
 import "baseStaff/baseStaff.proto" ;
 import "school/school.proto" ;

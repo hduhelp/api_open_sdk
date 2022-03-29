@@ -1,8 +1,9 @@
-package schoolTime
+package schooltimev1
 
 import (
-	"github.com/hduhelp/api_open_sdk/types"
 	"time"
+
+	"github.com/hduhelp/api_open_sdk/types"
 )
 
 type SectionReader interface {
