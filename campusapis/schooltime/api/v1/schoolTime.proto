@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package campusapis.schooltime.api.v1;
+
+option go_package = "./schooltime/api/v1";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service SchoolTimeService {
+  rpc GetSchoolTime (google.protobuf.Empty) returns (GetSchoolTimeResponse) {
+    option (google.api.http) = {
+      get: "/schooltime/v1"
+      additional_bindings {
+        get: "/time"
+      }
+    };
+  }
+}
+
+message GetSchoolTimeResponse {
+  string schoolYear = 1;  
+  int32 section = 2;
+  string semester = 3;
+  int64 timeStamp = 4;
+  int32 weekDayNow = 5;
+  int32 weekNow = 6;
+}
+
+message SchoolTime {
+  SchoolYear SchoolYear = 1;
+  Semester Semester = 2;
+  int32 SchoolWeek = 3;
+  int32 DayOfWeek = 4;
+  Section Section = 5;
+  google.protobuf.Timestamp Time = 6;
+}
+
+message Section {
+  int32 Section = 1;
+  google.protobuf.Timestamp StartTime = 2;
+  google.protobuf.Timestamp EndTime = 3;
+}
+
+message SchoolYear {
+    int32 Year = 1;
+}
+  
+message Semester {
+    int32 Num = 1;
+}

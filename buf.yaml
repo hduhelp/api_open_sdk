@@ -5,11 +5,11 @@ deps:
   - buf.build/grpc-ecosystem/grpc-gateway
 lint:
   use:
-    - MINIMAL
+    - BASIC
   except:
     - RPC_REQUEST_STANDARD_NAME
     - PACKAGE_VERSION_SUFFIX
-    # - FILE_LOWER_SNAKE_CASE
+    - FIELD_LOWER_SNAKE_CASE
   enum_zero_value_suffix: _UNSPECIFIED
   rpc_allow_same_request_response: true
   rpc_allow_google_protobuf_empty_requests: true
