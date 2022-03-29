@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+package campusapis.staff.api.v1;
+
+option go_package = "./baseStaff/api/v1";
+
+import "baseStaff/baseStaff.proto" ;
+import "school/school.proto" ;
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service StudentService {
+  rpc GetStudentInfo(google.protobuf.Empty) returns (GetStudentInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/info"
+      additional_bindings {
+        get: "/student/info"
+      }
+    };
+  };
+  rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/needy"
+      additional_bindings {
+        get: "/student/needy"
+      }
+    };
+  }
+  rpc GetStudentDormInfo(google.protobuf.Empty) returns (GetStudentDormInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/dorm"
+      additional_bindings {
+        get: "/student/dorm"
+      }
+    };
+  }
+  rpc BirthdayHandler(BirthdayHandlerRequest) returns (BirthdayHandlerResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/birthday"
+      additional_bindings {
+        get: "/student/birthday"
+      }
+    };
+  }
+  rpc BirthdaysHandler(BirthdaysHandlerRequest) returns (BirthdaysHandlerResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/birthdays"
+      additional_bindings {
+        get: "/student/birthdays"
+      }
+    };
+  }
+  rpc GateAccessHandler (GateAccessHandlerRequest) returns (GateAccessHandlerResponse) {}
+  rpc StudentStaySchoolHandler (StudentStaySchoolHandlerRequest) returns (StudentStaySchoolHandlerResponse) {}
+}
+
+message GetStudentInfoResponse {
+  string staffId = 1;
+  string staffName = 2;
+  string classId = 3;
+  string unitId = 4;
+  string unitName = 5;
+  string majorId = 6;
+  string majorName = 7;
+  string teacherId = 8;
+  string teacherName = 9;
+}
+
+message StudentInfo {
+  baseStaff.Info staff = 1;
+  string class_id = 2 ;
+  school.Unit unit = 3;
+  school.Major major = 4;
+}
+
+message DormInfo {
+  string building = 1 ;
+  string room = 2 ;
+  string bed = 3 ;
+}
+
+message GetStudentNeedyInfoResponse {
+  string schoolYear = 1;
+  string semester = 2;
+  int32 sex = 3;
+  bool needyStudent = 4;
+  message Nested {
+    int32 schoolYear = 1;
+    bool needyStudent = 2;
+  }
+  repeated Nested items =5;
+}
+
+message GetStudentDormInfoResponse {
+  string staffId = 1;
+  string building = 2;
+  string room = 3;
+}
+
+message NeedyInfo{
+  baseStaff.Info staff = 1;
+  uint32 sex = 3;
+  bool is_needy_student = 4;
+  message Nested{
+    uint32 school_year = 1;
+    bool is_needy_student = 2;
+  }
+  repeated Nested items = 5;
+}
+
+message BirthdayHandlerRequest {
+  baseStaff.Staff staff = 1;
+}
+
+message BirthdayHandlerResponse {
+  string staff_id = 1;
+  string name = 2;
+  string birthday = 3;
+}
+
+message BirthdaysHandlerRequest {
+  baseStaff.Type type = 1;
+  int32 month = 2;
+  int32 day = 3;
+}
+
+message BirthdaysHandlerResponse {
+  repeated BirthdayHandlerResponse birthdays = 1;
+}
+
+message StudentStaySchoolReply{
+  string staff_id = 1;
+  string staff_name = 2;
+  string report_time = 3;
+  string reason = 4;
+  string time1_start = 5;
+  string time1_end = 6;
+  string time2_start = 7;
+  string time2_end = 8;
+  string teacher_status = 9;
+  string teacher_remark = 10;
+  string teacher_review_time = 11;
+  string unit_status = 12;
+  string unit_remark = 13;
+  string unit_review_time = 14;
+  string cancel_status = 15;
+}
+
+message GateAccessHandlerRequest {
+  string staff_id = 1;
+  string day_off_type = 2;
+  string day_off_name = 3;
+  string time_start = 4;
+  string time_end = 5;
+  string uid = 6;
+}
+
+message GateAccessHandlerResponse {
+  bool done = 1;
+  string message = 2;
+}
+
+message StudentStaySchoolHandlerRequest {
+  baseStaff.Staff staff = 1;
+}
+
+message StudentStaySchoolHandlerResponse{
+  string staff_id = 1;
+  string staff_name = 2;
+  string report_time = 3;
+  string reason = 4;
+  string time1_start = 5;
+  string time1_end = 6;
+  string time2_start = 7;
+  string time2_end = 8;
+  string teacher_status = 9;
+  string teacher_remark = 10;
+  string teacher_review_time = 11;
+  string unit_status = 12;
+  string unit_remark = 13;
+  string unit_review_time = 14;
+  string cancel_status = 15;
+}

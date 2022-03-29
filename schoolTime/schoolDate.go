@@ -2,8 +2,9 @@ package schoolTime
 
 import (
 	"errors"
-	"github.com/hduhelp/api_open_sdk/types"
 	"time"
+
+	"github.com/hduhelp/api_open_sdk/types"
 )
 
 type SchoolDate struct {

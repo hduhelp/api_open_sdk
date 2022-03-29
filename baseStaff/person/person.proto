@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package person;
 
-option go_package = "github.com/hduhelp/api_open_sdk/baseStaff/person";
+option go_package = "./baseStaff/person";
 
 import "baseStaff/baseStaff.proto";
 

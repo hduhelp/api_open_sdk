@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package teacher;
 
-option go_package = "github.com/hduhelp/api_open_sdk/baseStaff/teacher";
+option go_package = "./baseStaff/teacher";
 
 message Info {
   string StaffID = 1;

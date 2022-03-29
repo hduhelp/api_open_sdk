@@ -2,5 +2,5 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "github.com/hduhelp/api_open_sdk/user";
+option go_package = "./user";
 

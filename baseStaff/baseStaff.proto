@@ -2,24 +2,24 @@ syntax = "proto3";
 
 package baseStaff;
 
-option go_package = "github.com/hduhelp/api_open_sdk/baseStaff";
+option go_package = "./baseStaff";
 
 message Staff {
-  string ID = 1;
-  Type Type = 2;
+  string id = 1;
+  Type type = 2;
 }
 
 enum Type {
-  Unknown = 0;
-  Undergraduate = 1;
-  Postgraduate = 2;
-  Teacher = 3;
+  unknown = 0;
+  undergraduate = 1;
+  postgraduate = 2;
+  teacher = 3;
 }
 
 message Info {
-  string StaffID = 1;
-  string StaffName = 2;
-  Type StaffType = 3;
+  string staff_iD = 1;
+  string staff_name = 2;
+  Type staff_type = 3;
 }
 
 message InfoMapList {

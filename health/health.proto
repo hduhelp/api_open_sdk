@@ -4,8 +4,9 @@ package health;
 
 option go_package = "github.com/hduhelp/api_open_sdk/health";
 
-import "github.com/hduhelp/api_open_sdk/types/types.proto";
-import "github.com/hduhelp/api_open_sdk/baseStaff/baseStaff.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "baseStaff/baseStaff.proto";
 
 service HealthService {
   rpc GetCheckinRecord(StaffIDWithTimestampRequest) returns (CheckinRecord) {}
@@ -27,11 +28,11 @@ message CheckinRecords {
 message CheckinRecord {
   int64 ID = 1;
   string Creator = 2;
-  types.Timestamp CreatedAt = 3;
-  types.Timestamp Modified = 4;
+  google.protobuf.Timestamp CreatedAt = 3;
+  google.protobuf.Timestamp Modified = 4;
   string Modifier = 5;
-  types.JSON Content = 6;//健康打卡内容JSON
-  types.Timestamp ReportTime = 7;
+  google.protobuf.BytesValue Content = 6;//健康打卡内容JSON
+  google.protobuf.Timestamp ReportTime = 7;
   string Province = 8;
   string City = 9;
   string Country = 10;
@@ -48,9 +49,9 @@ message CheckinRecord {
 //健康码
 message HealthCode {
   string CodeID = 1;
-  types.Timestamp ApplyTime = 2 ;
-  types.Timestamp GrantTime = 3;
-  types.Timestamp UpdateTime = 4;
+  google.protobuf.Timestamp ApplyTime = 2 ;
+  google.protobuf.Timestamp GrantTime = 3;
+  google.protobuf.Timestamp UpdateTime = 4;
   string Name = 5;
   string Region = 6;
   string Status = 7;
