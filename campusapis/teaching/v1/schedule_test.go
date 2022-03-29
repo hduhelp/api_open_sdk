@@ -1,10 +1,11 @@
-package teaching
+package teachingv1
 
 import (
 	"fmt"
-	"github.com/hduhelp/api_open_sdk/baseStaff"
 	"reflect"
 	"testing"
+
+	"github.com/hduhelp/api_open_sdk/baseStaff"
 )
 
 func TestCourses_UnmarshalJSON(t *testing.T) {

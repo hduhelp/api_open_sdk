@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package campusapis.health.v1;
 
-option go_package = "./health/v1";
+option go_package = "./campusapis/health/v1";
 
 import "baseStaff/baseStaff.proto";
 import "google/protobuf/empty.proto";

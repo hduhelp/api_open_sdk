@@ -1,4 +1,4 @@
-package schooltimev1
+package schooltime
 
 import (
 	"time"

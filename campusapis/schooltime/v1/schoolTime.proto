@@ -2,11 +2,12 @@ syntax = "proto3";
 
 package campusapis.schooltime.v1;
 
-option go_package = "./schooltime/v1";
+option go_package = "./campusapis/schooltime/v1";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "campusapis/schooltime/defined.proto";
 
 service SchoolTimeService {
   rpc GetSchoolTime (google.protobuf.Empty) returns (GetSchoolTimeResponse) {
@@ -35,18 +36,4 @@ message SchoolTime {
   int32 DayOfWeek = 4;
   Section Section = 5;
   google.protobuf.Timestamp Time = 6;
-}
-
-message Section {
-  int32 Section = 1;
-  google.protobuf.Timestamp StartTime = 2;
-  google.protobuf.Timestamp EndTime = 3;
-}
-
-message SchoolYear {
-    int32 Year = 1;
-}
-  
-message Semester {
-    int32 Num = 1;
 }

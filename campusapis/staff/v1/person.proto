@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package campusapis.staff.v1;
 
-option go_package = "./staff/v1";
+option go_package = "./campusapis/staff/v1";
 
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";

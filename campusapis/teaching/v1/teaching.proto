@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package teaching;
+package campusapis.teaching.v1;
 
-option go_package = "github.com/hduhelp/api_open_sdk/teaching";
+option go_package = "./campusapis/teaching/v1";
 
 import "baseStaff/baseStaff.proto";
-import "schoolTime/schoolTime.proto";
+import "campusapis/schooltime/defined.proto";
 
 service TeachingServer {
   rpc StaffGetScheduleHandler(ScheduleRequest) returns (Courses){}
@@ -31,8 +31,8 @@ message CourseItem {
   string CourseName = 4;
   string ClassTime = 5;
   string Credit = 6;
-  schoolTime.SchoolYear SchoolYear = 7;
-  schoolTime.Semester Semester = 8;
+  campusapis.schooltime.SchoolYear SchoolYear = 7;
+  campusapis.schooltime.Semester Semester = 8;
   Schedule Schedule = 9;
 }
 

@@ -1,4 +1,4 @@
-package teaching
+package teachingv1
 
 import (
 	"fmt"

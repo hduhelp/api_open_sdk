@@ -1,4 +1,4 @@
-package teaching
+package teachingv1
 
 func FirstOfArray(array []int32) int32 {
 	m := array[0]

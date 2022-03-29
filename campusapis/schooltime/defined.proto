@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package campusapis.schooltime;
+
+option go_package = "./campusapis/schooltime";
+
+import "google/protobuf/timestamp.proto";
+
+message Section {
+    int32 Section = 1;
+    google.protobuf.Timestamp StartTime = 2;
+    google.protobuf.Timestamp EndTime = 3;
+}
+  
+message SchoolYear {
+    int32 Year = 1;
+}
+
+message Semester {
+    int32 Num = 1;
+}
