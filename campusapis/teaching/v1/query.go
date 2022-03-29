@@ -4,29 +4,29 @@ import (
 	"errors"
 
 	"github.com/hduhelp/api_open_sdk/baseStaff"
-	schooltime "github.com/hduhelp/api_open_sdk/campusapis/schooltime"
+	"github.com/hduhelp/api_open_sdk/campusapis/schoolTime"
 )
 
 type CourseQuery struct {
 	QueryStaff *baseStaff.Staff
 	Queries    []Queryable
 
-	*schooltime.SchoolDate
+	*schoolTime.SchoolDate
 
-	schooltime.SchoolDateToDater
-	schooltime.SectionReader
+	schoolTime.SchoolDateToDater
+	schoolTime.SectionReader
 
 	*Courses
 }
 
 type Queryable interface {
-	GetCourses(staff *baseStaff.Staff, semester *schooltime.Semester, schoolYear *schooltime.SchoolYear) ([]CourseReader, error)
+	GetCourses(staff *baseStaff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
 }
 
 func NewCourseQuery(staff *baseStaff.Staff,
-	st *schooltime.SchoolDate,
-	dater schooltime.SchoolDateToDater,
-	sectionReader schooltime.SectionReader,
+	st *schoolTime.SchoolDate,
+	dater schoolTime.SchoolDateToDater,
+	sectionReader schoolTime.SectionReader,
 	q ...Queryable) *CourseQuery {
 	return &CourseQuery{
 		QueryStaff:        staff,

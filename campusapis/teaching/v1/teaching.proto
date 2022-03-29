@@ -5,7 +5,7 @@ package campusapis.teaching.v1;
 option go_package = "./campusapis/teaching/v1";
 
 import "baseStaff/baseStaff.proto";
-import "campusapis/schooltime/defined.proto";
+import "campusapis/schoolTime/defined.proto";
 
 service TeachingServer {
   rpc StaffGetScheduleHandler(ScheduleRequest) returns (Courses){}
@@ -31,8 +31,8 @@ message CourseItem {
   string CourseName = 4;
   string ClassTime = 5;
   string Credit = 6;
-  campusapis.schooltime.SchoolYear SchoolYear = 7;
-  campusapis.schooltime.Semester Semester = 8;
+  campusapis.schoolTime.SchoolYear SchoolYear = 7;
+  campusapis.schoolTime.Semester Semester = 8;
   Schedule Schedule = 9;
 }
 

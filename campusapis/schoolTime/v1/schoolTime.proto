@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package campusapis.schooltime.v1;
+package campusapis.schoolTime.v1;
 
-option go_package = "./campusapis/schooltime/v1";
+option go_package = "./campusapis/schoolTime/v1";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
-import "campusapis/schooltime/defined.proto";
+import "campusapis/schoolTime/defined.proto";
 
 service SchoolTimeService {
   rpc GetSchoolTime (google.protobuf.Empty) returns (GetSchoolTimeResponse) {
