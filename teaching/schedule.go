@@ -3,8 +3,9 @@ package teaching
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/hduhelp/api_open_sdk/baseStaff"
 	"sort"
+
+	"github.com/hduhelp/api_open_sdk/baseStaff"
 )
 
 // AddSchedule 添加课表

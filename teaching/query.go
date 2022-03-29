@@ -2,6 +2,7 @@ package teaching
 
 import (
 	"errors"
+
 	"github.com/hduhelp/api_open_sdk/baseStaff"
 	"github.com/hduhelp/api_open_sdk/schoolTime"
 )
@@ -38,7 +39,7 @@ func NewCourseQuery(staff *baseStaff.Staff,
 }
 
 func (q *CourseQuery) GetCourses() (*CourseQuery, error) {
-	if q.QueryStaff.ID == "" {
+	if q.QueryStaff.Id == "" {
 		return q, errors.New("staffID cannot be nil")
 	}
 	if q.SchoolDate == nil {

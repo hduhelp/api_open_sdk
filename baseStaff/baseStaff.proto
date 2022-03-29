@@ -10,16 +10,16 @@ message Staff {
 }
 
 enum Type {
-  unknown = 0;
-  undergraduate = 1;
-  postgraduate = 2;
-  teacher = 3;
+  Unknown = 0;
+  Undergraduate = 1;
+  Postgraduate = 2;
+  Teacher = 3;
 }
 
 message Info {
-  string staff_iD = 1;
-  string staff_name = 2;
-  Type staff_type = 3;
+  string staffID = 1;
+  string staffName = 2;
+  Type staffType = 3;
 }
 
 message InfoMapList {

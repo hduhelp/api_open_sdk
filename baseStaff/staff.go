@@ -6,28 +6,28 @@ import (
 
 func Undergraduate(staffID string) *Staff {
 	return &Staff{
-		ID:   staffID,
+		Id:   staffID,
 		Type: Type_Undergraduate,
 	}
 }
 
 func Teacher(staffID string) *Staff {
 	return &Staff{
-		ID:   staffID,
+		Id:   staffID,
 		Type: Type_Teacher,
 	}
 }
 
 func Postgraduate(staffID string) *Staff {
 	return &Staff{
-		ID:   staffID,
+		Id:   staffID,
 		Type: Type_Postgraduate,
 	}
 }
 
 func GetStaffFromGatewayGinContext(c *gin.Context) *Staff {
 	return &Staff{
-		ID:   GetStaffID(c),
+		Id:   GetStaffID(c),
 		Type: GetStaffType(c),
 	}
 }
