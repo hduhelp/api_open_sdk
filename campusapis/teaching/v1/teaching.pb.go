@@ -504,13 +504,14 @@ func (x *StaffInfo) GetCommit() string {
 	return ""
 }
 
+// 教室信息查询关键字
 type ClassroomRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Semester   *schoolTime.Semester   `protobuf:"bytes,1,opt,name=Semester,proto3" json:"Semester,omitempty"`
-	SchoolYear *schoolTime.SchoolYear `protobuf:"bytes,2,opt,name=SchoolYear,proto3" json:"SchoolYear,omitempty"`
+	Semester   *schoolTime.Semester   `protobuf:"bytes,1,opt,name=Semester,proto3" json:"Semester,omitempty"`     //学期
+	SchoolYear *schoolTime.SchoolYear `protobuf:"bytes,2,opt,name=SchoolYear,proto3" json:"SchoolYear,omitempty"` //学年
 	Weekday    int32                  `protobuf:"varint,3,opt,name=Weekday,proto3" json:"Weekday,omitempty"`
 	Week       int32                  `protobuf:"varint,4,opt,name=Week,proto3" json:"Week,omitempty"`
 	Section    int32                  `protobuf:"varint,5,opt,name=Section,proto3" json:"Section,omitempty"`

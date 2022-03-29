@@ -19,13 +19,26 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StudentServiceClient interface {
+	//获取学生基本信息
 	GetStudentInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentInfoResponse, error)
+	//获取学生贫困生申请记录
 	GetStudentNeedyInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentNeedyInfoResponse, error)
+	//获取学生宿舍信息
 	GetStudentDormInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentDormInfoResponse, error)
-	BirthdayHandler(ctx context.Context, in *BirthdayHandlerRequest, opts ...grpc.CallOption) (*BirthdayHandlerResponse, error)
-	BirthdaysHandler(ctx context.Context, in *BirthdaysHandlerRequest, opts ...grpc.CallOption) (*BirthdaysHandlerResponse, error)
-	GateAccessHandler(ctx context.Context, in *GateAccessHandlerRequest, opts ...grpc.CallOption) (*GateAccessHandlerResponse, error)
-	StudentStaySchoolHandler(ctx context.Context, in *StudentStaySchoolHandlerRequest, opts ...grpc.CallOption) (*StudentStaySchoolHandlerResponse, error)
+	//获取学生生日信息
+	GetStudentBirthdayInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentBirthdayResponse, error)
+	//获取生日为指定日期的学生列表
+	GetStudentBirthdaysIn(ctx context.Context, in *GetStudentBirthdaysInRequest, opts ...grpc.CallOption) (*GetStudentBirthdaysInResponse, error)
+	//获取学生奖学金信息
+	GetStudentRewards(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentRewardsResponse, error)
+	//获取学生选课信息
+	GetStudentSelect(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentSelectResponse, error)
+	//获取学生成绩信息
+	GetStudentGrade(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error)
+	//推送学生门禁通行信息
+	PostStudentGateAccess(ctx context.Context, in *PostStudentGateAccessRequest, opts ...grpc.CallOption) (*PostStudentGateAccessResponse, error)
+	//获取学生留校信息
+	GetStudentStaySchoolInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentStaySchoolInfoResponse, error)
 }
 
 type studentServiceClient struct {
@@ -63,36 +76,63 @@ func (c *studentServiceClient) GetStudentDormInfo(ctx context.Context, in *empty
 	return out, nil
 }
 
-func (c *studentServiceClient) BirthdayHandler(ctx context.Context, in *BirthdayHandlerRequest, opts ...grpc.CallOption) (*BirthdayHandlerResponse, error) {
-	out := new(BirthdayHandlerResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/BirthdayHandler", in, out, opts...)
+func (c *studentServiceClient) GetStudentBirthdayInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentBirthdayResponse, error) {
+	out := new(GetStudentBirthdayResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/GetStudentBirthdayInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *studentServiceClient) BirthdaysHandler(ctx context.Context, in *BirthdaysHandlerRequest, opts ...grpc.CallOption) (*BirthdaysHandlerResponse, error) {
-	out := new(BirthdaysHandlerResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/BirthdaysHandler", in, out, opts...)
+func (c *studentServiceClient) GetStudentBirthdaysIn(ctx context.Context, in *GetStudentBirthdaysInRequest, opts ...grpc.CallOption) (*GetStudentBirthdaysInResponse, error) {
+	out := new(GetStudentBirthdaysInResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/GetStudentBirthdaysIn", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *studentServiceClient) GateAccessHandler(ctx context.Context, in *GateAccessHandlerRequest, opts ...grpc.CallOption) (*GateAccessHandlerResponse, error) {
-	out := new(GateAccessHandlerResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/GateAccessHandler", in, out, opts...)
+func (c *studentServiceClient) GetStudentRewards(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentRewardsResponse, error) {
+	out := new(GetStudentRewardsResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/GetStudentRewards", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *studentServiceClient) StudentStaySchoolHandler(ctx context.Context, in *StudentStaySchoolHandlerRequest, opts ...grpc.CallOption) (*StudentStaySchoolHandlerResponse, error) {
-	out := new(StudentStaySchoolHandlerResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/StudentStaySchoolHandler", in, out, opts...)
+func (c *studentServiceClient) GetStudentSelect(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentSelectResponse, error) {
+	out := new(GetStudentSelectResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/GetStudentSelect", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *studentServiceClient) GetStudentGrade(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error) {
+	out := new(GetStudentGradeResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/GetStudentGrade", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *studentServiceClient) PostStudentGateAccess(ctx context.Context, in *PostStudentGateAccessRequest, opts ...grpc.CallOption) (*PostStudentGateAccessResponse, error) {
+	out := new(PostStudentGateAccessResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/PostStudentGateAccess", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *studentServiceClient) GetStudentStaySchoolInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentStaySchoolInfoResponse, error) {
+	out := new(GetStudentStaySchoolInfoResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.StudentService/GetStudentStaySchoolInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -103,13 +143,26 @@ func (c *studentServiceClient) StudentStaySchoolHandler(ctx context.Context, in 
 // All implementations should embed UnimplementedStudentServiceServer
 // for forward compatibility
 type StudentServiceServer interface {
+	//获取学生基本信息
 	GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error)
+	//获取学生贫困生申请记录
 	GetStudentNeedyInfo(context.Context, *emptypb.Empty) (*GetStudentNeedyInfoResponse, error)
+	//获取学生宿舍信息
 	GetStudentDormInfo(context.Context, *emptypb.Empty) (*GetStudentDormInfoResponse, error)
-	BirthdayHandler(context.Context, *BirthdayHandlerRequest) (*BirthdayHandlerResponse, error)
-	BirthdaysHandler(context.Context, *BirthdaysHandlerRequest) (*BirthdaysHandlerResponse, error)
-	GateAccessHandler(context.Context, *GateAccessHandlerRequest) (*GateAccessHandlerResponse, error)
-	StudentStaySchoolHandler(context.Context, *StudentStaySchoolHandlerRequest) (*StudentStaySchoolHandlerResponse, error)
+	//获取学生生日信息
+	GetStudentBirthdayInfo(context.Context, *emptypb.Empty) (*GetStudentBirthdayResponse, error)
+	//获取生日为指定日期的学生列表
+	GetStudentBirthdaysIn(context.Context, *GetStudentBirthdaysInRequest) (*GetStudentBirthdaysInResponse, error)
+	//获取学生奖学金信息
+	GetStudentRewards(context.Context, *SemesterRequest) (*GetStudentRewardsResponse, error)
+	//获取学生选课信息
+	GetStudentSelect(context.Context, *SemesterRequest) (*GetStudentSelectResponse, error)
+	//获取学生成绩信息
+	GetStudentGrade(context.Context, *SemesterRequest) (*GetStudentGradeResponse, error)
+	//推送学生门禁通行信息
+	PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error)
+	//获取学生留校信息
+	GetStudentStaySchoolInfo(context.Context, *emptypb.Empty) (*GetStudentStaySchoolInfoResponse, error)
 }
 
 // UnimplementedStudentServiceServer should be embedded to have forward compatible implementations.
@@ -125,17 +178,26 @@ func (UnimplementedStudentServiceServer) GetStudentNeedyInfo(context.Context, *e
 func (UnimplementedStudentServiceServer) GetStudentDormInfo(context.Context, *emptypb.Empty) (*GetStudentDormInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentDormInfo not implemented")
 }
-func (UnimplementedStudentServiceServer) BirthdayHandler(context.Context, *BirthdayHandlerRequest) (*BirthdayHandlerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BirthdayHandler not implemented")
+func (UnimplementedStudentServiceServer) GetStudentBirthdayInfo(context.Context, *emptypb.Empty) (*GetStudentBirthdayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentBirthdayInfo not implemented")
 }
-func (UnimplementedStudentServiceServer) BirthdaysHandler(context.Context, *BirthdaysHandlerRequest) (*BirthdaysHandlerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BirthdaysHandler not implemented")
+func (UnimplementedStudentServiceServer) GetStudentBirthdaysIn(context.Context, *GetStudentBirthdaysInRequest) (*GetStudentBirthdaysInResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentBirthdaysIn not implemented")
 }
-func (UnimplementedStudentServiceServer) GateAccessHandler(context.Context, *GateAccessHandlerRequest) (*GateAccessHandlerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GateAccessHandler not implemented")
+func (UnimplementedStudentServiceServer) GetStudentRewards(context.Context, *SemesterRequest) (*GetStudentRewardsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentRewards not implemented")
 }
-func (UnimplementedStudentServiceServer) StudentStaySchoolHandler(context.Context, *StudentStaySchoolHandlerRequest) (*StudentStaySchoolHandlerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StudentStaySchoolHandler not implemented")
+func (UnimplementedStudentServiceServer) GetStudentSelect(context.Context, *SemesterRequest) (*GetStudentSelectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentSelect not implemented")
+}
+func (UnimplementedStudentServiceServer) GetStudentGrade(context.Context, *SemesterRequest) (*GetStudentGradeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentGrade not implemented")
+}
+func (UnimplementedStudentServiceServer) PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostStudentGateAccess not implemented")
+}
+func (UnimplementedStudentServiceServer) GetStudentStaySchoolInfo(context.Context, *emptypb.Empty) (*GetStudentStaySchoolInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentStaySchoolInfo not implemented")
 }
 
 // UnsafeStudentServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -203,74 +265,128 @@ func _StudentService_GetStudentDormInfo_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StudentService_BirthdayHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BirthdayHandlerRequest)
+func _StudentService_GetStudentBirthdayInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StudentServiceServer).BirthdayHandler(ctx, in)
+		return srv.(StudentServiceServer).GetStudentBirthdayInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.staff.v1.StudentService/BirthdayHandler",
+		FullMethod: "/campusapis.staff.v1.StudentService/GetStudentBirthdayInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StudentServiceServer).BirthdayHandler(ctx, req.(*BirthdayHandlerRequest))
+		return srv.(StudentServiceServer).GetStudentBirthdayInfo(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StudentService_BirthdaysHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BirthdaysHandlerRequest)
+func _StudentService_GetStudentBirthdaysIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStudentBirthdaysInRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StudentServiceServer).BirthdaysHandler(ctx, in)
+		return srv.(StudentServiceServer).GetStudentBirthdaysIn(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.staff.v1.StudentService/BirthdaysHandler",
+		FullMethod: "/campusapis.staff.v1.StudentService/GetStudentBirthdaysIn",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StudentServiceServer).BirthdaysHandler(ctx, req.(*BirthdaysHandlerRequest))
+		return srv.(StudentServiceServer).GetStudentBirthdaysIn(ctx, req.(*GetStudentBirthdaysInRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StudentService_GateAccessHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GateAccessHandlerRequest)
+func _StudentService_GetStudentRewards_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SemesterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StudentServiceServer).GateAccessHandler(ctx, in)
+		return srv.(StudentServiceServer).GetStudentRewards(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.staff.v1.StudentService/GateAccessHandler",
+		FullMethod: "/campusapis.staff.v1.StudentService/GetStudentRewards",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StudentServiceServer).GateAccessHandler(ctx, req.(*GateAccessHandlerRequest))
+		return srv.(StudentServiceServer).GetStudentRewards(ctx, req.(*SemesterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StudentService_StudentStaySchoolHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StudentStaySchoolHandlerRequest)
+func _StudentService_GetStudentSelect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SemesterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StudentServiceServer).StudentStaySchoolHandler(ctx, in)
+		return srv.(StudentServiceServer).GetStudentSelect(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.staff.v1.StudentService/StudentStaySchoolHandler",
+		FullMethod: "/campusapis.staff.v1.StudentService/GetStudentSelect",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StudentServiceServer).StudentStaySchoolHandler(ctx, req.(*StudentStaySchoolHandlerRequest))
+		return srv.(StudentServiceServer).GetStudentSelect(ctx, req.(*SemesterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StudentService_GetStudentGrade_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SemesterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StudentServiceServer).GetStudentGrade(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.staff.v1.StudentService/GetStudentGrade",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StudentServiceServer).GetStudentGrade(ctx, req.(*SemesterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StudentService_PostStudentGateAccess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostStudentGateAccessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StudentServiceServer).PostStudentGateAccess(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.staff.v1.StudentService/PostStudentGateAccess",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StudentServiceServer).PostStudentGateAccess(ctx, req.(*PostStudentGateAccessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StudentService_GetStudentStaySchoolInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StudentServiceServer).GetStudentStaySchoolInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.staff.v1.StudentService/GetStudentStaySchoolInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StudentServiceServer).GetStudentStaySchoolInfo(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -295,20 +411,32 @@ var StudentService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _StudentService_GetStudentDormInfo_Handler,
 		},
 		{
-			MethodName: "BirthdayHandler",
-			Handler:    _StudentService_BirthdayHandler_Handler,
+			MethodName: "GetStudentBirthdayInfo",
+			Handler:    _StudentService_GetStudentBirthdayInfo_Handler,
 		},
 		{
-			MethodName: "BirthdaysHandler",
-			Handler:    _StudentService_BirthdaysHandler_Handler,
+			MethodName: "GetStudentBirthdaysIn",
+			Handler:    _StudentService_GetStudentBirthdaysIn_Handler,
 		},
 		{
-			MethodName: "GateAccessHandler",
-			Handler:    _StudentService_GateAccessHandler_Handler,
+			MethodName: "GetStudentRewards",
+			Handler:    _StudentService_GetStudentRewards_Handler,
 		},
 		{
-			MethodName: "StudentStaySchoolHandler",
-			Handler:    _StudentService_StudentStaySchoolHandler_Handler,
+			MethodName: "GetStudentSelect",
+			Handler:    _StudentService_GetStudentSelect_Handler,
+		},
+		{
+			MethodName: "GetStudentGrade",
+			Handler:    _StudentService_GetStudentGrade_Handler,
+		},
+		{
+			MethodName: "PostStudentGateAccess",
+			Handler:    _StudentService_PostStudentGateAccess_Handler,
+		},
+		{
+			MethodName: "GetStudentStaySchoolInfo",
+			Handler:    _StudentService_GetStudentStaySchoolInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

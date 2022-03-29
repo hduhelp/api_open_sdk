@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package campusapis.staff.v1;
+
+option go_package = "./campusapis/staff/v1";
+
+import "google/api/annotations.proto";
+
+//本科生新生服务
+service FreshmanService {
+  //获取新生基本信息
+  rpc GetFreshmanBaseInfo (FreshmanKeywordRequest) returns (GetFreshmanBaseInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/freshman/base"
+      additional_bindings {
+        get: "/freshman/base"
+      }
+    };
+  }
+  //获取新生详细信息
+  rpc GetFreshmanInfo (FreshmanKeywordRequest) returns (GetFreshmanInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/freshman/info"
+      additional_bindings {
+        get: "/freshman/info"
+      }
+    };
+  }
+  //获取新生宿舍信息
+  rpc GetFreshmanRoommates (FreshmanKeywordRequest) returns (GetFreshmanRoommatesResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/freshman/roommate"
+      additional_bindings {
+        get: "/freshman/roommate"
+      }
+    };
+  }
+}
+
+//新生三要素请求，在无学号时临时作为身份认证，提供基本的信息查询
+message FreshmanKeywordRequest {
+  string staffId = 1;
+  string offerId = 2;
+  string idCardNo = 3;
+}
+
+//新生基本信息
+message GetFreshmanBaseInfoResponse {
+  string staffId = 1; //学号
+  string staffName = 2; //姓名
+  string offerId = 3; //录取通知书号或者是准考证号，不同身份并不一样
+  string idCardNo = 4; //身份证号
+  string offerTime = 5; //录取时间
+  string province = 6; //省份
+}
+
+//新生详细信息
+message GetFreshmanInfoResponse {
+  string staffId = 1;
+  string staffName = 2;
+  string className = 3;
+  string roomName = 4;
+  string regStatus = 5;
+  string schoolID = 6;
+  string schoolName = 7;
+  string majorName = 8;
+  string cardID = 9;
+  string teacherName = 10;
+  string teacherPhone = 11;
+  string assistantName = 12;
+  string assistantPhone = 13;
+  string hasPaid = 14; //是否支付学费
+  string LSTD = 15; //绿色通道
+  string LSTDXY = 16;
+  string LSTDZX = 17;
+  string phone = 18;
+  string qq = 19;
+  string roomBuilding = 20;
+  string roomRoom = 21;
+  string roomBed = 22;
+  string comeDate = 23;
+  string high = 24;
+  string station = 25;
+}
+
+//新生室友查询
+message GetFreshmanRoommatesResponse {
+  message Roommate {
+    string staffName = 1; //室友姓名
+    string qq = 2;
+    string phone = 3;
+  }
+  repeated Roommate items = 1;
+}

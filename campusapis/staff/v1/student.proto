@@ -10,6 +10,7 @@ import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 
 service StudentService {
+  //获取学生基本信息
   rpc GetStudentInfo(google.protobuf.Empty) returns (GetStudentInfoResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/info"
@@ -18,6 +19,7 @@ service StudentService {
       }
     };
   };
+  //获取学生贫困生申请记录
   rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/needy"
@@ -26,6 +28,7 @@ service StudentService {
       }
     };
   }
+  //获取学生宿舍信息
   rpc GetStudentDormInfo(google.protobuf.Empty) returns (GetStudentDormInfoResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/dorm"
@@ -34,7 +37,8 @@ service StudentService {
       }
     };
   }
-  rpc BirthdayHandler(BirthdayHandlerRequest) returns (BirthdayHandlerResponse) {
+  //获取学生生日信息
+  rpc GetStudentBirthdayInfo(google.protobuf.Empty) returns (GetStudentBirthdayResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/birthday"
       additional_bindings {
@@ -42,7 +46,8 @@ service StudentService {
       }
     };
   }
-  rpc BirthdaysHandler(BirthdaysHandlerRequest) returns (BirthdaysHandlerResponse) {
+  //获取生日为指定日期的学生列表
+  rpc GetStudentBirthdaysIn(GetStudentBirthdaysInRequest) returns (GetStudentBirthdaysInResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/birthdays"
       additional_bindings {
@@ -50,38 +55,66 @@ service StudentService {
       }
     };
   }
-  rpc GateAccessHandler (GateAccessHandlerRequest) returns (GateAccessHandlerResponse) {}
-  rpc StudentStaySchoolHandler (StudentStaySchoolHandlerRequest) returns (StudentStaySchoolHandlerResponse) {}
+  //获取学生奖学金信息
+  rpc GetStudentRewards (SemesterRequest) returns (GetStudentRewardsResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/reward"
+      additional_bindings {
+        get: "/student/reward"
+      }
+    };
+  }
+  //获取学生选课信息
+  rpc GetStudentSelect (SemesterRequest) returns (GetStudentSelectResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/select"
+      additional_bindings {
+        get: "/student/select"
+      }
+    };
+  }
+  //获取学生成绩信息
+  rpc GetStudentGrade (SemesterRequest) returns (GetStudentGradeResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/grade"
+      additional_bindings {
+        get: "/student/grade"
+      }
+    };
+  }
+  //推送学生门禁通行信息
+  rpc PostStudentGateAccess (PostStudentGateAccessRequest) returns (PostStudentGateAccessResponse) {}
+  //获取学生留校信息
+  rpc GetStudentStaySchoolInfo (google.protobuf.Empty) returns (GetStudentStaySchoolInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/holidayStay"
+      additional_bindings {
+        get: "/student/holidayStay"
+      }
+    };
+  }
+}
+
+message SemesterRequest {
+  string schoolYear = 1;
+  string Nth = 2;
 }
 
 message GetStudentInfoResponse {
-  string staffId = 1;
-  string staffName = 2;
-  string classId = 3;
-  string unitId = 4;
-  string unitName = 5;
-  string majorId = 6;
-  string majorName = 7;
-  string teacherId = 8;
-  string teacherName = 9;
-}
-
-message StudentInfo {
-  baseStaff.Info staff = 1;
-  string class_id = 2 ;
-  school.Unit unit = 3;
-  school.Major major = 4;
-}
-
-message DormInfo {
-  string building = 1 ;
-  string room = 2 ;
-  string bed = 3 ;
+  string staffId = 1; //学号
+  string staffName = 2; //学生姓名
+  string classId = 3; //学生班级号
+  string unitId = 4; //学生学院编号
+  string unitName = 5; //学生学院名称
+  string majorId = 6; //学生专业编号
+  string majorName = 7; //学生专业名称
+  string teacherId = 8; //学生辅导员工号
+  string teacherName = 9; //学生辅导员姓名
 }
 
 message GetStudentNeedyInfoResponse {
-  string schoolYear = 1;
-  string semester = 2;
+  string staffId = 1;
+  string staffName = 2;
   int32 sex = 3;
   bool needyStudent = 4;
   message Nested {
@@ -97,87 +130,101 @@ message GetStudentDormInfoResponse {
   string room = 3;
 }
 
-message NeedyInfo{
-  baseStaff.Info staff = 1;
-  uint32 sex = 3;
-  bool is_needy_student = 4;
-  message Nested{
-    uint32 school_year = 1;
-    bool is_needy_student = 2;
-  }
-  repeated Nested items = 5;
-}
-
-message BirthdayHandlerRequest {
-  baseStaff.Staff staff = 1;
-}
-
-message BirthdayHandlerResponse {
-  string staff_id = 1;
+message GetStudentBirthdayResponse {
+  string staffId = 1;
   string name = 2;
   string birthday = 3;
 }
 
-message BirthdaysHandlerRequest {
+message GetStudentBirthdaysInRequest {
   baseStaff.Type type = 1;
   int32 month = 2;
   int32 day = 3;
 }
 
-message BirthdaysHandlerResponse {
-  repeated BirthdayHandlerResponse birthdays = 1;
+message GetStudentBirthdaysInResponse {
+  repeated GetStudentBirthdayResponse birthdays = 1;
 }
 
-message StudentStaySchoolReply{
-  string staff_id = 1;
-  string staff_name = 2;
-  string report_time = 3;
-  string reason = 4;
-  string time1_start = 5;
-  string time1_end = 6;
-  string time2_start = 7;
-  string time2_end = 8;
-  string teacher_status = 9;
-  string teacher_remark = 10;
-  string teacher_review_time = 11;
-  string unit_status = 12;
-  string unit_remark = 13;
-  string unit_review_time = 14;
-  string cancel_status = 15;
+message GetStudentRewardsResponse {
+  message Nested {
+    string staffID = 1;
+    string staffName = 2;
+    string rewardName = 3;
+    string schoolYear = 4;
+    string semester = 5;
+    string rewardLevel = 6;
+  }
+  repeated Nested items = 1;
 }
 
-message GateAccessHandlerRequest {
-  string staff_id = 1;
-  string day_off_type = 2;
-  string day_off_name = 3;
-  string time_start = 4;
-  string time_end = 5;
+message GetStudentSelectResponse {
+  message Nested {
+    string schoolYear = 1;
+    string semester = 2;
+    string staffID = 3;
+    string staffName = 4;
+    string selectCode = 5;
+    string courseName = 6;
+    string courseCode = 7;
+    string teacherID = 8;
+    string teacherName = 9;
+    string classTime = 10;
+    string classRoom = 11;
+  }
+
+  repeated Nested StudentSelects = 1;
+}
+
+message GetStudentGradeResponse {
+  message Nested {
+    string schoolYear = 1;
+    string semester = 2;
+    string selectCode = 3;
+    string score = 4;
+    string scoreDaily = 5;
+    string scoreMidTerm = 6;
+    string scoreFinal = 7;
+    string scoreSubstitute = 8;
+    string scorePractice = 9;
+    string courseCode = 10;
+    string course = 11;
+    string staffId = 12;
+    string staffName = 13;
+    string credit = 14;
+    string GPA = 15;
+  }
+  repeated Nested items = 1;
+}
+
+message PostStudentGateAccessRequest {
+  string staffId = 1;
+  string dayOffType = 2;
+  string dayOffName = 3;
+  string timeStart = 4;
+  string timeEnd = 5;
   string uid = 6;
 }
 
-message GateAccessHandlerResponse {
-  bool done = 1;
-  string message = 2;
+message PostStudentGateAccessResponse {
+  bool done = 1; //是否完成
+  string message = 2; //完成信息
 }
 
-message StudentStaySchoolHandlerRequest {
-  baseStaff.Staff staff = 1;
-}
-
-message StudentStaySchoolHandlerResponse{
-  string staff_id = 1;
-  string staff_name = 2;
-  string report_time = 3;
+message GetStudentStaySchoolInfoResponse{
+  string staffId = 1;
+  string staffName = 2;
+  string reportTime = 3;
   string reason = 4;
-  string time1_start = 5;
-  string time1_end = 6;
-  string time2_start = 7;
-  string time2_end = 8;
-  string teacher_status = 9;
-  string teacher_remark = 10;
-  string teacher_review_time = 11;
-  string unit_status = 12;
-  string unit_remark = 13;
-  string unit_review_time = 14;
-  string cancel_status = 15;
+  string time1Start = 5;
+  string time1End = 6;
+  string time2Start = 7;
+  string time2End = 8;
+  string teacherStatus = 9;
+  string teacherRemark = 10;
+  string teacherReviewTime = 11;
+  string unitStatus = 12;
+  string unitRemark = 13;
+  string unitReviewTime = 14;
+  string cancelStatus = 15;
 }

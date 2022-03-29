@@ -140,152 +140,332 @@ func local_request_StudentService_GetStudentDormInfo_1(ctx context.Context, mars
 
 }
 
-var (
-	filter_StudentService_BirthdayHandler_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_StudentService_BirthdayHandler_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BirthdayHandlerRequest
+func request_StudentService_GetStudentBirthdayInfo_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_BirthdayHandler_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.BirthdayHandler(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetStudentBirthdayInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_StudentService_BirthdayHandler_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BirthdayHandlerRequest
+func local_request_StudentService_GetStudentBirthdayInfo_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_BirthdayHandler_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.BirthdayHandler(ctx, &protoReq)
+	msg, err := server.GetStudentBirthdayInfo(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-var (
-	filter_StudentService_BirthdayHandler_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_StudentService_BirthdayHandler_1(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BirthdayHandlerRequest
+func request_StudentService_GetStudentBirthdayInfo_1(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_BirthdayHandler_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.BirthdayHandler(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetStudentBirthdayInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_StudentService_BirthdayHandler_1(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BirthdayHandlerRequest
+func local_request_StudentService_GetStudentBirthdayInfo_1(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_BirthdayHandler_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.BirthdayHandler(ctx, &protoReq)
+	msg, err := server.GetStudentBirthdayInfo(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_StudentService_BirthdaysHandler_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_StudentService_GetStudentBirthdaysIn_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_StudentService_BirthdaysHandler_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BirthdaysHandlerRequest
+func request_StudentService_GetStudentBirthdaysIn_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStudentBirthdaysInRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_BirthdaysHandler_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentBirthdaysIn_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.BirthdaysHandler(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetStudentBirthdaysIn(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_StudentService_BirthdaysHandler_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BirthdaysHandlerRequest
+func local_request_StudentService_GetStudentBirthdaysIn_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStudentBirthdaysInRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_BirthdaysHandler_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentBirthdaysIn_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.BirthdaysHandler(ctx, &protoReq)
+	msg, err := server.GetStudentBirthdaysIn(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_StudentService_BirthdaysHandler_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_StudentService_GetStudentBirthdaysIn_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_StudentService_BirthdaysHandler_1(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BirthdaysHandlerRequest
+func request_StudentService_GetStudentBirthdaysIn_1(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStudentBirthdaysInRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_BirthdaysHandler_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentBirthdaysIn_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.BirthdaysHandler(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetStudentBirthdaysIn(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_StudentService_BirthdaysHandler_1(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BirthdaysHandlerRequest
+func local_request_StudentService_GetStudentBirthdaysIn_1(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStudentBirthdaysInRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_BirthdaysHandler_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentBirthdaysIn_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.BirthdaysHandler(ctx, &protoReq)
+	msg, err := server.GetStudentBirthdaysIn(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_StudentService_GateAccessHandler_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GateAccessHandlerRequest
+var (
+	filter_StudentService_GetStudentRewards_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_StudentService_GetStudentRewards_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentRewards_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetStudentRewards(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StudentService_GetStudentRewards_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentRewards_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetStudentRewards(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_StudentService_GetStudentRewards_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_StudentService_GetStudentRewards_1(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentRewards_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetStudentRewards(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StudentService_GetStudentRewards_1(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentRewards_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetStudentRewards(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_StudentService_GetStudentSelect_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_StudentService_GetStudentSelect_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentSelect_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetStudentSelect(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StudentService_GetStudentSelect_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentSelect_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetStudentSelect(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_StudentService_GetStudentSelect_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_StudentService_GetStudentSelect_1(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentSelect_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetStudentSelect(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StudentService_GetStudentSelect_1(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentSelect_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetStudentSelect(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_StudentService_GetStudentGrade_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_StudentService_GetStudentGrade_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentGrade_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetStudentGrade(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StudentService_GetStudentGrade_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentGrade_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetStudentGrade(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_StudentService_GetStudentGrade_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_StudentService_GetStudentGrade_1(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentGrade_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetStudentGrade(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StudentService_GetStudentGrade_1(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SemesterRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StudentService_GetStudentGrade_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetStudentGrade(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_StudentService_PostStudentGateAccess_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq PostStudentGateAccessRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -296,13 +476,13 @@ func request_StudentService_GateAccessHandler_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GateAccessHandler(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.PostStudentGateAccess(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_StudentService_GateAccessHandler_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GateAccessHandlerRequest
+func local_request_StudentService_PostStudentGateAccess_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq PostStudentGateAccessRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -313,41 +493,43 @@ func local_request_StudentService_GateAccessHandler_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GateAccessHandler(ctx, &protoReq)
+	msg, err := server.PostStudentGateAccess(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_StudentService_StudentStaySchoolHandler_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StudentStaySchoolHandlerRequest
+func request_StudentService_GetStudentStaySchoolInfo_0(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.StudentStaySchoolHandler(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetStudentStaySchoolInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_StudentService_StudentStaySchoolHandler_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StudentStaySchoolHandlerRequest
+func local_request_StudentService_GetStudentStaySchoolInfo_0(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
+	msg, err := server.GetStudentStaySchoolInfo(ctx, &protoReq)
+	return msg, metadata, err
 
-	msg, err := server.StudentStaySchoolHandler(ctx, &protoReq)
+}
+
+func request_StudentService_GetStudentStaySchoolInfo_1(ctx context.Context, marshaler runtime.Marshaler, client StudentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.GetStudentStaySchoolInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StudentService_GetStudentStaySchoolInfo_1(ctx context.Context, marshaler runtime.Marshaler, server StudentServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.GetStudentStaySchoolInfo(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -502,19 +684,19 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("GET", pattern_StudentService_BirthdayHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentBirthdayInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/BirthdayHandler", runtime.WithHTTPPathPattern("/staff/v1/student/birthday"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentBirthdayInfo", runtime.WithHTTPPathPattern("/staff/v1/student/birthday"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StudentService_BirthdayHandler_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StudentService_GetStudentBirthdayInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -522,23 +704,23 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_BirthdayHandler_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentBirthdayInfo_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_StudentService_BirthdayHandler_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentBirthdayInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/BirthdayHandler", runtime.WithHTTPPathPattern("/student/birthday"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentBirthdayInfo", runtime.WithHTTPPathPattern("/student/birthday"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StudentService_BirthdayHandler_1(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StudentService_GetStudentBirthdayInfo_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -546,23 +728,23 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_BirthdayHandler_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentBirthdayInfo_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_StudentService_BirthdaysHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentBirthdaysIn_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/BirthdaysHandler", runtime.WithHTTPPathPattern("/staff/v1/student/birthdays"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentBirthdaysIn", runtime.WithHTTPPathPattern("/staff/v1/student/birthdays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StudentService_BirthdaysHandler_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StudentService_GetStudentBirthdaysIn_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -570,23 +752,23 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_BirthdaysHandler_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentBirthdaysIn_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_StudentService_BirthdaysHandler_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentBirthdaysIn_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/BirthdaysHandler", runtime.WithHTTPPathPattern("/student/birthdays"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentBirthdaysIn", runtime.WithHTTPPathPattern("/student/birthdays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StudentService_BirthdaysHandler_1(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StudentService_GetStudentBirthdaysIn_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -594,23 +776,23 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_BirthdaysHandler_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentBirthdaysIn_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_StudentService_GateAccessHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentRewards_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GateAccessHandler", runtime.WithHTTPPathPattern("/campusapis.staff.v1.StudentService/GateAccessHandler"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentRewards", runtime.WithHTTPPathPattern("/staff/v1/student/reward"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StudentService_GateAccessHandler_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StudentService_GetStudentRewards_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -618,23 +800,23 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_GateAccessHandler_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentRewards_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_StudentService_StudentStaySchoolHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentRewards_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/StudentStaySchoolHandler", runtime.WithHTTPPathPattern("/campusapis.staff.v1.StudentService/StudentStaySchoolHandler"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentRewards", runtime.WithHTTPPathPattern("/student/reward"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StudentService_StudentStaySchoolHandler_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StudentService_GetStudentRewards_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -642,7 +824,175 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_StudentStaySchoolHandler_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentRewards_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentSelect_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentSelect", runtime.WithHTTPPathPattern("/staff/v1/student/select"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StudentService_GetStudentSelect_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentSelect_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentSelect_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentSelect", runtime.WithHTTPPathPattern("/student/select"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StudentService_GetStudentSelect_1(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentSelect_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentGrade_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/student/grade"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StudentService_GetStudentGrade_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentGrade_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentGrade_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentGrade", runtime.WithHTTPPathPattern("/student/grade"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StudentService_GetStudentGrade_1(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_StudentService_PostStudentGateAccess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/PostStudentGateAccess", runtime.WithHTTPPathPattern("/campusapis.staff.v1.StudentService/PostStudentGateAccess"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StudentService_PostStudentGateAccess_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_PostStudentGateAccess_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentStaySchoolInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentStaySchoolInfo", runtime.WithHTTPPathPattern("/staff/v1/student/holidayStay"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StudentService_GetStudentStaySchoolInfo_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentStaySchoolInfo_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentStaySchoolInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentStaySchoolInfo", runtime.WithHTTPPathPattern("/student/holidayStay"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StudentService_GetStudentStaySchoolInfo_1(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentStaySchoolInfo_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -813,129 +1163,276 @@ func RegisterStudentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("GET", pattern_StudentService_BirthdayHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentBirthdayInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/BirthdayHandler", runtime.WithHTTPPathPattern("/staff/v1/student/birthday"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentBirthdayInfo", runtime.WithHTTPPathPattern("/staff/v1/student/birthday"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StudentService_BirthdayHandler_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StudentService_GetStudentBirthdayInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_StudentService_BirthdayHandler_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentBirthdayInfo_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_StudentService_BirthdayHandler_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentBirthdayInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/BirthdayHandler", runtime.WithHTTPPathPattern("/student/birthday"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentBirthdayInfo", runtime.WithHTTPPathPattern("/student/birthday"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StudentService_BirthdayHandler_1(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StudentService_GetStudentBirthdayInfo_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_StudentService_BirthdayHandler_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentBirthdayInfo_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_StudentService_BirthdaysHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentBirthdaysIn_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/BirthdaysHandler", runtime.WithHTTPPathPattern("/staff/v1/student/birthdays"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentBirthdaysIn", runtime.WithHTTPPathPattern("/staff/v1/student/birthdays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StudentService_BirthdaysHandler_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StudentService_GetStudentBirthdaysIn_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_StudentService_BirthdaysHandler_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentBirthdaysIn_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_StudentService_BirthdaysHandler_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentBirthdaysIn_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/BirthdaysHandler", runtime.WithHTTPPathPattern("/student/birthdays"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentBirthdaysIn", runtime.WithHTTPPathPattern("/student/birthdays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StudentService_BirthdaysHandler_1(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StudentService_GetStudentBirthdaysIn_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_StudentService_BirthdaysHandler_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentBirthdaysIn_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_StudentService_GateAccessHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentRewards_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GateAccessHandler", runtime.WithHTTPPathPattern("/campusapis.staff.v1.StudentService/GateAccessHandler"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentRewards", runtime.WithHTTPPathPattern("/staff/v1/student/reward"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StudentService_GateAccessHandler_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StudentService_GetStudentRewards_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_StudentService_GateAccessHandler_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentRewards_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_StudentService_StudentStaySchoolHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StudentService_GetStudentRewards_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/StudentStaySchoolHandler", runtime.WithHTTPPathPattern("/campusapis.staff.v1.StudentService/StudentStaySchoolHandler"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentRewards", runtime.WithHTTPPathPattern("/student/reward"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StudentService_StudentStaySchoolHandler_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StudentService_GetStudentRewards_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_StudentService_StudentStaySchoolHandler_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentRewards_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentSelect_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentSelect", runtime.WithHTTPPathPattern("/staff/v1/student/select"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StudentService_GetStudentSelect_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentSelect_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentSelect_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentSelect", runtime.WithHTTPPathPattern("/student/select"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StudentService_GetStudentSelect_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentSelect_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentGrade_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/student/grade"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StudentService_GetStudentGrade_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentGrade_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentGrade_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentGrade", runtime.WithHTTPPathPattern("/student/grade"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StudentService_GetStudentGrade_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_StudentService_PostStudentGateAccess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/PostStudentGateAccess", runtime.WithHTTPPathPattern("/campusapis.staff.v1.StudentService/PostStudentGateAccess"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StudentService_PostStudentGateAccess_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_PostStudentGateAccess_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentStaySchoolInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentStaySchoolInfo", runtime.WithHTTPPathPattern("/staff/v1/student/holidayStay"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StudentService_GetStudentStaySchoolInfo_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentStaySchoolInfo_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StudentService_GetStudentStaySchoolInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.StudentService/GetStudentStaySchoolInfo", runtime.WithHTTPPathPattern("/student/holidayStay"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StudentService_GetStudentStaySchoolInfo_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StudentService_GetStudentStaySchoolInfo_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -955,17 +1452,31 @@ var (
 
 	pattern_StudentService_GetStudentDormInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "dorm"}, ""))
 
-	pattern_StudentService_BirthdayHandler_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "birthday"}, ""))
+	pattern_StudentService_GetStudentBirthdayInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "birthday"}, ""))
 
-	pattern_StudentService_BirthdayHandler_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "birthday"}, ""))
+	pattern_StudentService_GetStudentBirthdayInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "birthday"}, ""))
 
-	pattern_StudentService_BirthdaysHandler_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "birthdays"}, ""))
+	pattern_StudentService_GetStudentBirthdaysIn_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "birthdays"}, ""))
 
-	pattern_StudentService_BirthdaysHandler_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "birthdays"}, ""))
+	pattern_StudentService_GetStudentBirthdaysIn_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "birthdays"}, ""))
 
-	pattern_StudentService_GateAccessHandler_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.staff.v1.StudentService", "GateAccessHandler"}, ""))
+	pattern_StudentService_GetStudentRewards_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "reward"}, ""))
 
-	pattern_StudentService_StudentStaySchoolHandler_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.staff.v1.StudentService", "StudentStaySchoolHandler"}, ""))
+	pattern_StudentService_GetStudentRewards_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "reward"}, ""))
+
+	pattern_StudentService_GetStudentSelect_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "select"}, ""))
+
+	pattern_StudentService_GetStudentSelect_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "select"}, ""))
+
+	pattern_StudentService_GetStudentGrade_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "grade"}, ""))
+
+	pattern_StudentService_GetStudentGrade_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "grade"}, ""))
+
+	pattern_StudentService_PostStudentGateAccess_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.staff.v1.StudentService", "PostStudentGateAccess"}, ""))
+
+	pattern_StudentService_GetStudentStaySchoolInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "holidayStay"}, ""))
+
+	pattern_StudentService_GetStudentStaySchoolInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "holidayStay"}, ""))
 )
 
 var (
@@ -981,15 +1492,29 @@ var (
 
 	forward_StudentService_GetStudentDormInfo_1 = runtime.ForwardResponseMessage
 
-	forward_StudentService_BirthdayHandler_0 = runtime.ForwardResponseMessage
+	forward_StudentService_GetStudentBirthdayInfo_0 = runtime.ForwardResponseMessage
 
-	forward_StudentService_BirthdayHandler_1 = runtime.ForwardResponseMessage
+	forward_StudentService_GetStudentBirthdayInfo_1 = runtime.ForwardResponseMessage
 
-	forward_StudentService_BirthdaysHandler_0 = runtime.ForwardResponseMessage
+	forward_StudentService_GetStudentBirthdaysIn_0 = runtime.ForwardResponseMessage
 
-	forward_StudentService_BirthdaysHandler_1 = runtime.ForwardResponseMessage
+	forward_StudentService_GetStudentBirthdaysIn_1 = runtime.ForwardResponseMessage
 
-	forward_StudentService_GateAccessHandler_0 = runtime.ForwardResponseMessage
+	forward_StudentService_GetStudentRewards_0 = runtime.ForwardResponseMessage
 
-	forward_StudentService_StudentStaySchoolHandler_0 = runtime.ForwardResponseMessage
+	forward_StudentService_GetStudentRewards_1 = runtime.ForwardResponseMessage
+
+	forward_StudentService_GetStudentSelect_0 = runtime.ForwardResponseMessage
+
+	forward_StudentService_GetStudentSelect_1 = runtime.ForwardResponseMessage
+
+	forward_StudentService_GetStudentGrade_0 = runtime.ForwardResponseMessage
+
+	forward_StudentService_GetStudentGrade_1 = runtime.ForwardResponseMessage
+
+	forward_StudentService_PostStudentGateAccess_0 = runtime.ForwardResponseMessage
+
+	forward_StudentService_GetStudentStaySchoolInfo_0 = runtime.ForwardResponseMessage
+
+	forward_StudentService_GetStudentStaySchoolInfo_1 = runtime.ForwardResponseMessage
 )
