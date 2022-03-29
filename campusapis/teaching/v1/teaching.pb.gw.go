@@ -31,15 +31,18 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_TeachingServer_GetScheduleRequest_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+var (
+	filter_TeachingService_GetScheduleRequest_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_GetScheduleRequest_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetScheduleRequestRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetScheduleRequest_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -48,15 +51,14 @@ func request_TeachingServer_GetScheduleRequest_0(ctx context.Context, marshaler 
 
 }
 
-func local_request_TeachingServer_GetScheduleRequest_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TeachingService_GetScheduleRequest_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetScheduleRequestRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetScheduleRequest_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -65,15 +67,54 @@ func local_request_TeachingServer_GetScheduleRequest_0(ctx context.Context, mars
 
 }
 
-func request_TeachingServer_GetClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+var (
+	filter_TeachingService_GetScheduleRequest_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_GetScheduleRequest_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetScheduleRequestRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetScheduleRequest_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetScheduleRequest(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_GetScheduleRequest_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetScheduleRequestRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetScheduleRequest_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetScheduleRequest(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_TeachingService_GetClassrooms_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_GetClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ClassroomRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetClassrooms_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -82,15 +123,14 @@ func request_TeachingServer_GetClassrooms_0(ctx context.Context, marshaler runti
 
 }
 
-func local_request_TeachingServer_GetClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TeachingService_GetClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ClassroomRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetClassrooms_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -99,15 +139,54 @@ func local_request_TeachingServer_GetClassrooms_0(ctx context.Context, marshaler
 
 }
 
-func request_TeachingServer_GetClassroomUsages_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+var (
+	filter_TeachingService_GetClassrooms_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_GetClassrooms_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ClassroomRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetClassrooms_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetClassrooms(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_GetClassrooms_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassroomRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetClassrooms_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetClassrooms(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_TeachingService_GetClassroomUsages_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_GetClassroomUsages_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassroomRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetClassroomUsages_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -116,15 +195,14 @@ func request_TeachingServer_GetClassroomUsages_0(ctx context.Context, marshaler 
 
 }
 
-func local_request_TeachingServer_GetClassroomUsages_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TeachingService_GetClassroomUsages_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ClassroomRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetClassroomUsages_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -133,15 +211,54 @@ func local_request_TeachingServer_GetClassroomUsages_0(ctx context.Context, mars
 
 }
 
-func request_TeachingServer_GetUnusedClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServerClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+var (
+	filter_TeachingService_GetClassroomUsages_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_GetClassroomUsages_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ClassroomRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetClassroomUsages_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetClassroomUsages(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_GetClassroomUsages_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassroomRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetClassroomUsages_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetClassroomUsages(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_TeachingService_GetUnusedClassrooms_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_GetUnusedClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassroomRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetUnusedClassrooms_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -150,15 +267,14 @@ func request_TeachingServer_GetUnusedClassrooms_0(ctx context.Context, marshaler
 
 }
 
-func local_request_TeachingServer_GetUnusedClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServerServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TeachingService_GetUnusedClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ClassroomRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetUnusedClassrooms_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -167,25 +283,61 @@ func local_request_TeachingServer_GetUnusedClassrooms_0(ctx context.Context, mar
 
 }
 
-// RegisterTeachingServerHandlerServer registers the http handlers for service TeachingServer to "mux".
-// UnaryRPC     :call TeachingServerServer directly.
+var (
+	filter_TeachingService_GetUnusedClassrooms_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_GetUnusedClassrooms_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassroomRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetUnusedClassrooms_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetUnusedClassrooms(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_GetUnusedClassrooms_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassroomRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_GetUnusedClassrooms_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetUnusedClassrooms(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+// RegisterTeachingServiceHandlerServer registers the http handlers for service TeachingService to "mux".
+// UnaryRPC     :call TeachingServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTeachingServerHandlerFromEndpoint instead.
-func RegisterTeachingServerHandlerServer(ctx context.Context, mux *runtime.ServeMux, server TeachingServerServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTeachingServiceHandlerFromEndpoint instead.
+func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server TeachingServiceServer) error {
 
-	mux.Handle("POST", pattern_TeachingServer_GetScheduleRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TeachingService_GetScheduleRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingServer/GetScheduleRequest", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingServer/GetScheduleRequest"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleRequest", runtime.WithHTTPPathPattern("/teaching/v1/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingServer_GetScheduleRequest_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetScheduleRequest_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -193,23 +345,23 @@ func RegisterTeachingServerHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_TeachingServer_GetScheduleRequest_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleRequest_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TeachingServer_GetClassrooms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TeachingService_GetScheduleRequest_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingServer/GetClassrooms", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingServer/GetClassrooms"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleRequest", runtime.WithHTTPPathPattern("/teaching/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingServer_GetClassrooms_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetScheduleRequest_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -217,23 +369,23 @@ func RegisterTeachingServerHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_TeachingServer_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleRequest_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TeachingServer_GetClassroomUsages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TeachingService_GetClassrooms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingServer/GetClassroomUsages", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingServer/GetClassroomUsages"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingServer_GetClassroomUsages_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetClassrooms_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -241,23 +393,23 @@ func RegisterTeachingServerHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_TeachingServer_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TeachingServer_GetUnusedClassrooms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TeachingService_GetClassrooms_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingServer/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingServer/GetUnusedClassrooms"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingServer_GetUnusedClassrooms_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetClassrooms_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -265,16 +417,112 @@ func RegisterTeachingServerHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_TeachingServer_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_GetClassroomUsages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/v1/classroom/usage"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_GetClassroomUsages_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_GetClassroomUsages_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/classroom/usage"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_GetClassroomUsages_1(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_GetClassroomUsages_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_GetUnusedClassrooms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom/unused"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_GetUnusedClassrooms_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_GetUnusedClassrooms_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom/unused"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_GetUnusedClassrooms_1(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_GetUnusedClassrooms_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterTeachingServerHandlerFromEndpoint is same as RegisterTeachingServerHandler but
+// RegisterTeachingServiceHandlerFromEndpoint is same as RegisterTeachingServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterTeachingServerHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterTeachingServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -294,103 +542,187 @@ func RegisterTeachingServerHandlerFromEndpoint(ctx context.Context, mux *runtime
 		}()
 	}()
 
-	return RegisterTeachingServerHandler(ctx, mux, conn)
+	return RegisterTeachingServiceHandler(ctx, mux, conn)
 }
 
-// RegisterTeachingServerHandler registers the http handlers for service TeachingServer to "mux".
+// RegisterTeachingServiceHandler registers the http handlers for service TeachingService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterTeachingServerHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterTeachingServerHandlerClient(ctx, mux, NewTeachingServerClient(conn))
+func RegisterTeachingServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterTeachingServiceHandlerClient(ctx, mux, NewTeachingServiceClient(conn))
 }
 
-// RegisterTeachingServerHandlerClient registers the http handlers for service TeachingServer
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "TeachingServerClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "TeachingServerClient"
+// RegisterTeachingServiceHandlerClient registers the http handlers for service TeachingService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "TeachingServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "TeachingServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "TeachingServerClient" to call the correct interceptors.
-func RegisterTeachingServerHandlerClient(ctx context.Context, mux *runtime.ServeMux, client TeachingServerClient) error {
+// "TeachingServiceClient" to call the correct interceptors.
+func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client TeachingServiceClient) error {
 
-	mux.Handle("POST", pattern_TeachingServer_GetScheduleRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TeachingService_GetScheduleRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingServer/GetScheduleRequest", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingServer/GetScheduleRequest"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleRequest", runtime.WithHTTPPathPattern("/teaching/v1/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingServer_GetScheduleRequest_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TeachingService_GetScheduleRequest_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingServer_GetScheduleRequest_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleRequest_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TeachingServer_GetClassrooms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TeachingService_GetScheduleRequest_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingServer/GetClassrooms", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingServer/GetClassrooms"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleRequest", runtime.WithHTTPPathPattern("/teaching/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingServer_GetClassrooms_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TeachingService_GetScheduleRequest_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingServer_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleRequest_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TeachingServer_GetClassroomUsages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TeachingService_GetClassrooms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingServer/GetClassroomUsages", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingServer/GetClassroomUsages"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingServer_GetClassroomUsages_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TeachingService_GetClassrooms_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingServer_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TeachingServer_GetUnusedClassrooms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TeachingService_GetClassrooms_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingServer/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingServer/GetUnusedClassrooms"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingServer_GetUnusedClassrooms_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TeachingService_GetClassrooms_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingServer_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_GetClassroomUsages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/v1/classroom/usage"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_GetClassroomUsages_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_GetClassroomUsages_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/classroom/usage"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_GetClassroomUsages_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_GetClassroomUsages_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_GetUnusedClassrooms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom/unused"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_GetUnusedClassrooms_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_GetUnusedClassrooms_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom/unused"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_GetUnusedClassrooms_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_GetUnusedClassrooms_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -398,21 +730,37 @@ func RegisterTeachingServerHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_TeachingServer_GetScheduleRequest_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.teaching.v1.TeachingServer", "GetScheduleRequest"}, ""))
+	pattern_TeachingService_GetScheduleRequest_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"teaching", "v1", "schedule"}, ""))
 
-	pattern_TeachingServer_GetClassrooms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.teaching.v1.TeachingServer", "GetClassrooms"}, ""))
+	pattern_TeachingService_GetScheduleRequest_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"teaching", "schedule"}, ""))
 
-	pattern_TeachingServer_GetClassroomUsages_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.teaching.v1.TeachingServer", "GetClassroomUsages"}, ""))
+	pattern_TeachingService_GetClassrooms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"teaching", "v1", "classroom"}, ""))
 
-	pattern_TeachingServer_GetUnusedClassrooms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.teaching.v1.TeachingServer", "GetUnusedClassrooms"}, ""))
+	pattern_TeachingService_GetClassrooms_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"teaching", "classroom"}, ""))
+
+	pattern_TeachingService_GetClassroomUsages_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"teaching", "v1", "classroom", "usage"}, ""))
+
+	pattern_TeachingService_GetClassroomUsages_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"teaching", "classroom", "usage"}, ""))
+
+	pattern_TeachingService_GetUnusedClassrooms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"teaching", "v1", "classroom", "unused"}, ""))
+
+	pattern_TeachingService_GetUnusedClassrooms_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"teaching", "classroom", "unused"}, ""))
 )
 
 var (
-	forward_TeachingServer_GetScheduleRequest_0 = runtime.ForwardResponseMessage
+	forward_TeachingService_GetScheduleRequest_0 = runtime.ForwardResponseMessage
 
-	forward_TeachingServer_GetClassrooms_0 = runtime.ForwardResponseMessage
+	forward_TeachingService_GetScheduleRequest_1 = runtime.ForwardResponseMessage
 
-	forward_TeachingServer_GetClassroomUsages_0 = runtime.ForwardResponseMessage
+	forward_TeachingService_GetClassrooms_0 = runtime.ForwardResponseMessage
 
-	forward_TeachingServer_GetUnusedClassrooms_0 = runtime.ForwardResponseMessage
+	forward_TeachingService_GetClassrooms_1 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_GetClassroomUsages_0 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_GetClassroomUsages_1 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_GetUnusedClassrooms_0 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_GetUnusedClassrooms_1 = runtime.ForwardResponseMessage
 )

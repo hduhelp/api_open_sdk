@@ -14,192 +14,192 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// TeachingServerClient is the client API for TeachingServer service.
+// TeachingServiceClient is the client API for TeachingService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TeachingServerClient interface {
+type TeachingServiceClient interface {
 	GetScheduleRequest(ctx context.Context, in *GetScheduleRequestRequest, opts ...grpc.CallOption) (*Courses, error)
-	GetClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*Classrooms, error)
-	GetClassroomUsages(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomUsages, error)
-	GetUnusedClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*Classrooms, error)
+	GetClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
+	GetClassroomUsages(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomUsagesResponse, error)
+	GetUnusedClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
 }
 
-type teachingServerClient struct {
+type teachingServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTeachingServerClient(cc grpc.ClientConnInterface) TeachingServerClient {
-	return &teachingServerClient{cc}
+func NewTeachingServiceClient(cc grpc.ClientConnInterface) TeachingServiceClient {
+	return &teachingServiceClient{cc}
 }
 
-func (c *teachingServerClient) GetScheduleRequest(ctx context.Context, in *GetScheduleRequestRequest, opts ...grpc.CallOption) (*Courses, error) {
+func (c *teachingServiceClient) GetScheduleRequest(ctx context.Context, in *GetScheduleRequestRequest, opts ...grpc.CallOption) (*Courses, error) {
 	out := new(Courses)
-	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/GetScheduleRequest", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetScheduleRequest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *teachingServerClient) GetClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*Classrooms, error) {
-	out := new(Classrooms)
-	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/GetClassrooms", in, out, opts...)
+func (c *teachingServiceClient) GetClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error) {
+	out := new(ClassroomsResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassrooms", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *teachingServerClient) GetClassroomUsages(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomUsages, error) {
-	out := new(ClassroomUsages)
-	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/GetClassroomUsages", in, out, opts...)
+func (c *teachingServiceClient) GetClassroomUsages(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomUsagesResponse, error) {
+	out := new(ClassroomUsagesResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *teachingServerClient) GetUnusedClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*Classrooms, error) {
-	out := new(Classrooms)
-	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingServer/GetUnusedClassrooms", in, out, opts...)
+func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error) {
+	out := new(ClassroomsResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TeachingServerServer is the server API for TeachingServer service.
-// All implementations should embed UnimplementedTeachingServerServer
+// TeachingServiceServer is the server API for TeachingService service.
+// All implementations should embed UnimplementedTeachingServiceServer
 // for forward compatibility
-type TeachingServerServer interface {
+type TeachingServiceServer interface {
 	GetScheduleRequest(context.Context, *GetScheduleRequestRequest) (*Courses, error)
-	GetClassrooms(context.Context, *ClassroomRequest) (*Classrooms, error)
-	GetClassroomUsages(context.Context, *ClassroomRequest) (*ClassroomUsages, error)
-	GetUnusedClassrooms(context.Context, *ClassroomRequest) (*Classrooms, error)
+	GetClassrooms(context.Context, *ClassroomRequest) (*ClassroomsResponse, error)
+	GetClassroomUsages(context.Context, *ClassroomRequest) (*ClassroomUsagesResponse, error)
+	GetUnusedClassrooms(context.Context, *ClassroomRequest) (*ClassroomsResponse, error)
 }
 
-// UnimplementedTeachingServerServer should be embedded to have forward compatible implementations.
-type UnimplementedTeachingServerServer struct {
+// UnimplementedTeachingServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedTeachingServiceServer struct {
 }
 
-func (UnimplementedTeachingServerServer) GetScheduleRequest(context.Context, *GetScheduleRequestRequest) (*Courses, error) {
+func (UnimplementedTeachingServiceServer) GetScheduleRequest(context.Context, *GetScheduleRequestRequest) (*Courses, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetScheduleRequest not implemented")
 }
-func (UnimplementedTeachingServerServer) GetClassrooms(context.Context, *ClassroomRequest) (*Classrooms, error) {
+func (UnimplementedTeachingServiceServer) GetClassrooms(context.Context, *ClassroomRequest) (*ClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassrooms not implemented")
 }
-func (UnimplementedTeachingServerServer) GetClassroomUsages(context.Context, *ClassroomRequest) (*ClassroomUsages, error) {
+func (UnimplementedTeachingServiceServer) GetClassroomUsages(context.Context, *ClassroomRequest) (*ClassroomUsagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassroomUsages not implemented")
 }
-func (UnimplementedTeachingServerServer) GetUnusedClassrooms(context.Context, *ClassroomRequest) (*Classrooms, error) {
+func (UnimplementedTeachingServiceServer) GetUnusedClassrooms(context.Context, *ClassroomRequest) (*ClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnusedClassrooms not implemented")
 }
 
-// UnsafeTeachingServerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TeachingServerServer will
+// UnsafeTeachingServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TeachingServiceServer will
 // result in compilation errors.
-type UnsafeTeachingServerServer interface {
-	mustEmbedUnimplementedTeachingServerServer()
+type UnsafeTeachingServiceServer interface {
+	mustEmbedUnimplementedTeachingServiceServer()
 }
 
-func RegisterTeachingServerServer(s grpc.ServiceRegistrar, srv TeachingServerServer) {
-	s.RegisterService(&TeachingServer_ServiceDesc, srv)
+func RegisterTeachingServiceServer(s grpc.ServiceRegistrar, srv TeachingServiceServer) {
+	s.RegisterService(&TeachingService_ServiceDesc, srv)
 }
 
-func _TeachingServer_GetScheduleRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TeachingService_GetScheduleRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetScheduleRequestRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeachingServerServer).GetScheduleRequest(ctx, in)
+		return srv.(TeachingServiceServer).GetScheduleRequest(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.teaching.v1.TeachingServer/GetScheduleRequest",
+		FullMethod: "/campusapis.teaching.v1.TeachingService/GetScheduleRequest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServerServer).GetScheduleRequest(ctx, req.(*GetScheduleRequestRequest))
+		return srv.(TeachingServiceServer).GetScheduleRequest(ctx, req.(*GetScheduleRequestRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeachingServer_GetClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TeachingService_GetClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ClassroomRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeachingServerServer).GetClassrooms(ctx, in)
+		return srv.(TeachingServiceServer).GetClassrooms(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.teaching.v1.TeachingServer/GetClassrooms",
+		FullMethod: "/campusapis.teaching.v1.TeachingService/GetClassrooms",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServerServer).GetClassrooms(ctx, req.(*ClassroomRequest))
+		return srv.(TeachingServiceServer).GetClassrooms(ctx, req.(*ClassroomRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeachingServer_GetClassroomUsages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TeachingService_GetClassroomUsages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ClassroomRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeachingServerServer).GetClassroomUsages(ctx, in)
+		return srv.(TeachingServiceServer).GetClassroomUsages(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.teaching.v1.TeachingServer/GetClassroomUsages",
+		FullMethod: "/campusapis.teaching.v1.TeachingService/GetClassroomUsages",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServerServer).GetClassroomUsages(ctx, req.(*ClassroomRequest))
+		return srv.(TeachingServiceServer).GetClassroomUsages(ctx, req.(*ClassroomRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeachingServer_GetUnusedClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TeachingService_GetUnusedClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ClassroomRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeachingServerServer).GetUnusedClassrooms(ctx, in)
+		return srv.(TeachingServiceServer).GetUnusedClassrooms(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.teaching.v1.TeachingServer/GetUnusedClassrooms",
+		FullMethod: "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServerServer).GetUnusedClassrooms(ctx, req.(*ClassroomRequest))
+		return srv.(TeachingServiceServer).GetUnusedClassrooms(ctx, req.(*ClassroomRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// TeachingServer_ServiceDesc is the grpc.ServiceDesc for TeachingServer service.
+// TeachingService_ServiceDesc is the grpc.ServiceDesc for TeachingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TeachingServer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "campusapis.teaching.v1.TeachingServer",
-	HandlerType: (*TeachingServerServer)(nil),
+var TeachingService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "campusapis.teaching.v1.TeachingService",
+	HandlerType: (*TeachingServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetScheduleRequest",
-			Handler:    _TeachingServer_GetScheduleRequest_Handler,
+			Handler:    _TeachingService_GetScheduleRequest_Handler,
 		},
 		{
 			MethodName: "GetClassrooms",
-			Handler:    _TeachingServer_GetClassrooms_Handler,
+			Handler:    _TeachingService_GetClassrooms_Handler,
 		},
 		{
 			MethodName: "GetClassroomUsages",
-			Handler:    _TeachingServer_GetClassroomUsages_Handler,
+			Handler:    _TeachingService_GetClassroomUsages_Handler,
 		},
 		{
 			MethodName: "GetUnusedClassrooms",
-			Handler:    _TeachingServer_GetUnusedClassrooms_Handler,
+			Handler:    _TeachingService_GetUnusedClassrooms_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

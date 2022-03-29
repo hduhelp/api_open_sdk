@@ -6,12 +6,41 @@ option go_package = "./campusapis/teaching/v1";
 
 import "baseStaff/baseStaff.proto";
 import "campusapis/schoolTime/defined.proto";
+import "google/api/annotations.proto";
 
-service TeachingServer {
-  rpc GetScheduleRequest(GetScheduleRequestRequest) returns (Courses){}
-  rpc GetClassrooms (ClassroomRequest) returns (Classrooms) {}
-  rpc GetClassroomUsages (ClassroomRequest) returns (ClassroomUsages) {}
-  rpc GetUnusedClassrooms (ClassroomRequest) returns (Classrooms) {}
+service TeachingService {
+  rpc GetScheduleRequest(GetScheduleRequestRequest) returns (Courses){
+    option (google.api.http) = {
+      get: "/teaching/v1/schedule"
+      additional_bindings {
+        get: "/teaching/schedule"
+      }
+    };
+  }
+  rpc GetClassrooms (ClassroomRequest) returns (ClassroomsResponse) {
+    option (google.api.http) = {
+      get: "/teaching/v1/classroom"
+      additional_bindings {
+        get: "/teaching/classroom"
+      }
+    };
+  }
+  rpc GetClassroomUsages (ClassroomRequest) returns (ClassroomUsagesResponse) {
+    option (google.api.http) = {
+      get: "/teaching/v1/classroom/usage"
+      additional_bindings {
+        get: "/teaching/classroom/usage"
+      }
+    };
+  }
+  rpc GetUnusedClassrooms (ClassroomRequest) returns (ClassroomsResponse) {
+    option (google.api.http) = {
+      get: "/teaching/v1/classroom/unused"
+      additional_bindings {
+        get: "/teaching/classroom/unused"
+      }
+    };
+  }
 }
 
 message GetScheduleRequestRequest {
@@ -76,8 +105,8 @@ message ClassroomRequest {
   string LocationID = 6;
 }
 
-message Classrooms {
-repeated Classroom Items = 1;
+message ClassroomsResponse {
+  repeated Classroom Items = 1;
 }
 
 message Classroom {
@@ -89,16 +118,15 @@ message Classroom {
   string buildingName = 6;
 }
 
-message ClassroomUsages {
-  repeated ClassroomUsage items = 1;
-}
-
-message ClassroomUsage {
-  Classroom classroom = 1;
-  int32 weekday = 2;
-  repeated int32 week = 3;
-  repeated int32 Section = 4;
-  string ClassID = 5;
-  string CourseCode = 6;
-  string CourseName = 7;
+message ClassroomUsagesResponse {
+  message Nested {
+    Classroom classroom = 1;
+    int32 weekday = 2;
+    repeated int32 week = 3;
+    repeated int32 Section = 4;
+    string ClassID = 5;
+    string CourseCode = 6;
+    string CourseName = 7;
+  }  
+  repeated Nested items = 1;
 }
