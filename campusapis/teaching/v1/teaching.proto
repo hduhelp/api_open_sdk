@@ -15,9 +15,11 @@ service TeachingService {
       response_body: "items"
       additional_bindings {
         get: "/teaching/schedule"
+        response_body: "items"
       }
       additional_bindings {
         get: "/student/v2/schedule"
+        response_body: "items"
       }
     };
   }
@@ -27,6 +29,7 @@ service TeachingService {
       response_body: "items"
       additional_bindings {
         get: "/teaching/classroom"
+        response_body: "items"
       }
     };
   }
@@ -36,6 +39,7 @@ service TeachingService {
       response_body: "items"
       additional_bindings {
         get: "/teaching/classroom/usage"
+        response_body: "items"
       }
     };
   }
@@ -45,6 +49,7 @@ service TeachingService {
       response_body: "items"
       additional_bindings {
         get: "/teaching/classroom/unused"
+        response_body: "items"
       }
     };
   }

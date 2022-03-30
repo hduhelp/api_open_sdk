@@ -21,9 +21,12 @@
         "operationId": "TeachingService_GetSchedule3",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1GetScheduleResponse"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GetScheduleResponseCourse"
+              }
             }
           },
           "default": {
@@ -80,9 +83,12 @@
         "operationId": "TeachingService_GetClassrooms2",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1ClassroomsResponse"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1Classroom"
+              }
             }
           },
           "default": {
@@ -145,9 +151,12 @@
         "operationId": "TeachingService_GetUnusedClassrooms2",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1ClassroomsResponse"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1Classroom"
+              }
             }
           },
           "default": {
@@ -210,9 +219,12 @@
         "operationId": "TeachingService_GetClassroomUsages2",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1ClassroomUsagesResponse"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ClassroomUsagesResponseNested"
+              }
             }
           },
           "default": {
@@ -275,9 +287,12 @@
         "operationId": "TeachingService_GetSchedule2",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1GetScheduleResponse"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GetScheduleResponseCourse"
+              }
             }
           },
           "default": {
