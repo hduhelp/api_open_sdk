@@ -18,6 +18,7 @@
   "paths": {
     "/schooltime/v1": {
       "get": {
+        "summary": "获取当前学校时间",
         "operationId": "SchoolTimeService_GetSchoolTime",
         "responses": {
           "200": {
@@ -40,6 +41,7 @@
     },
     "/time": {
       "get": {
+        "summary": "获取当前学校时间",
         "operationId": "SchoolTimeService_GetSchoolTime2",
         "responses": {
           "200": {

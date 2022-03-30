@@ -10,6 +10,7 @@ import "google/api/annotations.proto";
 import "campusapis/schoolTime/defined.proto";
 
 service SchoolTimeService {
+  // 获取当前学校时间
   rpc GetSchoolTime (google.protobuf.Empty) returns (GetSchoolTimeResponse) {
     option (google.api.http) = {
       get: "/schooltime/v1"
@@ -27,13 +28,4 @@ message GetSchoolTimeResponse {
   uint32 timeStamp = 4;
   int32 weekDayNow = 5;
   int32 weekNow = 6;
-}
-
-message SchoolTime {
-  SchoolYear SchoolYear = 1;
-  Semester Semester = 2;
-  int32 SchoolWeek = 3;
-  int32 DayOfWeek = 4;
-  Section Section = 5;
-  google.protobuf.Timestamp Time = 6;
 }

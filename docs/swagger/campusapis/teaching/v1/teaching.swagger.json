@@ -18,6 +18,7 @@
   "paths": {
     "/student/v2/schedule": {
       "get": {
+        "summary": "获取学生/教师课程表",
         "operationId": "TeachingService_GetSchedule3",
         "responses": {
           "200": {
@@ -39,20 +40,21 @@
         "parameters": [
           {
             "name": "semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "schoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "timestamp",
+            "description": "时间戳",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -60,6 +62,7 @@
           },
           {
             "name": "week",
+            "description": "周次",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -67,6 +70,7 @@
           },
           {
             "name": "weekday",
+            "description": "星期几",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -80,6 +84,7 @@
     },
     "/teaching/classroom": {
       "get": {
+        "summary": "获取所有教室列表",
         "operationId": "TeachingService_GetClassrooms2",
         "responses": {
           "200": {
@@ -100,42 +105,13 @@
         },
         "parameters": [
           {
-            "name": "Semester",
-            "description": "学期",
+            "name": "schoolYear",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "SchoolYear",
-            "description": "学年",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "Weekday",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "Week",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "Section",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "LocationID",
+            "name": "semester",
             "in": "query",
             "required": false,
             "type": "string"
@@ -148,6 +124,7 @@
     },
     "/teaching/classroom/unused": {
       "get": {
+        "summary": "获取所有空教室列表",
         "operationId": "TeachingService_GetUnusedClassrooms2",
         "responses": {
           "200": {
@@ -168,45 +145,42 @@
         },
         "parameters": [
           {
-            "name": "Semester",
+            "name": "semester",
             "description": "学期",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "SchoolYear",
+            "name": "schoolYear",
             "description": "学年",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "Weekday",
+            "name": "weekday",
+            "description": "星期",
             "in": "query",
             "required": false,
             "type": "integer",
             "format": "int32"
           },
           {
-            "name": "Week",
+            "name": "week",
+            "description": "周次",
             "in": "query",
             "required": false,
             "type": "integer",
             "format": "int32"
           },
           {
-            "name": "Section",
+            "name": "section",
+            "description": "节次",
             "in": "query",
             "required": false,
             "type": "integer",
             "format": "int32"
-          },
-          {
-            "name": "LocationID",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
@@ -216,6 +190,7 @@
     },
     "/teaching/classroom/usage": {
       "get": {
+        "summary": "获取某一教室的使用情况",
         "operationId": "TeachingService_GetClassroomUsages2",
         "responses": {
           "200": {
@@ -236,42 +211,22 @@
         },
         "parameters": [
           {
-            "name": "Semester",
+            "name": "semester",
             "description": "学期",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "SchoolYear",
+            "name": "schoolYear",
             "description": "学年",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "Weekday",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "Week",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "Section",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "LocationID",
+            "name": "locationID",
+            "description": "教室ID",
             "in": "query",
             "required": false,
             "type": "string"
@@ -284,6 +239,7 @@
     },
     "/teaching/schedule": {
       "get": {
+        "summary": "获取学生/教师课程表",
         "operationId": "TeachingService_GetSchedule2",
         "responses": {
           "200": {
@@ -305,20 +261,21 @@
         "parameters": [
           {
             "name": "semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "schoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "timestamp",
+            "description": "时间戳",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -326,6 +283,7 @@
           },
           {
             "name": "week",
+            "description": "周次",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -333,6 +291,7 @@
           },
           {
             "name": "weekday",
+            "description": "星期几",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -346,6 +305,7 @@
     },
     "/teaching/v1/classroom": {
       "get": {
+        "summary": "获取所有教室列表",
         "operationId": "TeachingService_GetClassrooms",
         "responses": {
           "200": {
@@ -366,42 +326,13 @@
         },
         "parameters": [
           {
-            "name": "Semester",
-            "description": "学期",
+            "name": "schoolYear",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "SchoolYear",
-            "description": "学年",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "Weekday",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "Week",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "Section",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "LocationID",
+            "name": "semester",
             "in": "query",
             "required": false,
             "type": "string"
@@ -414,6 +345,7 @@
     },
     "/teaching/v1/classroom/unused": {
       "get": {
+        "summary": "获取所有空教室列表",
         "operationId": "TeachingService_GetUnusedClassrooms",
         "responses": {
           "200": {
@@ -434,45 +366,42 @@
         },
         "parameters": [
           {
-            "name": "Semester",
+            "name": "semester",
             "description": "学期",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "SchoolYear",
+            "name": "schoolYear",
             "description": "学年",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "Weekday",
+            "name": "weekday",
+            "description": "星期",
             "in": "query",
             "required": false,
             "type": "integer",
             "format": "int32"
           },
           {
-            "name": "Week",
+            "name": "week",
+            "description": "周次",
             "in": "query",
             "required": false,
             "type": "integer",
             "format": "int32"
           },
           {
-            "name": "Section",
+            "name": "section",
+            "description": "节次",
             "in": "query",
             "required": false,
             "type": "integer",
             "format": "int32"
-          },
-          {
-            "name": "LocationID",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
@@ -482,6 +411,7 @@
     },
     "/teaching/v1/classroom/usage": {
       "get": {
+        "summary": "获取某一教室的使用情况",
         "operationId": "TeachingService_GetClassroomUsages",
         "responses": {
           "200": {
@@ -502,42 +432,22 @@
         },
         "parameters": [
           {
-            "name": "Semester",
+            "name": "semester",
             "description": "学期",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "SchoolYear",
+            "name": "schoolYear",
             "description": "学年",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "Weekday",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "Week",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "Section",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "LocationID",
+            "name": "locationID",
+            "description": "教室ID",
             "in": "query",
             "required": false,
             "type": "string"
@@ -550,6 +460,7 @@
     },
     "/teaching/v1/schedule": {
       "get": {
+        "summary": "获取学生/教师课程表",
         "operationId": "TeachingService_GetSchedule",
         "responses": {
           "200": {
@@ -571,20 +482,21 @@
         "parameters": [
           {
             "name": "semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "schoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "timestamp",
+            "description": "时间戳",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -592,6 +504,7 @@
           },
           {
             "name": "week",
+            "description": "周次",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -599,6 +512,7 @@
           },
           {
             "name": "weekday",
+            "description": "星期几",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -833,7 +747,8 @@
             "$ref": "#/definitions/GetScheduleResponseCourse"
           }
         }
-      }
+      },
+      "title": "GetScheduleResponse 课表返回体"
     }
   }
 }

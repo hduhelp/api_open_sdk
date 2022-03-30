@@ -31,6 +31,7 @@ type GetCheckinRecordRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 日期，格式：yyyy-MM-dd
 	Date string `protobuf:"bytes,1,opt,name=date,proto3" json:"date,omitempty"`
 }
 
@@ -126,12 +127,13 @@ type GetCheckinRecordResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         uint32           `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Creator    string           `protobuf:"bytes,2,opt,name=creator,proto3" json:"creator,omitempty"`
-	CreatedAt  uint32           `protobuf:"varint,3,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	Modified   uint32           `protobuf:"varint,4,opt,name=modified,proto3" json:"modified,omitempty"`
-	Modifier   string           `protobuf:"bytes,5,opt,name=modifier,proto3" json:"modifier,omitempty"`
-	Content    *structpb.Struct `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"` //健康打卡内容JSON
+	Id        uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Creator   string `protobuf:"bytes,2,opt,name=creator,proto3" json:"creator,omitempty"`
+	CreatedAt uint32 `protobuf:"varint,3,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	Modified  uint32 `protobuf:"varint,4,opt,name=modified,proto3" json:"modified,omitempty"`
+	Modifier  string `protobuf:"bytes,5,opt,name=modifier,proto3" json:"modifier,omitempty"`
+	//健康打卡内容JSON
+	Content    *structpb.Struct `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"`
 	ReportTime uint32           `protobuf:"varint,7,opt,name=reportTime,proto3" json:"reportTime,omitempty"`
 	Province   string           `protobuf:"bytes,8,opt,name=province,proto3" json:"province,omitempty"`
 	City       string           `protobuf:"bytes,9,opt,name=city,proto3" json:"city,omitempty"`

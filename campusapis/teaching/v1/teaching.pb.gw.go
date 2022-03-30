@@ -144,7 +144,7 @@ var (
 )
 
 func request_TeachingService_GetClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetClassroomsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -160,7 +160,7 @@ func request_TeachingService_GetClassrooms_0(ctx context.Context, marshaler runt
 }
 
 func local_request_TeachingService_GetClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetClassroomsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -180,7 +180,7 @@ var (
 )
 
 func request_TeachingService_GetClassrooms_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetClassroomsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -196,7 +196,7 @@ func request_TeachingService_GetClassrooms_1(ctx context.Context, marshaler runt
 }
 
 func local_request_TeachingService_GetClassrooms_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetClassroomsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -216,7 +216,7 @@ var (
 )
 
 func request_TeachingService_GetClassroomUsages_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetClassroomUsageRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -232,7 +232,7 @@ func request_TeachingService_GetClassroomUsages_0(ctx context.Context, marshaler
 }
 
 func local_request_TeachingService_GetClassroomUsages_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetClassroomUsageRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -252,7 +252,7 @@ var (
 )
 
 func request_TeachingService_GetClassroomUsages_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetClassroomUsageRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -268,7 +268,7 @@ func request_TeachingService_GetClassroomUsages_1(ctx context.Context, marshaler
 }
 
 func local_request_TeachingService_GetClassroomUsages_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetClassroomUsageRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -288,7 +288,7 @@ var (
 )
 
 func request_TeachingService_GetUnusedClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetUnusedClassroomsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -304,7 +304,7 @@ func request_TeachingService_GetUnusedClassrooms_0(ctx context.Context, marshale
 }
 
 func local_request_TeachingService_GetUnusedClassrooms_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetUnusedClassroomsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -324,7 +324,7 @@ var (
 )
 
 func request_TeachingService_GetUnusedClassrooms_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetUnusedClassroomsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -340,7 +340,7 @@ func request_TeachingService_GetUnusedClassrooms_1(ctx context.Context, marshale
 }
 
 func local_request_TeachingService_GetUnusedClassrooms_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassroomRequest
+	var protoReq GetUnusedClassroomsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {

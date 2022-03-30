@@ -37,18 +37,21 @@
         "parameters": [
           {
             "name": "staffId",
+            "description": "学号",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同身份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "idCardNo",
+            "description": "身份证号",
             "in": "query",
             "required": false,
             "type": "string"
@@ -80,18 +83,21 @@
         "parameters": [
           {
             "name": "staffId",
+            "description": "学号",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同身份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "idCardNo",
+            "description": "身份证号",
             "in": "query",
             "required": false,
             "type": "string"
@@ -123,18 +129,21 @@
         "parameters": [
           {
             "name": "staffId",
+            "description": "学号",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同身份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "idCardNo",
+            "description": "身份证号",
             "in": "query",
             "required": false,
             "type": "string"
@@ -166,18 +175,21 @@
         "parameters": [
           {
             "name": "staffId",
+            "description": "学号",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同身份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "idCardNo",
+            "description": "身份证号",
             "in": "query",
             "required": false,
             "type": "string"
@@ -209,18 +221,21 @@
         "parameters": [
           {
             "name": "staffId",
+            "description": "学号",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同身份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "idCardNo",
+            "description": "身份证号",
             "in": "query",
             "required": false,
             "type": "string"
@@ -255,18 +270,21 @@
         "parameters": [
           {
             "name": "staffId",
+            "description": "学号",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同身份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "idCardNo",
+            "description": "身份证号",
             "in": "query",
             "required": false,
             "type": "string"
@@ -355,34 +373,44 @@
       "type": "object",
       "properties": {
         "staffId": {
-          "type": "string"
+          "type": "string",
+          "title": "学号"
         },
         "staffName": {
-          "type": "string"
+          "type": "string",
+          "title": "姓名"
         },
         "className": {
-          "type": "string"
+          "type": "string",
+          "title": "班级名称"
         },
         "roomName": {
-          "type": "string"
+          "type": "string",
+          "title": "宿舍房间名称"
         },
         "regStatus": {
-          "type": "string"
+          "type": "string",
+          "title": "注册状态（是否入学）"
         },
         "schoolID": {
-          "type": "string"
+          "type": "string",
+          "title": "学院编号"
         },
         "schoolName": {
-          "type": "string"
+          "type": "string",
+          "title": "学院名称"
         },
         "majorName": {
-          "type": "string"
+          "type": "string",
+          "title": "专业名称"
         },
         "cardID": {
-          "type": "string"
+          "type": "string",
+          "title": "身份证号"
         },
         "teacherName": {
-          "type": "string"
+          "type": "string",
+          "title": "辅导员姓名"
         },
         "teacherPhone": {
           "type": "string"

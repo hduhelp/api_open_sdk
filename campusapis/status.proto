@@ -4,6 +4,7 @@ package campusapis;
 
 option go_package = "./campusapis";
 
+// 请求状态
 enum Status {
     OK = 0;
 

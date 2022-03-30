@@ -37,6 +37,7 @@
         "parameters": [
           {
             "name": "date",
+            "description": "日期，格式：yyyy-MM-dd",
             "in": "query",
             "required": false,
             "type": "string"
@@ -91,6 +92,7 @@
         "parameters": [
           {
             "name": "date",
+            "description": "日期，格式：yyyy-MM-dd",
             "in": "query",
             "required": false,
             "type": "string"
@@ -185,7 +187,8 @@
           "type": "string"
         },
         "content": {
-          "type": "object"
+          "type": "object",
+          "title": "健康打卡内容JSON"
         },
         "reportTime": {
           "type": "integer",

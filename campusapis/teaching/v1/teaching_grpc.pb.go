@@ -18,10 +18,14 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TeachingServiceClient interface {
+	// 获取学生/教师课程表
 	GetSchedule(ctx context.Context, in *GetScheduleRequest, opts ...grpc.CallOption) (*GetScheduleResponse, error)
-	GetClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
-	GetClassroomUsages(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomUsagesResponse, error)
-	GetUnusedClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
+	// 获取所有教室列表
+	GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
+	// 获取某一教室的使用情况
+	GetClassroomUsages(ctx context.Context, in *GetClassroomUsageRequest, opts ...grpc.CallOption) (*ClassroomUsagesResponse, error)
+	// 获取所有空教室列表
+	GetUnusedClassrooms(ctx context.Context, in *GetUnusedClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
 }
 
 type teachingServiceClient struct {
@@ -41,7 +45,7 @@ func (c *teachingServiceClient) GetSchedule(ctx context.Context, in *GetSchedule
 	return out, nil
 }
 
-func (c *teachingServiceClient) GetClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error) {
+func (c *teachingServiceClient) GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error) {
 	out := new(ClassroomsResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassrooms", in, out, opts...)
 	if err != nil {
@@ -50,7 +54,7 @@ func (c *teachingServiceClient) GetClassrooms(ctx context.Context, in *Classroom
 	return out, nil
 }
 
-func (c *teachingServiceClient) GetClassroomUsages(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomUsagesResponse, error) {
+func (c *teachingServiceClient) GetClassroomUsages(ctx context.Context, in *GetClassroomUsageRequest, opts ...grpc.CallOption) (*ClassroomUsagesResponse, error) {
 	out := new(ClassroomUsagesResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", in, out, opts...)
 	if err != nil {
@@ -59,7 +63,7 @@ func (c *teachingServiceClient) GetClassroomUsages(ctx context.Context, in *Clas
 	return out, nil
 }
 
-func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *ClassroomRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error) {
+func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *GetUnusedClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error) {
 	out := new(ClassroomsResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", in, out, opts...)
 	if err != nil {
@@ -72,10 +76,14 @@ func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *Cla
 // All implementations should embed UnimplementedTeachingServiceServer
 // for forward compatibility
 type TeachingServiceServer interface {
+	// 获取学生/教师课程表
 	GetSchedule(context.Context, *GetScheduleRequest) (*GetScheduleResponse, error)
-	GetClassrooms(context.Context, *ClassroomRequest) (*ClassroomsResponse, error)
-	GetClassroomUsages(context.Context, *ClassroomRequest) (*ClassroomUsagesResponse, error)
-	GetUnusedClassrooms(context.Context, *ClassroomRequest) (*ClassroomsResponse, error)
+	// 获取所有教室列表
+	GetClassrooms(context.Context, *GetClassroomsRequest) (*ClassroomsResponse, error)
+	// 获取某一教室的使用情况
+	GetClassroomUsages(context.Context, *GetClassroomUsageRequest) (*ClassroomUsagesResponse, error)
+	// 获取所有空教室列表
+	GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*ClassroomsResponse, error)
 }
 
 // UnimplementedTeachingServiceServer should be embedded to have forward compatible implementations.
@@ -85,13 +93,13 @@ type UnimplementedTeachingServiceServer struct {
 func (UnimplementedTeachingServiceServer) GetSchedule(context.Context, *GetScheduleRequest) (*GetScheduleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSchedule not implemented")
 }
-func (UnimplementedTeachingServiceServer) GetClassrooms(context.Context, *ClassroomRequest) (*ClassroomsResponse, error) {
+func (UnimplementedTeachingServiceServer) GetClassrooms(context.Context, *GetClassroomsRequest) (*ClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassrooms not implemented")
 }
-func (UnimplementedTeachingServiceServer) GetClassroomUsages(context.Context, *ClassroomRequest) (*ClassroomUsagesResponse, error) {
+func (UnimplementedTeachingServiceServer) GetClassroomUsages(context.Context, *GetClassroomUsageRequest) (*ClassroomUsagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassroomUsages not implemented")
 }
-func (UnimplementedTeachingServiceServer) GetUnusedClassrooms(context.Context, *ClassroomRequest) (*ClassroomsResponse, error) {
+func (UnimplementedTeachingServiceServer) GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*ClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnusedClassrooms not implemented")
 }
 
@@ -125,7 +133,7 @@ func _TeachingService_GetSchedule_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _TeachingService_GetClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClassroomRequest)
+	in := new(GetClassroomsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -137,13 +145,13 @@ func _TeachingService_GetClassrooms_Handler(srv interface{}, ctx context.Context
 		FullMethod: "/campusapis.teaching.v1.TeachingService/GetClassrooms",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServiceServer).GetClassrooms(ctx, req.(*ClassroomRequest))
+		return srv.(TeachingServiceServer).GetClassrooms(ctx, req.(*GetClassroomsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TeachingService_GetClassroomUsages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClassroomRequest)
+	in := new(GetClassroomUsageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -155,13 +163,13 @@ func _TeachingService_GetClassroomUsages_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/campusapis.teaching.v1.TeachingService/GetClassroomUsages",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServiceServer).GetClassroomUsages(ctx, req.(*ClassroomRequest))
+		return srv.(TeachingServiceServer).GetClassroomUsages(ctx, req.(*GetClassroomUsageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TeachingService_GetUnusedClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClassroomRequest)
+	in := new(GetUnusedClassroomsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -173,7 +181,7 @@ func _TeachingService_GetUnusedClassrooms_Handler(srv interface{}, ctx context.C
 		FullMethod: "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServiceServer).GetUnusedClassrooms(ctx, req.(*ClassroomRequest))
+		return srv.(TeachingServiceServer).GetUnusedClassrooms(ctx, req.(*GetUnusedClassroomsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

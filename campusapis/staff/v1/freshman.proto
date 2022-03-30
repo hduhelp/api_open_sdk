@@ -40,8 +40,11 @@ service FreshmanService {
 
 //新生三要素请求，在无学号时临时作为身份认证，提供基本的信息查询
 message FreshmanKeywordRequest {
+  //学号
   string staffId = 1;
+  //录取通知书号或者是准考证号，不同身份并不一样
   string offerId = 2;
+  //身份证号
   string idCardNo = 3;
 }
 
@@ -63,15 +66,25 @@ message GetFreshmanBaseInfoResponse {
 
 //新生详细信息
 message GetFreshmanInfoResponse {
+  //学号
   string staffId = 1;
+  //姓名
   string staffName = 2;
+  //班级名称
   string className = 3;
+  //宿舍房间名称
   string roomName = 4;
+  //注册状态（是否入学）
   string regStatus = 5;
+  //学院编号
   string schoolID = 6;
+  //学院名称
   string schoolName = 7;
+  //专业名称
   string majorName = 8;
+  //身份证号
   string cardID = 9;
+  //辅导员姓名
   string teacherName = 10;
   string teacherPhone = 11;
   string assistantName = 12;

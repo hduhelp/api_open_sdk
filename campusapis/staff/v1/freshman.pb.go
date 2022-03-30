@@ -27,8 +27,11 @@ type FreshmanKeywordRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	StaffId  string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`
-	OfferId  string `protobuf:"bytes,2,opt,name=offerId,proto3" json:"offerId,omitempty"`
+	//学号
+	StaffId string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`
+	//录取通知书号或者是准考证号，不同身份并不一样
+	OfferId string `protobuf:"bytes,2,opt,name=offerId,proto3" json:"offerId,omitempty"`
+	//身份证号
 	IdCardNo string `protobuf:"bytes,3,opt,name=idCardNo,proto3" json:"idCardNo,omitempty"`
 }
 
@@ -185,15 +188,25 @@ type GetFreshmanInfoResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	StaffId        string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`
-	StaffName      string `protobuf:"bytes,2,opt,name=staffName,proto3" json:"staffName,omitempty"`
-	ClassName      string `protobuf:"bytes,3,opt,name=className,proto3" json:"className,omitempty"`
-	RoomName       string `protobuf:"bytes,4,opt,name=roomName,proto3" json:"roomName,omitempty"`
-	RegStatus      string `protobuf:"bytes,5,opt,name=regStatus,proto3" json:"regStatus,omitempty"`
-	SchoolID       string `protobuf:"bytes,6,opt,name=schoolID,proto3" json:"schoolID,omitempty"`
-	SchoolName     string `protobuf:"bytes,7,opt,name=schoolName,proto3" json:"schoolName,omitempty"`
-	MajorName      string `protobuf:"bytes,8,opt,name=majorName,proto3" json:"majorName,omitempty"`
-	CardID         string `protobuf:"bytes,9,opt,name=cardID,proto3" json:"cardID,omitempty"`
+	//学号
+	StaffId string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`
+	//姓名
+	StaffName string `protobuf:"bytes,2,opt,name=staffName,proto3" json:"staffName,omitempty"`
+	//班级名称
+	ClassName string `protobuf:"bytes,3,opt,name=className,proto3" json:"className,omitempty"`
+	//宿舍房间名称
+	RoomName string `protobuf:"bytes,4,opt,name=roomName,proto3" json:"roomName,omitempty"`
+	//注册状态（是否入学）
+	RegStatus string `protobuf:"bytes,5,opt,name=regStatus,proto3" json:"regStatus,omitempty"`
+	//学院编号
+	SchoolID string `protobuf:"bytes,6,opt,name=schoolID,proto3" json:"schoolID,omitempty"`
+	//学院名称
+	SchoolName string `protobuf:"bytes,7,opt,name=schoolName,proto3" json:"schoolName,omitempty"`
+	//专业名称
+	MajorName string `protobuf:"bytes,8,opt,name=majorName,proto3" json:"majorName,omitempty"`
+	//身份证号
+	CardID string `protobuf:"bytes,9,opt,name=cardID,proto3" json:"cardID,omitempty"`
+	//辅导员姓名
 	TeacherName    string `protobuf:"bytes,10,opt,name=teacherName,proto3" json:"teacherName,omitempty"`
 	TeacherPhone   string `protobuf:"bytes,11,opt,name=teacherPhone,proto3" json:"teacherPhone,omitempty"`
 	AssistantName  string `protobuf:"bytes,12,opt,name=assistantName,proto3" json:"assistantName,omitempty"`

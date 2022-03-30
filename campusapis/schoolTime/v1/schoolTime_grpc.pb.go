@@ -19,6 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SchoolTimeServiceClient interface {
+	// 获取当前学校时间
 	GetSchoolTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetSchoolTimeResponse, error)
 }
 
@@ -43,6 +44,7 @@ func (c *schoolTimeServiceClient) GetSchoolTime(ctx context.Context, in *emptypb
 // All implementations should embed UnimplementedSchoolTimeServiceServer
 // for forward compatibility
 type SchoolTimeServiceServer interface {
+	// 获取当前学校时间
 	GetSchoolTime(context.Context, *emptypb.Empty) (*GetSchoolTimeResponse, error)
 }
 

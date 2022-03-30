@@ -35,6 +35,7 @@ service HealthService {
 }
 
 message GetCheckinRecordRequest {
+  // 日期，格式：yyyy-MM-dd
   string date = 1;
 }
 
@@ -49,7 +50,8 @@ message GetCheckinRecordResponse {
   uint32 createdAt = 3;
   uint32 modified = 4;
   string modifier = 5;
-  google.protobuf.Struct content = 6;//健康打卡内容JSON
+  //健康打卡内容JSON
+  google.protobuf.Struct content = 6;
   uint32 reportTime = 7;
   string province = 8;
   string city = 9;
