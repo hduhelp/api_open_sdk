@@ -18,9 +18,11 @@ func Require(req any, list ...string) error {
 	}
 	lowerKeysMap := lo.KeyBy(list, func(str string) string { return strings.ToLower(str) })
 	for _, index := range lo.Range(val.NumField()) {
-		fieldName := val.Type().Field(index).Name
-		if key, exists := lowerKeysMap[strings.ToLower(fieldName)]; exists {
-			emptyList = append(emptyList, key)
+		field := val.Type().Field(index)
+		if _, exists := lowerKeysMap[strings.ToLower(field.Name)]; exists {
+			if val.Field(index).IsZero() {
+				emptyList = append(emptyList, string(field.Tag.Get("name")))
+			}
 		}
 	}
 	if len(emptyList) != 0 {
