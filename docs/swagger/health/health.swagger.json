@@ -31,7 +31,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         },
         "Creator": {

@@ -26,7 +26,7 @@ message CheckinRecords {
 
 //健康打卡记录
 message CheckinRecord {
-  int64 ID = 1;
+  uint32 ID = 1;
   string Creator = 2;
   google.protobuf.Timestamp CreatedAt = 3;
   google.protobuf.Timestamp Modified = 4;

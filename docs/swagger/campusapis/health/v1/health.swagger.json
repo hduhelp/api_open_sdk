@@ -167,18 +167,18 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         },
         "creator": {
           "type": "string"
         },
         "createdAt": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         },
         "modified": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         },
         "modifier": {
@@ -188,7 +188,7 @@
           "type": "object"
         },
         "reportTime": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         },
         "province": {

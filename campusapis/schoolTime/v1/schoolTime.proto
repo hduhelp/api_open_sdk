@@ -24,7 +24,7 @@ message GetSchoolTimeResponse {
   string schoolYear = 1;  
   int32 section = 2;
   string semester = 3;
-  int64 timeStamp = 4;
+  uint32 timeStamp = 4;
   int32 weekDayNow = 5;
   int32 weekNow = 6;
 }

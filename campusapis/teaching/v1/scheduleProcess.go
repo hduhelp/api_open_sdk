@@ -63,7 +63,7 @@ func RemainByWeekdays(weekdays ...int32) RemainFunc {
 // RemainByDay 留下当天的课程
 func RemainByDay(day time.Time) RemainFunc {
 	return func(s *ScheduleItem) bool {
-		return day.Format("2006-01-02") == time.Unix(s.StartTime, 0).Format("2006-01-02")
+		return day.Format("2006-01-02") == time.Unix(int64(s.StartTime), 0).Format("2006-01-02")
 	}
 }
 

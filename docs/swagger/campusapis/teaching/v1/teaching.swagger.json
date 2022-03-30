@@ -55,7 +55,7 @@
             "name": "timestamp",
             "in": "query",
             "required": false,
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           },
           {
@@ -321,7 +321,7 @@
             "name": "timestamp",
             "in": "query",
             "required": false,
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           },
           {
@@ -587,7 +587,7 @@
             "name": "timestamp",
             "in": "query",
             "required": false,
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           },
           {
@@ -727,11 +727,11 @@
           "type": "boolean"
         },
         "StartTime": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         },
         "EndTime": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         }
       }

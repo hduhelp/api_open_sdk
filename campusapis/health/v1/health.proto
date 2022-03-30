@@ -44,13 +44,13 @@ message GetCheckinRecordsResponse {
 
 //健康打卡记录
 message GetCheckinRecordResponse {
-  int64 id = 1;
+  uint32 id = 1;
   string creator = 2;
-  int64 createdAt = 3;
-  int64 modified = 4;
+  uint32 createdAt = 3;
+  uint32 modified = 4;
   string modifier = 5;
   google.protobuf.Struct content = 6;//健康打卡内容JSON
-  int64 reportTime = 7;
+  uint32 reportTime = 7;
   string province = 8;
   string city = 9;
   string country = 10;
