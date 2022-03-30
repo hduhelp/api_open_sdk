@@ -664,7 +664,7 @@
         },
         "Semester": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     },
@@ -676,13 +676,13 @@
         },
         "SeatsNum": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "Section": {
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         },
         "Teachers": {
@@ -701,12 +701,12 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         },
         "WeekDay": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "IsThisWeek": {
           "type": "boolean"
@@ -732,7 +732,7 @@
         },
         "StaffType": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     },
@@ -768,7 +768,7 @@
       "properties": {
         "semester": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "schoolYear": {
           "type": "string"
