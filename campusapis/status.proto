@@ -6,9 +6,18 @@ option go_package = "./campusapis";
 
 enum Status {
     OK = 0;
+
+    //通用参数错误
     INVALID_ARGUMENT = 40000;
+    //人员类型参数缺失
     STAFF_TYPE_NOT_FOUND = 40001;
-    STAFF_NOT_FOUND = 40002;
+    //不支持的人员类型
     UNSUPPORTED_STAFF_TYPE = 40003;
+    //人员工号缺失
     STAFF_ID_CANNOT_BE_EMPTY = 40004;
+
+    //通用无法找到
+    NOT_FOUND = 40400;
+    //未找到人员
+    STAFF_NOT_FOUND = 40401;
 }

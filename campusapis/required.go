@@ -28,7 +28,7 @@ func Require(req any, list ...string) error {
 		}
 	}
 	if len(emptyList) != 0 {
-		return RequiredButEmpty{values: emptyList}
+		return RequiredButEmpty{Values: emptyList}
 	}
 	return nil
 }
@@ -50,9 +50,9 @@ func RequireWarped(req any, list ...string) error {
 }
 
 type RequiredButEmpty struct {
-	values []string
+	Values []string
 }
 
 func (e RequiredButEmpty) Error() string {
-	return fmt.Sprintf("%s are required but empty", strings.Join(e.values, ", "))
+	return fmt.Sprintf("%s are required but empty", strings.Join(e.Values, ", "))
 }
