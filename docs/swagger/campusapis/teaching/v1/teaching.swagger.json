@@ -29,7 +29,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -88,7 +88,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -153,7 +153,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -218,7 +218,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -283,7 +283,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -345,7 +345,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -413,7 +413,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -474,14 +474,14 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/v1ClassroomUsagesResponseNested"
+                "$ref": "#/definitions/ClassroomUsagesResponseNested"
               }
             }
           },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -546,7 +546,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -594,6 +594,41 @@
     }
   },
   "definitions": {
+    "ClassroomUsagesResponseNested": {
+      "type": "object",
+      "properties": {
+        "classroom": {
+          "$ref": "#/definitions/v1Classroom"
+        },
+        "weekday": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "week": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "Section": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "ClassID": {
+          "type": "string"
+        },
+        "CourseCode": {
+          "type": "string"
+        },
+        "CourseName": {
+          "type": "string"
+        }
+      }
+    },
     "baseStaffInfo": {
       "type": "object",
       "properties": {
@@ -629,7 +664,16 @@
       ],
       "default": "Unknown"
     },
-    "googlerpcStatus": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
       "type": "object",
       "properties": {
         "code": {
@@ -646,15 +690,6 @@
           }
         }
       }
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
     },
     "schoolTimeSchoolYear": {
       "type": "object",
@@ -703,43 +738,8 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1ClassroomUsagesResponseNested"
+            "$ref": "#/definitions/ClassroomUsagesResponseNested"
           }
-        }
-      }
-    },
-    "v1ClassroomUsagesResponseNested": {
-      "type": "object",
-      "properties": {
-        "classroom": {
-          "$ref": "#/definitions/v1Classroom"
-        },
-        "weekday": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "week": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "Section": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "ClassID": {
-          "type": "string"
-        },
-        "CourseCode": {
-          "type": "string"
-        },
-        "CourseName": {
-          "type": "string"
         }
       }
     },

@@ -30,6 +30,7 @@ service FreshmanService {
   rpc GetFreshmanRoommates (FreshmanKeywordRequest) returns (GetFreshmanRoommatesResponse) {
     option (google.api.http) = {
       get: "/staff/v1/freshman/roommate"
+      response_body: "items"
       additional_bindings {
         get: "/freshman/roommate"
       }
@@ -46,12 +47,18 @@ message FreshmanKeywordRequest {
 
 //新生基本信息
 message GetFreshmanBaseInfoResponse {
-  string staffId = 1; //学号
-  string staffName = 2; //姓名
-  string offerId = 3; //录取通知书号或者是准考证号，不同身份并不一样
-  string idCardNo = 4; //身份证号
-  string offerTime = 5; //录取时间
-  string province = 6; //省份
+  //学号
+  string staffId = 1;
+  //姓名
+  string staffName = 2;
+  //录取通知书号或者是准考证号，不同身份并不一样
+  string offerId = 3;
+  //身份证号
+  string idCardNo = 4;
+  //录取时间
+  string offerTime = 5;
+  //省份
+  string province = 6;
 }
 
 //新生详细信息
@@ -69,8 +76,10 @@ message GetFreshmanInfoResponse {
   string teacherPhone = 11;
   string assistantName = 12;
   string assistantPhone = 13;
-  string hasPaid = 14; //是否支付学费
-  string LSTD = 15; //绿色通道
+  //是否支付学费
+  string hasPaid = 14;
+  //绿色通道
+  string LSTD = 15;
   string LSTDXY = 16;
   string LSTDZX = 17;
   string phone = 18;
@@ -86,7 +95,8 @@ message GetFreshmanInfoResponse {
 //新生室友查询
 message GetFreshmanRoommatesResponse {
   message Roommate {
-    string staffName = 1; //室友姓名
+    //室友姓名
+    string staffName = 1;
     string qq = 2;
     string phone = 3;
   }

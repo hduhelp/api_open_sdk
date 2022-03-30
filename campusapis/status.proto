@@ -6,6 +6,7 @@ option go_package = "./campusapis";
 
 enum Status {
     OK = 0;
+    INVALID_ARGUMENT = 40000;
     STAFF_TYPE_NOT_FOUND = 40001;
     STAFF_NOT_FOUND = 40002;
     UNSUPPORTED_STAFF_TYPE = 40003;

@@ -6,21 +6,21 @@ managed:
     except:
       - buf.build/googleapis/googleapis
 plugins:
-  - remote: buf.build/library/plugins/go:v1.27.1-1
+  - name: go
     out: .
     opt: paths=source_relative
-  - remote: buf.build/library/plugins/go-grpc:v1.1.0-2
+  - name: go-grpc
     out: .
     opt:
       - paths=source_relative
       - require_unimplemented_servers=false
-  - remote: buf.build/grpc-ecosystem/plugins/grpc-gateway:v2.10.0-1
+  - name: grpc-gateway
     out: .
     opt:
       - paths=source_relative
       - generate_unbound_methods=true
       - allow_repeated_fields_in_body=true
-  - remote: buf.build/grpc-ecosystem/plugins/openapiv2:v2.10.0-1
+  - name: openapiv2
     out: docs/swagger
     opt:
       - allow_repeated_fields_in_body=true

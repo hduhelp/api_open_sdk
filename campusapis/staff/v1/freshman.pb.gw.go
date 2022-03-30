@@ -369,7 +369,7 @@ func RegisterFreshmanServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_FreshmanService_GetFreshmanRoommates_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FreshmanService_GetFreshmanRoommates_0(ctx, mux, outboundMarshaler, w, req, response_FreshmanService_GetFreshmanRoommates_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -539,7 +539,7 @@ func RegisterFreshmanServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_FreshmanService_GetFreshmanRoommates_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FreshmanService_GetFreshmanRoommates_0(ctx, mux, outboundMarshaler, w, req, response_FreshmanService_GetFreshmanRoommates_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -565,6 +565,15 @@ func RegisterFreshmanServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 	})
 
 	return nil
+}
+
+type response_FreshmanService_GetFreshmanRoommates_0 struct {
+	proto.Message
+}
+
+func (m response_FreshmanService_GetFreshmanRoommates_0) XXX_ResponseBody() interface{} {
+	response := m.Message.(*GetFreshmanRoommatesResponse)
+	return response.Items
 }
 
 var (

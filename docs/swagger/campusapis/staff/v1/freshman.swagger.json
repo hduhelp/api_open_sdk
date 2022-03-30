@@ -30,7 +30,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -73,7 +73,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -116,7 +116,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -159,7 +159,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -202,7 +202,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -237,15 +237,18 @@
         "operationId": "FreshmanService_GetFreshmanRoommates",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1GetFreshmanRoommatesResponse"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GetFreshmanRoommatesResponseRoommate"
+              }
             }
           },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -280,7 +283,8 @@
       "type": "object",
       "properties": {
         "staffName": {
-          "type": "string"
+          "type": "string",
+          "title": "室友姓名"
         },
         "qq": {
           "type": "string"
@@ -290,7 +294,16 @@
         }
       }
     },
-    "googlerpcStatus": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
       "type": "object",
       "properties": {
         "code": {
@@ -308,35 +321,32 @@
         }
       }
     },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
     "v1GetFreshmanBaseInfoResponse": {
       "type": "object",
       "properties": {
         "staffId": {
-          "type": "string"
+          "type": "string",
+          "title": "学号"
         },
         "staffName": {
-          "type": "string"
+          "type": "string",
+          "title": "姓名"
         },
         "offerId": {
-          "type": "string"
+          "type": "string",
+          "title": "录取通知书号或者是准考证号，不同身份并不一样"
         },
         "idCardNo": {
-          "type": "string"
+          "type": "string",
+          "title": "身份证号"
         },
         "offerTime": {
-          "type": "string"
+          "type": "string",
+          "title": "录取时间"
         },
         "province": {
-          "type": "string"
+          "type": "string",
+          "title": "省份"
         }
       },
       "title": "新生基本信息"
@@ -384,10 +394,12 @@
           "type": "string"
         },
         "hasPaid": {
-          "type": "string"
+          "type": "string",
+          "title": "是否支付学费"
         },
         "LSTD": {
-          "type": "string"
+          "type": "string",
+          "title": "绿色通道"
         },
         "LSTDXY": {
           "type": "string"
