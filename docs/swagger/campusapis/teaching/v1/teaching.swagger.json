@@ -1,13 +1,26 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "campusapis/teaching/v1/teaching.proto",
-    "version": "version not set"
+    "title": "Teaching API",
+    "description": "Teaching API",
+    "version": "0.1",
+    "contact": {
+      "name": "hduhelp salmon base project",
+      "url": "https://github.com/hduhelp/salmon_api_base",
+      "email": "none@example.com"
+    },
+    "license": {
+      "name": "BSD 3-Clause License",
+      "url": "https://github.com/grpc-ecosystem/grpc-gateway/blob/master/LICENSE.txt"
+    }
   },
   "tags": [
     {
       "name": "TeachingService"
     }
+  ],
+  "schemes": [
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -228,7 +241,7 @@
             "name": "locationID",
             "description": "教室ID",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           }
         ],
@@ -449,7 +462,7 @@
             "name": "locationID",
             "description": "教室ID",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           }
         ],

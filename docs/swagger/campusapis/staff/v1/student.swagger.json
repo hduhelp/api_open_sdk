@@ -733,31 +733,40 @@
       "type": "object",
       "properties": {
         "staffId": {
-          "type": "string"
+          "type": "string",
+          "title": "学号"
         },
         "staffName": {
-          "type": "string"
+          "type": "string",
+          "title": "学生姓名"
         },
         "classId": {
-          "type": "string"
+          "type": "string",
+          "title": "学生班级号"
         },
         "unitId": {
-          "type": "string"
+          "type": "string",
+          "title": "学生学院编号"
         },
         "unitName": {
-          "type": "string"
+          "type": "string",
+          "title": "学生学院名称"
         },
         "majorId": {
-          "type": "string"
+          "type": "string",
+          "title": "学生专业编号"
         },
         "majorName": {
-          "type": "string"
+          "type": "string",
+          "title": "学生专业名称"
         },
         "teacherId": {
-          "type": "string"
+          "type": "string",
+          "title": "学生辅导员工号"
         },
         "teacherName": {
-          "type": "string"
+          "type": "string",
+          "title": "学生辅导员姓名"
         }
       }
     },

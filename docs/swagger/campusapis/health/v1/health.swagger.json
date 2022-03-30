@@ -48,6 +48,38 @@
         ]
       }
     },
+    "/health/checkin/today": {
+      "get": {
+        "summary": "获取指定日期健康打卡记录",
+        "operationId": "HealthService_GetCheckinRecord3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCheckinRecordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "description": "日期，格式：yyyy-MM-dd",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
     "/health/code": {
       "get": {
         "summary": "获取当前健康码",

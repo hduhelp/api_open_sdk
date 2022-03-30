@@ -84,15 +84,24 @@ type GetStudentInfoResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	StaffId     string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`         //学号
-	StaffName   string `protobuf:"bytes,2,opt,name=staffName,proto3" json:"staffName,omitempty"`     //学生姓名
-	ClassId     string `protobuf:"bytes,3,opt,name=classId,proto3" json:"classId,omitempty"`         //学生班级号
-	UnitId      string `protobuf:"bytes,4,opt,name=unitId,proto3" json:"unitId,omitempty"`           //学生学院编号
-	UnitName    string `protobuf:"bytes,5,opt,name=unitName,proto3" json:"unitName,omitempty"`       //学生学院名称
-	MajorId     string `protobuf:"bytes,6,opt,name=majorId,proto3" json:"majorId,omitempty"`         //学生专业编号
-	MajorName   string `protobuf:"bytes,7,opt,name=majorName,proto3" json:"majorName,omitempty"`     //学生专业名称
-	TeacherId   string `protobuf:"bytes,8,opt,name=teacherId,proto3" json:"teacherId,omitempty"`     //学生辅导员工号
-	TeacherName string `protobuf:"bytes,9,opt,name=teacherName,proto3" json:"teacherName,omitempty"` //学生辅导员姓名
+	//学号
+	StaffId string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`
+	//学生姓名
+	StaffName string `protobuf:"bytes,2,opt,name=staffName,proto3" json:"staffName,omitempty"`
+	//学生班级号
+	ClassId string `protobuf:"bytes,3,opt,name=classId,proto3" json:"classId,omitempty"`
+	//学生学院编号
+	UnitId string `protobuf:"bytes,4,opt,name=unitId,proto3" json:"unitId,omitempty"`
+	//学生学院名称
+	UnitName string `protobuf:"bytes,5,opt,name=unitName,proto3" json:"unitName,omitempty"`
+	//学生专业编号
+	MajorId string `protobuf:"bytes,6,opt,name=majorId,proto3" json:"majorId,omitempty"`
+	//学生专业名称
+	MajorName string `protobuf:"bytes,7,opt,name=majorName,proto3" json:"majorName,omitempty"`
+	//学生辅导员工号
+	TeacherId string `protobuf:"bytes,8,opt,name=teacherId,proto3" json:"teacherId,omitempty"`
+	//学生辅导员姓名
+	TeacherName string `protobuf:"bytes,9,opt,name=teacherName,proto3" json:"teacherName,omitempty"`
 }
 
 func (x *GetStudentInfoResponse) Reset() {

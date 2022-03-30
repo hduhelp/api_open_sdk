@@ -107,15 +107,24 @@ message SemesterRequest {
 }
 
 message GetStudentInfoResponse {
-  string staffId = 1; //学号
-  string staffName = 2; //学生姓名
-  string classId = 3; //学生班级号
-  string unitId = 4; //学生学院编号
-  string unitName = 5; //学生学院名称
-  string majorId = 6; //学生专业编号
-  string majorName = 7; //学生专业名称
-  string teacherId = 8; //学生辅导员工号
-  string teacherName = 9; //学生辅导员姓名
+  //学号
+  string staffId = 1;
+  //学生姓名
+  string staffName = 2;
+  //学生班级号
+  string classId = 3; 
+  //学生学院编号
+  string unitId = 4; 
+  //学生学院名称
+  string unitName = 5; 
+  //学生专业编号
+  string majorId = 6; 
+  //学生专业名称
+  string majorName = 7; 
+  //学生辅导员工号
+  string teacherId = 8; 
+  //学生辅导员姓名
+  string teacherName = 9; 
 }
 
 message GetStudentNeedyInfoResponse {

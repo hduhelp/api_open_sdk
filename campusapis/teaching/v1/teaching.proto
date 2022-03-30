@@ -7,6 +7,27 @@ option go_package = "./campusapis/teaching/v1";
 import "baseStaff/baseStaff.proto";
 import "campusapis/schoolTime/defined.proto";
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Teaching API";
+    version: "0.1";
+    description: "Teaching API";
+    contact: {
+      name: "hduhelp salmon base project";
+      url: "https://github.com/hduhelp/salmon_api_base";
+      email: "none@example.com";
+    };
+    license: {
+      name: "BSD 3-Clause License";
+      url: "https://github.com/grpc-ecosystem/grpc-gateway/blob/master/LICENSE.txt";
+    };
+  };
+  schemes: HTTPS;
+  consumes: "application/json";
+  produces: "application/json";
+};
 
 service TeachingService {
   // 获取学生/教师课程表
@@ -163,12 +184,21 @@ message GetClassroomsRequest {
 }
 
 message GetClassroomUsageRequest {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    example: '{ "locationID": "111222" }'
+    json_schema: {
+      title: "GetClassroomUsageRequest"
+      description: "教室使用情况请求体"
+      required: ["locationID"]
+    }
+  };
+
   //学期
   string semester = 1;
   //学年
   string schoolYear = 2;
   //教室ID
-  string locationID = 3;
+  string locationID = 3 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {required: ['locationID']}];;
 }
 
 // 教室信息查询关键字

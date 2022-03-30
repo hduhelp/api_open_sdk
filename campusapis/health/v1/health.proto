@@ -19,6 +19,9 @@ service HealthService {
       additional_bindings {
         get: "/health/checkin"
       }
+      additional_bindings {
+        get: "/health/checkin/today"
+      }
     };
   }
   //获取历史健康打卡记录
