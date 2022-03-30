@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "baseStaff/teacher/teacher.proto",
+    "title": "campusapis/status.proto",
     "version": "version not set"
   },
   "consumes": [

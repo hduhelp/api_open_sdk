@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package campusapis;
+
+option go_package = "./campusapis";
+
+enum Status {
+    OK = 0;
+    STAFF_TYPE_NOT_FOUND = 40001;
+    STAFF_NOT_FOUND = 40002;
+    UNSUPPORTED_STAFF_TYPE = 40003;
+    STAFF_ID_CANNOT_BE_EMPTY = 40004;
+}
