@@ -97,7 +97,7 @@ service StudentService {
 
 message SemesterRequest {
   string schoolYear = 1;
-  string Nth = 2;
+  string semester = 2;
 }
 
 message GetStudentInfoResponse {
