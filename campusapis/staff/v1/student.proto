@@ -59,6 +59,7 @@ service StudentService {
   rpc GetStudentRewards (SemesterRequest) returns (GetStudentRewardsResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/reward"
+      response_body: "items"
       additional_bindings {
         get: "/student/reward"
       }
@@ -68,6 +69,7 @@ service StudentService {
   rpc GetStudentSelect (SemesterRequest) returns (GetStudentSelectResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/select"
+      response_body: "items"
       additional_bindings {
         get: "/student/select"
       }
@@ -77,6 +79,7 @@ service StudentService {
   rpc GetStudentGrade (SemesterRequest) returns (GetStudentGradeResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/grade"
+      response_body: "items"
       additional_bindings {
         get: "/student/grade"
       }
@@ -172,8 +175,7 @@ message GetStudentSelectResponse {
     string classTime = 10;
     string classRoom = 11;
   }
-
-  repeated Nested StudentSelects = 1;
+  repeated Nested items = 1;
 }
 
 message GetStudentGradeResponse {
