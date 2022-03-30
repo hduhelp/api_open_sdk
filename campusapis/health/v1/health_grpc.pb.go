@@ -4,7 +4,6 @@ package healthv1
 
 import (
 	context "context"
-	httpbody "google.golang.org/genproto/googleapis/api/httpbody"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,8 +21,6 @@ const _ = grpc.SupportPackageIsVersion7
 type HealthServiceClient interface {
 	//获取指定日期健康打卡记录
 	GetCheckinRecord(ctx context.Context, in *GetCheckinRecordRequest, opts ...grpc.CallOption) (*GetCheckinRecordResponse, error)
-	//获取指定日期健康打卡记录
-	GetCheckinRecordJsonContent(ctx context.Context, in *GetCheckinRecordRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
 	//获取历史健康打卡记录
 	GetCheckinRecords(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCheckinRecordsResponse, error)
 	//获取当前健康码
@@ -41,15 +38,6 @@ func NewHealthServiceClient(cc grpc.ClientConnInterface) HealthServiceClient {
 func (c *healthServiceClient) GetCheckinRecord(ctx context.Context, in *GetCheckinRecordRequest, opts ...grpc.CallOption) (*GetCheckinRecordResponse, error) {
 	out := new(GetCheckinRecordResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/GetCheckinRecord", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *healthServiceClient) GetCheckinRecordJsonContent(ctx context.Context, in *GetCheckinRecordRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error) {
-	out := new(httpbody.HttpBody)
-	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/GetCheckinRecordJsonContent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,8 +68,6 @@ func (c *healthServiceClient) GetHealthCode(ctx context.Context, in *emptypb.Emp
 type HealthServiceServer interface {
 	//获取指定日期健康打卡记录
 	GetCheckinRecord(context.Context, *GetCheckinRecordRequest) (*GetCheckinRecordResponse, error)
-	//获取指定日期健康打卡记录
-	GetCheckinRecordJsonContent(context.Context, *GetCheckinRecordRequest) (*httpbody.HttpBody, error)
 	//获取历史健康打卡记录
 	GetCheckinRecords(context.Context, *emptypb.Empty) (*GetCheckinRecordsResponse, error)
 	//获取当前健康码
@@ -94,9 +80,6 @@ type UnimplementedHealthServiceServer struct {
 
 func (UnimplementedHealthServiceServer) GetCheckinRecord(context.Context, *GetCheckinRecordRequest) (*GetCheckinRecordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCheckinRecord not implemented")
-}
-func (UnimplementedHealthServiceServer) GetCheckinRecordJsonContent(context.Context, *GetCheckinRecordRequest) (*httpbody.HttpBody, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCheckinRecordJsonContent not implemented")
 }
 func (UnimplementedHealthServiceServer) GetCheckinRecords(context.Context, *emptypb.Empty) (*GetCheckinRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCheckinRecords not implemented")
@@ -130,24 +113,6 @@ func _HealthService_GetCheckinRecord_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(HealthServiceServer).GetCheckinRecord(ctx, req.(*GetCheckinRecordRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _HealthService_GetCheckinRecordJsonContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCheckinRecordRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HealthServiceServer).GetCheckinRecordJsonContent(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/campusapis.health.v1.HealthService/GetCheckinRecordJsonContent",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HealthServiceServer).GetCheckinRecordJsonContent(ctx, req.(*GetCheckinRecordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -198,10 +163,6 @@ var HealthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCheckinRecord",
 			Handler:    _HealthService_GetCheckinRecord_Handler,
-		},
-		{
-			MethodName: "GetCheckinRecordJsonContent",
-			Handler:    _HealthService_GetCheckinRecordJsonContent_Handler,
 		},
 		{
 			MethodName: "GetCheckinRecords",

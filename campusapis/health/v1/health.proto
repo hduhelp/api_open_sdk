@@ -7,7 +7,7 @@ option go_package = "./campusapis/health/v1";
 import "baseStaff/baseStaff.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 
@@ -16,12 +16,9 @@ service HealthService {
   rpc GetCheckinRecord(GetCheckinRecordRequest) returns (GetCheckinRecordResponse) {
     option (google.api.http) = {
       get: "/health/v1/checkin"
-    };
-  }
-  //获取指定日期健康打卡记录
-  rpc GetCheckinRecordJsonContent(GetCheckinRecordRequest) returns (google.api.HttpBody) {
-    option (google.api.http) = {
-      get: "/health/checkin"
+      additional_bindings {
+        get: "/health/checkin"
+      }
     };
   }
   //获取历史健康打卡记录
@@ -49,11 +46,11 @@ message GetCheckinRecordsResponse {
 message GetCheckinRecordResponse {
   int64 id = 1;
   string creator = 2;
-  google.protobuf.Timestamp createdAt = 3;
-  google.protobuf.Timestamp modified = 4;
+  int64 createdAt = 3;
+  int64 modified = 4;
   string modifier = 5;
-  google.protobuf.BytesValue content = 6;//健康打卡内容JSON
-  google.protobuf.Timestamp reportTime = 7;
+  google.protobuf.Struct content = 6;//健康打卡内容JSON
+  int64 reportTime = 7;
   string province = 8;
   string city = 9;
   string country = 10;
