@@ -824,7 +824,7 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_GetStudentRewards_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentRewards_1(ctx, mux, outboundMarshaler, w, req, response_StudentService_GetStudentRewards_1{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -872,7 +872,7 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_GetStudentSelect_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentSelect_1(ctx, mux, outboundMarshaler, w, req, response_StudentService_GetStudentSelect_1{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -920,7 +920,7 @@ func RegisterStudentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, response_StudentService_GetStudentGrade_1{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1285,7 +1285,7 @@ func RegisterStudentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_GetStudentRewards_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentRewards_1(ctx, mux, outboundMarshaler, w, req, response_StudentService_GetStudentRewards_1{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1327,7 +1327,7 @@ func RegisterStudentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_GetStudentSelect_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentSelect_1(ctx, mux, outboundMarshaler, w, req, response_StudentService_GetStudentSelect_1{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1369,7 +1369,7 @@ func RegisterStudentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_StudentService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StudentService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, response_StudentService_GetStudentGrade_1{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1448,6 +1448,15 @@ func (m response_StudentService_GetStudentRewards_0) XXX_ResponseBody() interfac
 	return response.Items
 }
 
+type response_StudentService_GetStudentRewards_1 struct {
+	proto.Message
+}
+
+func (m response_StudentService_GetStudentRewards_1) XXX_ResponseBody() interface{} {
+	response := m.Message.(*GetStudentRewardsResponse)
+	return response.Items
+}
+
 type response_StudentService_GetStudentSelect_0 struct {
 	proto.Message
 }
@@ -1457,11 +1466,29 @@ func (m response_StudentService_GetStudentSelect_0) XXX_ResponseBody() interface
 	return response.Items
 }
 
+type response_StudentService_GetStudentSelect_1 struct {
+	proto.Message
+}
+
+func (m response_StudentService_GetStudentSelect_1) XXX_ResponseBody() interface{} {
+	response := m.Message.(*GetStudentSelectResponse)
+	return response.Items
+}
+
 type response_StudentService_GetStudentGrade_0 struct {
 	proto.Message
 }
 
 func (m response_StudentService_GetStudentGrade_0) XXX_ResponseBody() interface{} {
+	response := m.Message.(*GetStudentGradeResponse)
+	return response.Items
+}
+
+type response_StudentService_GetStudentGrade_1 struct {
+	proto.Message
+}
+
+func (m response_StudentService_GetStudentGrade_1) XXX_ResponseBody() interface{} {
 	response := m.Message.(*GetStudentGradeResponse)
 	return response.Items
 }

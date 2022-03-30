@@ -1,0 +1,438 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/staff/v1/freshman.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "FreshmanService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/freshman/base": {
+      "get": {
+        "summary": "获取新生基本信息",
+        "operationId": "FreshmanService_GetFreshmanBaseInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanBaseInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreshmanService"
+        ]
+      }
+    },
+    "/freshman/info": {
+      "get": {
+        "summary": "获取新生详细信息",
+        "operationId": "FreshmanService_GetFreshmanInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreshmanService"
+        ]
+      }
+    },
+    "/freshman/roommate": {
+      "get": {
+        "summary": "获取新生宿舍信息",
+        "operationId": "FreshmanService_GetFreshmanRoommates2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanRoommatesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreshmanService"
+        ]
+      }
+    },
+    "/staff/v1/freshman/base": {
+      "get": {
+        "summary": "获取新生基本信息",
+        "operationId": "FreshmanService_GetFreshmanBaseInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanBaseInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreshmanService"
+        ]
+      }
+    },
+    "/staff/v1/freshman/info": {
+      "get": {
+        "summary": "获取新生详细信息",
+        "operationId": "FreshmanService_GetFreshmanInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreshmanService"
+        ]
+      }
+    },
+    "/staff/v1/freshman/roommate": {
+      "get": {
+        "summary": "获取新生宿舍信息",
+        "operationId": "FreshmanService_GetFreshmanRoommates",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanRoommatesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreshmanService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "GetFreshmanRoommatesResponseRoommate": {
+      "type": "object",
+      "properties": {
+        "staffName": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetFreshmanBaseInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "offerId": {
+          "type": "string"
+        },
+        "idCardNo": {
+          "type": "string"
+        },
+        "offerTime": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        }
+      },
+      "title": "新生基本信息"
+    },
+    "v1GetFreshmanInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        },
+        "roomName": {
+          "type": "string"
+        },
+        "regStatus": {
+          "type": "string"
+        },
+        "schoolID": {
+          "type": "string"
+        },
+        "schoolName": {
+          "type": "string"
+        },
+        "majorName": {
+          "type": "string"
+        },
+        "cardID": {
+          "type": "string"
+        },
+        "teacherName": {
+          "type": "string"
+        },
+        "teacherPhone": {
+          "type": "string"
+        },
+        "assistantName": {
+          "type": "string"
+        },
+        "assistantPhone": {
+          "type": "string"
+        },
+        "hasPaid": {
+          "type": "string"
+        },
+        "LSTD": {
+          "type": "string"
+        },
+        "LSTDXY": {
+          "type": "string"
+        },
+        "LSTDZX": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "roomBuilding": {
+          "type": "string"
+        },
+        "roomRoom": {
+          "type": "string"
+        },
+        "roomBed": {
+          "type": "string"
+        },
+        "comeDate": {
+          "type": "string"
+        },
+        "high": {
+          "type": "string"
+        },
+        "station": {
+          "type": "string"
+        }
+      },
+      "title": "新生详细信息"
+    },
+    "v1GetFreshmanRoommatesResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetFreshmanRoommatesResponseRoommate"
+          }
+        }
+      },
+      "title": "新生室友查询"
+    }
+  }
+}

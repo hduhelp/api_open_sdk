@@ -1,0 +1,853 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/teaching/v1/teaching.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "TeachingService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/student/v2/schedule": {
+      "get": {
+        "operationId": "TeachingService_GetScheduleRequest3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Courses"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/classroom": {
+      "get": {
+        "operationId": "TeachingService_GetClassrooms2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassroomsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Semester.Num",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "SchoolYear.Year",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Section",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "LocationID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/classroom/unused": {
+      "get": {
+        "operationId": "TeachingService_GetUnusedClassrooms2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassroomsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Semester.Num",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "SchoolYear.Year",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Section",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "LocationID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/classroom/usage": {
+      "get": {
+        "operationId": "TeachingService_GetClassroomUsages2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassroomUsagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Semester.Num",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "SchoolYear.Year",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Section",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "LocationID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/schedule": {
+      "get": {
+        "operationId": "TeachingService_GetScheduleRequest2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Courses"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/classroom": {
+      "get": {
+        "operationId": "TeachingService_GetClassrooms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassroomsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Semester.Num",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "SchoolYear.Year",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Section",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "LocationID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/classroom/unused": {
+      "get": {
+        "operationId": "TeachingService_GetUnusedClassrooms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassroomsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Semester.Num",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "SchoolYear.Year",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Section",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "LocationID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/classroom/usage": {
+      "get": {
+        "operationId": "TeachingService_GetClassroomUsages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassroomUsagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Semester.Num",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "SchoolYear.Year",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Section",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "LocationID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/schedule": {
+      "get": {
+        "operationId": "TeachingService_GetScheduleRequest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Courses"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "week",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "weekday",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "baseStaffInfo": {
+      "type": "object",
+      "properties": {
+        "staffID": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "staffType": {
+          "$ref": "#/definitions/baseStaffType"
+        }
+      }
+    },
+    "baseStaffInfoMapList": {
+      "type": "object",
+      "properties": {
+        "Items": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/baseStaffInfo"
+          }
+        }
+      }
+    },
+    "baseStaffType": {
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "Undergraduate",
+        "Postgraduate",
+        "Teacher"
+      ],
+      "default": "Unknown"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "schoolTimeSchoolYear": {
+      "type": "object",
+      "properties": {
+        "Year": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "schoolTimeSemester": {
+      "type": "object",
+      "properties": {
+        "Num": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1Classroom": {
+      "type": "object",
+      "properties": {
+        "Semester": {
+          "$ref": "#/definitions/schoolTimeSemester"
+        },
+        "SchoolYear": {
+          "$ref": "#/definitions/schoolTimeSchoolYear"
+        },
+        "locationID": {
+          "type": "string"
+        },
+        "locationName": {
+          "type": "string"
+        },
+        "buildingID": {
+          "type": "string"
+        },
+        "buildingName": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ClassroomUsagesResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ClassroomUsagesResponseNested"
+          }
+        }
+      }
+    },
+    "v1ClassroomUsagesResponseNested": {
+      "type": "object",
+      "properties": {
+        "classroom": {
+          "$ref": "#/definitions/v1Classroom"
+        },
+        "weekday": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "week": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "Section": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "ClassID": {
+          "type": "string"
+        },
+        "CourseCode": {
+          "type": "string"
+        },
+        "CourseName": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ClassroomsResponse": {
+      "type": "object",
+      "properties": {
+        "Items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Classroom"
+          }
+        }
+      }
+    },
+    "v1CourseItem": {
+      "type": "object",
+      "properties": {
+        "ClassID": {
+          "type": "string"
+        },
+        "ClassName": {
+          "type": "string"
+        },
+        "CourseID": {
+          "type": "string"
+        },
+        "CourseName": {
+          "type": "string"
+        },
+        "ClassTime": {
+          "type": "string"
+        },
+        "Credit": {
+          "type": "string"
+        },
+        "SchoolYear": {
+          "$ref": "#/definitions/schoolTimeSchoolYear"
+        },
+        "Semester": {
+          "$ref": "#/definitions/schoolTimeSemester"
+        },
+        "Schedule": {
+          "$ref": "#/definitions/v1Schedule"
+        }
+      }
+    },
+    "v1Courses": {
+      "type": "object",
+      "properties": {
+        "Items": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v1CourseItem"
+          }
+        }
+      }
+    },
+    "v1Schedule": {
+      "type": "object",
+      "properties": {
+        "Items": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v1ScheduleItem"
+          }
+        }
+      }
+    },
+    "v1ScheduleItem": {
+      "type": "object",
+      "properties": {
+        "Week": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "WeekDay": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Section": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "IsThisWeek": {
+          "type": "boolean"
+        },
+        "StartTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "EndTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Teachers": {
+          "$ref": "#/definitions/baseStaffInfoMapList"
+        },
+        "Students": {
+          "$ref": "#/definitions/baseStaffInfoMapList"
+        },
+        "Location": {
+          "type": "string"
+        },
+        "SeatsNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Commit": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

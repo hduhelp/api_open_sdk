@@ -1,0 +1,151 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/health/v1/health.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "HealthService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetCheckinRecordResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifier": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "format": "byte"
+        },
+        "reportTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "province": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "staffType": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "schoolId": {
+          "type": "string"
+        }
+      },
+      "title": "健康打卡记录"
+    },
+    "v1GetCheckinRecordsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetCheckinRecordResponse"
+          }
+        }
+      }
+    },
+    "v1GetHealthCodeResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "phoneNum": {
+          "type": "string"
+        },
+        "codeStatus": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "firstApplyTime": {
+          "type": "string"
+        },
+        "firstGrantTime": {
+          "type": "string"
+        },
+        "lastUpdateTime": {
+          "type": "string"
+        },
+        "serverUpdatetime": {
+          "type": "string"
+        }
+      },
+      "title": "健康码老"
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "health/health.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "HealthService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "baseStaffType": {
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "Undergraduate",
+        "Postgraduate",
+        "Teacher"
+      ],
+      "default": "Unknown"
+    },
+    "healthCheckinRecord": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Creator": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Modified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Modifier": {
+          "type": "string"
+        },
+        "Content": {
+          "type": "string",
+          "format": "byte"
+        },
+        "ReportTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Province": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "StaffID": {
+          "type": "string"
+        },
+        "StaffName": {
+          "type": "string"
+        },
+        "StaffType": {
+          "type": "string"
+        },
+        "Unit": {
+          "type": "string"
+        },
+        "SchoolID": {
+          "type": "string"
+        }
+      },
+      "title": "健康打卡记录"
+    },
+    "healthCheckinRecords": {
+      "type": "object",
+      "properties": {
+        "Items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/healthCheckinRecord"
+          }
+        }
+      }
+    },
+    "healthHealthCode": {
+      "type": "object",
+      "properties": {
+        "CodeID": {
+          "type": "string"
+        },
+        "ApplyTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "GrantTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Region": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        },
+        "Comment": {
+          "type": "string"
+        }
+      },
+      "title": "健康码"
+    },
+    "healthStudentHealthCode": {
+      "type": "object",
+      "properties": {
+        "StaffId": {
+          "type": "string"
+        },
+        "StaffName": {
+          "type": "string"
+        },
+        "PhoneNum": {
+          "type": "string"
+        },
+        "CodeStatus": {
+          "type": "string"
+        },
+        "Location": {
+          "type": "string"
+        },
+        "Reason": {
+          "type": "string"
+        },
+        "FirstApplyTime": {
+          "type": "string"
+        },
+        "FirstGrantTime": {
+          "type": "string"
+        },
+        "LastUpdateTime": {
+          "type": "string"
+        },
+        "ServerUpdateTime": {
+          "type": "string"
+        }
+      },
+      "title": "健康码老"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

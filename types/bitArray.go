@@ -3,7 +3,7 @@ package types
 import (
 	"database/sql/driver"
 	"encoding/json"
-	"errors"
+	"fmt"
 	"math"
 	"strconv"
 )
@@ -18,10 +18,7 @@ func (BitInt) GormDataType() string {
 }
 
 func (i *BitInt) Scan(src interface{}) error {
-	bitIntStr, ok := src.(string)
-	if !ok {
-		return errors.New("int bit cannot paste in string")
-	}
+	bitIntStr := fmt.Sprint(src)
 	bitInt, err := strconv.ParseInt(bitIntStr, 10, 64)
 	if err != nil {
 		return err

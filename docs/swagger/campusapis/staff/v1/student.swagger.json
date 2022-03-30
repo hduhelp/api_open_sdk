@@ -1,0 +1,945 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/staff/v1/student.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "StudentService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/staff/v1/student/birthday": {
+      "get": {
+        "summary": "获取学生生日信息",
+        "operationId": "StudentService_GetStudentBirthdayInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/staff/v1/student/birthdays": {
+      "get": {
+        "summary": "获取生日为指定日期的学生列表",
+        "operationId": "StudentService_GetStudentBirthdaysIn",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentBirthdaysInResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Unknown",
+              "Undergraduate",
+              "Postgraduate",
+              "Teacher"
+            ],
+            "default": "Unknown"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "day",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/staff/v1/student/dorm": {
+      "get": {
+        "summary": "获取学生宿舍信息",
+        "operationId": "StudentService_GetStudentDormInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentDormInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/staff/v1/student/grade": {
+      "get": {
+        "summary": "获取学生成绩信息",
+        "operationId": "StudentService_GetStudentGrade",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentGradeResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/staff/v1/student/holidayStay": {
+      "get": {
+        "summary": "获取学生留校信息",
+        "operationId": "StudentService_GetStudentStaySchoolInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentStaySchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/staff/v1/student/info": {
+      "get": {
+        "summary": "获取学生基本信息",
+        "operationId": "StudentService_GetStudentInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/staff/v1/student/needy": {
+      "get": {
+        "summary": "获取学生贫困生申请记录",
+        "operationId": "StudentService_GetStudentNeedyInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentNeedyInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/staff/v1/student/reward": {
+      "get": {
+        "summary": "获取学生奖学金信息",
+        "operationId": "StudentService_GetStudentRewards",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/staff/v1/student/select": {
+      "get": {
+        "summary": "获取学生选课信息",
+        "operationId": "StudentService_GetStudentSelect",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentSelectResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/birthday": {
+      "get": {
+        "summary": "获取学生生日信息",
+        "operationId": "StudentService_GetStudentBirthdayInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/birthdays": {
+      "get": {
+        "summary": "获取生日为指定日期的学生列表",
+        "operationId": "StudentService_GetStudentBirthdaysIn2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentBirthdaysInResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Unknown",
+              "Undergraduate",
+              "Postgraduate",
+              "Teacher"
+            ],
+            "default": "Unknown"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "day",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/dorm": {
+      "get": {
+        "summary": "获取学生宿舍信息",
+        "operationId": "StudentService_GetStudentDormInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentDormInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/grade": {
+      "get": {
+        "summary": "获取学生成绩信息",
+        "operationId": "StudentService_GetStudentGrade2",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentGradeResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/holidayStay": {
+      "get": {
+        "summary": "获取学生留校信息",
+        "operationId": "StudentService_GetStudentStaySchoolInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentStaySchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/info": {
+      "get": {
+        "summary": "获取学生基本信息",
+        "operationId": "StudentService_GetStudentInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/needy": {
+      "get": {
+        "summary": "获取学生贫困生申请记录",
+        "operationId": "StudentService_GetStudentNeedyInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentNeedyInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/reward": {
+      "get": {
+        "summary": "获取学生奖学金信息",
+        "operationId": "StudentService_GetStudentRewards2",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    },
+    "/student/select": {
+      "get": {
+        "summary": "获取学生选课信息",
+        "operationId": "StudentService_GetStudentSelect2",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentSelectResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StudentService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "baseStaffType": {
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "Undergraduate",
+        "Postgraduate",
+        "Teacher"
+      ],
+      "default": "Unknown"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetStudentBirthdayResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentBirthdaysInResponse": {
+      "type": "object",
+      "properties": {
+        "birthdays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+          }
+        }
+      }
+    },
+    "v1GetStudentDormInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "building": {
+          "type": "string"
+        },
+        "room": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentGradeResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentGradeResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetStudentGradeResponseNested": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "selectCode": {
+          "type": "string"
+        },
+        "score": {
+          "type": "string"
+        },
+        "scoreDaily": {
+          "type": "string"
+        },
+        "scoreMidTerm": {
+          "type": "string"
+        },
+        "scoreFinal": {
+          "type": "string"
+        },
+        "scoreSubstitute": {
+          "type": "string"
+        },
+        "scorePractice": {
+          "type": "string"
+        },
+        "courseCode": {
+          "type": "string"
+        },
+        "course": {
+          "type": "string"
+        },
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "credit": {
+          "type": "string"
+        },
+        "GPA": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "classId": {
+          "type": "string"
+        },
+        "unitId": {
+          "type": "string"
+        },
+        "unitName": {
+          "type": "string"
+        },
+        "majorId": {
+          "type": "string"
+        },
+        "majorName": {
+          "type": "string"
+        },
+        "teacherId": {
+          "type": "string"
+        },
+        "teacherName": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentNeedyInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "needyStudent": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentNeedyInfoResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetStudentNeedyInfoResponseNested": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "needyStudent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1GetStudentRewardsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetStudentRewardsResponseNested": {
+      "type": "object",
+      "properties": {
+        "staffID": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "rewardName": {
+          "type": "string"
+        },
+        "schoolYear": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "rewardLevel": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentSelectResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentSelectResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetStudentSelectResponseNested": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "staffID": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "selectCode": {
+          "type": "string"
+        },
+        "courseName": {
+          "type": "string"
+        },
+        "courseCode": {
+          "type": "string"
+        },
+        "teacherID": {
+          "type": "string"
+        },
+        "teacherName": {
+          "type": "string"
+        },
+        "classTime": {
+          "type": "string"
+        },
+        "classRoom": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentStaySchoolInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "reportTime": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "time1Start": {
+          "type": "string"
+        },
+        "time1End": {
+          "type": "string"
+        },
+        "time2Start": {
+          "type": "string"
+        },
+        "time2End": {
+          "type": "string"
+        },
+        "teacherStatus": {
+          "type": "string"
+        },
+        "teacherRemark": {
+          "type": "string"
+        },
+        "teacherReviewTime": {
+          "type": "string"
+        },
+        "unitStatus": {
+          "type": "string"
+        },
+        "unitRemark": {
+          "type": "string"
+        },
+        "unitReviewTime": {
+          "type": "string"
+        },
+        "cancelStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PostStudentGateAccessResponse": {
+      "type": "object",
+      "properties": {
+        "done": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

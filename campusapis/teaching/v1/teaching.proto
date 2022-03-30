@@ -15,6 +15,9 @@ service TeachingService {
       additional_bindings {
         get: "/teaching/schedule"
       }
+      additional_bindings {
+        get: "/student/v2/schedule"
+      }
     };
   }
   rpc GetClassrooms (ClassroomRequest) returns (ClassroomsResponse) {
@@ -44,12 +47,11 @@ service TeachingService {
 }
 
 message GetScheduleRequestRequest {
-  baseStaff.Staff Staff = 1;
-  int32 Semester = 2;
-  int32 SchoolYear = 3;
-  int64 Timestamp = 4;
-  int32 Week = 5;
-  int32 Weekday = 6;
+  int32 semester = 1;
+  int32 schoolYear = 2;
+  int64 timestamp = 3;
+  int32 week = 4;
+  int32 weekday = 5;
 }
 
 message Courses {
