@@ -15,7 +15,116 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/health/checkin": {
+      "get": {
+        "summary": "获取指定日期健康打卡记录",
+        "operationId": "HealthService_GetCheckinRecord2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCheckinRecordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/code": {
+      "get": {
+        "summary": "获取当前健康码",
+        "operationId": "HealthService_GetHealthCode2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetHealthCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/v1/checkin": {
+      "get": {
+        "summary": "获取指定日期健康打卡记录",
+        "operationId": "HealthService_GetCheckinRecord",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCheckinRecordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/v1/code": {
+      "get": {
+        "summary": "获取当前健康码",
+        "operationId": "HealthService_GetHealthCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetHealthCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "protobufAny": {
       "type": "object",
@@ -141,7 +250,7 @@
         "lastUpdateTime": {
           "type": "string"
         },
-        "serverUpdatetime": {
+        "serverUpdateTime": {
           "type": "string"
         }
       },

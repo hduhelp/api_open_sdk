@@ -19,8 +19,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HealthServiceClient interface {
+	//获取指定日期健康打卡记录
 	GetCheckinRecord(ctx context.Context, in *GetCheckinRecordRequest, opts ...grpc.CallOption) (*GetCheckinRecordResponse, error)
+	//获取历史健康打卡记录
 	GetCheckinRecords(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCheckinRecordsResponse, error)
+	//获取当前健康码
 	GetHealthCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHealthCodeResponse, error)
 }
 
@@ -63,8 +66,11 @@ func (c *healthServiceClient) GetHealthCode(ctx context.Context, in *emptypb.Emp
 // All implementations should embed UnimplementedHealthServiceServer
 // for forward compatibility
 type HealthServiceServer interface {
+	//获取指定日期健康打卡记录
 	GetCheckinRecord(context.Context, *GetCheckinRecordRequest) (*GetCheckinRecordResponse, error)
+	//获取历史健康打卡记录
 	GetCheckinRecords(context.Context, *emptypb.Empty) (*GetCheckinRecordsResponse, error)
+	//获取当前健康码
 	GetHealthCode(context.Context, *emptypb.Empty) (*GetHealthCodeResponse, error)
 }
 

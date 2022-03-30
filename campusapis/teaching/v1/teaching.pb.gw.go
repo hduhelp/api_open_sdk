@@ -453,7 +453,7 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_TeachingService_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, response_TeachingService_GetClassrooms_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -501,7 +501,7 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_TeachingService_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, response_TeachingService_GetClassroomUsages_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -549,7 +549,7 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_TeachingService_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, response_TeachingService_GetUnusedClassrooms_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -698,7 +698,7 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_TeachingService_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, response_TeachingService_GetClassrooms_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -740,7 +740,7 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_TeachingService_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, response_TeachingService_GetClassroomUsages_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -782,7 +782,7 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_TeachingService_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, response_TeachingService_GetUnusedClassrooms_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -808,6 +808,33 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 	})
 
 	return nil
+}
+
+type response_TeachingService_GetClassrooms_0 struct {
+	proto.Message
+}
+
+func (m response_TeachingService_GetClassrooms_0) XXX_ResponseBody() interface{} {
+	response := m.Message.(*ClassroomsResponse)
+	return response.Items
+}
+
+type response_TeachingService_GetClassroomUsages_0 struct {
+	proto.Message
+}
+
+func (m response_TeachingService_GetClassroomUsages_0) XXX_ResponseBody() interface{} {
+	response := m.Message.(*ClassroomUsagesResponse)
+	return response.Items
+}
+
+type response_TeachingService_GetUnusedClassrooms_0 struct {
+	proto.Message
+}
+
+func (m response_TeachingService_GetUnusedClassrooms_0) XXX_ResponseBody() interface{} {
+	response := m.Message.(*ClassroomsResponse)
+	return response.Items
 }
 
 var (

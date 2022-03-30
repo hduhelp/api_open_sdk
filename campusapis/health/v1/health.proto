@@ -8,11 +8,29 @@ import "baseStaff/baseStaff.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
 
 service HealthService {
-  rpc GetCheckinRecord(GetCheckinRecordRequest) returns (GetCheckinRecordResponse) {}
+  //获取指定日期健康打卡记录
+  rpc GetCheckinRecord(GetCheckinRecordRequest) returns (GetCheckinRecordResponse) {
+    option (google.api.http) = {
+      get: "/health/v1/checkin"
+      additional_bindings {
+        get: "/health/checkin"
+      }
+    };
+  }
+  //获取历史健康打卡记录
   rpc GetCheckinRecords(google.protobuf.Empty) returns (GetCheckinRecordsResponse) {}
-  rpc GetHealthCode(google.protobuf.Empty) returns (GetHealthCodeResponse) {}
+  //获取当前健康码
+  rpc GetHealthCode(google.protobuf.Empty) returns (GetHealthCodeResponse) {
+    option (google.api.http) = {
+      get: "/health/v1/code"
+      additional_bindings {
+        get: "/health/code"
+      }
+    };
+  }
 }
 
 message GetCheckinRecordRequest {
@@ -27,29 +45,27 @@ message GetCheckinRecordsResponse {
 message GetCheckinRecordResponse {
   int64 id = 1;
   string creator = 2;
-  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp createdAt = 3;
   google.protobuf.Timestamp modified = 4;
   string modifier = 5;
   google.protobuf.BytesValue content = 6;//健康打卡内容JSON
-  google.protobuf.Timestamp report_time = 7;
+  google.protobuf.Timestamp reportTime = 7;
   string province = 8;
   string city = 9;
   string country = 10;
-
-  string staff_id = 11;
-  string staff_name = 12;
-  string staff_type = 13;
+  string staffId = 11;
+  string staffName = 12;
+  string staffType = 13;
   string unit = 14;
-
-  string school_id = 15;
+  string schoolId = 15;
 }
 
 //健康码
 message HealthCode {
-  string code_id = 1;
-  google.protobuf.Timestamp apply_time = 2 ;
-  google.protobuf.Timestamp grant_time = 3;
-  google.protobuf.Timestamp update_time = 4;
+  string codeId = 1;
+  google.protobuf.Timestamp applyTime = 2 ;
+  google.protobuf.Timestamp grantTime = 3;
+  google.protobuf.Timestamp updateTime = 4;
   string name = 5;
   string region = 6;
   string status = 7;
@@ -58,14 +74,14 @@ message HealthCode {
 
 //健康码老
 message GetHealthCodeResponse {
-  string staff_id = 1;
-  string staff_name = 2;
-  string phone_num = 3 ;
-  string code_status = 4;
+  string staffId = 1;
+  string staffName = 2;
+  string phoneNum = 3 ;
+  string codeStatus = 4;
   string location = 5;
   string reason = 6;
-  string first_apply_time = 7;
-  string first_grant_time = 8;
-  string last_update_time = 9;
-  string server_updatetime = 10;
+  string firstApplyTime = 7;
+  string firstGrantTime = 8;
+  string lastUpdateTime = 9;
+  string serverUpdateTime = 10;
 }

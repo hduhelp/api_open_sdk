@@ -23,6 +23,7 @@ service TeachingService {
   rpc GetClassrooms (ClassroomRequest) returns (ClassroomsResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom"
+      response_body: "items"
       additional_bindings {
         get: "/teaching/classroom"
       }
@@ -31,6 +32,7 @@ service TeachingService {
   rpc GetClassroomUsages (ClassroomRequest) returns (ClassroomUsagesResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom/usage"
+      response_body: "items"
       additional_bindings {
         get: "/teaching/classroom/usage"
       }
@@ -39,6 +41,7 @@ service TeachingService {
   rpc GetUnusedClassrooms (ClassroomRequest) returns (ClassroomsResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom/unused"
+      response_body: "items"
       additional_bindings {
         get: "/teaching/classroom/unused"
       }
@@ -108,12 +111,12 @@ message ClassroomRequest {
 }
 
 message ClassroomsResponse {
-  repeated Classroom Items = 1;
+  repeated Classroom items = 1;
 }
 
 message Classroom {
-  campusapis.schoolTime.Semester Semester = 1;
-  campusapis.schoolTime.SchoolYear SchoolYear = 2;
+  campusapis.schoolTime.Semester semester = 1;
+  campusapis.schoolTime.SchoolYear schoolYear = 2;
   string locationID = 3;
   string locationName = 4;
   string buildingID = 5;
