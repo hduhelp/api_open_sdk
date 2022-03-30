@@ -18,12 +18,12 @@
   "paths": {
     "/student/v2/schedule": {
       "get": {
-        "operationId": "TeachingService_GetScheduleRequest3",
+        "operationId": "TeachingService_GetSchedule3",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1Courses"
+              "$ref": "#/definitions/v1GetScheduleResponse"
             }
           },
           "default": {
@@ -94,18 +94,18 @@
         },
         "parameters": [
           {
-            "name": "Semester.Num",
+            "name": "Semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
-            "name": "SchoolYear.Year",
+            "name": "SchoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "Weekday",
@@ -159,18 +159,18 @@
         },
         "parameters": [
           {
-            "name": "Semester.Num",
+            "name": "Semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
-            "name": "SchoolYear.Year",
+            "name": "SchoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "Weekday",
@@ -224,18 +224,18 @@
         },
         "parameters": [
           {
-            "name": "Semester.Num",
+            "name": "Semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
-            "name": "SchoolYear.Year",
+            "name": "SchoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "Weekday",
@@ -272,12 +272,12 @@
     },
     "/teaching/schedule": {
       "get": {
-        "operationId": "TeachingService_GetScheduleRequest2",
+        "operationId": "TeachingService_GetSchedule2",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1Courses"
+              "$ref": "#/definitions/v1GetScheduleResponse"
             }
           },
           "default": {
@@ -351,18 +351,18 @@
         },
         "parameters": [
           {
-            "name": "Semester.Num",
+            "name": "Semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
-            "name": "SchoolYear.Year",
+            "name": "SchoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "Weekday",
@@ -419,18 +419,18 @@
         },
         "parameters": [
           {
-            "name": "Semester.Num",
+            "name": "Semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
-            "name": "SchoolYear.Year",
+            "name": "SchoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "Weekday",
@@ -487,18 +487,18 @@
         },
         "parameters": [
           {
-            "name": "Semester.Num",
+            "name": "Semester",
+            "description": "学期",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
-            "name": "SchoolYear.Year",
+            "name": "SchoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "Weekday",
@@ -535,12 +535,15 @@
     },
     "/teaching/v1/schedule": {
       "get": {
-        "operationId": "TeachingService_GetScheduleRequest",
+        "operationId": "TeachingService_GetSchedule",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1Courses"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GetScheduleResponseCourse"
+              }
             }
           },
           "default": {
@@ -629,40 +632,109 @@
         }
       }
     },
-    "baseStaffInfo": {
+    "GetScheduleResponseCourse": {
       "type": "object",
       "properties": {
-        "staffID": {
+        "ClassID": {
           "type": "string"
         },
-        "staffName": {
+        "ClassName": {
           "type": "string"
         },
-        "staffType": {
-          "$ref": "#/definitions/baseStaffType"
-        }
-      }
-    },
-    "baseStaffInfoMapList": {
-      "type": "object",
-      "properties": {
-        "Items": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/baseStaffInfo"
+        "ClassTime": {
+          "type": "string"
+        },
+        "CourseID": {
+          "type": "string"
+        },
+        "CourseName": {
+          "type": "string"
+        },
+        "Credit": {
+          "type": "string"
+        },
+        "Schedules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetScheduleResponseCourseSchedule"
           }
+        },
+        "SchoolYear": {
+          "type": "string"
+        },
+        "Semester": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
-    "baseStaffType": {
-      "type": "string",
-      "enum": [
-        "Unknown",
-        "Undergraduate",
-        "Postgraduate",
-        "Teacher"
-      ],
-      "default": "Unknown"
+    "GetScheduleResponseCourseSchedule": {
+      "type": "object",
+      "properties": {
+        "Location": {
+          "type": "string"
+        },
+        "SeatsNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Section": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "Teachers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetScheduleResponseCourseStaffInfo"
+          }
+        },
+        "Students": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetScheduleResponseCourseStaffInfo"
+          }
+        },
+        "Week": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "WeekDay": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "IsThisWeek": {
+          "type": "boolean"
+        },
+        "StartTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "EndTime": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "GetScheduleResponseCourseStaffInfo": {
+      "type": "object",
+      "properties": {
+        "StaffID": {
+          "type": "string"
+        },
+        "StaffName": {
+          "type": "string"
+        },
+        "StaffType": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
     },
     "protobufAny": {
       "type": "object",
@@ -691,32 +763,15 @@
         }
       }
     },
-    "schoolTimeSchoolYear": {
-      "type": "object",
-      "properties": {
-        "Year": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "schoolTimeSemester": {
-      "type": "object",
-      "properties": {
-        "Num": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
     "v1Classroom": {
       "type": "object",
       "properties": {
         "semester": {
-          "$ref": "#/definitions/schoolTimeSemester"
+          "type": "integer",
+          "format": "int64"
         },
         "schoolYear": {
-          "$ref": "#/definitions/schoolTimeSchoolYear"
+          "type": "string"
         },
         "locationID": {
           "type": "string"
@@ -754,107 +809,14 @@
         }
       }
     },
-    "v1CourseItem": {
+    "v1GetScheduleResponse": {
       "type": "object",
       "properties": {
-        "ClassID": {
-          "type": "string"
-        },
-        "ClassName": {
-          "type": "string"
-        },
-        "CourseID": {
-          "type": "string"
-        },
-        "CourseName": {
-          "type": "string"
-        },
-        "ClassTime": {
-          "type": "string"
-        },
-        "Credit": {
-          "type": "string"
-        },
-        "SchoolYear": {
-          "$ref": "#/definitions/schoolTimeSchoolYear"
-        },
-        "Semester": {
-          "$ref": "#/definitions/schoolTimeSemester"
-        },
-        "Schedule": {
-          "$ref": "#/definitions/v1Schedule"
-        }
-      }
-    },
-    "v1Courses": {
-      "type": "object",
-      "properties": {
-        "Items": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v1CourseItem"
-          }
-        }
-      }
-    },
-    "v1Schedule": {
-      "type": "object",
-      "properties": {
-        "Items": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v1ScheduleItem"
-          }
-        }
-      }
-    },
-    "v1ScheduleItem": {
-      "type": "object",
-      "properties": {
-        "Week": {
+        "items": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "format": "int32"
+            "$ref": "#/definitions/GetScheduleResponseCourse"
           }
-        },
-        "WeekDay": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "Section": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "IsThisWeek": {
-          "type": "boolean"
-        },
-        "StartTime": {
-          "type": "string",
-          "format": "int64"
-        },
-        "EndTime": {
-          "type": "string",
-          "format": "int64"
-        },
-        "Teachers": {
-          "$ref": "#/definitions/baseStaffInfoMapList"
-        },
-        "Students": {
-          "$ref": "#/definitions/baseStaffInfoMapList"
-        },
-        "Location": {
-          "type": "string"
-        },
-        "SeatsNum": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "Commit": {
-          "type": "string"
         }
       }
     }

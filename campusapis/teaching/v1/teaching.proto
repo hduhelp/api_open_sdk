@@ -9,9 +9,10 @@ import "campusapis/schoolTime/defined.proto";
 import "google/api/annotations.proto";
 
 service TeachingService {
-  rpc GetScheduleRequest(GetScheduleRequestRequest) returns (Courses){
+  rpc GetSchedule(GetScheduleRequest) returns (GetScheduleResponse){
     option (google.api.http) = {
       get: "/teaching/v1/schedule"
+      response_body: "items"
       additional_bindings {
         get: "/teaching/schedule"
       }
@@ -49,12 +50,47 @@ service TeachingService {
   }
 }
 
-message GetScheduleRequestRequest {
+message GetScheduleRequest {
   int32 semester = 1;
   int32 schoolYear = 2;
   int64 timestamp = 3;
   int32 week = 4;
   int32 weekday = 5;
+}
+
+message GetScheduleResponse {
+  message Course {
+    message StaffInfo {
+      string StaffID = 1;
+      string StaffName = 2;
+      uint32 StaffType = 3;
+    }
+
+    message Schedule {
+      string Location = 1;
+      uint32 SeatsNum = 2;
+      repeated uint32 Section = 3;
+      repeated StaffInfo Teachers = 4;
+      repeated StaffInfo Students = 5;
+      repeated uint32 Week = 6;
+      uint32 WeekDay = 7;
+      bool IsThisWeek = 8;
+      int64 StartTime = 9;
+      int64 EndTime = 10;
+    }
+
+    string ClassID = 1;
+    string ClassName = 2;
+    string ClassTime = 3;
+    string CourseID = 4;
+    string CourseName = 5;
+    string Credit = 6;
+    repeated Schedule Schedules = 7;
+    string SchoolYear = 8;
+    uint32 Semester = 9;
+  }
+
+  repeated Course items = 1;
 }
 
 message Courses {
@@ -102,8 +138,10 @@ message StaffInfo {
 
 // 教室信息查询关键字
 message ClassroomRequest {
-  campusapis.schoolTime.Semester Semester = 1; //学期
-  campusapis.schoolTime.SchoolYear SchoolYear = 2; //学年
+  //学期
+  string Semester = 1;
+  //学年
+  string SchoolYear = 2;
   int32 Weekday = 3;
   int32 Week = 4;
   int32 Section = 5;
@@ -115,8 +153,8 @@ message ClassroomsResponse {
 }
 
 message Classroom {
-  campusapis.schoolTime.Semester semester = 1;
-  campusapis.schoolTime.SchoolYear schoolYear = 2;
+  uint32 semester = 1;
+  string schoolYear = 2;
   string locationID = 3;
   string locationName = 4;
   string buildingID = 5;

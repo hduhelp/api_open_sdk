@@ -9,15 +9,19 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
 
 service HealthService {
   //获取指定日期健康打卡记录
   rpc GetCheckinRecord(GetCheckinRecordRequest) returns (GetCheckinRecordResponse) {
     option (google.api.http) = {
       get: "/health/v1/checkin"
-      additional_bindings {
-        get: "/health/checkin"
-      }
+    };
+  }
+  //获取指定日期健康打卡记录
+  rpc GetCheckinRecordJsonContent(GetCheckinRecordRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      get: "/health/checkin"
     };
   }
   //获取历史健康打卡记录
