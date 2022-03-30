@@ -5,14 +5,22 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/samber/lo"
 	"google.golang.org/grpc/codes"
 )
 
-func Require(req any, list ...any) error {
+// Require 判断入参是否为空值
+func Require(req any, list ...string) error {
 	emptyList := make([]string, 0)
-	for _, v := range list {
-		if reflect.ValueOf(v).IsZero() {
-			emptyList = append(emptyList, GetFieldName(req, v))
+	val := reflect.ValueOf(req).Elem()
+	if !val.IsValid() {
+		return nil
+	}
+	lowerKeysMap := lo.KeyBy(list, func(str string) string { return strings.ToLower(str) })
+	for _, index := range lo.Range(val.NumField()) {
+		fieldName := val.Type().Field(index).Name
+		if key, exists := lowerKeysMap[strings.ToLower(fieldName)]; exists {
+			emptyList = append(emptyList, key)
 		}
 	}
 	if len(emptyList) != 0 {
@@ -21,21 +29,8 @@ func Require(req any, list ...any) error {
 	return nil
 }
 
-func GetFieldName(structPoint any, fieldPinter any) (name string) {
-	valStruct := reflect.ValueOf(structPoint).Elem()
-	valField := reflect.ValueOf(fieldPinter).Elem()
-
-	for i := 0; i < valStruct.NumField(); i++ {
-		valueField := valStruct.Field(i)
-		if valueField.Addr().Interface() == valField.Addr().Interface() {
-			return valStruct.Type().Field(i).Name
-		}
-	}
-	return
-}
-
-func RequireWarped(req any, list ...any) error {
-	if err := Require(req, list[1:]...); err != nil {
+func RequireWarped(req any, list ...string) error {
+	if err := Require(req, list...); err != nil {
 		return Status_INVALID_ARGUMENT.Error(codes.InvalidArgument, err.Error())
 	}
 	return nil
