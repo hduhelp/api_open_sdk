@@ -21,7 +21,9 @@ func Require(req any, list ...string) error {
 		field := val.Type().Field(index)
 		if _, exists := lowerKeysMap[strings.ToLower(field.Name)]; exists {
 			if val.Field(index).IsZero() {
-				emptyList = append(emptyList, string(field.Tag.Get("name")))
+				if name := splitrTagToName(field.Tag.Get("protobuf")); name != "" {
+					emptyList = append(emptyList, name)
+				}
 			}
 		}
 	}
@@ -29,6 +31,15 @@ func Require(req any, list ...string) error {
 		return RequiredButEmpty{values: emptyList}
 	}
 	return nil
+}
+
+func splitrTagToName(tag string) string {
+	for _, v := range strings.Split(tag, ",") {
+		if strings.HasPrefix(v, "name=") {
+			return strings.TrimPrefix(v, "name=")
+		}
+	}
+	return ""
 }
 
 func RequireWarped(req any, list ...string) error {
