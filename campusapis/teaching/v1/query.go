@@ -39,7 +39,7 @@ func NewCourseQuery(staff *baseStaff.Staff,
 }
 
 func (q *CourseQuery) GetCourses() (*CourseQuery, error) {
-	if q.QueryStaff.Id == "" {
+	if q.QueryStaff.ID == "" {
 		return q, errors.New("staffID cannot be nil")
 	}
 	if q.SchoolDate == nil {

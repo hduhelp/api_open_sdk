@@ -5,7 +5,7 @@ package baseStaff;
 option go_package = "./baseStaff";
 
 message Staff {
-  string id = 1;
+  string ID = 1;
   Type type = 2;
 }
 
