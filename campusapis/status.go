@@ -4,10 +4,15 @@ import (
 	"strings"
 
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func (x Status) Warp(status codes.Code) codes.Code {
 	return WarpCode(status, uint32(x))
+}
+
+func (x Status) Error(c codes.Code, msg string) error {
+	return status.Error(WarpCode(c, uint32(x)), msg)
 }
 
 func (x Status) Message() string {
