@@ -378,7 +378,7 @@ func RegisterHealthServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecord_0(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecord_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecord_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -402,7 +402,7 @@ func RegisterHealthServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecord_1(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecord_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecord_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -426,7 +426,7 @@ func RegisterHealthServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecord_2(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecord_2{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecord_2(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -680,7 +680,7 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecord_0(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecord_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecord_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -701,7 +701,7 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecord_1(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecord_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecord_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -722,7 +722,7 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecord_2(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecord_2{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecord_2(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -895,33 +895,6 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 	})
 
 	return nil
-}
-
-type response_HealthService_GetCheckinRecord_0 struct {
-	proto.Message
-}
-
-func (m response_HealthService_GetCheckinRecord_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCheckinRecordResponse)
-	return response.Data
-}
-
-type response_HealthService_GetCheckinRecord_1 struct {
-	proto.Message
-}
-
-func (m response_HealthService_GetCheckinRecord_1) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCheckinRecordResponse)
-	return response.Data
-}
-
-type response_HealthService_GetCheckinRecord_2 struct {
-	proto.Message
-}
-
-func (m response_HealthService_GetCheckinRecord_2) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCheckinRecordResponse)
-	return response.Data
 }
 
 type response_HealthService_GetCheckinRecords_0 struct {

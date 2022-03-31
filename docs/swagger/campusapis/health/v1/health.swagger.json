@@ -22,9 +22,9 @@
         "operationId": "HealthService_GetCheckinRecord2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CheckinRecord"
+              "$ref": "#/definitions/v1GetCheckinRecordResponse"
             }
           },
           "default": {
@@ -54,9 +54,9 @@
         "operationId": "HealthService_GetCheckinRecord3",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CheckinRecord"
+              "$ref": "#/definitions/v1GetCheckinRecordResponse"
             }
           },
           "default": {
@@ -90,7 +90,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/v1CheckinRecord"
+                "$ref": "#/definitions/v1GetCheckinRecordResponse"
               }
             }
           },
@@ -196,9 +196,9 @@
         "operationId": "HealthService_GetCheckinRecord",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CheckinRecord"
+              "$ref": "#/definitions/v1GetCheckinRecordResponse"
             }
           },
           "default": {
@@ -232,7 +232,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/v1CheckinRecord"
+                "$ref": "#/definitions/v1GetCheckinRecordResponse"
               }
             }
           },
@@ -371,7 +371,18 @@
         }
       }
     },
-    "v1CheckinRecord": {
+    "v1GetCheckinPhoneResponse": {
+      "type": "object",
+      "properties": {
+        "Phone": {
+          "type": "string"
+        },
+        "StaffID": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetCheckinRecordResponse": {
       "type": "object",
       "properties": {
         "id": {
@@ -440,32 +451,13 @@
       },
       "title": "健康打卡记录"
     },
-    "v1GetCheckinPhoneResponse": {
-      "type": "object",
-      "properties": {
-        "Phone": {
-          "type": "string"
-        },
-        "StaffID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1GetCheckinRecordResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/v1CheckinRecord"
-        }
-      }
-    },
     "v1GetCheckinRecordsResponse": {
       "type": "object",
       "properties": {
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1CheckinRecord"
+            "$ref": "#/definitions/v1GetCheckinRecordResponse"
           }
         }
       }
