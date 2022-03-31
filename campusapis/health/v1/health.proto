@@ -35,6 +35,26 @@ service HealthService {
       }
     };
   }
+  //提交今日健康打卡
+  rpc PostCheckinRecord(PostCheckinRecordRequest) returns (PostCheckinRecordResponse) {
+    option (google.api.http) = {
+      post: "/health/v1/checkins"
+      body: "content"
+      additional_bindings {
+        post: "/health/checkins"
+        body: "content"
+      }
+    };
+  }
+  //获取提交健康码的手机号
+  rpc GetCheckinPhone(google.protobuf.Empty) returns (GetCheckinPhoneResponse) {
+    option (google.api.http) = {
+      get: "/health/v1/phone"
+      additional_bindings {
+        get: "/health/phone"
+      }
+    };
+  }
   //获取当前健康码
   rpc GetHealthCode(google.protobuf.Empty) returns (GetHealthCodeResponse) {
     option (google.api.http) = {
@@ -51,28 +71,80 @@ message GetCheckinRecordRequest {
   string date = 1;
 }
 
+message GetCheckinRecordResponse {
+  uint32 code = 1;
+  CheckinRecord data = 2;
+  string message = 3;
+}
+
 message GetCheckinRecordsResponse {
-  repeated GetCheckinRecordResponse items = 1;
+  repeated CheckinRecord items = 1;
 }
 
 //健康打卡记录
-message GetCheckinRecordResponse {
+message CheckinRecord {
   uint32 id = 1;
+  //姓名
   string creator = 2;
+  //创建时间
   uint32 createdAt = 3;
+  //修改时间 可能为空
   uint32 modified = 4;
+  //修改者姓名
   string modifier = 5;
   //健康打卡内容JSON
   google.protobuf.Struct content = 6;
+  //打卡时间
   uint32 reportTime = 7;
+  //打卡省级行政区划码
   string province = 8;
+  //打卡市级行政区划码
   string city = 9;
+  //打卡区级行政区划码
   string country = 10;
+  //学号
   string staffId = 11;
+  //学生姓名
   string staffName = 12;
+  //学生类型 1：研究生 2：本科生
   string staffType = 13;
+  //学院名称
   string unit = 14;
+  //记录索引ID
   string schoolId = 15;
+}
+
+message PostCheckinRecordRequest {
+  //签名 放置在query中
+  string sign = 1;
+  PostCheckinRecordBody content = 2;
+}
+
+message PostCheckinRecordBody {
+  //学生姓名
+  string name = 1;
+  //签名时间戳
+  uint32 timestamp = 2;
+  //省级行政区划码
+  string probince = 3;
+  //市级行政区划码
+  string city = 4;
+  //县级行政区划码
+  string country = 5;
+  //健康打卡内容JSON，处理为json字符串
+  // 如 `{"ques1": "xxxx", "ques2": "xxx"}`
+  string answerJsonStr = 6;
+}
+
+message PostCheckinRecordResponse {
+  uint32 code = 1;
+  string data = 2;
+  string message = 3;
+}
+
+message GetCheckinPhoneResponse {
+  string Phone = 1;
+  string StaffID = 2;
 }
 
 //健康码
@@ -92,11 +164,19 @@ message GetHealthCodeResponse {
   string staffId = 1;
   string staffName = 2;
   string phoneNum = 3 ;
+  //健康码
   string codeStatus = 4;
+  //健康码地区
   string location = 5;
+  //健康码红码黄码原因
   string reason = 6;
+  //第一次申请时间
   string firstApplyTime = 7;
+  //第一次下发时间
   string firstGrantTime = 8;
+  //最后一次更新时间
   string lastUpdateTime = 9;
+  //服务器更新时间（服务器获取到的时间）
+  //通常是每日更新一次
   string serverUpdateTime = 10;
 }

@@ -23,6 +23,10 @@ type HealthServiceClient interface {
 	GetCheckinRecord(ctx context.Context, in *GetCheckinRecordRequest, opts ...grpc.CallOption) (*GetCheckinRecordResponse, error)
 	//获取历史健康打卡记录
 	GetCheckinRecords(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCheckinRecordsResponse, error)
+	//提交今日健康打卡
+	PostCheckinRecord(ctx context.Context, in *PostCheckinRecordRequest, opts ...grpc.CallOption) (*PostCheckinRecordResponse, error)
+	//获取提交健康码的手机号
+	GetCheckinPhone(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCheckinPhoneResponse, error)
 	//获取当前健康码
 	GetHealthCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHealthCodeResponse, error)
 }
@@ -53,6 +57,24 @@ func (c *healthServiceClient) GetCheckinRecords(ctx context.Context, in *emptypb
 	return out, nil
 }
 
+func (c *healthServiceClient) PostCheckinRecord(ctx context.Context, in *PostCheckinRecordRequest, opts ...grpc.CallOption) (*PostCheckinRecordResponse, error) {
+	out := new(PostCheckinRecordResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/PostCheckinRecord", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *healthServiceClient) GetCheckinPhone(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCheckinPhoneResponse, error) {
+	out := new(GetCheckinPhoneResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/GetCheckinPhone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *healthServiceClient) GetHealthCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHealthCodeResponse, error) {
 	out := new(GetHealthCodeResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/GetHealthCode", in, out, opts...)
@@ -70,6 +92,10 @@ type HealthServiceServer interface {
 	GetCheckinRecord(context.Context, *GetCheckinRecordRequest) (*GetCheckinRecordResponse, error)
 	//获取历史健康打卡记录
 	GetCheckinRecords(context.Context, *emptypb.Empty) (*GetCheckinRecordsResponse, error)
+	//提交今日健康打卡
+	PostCheckinRecord(context.Context, *PostCheckinRecordRequest) (*PostCheckinRecordResponse, error)
+	//获取提交健康码的手机号
+	GetCheckinPhone(context.Context, *emptypb.Empty) (*GetCheckinPhoneResponse, error)
 	//获取当前健康码
 	GetHealthCode(context.Context, *emptypb.Empty) (*GetHealthCodeResponse, error)
 }
@@ -83,6 +109,12 @@ func (UnimplementedHealthServiceServer) GetCheckinRecord(context.Context, *GetCh
 }
 func (UnimplementedHealthServiceServer) GetCheckinRecords(context.Context, *emptypb.Empty) (*GetCheckinRecordsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCheckinRecords not implemented")
+}
+func (UnimplementedHealthServiceServer) PostCheckinRecord(context.Context, *PostCheckinRecordRequest) (*PostCheckinRecordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostCheckinRecord not implemented")
+}
+func (UnimplementedHealthServiceServer) GetCheckinPhone(context.Context, *emptypb.Empty) (*GetCheckinPhoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCheckinPhone not implemented")
 }
 func (UnimplementedHealthServiceServer) GetHealthCode(context.Context, *emptypb.Empty) (*GetHealthCodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHealthCode not implemented")
@@ -135,6 +167,42 @@ func _HealthService_GetCheckinRecords_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HealthService_PostCheckinRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostCheckinRecordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServiceServer).PostCheckinRecord(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.health.v1.HealthService/PostCheckinRecord",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServiceServer).PostCheckinRecord(ctx, req.(*PostCheckinRecordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HealthService_GetCheckinPhone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServiceServer).GetCheckinPhone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.health.v1.HealthService/GetCheckinPhone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServiceServer).GetCheckinPhone(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _HealthService_GetHealthCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -167,6 +235,14 @@ var HealthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCheckinRecords",
 			Handler:    _HealthService_GetCheckinRecords_Handler,
+		},
+		{
+			MethodName: "PostCheckinRecord",
+			Handler:    _HealthService_PostCheckinRecord_Handler,
+		},
+		{
+			MethodName: "GetCheckinPhone",
+			Handler:    _HealthService_GetCheckinPhone_Handler,
 		},
 		{
 			MethodName: "GetHealthCode",

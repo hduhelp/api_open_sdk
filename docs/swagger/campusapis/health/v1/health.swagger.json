@@ -90,7 +90,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/v1GetCheckinRecordResponse"
+                "$ref": "#/definitions/v1CheckinRecord"
               }
             }
           },
@@ -101,6 +101,44 @@
             }
           }
         },
+        "tags": [
+          "HealthService"
+        ]
+      },
+      "post": {
+        "summary": "提交今日健康打卡",
+        "operationId": "HealthService_PostCheckinRecord2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PostCheckinRecordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "content",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PostCheckinRecordBody"
+            }
+          },
+          {
+            "name": "sign",
+            "description": "签名 放置在query中",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "HealthService"
         ]
@@ -115,6 +153,29 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1GetHealthCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/phone": {
+      "get": {
+        "summary": "获取提交健康码的手机号",
+        "operationId": "HealthService_GetCheckinPhone2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCheckinPhoneResponse"
             }
           },
           "default": {
@@ -171,7 +232,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/v1GetCheckinRecordResponse"
+                "$ref": "#/definitions/v1CheckinRecord"
               }
             }
           },
@@ -182,6 +243,44 @@
             }
           }
         },
+        "tags": [
+          "HealthService"
+        ]
+      },
+      "post": {
+        "summary": "提交今日健康打卡",
+        "operationId": "HealthService_PostCheckinRecord",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PostCheckinRecordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "content",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PostCheckinRecordBody"
+            }
+          },
+          {
+            "name": "sign",
+            "description": "签名 放置在query中",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "HealthService"
         ]
@@ -196,6 +295,29 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1GetHealthCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/v1/phone": {
+      "get": {
+        "summary": "获取提交健康码的手机号",
+        "operationId": "HealthService_GetCheckinPhone",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCheckinPhoneResponse"
             }
           },
           "default": {
@@ -249,7 +371,7 @@
         }
       }
     },
-    "v1GetCheckinRecordResponse": {
+    "v1CheckinRecord": {
       "type": "object",
       "properties": {
         "id": {
@@ -257,18 +379,22 @@
           "format": "int64"
         },
         "creator": {
-          "type": "string"
+          "type": "string",
+          "title": "姓名"
         },
         "createdAt": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "title": "创建时间"
         },
         "modified": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "title": "修改时间 可能为空"
         },
         "modifier": {
-          "type": "string"
+          "type": "string",
+          "title": "修改者姓名"
         },
         "content": {
           "type": "object",
@@ -276,34 +402,69 @@
         },
         "reportTime": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "title": "打卡时间"
         },
         "province": {
-          "type": "string"
+          "type": "string",
+          "title": "打卡省级行政区划码"
         },
         "city": {
-          "type": "string"
+          "type": "string",
+          "title": "打卡市级行政区划码"
         },
         "country": {
-          "type": "string"
+          "type": "string",
+          "title": "打卡区级行政区划码"
         },
         "staffId": {
-          "type": "string"
+          "type": "string",
+          "title": "学号"
         },
         "staffName": {
-          "type": "string"
+          "type": "string",
+          "title": "学生姓名"
         },
         "staffType": {
-          "type": "string"
+          "type": "string",
+          "title": "学生类型 1：研究生 2：本科生"
         },
         "unit": {
-          "type": "string"
+          "type": "string",
+          "title": "学院名称"
         },
         "schoolId": {
-          "type": "string"
+          "type": "string",
+          "title": "记录索引ID"
         }
       },
       "title": "健康打卡记录"
+    },
+    "v1GetCheckinPhoneResponse": {
+      "type": "object",
+      "properties": {
+        "Phone": {
+          "type": "string"
+        },
+        "StaffID": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetCheckinRecordResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "data": {
+          "$ref": "#/definitions/v1CheckinRecord"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
     },
     "v1GetCheckinRecordsResponse": {
       "type": "object",
@@ -311,7 +472,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1GetCheckinRecordResponse"
+            "$ref": "#/definitions/v1CheckinRecord"
           }
         }
       }
@@ -329,28 +490,80 @@
           "type": "string"
         },
         "codeStatus": {
-          "type": "string"
+          "type": "string",
+          "title": "健康码"
         },
         "location": {
-          "type": "string"
+          "type": "string",
+          "title": "健康码地区"
         },
         "reason": {
-          "type": "string"
+          "type": "string",
+          "title": "健康码红码黄码原因"
         },
         "firstApplyTime": {
-          "type": "string"
+          "type": "string",
+          "title": "第一次申请时间"
         },
         "firstGrantTime": {
-          "type": "string"
+          "type": "string",
+          "title": "第一次下发时间"
         },
         "lastUpdateTime": {
-          "type": "string"
+          "type": "string",
+          "title": "最后一次更新时间"
         },
         "serverUpdateTime": {
-          "type": "string"
+          "type": "string",
+          "title": "服务器更新时间（服务器获取到的时间）\n通常是每日更新一次"
         }
       },
       "title": "健康码老"
+    },
+    "v1PostCheckinRecordBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "学生姓名"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "title": "签名时间戳"
+        },
+        "probince": {
+          "type": "string",
+          "title": "省级行政区划码"
+        },
+        "city": {
+          "type": "string",
+          "title": "市级行政区划码"
+        },
+        "country": {
+          "type": "string",
+          "title": "县级行政区划码"
+        },
+        "answerJsonStr": {
+          "type": "string",
+          "title": "健康打卡内容JSON，处理为json字符串\n如 `{\"ques1\": \"xxxx\", \"ques2\": \"xxx\"}`"
+        }
+      }
+    },
+    "v1PostCheckinRecordResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
     }
   }
 }
