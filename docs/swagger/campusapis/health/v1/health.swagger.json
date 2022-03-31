@@ -80,6 +80,32 @@
         ]
       }
     },
+    "/health/checkins": {
+      "get": {
+        "summary": "获取历史健康打卡记录",
+        "operationId": "HealthService_GetCheckinRecords2",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetCheckinRecordResponse"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
     "/health/code": {
       "get": {
         "summary": "获取当前健康码",
@@ -130,6 +156,32 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/v1/checkins": {
+      "get": {
+        "summary": "获取历史健康打卡记录",
+        "operationId": "HealthService_GetCheckinRecords",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetCheckinRecordResponse"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "HealthService"
         ]

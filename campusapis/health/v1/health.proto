@@ -25,7 +25,16 @@ service HealthService {
     };
   }
   //获取历史健康打卡记录
-  rpc GetCheckinRecords(google.protobuf.Empty) returns (GetCheckinRecordsResponse) {}
+  rpc GetCheckinRecords(google.protobuf.Empty) returns (GetCheckinRecordsResponse) {
+    option (google.api.http) = {
+      get: "/health/v1/checkins"
+      response_body: "items"
+      additional_bindings {
+        get: "/health/checkins"
+        response_body: "items"
+      }
+    };
+  }
   //获取当前健康码
   rpc GetHealthCode(google.protobuf.Empty) returns (GetHealthCodeResponse) {
     option (google.api.http) = {
