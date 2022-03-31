@@ -485,7 +485,7 @@ func RegisterHealthServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.health.v1.HealthService/PostCheckinRecord", runtime.WithHTTPPathPattern("/health/v1/checkins"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.health.v1.HealthService/PostCheckinRecord", runtime.WithHTTPPathPattern("/health/v1/checkin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -509,7 +509,7 @@ func RegisterHealthServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.health.v1.HealthService/PostCheckinRecord", runtime.WithHTTPPathPattern("/health/checkins"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.health.v1.HealthService/PostCheckinRecord", runtime.WithHTTPPathPattern("/health/checkin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -773,7 +773,7 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.health.v1.HealthService/PostCheckinRecord", runtime.WithHTTPPathPattern("/health/v1/checkins"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.health.v1.HealthService/PostCheckinRecord", runtime.WithHTTPPathPattern("/health/v1/checkin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -794,7 +794,7 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.health.v1.HealthService/PostCheckinRecord", runtime.WithHTTPPathPattern("/health/checkins"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.health.v1.HealthService/PostCheckinRecord", runtime.WithHTTPPathPattern("/health/checkin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -926,9 +926,9 @@ var (
 
 	pattern_HealthService_GetCheckinRecords_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"health", "checkins"}, ""))
 
-	pattern_HealthService_PostCheckinRecord_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"health", "v1", "checkins"}, ""))
+	pattern_HealthService_PostCheckinRecord_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"health", "v1", "checkin"}, ""))
 
-	pattern_HealthService_PostCheckinRecord_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"health", "checkins"}, ""))
+	pattern_HealthService_PostCheckinRecord_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"health", "checkin"}, ""))
 
 	pattern_HealthService_GetCheckinPhone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"health", "v1", "phone"}, ""))
 

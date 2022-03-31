@@ -46,6 +46,44 @@
         "tags": [
           "HealthService"
         ]
+      },
+      "post": {
+        "summary": "提交今日健康打卡",
+        "operationId": "HealthService_PostCheckinRecord2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PostCheckinRecordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "content",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PostCheckinRecordBody"
+            }
+          },
+          {
+            "name": "sign",
+            "description": "签名 放置在query中",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "HealthService"
+        ]
       }
     },
     "/health/checkin/today": {
@@ -101,44 +139,6 @@
             }
           }
         },
-        "tags": [
-          "HealthService"
-        ]
-      },
-      "post": {
-        "summary": "提交今日健康打卡",
-        "operationId": "HealthService_PostCheckinRecord2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1PostCheckinRecordResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "content",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1PostCheckinRecordBody"
-            }
-          },
-          {
-            "name": "sign",
-            "description": "签名 放置在query中",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "HealthService"
         ]
@@ -220,32 +220,6 @@
         "tags": [
           "HealthService"
         ]
-      }
-    },
-    "/health/v1/checkins": {
-      "get": {
-        "summary": "获取历史健康打卡记录",
-        "operationId": "HealthService_GetCheckinRecords",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetCheckinRecordResponse"
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "HealthService"
-        ]
       },
       "post": {
         "summary": "提交今日健康打卡",
@@ -281,6 +255,32 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/v1/checkins": {
+      "get": {
+        "summary": "获取历史健康打卡记录",
+        "operationId": "HealthService_GetCheckinRecords",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetCheckinRecordResponse"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "HealthService"
         ]

@@ -38,10 +38,10 @@ service HealthService {
   //提交今日健康打卡
   rpc PostCheckinRecord(PostCheckinRecordRequest) returns (PostCheckinRecordResponse) {
     option (google.api.http) = {
-      post: "/health/v1/checkins"
+      post: "/health/v1/checkin"
       body: "content"
       additional_bindings {
-        post: "/health/checkins"
+        post: "/health/checkin"
         body: "content"
       }
     };
