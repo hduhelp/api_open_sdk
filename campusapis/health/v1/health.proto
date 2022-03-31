@@ -126,7 +126,7 @@ message PostCheckinRecordBody {
   //签名时间戳
   uint32 timestamp = 2;
   //省级行政区划码
-  string probince = 3;
+  string province = 3;
   //市级行政区划码
   string city = 4;
   //县级行政区划码

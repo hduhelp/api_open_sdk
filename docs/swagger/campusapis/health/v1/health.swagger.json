@@ -532,7 +532,7 @@
           "format": "int64",
           "title": "签名时间戳"
         },
-        "probince": {
+        "province": {
           "type": "string",
           "title": "省级行政区划码"
         },
