@@ -16,11 +16,14 @@ service HealthService {
   rpc GetCheckinRecord(GetCheckinRecordRequest) returns (GetCheckinRecordResponse) {
     option (google.api.http) = {
       get: "/health/v1/checkin"
+      response_body: "data"
       additional_bindings {
         get: "/health/checkin"
+        response_body: "data"
       }
       additional_bindings {
         get: "/health/checkin/today"
+        response_body: "data"
       }
     };
   }
@@ -72,9 +75,7 @@ message GetCheckinRecordRequest {
 }
 
 message GetCheckinRecordResponse {
-  uint32 code = 1;
-  CheckinRecord data = 2;
-  string message = 3;
+  CheckinRecord data = 1;
 }
 
 message GetCheckinRecordsResponse {
