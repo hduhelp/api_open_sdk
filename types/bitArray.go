@@ -4,6 +4,7 @@ import (
 	"database/sql/driver"
 	"encoding/json"
 	"errors"
+	"github.com/godror/godror"
 	"math"
 	"strconv"
 )
@@ -18,11 +19,11 @@ func (BitInt) GormDataType() string {
 }
 
 func (i *BitInt) Scan(src interface{}) error {
-	bitIntStr, ok := src.(string)
+	bitIntStr, ok := src.(godror.Number)
 	if !ok {
 		return errors.New("int bit cannot paste in string")
 	}
-	bitInt, err := strconv.ParseInt(bitIntStr, 10, 64)
+	bitInt, err := strconv.ParseInt(bitIntStr.String(), 10, 64)
 	if err != nil {
 		return err
 	}
