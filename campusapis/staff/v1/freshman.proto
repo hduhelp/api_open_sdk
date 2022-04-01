@@ -8,7 +8,7 @@ import "google/api/annotations.proto";
 
 //本科生新生服务
 service FreshmanService {
-  //获取新生基本信息
+  //获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件
   rpc GetFreshmanBaseInfo (FreshmanKeywordRequest) returns (GetFreshmanBaseInfoResponse) {
     option (google.api.http) = {
       get: "/staff/v1/freshman/base"
@@ -38,7 +38,7 @@ service FreshmanService {
   }
 }
 
-//新生三要素请求，在无学号时临时作为身份认证，提供基本的信息查询
+//新生三要素请求，依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件，提供基本的信息查询
 message FreshmanKeywordRequest {
   //学号
   string staffId = 1;
@@ -87,7 +87,9 @@ message GetFreshmanInfoResponse {
   //辅导员姓名
   string teacherName = 10;
   string teacherPhone = 11;
+  //班助姓名
   string assistantName = 12;
+  //班助电话
   string assistantPhone = 13;
   //是否支付学费
   string hasPaid = 14;
@@ -95,13 +97,21 @@ message GetFreshmanInfoResponse {
   string LSTD = 15;
   string LSTDXY = 16;
   string LSTDZX = 17;
+  // 电话
   string phone = 18;
+  // QQ
   string qq = 19;
+  //楼号
   string roomBuilding = 20;
+  //寝室号
   string roomRoom = 21;
+  //床号
   string roomBed = 22;
+  //报到日期
   string comeDate = 23;
+  // 身高（厘米）
   string high = 24;
+  //火车区间
   string station = 25;
 }
 
@@ -113,5 +123,6 @@ message GetFreshmanRoommatesResponse {
     string qq = 2;
     string phone = 3;
   }
+  // 室友列表
   repeated Roommate items = 1;
 }

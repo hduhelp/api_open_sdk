@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-//新生三要素请求，在无学号时临时作为身份认证，提供基本的信息查询
+//新生三要素请求，依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件，提供基本的信息查询
 type FreshmanKeywordRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -207,24 +207,34 @@ type GetFreshmanInfoResponse struct {
 	//身份证号
 	CardID string `protobuf:"bytes,9,opt,name=cardID,proto3" json:"cardID,omitempty"`
 	//辅导员姓名
-	TeacherName    string `protobuf:"bytes,10,opt,name=teacherName,proto3" json:"teacherName,omitempty"`
-	TeacherPhone   string `protobuf:"bytes,11,opt,name=teacherPhone,proto3" json:"teacherPhone,omitempty"`
-	AssistantName  string `protobuf:"bytes,12,opt,name=assistantName,proto3" json:"assistantName,omitempty"`
+	TeacherName  string `protobuf:"bytes,10,opt,name=teacherName,proto3" json:"teacherName,omitempty"`
+	TeacherPhone string `protobuf:"bytes,11,opt,name=teacherPhone,proto3" json:"teacherPhone,omitempty"`
+	//班助姓名
+	AssistantName string `protobuf:"bytes,12,opt,name=assistantName,proto3" json:"assistantName,omitempty"`
+	//班助电话
 	AssistantPhone string `protobuf:"bytes,13,opt,name=assistantPhone,proto3" json:"assistantPhone,omitempty"`
 	//是否支付学费
 	HasPaid string `protobuf:"bytes,14,opt,name=hasPaid,proto3" json:"hasPaid,omitempty"`
 	//绿色通道
-	LSTD         string `protobuf:"bytes,15,opt,name=LSTD,proto3" json:"LSTD,omitempty"`
-	LSTDXY       string `protobuf:"bytes,16,opt,name=LSTDXY,proto3" json:"LSTDXY,omitempty"`
-	LSTDZX       string `protobuf:"bytes,17,opt,name=LSTDZX,proto3" json:"LSTDZX,omitempty"`
-	Phone        string `protobuf:"bytes,18,opt,name=phone,proto3" json:"phone,omitempty"`
-	Qq           string `protobuf:"bytes,19,opt,name=qq,proto3" json:"qq,omitempty"`
+	LSTD   string `protobuf:"bytes,15,opt,name=LSTD,proto3" json:"LSTD,omitempty"`
+	LSTDXY string `protobuf:"bytes,16,opt,name=LSTDXY,proto3" json:"LSTDXY,omitempty"`
+	LSTDZX string `protobuf:"bytes,17,opt,name=LSTDZX,proto3" json:"LSTDZX,omitempty"`
+	// 电话
+	Phone string `protobuf:"bytes,18,opt,name=phone,proto3" json:"phone,omitempty"`
+	// QQ
+	Qq string `protobuf:"bytes,19,opt,name=qq,proto3" json:"qq,omitempty"`
+	//楼号
 	RoomBuilding string `protobuf:"bytes,20,opt,name=roomBuilding,proto3" json:"roomBuilding,omitempty"`
-	RoomRoom     string `protobuf:"bytes,21,opt,name=roomRoom,proto3" json:"roomRoom,omitempty"`
-	RoomBed      string `protobuf:"bytes,22,opt,name=roomBed,proto3" json:"roomBed,omitempty"`
-	ComeDate     string `protobuf:"bytes,23,opt,name=comeDate,proto3" json:"comeDate,omitempty"`
-	High         string `protobuf:"bytes,24,opt,name=high,proto3" json:"high,omitempty"`
-	Station      string `protobuf:"bytes,25,opt,name=station,proto3" json:"station,omitempty"`
+	//寝室号
+	RoomRoom string `protobuf:"bytes,21,opt,name=roomRoom,proto3" json:"roomRoom,omitempty"`
+	//床号
+	RoomBed string `protobuf:"bytes,22,opt,name=roomBed,proto3" json:"roomBed,omitempty"`
+	//报到日期
+	ComeDate string `protobuf:"bytes,23,opt,name=comeDate,proto3" json:"comeDate,omitempty"`
+	// 身高（厘米）
+	High string `protobuf:"bytes,24,opt,name=high,proto3" json:"high,omitempty"`
+	//火车区间
+	Station string `protobuf:"bytes,25,opt,name=station,proto3" json:"station,omitempty"`
 }
 
 func (x *GetFreshmanInfoResponse) Reset() {
@@ -440,6 +450,7 @@ type GetFreshmanRoommatesResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 室友列表
 	Items []*GetFreshmanRoommatesResponse_Roommate `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 }
 

@@ -102,6 +102,7 @@ service StudentService {
 }
 
 message SemesterRequest {
+  // 学年，格式
   string schoolYear = 1;
   string semester = 2;
 }

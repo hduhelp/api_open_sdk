@@ -138,6 +138,7 @@
         "parameters": [
           {
             "name": "schoolYear",
+            "description": "学年，格式",
             "in": "query",
             "required": false,
             "type": "string"
@@ -247,6 +248,7 @@
         "parameters": [
           {
             "name": "schoolYear",
+            "description": "学年，格式",
             "in": "query",
             "required": false,
             "type": "string"
@@ -287,6 +289,7 @@
         "parameters": [
           {
             "name": "schoolYear",
+            "description": "学年，格式",
             "in": "query",
             "required": false,
             "type": "string"
@@ -425,6 +428,7 @@
         "parameters": [
           {
             "name": "schoolYear",
+            "description": "学年，格式",
             "in": "query",
             "required": false,
             "type": "string"
@@ -534,6 +538,7 @@
         "parameters": [
           {
             "name": "schoolYear",
+            "description": "学年，格式",
             "in": "query",
             "required": false,
             "type": "string"
@@ -574,6 +579,7 @@
         "parameters": [
           {
             "name": "schoolYear",
+            "description": "学年，格式",
             "in": "query",
             "required": false,
             "type": "string"

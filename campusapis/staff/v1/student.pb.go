@@ -29,6 +29,7 @@ type SemesterRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 学年，格式
 	SchoolYear string `protobuf:"bytes,1,opt,name=schoolYear,proto3" json:"schoolYear,omitempty"`
 	Semester   string `protobuf:"bytes,2,opt,name=semester,proto3" json:"semester,omitempty"`
 }

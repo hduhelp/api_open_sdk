@@ -18,7 +18,7 @@
   "paths": {
     "/freshman/base": {
       "get": {
-        "summary": "获取新生基本信息",
+        "summary": "获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件",
         "operationId": "FreshmanService_GetFreshmanBaseInfo2",
         "responses": {
           "200": {
@@ -156,7 +156,7 @@
     },
     "/staff/v1/freshman/base": {
       "get": {
-        "summary": "获取新生基本信息",
+        "summary": "获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件",
         "operationId": "FreshmanService_GetFreshmanBaseInfo",
         "responses": {
           "200": {
@@ -252,7 +252,7 @@
         "operationId": "FreshmanService_GetFreshmanRoommates",
         "responses": {
           "200": {
-            "description": "",
+            "description": "室友列表",
             "schema": {
               "type": "array",
               "items": {
@@ -416,10 +416,12 @@
           "type": "string"
         },
         "assistantName": {
-          "type": "string"
+          "type": "string",
+          "title": "班助姓名"
         },
         "assistantPhone": {
-          "type": "string"
+          "type": "string",
+          "title": "班助电话"
         },
         "hasPaid": {
           "type": "string",
@@ -436,28 +438,36 @@
           "type": "string"
         },
         "phone": {
-          "type": "string"
+          "type": "string",
+          "title": "电话"
         },
         "qq": {
-          "type": "string"
+          "type": "string",
+          "title": "QQ"
         },
         "roomBuilding": {
-          "type": "string"
+          "type": "string",
+          "title": "楼号"
         },
         "roomRoom": {
-          "type": "string"
+          "type": "string",
+          "title": "寝室号"
         },
         "roomBed": {
-          "type": "string"
+          "type": "string",
+          "title": "床号"
         },
         "comeDate": {
-          "type": "string"
+          "type": "string",
+          "title": "报到日期"
         },
         "high": {
-          "type": "string"
+          "type": "string",
+          "title": "身高（厘米）"
         },
         "station": {
-          "type": "string"
+          "type": "string",
+          "title": "火车区间"
         }
       },
       "title": "新生详细信息"
@@ -469,7 +479,8 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/GetFreshmanRoommatesResponseRoommate"
-          }
+          },
+          "title": "室友列表"
         }
       },
       "title": "新生室友查询"
