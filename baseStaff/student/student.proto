@@ -81,6 +81,7 @@ message GateAccessRequest {
   string TimeStart = 4;
   string TimeEnd = 5;
   string Uid = 6;
+  string Target = 7;
 }
 
 message GateAccessResponse {
