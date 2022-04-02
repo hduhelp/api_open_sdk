@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "SchoolTimeService"
+      "name": "LibraryService"
     }
   ],
   "consumes": [
@@ -19,7 +19,7 @@
     "/library/v1/book/info": {
       "get": {
         "summary": "查询书本信息",
-        "operationId": "SchoolTimeService_GetBookInfo",
+        "operationId": "LibraryService_GetBookInfo",
         "responses": {
           "200": {
             "description": "",
@@ -44,14 +44,14 @@
           }
         ],
         "tags": [
-          "SchoolTimeService"
+          "LibraryService"
         ]
       }
     },
     "/library/v1/book/info/list": {
       "get": {
         "summary": "查询书本信息列表，只能查询一个书籍的书本信息",
-        "operationId": "SchoolTimeService_GetBookInfoList",
+        "operationId": "LibraryService_GetBookInfoList",
         "responses": {
           "200": {
             "description": "",
@@ -79,14 +79,14 @@
           }
         ],
         "tags": [
-          "SchoolTimeService"
+          "LibraryService"
         ]
       }
     },
     "/library/v1/book/marc": {
       "get": {
         "summary": "查询书籍信息",
-        "operationId": "SchoolTimeService_GetBookMARC",
+        "operationId": "LibraryService_GetBookMARC",
         "responses": {
           "200": {
             "description": "",
@@ -116,14 +116,14 @@
           }
         ],
         "tags": [
-          "SchoolTimeService"
+          "LibraryService"
         ]
       }
     },
     "/library/v1/book/marc/list": {
       "get": {
         "summary": "查询书籍信息列表",
-        "operationId": "SchoolTimeService_GetBookMARCList",
+        "operationId": "LibraryService_GetBookMARCList",
         "responses": {
           "200": {
             "description": "",
@@ -304,7 +304,7 @@
           }
         ],
         "tags": [
-          "SchoolTimeService"
+          "LibraryService"
         ]
       }
     }

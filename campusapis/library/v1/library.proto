@@ -9,7 +9,7 @@ import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "campusapis/schoolTime/defined.proto";
 
-service SchoolTimeService {
+service LibraryService {
   //查询书本信息
   rpc GetBookInfo(GetBookInfoRequest) returns (GetBookInfoResponse) {
     option (google.api.http) = {

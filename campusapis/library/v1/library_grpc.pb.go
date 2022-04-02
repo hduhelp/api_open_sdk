@@ -18,10 +18,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// SchoolTimeServiceClient is the client API for SchoolTimeService service.
+// LibraryServiceClient is the client API for LibraryService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SchoolTimeServiceClient interface {
+type LibraryServiceClient interface {
 	//查询书本信息
 	GetBookInfo(ctx context.Context, in *GetBookInfoRequest, opts ...grpc.CallOption) (*GetBookInfoResponse, error)
 	//查询书本信息列表，只能查询一个书籍的书本信息
@@ -32,54 +32,54 @@ type SchoolTimeServiceClient interface {
 	GetBookMARCList(ctx context.Context, in *GetBookMARCListRequest, opts ...grpc.CallOption) (*GetBookMARCListResponse, error)
 }
 
-type schoolTimeServiceClient struct {
+type libraryServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSchoolTimeServiceClient(cc grpc.ClientConnInterface) SchoolTimeServiceClient {
-	return &schoolTimeServiceClient{cc}
+func NewLibraryServiceClient(cc grpc.ClientConnInterface) LibraryServiceClient {
+	return &libraryServiceClient{cc}
 }
 
-func (c *schoolTimeServiceClient) GetBookInfo(ctx context.Context, in *GetBookInfoRequest, opts ...grpc.CallOption) (*GetBookInfoResponse, error) {
+func (c *libraryServiceClient) GetBookInfo(ctx context.Context, in *GetBookInfoRequest, opts ...grpc.CallOption) (*GetBookInfoResponse, error) {
 	out := new(GetBookInfoResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.library.v1.SchoolTimeService/GetBookInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/campusapis.library.v1.LibraryService/GetBookInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *schoolTimeServiceClient) GetBookInfoList(ctx context.Context, in *GetBookInfoListRequest, opts ...grpc.CallOption) (*GetBookInfoListResponse, error) {
+func (c *libraryServiceClient) GetBookInfoList(ctx context.Context, in *GetBookInfoListRequest, opts ...grpc.CallOption) (*GetBookInfoListResponse, error) {
 	out := new(GetBookInfoListResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.library.v1.SchoolTimeService/GetBookInfoList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/campusapis.library.v1.LibraryService/GetBookInfoList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *schoolTimeServiceClient) GetBookMARC(ctx context.Context, in *GetBookMARCRequest, opts ...grpc.CallOption) (*GetBookMARCResponse, error) {
+func (c *libraryServiceClient) GetBookMARC(ctx context.Context, in *GetBookMARCRequest, opts ...grpc.CallOption) (*GetBookMARCResponse, error) {
 	out := new(GetBookMARCResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.library.v1.SchoolTimeService/GetBookMARC", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/campusapis.library.v1.LibraryService/GetBookMARC", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *schoolTimeServiceClient) GetBookMARCList(ctx context.Context, in *GetBookMARCListRequest, opts ...grpc.CallOption) (*GetBookMARCListResponse, error) {
+func (c *libraryServiceClient) GetBookMARCList(ctx context.Context, in *GetBookMARCListRequest, opts ...grpc.CallOption) (*GetBookMARCListResponse, error) {
 	out := new(GetBookMARCListResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.library.v1.SchoolTimeService/GetBookMARCList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/campusapis.library.v1.LibraryService/GetBookMARCList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SchoolTimeServiceServer is the server API for SchoolTimeService service.
-// All implementations should embed UnimplementedSchoolTimeServiceServer
+// LibraryServiceServer is the server API for LibraryService service.
+// All implementations should embed UnimplementedLibraryServiceServer
 // for forward compatibility
-type SchoolTimeServiceServer interface {
+type LibraryServiceServer interface {
 	//查询书本信息
 	GetBookInfo(context.Context, *GetBookInfoRequest) (*GetBookInfoResponse, error)
 	//查询书本信息列表，只能查询一个书籍的书本信息
@@ -90,128 +90,128 @@ type SchoolTimeServiceServer interface {
 	GetBookMARCList(context.Context, *GetBookMARCListRequest) (*GetBookMARCListResponse, error)
 }
 
-// UnimplementedSchoolTimeServiceServer should be embedded to have forward compatible implementations.
-type UnimplementedSchoolTimeServiceServer struct {
+// UnimplementedLibraryServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedLibraryServiceServer struct {
 }
 
-func (UnimplementedSchoolTimeServiceServer) GetBookInfo(context.Context, *GetBookInfoRequest) (*GetBookInfoResponse, error) {
+func (UnimplementedLibraryServiceServer) GetBookInfo(context.Context, *GetBookInfoRequest) (*GetBookInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookInfo not implemented")
 }
-func (UnimplementedSchoolTimeServiceServer) GetBookInfoList(context.Context, *GetBookInfoListRequest) (*GetBookInfoListResponse, error) {
+func (UnimplementedLibraryServiceServer) GetBookInfoList(context.Context, *GetBookInfoListRequest) (*GetBookInfoListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookInfoList not implemented")
 }
-func (UnimplementedSchoolTimeServiceServer) GetBookMARC(context.Context, *GetBookMARCRequest) (*GetBookMARCResponse, error) {
+func (UnimplementedLibraryServiceServer) GetBookMARC(context.Context, *GetBookMARCRequest) (*GetBookMARCResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookMARC not implemented")
 }
-func (UnimplementedSchoolTimeServiceServer) GetBookMARCList(context.Context, *GetBookMARCListRequest) (*GetBookMARCListResponse, error) {
+func (UnimplementedLibraryServiceServer) GetBookMARCList(context.Context, *GetBookMARCListRequest) (*GetBookMARCListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookMARCList not implemented")
 }
 
-// UnsafeSchoolTimeServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SchoolTimeServiceServer will
+// UnsafeLibraryServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to LibraryServiceServer will
 // result in compilation errors.
-type UnsafeSchoolTimeServiceServer interface {
-	mustEmbedUnimplementedSchoolTimeServiceServer()
+type UnsafeLibraryServiceServer interface {
+	mustEmbedUnimplementedLibraryServiceServer()
 }
 
-func RegisterSchoolTimeServiceServer(s grpc.ServiceRegistrar, srv SchoolTimeServiceServer) {
-	s.RegisterService(&SchoolTimeService_ServiceDesc, srv)
+func RegisterLibraryServiceServer(s grpc.ServiceRegistrar, srv LibraryServiceServer) {
+	s.RegisterService(&LibraryService_ServiceDesc, srv)
 }
 
-func _SchoolTimeService_GetBookInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _LibraryService_GetBookInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBookInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SchoolTimeServiceServer).GetBookInfo(ctx, in)
+		return srv.(LibraryServiceServer).GetBookInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.library.v1.SchoolTimeService/GetBookInfo",
+		FullMethod: "/campusapis.library.v1.LibraryService/GetBookInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SchoolTimeServiceServer).GetBookInfo(ctx, req.(*GetBookInfoRequest))
+		return srv.(LibraryServiceServer).GetBookInfo(ctx, req.(*GetBookInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SchoolTimeService_GetBookInfoList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _LibraryService_GetBookInfoList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBookInfoListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SchoolTimeServiceServer).GetBookInfoList(ctx, in)
+		return srv.(LibraryServiceServer).GetBookInfoList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.library.v1.SchoolTimeService/GetBookInfoList",
+		FullMethod: "/campusapis.library.v1.LibraryService/GetBookInfoList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SchoolTimeServiceServer).GetBookInfoList(ctx, req.(*GetBookInfoListRequest))
+		return srv.(LibraryServiceServer).GetBookInfoList(ctx, req.(*GetBookInfoListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SchoolTimeService_GetBookMARC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _LibraryService_GetBookMARC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBookMARCRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SchoolTimeServiceServer).GetBookMARC(ctx, in)
+		return srv.(LibraryServiceServer).GetBookMARC(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.library.v1.SchoolTimeService/GetBookMARC",
+		FullMethod: "/campusapis.library.v1.LibraryService/GetBookMARC",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SchoolTimeServiceServer).GetBookMARC(ctx, req.(*GetBookMARCRequest))
+		return srv.(LibraryServiceServer).GetBookMARC(ctx, req.(*GetBookMARCRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SchoolTimeService_GetBookMARCList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _LibraryService_GetBookMARCList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBookMARCListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SchoolTimeServiceServer).GetBookMARCList(ctx, in)
+		return srv.(LibraryServiceServer).GetBookMARCList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.library.v1.SchoolTimeService/GetBookMARCList",
+		FullMethod: "/campusapis.library.v1.LibraryService/GetBookMARCList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SchoolTimeServiceServer).GetBookMARCList(ctx, req.(*GetBookMARCListRequest))
+		return srv.(LibraryServiceServer).GetBookMARCList(ctx, req.(*GetBookMARCListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// SchoolTimeService_ServiceDesc is the grpc.ServiceDesc for SchoolTimeService service.
+// LibraryService_ServiceDesc is the grpc.ServiceDesc for LibraryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var SchoolTimeService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "campusapis.library.v1.SchoolTimeService",
-	HandlerType: (*SchoolTimeServiceServer)(nil),
+var LibraryService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "campusapis.library.v1.LibraryService",
+	HandlerType: (*LibraryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetBookInfo",
-			Handler:    _SchoolTimeService_GetBookInfo_Handler,
+			Handler:    _LibraryService_GetBookInfo_Handler,
 		},
 		{
 			MethodName: "GetBookInfoList",
-			Handler:    _SchoolTimeService_GetBookInfoList_Handler,
+			Handler:    _LibraryService_GetBookInfoList_Handler,
 		},
 		{
 			MethodName: "GetBookMARC",
-			Handler:    _SchoolTimeService_GetBookMARC_Handler,
+			Handler:    _LibraryService_GetBookMARC_Handler,
 		},
 		{
 			MethodName: "GetBookMARCList",
-			Handler:    _SchoolTimeService_GetBookMARCList_Handler,
+			Handler:    _LibraryService_GetBookMARCList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

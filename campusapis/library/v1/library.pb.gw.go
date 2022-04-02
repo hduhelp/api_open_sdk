@@ -32,17 +32,17 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_SchoolTimeService_GetBookInfo_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_LibraryService_GetBookInfo_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_SchoolTimeService_GetBookInfo_0(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LibraryService_GetBookInfo_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetBookInfoRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetBookInfo_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_LibraryService_GetBookInfo_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -51,14 +51,14 @@ func request_SchoolTimeService_GetBookInfo_0(ctx context.Context, marshaler runt
 
 }
 
-func local_request_SchoolTimeService_GetBookInfo_0(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LibraryService_GetBookInfo_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetBookInfoRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetBookInfo_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_LibraryService_GetBookInfo_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -68,17 +68,17 @@ func local_request_SchoolTimeService_GetBookInfo_0(ctx context.Context, marshale
 }
 
 var (
-	filter_SchoolTimeService_GetBookInfoList_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_LibraryService_GetBookInfoList_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_SchoolTimeService_GetBookInfoList_0(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LibraryService_GetBookInfoList_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetBookInfoListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetBookInfoList_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_LibraryService_GetBookInfoList_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -87,14 +87,14 @@ func request_SchoolTimeService_GetBookInfoList_0(ctx context.Context, marshaler 
 
 }
 
-func local_request_SchoolTimeService_GetBookInfoList_0(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LibraryService_GetBookInfoList_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetBookInfoListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetBookInfoList_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_LibraryService_GetBookInfoList_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -104,17 +104,17 @@ func local_request_SchoolTimeService_GetBookInfoList_0(ctx context.Context, mars
 }
 
 var (
-	filter_SchoolTimeService_GetBookMARC_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_LibraryService_GetBookMARC_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_SchoolTimeService_GetBookMARC_0(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LibraryService_GetBookMARC_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetBookMARCRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetBookMARC_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_LibraryService_GetBookMARC_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -123,14 +123,14 @@ func request_SchoolTimeService_GetBookMARC_0(ctx context.Context, marshaler runt
 
 }
 
-func local_request_SchoolTimeService_GetBookMARC_0(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LibraryService_GetBookMARC_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetBookMARCRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetBookMARC_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_LibraryService_GetBookMARC_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -140,17 +140,17 @@ func local_request_SchoolTimeService_GetBookMARC_0(ctx context.Context, marshale
 }
 
 var (
-	filter_SchoolTimeService_GetBookMARCList_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_LibraryService_GetBookMARCList_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_SchoolTimeService_GetBookMARCList_0(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LibraryService_GetBookMARCList_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetBookMARCListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetBookMARCList_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_LibraryService_GetBookMARCList_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -159,14 +159,14 @@ func request_SchoolTimeService_GetBookMARCList_0(ctx context.Context, marshaler 
 
 }
 
-func local_request_SchoolTimeService_GetBookMARCList_0(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LibraryService_GetBookMARCList_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetBookMARCListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetBookMARCList_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_LibraryService_GetBookMARCList_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -175,25 +175,25 @@ func local_request_SchoolTimeService_GetBookMARCList_0(ctx context.Context, mars
 
 }
 
-// RegisterSchoolTimeServiceHandlerServer registers the http handlers for service SchoolTimeService to "mux".
-// UnaryRPC     :call SchoolTimeServiceServer directly.
+// RegisterLibraryServiceHandlerServer registers the http handlers for service LibraryService to "mux".
+// UnaryRPC     :call LibraryServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSchoolTimeServiceHandlerFromEndpoint instead.
-func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SchoolTimeServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterLibraryServiceHandlerFromEndpoint instead.
+func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server LibraryServiceServer) error {
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetBookInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LibraryService_GetBookInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.SchoolTimeService/GetBookInfo", runtime.WithHTTPPathPattern("/library/v1/book/info"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetBookInfo", runtime.WithHTTPPathPattern("/library/v1/book/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SchoolTimeService_GetBookInfo_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LibraryService_GetBookInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -201,23 +201,23 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetBookInfo_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetBookInfo_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookInfo_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookInfo_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetBookInfoList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LibraryService_GetBookInfoList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.SchoolTimeService/GetBookInfoList", runtime.WithHTTPPathPattern("/library/v1/book/info/list"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetBookInfoList", runtime.WithHTTPPathPattern("/library/v1/book/info/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SchoolTimeService_GetBookInfoList_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LibraryService_GetBookInfoList_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -225,23 +225,23 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetBookInfoList_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetBookInfoList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookInfoList_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookInfoList_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetBookMARC_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LibraryService_GetBookMARC_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.SchoolTimeService/GetBookMARC", runtime.WithHTTPPathPattern("/library/v1/book/marc"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetBookMARC", runtime.WithHTTPPathPattern("/library/v1/book/marc"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SchoolTimeService_GetBookMARC_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LibraryService_GetBookMARC_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -249,23 +249,23 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetBookMARC_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetBookMARC_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookMARC_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookMARC_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetBookMARCList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LibraryService_GetBookMARCList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.SchoolTimeService/GetBookMARCList", runtime.WithHTTPPathPattern("/library/v1/book/marc/list"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetBookMARCList", runtime.WithHTTPPathPattern("/library/v1/book/marc/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SchoolTimeService_GetBookMARCList_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LibraryService_GetBookMARCList_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -273,16 +273,16 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetBookMARCList_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetBookMARCList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookMARCList_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookMARCList_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterSchoolTimeServiceHandlerFromEndpoint is same as RegisterSchoolTimeServiceHandler but
+// RegisterLibraryServiceHandlerFromEndpoint is same as RegisterLibraryServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterSchoolTimeServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterLibraryServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -302,161 +302,161 @@ func RegisterSchoolTimeServiceHandlerFromEndpoint(ctx context.Context, mux *runt
 		}()
 	}()
 
-	return RegisterSchoolTimeServiceHandler(ctx, mux, conn)
+	return RegisterLibraryServiceHandler(ctx, mux, conn)
 }
 
-// RegisterSchoolTimeServiceHandler registers the http handlers for service SchoolTimeService to "mux".
+// RegisterLibraryServiceHandler registers the http handlers for service LibraryService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterSchoolTimeServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterSchoolTimeServiceHandlerClient(ctx, mux, NewSchoolTimeServiceClient(conn))
+func RegisterLibraryServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterLibraryServiceHandlerClient(ctx, mux, NewLibraryServiceClient(conn))
 }
 
-// RegisterSchoolTimeServiceHandlerClient registers the http handlers for service SchoolTimeService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "SchoolTimeServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "SchoolTimeServiceClient"
+// RegisterLibraryServiceHandlerClient registers the http handlers for service LibraryService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "LibraryServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "LibraryServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "SchoolTimeServiceClient" to call the correct interceptors.
-func RegisterSchoolTimeServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SchoolTimeServiceClient) error {
+// "LibraryServiceClient" to call the correct interceptors.
+func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client LibraryServiceClient) error {
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetBookInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LibraryService_GetBookInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.SchoolTimeService/GetBookInfo", runtime.WithHTTPPathPattern("/library/v1/book/info"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetBookInfo", runtime.WithHTTPPathPattern("/library/v1/book/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SchoolTimeService_GetBookInfo_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LibraryService_GetBookInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SchoolTimeService_GetBookInfo_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetBookInfo_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookInfo_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookInfo_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetBookInfoList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LibraryService_GetBookInfoList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.SchoolTimeService/GetBookInfoList", runtime.WithHTTPPathPattern("/library/v1/book/info/list"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetBookInfoList", runtime.WithHTTPPathPattern("/library/v1/book/info/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SchoolTimeService_GetBookInfoList_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LibraryService_GetBookInfoList_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SchoolTimeService_GetBookInfoList_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetBookInfoList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookInfoList_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookInfoList_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetBookMARC_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LibraryService_GetBookMARC_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.SchoolTimeService/GetBookMARC", runtime.WithHTTPPathPattern("/library/v1/book/marc"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetBookMARC", runtime.WithHTTPPathPattern("/library/v1/book/marc"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SchoolTimeService_GetBookMARC_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LibraryService_GetBookMARC_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SchoolTimeService_GetBookMARC_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetBookMARC_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookMARC_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookMARC_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetBookMARCList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LibraryService_GetBookMARCList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.SchoolTimeService/GetBookMARCList", runtime.WithHTTPPathPattern("/library/v1/book/marc/list"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetBookMARCList", runtime.WithHTTPPathPattern("/library/v1/book/marc/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SchoolTimeService_GetBookMARCList_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LibraryService_GetBookMARCList_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SchoolTimeService_GetBookMARCList_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetBookMARCList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookMARCList_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookMARCList_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-type response_SchoolTimeService_GetBookInfo_0 struct {
+type response_LibraryService_GetBookInfo_0 struct {
 	proto.Message
 }
 
-func (m response_SchoolTimeService_GetBookInfo_0) XXX_ResponseBody() interface{} {
+func (m response_LibraryService_GetBookInfo_0) XXX_ResponseBody() interface{} {
 	response := m.Message.(*GetBookInfoResponse)
 	return response.Book
 }
 
-type response_SchoolTimeService_GetBookInfoList_0 struct {
+type response_LibraryService_GetBookInfoList_0 struct {
 	proto.Message
 }
 
-func (m response_SchoolTimeService_GetBookInfoList_0) XXX_ResponseBody() interface{} {
+func (m response_LibraryService_GetBookInfoList_0) XXX_ResponseBody() interface{} {
 	response := m.Message.(*GetBookInfoListResponse)
 	return response.Books
 }
 
-type response_SchoolTimeService_GetBookMARC_0 struct {
+type response_LibraryService_GetBookMARC_0 struct {
 	proto.Message
 }
 
-func (m response_SchoolTimeService_GetBookMARC_0) XXX_ResponseBody() interface{} {
+func (m response_LibraryService_GetBookMARC_0) XXX_ResponseBody() interface{} {
 	response := m.Message.(*GetBookMARCResponse)
 	return response.Marc
 }
 
-type response_SchoolTimeService_GetBookMARCList_0 struct {
+type response_LibraryService_GetBookMARCList_0 struct {
 	proto.Message
 }
 
-func (m response_SchoolTimeService_GetBookMARCList_0) XXX_ResponseBody() interface{} {
+func (m response_LibraryService_GetBookMARCList_0) XXX_ResponseBody() interface{} {
 	response := m.Message.(*GetBookMARCListResponse)
 	return response.Marcs
 }
 
 var (
-	pattern_SchoolTimeService_GetBookInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "book", "info"}, ""))
+	pattern_LibraryService_GetBookInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "book", "info"}, ""))
 
-	pattern_SchoolTimeService_GetBookInfoList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"library", "v1", "book", "info", "list"}, ""))
+	pattern_LibraryService_GetBookInfoList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"library", "v1", "book", "info", "list"}, ""))
 
-	pattern_SchoolTimeService_GetBookMARC_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "book", "marc"}, ""))
+	pattern_LibraryService_GetBookMARC_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "book", "marc"}, ""))
 
-	pattern_SchoolTimeService_GetBookMARCList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"library", "v1", "book", "marc", "list"}, ""))
+	pattern_LibraryService_GetBookMARCList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"library", "v1", "book", "marc", "list"}, ""))
 )
 
 var (
-	forward_SchoolTimeService_GetBookInfo_0 = runtime.ForwardResponseMessage
+	forward_LibraryService_GetBookInfo_0 = runtime.ForwardResponseMessage
 
-	forward_SchoolTimeService_GetBookInfoList_0 = runtime.ForwardResponseMessage
+	forward_LibraryService_GetBookInfoList_0 = runtime.ForwardResponseMessage
 
-	forward_SchoolTimeService_GetBookMARC_0 = runtime.ForwardResponseMessage
+	forward_LibraryService_GetBookMARC_0 = runtime.ForwardResponseMessage
 
-	forward_SchoolTimeService_GetBookMARCList_0 = runtime.ForwardResponseMessage
+	forward_LibraryService_GetBookMARCList_0 = runtime.ForwardResponseMessage
 )
