@@ -19,8 +19,8 @@ service SchoolTimeService {
       }
     };
   }
-  // 获取学校学期信息
-  rpc GetSemesterInfo (GetSemesterListRequest) returns (GetSemesterListResponse) {
+  // 获取学校学期信息列表
+  rpc GetSemesterList (GetSemesterListRequest) returns (GetSemesterListResponse) {
     option (google.api.http) = {
       get: "/schooltime/v1/semester/listByDate"
       response_body: "items"

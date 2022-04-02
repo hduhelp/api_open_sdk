@@ -18,8 +18,8 @@
   "paths": {
     "/schooltime/v1/semester/listByDate": {
       "get": {
-        "summary": "获取学校学期信息",
-        "operationId": "SchoolTimeService_GetSemesterInfo",
+        "summary": "获取学校学期信息列表",
+        "operationId": "SchoolTimeService_GetSemesterList",
         "responses": {
           "200": {
             "description": "",
@@ -81,8 +81,8 @@
     },
     "/semester/listByDate": {
       "get": {
-        "summary": "获取学校学期信息",
-        "operationId": "SchoolTimeService_GetSemesterInfo2",
+        "summary": "获取学校学期信息列表",
+        "operationId": "SchoolTimeService_GetSemesterList2",
         "responses": {
           "200": {
             "description": "",

@@ -25,8 +25,8 @@ const _ = grpc.SupportPackageIsVersion7
 type SchoolTimeServiceClient interface {
 	// 获取当前学校时间
 	GetSchoolTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetSchoolTimeResponse, error)
-	// 获取学校学期信息
-	GetSemesterInfo(ctx context.Context, in *GetSemesterListRequest, opts ...grpc.CallOption) (*GetSemesterListResponse, error)
+	// 获取学校学期信息列表
+	GetSemesterList(ctx context.Context, in *GetSemesterListRequest, opts ...grpc.CallOption) (*GetSemesterListResponse, error)
 }
 
 type schoolTimeServiceClient struct {
@@ -46,9 +46,9 @@ func (c *schoolTimeServiceClient) GetSchoolTime(ctx context.Context, in *emptypb
 	return out, nil
 }
 
-func (c *schoolTimeServiceClient) GetSemesterInfo(ctx context.Context, in *GetSemesterListRequest, opts ...grpc.CallOption) (*GetSemesterListResponse, error) {
+func (c *schoolTimeServiceClient) GetSemesterList(ctx context.Context, in *GetSemesterListRequest, opts ...grpc.CallOption) (*GetSemesterListResponse, error) {
 	out := new(GetSemesterListResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,8 +61,8 @@ func (c *schoolTimeServiceClient) GetSemesterInfo(ctx context.Context, in *GetSe
 type SchoolTimeServiceServer interface {
 	// 获取当前学校时间
 	GetSchoolTime(context.Context, *emptypb.Empty) (*GetSchoolTimeResponse, error)
-	// 获取学校学期信息
-	GetSemesterInfo(context.Context, *GetSemesterListRequest) (*GetSemesterListResponse, error)
+	// 获取学校学期信息列表
+	GetSemesterList(context.Context, *GetSemesterListRequest) (*GetSemesterListResponse, error)
 }
 
 // UnimplementedSchoolTimeServiceServer should be embedded to have forward compatible implementations.
@@ -72,8 +72,8 @@ type UnimplementedSchoolTimeServiceServer struct {
 func (UnimplementedSchoolTimeServiceServer) GetSchoolTime(context.Context, *emptypb.Empty) (*GetSchoolTimeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSchoolTime not implemented")
 }
-func (UnimplementedSchoolTimeServiceServer) GetSemesterInfo(context.Context, *GetSemesterListRequest) (*GetSemesterListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSemesterInfo not implemented")
+func (UnimplementedSchoolTimeServiceServer) GetSemesterList(context.Context, *GetSemesterListRequest) (*GetSemesterListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSemesterList not implemented")
 }
 
 // UnsafeSchoolTimeServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -105,20 +105,20 @@ func _SchoolTimeService_GetSchoolTime_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SchoolTimeService_GetSemesterInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SchoolTimeService_GetSemesterList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSemesterListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SchoolTimeServiceServer).GetSemesterInfo(ctx, in)
+		return srv.(SchoolTimeServiceServer).GetSemesterList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterInfo",
+		FullMethod: "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SchoolTimeServiceServer).GetSemesterInfo(ctx, req.(*GetSemesterListRequest))
+		return srv.(SchoolTimeServiceServer).GetSemesterList(ctx, req.(*GetSemesterListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -135,8 +135,8 @@ var SchoolTimeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SchoolTimeService_GetSchoolTime_Handler,
 		},
 		{
-			MethodName: "GetSemesterInfo",
-			Handler:    _SchoolTimeService_GetSemesterInfo_Handler,
+			MethodName: "GetSemesterList",
+			Handler:    _SchoolTimeService_GetSemesterList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

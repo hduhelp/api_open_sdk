@@ -69,73 +69,73 @@ func local_request_SchoolTimeService_GetSchoolTime_1(ctx context.Context, marsha
 }
 
 var (
-	filter_SchoolTimeService_GetSemesterInfo_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_SchoolTimeService_GetSemesterList_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_SchoolTimeService_GetSemesterInfo_0(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SchoolTimeService_GetSemesterList_0(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetSemesterListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterInfo_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterList_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetSemesterInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetSemesterList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_SchoolTimeService_GetSemesterInfo_0(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_SchoolTimeService_GetSemesterList_0(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetSemesterListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterInfo_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterList_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetSemesterInfo(ctx, &protoReq)
+	msg, err := server.GetSemesterList(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_SchoolTimeService_GetSemesterInfo_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_SchoolTimeService_GetSemesterList_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_SchoolTimeService_GetSemesterInfo_1(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SchoolTimeService_GetSemesterList_1(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetSemesterListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterInfo_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterList_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetSemesterInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetSemesterList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_SchoolTimeService_GetSemesterInfo_1(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_SchoolTimeService_GetSemesterList_1(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetSemesterListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterInfo_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterList_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetSemesterInfo(ctx, &protoReq)
+	msg, err := server.GetSemesterList(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -194,19 +194,19 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetSemesterInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SchoolTimeService_GetSemesterList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterInfo", runtime.WithHTTPPathPattern("/schooltime/v1/semester/listByDate"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterList", runtime.WithHTTPPathPattern("/schooltime/v1/semester/listByDate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SchoolTimeService_GetSemesterInfo_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SchoolTimeService_GetSemesterList_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -214,23 +214,23 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetSemesterInfo_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterInfo_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_SchoolTimeService_GetSemesterList_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterList_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetSemesterInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SchoolTimeService_GetSemesterList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterInfo", runtime.WithHTTPPathPattern("/semester/listByDate"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterList", runtime.WithHTTPPathPattern("/semester/listByDate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SchoolTimeService_GetSemesterInfo_1(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SchoolTimeService_GetSemesterList_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -238,7 +238,7 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetSemesterInfo_1(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterInfo_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_SchoolTimeService_GetSemesterList_1(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterList_1{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -325,65 +325,65 @@ func RegisterSchoolTimeServiceHandlerClient(ctx context.Context, mux *runtime.Se
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetSemesterInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SchoolTimeService_GetSemesterList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterInfo", runtime.WithHTTPPathPattern("/schooltime/v1/semester/listByDate"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterList", runtime.WithHTTPPathPattern("/schooltime/v1/semester/listByDate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SchoolTimeService_GetSemesterInfo_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SchoolTimeService_GetSemesterList_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SchoolTimeService_GetSemesterInfo_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterInfo_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_SchoolTimeService_GetSemesterList_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterList_0{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SchoolTimeService_GetSemesterInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SchoolTimeService_GetSemesterList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterInfo", runtime.WithHTTPPathPattern("/semester/listByDate"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterList", runtime.WithHTTPPathPattern("/semester/listByDate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SchoolTimeService_GetSemesterInfo_1(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SchoolTimeService_GetSemesterList_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SchoolTimeService_GetSemesterInfo_1(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterInfo_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_SchoolTimeService_GetSemesterList_1(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterList_1{resp}, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-type response_SchoolTimeService_GetSemesterInfo_0 struct {
+type response_SchoolTimeService_GetSemesterList_0 struct {
 	proto.Message
 }
 
-func (m response_SchoolTimeService_GetSemesterInfo_0) XXX_ResponseBody() interface{} {
+func (m response_SchoolTimeService_GetSemesterList_0) XXX_ResponseBody() interface{} {
 	response := m.Message.(*GetSemesterListResponse)
 	return response.Items
 }
 
-type response_SchoolTimeService_GetSemesterInfo_1 struct {
+type response_SchoolTimeService_GetSemesterList_1 struct {
 	proto.Message
 }
 
-func (m response_SchoolTimeService_GetSemesterInfo_1) XXX_ResponseBody() interface{} {
+func (m response_SchoolTimeService_GetSemesterList_1) XXX_ResponseBody() interface{} {
 	response := m.Message.(*GetSemesterListResponse)
 	return response.Items
 }
@@ -393,9 +393,9 @@ var (
 
 	pattern_SchoolTimeService_GetSchoolTime_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"time"}, ""))
 
-	pattern_SchoolTimeService_GetSemesterInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"schooltime", "v1", "semester", "listByDate"}, ""))
+	pattern_SchoolTimeService_GetSemesterList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"schooltime", "v1", "semester", "listByDate"}, ""))
 
-	pattern_SchoolTimeService_GetSemesterInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"semester", "listByDate"}, ""))
+	pattern_SchoolTimeService_GetSemesterList_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"semester", "listByDate"}, ""))
 )
 
 var (
@@ -403,7 +403,7 @@ var (
 
 	forward_SchoolTimeService_GetSchoolTime_1 = runtime.ForwardResponseMessage
 
-	forward_SchoolTimeService_GetSemesterInfo_0 = runtime.ForwardResponseMessage
+	forward_SchoolTimeService_GetSemesterList_0 = runtime.ForwardResponseMessage
 
-	forward_SchoolTimeService_GetSemesterInfo_1 = runtime.ForwardResponseMessage
+	forward_SchoolTimeService_GetSemesterList_1 = runtime.ForwardResponseMessage
 )
