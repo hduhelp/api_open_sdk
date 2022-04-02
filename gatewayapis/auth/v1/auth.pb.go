@@ -26,6 +26,7 @@ type UserIdListRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 助手user_id列表
 	UserIds []string `protobuf:"bytes,1,rep,name=userIds,proto3" json:"userIds,omitempty"`
 }
 
@@ -68,11 +69,13 @@ func (x *UserIdListRequest) GetUserIds() []string {
 	return nil
 }
 
+// 用户绑定信息查询响应
 type BindListResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 绑定信息列表
 	Items []*Bind `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 }
 
@@ -115,17 +118,35 @@ func (x *BindListResponse) GetItems() []*Bind {
 	return nil
 }
 
+// 用户绑定信息
 type Bind struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId     string           `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	Platform   string           `protobuf:"bytes,2,opt,name=platform,proto3" json:"platform,omitempty"`
-	Uid        string           `protobuf:"bytes,3,opt,name=uid,proto3" json:"uid,omitempty"`
-	Uid2       string           `protobuf:"bytes,4,opt,name=uid2,proto3" json:"uid2,omitempty"`
-	Primary    bool             `protobuf:"varint,5,opt,name=primary,proto3" json:"primary,omitempty"`
-	Remark     string           `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark,omitempty"`
+	// 助手用户user_id
+	UserId string `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	// 绑定平台：
+	// platform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；
+	// platform=qzu 衢州学院学（工）号，uid 为学工号
+	// platform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；
+	// platform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；
+	// platform=idCard 身份证，uid 为身份证号；
+	// platform=alipay 支付宝, uid todo
+	// platform=apple 苹果，uid todo, uid2 todo
+	// platform=github github, uid todo, uid2 todo
+	// platform=qq QQ号，uid todo, uid2 todo
+	// platform=yiban 易班，uid todo
+	Platform string `protobuf:"bytes,2,opt,name=platform,proto3" json:"platform,omitempty"`
+	// uid 不同平台含义不同，见 platform 解释
+	Uid string `protobuf:"bytes,3,opt,name=uid,proto3" json:"uid,omitempty"`
+	// uid 不同平台含义不同，见 platform 解释
+	Uid2 string `protobuf:"bytes,4,opt,name=uid2,proto3" json:"uid2,omitempty"`
+	// 是否为主学工号
+	Primary bool `protobuf:"varint,5,opt,name=primary,proto3" json:"primary,omitempty"`
+	// 备注
+	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark,omitempty"`
+	// 额外信息，json 格式
 	Attributes *structpb.Struct `protobuf:"bytes,7,opt,name=attributes,proto3" json:"attributes,omitempty"`
 }
 
