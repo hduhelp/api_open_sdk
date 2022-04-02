@@ -8,6 +8,7 @@ import "baseStaff/baseStaff.proto";
 import "campusapis/schoolTime/defined.proto";
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
@@ -46,7 +47,7 @@ service TeachingService {
     };
   }
   // 获取学生/教师当前课程表
-  rpc GetScheduleNow(GetScheduleRequest) returns (GetScheduleNowResponse) {
+  rpc GetScheduleNow(google.protobuf.Empty) returns (GetScheduleNowResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/schedule/now"
       additional_bindings {
@@ -55,7 +56,7 @@ service TeachingService {
     };
   }
   // 获取学生/教师当前课程表V2 返回更详细的信息
-  rpc GetScheduleNowV2(GetScheduleRequest) returns (GetScheduleNowV2Response) {
+  rpc GetScheduleNowV2(google.protobuf.Empty) returns (GetScheduleNowV2Response) {
     option (google.api.http) = {
       get: "/teaching/v1/schedule/v2/now"
       additional_bindings {

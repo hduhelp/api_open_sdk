@@ -47,46 +47,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "semester",
-            "description": "学期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "description": "学年 支持多种格式 如：2019-2020 2019",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "timestamp",
-            "description": "时间戳",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "week",
-            "description": "周次",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "weekday",
-            "description": "星期几",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
         "tags": [
           "TeachingService"
         ]
@@ -176,46 +136,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "semester",
-            "description": "学期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "description": "学年 支持多种格式 如：2019-2020 2019",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "timestamp",
-            "description": "时间戳",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "week",
-            "description": "周次",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "weekday",
-            "description": "星期几",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
         "tags": [
           "TeachingService"
         ]
@@ -681,46 +601,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "semester",
-            "description": "学期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "description": "学年 支持多种格式 如：2019-2020 2019",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "timestamp",
-            "description": "时间戳",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "week",
-            "description": "周次",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "weekday",
-            "description": "星期几",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
         "tags": [
           "TeachingService"
         ]
@@ -744,46 +624,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "semester",
-            "description": "学期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "description": "学年 支持多种格式 如：2019-2020 2019",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "timestamp",
-            "description": "时间戳",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "week",
-            "description": "周次",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "weekday",
-            "description": "星期几",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
         "tags": [
           "TeachingService"
         ]
