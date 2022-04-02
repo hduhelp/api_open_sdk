@@ -13,7 +13,15 @@ func (x *Courses) GetScheduleResponseCourse() (list []*ScheduleResponseCourse) {
 	for _, v := range x.Items {
 		list = append(list, v.ToScheduleResponseCourse())
 	}
-	return
+	return list
+}
+
+func (i CourseItems) ToGetScheduleResponse() (list []*ScheduleResponseCourse) {
+	list = make([]*ScheduleResponseCourse, 0)
+	for _, v := range i {
+		list = append(list, v.ToScheduleResponseCourse())
+	}
+	return list
 }
 
 func (x *CourseItem) ToScheduleResponseCourse() *ScheduleResponseCourse {
