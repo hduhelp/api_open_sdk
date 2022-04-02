@@ -45,6 +45,24 @@ service TeachingService {
       }
     };
   }
+  // 获取学生/教师当前课程表
+  rpc GetScheduleNow(GetScheduleRequest) returns (GetScheduleNowResponse) {
+    option (google.api.http) = {
+      get: "/teaching/v1/schedule/now"
+      additional_bindings {
+        get: "/student/schedule/now"
+      }
+    };
+  }
+  // 获取学生/教师当前课程表V2 返回更详细的信息
+  rpc GetScheduleNowV2(GetScheduleRequest) returns (GetScheduleNowV2Response) {
+    option (google.api.http) = {
+      get: "/teaching/v1/schedule/v2/now"
+      additional_bindings {
+        get: "/student/v2/schedule/now"
+      }
+    };
+  }
   // 获取所有教室列表
   rpc GetClassrooms (GetClassroomsRequest) returns (ClassroomsResponse) {
     option (google.api.http) = {
@@ -89,7 +107,7 @@ service TeachingService {
 message GetScheduleRequest {
   //学期
   string semester = 1;
-  //学年
+  //学年 支持多种格式 如：2019-2020 2019
   string schoolYear = 2;
   //时间戳
   uint32 timestamp = 3;
@@ -101,38 +119,38 @@ message GetScheduleRequest {
 
 // GetScheduleResponse 课表返回体
 message GetScheduleResponse {
-  message Course {
-    message StaffInfo {
-      string StaffID = 1;
-      string StaffName = 2;
-      int32 StaffType = 3;
-    }
+  repeated ScheduleResponseCourse items = 1;
+}
 
-    message Schedule {
-      string Location = 1;
-      int32 SeatsNum = 2;
-      repeated int32 Section = 3;
-      repeated StaffInfo Teachers = 4;
-      repeated StaffInfo Students = 5;
-      repeated int32 Week = 6;
-      int32 WeekDay = 7;
-      bool IsThisWeek = 8;
-      uint32 StartTime = 9;
-      uint32 EndTime = 10;
-    }
-
-    string ClassID = 1;
-    string ClassName = 2;
-    string ClassTime = 3;
-    string CourseID = 4;
-    string CourseName = 5;
-    string Credit = 6;
-    repeated Schedule Schedules = 7;
-    string SchoolYear = 8;
-    int32 Semester = 9;
+message ScheduleResponseCourse {
+  message StaffInfo {
+    string StaffID = 1;
+    string StaffName = 2;
+    int32 StaffType = 3;
   }
 
-  repeated Course items = 1;
+  message Schedule {
+    string Location = 1;
+    int32 SeatsNum = 2;
+    repeated int32 Section = 3;
+    repeated StaffInfo Teachers = 4;
+    repeated StaffInfo Students = 5;
+    repeated int32 Week = 6;
+    int32 WeekDay = 7;
+    bool IsThisWeek = 8;
+    uint32 StartTime = 9;
+    uint32 EndTime = 10;
+  }
+
+  string ClassID = 1;
+  string ClassName = 2;
+  string ClassTime = 3;
+  string CourseID = 4;
+  string CourseName = 5;
+  string Credit = 6;
+  repeated Schedule Schedules = 7;
+  string SchoolYear = 8;
+  int32 Semester = 9;
 }
 
 message Courses {
@@ -176,6 +194,28 @@ message StaffInfo {
   string StaffID = 1;
   string StaffName = 2;
   string Commit = 3;
+}
+
+message GetScheduleNowResponse {
+  message Course {
+    uint32 start_section = 1;
+    uint32 end_section = 2;
+    string start_time = 3;
+    string end_time = 4;
+    string course_name = 5;
+    string classroom = 6;
+    string teacher = 7;
+    string duration = 8;
+  }
+  repeated Course today = 1;
+  repeated Course tomorrow = 2;
+}
+
+message GetScheduleNowV2Response {
+  // 今天的课表
+  repeated ScheduleResponseCourse Today = 1;
+  // 明天的课表
+  repeated ScheduleResponseCourse Tomorrow = 2;
 }
 
 message GetClassroomsRequest {

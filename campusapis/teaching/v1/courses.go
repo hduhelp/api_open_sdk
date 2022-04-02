@@ -4,45 +4,45 @@ import "github.com/hduhelp/api_open_sdk/baseStaff"
 
 func (x *Courses) ToGetScheduleResponse() *GetScheduleResponse {
 	return &GetScheduleResponse{
-		Items: x.GetScheduleResponse_Course(),
+		Items: x.GetScheduleResponseCourse(),
 	}
 }
 
-func (x *Courses) GetScheduleResponse_Course() (list []*GetScheduleResponse_Course) {
-	list = make([]*GetScheduleResponse_Course, 0)
+func (x *Courses) GetScheduleResponseCourse() (list []*ScheduleResponseCourse) {
+	list = make([]*ScheduleResponseCourse, 0)
 	for _, v := range x.Items {
-		list = append(list, v.ToGetScheduleResponse_Course())
+		list = append(list, v.ToScheduleResponseCourse())
 	}
 	return
 }
 
-func (x *CourseItem) ToGetScheduleResponse_Course() *GetScheduleResponse_Course {
-	return &GetScheduleResponse_Course{
+func (x *CourseItem) ToScheduleResponseCourse() *ScheduleResponseCourse {
+	return &ScheduleResponseCourse{
 		ClassID:    x.ClassID,
 		ClassName:  x.ClassName,
 		ClassTime:  x.ClassTime,
 		CourseID:   x.CourseID,
 		CourseName: x.CourseName,
 		Credit:     x.Credit,
-		Schedules:  x.GetScheduleResponse_Course_Schedule(),
+		Schedules:  x.GetScheduleResponseCourse_Schedule(),
 		SchoolYear: x.SchoolYear.FullName(),
 		Semester:   x.Semester.Num,
 	}
 }
 
-func (x *CourseItem) GetScheduleResponse_Course_Schedule() (list []*GetScheduleResponse_Course_Schedule) {
-	list = make([]*GetScheduleResponse_Course_Schedule, 0)
+func (x *CourseItem) GetScheduleResponseCourse_Schedule() (list []*ScheduleResponseCourse_Schedule) {
+	list = make([]*ScheduleResponseCourse_Schedule, 0)
 	if x.Schedule == nil {
 		return list
 	}
 	for _, v := range x.Schedule.Items {
-		list = append(list, v.ToGetScheduleResponse_Course_Schedule())
+		list = append(list, v.ToScheduleResponseCourse_Schedule())
 	}
 	return list
 }
 
-func (x *ScheduleItem) ToGetScheduleResponse_Course_Schedule() *GetScheduleResponse_Course_Schedule {
-	return &GetScheduleResponse_Course_Schedule{
+func (x *ScheduleItem) ToScheduleResponseCourse_Schedule() *ScheduleResponseCourse_Schedule {
+	return &ScheduleResponseCourse_Schedule{
 		Location:   x.Location,
 		SeatsNum:   x.SeatsNum,
 		Section:    x.Section,
@@ -56,13 +56,13 @@ func (x *ScheduleItem) ToGetScheduleResponse_Course_Schedule() *GetScheduleRespo
 	}
 }
 
-func convertStaffInfoFromInfoMapList(m *baseStaff.InfoMapList) (list []*GetScheduleResponse_Course_StaffInfo) {
-	list = make([]*GetScheduleResponse_Course_StaffInfo, 0)
+func convertStaffInfoFromInfoMapList(m *baseStaff.InfoMapList) (list []*ScheduleResponseCourse_StaffInfo) {
+	list = make([]*ScheduleResponseCourse_StaffInfo, 0)
 	if len(m.Items) == 0 {
 		return list
 	}
 	for _, v := range m.Items {
-		list = append(list, &GetScheduleResponse_Course_StaffInfo{
+		list = append(list, &ScheduleResponseCourse_StaffInfo{
 			StaffID:   v.StaffID,
 			StaffName: v.StaffName,
 			StaffType: int32(v.StaffType),

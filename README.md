@@ -5,12 +5,9 @@
 ```shell
 //安装 编译所需的插件
 //包括 buf protoc-gen-grpc-gateway protoc-gen-openapiv2 protoc-gen-go-grpc protoc-gen-go
+//在 tools.go 中控制 要安装的插件列表，使用 go module 管理插件版本
 make install-tools
 ```
-### For Windows 安装 buf (可选)
-
-1. 安装 [scoop](https://scoop.sh/) : ``iwr -useb get.scoop.sh | iex`` (注意不要使用管理员身份运行)
-2. 安装 [buf](https://docs.buf.build/installation#scoop) :``scoop install buf``
 
 ## 开发流程
 

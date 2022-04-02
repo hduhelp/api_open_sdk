@@ -24,6 +24,10 @@ const _ = grpc.SupportPackageIsVersion7
 type TeachingServiceClient interface {
 	// 获取学生/教师课程表
 	GetSchedule(ctx context.Context, in *GetScheduleRequest, opts ...grpc.CallOption) (*GetScheduleResponse, error)
+	// 获取学生/教师当前课程表
+	GetScheduleNow(ctx context.Context, in *GetScheduleRequest, opts ...grpc.CallOption) (*GetScheduleNowResponse, error)
+	// 获取学生/教师当前课程表V2 返回更详细的信息
+	GetScheduleNowV2(ctx context.Context, in *GetScheduleRequest, opts ...grpc.CallOption) (*GetScheduleNowV2Response, error)
 	// 获取所有教室列表
 	GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
 	// 获取某一教室的使用情况
@@ -43,6 +47,24 @@ func NewTeachingServiceClient(cc grpc.ClientConnInterface) TeachingServiceClient
 func (c *teachingServiceClient) GetSchedule(ctx context.Context, in *GetScheduleRequest, opts ...grpc.CallOption) (*GetScheduleResponse, error) {
 	out := new(GetScheduleResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetSchedule", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teachingServiceClient) GetScheduleNow(ctx context.Context, in *GetScheduleRequest, opts ...grpc.CallOption) (*GetScheduleNowResponse, error) {
+	out := new(GetScheduleNowResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teachingServiceClient) GetScheduleNowV2(ctx context.Context, in *GetScheduleRequest, opts ...grpc.CallOption) (*GetScheduleNowV2Response, error) {
+	out := new(GetScheduleNowV2Response)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,6 +104,10 @@ func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *Get
 type TeachingServiceServer interface {
 	// 获取学生/教师课程表
 	GetSchedule(context.Context, *GetScheduleRequest) (*GetScheduleResponse, error)
+	// 获取学生/教师当前课程表
+	GetScheduleNow(context.Context, *GetScheduleRequest) (*GetScheduleNowResponse, error)
+	// 获取学生/教师当前课程表V2 返回更详细的信息
+	GetScheduleNowV2(context.Context, *GetScheduleRequest) (*GetScheduleNowV2Response, error)
 	// 获取所有教室列表
 	GetClassrooms(context.Context, *GetClassroomsRequest) (*ClassroomsResponse, error)
 	// 获取某一教室的使用情况
@@ -96,6 +122,12 @@ type UnimplementedTeachingServiceServer struct {
 
 func (UnimplementedTeachingServiceServer) GetSchedule(context.Context, *GetScheduleRequest) (*GetScheduleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSchedule not implemented")
+}
+func (UnimplementedTeachingServiceServer) GetScheduleNow(context.Context, *GetScheduleRequest) (*GetScheduleNowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScheduleNow not implemented")
+}
+func (UnimplementedTeachingServiceServer) GetScheduleNowV2(context.Context, *GetScheduleRequest) (*GetScheduleNowV2Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScheduleNowV2 not implemented")
 }
 func (UnimplementedTeachingServiceServer) GetClassrooms(context.Context, *GetClassroomsRequest) (*ClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassrooms not implemented")
@@ -132,6 +164,42 @@ func _TeachingService_GetSchedule_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TeachingServiceServer).GetSchedule(ctx, req.(*GetScheduleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingService_GetScheduleNow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetScheduleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).GetScheduleNow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/GetScheduleNow",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).GetScheduleNow(ctx, req.(*GetScheduleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingService_GetScheduleNowV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetScheduleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).GetScheduleNowV2(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).GetScheduleNowV2(ctx, req.(*GetScheduleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -200,6 +268,14 @@ var TeachingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSchedule",
 			Handler:    _TeachingService_GetSchedule_Handler,
+		},
+		{
+			MethodName: "GetScheduleNow",
+			Handler:    _TeachingService_GetScheduleNow_Handler,
+		},
+		{
+			MethodName: "GetScheduleNowV2",
+			Handler:    _TeachingService_GetScheduleNowV2_Handler,
 		},
 		{
 			MethodName: "GetClassrooms",

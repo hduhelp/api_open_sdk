@@ -7,11 +7,11 @@ import (
 
 func getCourses() *Courses {
 	return &Courses{Items: map[string]*CourseItem{
-		"课程id1": &CourseItem{
+		"课程id1": {
 			CourseName: "课程名称1",
 			Schedule: &Schedule{Items: map[string]*ScheduleItem{
 				// 此 schedule 在本测试中应当被过滤
-				"课程1-a-应当被过滤": &ScheduleItem{
+				"课程1-a-应当被过滤": {
 					IsThisWeek: true,
 					Teachers:   nil,
 					//Week:       []int32{1, 2, 3, 4},
@@ -21,7 +21,7 @@ func getCourses() *Courses {
 					Location: "应当被过滤",
 				},
 				// 此 schedule 在本测试中应当排在第四
-				"课程1-b-应当第四": &ScheduleItem{
+				"课程1-b-应当第四": {
 					IsThisWeek: true,
 					Teachers:   nil,
 					//Week:       []int32{1, 2, 3, 4},
@@ -32,11 +32,11 @@ func getCourses() *Courses {
 			},
 			},
 		},
-		"课程id2": &CourseItem{
+		"课程id2": {
 			CourseName: "课程名称2",
 			Schedule: &Schedule{Items: map[string]*ScheduleItem{
 				// 此 schedule 在本测试中应当排在第五
-				"课程2-a-应当第五": &ScheduleItem{
+				"课程2-a-应当第五": {
 					IsThisWeek: true,
 					Teachers:   nil,
 					WeekDay:    2,
@@ -44,7 +44,7 @@ func getCourses() *Courses {
 					Location:   "应当第五",
 				},
 				// 此 schedule 在本测试中应当排在第二
-				"课程2-b-应当第二": &ScheduleItem{
+				"课程2-b-应当第二": {
 					IsThisWeek: true,
 					Teachers:   nil,
 					WeekDay:    1,
@@ -54,11 +54,11 @@ func getCourses() *Courses {
 			},
 			},
 		},
-		"课程id3": &CourseItem{
+		"课程id3": {
 			CourseName: "课程名称3",
 			Schedule: &Schedule{Items: map[string]*ScheduleItem{
 				// 此 schedule 在本测试中应当排在第三
-				"课程3-a-应当第三": &ScheduleItem{
+				"课程3-a-应当第三": {
 					IsThisWeek: true,
 					Teachers:   nil,
 					WeekDay:    1,
@@ -66,7 +66,7 @@ func getCourses() *Courses {
 					Location:   "应当第三",
 				},
 				// 此 schedule 在本测试中应当排在第一
-				"课程3-b-应当第一": &ScheduleItem{
+				"课程3-b-应当第一": {
 					IsThisWeek: true,
 					Teachers:   nil,
 					WeekDay:    1,
