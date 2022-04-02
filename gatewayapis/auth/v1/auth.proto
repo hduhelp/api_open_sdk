@@ -6,24 +6,20 @@ option go_package = "./gatewayapis/auth/v1";
 
 import "google/protobuf/struct.proto";
 
-service HealthService {
-    rpc GetBindListByUserIdList(UserIdListRequest) returns (BindListResponse) {}
+service AuthService {
+  rpc GetBindListByUserIdList(UserIdListRequest) returns (BindListResponse) {}
 }
 
-message UserIdListRequest {
-    repeated string userIds = 1;
-}
+message UserIdListRequest { repeated string userIds = 1; }
 
-message BindListResponse {
-    repeated Bind items = 1;
-}
+message BindListResponse { repeated Bind items = 1; }
 
 message Bind {
-    string userId = 1;
-    string platform = 2;
-    string uid = 3;
-    string uid2 = 4;
-    bool primary = 5;
-    string remark = 6;
-    google.protobuf.Struct attributes = 7;
+  string userId = 1;
+  string platform = 2;
+  string uid = 3;
+  string uid2 = 4;
+  bool primary = 5;
+  string remark = 6;
+  google.protobuf.Struct attributes = 7;
 }

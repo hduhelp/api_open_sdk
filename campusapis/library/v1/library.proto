@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package campusapis.library.v1;
+
+option go_package = "./campusapis/library/v1";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "campusapis/schoolTime/defined.proto";
+
+service SchoolTimeService {
+  //查询书本信息
+  rpc GetBookInfo(GetBookInfoRequest) returns (GetBookInfoResponse) {
+    option (google.api.http) = {
+      get : "/library/v1/book/info"
+      response_body : "book"
+    };
+  }
+  //查询书本信息列表，只能查询一个书籍的书本信息
+  rpc GetBookInfoList(GetBookInfoListRequest)
+      returns (GetBookInfoListResponse) {
+    option (google.api.http) = {
+      get : "/library/v1/book/info/list"
+      response_body : "books"
+    };
+  }
+  //查询书籍信息
+  rpc GetBookMARC(GetBookMARCRequest) returns (GetBookMARCResponse) {
+    option (google.api.http) = {
+      get : "/library/v1/book/marc"
+      response_body : "marc"
+    };
+  }
+  //查询书籍信息列表
+  rpc GetBookMARCList(GetBookMARCListRequest)
+      returns (GetBookMARCListResponse) {
+    option (google.api.http) = {
+      get : "/library/v1/book/marc/list"
+      response_body : "marcs"
+    };
+  }
+}
+
+//书本信息查询关键字
+message GetBookInfoRequest {
+  //书本编号
+  string propNo = 1;
+}
+
+message GetBookInfoResponse { BookInfo book = 1; }
+
+//书本信息
+message BookInfo {
+  //书本编号
+  string propNo = 1;
+  //书籍编号
+  string marcRecNo = 2;
+  //书本条码
+  string barCode = 3;
+  //书籍状态
+  string bookStatCode = 4;
+  //是否可借
+  string bookLendFlag = 5;
+  //年份
+  string year = 6;
+  //价格
+  float price = 7;
+  //收录时间
+  string inDate = 8;
+  //年累计借阅次数
+  uint32 yearCircTimes = 9;
+  //总累计借阅次数
+  uint32 totalCircTimes = 10;
+  //首次借阅时间
+  uint32 firstUseDate = 11;
+  //最后借阅时间
+  uint32 lastUseDate = 12;
+  //记录标志更新时间
+  uint32 recFlagUptDate = 13;
+  //登记日期
+  uint32 regDay = 14;
+  //馆藏地
+  string location = 15;
+  //中图法分类号
+  string callNo = 16;
+}
+
+message GetBookInfoListRequest {
+  //书籍编号
+  string marcRecNo = 1;
+}
+
+message GetBookInfoListResponse { repeated BookInfo books = 1; }
+
+//书籍信息查询关键字
+message GetBookMARCRequest {
+  string propNo = 1;
+  string marcRecNo = 2;
+}
+
+message GetBookMARCResponse { BookMARC marc = 1; }
+
+message BookMARC {
+  //书籍编号
+  string marcRecNo = 1;
+  //书籍使用标志
+  string marcUseFlag = 2;
+  //书籍类型
+  string marcType = 3;
+  //目录操作
+  string cataOper = 4;
+  //编目日期
+  string cataDate = 5;
+  //语种
+  string langCode = 6;
+  //国家代码
+  string countryCode = 7;
+  //文献类型
+  string docTypeCode = 8;
+  //中图法分类号
+  string callNo = 9;
+  //书名
+  string title = 10;
+  //作者
+  string author = 11;
+  //出版社
+  string publisher = 12;
+  //出版年月
+  string mPubYear = 13;
+  // ISBN编码
+  string ISBN = 14;
+  //创建人
+  string createOper = 15;
+  //创建日期
+  string createDate = 16;
+  //出版年月
+  string pubYear = 17;
+  //是否允许在图书馆显示
+  string opacFlag = 18;
+  //分类级别
+  string catalogLevel = 19;
+}
+
+message GetBookMARCListRequest {
+  BookMARC marc = 1;
+  //模糊查询关键字，当前仅允许查询作者，书名，出版社
+  repeated string searchKey = 2;
+  //限制条数，允许为0-100之间
+  uint32 limit = 3;
+  //偏移
+  uint32 offset = 4;
+}
+
+message GetBookMARCListResponse { repeated BookMARC marcs = 1; }

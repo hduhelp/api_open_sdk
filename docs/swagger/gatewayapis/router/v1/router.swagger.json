@@ -1,0 +1,109 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "gatewayapis/router/v1/router.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "RouterService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetHTTPRouterListResponse": {
+      "type": "object",
+      "properties": {
+        "routers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1HTTPRouter"
+          }
+        }
+      }
+    },
+    "v1HTTPRouter": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string",
+          "title": "服务名称"
+        },
+        "method": {
+          "type": "string",
+          "title": "方法"
+        },
+        "remotePath": {
+          "type": "string",
+          "title": "远端path，即服务内地址"
+        },
+        "servePath": {
+          "type": "string",
+          "title": "挂载地址"
+        },
+        "needAuthorized": {
+          "type": "boolean",
+          "title": "是否需要鉴权后才能访问"
+        },
+        "readOnlyCache": {
+          "type": "boolean",
+          "title": "是否开启只读缓存"
+        },
+        "publicCache": {
+          "type": "boolean",
+          "title": "公共缓存"
+        },
+        "cacheExpire": {
+          "type": "integer",
+          "format": "int64",
+          "title": "缓存过期时间"
+        },
+        "directThroughRequestHeaders": {
+          "type": "string",
+          "title": "客户端到服务请求可传递的请求头"
+        },
+        "directThroughResponseHeaders": {
+          "type": "string",
+          "title": "服务到客户端返回可传递的响应头"
+        },
+        "enable": {
+          "type": "boolean",
+          "title": "是否启用"
+        }
+      }
+    }
+  }
+}

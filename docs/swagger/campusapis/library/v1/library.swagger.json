@@ -1,0 +1,537 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/library/v1/library.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "SchoolTimeService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/library/v1/book/info": {
+      "get": {
+        "summary": "查询书本信息",
+        "operationId": "SchoolTimeService_GetBookInfo",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/v1BookInfo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "propNo",
+            "description": "书本编号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SchoolTimeService"
+        ]
+      }
+    },
+    "/library/v1/book/info/list": {
+      "get": {
+        "summary": "查询书本信息列表，只能查询一个书籍的书本信息",
+        "operationId": "SchoolTimeService_GetBookInfoList",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1BookInfo"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marcRecNo",
+            "description": "书籍编号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SchoolTimeService"
+        ]
+      }
+    },
+    "/library/v1/book/marc": {
+      "get": {
+        "summary": "查询书籍信息",
+        "operationId": "SchoolTimeService_GetBookMARC",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/v1BookMARC"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "propNo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marcRecNo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SchoolTimeService"
+        ]
+      }
+    },
+    "/library/v1/book/marc/list": {
+      "get": {
+        "summary": "查询书籍信息列表",
+        "operationId": "SchoolTimeService_GetBookMARCList",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1BookMARC"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marc.marcRecNo",
+            "description": "书籍编号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.marcUseFlag",
+            "description": "书籍使用标志",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.marcType",
+            "description": "书籍类型",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.cataOper",
+            "description": "目录操作",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.cataDate",
+            "description": "编目日期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.langCode",
+            "description": "语种",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.countryCode",
+            "description": "国家代码",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.docTypeCode",
+            "description": "文献类型",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.callNo",
+            "description": "中图法分类号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.title",
+            "description": "书名",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.author",
+            "description": "作者",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.publisher",
+            "description": "出版社",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.mPubYear",
+            "description": "出版年月",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.ISBN",
+            "description": "ISBN编码",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.createOper",
+            "description": "创建人",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.createDate",
+            "description": "创建日期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.pubYear",
+            "description": "出版年月",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.opacFlag",
+            "description": "是否允许在图书馆显示",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marc.catalogLevel",
+            "description": "分类级别",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "searchKey",
+            "description": "模糊查询关键字，当前仅允许查询作者，书名，出版社",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "description": "限制条数，允许为0-100之间",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "偏移",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "SchoolTimeService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1BookInfo": {
+      "type": "object",
+      "properties": {
+        "propNo": {
+          "type": "string",
+          "title": "书本编号"
+        },
+        "marcRecNo": {
+          "type": "string",
+          "title": "书籍编号"
+        },
+        "barCode": {
+          "type": "string",
+          "title": "书本条码"
+        },
+        "bookStatCode": {
+          "type": "string",
+          "title": "书籍状态"
+        },
+        "bookLendFlag": {
+          "type": "string",
+          "title": "是否可借"
+        },
+        "year": {
+          "type": "string",
+          "title": "年份"
+        },
+        "price": {
+          "type": "number",
+          "format": "float",
+          "title": "价格"
+        },
+        "inDate": {
+          "type": "string",
+          "title": "收录时间"
+        },
+        "yearCircTimes": {
+          "type": "integer",
+          "format": "int64",
+          "title": "年累计借阅次数"
+        },
+        "totalCircTimes": {
+          "type": "integer",
+          "format": "int64",
+          "title": "总累计借阅次数"
+        },
+        "firstUseDate": {
+          "type": "integer",
+          "format": "int64",
+          "title": "首次借阅时间"
+        },
+        "lastUseDate": {
+          "type": "integer",
+          "format": "int64",
+          "title": "最后借阅时间"
+        },
+        "recFlagUptDate": {
+          "type": "integer",
+          "format": "int64",
+          "title": "记录标志更新时间"
+        },
+        "regDay": {
+          "type": "integer",
+          "format": "int64",
+          "title": "登记日期"
+        },
+        "location": {
+          "type": "string",
+          "title": "馆藏地"
+        },
+        "callNo": {
+          "type": "string",
+          "title": "中图法分类号"
+        }
+      },
+      "title": "书本信息"
+    },
+    "v1BookMARC": {
+      "type": "object",
+      "properties": {
+        "marcRecNo": {
+          "type": "string",
+          "title": "书籍编号"
+        },
+        "marcUseFlag": {
+          "type": "string",
+          "title": "书籍使用标志"
+        },
+        "marcType": {
+          "type": "string",
+          "title": "书籍类型"
+        },
+        "cataOper": {
+          "type": "string",
+          "title": "目录操作"
+        },
+        "cataDate": {
+          "type": "string",
+          "title": "编目日期"
+        },
+        "langCode": {
+          "type": "string",
+          "title": "语种"
+        },
+        "countryCode": {
+          "type": "string",
+          "title": "国家代码"
+        },
+        "docTypeCode": {
+          "type": "string",
+          "title": "文献类型"
+        },
+        "callNo": {
+          "type": "string",
+          "title": "中图法分类号"
+        },
+        "title": {
+          "type": "string",
+          "title": "书名"
+        },
+        "author": {
+          "type": "string",
+          "title": "作者"
+        },
+        "publisher": {
+          "type": "string",
+          "title": "出版社"
+        },
+        "mPubYear": {
+          "type": "string",
+          "title": "出版年月"
+        },
+        "ISBN": {
+          "type": "string",
+          "title": "ISBN编码"
+        },
+        "createOper": {
+          "type": "string",
+          "title": "创建人"
+        },
+        "createDate": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "pubYear": {
+          "type": "string",
+          "title": "出版年月"
+        },
+        "opacFlag": {
+          "type": "string",
+          "title": "是否允许在图书馆显示"
+        },
+        "catalogLevel": {
+          "type": "string",
+          "title": "分类级别"
+        }
+      }
+    },
+    "v1GetBookInfoListResponse": {
+      "type": "object",
+      "properties": {
+        "books": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1BookInfo"
+          }
+        }
+      }
+    },
+    "v1GetBookInfoResponse": {
+      "type": "object",
+      "properties": {
+        "book": {
+          "$ref": "#/definitions/v1BookInfo"
+        }
+      }
+    },
+    "v1GetBookMARCListResponse": {
+      "type": "object",
+      "properties": {
+        "marcs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1BookMARC"
+          }
+        }
+      }
+    },
+    "v1GetBookMARCResponse": {
+      "type": "object",
+      "properties": {
+        "marc": {
+          "$ref": "#/definitions/v1BookMARC"
+        }
+      }
+    }
+  }
+}
