@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-//新生三要素请求，依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件，提供基本的信息查询
+//新生三要素请求，依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空
 type FreshmanKeywordRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -29,7 +29,7 @@ type FreshmanKeywordRequest struct {
 
 	//学号
 	StaffId string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`
-	//录取通知书号或者是准考证号，不同身份并不一样
+	//录取通知书号或者是准考证号，不同省份并不一样
 	OfferId string `protobuf:"bytes,2,opt,name=offerId,proto3" json:"offerId,omitempty"`
 	//身份证号
 	IdCardNo string `protobuf:"bytes,3,opt,name=idCardNo,proto3" json:"idCardNo,omitempty"`
@@ -98,7 +98,7 @@ type GetFreshmanBaseInfoResponse struct {
 	StaffId string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`
 	//姓名
 	StaffName string `protobuf:"bytes,2,opt,name=staffName,proto3" json:"staffName,omitempty"`
-	//录取通知书号或者是准考证号，不同身份并不一样
+	//录取通知书号或者是准考证号，不同省份并不一样
 	OfferId string `protobuf:"bytes,3,opt,name=offerId,proto3" json:"offerId,omitempty"`
 	//身份证号
 	IdCardNo string `protobuf:"bytes,4,opt,name=idCardNo,proto3" json:"idCardNo,omitempty"`

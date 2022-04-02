@@ -8,7 +8,7 @@ import "google/api/annotations.proto";
 
 //本科生新生服务
 service FreshmanService {
-  //获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件
+  //获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空
   rpc GetFreshmanBaseInfo (FreshmanKeywordRequest) returns (GetFreshmanBaseInfoResponse) {
     option (google.api.http) = {
       get: "/staff/v1/freshman/base"
@@ -38,11 +38,11 @@ service FreshmanService {
   }
 }
 
-//新生三要素请求，依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件，提供基本的信息查询
+//新生三要素请求，依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空
 message FreshmanKeywordRequest {
   //学号
   string staffId = 1;
-  //录取通知书号或者是准考证号，不同身份并不一样
+  //录取通知书号或者是准考证号，不同省份并不一样
   string offerId = 2;
   //身份证号
   string idCardNo = 3;
@@ -54,7 +54,7 @@ message GetFreshmanBaseInfoResponse {
   string staffId = 1;
   //姓名
   string staffName = 2;
-  //录取通知书号或者是准考证号，不同身份并不一样
+  //录取通知书号或者是准考证号，不同省份并不一样
   string offerId = 3;
   //身份证号
   string idCardNo = 4;

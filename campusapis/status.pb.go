@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// 请求状态
+// 请求状态 错误定义
 type Status int32
 
 const (

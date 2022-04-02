@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FreshmanServiceClient interface {
-	//获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件
+	//获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空
 	GetFreshmanBaseInfo(ctx context.Context, in *FreshmanKeywordRequest, opts ...grpc.CallOption) (*GetFreshmanBaseInfoResponse, error)
 	//获取新生详细信息
 	GetFreshmanInfo(ctx context.Context, in *FreshmanKeywordRequest, opts ...grpc.CallOption) (*GetFreshmanInfoResponse, error)
@@ -69,7 +69,7 @@ func (c *freshmanServiceClient) GetFreshmanRoommates(ctx context.Context, in *Fr
 // All implementations should embed UnimplementedFreshmanServiceServer
 // for forward compatibility
 type FreshmanServiceServer interface {
-	//获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件
+	//获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空
 	GetFreshmanBaseInfo(context.Context, *FreshmanKeywordRequest) (*GetFreshmanBaseInfoResponse, error)
 	//获取新生详细信息
 	GetFreshmanInfo(context.Context, *FreshmanKeywordRequest) (*GetFreshmanInfoResponse, error)

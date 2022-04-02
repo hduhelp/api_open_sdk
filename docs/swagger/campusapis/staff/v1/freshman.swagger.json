@@ -18,7 +18,7 @@
   "paths": {
     "/freshman/base": {
       "get": {
-        "summary": "获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件",
+        "summary": "获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空",
         "operationId": "FreshmanService_GetFreshmanBaseInfo2",
         "responses": {
           "200": {
@@ -44,7 +44,7 @@
           },
           {
             "name": "offerId",
-            "description": "录取通知书号或者是准考证号，不同身份并不一样",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
@@ -90,7 +90,7 @@
           },
           {
             "name": "offerId",
-            "description": "录取通知书号或者是准考证号，不同身份并不一样",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
@@ -136,7 +136,7 @@
           },
           {
             "name": "offerId",
-            "description": "录取通知书号或者是准考证号，不同身份并不一样",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
@@ -156,7 +156,7 @@
     },
     "/staff/v1/freshman/base": {
       "get": {
-        "summary": "获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），用首先不为空的作为查询条件",
+        "summary": "获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空",
         "operationId": "FreshmanService_GetFreshmanBaseInfo",
         "responses": {
           "200": {
@@ -182,7 +182,7 @@
           },
           {
             "name": "offerId",
-            "description": "录取通知书号或者是准考证号，不同身份并不一样",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
@@ -228,7 +228,7 @@
           },
           {
             "name": "offerId",
-            "description": "录取通知书号或者是准考证号，不同身份并不一样",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
@@ -277,7 +277,7 @@
           },
           {
             "name": "offerId",
-            "description": "录取通知书号或者是准考证号，不同身份并不一样",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
             "in": "query",
             "required": false,
             "type": "string"
@@ -352,7 +352,7 @@
         },
         "offerId": {
           "type": "string",
-          "title": "录取通知书号或者是准考证号，不同身份并不一样"
+          "title": "录取通知书号或者是准考证号，不同省份并不一样"
         },
         "idCardNo": {
           "type": "string",

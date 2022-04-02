@@ -3,12 +3,11 @@
 ## 前置步骤
 
 ```shell
-go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway 
-go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 
-go install google.golang.org/protobuf/cmd/protoc-gen-go 
-go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
+//安装 编译所需的插件
+//包括 buf protoc-gen-grpc-gateway protoc-gen-openapiv2 protoc-gen-go-grpc protoc-gen-go
+make install-tools
 ```
-### For Windows
+### For Windows 安装 buf (可选)
 
 1. 安装 [scoop](https://scoop.sh/) : ``iwr -useb get.scoop.sh | iex`` (注意不要使用管理员身份运行)
 2. 安装 [buf](https://docs.buf.build/installation#scoop) :``scoop install buf``
@@ -19,7 +18,7 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 2. 运行 `buf generate`
 3. 开启 swagger-ui 实时预览
 
-## 预览 swagger 效果 (感觉还有更简单的)
+## 预览 swagger 效果 (多数情况下没必要预览) (感觉还有更简单的)
 1. 安装 swagger-ui
 ```shell
 # 新建目录
@@ -47,24 +46,3 @@ http://localhost:8080/campusapis/staff/v1/freshman.swagger.json
 
 有效：rpc 方法前，Response message 前，message内部字段前
 无效（不会显示到 swagger 中）：Request message 前
-
-## 开发须知 old
-
-必须正确置于gopath下，否则 proto 无法正确生成代码
-
-需要注意env环境变量中需要有gopath/bin
-
-## 安装`proto`
-
-```shell
-brew install protobuf
-go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-```
-
-## 生成`proto`代码
-
-```shell
-export PATH=$PATH:$GOPATH/bin
-make
-```
