@@ -26,7 +26,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/v1GetSemesterInfoResponseSemester"
+                "$ref": "#/definitions/v1GetSemesterListResponseSemester"
               }
             }
           },
@@ -37,6 +37,20 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "SchoolTimeService"
         ]
@@ -75,7 +89,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/v1GetSemesterInfoResponseSemester"
+                "$ref": "#/definitions/v1GetSemesterListResponseSemester"
               }
             }
           },
@@ -86,6 +100,20 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "SchoolTimeService"
         ]
@@ -170,18 +198,18 @@
         }
       }
     },
-    "v1GetSemesterInfoResponse": {
+    "v1GetSemesterListResponse": {
       "type": "object",
       "properties": {
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1GetSemesterInfoResponseSemester"
+            "$ref": "#/definitions/v1GetSemesterListResponseSemester"
           }
         }
       }
     },
-    "v1GetSemesterInfoResponseSemester": {
+    "v1GetSemesterListResponseSemester": {
       "type": "object",
       "properties": {
         "schoolYear": {

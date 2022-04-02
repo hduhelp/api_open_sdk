@@ -68,9 +68,20 @@ func local_request_SchoolTimeService_GetSchoolTime_1(ctx context.Context, marsha
 
 }
 
+var (
+	filter_SchoolTimeService_GetSemesterInfo_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_SchoolTimeService_GetSemesterInfo_0(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq GetSemesterListRequest
 	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterInfo_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	msg, err := client.GetSemesterInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -78,17 +89,35 @@ func request_SchoolTimeService_GetSemesterInfo_0(ctx context.Context, marshaler 
 }
 
 func local_request_SchoolTimeService_GetSemesterInfo_0(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq GetSemesterListRequest
 	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterInfo_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	msg, err := server.GetSemesterInfo(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
+var (
+	filter_SchoolTimeService_GetSemesterInfo_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_SchoolTimeService_GetSemesterInfo_1(ctx context.Context, marshaler runtime.Marshaler, client SchoolTimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq GetSemesterListRequest
 	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterInfo_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	msg, err := client.GetSemesterInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -96,8 +125,15 @@ func request_SchoolTimeService_GetSemesterInfo_1(ctx context.Context, marshaler 
 }
 
 func local_request_SchoolTimeService_GetSemesterInfo_1(ctx context.Context, marshaler runtime.Marshaler, server SchoolTimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq GetSemesterListRequest
 	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SchoolTimeService_GetSemesterInfo_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	msg, err := server.GetSemesterInfo(ctx, &protoReq)
 	return msg, metadata, err
@@ -339,7 +375,7 @@ type response_SchoolTimeService_GetSemesterInfo_0 struct {
 }
 
 func (m response_SchoolTimeService_GetSemesterInfo_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetSemesterInfoResponse)
+	response := m.Message.(*GetSemesterListResponse)
 	return response.Items
 }
 
@@ -348,7 +384,7 @@ type response_SchoolTimeService_GetSemesterInfo_1 struct {
 }
 
 func (m response_SchoolTimeService_GetSemesterInfo_1) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetSemesterInfoResponse)
+	response := m.Message.(*GetSemesterListResponse)
 	return response.Items
 }
 

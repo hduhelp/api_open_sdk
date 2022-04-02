@@ -26,7 +26,7 @@ type SchoolTimeServiceClient interface {
 	// 获取当前学校时间
 	GetSchoolTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetSchoolTimeResponse, error)
 	// 获取学校学期信息
-	GetSemesterInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetSemesterInfoResponse, error)
+	GetSemesterInfo(ctx context.Context, in *GetSemesterListRequest, opts ...grpc.CallOption) (*GetSemesterListResponse, error)
 }
 
 type schoolTimeServiceClient struct {
@@ -46,8 +46,8 @@ func (c *schoolTimeServiceClient) GetSchoolTime(ctx context.Context, in *emptypb
 	return out, nil
 }
 
-func (c *schoolTimeServiceClient) GetSemesterInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetSemesterInfoResponse, error) {
-	out := new(GetSemesterInfoResponse)
+func (c *schoolTimeServiceClient) GetSemesterInfo(ctx context.Context, in *GetSemesterListRequest, opts ...grpc.CallOption) (*GetSemesterListResponse, error) {
+	out := new(GetSemesterListResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,7 +62,7 @@ type SchoolTimeServiceServer interface {
 	// 获取当前学校时间
 	GetSchoolTime(context.Context, *emptypb.Empty) (*GetSchoolTimeResponse, error)
 	// 获取学校学期信息
-	GetSemesterInfo(context.Context, *emptypb.Empty) (*GetSemesterInfoResponse, error)
+	GetSemesterInfo(context.Context, *GetSemesterListRequest) (*GetSemesterListResponse, error)
 }
 
 // UnimplementedSchoolTimeServiceServer should be embedded to have forward compatible implementations.
@@ -72,7 +72,7 @@ type UnimplementedSchoolTimeServiceServer struct {
 func (UnimplementedSchoolTimeServiceServer) GetSchoolTime(context.Context, *emptypb.Empty) (*GetSchoolTimeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSchoolTime not implemented")
 }
-func (UnimplementedSchoolTimeServiceServer) GetSemesterInfo(context.Context, *emptypb.Empty) (*GetSemesterInfoResponse, error) {
+func (UnimplementedSchoolTimeServiceServer) GetSemesterInfo(context.Context, *GetSemesterListRequest) (*GetSemesterListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSemesterInfo not implemented")
 }
 
@@ -106,7 +106,7 @@ func _SchoolTimeService_GetSchoolTime_Handler(srv interface{}, ctx context.Conte
 }
 
 func _SchoolTimeService_GetSemesterInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetSemesterListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func _SchoolTimeService_GetSemesterInfo_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/campusapis.schoolTime.v1.SchoolTimeService/GetSemesterInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SchoolTimeServiceServer).GetSemesterInfo(ctx, req.(*emptypb.Empty))
+		return srv.(SchoolTimeServiceServer).GetSemesterInfo(ctx, req.(*GetSemesterListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

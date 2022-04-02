@@ -20,7 +20,7 @@ service SchoolTimeService {
     };
   }
   // 获取学校学期信息
-  rpc GetSemesterInfo (google.protobuf.Empty) returns (GetSemesterInfoResponse) {
+  rpc GetSemesterInfo (GetSemesterListRequest) returns (GetSemesterListResponse) {
     option (google.api.http) = {
       get: "/schooltime/v1/semester/listByDate"
       response_body: "items"
@@ -41,7 +41,12 @@ message GetSchoolTimeResponse {
   int32 weekNow = 6;
 }
 
-message GetSemesterInfoResponse {
+message GetSemesterListRequest {
+  string startDate = 1;
+  string endDate = 2;
+}
+
+message GetSemesterListResponse {
   message Semester {
     string schoolYear = 1;
     string semester = 2;
