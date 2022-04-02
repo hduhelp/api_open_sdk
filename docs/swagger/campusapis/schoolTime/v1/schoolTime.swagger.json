@@ -16,7 +16,33 @@
     "application/json"
   ],
   "paths": {
-    "/schooltime/v1": {
+    "/schooltime/v1/semester/listByDate": {
+      "get": {
+        "summary": "获取学校学期信息",
+        "operationId": "SchoolTimeService_GetSemesterInfo",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetSemesterInfoResponseSemester"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchoolTimeService"
+        ]
+      }
+    },
+    "/schooltime/v1/time": {
       "get": {
         "summary": "获取当前学校时间",
         "operationId": "SchoolTimeService_GetSchoolTime",
@@ -25,6 +51,32 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1GetSchoolTimeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchoolTimeService"
+        ]
+      }
+    },
+    "/semester/listByDate": {
+      "get": {
+        "summary": "获取学校学期信息",
+        "operationId": "SchoolTimeService_GetSemesterInfo2",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetSemesterInfoResponseSemester"
+              }
             }
           },
           "default": {
@@ -113,6 +165,38 @@
           "format": "int32"
         },
         "weekNow": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1GetSemesterInfoResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetSemesterInfoResponseSemester"
+          }
+        }
+      }
+    },
+    "v1GetSemesterInfoResponseSemester": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "state": {
           "type": "integer",
           "format": "int32"
         }

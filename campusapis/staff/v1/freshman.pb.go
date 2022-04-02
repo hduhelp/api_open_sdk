@@ -22,6 +22,7 @@ const (
 )
 
 //新生三要素请求，依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空
+//有鉴权时接受鉴权内学号，忽略请求参数
 type FreshmanKeywordRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

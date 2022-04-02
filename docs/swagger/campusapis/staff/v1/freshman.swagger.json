@@ -18,7 +18,7 @@
   "paths": {
     "/freshman/base": {
       "get": {
-        "summary": "获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空",
+        "summary": "获取新生基本信息",
         "operationId": "FreshmanService_GetFreshmanBaseInfo2",
         "responses": {
           "200": {
@@ -156,7 +156,7 @@
     },
     "/staff/v1/freshman/base": {
       "get": {
-        "summary": "获取新生基本信息, 依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空",
+        "summary": "获取新生基本信息",
         "operationId": "FreshmanService_GetFreshmanBaseInfo",
         "responses": {
           "200": {
