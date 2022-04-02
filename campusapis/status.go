@@ -11,7 +11,7 @@ func (x Status) Warp(status codes.Code) codes.Code {
 	return WarpCode(status, uint32(x))
 }
 
-func (x Status) Error(c codes.Code, msg string) error {
+func (x Status) With(c codes.Code, msg string) error {
 	return status.Error(WarpCode(c, uint32(x)), msg)
 }
 
