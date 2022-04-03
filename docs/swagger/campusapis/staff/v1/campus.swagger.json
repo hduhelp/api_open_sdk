@@ -385,16 +385,17 @@
         "parameters": [
           {
             "name": "type",
+            "description": " - UNKNOWN: 未知\n - UNDERGRADUATE: 本科生\n - POSTGRADUATE: 研究生\n - TEACHER: 教职工",
             "in": "query",
             "required": false,
             "type": "string",
             "enum": [
-              "Unknown",
-              "Undergraduate",
-              "Postgraduate",
-              "Teacher"
+              "UNKNOWN",
+              "UNDERGRADUATE",
+              "POSTGRADUATE",
+              "TEACHER"
             ],
-            "default": "Unknown"
+            "default": "UNKNOWN"
           },
           {
             "name": "month",
@@ -675,16 +676,17 @@
         "parameters": [
           {
             "name": "type",
+            "description": " - UNKNOWN: 未知\n - UNDERGRADUATE: 本科生\n - POSTGRADUATE: 研究生\n - TEACHER: 教职工",
             "in": "query",
             "required": false,
             "type": "string",
             "enum": [
-              "Unknown",
-              "Undergraduate",
-              "Postgraduate",
-              "Teacher"
+              "UNKNOWN",
+              "UNDERGRADUATE",
+              "POSTGRADUATE",
+              "TEACHER"
             ],
-            "default": "Unknown"
+            "default": "UNKNOWN"
           },
           {
             "name": "month",
@@ -938,15 +940,17 @@
         }
       }
     },
-    "baseStaffType": {
+    "campusapisstaffType": {
       "type": "string",
       "enum": [
-        "Unknown",
-        "Undergraduate",
-        "Postgraduate",
-        "Teacher"
+        "UNKNOWN",
+        "UNDERGRADUATE",
+        "POSTGRADUATE",
+        "TEACHER"
       ],
-      "default": "Unknown"
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: 未知\n - UNDERGRADUATE: 本科生\n - POSTGRADUATE: 研究生\n - TEACHER: 教职工",
+      "title": "人员类型"
     },
     "protobufAny": {
       "type": "object",

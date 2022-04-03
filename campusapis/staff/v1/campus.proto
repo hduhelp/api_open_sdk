@@ -4,7 +4,7 @@ package campusapis.staff.v1;
 
 option go_package = "./campusapis/staff/v1";
 
-import "baseStaff/baseStaff.proto";
+import "campusapis/staff/base.proto";
 import "school/school.proto";
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
@@ -184,7 +184,7 @@ message GetStudentBirthdayResponse {
 }
 
 message GetStudentBirthdaysInRequest {
-  baseStaff.Type type = 1;
+  campusapis.staff.Type type = 1;
   int32 month = 2;
   int32 day = 3;
 }

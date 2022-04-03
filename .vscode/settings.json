@@ -1,4 +1,4 @@
 {
     "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
 }

@@ -22,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthServiceClient interface {
+	// 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
 	GetBindListByUserIdList(ctx context.Context, in *UserIdListRequest, opts ...grpc.CallOption) (*BindListResponse, error)
 }
 
@@ -46,6 +47,7 @@ func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *Use
 // All implementations should embed UnimplementedAuthServiceServer
 // for forward compatibility
 type AuthServiceServer interface {
+	// 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
 	GetBindListByUserIdList(context.Context, *UserIdListRequest) (*BindListResponse, error)
 }
 

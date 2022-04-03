@@ -1,4 +1,4 @@
-package baseStaff
+package staff
 
 import (
 	"database/sql/driver"

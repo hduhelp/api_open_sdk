@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package baseStaff;
+package campusapis.staff;
 
-option go_package = "./baseStaff";
+option go_package = "./campusapis/staff";
 
 // 人员
 message Staff {
@@ -15,13 +15,13 @@ message Staff {
 // 人员类型
 enum Type {
   // 未知
-  Unknown = 0;
+  UNKNOWN = 0;
   // 本科生
-  Undergraduate = 1;
+  UNDERGRADUATE = 1;
   // 研究生
-  Postgraduate = 2;
+  POSTGRADUATE = 2;
   // 教职工
-  Teacher = 3;
+  TEACHER = 3;
 }
 
 // 人员信息
@@ -35,6 +35,4 @@ message Info {
 }
 
 // 人员列表
-message InfoMapList {
-  map<string, Info> Items = 1;
-}
+message InfoMapList { map<string, Info> Items = 1; }

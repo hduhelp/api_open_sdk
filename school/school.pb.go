@@ -20,12 +20,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// 学院
 type Unit struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 学院代码，形如 05
 	Code string `protobuf:"bytes,1,opt,name=Code,proto3" json:"Code,omitempty"`
+	// 学院中文名
 	Name string `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty"`
 }
 
@@ -75,12 +78,15 @@ func (x *Unit) GetName() string {
 	return ""
 }
 
+// 专业
 type Major struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 专业代码
 	Code string `protobuf:"bytes,1,opt,name=Code,proto3" json:"Code,omitempty"`
+	// 专业中文名
 	Name string `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty"`
 }
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/hduhelp/api_open_sdk/baseStaff"
+	"github.com/hduhelp/api_open_sdk/campusapis/staff"
 )
 
 // AddSchedule 添加课表
@@ -40,10 +40,10 @@ func (x *ScheduleItem) AddMember(q *CourseQuery, r ScheduleReader) {
 	// 初始化 Teachers 和 Students ，保证非空，防止调用方出现空指针错误
 	x.InitMember()
 	switch q.QueryStaff.Type {
-	case baseStaff.Type_Teacher:
+	case staff.Type_TEACHER:
 		//教师展示上课学生
 		x.AddStudent(r)
-	case baseStaff.Type_Undergraduate, baseStaff.Type_Postgraduate:
+	case staff.Type_UNDERGRADUATE, staff.Type_POSTGRADUATE:
 		//学生添加展示授课教师
 		x.AddTeacher(r)
 	}
@@ -51,13 +51,13 @@ func (x *ScheduleItem) AddMember(q *CourseQuery, r ScheduleReader) {
 
 func (x *ScheduleItem) InitMember() {
 	if x.Teachers == nil {
-		x.Teachers = &baseStaff.InfoMapList{
-			Items: map[string]*baseStaff.Info{},
+		x.Teachers = &staff.InfoMapList{
+			Items: map[string]*staff.Info{},
 		}
 	}
 	if x.Students == nil {
-		x.Students = &baseStaff.InfoMapList{
-			Items: map[string]*baseStaff.Info{},
+		x.Students = &staff.InfoMapList{
+			Items: map[string]*staff.Info{},
 		}
 	}
 }
@@ -80,16 +80,16 @@ type CourseReader interface {
 type ScheduleReader interface {
 	ScheduleID() string
 	ScheduleInfo() *ScheduleItem
-	TeacherInfo() *baseStaff.Info
-	StudentInfo() *baseStaff.Info
+	TeacherInfo() *staff.Info
+	StudentInfo() *staff.Info
 }
 
 type Teachers struct {
-	baseStaff.InfoMapList
+	staff.InfoMapList
 }
 
 type Students struct {
-	baseStaff.InfoMapList
+	staff.InfoMapList
 }
 
 type CourseItems []*CourseItem

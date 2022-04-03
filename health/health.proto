@@ -4,15 +4,15 @@ package health;
 
 option go_package = "github.com/hduhelp/api_open_sdk/health";
 
+import "campusapis/staff/base.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
-import "baseStaff/baseStaff.proto";
 
 service HealthService {
   rpc GetCheckinRecord(StaffIDWithTimestampRequest) returns (CheckinRecord) {}
-  rpc GetCheckinRecords(baseStaff.Staff) returns (CheckinRecords) {}
-  rpc GetHealthCode(baseStaff.Staff) returns (StudentHealthCode) {}
-  rpc GetHealthCodeV2(baseStaff.Staff) returns (HealthCode) {}
+  rpc GetCheckinRecords(campusapis.staff.Staff) returns (CheckinRecords) {}
+  rpc GetHealthCode(campusapis.staff.Staff) returns (StudentHealthCode) {}
+  rpc GetHealthCodeV2(campusapis.staff.Staff) returns (HealthCode) {}
 }
 
 message StaffIDWithTimestampRequest {

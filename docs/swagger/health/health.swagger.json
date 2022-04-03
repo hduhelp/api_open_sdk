@@ -17,16 +17,6 @@
   ],
   "paths": {},
   "definitions": {
-    "baseStaffType": {
-      "type": "string",
-      "enum": [
-        "Unknown",
-        "Undergraduate",
-        "Postgraduate",
-        "Teacher"
-      ],
-      "default": "Unknown"
-    },
     "healthCheckinRecord": {
       "type": "object",
       "properties": {
@@ -189,6 +179,18 @@
           }
         }
       }
+    },
+    "staffType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "UNDERGRADUATE",
+        "POSTGRADUATE",
+        "TEACHER"
+      ],
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: 未知\n - UNDERGRADUATE: 本科生\n - POSTGRADUATE: 研究生\n - TEACHER: 教职工",
+      "title": "人员类型"
     }
   }
 }

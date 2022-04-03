@@ -1,4 +1,4 @@
-package baseStaff
+package staff
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,21 +7,21 @@ import (
 func Undergraduate(staffID string) *Staff {
 	return &Staff{
 		ID:   staffID,
-		Type: Type_Undergraduate,
+		Type: Type_UNDERGRADUATE,
 	}
 }
 
 func Teacher(staffID string) *Staff {
 	return &Staff{
 		ID:   staffID,
-		Type: Type_Teacher,
+		Type: Type_TEACHER,
 	}
 }
 
 func Postgraduate(staffID string) *Staff {
 	return &Staff{
 		ID:   staffID,
-		Type: Type_Postgraduate,
+		Type: Type_POSTGRADUATE,
 	}
 }
 
@@ -39,13 +39,13 @@ func GetStaffID(c *gin.Context) string {
 func GetStaffType(c *gin.Context) Type {
 	switch c.GetString("staffType") {
 	case "1":
-		return Type_Undergraduate
+		return Type_UNDERGRADUATE
 	case "2":
-		return Type_Teacher
+		return Type_TEACHER
 	case "3":
-		return Type_Postgraduate
+		return Type_POSTGRADUATE
 	default:
-		return Type_Unknown
+		return Type_UNKNOWN
 	}
 }
 

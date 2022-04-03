@@ -4,7 +4,7 @@ package campusapis.teaching.v1;
 
 option go_package = "./campusapis/teaching/v1";
 
-import "baseStaff/baseStaff.proto";
+import "campusapis/staff/base.proto";
 import "campusapis/schoolTime/defined.proto";
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
@@ -183,8 +183,8 @@ message ScheduleItem {
   uint32 StartTime = 5;
   uint32 EndTime = 6;
 
-  baseStaff.InfoMapList Teachers = 7;
-  baseStaff.InfoMapList Students = 8;
+  campusapis.staff.InfoMapList Teachers = 7;
+  campusapis.staff.InfoMapList Students = 8;
 
   string Location = 9;
   int32 SeatsNum = 10;

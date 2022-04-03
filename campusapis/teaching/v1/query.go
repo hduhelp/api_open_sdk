@@ -3,12 +3,12 @@ package teachingv1
 import (
 	"errors"
 
-	"github.com/hduhelp/api_open_sdk/baseStaff"
 	"github.com/hduhelp/api_open_sdk/campusapis/schoolTime"
+	"github.com/hduhelp/api_open_sdk/campusapis/staff"
 )
 
 type CourseQuery struct {
-	QueryStaff *baseStaff.Staff
+	QueryStaff *staff.Staff
 	Queries    []Queryable
 
 	*schoolTime.SchoolDate
@@ -20,10 +20,10 @@ type CourseQuery struct {
 }
 
 type Queryable interface {
-	GetCourses(staff *baseStaff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
+	GetCourses(staff *staff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
 }
 
-func NewCourseQuery(staff *baseStaff.Staff,
+func NewCourseQuery(staff *staff.Staff,
 	st *schoolTime.SchoolDate,
 	dater schoolTime.SchoolDateToDater,
 	sectionReader schoolTime.SectionReader,

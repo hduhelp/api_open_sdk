@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	"github.com/hduhelp/api_open_sdk/baseStaff"
+	"github.com/hduhelp/api_open_sdk/campusapis/staff"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -67,7 +67,7 @@ func local_request_HealthService_GetCheckinRecord_0(ctx context.Context, marshal
 }
 
 func request_HealthService_GetCheckinRecords_0(ctx context.Context, marshaler runtime.Marshaler, client HealthServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq baseStaff.Staff
+	var protoReq staff.Staff
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_HealthService_GetCheckinRecords_0(ctx context.Context, marshaler ru
 }
 
 func local_request_HealthService_GetCheckinRecords_0(ctx context.Context, marshaler runtime.Marshaler, server HealthServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq baseStaff.Staff
+	var protoReq staff.Staff
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +101,7 @@ func local_request_HealthService_GetCheckinRecords_0(ctx context.Context, marsha
 }
 
 func request_HealthService_GetHealthCode_0(ctx context.Context, marshaler runtime.Marshaler, client HealthServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq baseStaff.Staff
+	var protoReq staff.Staff
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_HealthService_GetHealthCode_0(ctx context.Context, marshaler runtim
 }
 
 func local_request_HealthService_GetHealthCode_0(ctx context.Context, marshaler runtime.Marshaler, server HealthServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq baseStaff.Staff
+	var protoReq staff.Staff
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +135,7 @@ func local_request_HealthService_GetHealthCode_0(ctx context.Context, marshaler 
 }
 
 func request_HealthService_GetHealthCodeV2_0(ctx context.Context, marshaler runtime.Marshaler, client HealthServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq baseStaff.Staff
+	var protoReq staff.Staff
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_HealthService_GetHealthCodeV2_0(ctx context.Context, marshaler runt
 }
 
 func local_request_HealthService_GetHealthCodeV2_0(ctx context.Context, marshaler runtime.Marshaler, server HealthServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq baseStaff.Staff
+	var protoReq staff.Staff
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

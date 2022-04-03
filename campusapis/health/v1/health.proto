@@ -4,7 +4,7 @@ package campusapis.health.v1;
 
 option go_package = "./campusapis/health/v1";
 
-import "baseStaff/baseStaff.proto";
+import "campusapis/staff/base.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";

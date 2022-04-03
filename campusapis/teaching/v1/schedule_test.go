@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hduhelp/api_open_sdk/baseStaff"
+	"github.com/hduhelp/api_open_sdk/campusapis/staff"
 )
 
 func TestCourses_UnmarshalJSON(t *testing.T) {
@@ -94,7 +94,7 @@ func TestSchedule_MarshalJSON(t *testing.T) {
 						Location:   "6-中227",
 						Section:    []int32{3, 4},
 						StartTime:  1638352800,
-						Teachers:   &baseStaff.InfoMapList{},
+						Teachers:   &staff.InfoMapList{},
 						Week:       []int32{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17},
 						WeekDay:    3,
 					},

@@ -1,6 +1,6 @@
 package teachingv1
 
-import "github.com/hduhelp/api_open_sdk/baseStaff"
+import "github.com/hduhelp/api_open_sdk/campusapis/staff"
 
 func (x *Courses) ToGetScheduleResponse() *GetScheduleResponse {
 	return &GetScheduleResponse{
@@ -64,7 +64,7 @@ func (x *ScheduleItem) ToScheduleResponseCourse_Schedule() *ScheduleResponseCour
 	}
 }
 
-func convertStaffInfoFromInfoMapList(m *baseStaff.InfoMapList) (list []*ScheduleResponseCourse_StaffInfo) {
+func convertStaffInfoFromInfoMapList(m *staff.InfoMapList) (list []*ScheduleResponseCourse_StaffInfo) {
 	list = make([]*ScheduleResponseCourse_StaffInfo, 0)
 	if len(m.Items) == 0 {
 		return list

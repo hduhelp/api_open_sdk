@@ -1,4 +1,4 @@
-package baseStaff
+package staff
 
 import (
 	"github.com/gin-gonic/gin"
