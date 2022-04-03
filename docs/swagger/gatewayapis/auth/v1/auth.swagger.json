@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "HealthService"
+      "name": "AuthService"
     }
   ],
   "consumes": [

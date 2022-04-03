@@ -18,86 +18,84 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// HealthServiceClient is the client API for HealthService service.
+// AuthServiceClient is the client API for AuthService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type HealthServiceClient interface {
-	// 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
+type AuthServiceClient interface {
 	GetBindListByUserIdList(ctx context.Context, in *UserIdListRequest, opts ...grpc.CallOption) (*BindListResponse, error)
 }
 
-type healthServiceClient struct {
+type authServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewHealthServiceClient(cc grpc.ClientConnInterface) HealthServiceClient {
-	return &healthServiceClient{cc}
+func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
+	return &authServiceClient{cc}
 }
 
-func (c *healthServiceClient) GetBindListByUserIdList(ctx context.Context, in *UserIdListRequest, opts ...grpc.CallOption) (*BindListResponse, error) {
+func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *UserIdListRequest, opts ...grpc.CallOption) (*BindListResponse, error) {
 	out := new(BindListResponse)
-	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.HealthService/GetBindListByUserIdList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetBindListByUserIdList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// HealthServiceServer is the server API for HealthService service.
-// All implementations should embed UnimplementedHealthServiceServer
+// AuthServiceServer is the server API for AuthService service.
+// All implementations should embed UnimplementedAuthServiceServer
 // for forward compatibility
-type HealthServiceServer interface {
-	// 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
+type AuthServiceServer interface {
 	GetBindListByUserIdList(context.Context, *UserIdListRequest) (*BindListResponse, error)
 }
 
-// UnimplementedHealthServiceServer should be embedded to have forward compatible implementations.
-type UnimplementedHealthServiceServer struct {
+// UnimplementedAuthServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedAuthServiceServer struct {
 }
 
-func (UnimplementedHealthServiceServer) GetBindListByUserIdList(context.Context, *UserIdListRequest) (*BindListResponse, error) {
+func (UnimplementedAuthServiceServer) GetBindListByUserIdList(context.Context, *UserIdListRequest) (*BindListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBindListByUserIdList not implemented")
 }
 
-// UnsafeHealthServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to HealthServiceServer will
+// UnsafeAuthServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AuthServiceServer will
 // result in compilation errors.
-type UnsafeHealthServiceServer interface {
-	mustEmbedUnimplementedHealthServiceServer()
+type UnsafeAuthServiceServer interface {
+	mustEmbedUnimplementedAuthServiceServer()
 }
 
-func RegisterHealthServiceServer(s grpc.ServiceRegistrar, srv HealthServiceServer) {
-	s.RegisterService(&HealthService_ServiceDesc, srv)
+func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
+	s.RegisterService(&AuthService_ServiceDesc, srv)
 }
 
-func _HealthService_GetBindListByUserIdList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthService_GetBindListByUserIdList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserIdListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HealthServiceServer).GetBindListByUserIdList(ctx, in)
+		return srv.(AuthServiceServer).GetBindListByUserIdList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gatewayapis.auth.v1.HealthService/GetBindListByUserIdList",
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetBindListByUserIdList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HealthServiceServer).GetBindListByUserIdList(ctx, req.(*UserIdListRequest))
+		return srv.(AuthServiceServer).GetBindListByUserIdList(ctx, req.(*UserIdListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// HealthService_ServiceDesc is the grpc.ServiceDesc for HealthService service.
+// AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var HealthService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "gatewayapis.auth.v1.HealthService",
-	HandlerType: (*HealthServiceServer)(nil),
+var AuthService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "gatewayapis.auth.v1.AuthService",
+	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetBindListByUserIdList",
-			Handler:    _HealthService_GetBindListByUserIdList_Handler,
+			Handler:    _AuthService_GetBindListByUserIdList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

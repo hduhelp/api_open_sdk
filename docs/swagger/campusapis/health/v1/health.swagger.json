@@ -169,7 +169,7 @@
     },
     "/health/phone": {
       "get": {
-        "summary": "获取提交健康码的手机号",
+        "summary": "获取健康打卡平台的手机号",
         "operationId": "HealthService_GetCheckinPhone2",
         "responses": {
           "200": {
@@ -185,6 +185,37 @@
             }
           }
         },
+        "tags": [
+          "HealthService"
+        ]
+      },
+      "post": {
+        "summary": "更新健康打卡平台的手机号",
+        "operationId": "HealthService_PostCheckinPhone2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PostCheckinPhoneRequest"
+            }
+          }
+        ],
         "tags": [
           "HealthService"
         ]
@@ -311,7 +342,7 @@
     },
     "/health/v1/phone": {
       "get": {
-        "summary": "获取提交健康码的手机号",
+        "summary": "获取健康打卡平台的手机号",
         "operationId": "HealthService_GetCheckinPhone",
         "responses": {
           "200": {
@@ -327,6 +358,37 @@
             }
           }
         },
+        "tags": [
+          "HealthService"
+        ]
+      },
+      "post": {
+        "summary": "更新健康打卡平台的手机号",
+        "operationId": "HealthService_PostCheckinPhone",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PostCheckinPhoneRequest"
+            }
+          }
+        ],
         "tags": [
           "HealthService"
         ]
@@ -504,6 +566,14 @@
         }
       },
       "title": "健康码老"
+    },
+    "v1PostCheckinPhoneRequest": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string"
+        }
+      }
     },
     "v1PostCheckinRecordBody": {
       "type": "object",
