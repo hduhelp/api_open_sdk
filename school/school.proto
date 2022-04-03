@@ -4,12 +4,18 @@ package school;
 
 option go_package = "github.com/hduhelp/api_open_sdk/school";
 
+// 学院
 message Unit {
+  // 学院代码，形如 05
   string Code = 1 ;
+  // 学院中文名
   string Name = 2 ;
 }
 
+// 专业
 message Major {
+  // 专业代码
   string Code = 1 ;
+  // 专业中文名
   string Name = 2 ;
 }

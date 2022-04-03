@@ -9,87 +9,148 @@ import "school/school.proto" ;
 import "baseStaff/teacher/teacher.proto" ;
 
 service StudentServer {
+  // 获取某人生日信息
   rpc BirthdayHandler(baseStaff.Staff) returns (BirthdayResponse) {}
+  // 获取某天过生日的所有人员
   rpc BirthdaysHandler(BirthdaysRequest) returns (BirthdaysResponse) {}
+  // 向闸机发送人员请假信息
   rpc GateAccessHandler (GateAccessRequest) returns (GateAccessResponse) {}
+  // 获取留校信息
   rpc StudentStaySchoolHandler (baseStaff.Staff) returns (StudentStaySchool) {}
 }
 
+// 学生信息（基本信息+教务）
 message Info {
+  // 基本信息
   baseStaff.Info Staff = 1;
+  // 班级号
   string ClassId = 2 ;
+  // 学院
   school.Unit Unit = 3;
+  // 专业
   school.Major Major = 4;
+  // 辅导员
   teacher.Info Teacher = 5;
 }
 
+// 宿舍信息
 message DormInfo {
+  // 楼号
   string Building = 1 ;
+  // 寝室号
   string Room = 2 ;
+  // 床号
   string Bed = 3 ;
 }
 
+// 贫困生信息
 message NeedyInfo{
+  // 人员基本信息
   baseStaff.Info Staff = 1;
+  // 性别，枚举及含义：1->男 | 2->女
   uint32 Sex = 3;
+  // 是否是贫困生
   bool IsNeedyStudent = 4;
+  // 内嵌详情
   message Nested{
+    // 特定学年
     uint32 SchoolYear = 1;
+    // 是否是贫困生
     bool IsNeedyStudent = 2;
   }
+  // 每学年贫困详情
   repeated Nested items = 5;
 }
 
+// 生日查询请求
 message BirthdaysRequest {
+  // 人员类型
   baseStaff.Type Type = 1;
+  // 月
   int32 Month = 2;
+  // 日
   int32 Day = 3;
 }
 
+// 生日信息
 message BirthdayResponse {
+  // 学工号
   string StaffId = 1;
+  // 姓名
   string Name = 2;
+  // 生日字符串
   string Birthday = 3;
 }
 
+// 生日查询返回
 message BirthdaysResponse {
+  // 生日信息列表
   repeated BirthdayResponse Birthdays = 1;
 }
 
-message StudentStaySchoolReply{
-  string StaffID = 1;
-  string StaffName = 2;
-  string ReportTime = 3;
-  string Reason = 4;
-  string Time1Start = 5;
-  string Time1End = 6;
-  string Time2Start = 7;
-  string Time2End = 8;
-  string TeacherStatus = 9;
-  string TeacherRemark = 10;
-  string TeacherReviewTime = 11;
-  string UnitStatus = 12;
-  string UnitRemark = 13;
-  string UnitReviewTime = 14;
-  string CancelStatus = 15;
-}
-
+// 学校闸机请假信息推送-请求
 message GateAccessRequest {
+  // 学工号（重要）
   string StaffId = 1;
+  // 请假类型，数字，一个数字对应一大类请假，枚举及含义：
+  // 0->临时请假 | 1->当天假 | 2->单位实习（目前没用）|
+  // 3->特殊（目前没用） | 4->身份码（目前没用） |
+  // 5->离校 | 6->按周（目前没用） | 7->按月（目前没用）
   string DayOffType = 2;
+  // 请假类型，中文名
   string DayOffName = 3;
+  // 开始时间（重要）
   string TimeStart = 4;
+  // 结束时间（重要）
   string TimeEnd = 5;
+  // 假条 uid
   string Uid = 6;
+  // 闸机牌子（重要），枚举及含义：hikvision -> 海康 | uniview -> 宇视
   string Target = 7;
 }
 
+// 闸机请假信息推送返回
 message GateAccessResponse {
   bool Done = 1;
   string Message = 2;
 }
 
+// 留校查询返回
 message StudentStaySchool{
+  // 学工号
+  string StaffID = 1;
+  // 姓名
+  string StaffName = 2;
+  // 报告日期
+  string ReportTime = 3;
+  // 原因
+  string Reason = 4;
+  // 时间段1-开始
+  string Time1Start = 5;
+  // 时间段1-结束
+  string Time1End = 6;
+  // 时间段2-开始
+  string Time2Start = 7;
+  // 时间段2-结束
+  string Time2End = 8;
+  // 辅导员审批状态，枚举及含义：0->未审批 | 1->审批通过 | 2->拒绝
+  string TeacherStatus = 9;
+  // 辅导员审批备注
+  string TeacherRemark = 10;
+  // 辅导员审批时间
+  string TeacherReviewTime = 11;
+  // 学院审批状态，枚举及含义：0->未审批 | 1->审批通过 | 2->拒绝
+  string UnitStatus = 12;
+  // 学院审批备注
+  string UnitRemark = 13;
+  // 学院审批时间
+  string UnitReviewTime = 14;
+  // 撤回状态，枚举及含义：1->未撤回 | 2->已撤回
+  string CancelStatus = 15;
+}
+
+// todo 确认一下这个 message 是否有用到，目前在 open_api_sdk 和 salmon_base 都无引用
+message StudentStaySchoolReply{
   string StaffID = 1;
   string StaffName = 2;
   string ReportTime = 3;

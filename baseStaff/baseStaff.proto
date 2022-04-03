@@ -4,24 +4,37 @@ package baseStaff;
 
 option go_package = "./baseStaff";
 
+// 人员
 message Staff {
+  // 学工号
   string ID = 1;
+  // 人员类型
   Type type = 2;
 }
 
+// 人员类型
 enum Type {
+  // 未知
   Unknown = 0;
+  // 本科生
   Undergraduate = 1;
+  // 研究生
   Postgraduate = 2;
+  // 教职工
   Teacher = 3;
 }
 
+// 人员信息
 message Info {
+  // 学工号
   string staffID = 1;
+  // 姓名
   string staffName = 2;
+  // 人员类型
   Type staffType = 3;
 }
 
+// 人员列表
 message InfoMapList {
   map<string, Info> Items = 1;
 }
