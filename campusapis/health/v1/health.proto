@@ -11,6 +11,7 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 
+//健康打卡相关服务
 service HealthService {
   //获取指定日期健康打卡记录
   rpc GetCheckinRecord(GetCheckinRecordRequest)

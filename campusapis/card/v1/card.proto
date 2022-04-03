@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package campusapis.card.v1;
+
+option go_package = "./campusapis/card/v1";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
+
+//校园一卡通服务
+service CardService {
+  //查询校园卡信息
+  rpc GetCardInfo(google.protobuf.Empty)
+    returns (GetCardInfoResponse) {
+      option (google.api.http) = {
+      get : "/card/v1/info"
+        additional_bindings {
+          get : "/card/info"
+        }
+    };
+  }
+  //查询校园卡余额
+  rpc GetCardBalance(google.protobuf.Empty)
+  returns (GetCardBalanceResponse) {
+    option (google.api.http) = {
+    get : "/card/v1/balance"
+    response_body : "remaining"
+      additional_bindings {
+        get : "/card/balance"
+        response_body : "remaining"
+      }
+    };
+  }
+  //查询校园卡消费记录
+  rpc GetCardConsume(google.protobuf.Empty)
+  returns (GetCardConsumeResponse) {
+    option (google.api.http) = {
+    get : "/card/v1/consume"
+    response_body : "items"
+      additional_bindings {
+        get : "/card/consume"
+        response_body : "items"
+      }
+    };
+  }
+}
+
+message GetCardInfoResponse {
+  //余额，精确到小数点后两位，单位元
+  float remaining = 1;
+  //交易记录
+  repeated Consumption flow = 2;
+}
+
+message Consumption {
+  //交易设备名称
+  string deviceName = 1;
+  //交易设备代码
+  string deviceNum = 2;
+  //交易金额，精确到小数点后两位，单位元
+  //负数为消费，正数为充值
+  float totalFee = 3;
+  //交易名称
+  string feeName = 4;
+  //交易后余额
+  float remaining = 5;
+  //交易事件发生时间戳
+  uint32 createTime = 6;
+}
+
+message GetCardBalanceResponse {
+  float remaining = 1;
+}
+
+message GetCardConsumeResponse {
+  repeated Consumption items = 2;
+}
