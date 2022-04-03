@@ -7,6 +7,7 @@ option go_package = "./gatewayapis/auth/v1";
 import "google/protobuf/struct.proto";
 
 service AuthService {
+    // 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
   rpc GetBindListByUserIdList(UserIdListRequest) returns (BindListResponse) {}
 }
 
