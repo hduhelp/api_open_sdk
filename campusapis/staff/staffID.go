@@ -44,17 +44,17 @@ func ParseStaffID(str string) (StaffID, error) {
 	}
 	switch len(matches[1]) {
 	case 8:
-		_type = Type_Undergraduate
+		_type = Type_UNDERGRADUATE
 		unit = matches[1][2:4]
 		grade = "20" + matches[1][:2]
 	case 9:
-		_type = Type_Postgraduate
+		_type = Type_POSTGRADUATE
 		unit = matches[1][3:5]
 		grade = "20" + matches[1][:2]
 	case 5:
-		_type = Type_Teacher
+		_type = Type_TEACHER
 	default:
-		_type = Type_Unknown
+		_type = Type_UNKNOWN
 	}
 
 	return StaffID{
