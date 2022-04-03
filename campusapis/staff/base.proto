@@ -32,6 +32,12 @@ message Info {
   string staffName = 2;
   // 人员类型
   Type staffType = 3;
+  // 人员状态
+  string staffState = 4;
+  // 学院编码
+  string unitCode = 5;
+  // 学院名称
+  string unitName = 6;
 }
 
 // 人员列表
