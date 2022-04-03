@@ -56,27 +56,35 @@
       "type": "object",
       "properties": {
         "userId": {
-          "type": "string"
+          "type": "string",
+          "title": "助手用户user_id"
         },
         "platform": {
-          "type": "string"
+          "type": "string",
+          "title": "绑定平台：\r\nplatform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；\r\nplatform=qzu 衢州学院学（工）号，uid 为学工号\r\nplatform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；\r\nplatform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；\r\nplatform=idCard 身份证，uid 为身份证号；\r\nplatform=alipay 支付宝, uid todo\r\nplatform=apple 苹果，uid todo, uid2 todo\r\nplatform=github github, uid todo, uid2 todo\r\nplatform=qq QQ号，uid todo, uid2 todo\r\nplatform=yiban 易班，uid todo"
         },
         "uid": {
-          "type": "string"
+          "type": "string",
+          "title": "uid 不同平台含义不同，见 platform 解释"
         },
         "uid2": {
-          "type": "string"
+          "type": "string",
+          "title": "uid 不同平台含义不同，见 platform 解释"
         },
         "primary": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "是否为主学工号"
         },
         "remark": {
-          "type": "string"
+          "type": "string",
+          "title": "备注"
         },
         "attributes": {
-          "type": "object"
+          "type": "object",
+          "title": "额外信息，json 格式"
         }
-      }
+      },
+      "title": "用户绑定信息"
     },
     "v1BindListResponse": {
       "type": "object",
@@ -85,9 +93,11 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Bind"
-          }
+          },
+          "title": "绑定信息列表"
         }
-      }
+      },
+      "title": "用户绑定信息查询响应"
     }
   }
 }

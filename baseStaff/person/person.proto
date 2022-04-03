@@ -7,14 +7,22 @@ option go_package = "./baseStaff/person";
 import "baseStaff/baseStaff.proto";
 
 service PersonServer {
+  // 获取人员基本信息
   rpc StaffGetPersonInfoHandler(baseStaff.Staff) returns (Info){}
 }
 
+// 人员基本信息
 message Info {
+  // 学工号
   string StaffID = 1;
+  // 人员类型
   baseStaff.Type StaffType = 2;
+  // 姓名
   string StaffName = 3 ;
+  // 状态，枚举：毕业生 | 在校
   string StaffState = 4 ;
+  // 学院代码, 形如: 05
   string UnitCode = 5 ;
+  // 学院中文名
   string UnitName = 6 ;
 }

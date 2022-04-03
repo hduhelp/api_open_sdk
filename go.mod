@@ -3,6 +3,7 @@ module github.com/hduhelp/api_open_sdk
 go 1.18
 
 require (
+	github.com/bufbuild/buf v1.3.1
 	github.com/gin-gonic/gin v1.7.4
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
 	github.com/parnurzeal/gorequest v0.2.16
@@ -14,7 +15,6 @@ require (
 )
 
 require (
-	github.com/bufbuild/buf v1.3.1 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
 	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/gofrs/uuid v4.2.0+incompatible // indirect
