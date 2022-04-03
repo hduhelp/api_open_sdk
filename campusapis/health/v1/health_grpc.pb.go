@@ -29,8 +29,10 @@ type HealthServiceClient interface {
 	GetCheckinRecords(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCheckinRecordsResponse, error)
 	//提交今日健康打卡
 	PostCheckinRecord(ctx context.Context, in *PostCheckinRecordRequest, opts ...grpc.CallOption) (*PostCheckinRecordResponse, error)
-	//获取提交健康码的手机号
+	//获取健康打卡平台的手机号
 	GetCheckinPhone(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCheckinPhoneResponse, error)
+	//更新健康打卡平台的手机号
+	PostCheckinPhone(ctx context.Context, in *PostCheckinPhoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	//获取当前健康码
 	GetHealthCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHealthCodeResponse, error)
 }
@@ -79,6 +81,15 @@ func (c *healthServiceClient) GetCheckinPhone(ctx context.Context, in *emptypb.E
 	return out, nil
 }
 
+func (c *healthServiceClient) PostCheckinPhone(ctx context.Context, in *PostCheckinPhoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/PostCheckinPhone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *healthServiceClient) GetHealthCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHealthCodeResponse, error) {
 	out := new(GetHealthCodeResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/GetHealthCode", in, out, opts...)
@@ -98,8 +109,10 @@ type HealthServiceServer interface {
 	GetCheckinRecords(context.Context, *emptypb.Empty) (*GetCheckinRecordsResponse, error)
 	//提交今日健康打卡
 	PostCheckinRecord(context.Context, *PostCheckinRecordRequest) (*PostCheckinRecordResponse, error)
-	//获取提交健康码的手机号
+	//获取健康打卡平台的手机号
 	GetCheckinPhone(context.Context, *emptypb.Empty) (*GetCheckinPhoneResponse, error)
+	//更新健康打卡平台的手机号
+	PostCheckinPhone(context.Context, *PostCheckinPhoneRequest) (*emptypb.Empty, error)
 	//获取当前健康码
 	GetHealthCode(context.Context, *emptypb.Empty) (*GetHealthCodeResponse, error)
 }
@@ -119,6 +132,9 @@ func (UnimplementedHealthServiceServer) PostCheckinRecord(context.Context, *Post
 }
 func (UnimplementedHealthServiceServer) GetCheckinPhone(context.Context, *emptypb.Empty) (*GetCheckinPhoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCheckinPhone not implemented")
+}
+func (UnimplementedHealthServiceServer) PostCheckinPhone(context.Context, *PostCheckinPhoneRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostCheckinPhone not implemented")
 }
 func (UnimplementedHealthServiceServer) GetHealthCode(context.Context, *emptypb.Empty) (*GetHealthCodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHealthCode not implemented")
@@ -207,6 +223,24 @@ func _HealthService_GetCheckinPhone_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HealthService_PostCheckinPhone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostCheckinPhoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServiceServer).PostCheckinPhone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.health.v1.HealthService/PostCheckinPhone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServiceServer).PostCheckinPhone(ctx, req.(*PostCheckinPhoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _HealthService_GetHealthCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -247,6 +281,10 @@ var HealthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCheckinPhone",
 			Handler:    _HealthService_GetCheckinPhone_Handler,
+		},
+		{
+			MethodName: "PostCheckinPhone",
+			Handler:    _HealthService_PostCheckinPhone_Handler,
 		},
 		{
 			MethodName: "GetHealthCode",
