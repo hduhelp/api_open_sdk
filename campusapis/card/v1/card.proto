@@ -60,11 +60,11 @@ message Consumption {
   string deviceNum = 2;
   //交易金额，精确到小数点后两位，单位元
   //负数为消费，正数为充值
-  float totalFee = 3;
+  double totalFee = 3;
   //交易名称
   string feeName = 4;
   //交易后余额
-  float remaining = 5;
+  double remaining = 5;
   //交易事件发生时间戳
   uint32 createTime = 6;
 }
