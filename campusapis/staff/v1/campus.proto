@@ -124,20 +124,29 @@ service CampusService {
   }
 }
 
+//查询人员信息返回体
 message GetPersonInfoResponse {
+  //学工号
   string staffId = 1;
+  //姓名
   string staffName = 2;
+  //人员状态
   string staffState = 3;
+  //人员类型
   string staffType = 4;
+  //学院代码
   string unitCode = 5;
 }
 
+//学期查询关键字
 message SemesterRequest {
-  // 学年，格式
+  //学年，只支持一种格式，例：2021-2022学年，应传 2021
   string schoolYear = 1;
+  //学期，枚举：第一学期 | 第二学期
   string semester = 2;
 }
 
+// GetStudentInfoResponse 查询学生信息返回体
 message GetStudentInfoResponse {
   //学号
   string staffId = 1;
@@ -159,120 +168,213 @@ message GetStudentInfoResponse {
   string teacherName = 9;
 }
 
+
+// GetStudentNeedyInfoResponse 查询贫困生信息返回体
 message GetStudentNeedyInfoResponse {
+  //学工号
   string staffId = 1;
+  //姓名
   string staffName = 2;
+  //性别，枚举及含义：1->男 | 2->女
   int32 sex = 3;
+  //是否贫困生
   bool needyStudent = 4;
+  //某年贫困详情
   message Nested {
+    //特定学年
     int32 schoolYear = 1;
+    //是否是贫困生
     bool needyStudent = 2;
   }
+  //每学年贫困详情
   repeated Nested items = 5;
 }
 
+// GetStudentDormInfoResponse 查询学生寝室信息返回体
 message GetStudentDormInfoResponse {
+  //学工号
   string staffId = 1;
+  //楼号
   string building = 2;
+  //寝室号
   string room = 3;
 }
 
+// GetStudentBirthdayResponse 学生生日查询返回体
 message GetStudentBirthdayResponse {
+  //学工号
   string staffId = 1;
+  //姓名
   string name = 2;
+  //生日
   string birthday = 3;
 }
 
+// 查询某天生日所有人员-请求关键字
 message GetStudentBirthdaysInRequest {
+  //人员类型
   campusapis.staff.Type type = 1;
+  //月
   int32 month = 2;
+  //日
   int32 day = 3;
 }
 
+//  GetStudentBirthdaysInResponse 查询某天生日所有人员-返回体
 message GetStudentBirthdaysInResponse {
+  // 生日详情列表
   repeated GetStudentBirthdayResponse birthdays = 1;
 }
 
+// GetStudentRewardsResponse 奖学金查询返回体
 message GetStudentRewardsResponse {
+  // 奖学金信息
   message Nested {
+    //学工号
     string staffID = 1;
+    //姓名
     string staffName = 2;
+    //奖项名
     string rewardName = 3;
+    //学年
     string schoolYear = 4;
+    //学期
     string semester = 5;
+    //奖项等级
     string rewardLevel = 6;
   }
+  // 奖学金列表
   repeated Nested items = 1;
 }
 
+// GetStudentSelectResponse 学生选课查询返回体
 message GetStudentSelectResponse {
+  //选课详情
   message Nested {
+    //学年
     string schoolYear = 1;
+    //学期
     string semester = 2;
+    //学号
     string staffID = 3;
+    //姓名
     string staffName = 4;
+    //选课号
     string selectCode = 5;
+    //课程中文名
     string courseName = 6;
+    //课程号
     string courseCode = 7;
+    //教师工号
     string teacherID = 8;
+    //教师姓名
     string teacherName = 9;
+    //上课时间中文描述
     string classTime = 10;
+    //教室
     string classRoom = 11;
   }
+  //详情列表
   repeated Nested items = 1;
 }
 
+// GetStudentGradeResponse 查询学生成绩返回体
 message GetStudentGradeResponse {
+  // 成绩详情
   message Nested {
+    //学年
     string schoolYear = 1;
+    //学期
     string semester = 2;
+    //选课号
     string selectCode = 3;
+    //最后分数
     string score = 4;
+    //平时分
     string scoreDaily = 5;
+    //期中分数
     string scoreMidTerm = 6;
+    //期末分数
     string scoreFinal = 7;
+    //补考分数
     string scoreSubstitute = 8;
+    //实验分数
     string scorePractice = 9;
+    //课程号
     string courseCode = 10;
+    //课程名
     string course = 11;
+    //学号
     string staffId = 12;
+    //姓名
     string staffName = 13;
+    //学分
     string credit = 14;
+    //GPA
     string GPA = 15;
   }
+  // 成绩详情列表
   repeated Nested items = 1;
 }
 
+// 推送学生门禁通行信息-请求关键字
 message PostStudentGateAccessRequest {
+  // 学工号（重要）
   string staffId = 1;
+  // 请假类型，数字，一个数字对应一大类请假，枚举及含义：
+  // 0->临时请假 | 1->当天假 | 2->单位实习（目前没用）|
+  // 3->特殊（目前没用） | 4->身份码（目前没用） |
+  // 5->离校 | 6->按周（目前没用） | 7->按月（目前没用）
   string dayOffType = 2;
+  // 请假类型，中文名
   string dayOffName = 3;
+  // 开始时间（重要）
   string timeStart = 4;
+  // 结束时间（重要）
   string timeEnd = 5;
+  // 假条 uid
   string uid = 6;
+  // 闸机牌子（重要），枚举及含义：hikvision -> 海康 | uniview -> 宇视
   string Target = 7;
 }
 
+// PostStudentGateAccessResponse  推送学生门禁通行信息
 message PostStudentGateAccessResponse {
   bool done = 1;      //是否完成
   string message = 2; //完成信息
 }
 
+// 留校生信息查询-返回体
 message GetStudentStaySchoolInfoResponse {
+  // 学工号
   string staffId = 1;
+  // 姓名
   string staffName = 2;
+  // 报告日期
   string reportTime = 3;
+  // 原因
   string reason = 4;
+  // 时间段1-开始
   string time1Start = 5;
+  // 时间段1-结束
   string time1End = 6;
+  // 时间段2-开始
   string time2Start = 7;
+  // 时间段2-结束
   string time2End = 8;
+  // 辅导员审批状态，枚举及含义：0->未审批 | 1->审批通过 | 2->拒绝
   string teacherStatus = 9;
+  // 辅导员审批备注
   string teacherRemark = 10;
+  // 辅导员审批时间
   string teacherReviewTime = 11;
+  // 学院审批状态，枚举及含义：0->未审批 | 1->审批通过 | 2->拒绝
   string unitStatus = 12;
+  // 学院审批备注
   string unitRemark = 13;
+  // 学院审批时间
   string unitReviewTime = 14;
+  // 撤回状态，枚举及含义：1->未撤回 | 2->已撤回
   string cancelStatus = 15;
 }
 
