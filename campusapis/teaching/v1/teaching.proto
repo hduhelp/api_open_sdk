@@ -136,7 +136,7 @@ message ScheduleResponseCourse {
   }
 
   // 单个排课信息（如高等数学的周一的3-5节）
-  message Schedule {
+  message ScheduleInfo {
     // 上课地点
     string Location = 1;
     // 教室作为数量
@@ -172,7 +172,7 @@ message ScheduleResponseCourse {
   // 学分
   string Credit = 6;
   // 此课程排课列表
-  repeated Schedule Schedules = 7;
+  repeated ScheduleInfo Schedule = 7;
   // 学年
   string SchoolYear = 8;
   // 学期
