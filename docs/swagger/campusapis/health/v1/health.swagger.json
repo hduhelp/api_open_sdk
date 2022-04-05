@@ -562,7 +562,7 @@
         },
         "serverUpdateTime": {
           "type": "string",
-          "title": "服务器更新时间（服务器获取到的时间）\r\n通常是每日更新一次"
+          "title": "服务器更新时间（服务器获取到的时间）\n通常是每日更新一次"
         }
       },
       "title": "健康码老"
@@ -601,7 +601,7 @@
         },
         "answerJsonStr": {
           "type": "string",
-          "title": "健康打卡内容JSON，处理为json字符串\r\n如 `{\"ques1\": \"xxxx\", \"ques2\": \"xxx\"}`"
+          "title": "健康打卡内容JSON，处理为json字符串\n如 `{\"ques1\": \"xxxx\", \"ques2\": \"xxx\"}`"
         }
       }
     },
