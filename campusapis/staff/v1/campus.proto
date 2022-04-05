@@ -250,6 +250,7 @@ message PostStudentGateAccessRequest {
   string timeStart = 4;
   string timeEnd = 5;
   string uid = 6;
+  string Target = 7;
 }
 
 message PostStudentGateAccessResponse {
