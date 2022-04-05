@@ -1,0 +1,103 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "gatewayapis/auth/v1/auth.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AuthService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Bind": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "title": "助手用户user_id"
+        },
+        "platform": {
+          "type": "string",
+          "title": "绑定平台：\nplatform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；\nplatform=qzu 衢州学院学（工）号，uid 为学工号\nplatform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；\nplatform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；\nplatform=idCard 身份证，uid 为身份证号；\nplatform=alipay 支付宝, uid todo\nplatform=apple 苹果，uid todo, uid2 todo\nplatform=github github, uid todo, uid2 todo\nplatform=qq QQ号，uid todo, uid2 todo\nplatform=yiban 易班，uid todo"
+        },
+        "uid": {
+          "type": "string",
+          "title": "uid 不同平台含义不同，见 platform 解释"
+        },
+        "uid2": {
+          "type": "string",
+          "title": "uid 不同平台含义不同，见 platform 解释"
+        },
+        "primary": {
+          "type": "boolean",
+          "title": "是否为主学工号"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注"
+        },
+        "attributes": {
+          "type": "object",
+          "title": "额外信息，json 格式"
+        }
+      },
+      "title": "用户绑定信息"
+    },
+    "v1BindListResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Bind"
+          },
+          "title": "绑定信息列表"
+        }
+      },
+      "title": "用户绑定信息查询响应"
+    }
+  }
+}

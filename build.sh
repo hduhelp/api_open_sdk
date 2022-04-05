@@ -1,1 +1,0 @@
-docker build --no-cache --pull --force-rm -t proto-builder -f proto-builder.dockerfile .

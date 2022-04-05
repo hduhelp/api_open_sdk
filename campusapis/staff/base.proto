@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package campusapis.staff;
+
+option go_package = "./campusapis/staff";
+
+// 人员
+message Staff {
+  // 学工号
+  string ID = 1;
+  // 人员类型
+  Type type = 2;
+}
+
+// 人员类型
+enum Type {
+  // 未知
+  UNKNOWN = 0;
+  // 本科生
+  UNDERGRADUATE = 1;
+  // 研究生
+  POSTGRADUATE = 2;
+  // 教职工
+  TEACHER = 3;
+}
+
+// 人员信息
+message Info {
+  // 学工号
+  string staffID = 1;
+  // 姓名
+  string staffName = 2;
+  // 人员类型
+  Type staffType = 3;
+  // 人员状态
+  string staffState = 4;
+  // 学院编码
+  string unitCode = 5;
+  // 学院名称
+  string unitName = 6;
+}
+
+// 人员列表
+message InfoMapList { map<string, Info> Items = 1; }

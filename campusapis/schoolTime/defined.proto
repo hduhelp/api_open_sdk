@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package campusapis.schoolTime;
+
+option go_package = "./campusapis/schoolTime";
+
+import "google/protobuf/timestamp.proto";
+
+//节次信息
+message Section {
+    //第几节
+    int32 Section = 1;
+    //本节开始时间
+    google.protobuf.Timestamp StartTime = 2;
+    //本节结束时间
+    google.protobuf.Timestamp EndTime = 3;
+}
+
+//学年
+message SchoolYear {
+    // 学年开始年，如：2021-2022 学年为 2021
+    int32 Year = 1;
+}
+
+//学期
+message Semester {
+    int32 Num = 1;
+}

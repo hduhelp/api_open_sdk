@@ -1,0 +1,1470 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/staff/v1/campus.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "CampusService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/freshman/base": {
+      "get": {
+        "summary": "获取新生基本信息",
+        "operationId": "CampusService_GetFreshmanBaseInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanBaseInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "description": "学号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "description": "身份证号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/freshman/info": {
+      "get": {
+        "summary": "获取新生详细信息",
+        "operationId": "CampusService_GetFreshmanInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "description": "学号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "description": "身份证号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/freshman/roommate": {
+      "get": {
+        "summary": "获取新生宿舍信息",
+        "operationId": "CampusService_GetFreshmanRoommates2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanRoommatesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "description": "学号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "description": "身份证号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/person/info": {
+      "get": {
+        "summary": "获取员工信息",
+        "operationId": "CampusService_GetPersonInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPersonInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/freshman/base": {
+      "get": {
+        "summary": "获取新生基本信息",
+        "operationId": "CampusService_GetFreshmanBaseInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanBaseInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "description": "学号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "description": "身份证号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/freshman/info": {
+      "get": {
+        "summary": "获取新生详细信息",
+        "operationId": "CampusService_GetFreshmanInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreshmanInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "description": "学号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "description": "身份证号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/freshman/roommate": {
+      "get": {
+        "summary": "获取新生宿舍信息",
+        "operationId": "CampusService_GetFreshmanRoommates",
+        "responses": {
+          "200": {
+            "description": "室友列表",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GetFreshmanRoommatesResponseRoommate"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "description": "学号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offerId",
+            "description": "录取通知书号或者是准考证号，不同省份并不一样",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idCardNo",
+            "description": "身份证号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/person/info": {
+      "get": {
+        "summary": "获取员工信息",
+        "operationId": "CampusService_GetPersonInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPersonInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/birthday": {
+      "get": {
+        "summary": "获取学生生日信息",
+        "operationId": "CampusService_GetStudentBirthdayInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/birthdays": {
+      "get": {
+        "summary": "获取生日为指定日期的学生列表",
+        "operationId": "CampusService_GetStudentBirthdaysIn",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentBirthdaysInResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "description": " - UNKNOWN: 未知\n - UNDERGRADUATE: 本科生\n - POSTGRADUATE: 研究生\n - TEACHER: 教职工",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "UNDERGRADUATE",
+              "POSTGRADUATE",
+              "TEACHER"
+            ],
+            "default": "UNKNOWN"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "day",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/dorm": {
+      "get": {
+        "summary": "获取学生宿舍信息",
+        "operationId": "CampusService_GetStudentDormInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentDormInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/grade": {
+      "get": {
+        "summary": "获取学生成绩信息",
+        "operationId": "CampusService_GetStudentGrade",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentGradeResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，格式",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/holidayStay": {
+      "get": {
+        "summary": "获取学生留校信息",
+        "operationId": "CampusService_GetStudentStaySchoolInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentStaySchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/info": {
+      "get": {
+        "summary": "获取学生基本信息",
+        "operationId": "CampusService_GetStudentInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/needy": {
+      "get": {
+        "summary": "获取学生贫困生申请记录",
+        "operationId": "CampusService_GetStudentNeedyInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentNeedyInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/reward": {
+      "get": {
+        "summary": "获取学生奖学金信息",
+        "operationId": "CampusService_GetStudentRewards",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，格式",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/select": {
+      "get": {
+        "summary": "获取学生选课信息",
+        "operationId": "CampusService_GetStudentSelect",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentSelectResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，格式",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/birthday": {
+      "get": {
+        "summary": "获取学生生日信息",
+        "operationId": "CampusService_GetStudentBirthdayInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/birthdays": {
+      "get": {
+        "summary": "获取生日为指定日期的学生列表",
+        "operationId": "CampusService_GetStudentBirthdaysIn2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentBirthdaysInResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "description": " - UNKNOWN: 未知\n - UNDERGRADUATE: 本科生\n - POSTGRADUATE: 研究生\n - TEACHER: 教职工",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "UNDERGRADUATE",
+              "POSTGRADUATE",
+              "TEACHER"
+            ],
+            "default": "UNKNOWN"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "day",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/dorm": {
+      "get": {
+        "summary": "获取学生宿舍信息",
+        "operationId": "CampusService_GetStudentDormInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentDormInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/grade": {
+      "get": {
+        "summary": "获取学生成绩信息",
+        "operationId": "CampusService_GetStudentGrade2",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentGradeResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，格式",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/holidayStay": {
+      "get": {
+        "summary": "获取学生留校信息",
+        "operationId": "CampusService_GetStudentStaySchoolInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentStaySchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/info": {
+      "get": {
+        "summary": "获取学生基本信息",
+        "operationId": "CampusService_GetStudentInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/needy": {
+      "get": {
+        "summary": "获取学生贫困生申请记录",
+        "operationId": "CampusService_GetStudentNeedyInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentNeedyInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/reward": {
+      "get": {
+        "summary": "获取学生奖学金信息",
+        "operationId": "CampusService_GetStudentRewards2",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，格式",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/select": {
+      "get": {
+        "summary": "获取学生选课信息",
+        "operationId": "CampusService_GetStudentSelect2",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetStudentSelectResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，格式",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "GetFreshmanRoommatesResponseRoommate": {
+      "type": "object",
+      "properties": {
+        "staffName": {
+          "type": "string",
+          "title": "室友姓名"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "campusapisstaffType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "UNDERGRADUATE",
+        "POSTGRADUATE",
+        "TEACHER"
+      ],
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: 未知\n - UNDERGRADUATE: 本科生\n - POSTGRADUATE: 研究生\n - TEACHER: 教职工",
+      "title": "人员类型"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetFreshmanBaseInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "offerId": {
+          "type": "string",
+          "title": "录取通知书号或者是准考证号，不同省份并不一样"
+        },
+        "idCardNo": {
+          "type": "string",
+          "title": "身份证号"
+        },
+        "offerTime": {
+          "type": "string",
+          "title": "录取时间"
+        },
+        "province": {
+          "type": "string",
+          "title": "省份"
+        }
+      },
+      "title": "新生基本信息"
+    },
+    "v1GetFreshmanInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "className": {
+          "type": "string",
+          "title": "班级名称"
+        },
+        "roomName": {
+          "type": "string",
+          "title": "宿舍房间名称"
+        },
+        "regStatus": {
+          "type": "string",
+          "title": "注册状态（是否入学）"
+        },
+        "schoolID": {
+          "type": "string",
+          "title": "学院编号"
+        },
+        "schoolName": {
+          "type": "string",
+          "title": "学院名称"
+        },
+        "majorName": {
+          "type": "string",
+          "title": "专业名称"
+        },
+        "cardID": {
+          "type": "string",
+          "title": "身份证号"
+        },
+        "teacherName": {
+          "type": "string",
+          "title": "辅导员姓名"
+        },
+        "teacherPhone": {
+          "type": "string"
+        },
+        "assistantName": {
+          "type": "string",
+          "title": "班助姓名"
+        },
+        "assistantPhone": {
+          "type": "string",
+          "title": "班助电话"
+        },
+        "hasPaid": {
+          "type": "string",
+          "title": "是否支付学费"
+        },
+        "LSTD": {
+          "type": "string",
+          "title": "绿色通道"
+        },
+        "LSTDXY": {
+          "type": "string"
+        },
+        "LSTDZX": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string",
+          "title": "电话"
+        },
+        "qq": {
+          "type": "string",
+          "title": "QQ"
+        },
+        "roomBuilding": {
+          "type": "string",
+          "title": "楼号"
+        },
+        "roomRoom": {
+          "type": "string",
+          "title": "寝室号"
+        },
+        "roomBed": {
+          "type": "string",
+          "title": "床号"
+        },
+        "comeDate": {
+          "type": "string",
+          "title": "报到日期"
+        },
+        "high": {
+          "type": "string",
+          "title": "身高（厘米）"
+        },
+        "station": {
+          "type": "string",
+          "title": "火车区间"
+        }
+      },
+      "title": "新生详细信息"
+    },
+    "v1GetFreshmanRoommatesResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetFreshmanRoommatesResponseRoommate"
+          },
+          "title": "室友列表"
+        }
+      },
+      "title": "新生室友查询"
+    },
+    "v1GetPersonInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "staffState": {
+          "type": "string"
+        },
+        "staffType": {
+          "type": "string"
+        },
+        "unitCode": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentBirthdayResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentBirthdaysInResponse": {
+      "type": "object",
+      "properties": {
+        "birthdays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+          }
+        }
+      }
+    },
+    "v1GetStudentDormInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "building": {
+          "type": "string"
+        },
+        "room": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentGradeResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentGradeResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetStudentGradeResponseNested": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "selectCode": {
+          "type": "string"
+        },
+        "score": {
+          "type": "string"
+        },
+        "scoreDaily": {
+          "type": "string"
+        },
+        "scoreMidTerm": {
+          "type": "string"
+        },
+        "scoreFinal": {
+          "type": "string"
+        },
+        "scoreSubstitute": {
+          "type": "string"
+        },
+        "scorePractice": {
+          "type": "string"
+        },
+        "courseCode": {
+          "type": "string"
+        },
+        "course": {
+          "type": "string"
+        },
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "credit": {
+          "type": "string"
+        },
+        "GPA": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "学生姓名"
+        },
+        "classId": {
+          "type": "string",
+          "title": "学生班级号"
+        },
+        "unitId": {
+          "type": "string",
+          "title": "学生学院编号"
+        },
+        "unitName": {
+          "type": "string",
+          "title": "学生学院名称"
+        },
+        "majorId": {
+          "type": "string",
+          "title": "学生专业编号"
+        },
+        "majorName": {
+          "type": "string",
+          "title": "学生专业名称"
+        },
+        "teacherId": {
+          "type": "string",
+          "title": "学生辅导员工号"
+        },
+        "teacherName": {
+          "type": "string",
+          "title": "学生辅导员姓名"
+        }
+      }
+    },
+    "v1GetStudentNeedyInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "needyStudent": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentNeedyInfoResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetStudentNeedyInfoResponseNested": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "needyStudent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1GetStudentRewardsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetStudentRewardsResponseNested": {
+      "type": "object",
+      "properties": {
+        "staffID": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "rewardName": {
+          "type": "string"
+        },
+        "schoolYear": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "rewardLevel": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentSelectResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetStudentSelectResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetStudentSelectResponseNested": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "staffID": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "selectCode": {
+          "type": "string"
+        },
+        "courseName": {
+          "type": "string"
+        },
+        "courseCode": {
+          "type": "string"
+        },
+        "teacherID": {
+          "type": "string"
+        },
+        "teacherName": {
+          "type": "string"
+        },
+        "classTime": {
+          "type": "string"
+        },
+        "classRoom": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStudentStaySchoolInfoResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "staffName": {
+          "type": "string"
+        },
+        "reportTime": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "time1Start": {
+          "type": "string"
+        },
+        "time1End": {
+          "type": "string"
+        },
+        "time2Start": {
+          "type": "string"
+        },
+        "time2End": {
+          "type": "string"
+        },
+        "teacherStatus": {
+          "type": "string"
+        },
+        "teacherRemark": {
+          "type": "string"
+        },
+        "teacherReviewTime": {
+          "type": "string"
+        },
+        "unitStatus": {
+          "type": "string"
+        },
+        "unitRemark": {
+          "type": "string"
+        },
+        "unitReviewTime": {
+          "type": "string"
+        },
+        "cancelStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PostStudentGateAccessResponse": {
+      "type": "object",
+      "properties": {
+        "done": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

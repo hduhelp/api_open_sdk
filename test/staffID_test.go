@@ -2,12 +2,13 @@ package test
 
 import (
 	"fmt"
-	"github.com/hduhelp/api_open_sdk/baseStaff"
 	"testing"
+
+	"github.com/hduhelp/api_open_sdk/campusapis/staff"
 )
 
 func TestNameStaffID(t *testing.T) {
 	var staffID = "s19011141"
-	data, err := baseStaff.ParseStaffID(staffID)
+	data, err := staff.ParseStaffID(staffID)
 	fmt.Println(data, err)
 }
