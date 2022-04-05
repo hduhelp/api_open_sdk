@@ -58,12 +58,9 @@
         "operationId": "TeachingService_GetSchedule3",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1ScheduleResponseCourse"
-              }
+              "$ref": "#/definitions/v1GetScheduleResponse"
             }
           },
           "default": {
@@ -304,12 +301,9 @@
         "operationId": "TeachingService_GetSchedule2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1ScheduleResponseCourse"
-              }
+              "$ref": "#/definitions/v1GetScheduleResponse"
             }
           },
           "default": {
@@ -527,12 +521,9 @@
         "operationId": "TeachingService_GetSchedule",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1ScheduleResponseCourse"
-              }
+              "$ref": "#/definitions/v1GetScheduleResponse"
             }
           },
           "default": {

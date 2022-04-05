@@ -207,7 +207,7 @@
         "totalFee": {
           "type": "number",
           "format": "double",
-          "title": "交易金额，精确到小数点后两位，单位元\n负数为消费，正数为充值"
+          "title": "交易金额，精确到小数点后两位，单位元\r\n负数为消费，正数为充值"
         },
         "feeName": {
           "type": "string",

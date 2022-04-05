@@ -61,7 +61,7 @@
         },
         "platform": {
           "type": "string",
-          "title": "绑定平台：\nplatform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；\nplatform=qzu 衢州学院学（工）号，uid 为学工号\nplatform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；\nplatform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；\nplatform=idCard 身份证，uid 为身份证号；\nplatform=alipay 支付宝, uid todo\nplatform=apple 苹果，uid todo, uid2 todo\nplatform=github github, uid todo, uid2 todo\nplatform=qq QQ号，uid todo, uid2 todo\nplatform=yiban 易班，uid todo"
+          "title": "绑定平台：\r\nplatform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；\r\nplatform=qzu 衢州学院学（工）号，uid 为学工号\r\nplatform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；\r\nplatform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；\r\nplatform=idCard 身份证，uid 为身份证号；\r\nplatform=alipay 支付宝, uid todo\r\nplatform=apple 苹果，uid todo, uid2 todo\r\nplatform=github github, uid todo, uid2 todo\r\nplatform=qq QQ号，uid todo, uid2 todo\r\nplatform=yiban 易班，uid todo"
         },
         "uid": {
           "type": "string",
