@@ -32,14 +32,14 @@ func (x *CourseItem) ToScheduleResponseCourse() *ScheduleResponseCourse {
 		CourseID:   x.CourseID,
 		CourseName: x.CourseName,
 		Credit:     x.Credit,
-		Schedules:  x.GetScheduleResponseCourse_Schedule(),
+		Schedule:   x.GetScheduleResponseCourse_Schedule(),
 		SchoolYear: x.SchoolYear.FullName(),
 		Semester:   x.Semester.Num,
 	}
 }
 
-func (x *CourseItem) GetScheduleResponseCourse_Schedule() (list []*ScheduleResponseCourse_Schedule) {
-	list = make([]*ScheduleResponseCourse_Schedule, 0)
+func (x *CourseItem) GetScheduleResponseCourse_Schedule() (list []*ScheduleResponseCourse_ScheduleInfo) {
+	list = make([]*ScheduleResponseCourse_ScheduleInfo, 0)
 	if x.Schedule == nil {
 		return list
 	}
@@ -49,8 +49,8 @@ func (x *CourseItem) GetScheduleResponseCourse_Schedule() (list []*ScheduleRespo
 	return list
 }
 
-func (x *ScheduleItem) ToScheduleResponseCourse_Schedule() *ScheduleResponseCourse_Schedule {
-	return &ScheduleResponseCourse_Schedule{
+func (x *ScheduleItem) ToScheduleResponseCourse_Schedule() *ScheduleResponseCourse_ScheduleInfo {
+	return &ScheduleResponseCourse_ScheduleInfo{
 		Location:   x.Location,
 		SeatsNum:   x.SeatsNum,
 		Section:    x.Section,
