@@ -117,7 +117,7 @@ message GetScheduleRequest {
 
 // GetScheduleResponse 课表列表返回体
 message GetScheduleResponse {
-  repeated ScheduleResponseCourse items = 1;
+  repeated ScheduleResponseCourse Items = 1;
 }
 
 // ScheduleResponseCourse 单课程返回体（如高等数学课）
