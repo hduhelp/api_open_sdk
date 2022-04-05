@@ -1,8 +1,10 @@
-package types
+package types_test
 
 import (
-	"github.com/gin-gonic/gin/render"
 	"testing"
+
+	"github.com/gin-gonic/gin/render"
+	"github.com/hduhelp/api_open_sdk/types"
 )
 
 func TestJsonp_UnmarshalJSON(t *testing.T) {
@@ -48,7 +50,7 @@ func TestJsonp_UnmarshalJSON(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			j := &Jsonp{
+			j := &types.Jsonp{
 				JsonpJSON: tt.fields.JsonpJSON,
 			}
 			if err := j.UnmarshalJSON(tt.args.bytes); (err != nil) != tt.wantErr {
