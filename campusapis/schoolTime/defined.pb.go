@@ -21,14 +21,18 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+//节次信息
 type Section struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Section   int32                  `protobuf:"varint,1,opt,name=Section,proto3" json:"Section,omitempty"`
+	//第几节
+	Section int32 `protobuf:"varint,1,opt,name=Section,proto3" json:"Section,omitempty"`
+	//本节开始时间
 	StartTime *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=StartTime,proto3" json:"StartTime,omitempty"`
-	EndTime   *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=EndTime,proto3" json:"EndTime,omitempty"`
+	//本节结束时间
+	EndTime *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=EndTime,proto3" json:"EndTime,omitempty"`
 }
 
 func (x *Section) Reset() {
@@ -84,11 +88,13 @@ func (x *Section) GetEndTime() *timestamppb.Timestamp {
 	return nil
 }
 
+//学年
 type SchoolYear struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 学年开始年，如：2021-2022 学年为 2021
 	Year int32 `protobuf:"varint,1,opt,name=Year,proto3" json:"Year,omitempty"`
 }
 
@@ -131,6 +137,7 @@ func (x *SchoolYear) GetYear() int32 {
 	return 0
 }
 
+//学期
 type Semester struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

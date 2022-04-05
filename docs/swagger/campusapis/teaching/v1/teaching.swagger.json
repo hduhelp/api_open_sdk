@@ -147,7 +147,7 @@
         "operationId": "TeachingService_GetClassrooms2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "教室列表",
             "schema": {
               "type": "array",
               "items": {
@@ -165,12 +165,14 @@
         "parameters": [
           {
             "name": "schoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "semester",
+            "description": "学期",
             "in": "query",
             "required": false,
             "type": "string"
@@ -187,7 +189,7 @@
         "operationId": "TeachingService_GetUnusedClassrooms2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "教室列表",
             "schema": {
               "type": "array",
               "items": {
@@ -253,7 +255,7 @@
         "operationId": "TeachingService_GetClassroomUsages2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "教室使用情况列表",
             "schema": {
               "type": "array",
               "items": {
@@ -368,7 +370,7 @@
         "operationId": "TeachingService_GetClassrooms",
         "responses": {
           "200": {
-            "description": "",
+            "description": "教室列表",
             "schema": {
               "type": "array",
               "items": {
@@ -386,12 +388,14 @@
         "parameters": [
           {
             "name": "schoolYear",
+            "description": "学年",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "semester",
+            "description": "学期",
             "in": "query",
             "required": false,
             "type": "string"
@@ -408,7 +412,7 @@
         "operationId": "TeachingService_GetUnusedClassrooms",
         "responses": {
           "200": {
-            "description": "",
+            "description": "教室列表",
             "schema": {
               "type": "array",
               "items": {
@@ -474,7 +478,7 @@
         "operationId": "TeachingService_GetClassroomUsages",
         "responses": {
           "200": {
-            "description": "",
+            "description": "教室使用情况列表",
             "schema": {
               "type": "array",
               "items": {
@@ -635,67 +639,84 @@
       "type": "object",
       "properties": {
         "classroom": {
-          "$ref": "#/definitions/v1Classroom"
+          "$ref": "#/definitions/v1Classroom",
+          "title": "教室信息"
         },
         "weekday": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "星期"
         },
         "week": {
           "type": "array",
           "items": {
             "type": "integer",
             "format": "int32"
-          }
+          },
+          "title": "周次列表"
         },
         "Section": {
           "type": "array",
           "items": {
             "type": "integer",
             "format": "int32"
-          }
+          },
+          "title": "节次列表"
         },
         "ClassID": {
-          "type": "string"
+          "type": "string",
+          "title": "课程内部ID"
         },
         "CourseCode": {
-          "type": "string"
+          "type": "string",
+          "title": "课程号"
         },
         "CourseName": {
-          "type": "string"
+          "type": "string",
+          "title": "课程名"
         }
-      }
+      },
+      "title": "内嵌信息"
     },
     "GetScheduleNowResponseCourse": {
       "type": "object",
       "properties": {
         "startSection": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "title": "开始节次"
         },
         "endSection": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "title": "结束节次"
         },
         "startTime": {
-          "type": "string"
+          "type": "string",
+          "title": "上课时间"
         },
         "endTime": {
-          "type": "string"
+          "type": "string",
+          "title": "下课时间"
         },
         "courseName": {
-          "type": "string"
+          "type": "string",
+          "title": "课程名"
         },
         "classroom": {
-          "type": "string"
+          "type": "string",
+          "title": "教室"
         },
         "teacher": {
-          "type": "string"
+          "type": "string",
+          "title": "老师"
         },
         "duration": {
-          "type": "string"
+          "type": "string",
+          "title": "时长"
         }
-      }
+      },
+      "title": "课表"
     },
     "protobufAny": {
       "type": "object",
@@ -729,24 +750,31 @@
       "properties": {
         "semester": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "学期"
         },
         "schoolYear": {
-          "type": "string"
+          "type": "string",
+          "title": "学年"
         },
         "locationID": {
-          "type": "string"
+          "type": "string",
+          "title": "教室ID"
         },
         "locationName": {
-          "type": "string"
+          "type": "string",
+          "title": "教室名字"
         },
         "buildingID": {
-          "type": "string"
+          "type": "string",
+          "title": "教学楼ID"
         },
         "buildingName": {
-          "type": "string"
+          "type": "string",
+          "title": "教学楼名字"
         }
-      }
+      },
+      "title": "教室信息"
     },
     "v1ClassroomUsagesResponse": {
       "type": "object",
@@ -755,9 +783,11 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/ClassroomUsagesResponseNested"
-          }
+          },
+          "title": "教室使用情况列表"
         }
-      }
+      },
+      "title": "ClassroomUsagesResponse 教室使用情况返回体"
     },
     "v1ClassroomsResponse": {
       "type": "object",
@@ -766,9 +796,11 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Classroom"
-          }
+          },
+          "title": "教室列表"
         }
-      }
+      },
+      "title": "ClassroomsResponse 教室查询返回体"
     },
     "v1GetScheduleNowResponse": {
       "type": "object",
@@ -777,15 +809,18 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/GetScheduleNowResponseCourse"
-          }
+          },
+          "title": "今天课表"
         },
         "tomorrow": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/GetScheduleNowResponseCourse"
-          }
+          },
+          "title": "明天课表"
         }
-      }
+      },
+      "title": "GetScheduleNowResponse 今天，明天课表信息返回体"
     },
     "v1GetScheduleNowV2Response": {
       "type": "object",
@@ -804,7 +839,8 @@
           },
           "title": "明天的课表"
         }
-      }
+      },
+      "title": "GetScheduleNowV2Response 今天，明天课表信息返回体"
     },
     "v1GetScheduleResponse": {
       "type": "object",
@@ -816,111 +852,136 @@
           }
         }
       },
-      "title": "GetScheduleResponse 课表返回体"
+      "title": "GetScheduleResponse 课表列表返回体"
     },
     "v1ScheduleResponseCourse": {
       "type": "object",
       "properties": {
         "ClassID": {
-          "type": "string"
+          "type": "string",
+          "title": "课程内部ID"
         },
         "ClassName": {
-          "type": "string"
+          "type": "string",
+          "title": "选课号"
         },
         "ClassTime": {
-          "type": "string"
+          "type": "string",
+          "title": "上课时间中文，如: 星期一第6-7节{1-2周};星期一第6-7节{3-17周}"
         },
         "CourseID": {
-          "type": "string"
+          "type": "string",
+          "title": "课程代码"
         },
         "CourseName": {
-          "type": "string"
+          "type": "string",
+          "title": "课程中文名"
         },
         "Credit": {
-          "type": "string"
+          "type": "string",
+          "title": "学分"
         },
         "Schedules": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1ScheduleResponseCourseSchedule"
-          }
+          },
+          "title": "此课程排课列表"
         },
         "SchoolYear": {
-          "type": "string"
+          "type": "string",
+          "title": "学年"
         },
         "Semester": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "学期"
         }
-      }
+      },
+      "title": "ScheduleResponseCourse 单课程返回体（如高等数学课）"
     },
     "v1ScheduleResponseCourseSchedule": {
       "type": "object",
       "properties": {
         "Location": {
-          "type": "string"
+          "type": "string",
+          "title": "上课地点"
         },
         "SeatsNum": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "教室作为数量"
         },
         "Section": {
           "type": "array",
           "items": {
             "type": "integer",
             "format": "int32"
-          }
+          },
+          "title": "节次数组, 升序"
         },
         "Teachers": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1ScheduleResponseCourseStaffInfo"
-          }
+          },
+          "title": "老师列表"
         },
         "Students": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1ScheduleResponseCourseStaffInfo"
-          }
+          },
+          "title": "学生列表"
         },
         "Week": {
           "type": "array",
           "items": {
             "type": "integer",
             "format": "int32"
-          }
+          },
+          "title": "周次数组"
         },
         "WeekDay": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "星期"
         },
         "IsThisWeek": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "是否本周课程"
         },
         "StartTime": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "title": "上课时间"
         },
         "EndTime": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "title": "下课时间"
         }
-      }
+      },
+      "title": "单个排课信息（如高等数学的周一的3-5节）"
     },
     "v1ScheduleResponseCourseStaffInfo": {
       "type": "object",
       "properties": {
         "StaffID": {
-          "type": "string"
+          "type": "string",
+          "title": "学工号"
         },
         "StaffName": {
-          "type": "string"
+          "type": "string",
+          "title": "姓名"
         },
         "StaffType": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "人员类型，枚举及其含义：0-\u003e未知 | 1-\u003e本科生 | 2-\u003e研究生 | 3-\u003e教职工"
         }
-      }
+      },
+      "title": "人员信息"
     }
   }
 }

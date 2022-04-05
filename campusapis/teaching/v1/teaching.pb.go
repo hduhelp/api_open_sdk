@@ -115,7 +115,7 @@ func (x *GetScheduleRequest) GetWeekday() int32 {
 	return 0
 }
 
-// GetScheduleResponse 课表返回体
+// GetScheduleResponse 课表列表返回体
 type GetScheduleResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -163,20 +163,30 @@ func (x *GetScheduleResponse) GetItems() []*ScheduleResponseCourse {
 	return nil
 }
 
+// ScheduleResponseCourse 单课程返回体（如高等数学课）
 type ScheduleResponseCourse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ClassID    string                             `protobuf:"bytes,1,opt,name=ClassID,proto3" json:"ClassID,omitempty"`
-	ClassName  string                             `protobuf:"bytes,2,opt,name=ClassName,proto3" json:"ClassName,omitempty"`
-	ClassTime  string                             `protobuf:"bytes,3,opt,name=ClassTime,proto3" json:"ClassTime,omitempty"`
-	CourseID   string                             `protobuf:"bytes,4,opt,name=CourseID,proto3" json:"CourseID,omitempty"`
-	CourseName string                             `protobuf:"bytes,5,opt,name=CourseName,proto3" json:"CourseName,omitempty"`
-	Credit     string                             `protobuf:"bytes,6,opt,name=Credit,proto3" json:"Credit,omitempty"`
-	Schedules  []*ScheduleResponseCourse_Schedule `protobuf:"bytes,7,rep,name=Schedules,proto3" json:"Schedules,omitempty"`
-	SchoolYear string                             `protobuf:"bytes,8,opt,name=SchoolYear,proto3" json:"SchoolYear,omitempty"`
-	Semester   int32                              `protobuf:"varint,9,opt,name=Semester,proto3" json:"Semester,omitempty"`
+	// 课程内部ID
+	ClassID string `protobuf:"bytes,1,opt,name=ClassID,proto3" json:"ClassID,omitempty"`
+	// 选课号
+	ClassName string `protobuf:"bytes,2,opt,name=ClassName,proto3" json:"ClassName,omitempty"`
+	// 上课时间中文，如: 星期一第6-7节{1-2周};星期一第6-7节{3-17周}
+	ClassTime string `protobuf:"bytes,3,opt,name=ClassTime,proto3" json:"ClassTime,omitempty"`
+	// 课程代码
+	CourseID string `protobuf:"bytes,4,opt,name=CourseID,proto3" json:"CourseID,omitempty"`
+	// 课程中文名
+	CourseName string `protobuf:"bytes,5,opt,name=CourseName,proto3" json:"CourseName,omitempty"`
+	// 学分
+	Credit string `protobuf:"bytes,6,opt,name=Credit,proto3" json:"Credit,omitempty"`
+	// 此课程排课列表
+	Schedules []*ScheduleResponseCourse_Schedule `protobuf:"bytes,7,rep,name=Schedules,proto3" json:"Schedules,omitempty"`
+	// 学年
+	SchoolYear string `protobuf:"bytes,8,opt,name=SchoolYear,proto3" json:"SchoolYear,omitempty"`
+	// 学期
+	Semester int32 `protobuf:"varint,9,opt,name=Semester,proto3" json:"Semester,omitempty"`
 }
 
 func (x *ScheduleResponseCourse) Reset() {
@@ -274,11 +284,13 @@ func (x *ScheduleResponseCourse) GetSemester() int32 {
 	return 0
 }
 
+// 课程列表
 type Courses struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 课程 map, ClassID -> 课程信息
 	Items map[string]*CourseItem `protobuf:"bytes,1,rep,name=Items,proto3" json:"Items,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
@@ -321,20 +333,30 @@ func (x *Courses) GetItems() map[string]*CourseItem {
 	return nil
 }
 
+// 课程信息
 type CourseItem struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ClassID    string                 `protobuf:"bytes,1,opt,name=ClassID,proto3" json:"ClassID,omitempty"`
-	ClassName  string                 `protobuf:"bytes,2,opt,name=ClassName,proto3" json:"ClassName,omitempty"`
-	CourseID   string                 `protobuf:"bytes,3,opt,name=CourseID,proto3" json:"CourseID,omitempty"`
-	CourseName string                 `protobuf:"bytes,4,opt,name=CourseName,proto3" json:"CourseName,omitempty"`
-	ClassTime  string                 `protobuf:"bytes,5,opt,name=ClassTime,proto3" json:"ClassTime,omitempty"`
-	Credit     string                 `protobuf:"bytes,6,opt,name=Credit,proto3" json:"Credit,omitempty"`
+	// 课程内部ID
+	ClassID string `protobuf:"bytes,1,opt,name=ClassID,proto3" json:"ClassID,omitempty"`
+	// 选课号
+	ClassName string `protobuf:"bytes,2,opt,name=ClassName,proto3" json:"ClassName,omitempty"`
+	// 课程代码
+	CourseID string `protobuf:"bytes,3,opt,name=CourseID,proto3" json:"CourseID,omitempty"`
+	// 课程中文名
+	CourseName string `protobuf:"bytes,4,opt,name=CourseName,proto3" json:"CourseName,omitempty"`
+	// 上课时间中文，如: 星期一第6-7节{1-2周};星期一第6-7节{3-17周}
+	ClassTime string `protobuf:"bytes,5,opt,name=ClassTime,proto3" json:"ClassTime,omitempty"`
+	// 学分
+	Credit string `protobuf:"bytes,6,opt,name=Credit,proto3" json:"Credit,omitempty"`
+	// 学年
 	SchoolYear *schoolTime.SchoolYear `protobuf:"bytes,7,opt,name=SchoolYear,proto3" json:"SchoolYear,omitempty"`
-	Semester   *schoolTime.Semester   `protobuf:"bytes,8,opt,name=Semester,proto3" json:"Semester,omitempty"`
-	Schedule   *Schedule              `protobuf:"bytes,9,opt,name=Schedule,proto3" json:"Schedule,omitempty"`
+	// 学期
+	Semester *schoolTime.Semester `protobuf:"bytes,8,opt,name=Semester,proto3" json:"Semester,omitempty"`
+	// 排课详情
+	Schedule *Schedule `protobuf:"bytes,9,opt,name=Schedule,proto3" json:"Schedule,omitempty"`
 }
 
 func (x *CourseItem) Reset() {
@@ -432,11 +454,13 @@ func (x *CourseItem) GetSchedule() *Schedule {
 	return nil
 }
 
+// 排课列表详情
 type Schedule struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 排课 map, 排课ID -> 排课信息
 	Items map[string]*ScheduleItem `protobuf:"bytes,1,rep,name=Items,proto3" json:"Items,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
@@ -479,22 +503,34 @@ func (x *Schedule) GetItems() map[string]*ScheduleItem {
 	return nil
 }
 
+// 排课信息
 type ScheduleItem struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Week       []int32            `protobuf:"varint,1,rep,packed,name=Week,proto3" json:"Week,omitempty"`
-	WeekDay    int32              `protobuf:"varint,2,opt,name=WeekDay,proto3" json:"WeekDay,omitempty"`
-	Section    []int32            `protobuf:"varint,3,rep,packed,name=Section,proto3" json:"Section,omitempty"`
-	IsThisWeek bool               `protobuf:"varint,4,opt,name=IsThisWeek,proto3" json:"IsThisWeek,omitempty"`
-	StartTime  uint32             `protobuf:"varint,5,opt,name=StartTime,proto3" json:"StartTime,omitempty"`
-	EndTime    uint32             `protobuf:"varint,6,opt,name=EndTime,proto3" json:"EndTime,omitempty"`
-	Teachers   *staff.InfoMapList `protobuf:"bytes,7,opt,name=Teachers,proto3" json:"Teachers,omitempty"`
-	Students   *staff.InfoMapList `protobuf:"bytes,8,opt,name=Students,proto3" json:"Students,omitempty"`
-	Location   string             `protobuf:"bytes,9,opt,name=Location,proto3" json:"Location,omitempty"`
-	SeatsNum   int32              `protobuf:"varint,10,opt,name=SeatsNum,proto3" json:"SeatsNum,omitempty"`
-	Commit     string             `protobuf:"bytes,11,opt,name=Commit,proto3" json:"Commit,omitempty"`
+	// 周次列表
+	Week []int32 `protobuf:"varint,1,rep,packed,name=Week,proto3" json:"Week,omitempty"`
+	// 星期
+	WeekDay int32 `protobuf:"varint,2,opt,name=WeekDay,proto3" json:"WeekDay,omitempty"`
+	// 节次列表，升序
+	Section []int32 `protobuf:"varint,3,rep,packed,name=Section,proto3" json:"Section,omitempty"`
+	// 是否本周
+	IsThisWeek bool `protobuf:"varint,4,opt,name=IsThisWeek,proto3" json:"IsThisWeek,omitempty"`
+	// 上课时间
+	StartTime uint32 `protobuf:"varint,5,opt,name=StartTime,proto3" json:"StartTime,omitempty"`
+	// 下课时间
+	EndTime uint32 `protobuf:"varint,6,opt,name=EndTime,proto3" json:"EndTime,omitempty"`
+	// 老师列表
+	Teachers *staff.InfoMapList `protobuf:"bytes,7,opt,name=Teachers,proto3" json:"Teachers,omitempty"`
+	// 学生列表
+	Students *staff.InfoMapList `protobuf:"bytes,8,opt,name=Students,proto3" json:"Students,omitempty"`
+	// 上课地点
+	Location string `protobuf:"bytes,9,opt,name=Location,proto3" json:"Location,omitempty"`
+	// 教室座位数
+	SeatsNum int32 `protobuf:"varint,10,opt,name=SeatsNum,proto3" json:"SeatsNum,omitempty"`
+	// 备注
+	Commit string `protobuf:"bytes,11,opt,name=Commit,proto3" json:"Commit,omitempty"`
 }
 
 func (x *ScheduleItem) Reset() {
@@ -606,14 +642,19 @@ func (x *ScheduleItem) GetCommit() string {
 	return ""
 }
 
+// 人员信息
 type StaffInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	StaffID   string `protobuf:"bytes,1,opt,name=StaffID,proto3" json:"StaffID,omitempty"`
+	// 学工号
+	StaffID string `protobuf:"bytes,1,opt,name=StaffID,proto3" json:"StaffID,omitempty"`
+	// 姓名
 	StaffName string `protobuf:"bytes,2,opt,name=StaffName,proto3" json:"StaffName,omitempty"`
-	Commit    string `protobuf:"bytes,3,opt,name=Commit,proto3" json:"Commit,omitempty"`
+	// 备注
+	// todo 有空改成 Comment?
+	Commit string `protobuf:"bytes,3,opt,name=Commit,proto3" json:"Commit,omitempty"`
 }
 
 func (x *StaffInfo) Reset() {
@@ -669,12 +710,15 @@ func (x *StaffInfo) GetCommit() string {
 	return ""
 }
 
+// GetScheduleNowResponse 今天，明天课表信息返回体
 type GetScheduleNowResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Today    []*GetScheduleNowResponse_Course `protobuf:"bytes,1,rep,name=today,proto3" json:"today,omitempty"`
+	// 今天课表
+	Today []*GetScheduleNowResponse_Course `protobuf:"bytes,1,rep,name=today,proto3" json:"today,omitempty"`
+	// 明天课表
 	Tomorrow []*GetScheduleNowResponse_Course `protobuf:"bytes,2,rep,name=tomorrow,proto3" json:"tomorrow,omitempty"`
 }
 
@@ -724,6 +768,7 @@ func (x *GetScheduleNowResponse) GetTomorrow() []*GetScheduleNowResponse_Course 
 	return nil
 }
 
+// GetScheduleNowV2Response 今天，明天课表信息返回体
 type GetScheduleNowV2Response struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -781,13 +826,16 @@ func (x *GetScheduleNowV2Response) GetTomorrow() []*ScheduleResponseCourse {
 	return nil
 }
 
+// GetClassroomsRequest 教室列表查询关键字
 type GetClassroomsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 学年
 	SchoolYear string `protobuf:"bytes,1,opt,name=schoolYear,proto3" json:"schoolYear,omitempty"`
-	Semester   string `protobuf:"bytes,2,opt,name=semester,proto3" json:"semester,omitempty"`
+	// 学期
+	Semester string `protobuf:"bytes,2,opt,name=semester,proto3" json:"semester,omitempty"`
 }
 
 func (x *GetClassroomsRequest) Reset() {
@@ -987,11 +1035,13 @@ func (x *GetUnusedClassroomsRequest) GetSection() int32 {
 	return 0
 }
 
+// ClassroomsResponse 教室查询返回体
 type ClassroomsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 教室列表
 	Items []*Classroom `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 }
 
@@ -1034,16 +1084,23 @@ func (x *ClassroomsResponse) GetItems() []*Classroom {
 	return nil
 }
 
+// 教室信息
 type Classroom struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Semester     int32  `protobuf:"varint,1,opt,name=semester,proto3" json:"semester,omitempty"`
-	SchoolYear   string `protobuf:"bytes,2,opt,name=schoolYear,proto3" json:"schoolYear,omitempty"`
-	LocationID   string `protobuf:"bytes,3,opt,name=locationID,proto3" json:"locationID,omitempty"`
+	// 学期
+	Semester int32 `protobuf:"varint,1,opt,name=semester,proto3" json:"semester,omitempty"`
+	// 学年
+	SchoolYear string `protobuf:"bytes,2,opt,name=schoolYear,proto3" json:"schoolYear,omitempty"`
+	// 教室ID
+	LocationID string `protobuf:"bytes,3,opt,name=locationID,proto3" json:"locationID,omitempty"`
+	// 教室名字
 	LocationName string `protobuf:"bytes,4,opt,name=locationName,proto3" json:"locationName,omitempty"`
-	BuildingID   string `protobuf:"bytes,5,opt,name=buildingID,proto3" json:"buildingID,omitempty"`
+	// 教学楼ID
+	BuildingID string `protobuf:"bytes,5,opt,name=buildingID,proto3" json:"buildingID,omitempty"`
+	// 教学楼名字
 	BuildingName string `protobuf:"bytes,6,opt,name=buildingName,proto3" json:"buildingName,omitempty"`
 }
 
@@ -1121,11 +1178,13 @@ func (x *Classroom) GetBuildingName() string {
 	return ""
 }
 
+// ClassroomUsagesResponse 教室使用情况返回体
 type ClassroomUsagesResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 教室使用情况列表
 	Items []*ClassroomUsagesResponse_Nested `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 }
 
@@ -1168,14 +1227,18 @@ func (x *ClassroomUsagesResponse) GetItems() []*ClassroomUsagesResponse_Nested {
 	return nil
 }
 
+//人员信息
 type ScheduleResponseCourse_StaffInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	StaffID   string `protobuf:"bytes,1,opt,name=StaffID,proto3" json:"StaffID,omitempty"`
+	//学工号
+	StaffID string `protobuf:"bytes,1,opt,name=StaffID,proto3" json:"StaffID,omitempty"`
+	//姓名
 	StaffName string `protobuf:"bytes,2,opt,name=StaffName,proto3" json:"StaffName,omitempty"`
-	StaffType int32  `protobuf:"varint,3,opt,name=StaffType,proto3" json:"StaffType,omitempty"`
+	//人员类型，枚举及其含义：0->未知 | 1->本科生 | 2->研究生 | 3->教职工
+	StaffType int32 `protobuf:"varint,3,opt,name=StaffType,proto3" json:"StaffType,omitempty"`
 }
 
 func (x *ScheduleResponseCourse_StaffInfo) Reset() {
@@ -1231,21 +1294,32 @@ func (x *ScheduleResponseCourse_StaffInfo) GetStaffType() int32 {
 	return 0
 }
 
+// 单个排课信息（如高等数学的周一的3-5节）
 type ScheduleResponseCourse_Schedule struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Location   string                              `protobuf:"bytes,1,opt,name=Location,proto3" json:"Location,omitempty"`
-	SeatsNum   int32                               `protobuf:"varint,2,opt,name=SeatsNum,proto3" json:"SeatsNum,omitempty"`
-	Section    []int32                             `protobuf:"varint,3,rep,packed,name=Section,proto3" json:"Section,omitempty"`
-	Teachers   []*ScheduleResponseCourse_StaffInfo `protobuf:"bytes,4,rep,name=Teachers,proto3" json:"Teachers,omitempty"`
-	Students   []*ScheduleResponseCourse_StaffInfo `protobuf:"bytes,5,rep,name=Students,proto3" json:"Students,omitempty"`
-	Week       []int32                             `protobuf:"varint,6,rep,packed,name=Week,proto3" json:"Week,omitempty"`
-	WeekDay    int32                               `protobuf:"varint,7,opt,name=WeekDay,proto3" json:"WeekDay,omitempty"`
-	IsThisWeek bool                                `protobuf:"varint,8,opt,name=IsThisWeek,proto3" json:"IsThisWeek,omitempty"`
-	StartTime  uint32                              `protobuf:"varint,9,opt,name=StartTime,proto3" json:"StartTime,omitempty"`
-	EndTime    uint32                              `protobuf:"varint,10,opt,name=EndTime,proto3" json:"EndTime,omitempty"`
+	// 上课地点
+	Location string `protobuf:"bytes,1,opt,name=Location,proto3" json:"Location,omitempty"`
+	// 教室作为数量
+	SeatsNum int32 `protobuf:"varint,2,opt,name=SeatsNum,proto3" json:"SeatsNum,omitempty"`
+	// 节次数组, 升序
+	Section []int32 `protobuf:"varint,3,rep,packed,name=Section,proto3" json:"Section,omitempty"`
+	// 老师列表
+	Teachers []*ScheduleResponseCourse_StaffInfo `protobuf:"bytes,4,rep,name=Teachers,proto3" json:"Teachers,omitempty"`
+	// 学生列表
+	Students []*ScheduleResponseCourse_StaffInfo `protobuf:"bytes,5,rep,name=Students,proto3" json:"Students,omitempty"`
+	// 周次数组
+	Week []int32 `protobuf:"varint,6,rep,packed,name=Week,proto3" json:"Week,omitempty"`
+	// 星期
+	WeekDay int32 `protobuf:"varint,7,opt,name=WeekDay,proto3" json:"WeekDay,omitempty"`
+	// 是否本周课程
+	IsThisWeek bool `protobuf:"varint,8,opt,name=IsThisWeek,proto3" json:"IsThisWeek,omitempty"`
+	// 上课时间
+	StartTime uint32 `protobuf:"varint,9,opt,name=StartTime,proto3" json:"StartTime,omitempty"`
+	// 下课时间
+	EndTime uint32 `protobuf:"varint,10,opt,name=EndTime,proto3" json:"EndTime,omitempty"`
 }
 
 func (x *ScheduleResponseCourse_Schedule) Reset() {
@@ -1350,19 +1424,28 @@ func (x *ScheduleResponseCourse_Schedule) GetEndTime() uint32 {
 	return 0
 }
 
+// 课表
 type GetScheduleNowResponse_Course struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// 开始节次
 	StartSection uint32 `protobuf:"varint,1,opt,name=start_section,json=startSection,proto3" json:"start_section,omitempty"`
-	EndSection   uint32 `protobuf:"varint,2,opt,name=end_section,json=endSection,proto3" json:"end_section,omitempty"`
-	StartTime    string `protobuf:"bytes,3,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
-	EndTime      string `protobuf:"bytes,4,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
-	CourseName   string `protobuf:"bytes,5,opt,name=course_name,json=courseName,proto3" json:"course_name,omitempty"`
-	Classroom    string `protobuf:"bytes,6,opt,name=classroom,proto3" json:"classroom,omitempty"`
-	Teacher      string `protobuf:"bytes,7,opt,name=teacher,proto3" json:"teacher,omitempty"`
-	Duration     string `protobuf:"bytes,8,opt,name=duration,proto3" json:"duration,omitempty"`
+	// 结束节次
+	EndSection uint32 `protobuf:"varint,2,opt,name=end_section,json=endSection,proto3" json:"end_section,omitempty"`
+	// 上课时间
+	StartTime string `protobuf:"bytes,3,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	// 下课时间
+	EndTime string `protobuf:"bytes,4,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
+	// 课程名
+	CourseName string `protobuf:"bytes,5,opt,name=course_name,json=courseName,proto3" json:"course_name,omitempty"`
+	// 教室
+	Classroom string `protobuf:"bytes,6,opt,name=classroom,proto3" json:"classroom,omitempty"`
+	// 老师
+	Teacher string `protobuf:"bytes,7,opt,name=teacher,proto3" json:"teacher,omitempty"`
+	// 时长
+	Duration string `protobuf:"bytes,8,opt,name=duration,proto3" json:"duration,omitempty"`
 }
 
 func (x *GetScheduleNowResponse_Course) Reset() {
@@ -1453,18 +1536,26 @@ func (x *GetScheduleNowResponse_Course) GetDuration() string {
 	return ""
 }
 
+// 内嵌信息
 type ClassroomUsagesResponse_Nested struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Classroom  *Classroom `protobuf:"bytes,1,opt,name=classroom,proto3" json:"classroom,omitempty"`
-	Weekday    int32      `protobuf:"varint,2,opt,name=weekday,proto3" json:"weekday,omitempty"`
-	Week       []int32    `protobuf:"varint,3,rep,packed,name=week,proto3" json:"week,omitempty"`
-	Section    []int32    `protobuf:"varint,4,rep,packed,name=Section,proto3" json:"Section,omitempty"`
-	ClassID    string     `protobuf:"bytes,5,opt,name=ClassID,proto3" json:"ClassID,omitempty"`
-	CourseCode string     `protobuf:"bytes,6,opt,name=CourseCode,proto3" json:"CourseCode,omitempty"`
-	CourseName string     `protobuf:"bytes,7,opt,name=CourseName,proto3" json:"CourseName,omitempty"`
+	// 教室信息
+	Classroom *Classroom `protobuf:"bytes,1,opt,name=classroom,proto3" json:"classroom,omitempty"`
+	// 星期
+	Weekday int32 `protobuf:"varint,2,opt,name=weekday,proto3" json:"weekday,omitempty"`
+	// 周次列表
+	Week []int32 `protobuf:"varint,3,rep,packed,name=week,proto3" json:"week,omitempty"`
+	// 节次列表
+	Section []int32 `protobuf:"varint,4,rep,packed,name=Section,proto3" json:"Section,omitempty"`
+	// 课程内部ID
+	ClassID string `protobuf:"bytes,5,opt,name=ClassID,proto3" json:"ClassID,omitempty"`
+	// 课程号
+	CourseCode string `protobuf:"bytes,6,opt,name=CourseCode,proto3" json:"CourseCode,omitempty"`
+	// 课程名
+	CourseName string `protobuf:"bytes,7,opt,name=CourseName,proto3" json:"CourseName,omitempty"`
 }
 
 func (x *ClassroomUsagesResponse_Nested) Reset() {
