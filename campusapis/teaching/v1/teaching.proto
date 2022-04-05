@@ -35,14 +35,11 @@ service TeachingService {
   rpc GetSchedule(GetScheduleRequest) returns (GetScheduleResponse){
     option (google.api.http) = {
       get: "/teaching/v1/schedule"
-      response_body: "items"
       additional_bindings {
         get: "/teaching/schedule"
-        response_body: "items"
       }
       additional_bindings {
         get: "/student/v2/schedule"
-        response_body: "items"
       }
     };
   }
