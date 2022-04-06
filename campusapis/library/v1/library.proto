@@ -18,8 +18,7 @@ service LibraryService {
     };
   }
   //查询书本信息列表，只能查询一个书籍的书本信息
-  rpc GetBookInfoList(GetBookInfoListRequest)
-      returns (GetBookInfoListResponse) {
+  rpc GetBookInfoList(GetBookInfoListRequest) returns (GetBookInfoListResponse) {
     option (google.api.http) = {
       get : "/library/v1/book/info/list"
       response_body : "books"
@@ -33,11 +32,24 @@ service LibraryService {
     };
   }
   //查询书籍信息列表
-  rpc GetBookMARCList(GetBookMARCListRequest)
-      returns (GetBookMARCListResponse) {
+  rpc GetBookMARCList(GetBookMARCListRequest) returns (GetBookMARCListResponse) {
     option (google.api.http) = {
       get : "/library/v1/book/marc/list"
       response_body : "marcs"
+    };
+  }
+  //查询当前图书借阅记录
+  rpc GetBookLendLast(GetLendRequest) returns (GetBookLendLastResponse) {
+    option (google.api.http) = {
+      get : "/library/v1/book/lend/last"
+      response_body : "items"
+    };
+  }
+  //查询历史图书借阅记录
+  rpc GetBookLendHistory(GetLendRequest) returns (GetBookLendHistoryResponse) {
+    option (google.api.http) = {
+      get : "/library/v1/book/lend/history"
+      response_body : "items"
     };
   }
 }
@@ -84,6 +96,8 @@ message BookInfo {
   string location = 15;
   //中图法分类号
   string callNo = 16;
+  //书籍信息
+  BookMARC marc = 17;
 }
 
 message GetBookInfoListRequest {
@@ -145,7 +159,7 @@ message BookMARC {
 message GetBookMARCListRequest {
   BookMARC marc = 1;
   //模糊查询关键字，当前仅允许查询作者，书名，出版社
-  repeated string searchKey = 2;
+  repeated string searchKeys = 2;
   //限制条数，允许为0-100之间
   uint32 limit = 3;
   //偏移
@@ -153,3 +167,45 @@ message GetBookMARCListRequest {
 }
 
 message GetBookMARCListResponse { repeated BookMARC marcs = 1; }
+
+message GetLendRequest {
+  uint32 startTime = 1;
+  uint32 endTime = 2;
+}
+
+enum LendStatus {
+  //未知
+  UNKNOWN = 0;
+  //借阅中
+  LENDING = 1;
+  //已归还
+  RETURNED = 2;
+}
+
+message GetBookLendLastResponse {
+  message Nested {
+    BookInfo book = 1;
+    string staffID = 2;
+    uint32 lendDate = 3;
+    uint32 normalReturnDate = 4;
+    uint32 renewDate = 5;
+    uint32 renewTimes = 6;
+    string location = 7;
+    LendStatus status = 8;
+  }
+  repeated Nested items = 1;
+}
+
+message GetBookLendHistoryResponse {
+  message Nested {
+    BookInfo book = 1;
+    string staffID = 2;
+    uint32 lendDate = 3;
+    uint32 returnDate = 4;
+    uint32 renewDate = 5;
+    uint32 renewTimes = 6;
+    string location = 7;
+    LendStatus status = 8;
+  }
+  repeated Nested items = 1;
+}

@@ -83,6 +83,90 @@
         ]
       }
     },
+    "/library/v1/book/lend/history": {
+      "get": {
+        "summary": "查询历史图书借阅记录",
+        "operationId": "LibraryService_GetBookLendHistory",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetBookLendHistoryResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/book/lend/last": {
+      "get": {
+        "summary": "查询当前图书借阅记录",
+        "operationId": "LibraryService_GetBookLendLast",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetBookLendLastResponseNested"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
     "/library/v1/book/marc": {
       "get": {
         "summary": "查询书籍信息",
@@ -276,7 +360,7 @@
             "type": "string"
           },
           {
-            "name": "searchKey",
+            "name": "searchKeys",
             "description": "模糊查询关键字，当前仅允许查询作者，书名，出版社",
             "in": "query",
             "required": false,
@@ -410,6 +494,10 @@
         "callNo": {
           "type": "string",
           "title": "中图法分类号"
+        },
+        "marc": {
+          "$ref": "#/definitions/v1BookMARC",
+          "title": "书籍信息"
         }
       },
       "title": "书本信息"
@@ -514,6 +602,94 @@
         }
       }
     },
+    "v1GetBookLendHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetBookLendHistoryResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetBookLendHistoryResponseNested": {
+      "type": "object",
+      "properties": {
+        "book": {
+          "$ref": "#/definitions/v1BookInfo"
+        },
+        "staffID": {
+          "type": "string"
+        },
+        "lendDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "returnDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "renewDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "renewTimes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "location": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/v1LendStatus"
+        }
+      }
+    },
+    "v1GetBookLendLastResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GetBookLendLastResponseNested"
+          }
+        }
+      }
+    },
+    "v1GetBookLendLastResponseNested": {
+      "type": "object",
+      "properties": {
+        "book": {
+          "$ref": "#/definitions/v1BookInfo"
+        },
+        "staffID": {
+          "type": "string"
+        },
+        "lendDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "normalReturnDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "renewDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "renewTimes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "location": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/v1LendStatus"
+        }
+      }
+    },
     "v1GetBookMARCListResponse": {
       "type": "object",
       "properties": {
@@ -532,6 +708,16 @@
           "$ref": "#/definitions/v1BookMARC"
         }
       }
+    },
+    "v1LendStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "LENDING",
+        "RETURNED"
+      ],
+      "default": "UNKNOWN",
+      "title": "- UNKNOWN: 未知\n - LENDING: 借阅中\n - RETURNED: 已归还"
     }
   }
 }
