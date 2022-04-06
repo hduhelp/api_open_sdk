@@ -39,14 +39,14 @@ service LibraryService {
     };
   }
   //查询当前图书借阅记录
-  rpc GetBookLendLast(GetLendRequest) returns (GetBookLendLastResponse) {
+  rpc GetBookLendLast(GetLendLastRequest) returns (GetBookLendLastResponse) {
     option (google.api.http) = {
       get : "/library/v1/book/lend/last"
       response_body : "items"
     };
   }
   //查询历史图书借阅记录
-  rpc GetBookLendHistory(GetLendRequest) returns (GetBookLendHistoryResponse) {
+  rpc GetBookLendHistory(GetLendHistoryRequest) returns (GetBookLendHistoryResponse) {
     option (google.api.http) = {
       get : "/library/v1/book/lend/history"
       response_body : "items"
@@ -168,7 +168,11 @@ message GetBookMARCListRequest {
 
 message GetBookMARCListResponse { repeated BookMARC marcs = 1; }
 
-message GetLendRequest {
+message GetLendLastRequest {
+  uint32 startTime = 1;
+}
+
+message GetLendHistoryRequest {
   uint32 startTime = 1;
   uint32 endTime = 2;
 }

@@ -31,9 +31,9 @@ type LibraryServiceClient interface {
 	//查询书籍信息列表
 	GetBookMARCList(ctx context.Context, in *GetBookMARCListRequest, opts ...grpc.CallOption) (*GetBookMARCListResponse, error)
 	//查询当前图书借阅记录
-	GetBookLendLast(ctx context.Context, in *GetLendRequest, opts ...grpc.CallOption) (*GetBookLendLastResponse, error)
+	GetBookLendLast(ctx context.Context, in *GetLendLastRequest, opts ...grpc.CallOption) (*GetBookLendLastResponse, error)
 	//查询历史图书借阅记录
-	GetBookLendHistory(ctx context.Context, in *GetLendRequest, opts ...grpc.CallOption) (*GetBookLendHistoryResponse, error)
+	GetBookLendHistory(ctx context.Context, in *GetLendHistoryRequest, opts ...grpc.CallOption) (*GetBookLendHistoryResponse, error)
 }
 
 type libraryServiceClient struct {
@@ -80,7 +80,7 @@ func (c *libraryServiceClient) GetBookMARCList(ctx context.Context, in *GetBookM
 	return out, nil
 }
 
-func (c *libraryServiceClient) GetBookLendLast(ctx context.Context, in *GetLendRequest, opts ...grpc.CallOption) (*GetBookLendLastResponse, error) {
+func (c *libraryServiceClient) GetBookLendLast(ctx context.Context, in *GetLendLastRequest, opts ...grpc.CallOption) (*GetBookLendLastResponse, error) {
 	out := new(GetBookLendLastResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.library.v1.LibraryService/GetBookLendLast", in, out, opts...)
 	if err != nil {
@@ -89,7 +89,7 @@ func (c *libraryServiceClient) GetBookLendLast(ctx context.Context, in *GetLendR
 	return out, nil
 }
 
-func (c *libraryServiceClient) GetBookLendHistory(ctx context.Context, in *GetLendRequest, opts ...grpc.CallOption) (*GetBookLendHistoryResponse, error) {
+func (c *libraryServiceClient) GetBookLendHistory(ctx context.Context, in *GetLendHistoryRequest, opts ...grpc.CallOption) (*GetBookLendHistoryResponse, error) {
 	out := new(GetBookLendHistoryResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.library.v1.LibraryService/GetBookLendHistory", in, out, opts...)
 	if err != nil {
@@ -111,9 +111,9 @@ type LibraryServiceServer interface {
 	//查询书籍信息列表
 	GetBookMARCList(context.Context, *GetBookMARCListRequest) (*GetBookMARCListResponse, error)
 	//查询当前图书借阅记录
-	GetBookLendLast(context.Context, *GetLendRequest) (*GetBookLendLastResponse, error)
+	GetBookLendLast(context.Context, *GetLendLastRequest) (*GetBookLendLastResponse, error)
 	//查询历史图书借阅记录
-	GetBookLendHistory(context.Context, *GetLendRequest) (*GetBookLendHistoryResponse, error)
+	GetBookLendHistory(context.Context, *GetLendHistoryRequest) (*GetBookLendHistoryResponse, error)
 }
 
 // UnimplementedLibraryServiceServer should be embedded to have forward compatible implementations.
@@ -132,10 +132,10 @@ func (UnimplementedLibraryServiceServer) GetBookMARC(context.Context, *GetBookMA
 func (UnimplementedLibraryServiceServer) GetBookMARCList(context.Context, *GetBookMARCListRequest) (*GetBookMARCListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookMARCList not implemented")
 }
-func (UnimplementedLibraryServiceServer) GetBookLendLast(context.Context, *GetLendRequest) (*GetBookLendLastResponse, error) {
+func (UnimplementedLibraryServiceServer) GetBookLendLast(context.Context, *GetLendLastRequest) (*GetBookLendLastResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookLendLast not implemented")
 }
-func (UnimplementedLibraryServiceServer) GetBookLendHistory(context.Context, *GetLendRequest) (*GetBookLendHistoryResponse, error) {
+func (UnimplementedLibraryServiceServer) GetBookLendHistory(context.Context, *GetLendHistoryRequest) (*GetBookLendHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookLendHistory not implemented")
 }
 
@@ -223,7 +223,7 @@ func _LibraryService_GetBookMARCList_Handler(srv interface{}, ctx context.Contex
 }
 
 func _LibraryService_GetBookLendLast_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetLendRequest)
+	in := new(GetLendLastRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -235,13 +235,13 @@ func _LibraryService_GetBookLendLast_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/campusapis.library.v1.LibraryService/GetBookLendLast",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetBookLendLast(ctx, req.(*GetLendRequest))
+		return srv.(LibraryServiceServer).GetBookLendLast(ctx, req.(*GetLendLastRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _LibraryService_GetBookLendHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetLendRequest)
+	in := new(GetLendHistoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -253,7 +253,7 @@ func _LibraryService_GetBookLendHistory_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/campusapis.library.v1.LibraryService/GetBookLendHistory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetBookLendHistory(ctx, req.(*GetLendRequest))
+		return srv.(LibraryServiceServer).GetBookLendHistory(ctx, req.(*GetLendHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

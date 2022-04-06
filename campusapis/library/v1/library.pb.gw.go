@@ -180,7 +180,7 @@ var (
 )
 
 func request_LibraryService_GetBookLendLast_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLendRequest
+	var protoReq GetLendLastRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -196,7 +196,7 @@ func request_LibraryService_GetBookLendLast_0(ctx context.Context, marshaler run
 }
 
 func local_request_LibraryService_GetBookLendLast_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLendRequest
+	var protoReq GetLendLastRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -216,7 +216,7 @@ var (
 )
 
 func request_LibraryService_GetBookLendHistory_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLendRequest
+	var protoReq GetLendHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -232,7 +232,7 @@ func request_LibraryService_GetBookLendHistory_0(ctx context.Context, marshaler 
 }
 
 func local_request_LibraryService_GetBookLendHistory_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLendRequest
+	var protoReq GetLendHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
