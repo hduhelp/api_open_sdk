@@ -40,3 +40,8 @@ func UnwarpCode(code codes.Code) Codes {
 		GrpcCode: code / 100000,
 	}
 }
+
+func Unwarp(err error) (codes Codes, msg string) {
+	s := status.Convert(err)
+	return UnwarpCode(s.Code()), s.Proto().Message
+}
