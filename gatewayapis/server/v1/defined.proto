@@ -48,9 +48,9 @@ message HTTPRouter {
   //缓存过期时间
   uint32 cacheExpire = 8;
   //客户端到服务请求可传递的请求头
-  string directThroughRequestHeaders = 9;
+  repeated string directThroughRequestHeaders = 9;
   //服务到客户端返回可传递的响应头
-  string directThroughResponseHeaders = 10;
+  repeated string directThroughResponseHeaders = 10;
   //是否启用
   bool enable = 11;
 }

@@ -101,11 +101,17 @@
           "title": "缓存过期时间"
         },
         "directThroughRequestHeaders": {
-          "type": "string",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "客户端到服务请求可传递的请求头"
         },
         "directThroughResponseHeaders": {
-          "type": "string",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "服务到客户端返回可传递的响应头"
         },
         "enable": {
