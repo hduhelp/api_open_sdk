@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,6 +23,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthServiceClient interface {
+	//获得Token基本信息
+	GetTokenInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTokenInfoResponse, error)
 	// 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
 	GetBindListByUserIdList(ctx context.Context, in *UserIdListRequest, opts ...grpc.CallOption) (*BindListResponse, error)
 }
@@ -32,6 +35,15 @@ type authServiceClient struct {
 
 func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
 	return &authServiceClient{cc}
+}
+
+func (c *authServiceClient) GetTokenInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTokenInfoResponse, error) {
+	out := new(GetTokenInfoResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetTokenInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *UserIdListRequest, opts ...grpc.CallOption) (*BindListResponse, error) {
@@ -47,6 +59,8 @@ func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *Use
 // All implementations should embed UnimplementedAuthServiceServer
 // for forward compatibility
 type AuthServiceServer interface {
+	//获得Token基本信息
+	GetTokenInfo(context.Context, *emptypb.Empty) (*GetTokenInfoResponse, error)
 	// 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
 	GetBindListByUserIdList(context.Context, *UserIdListRequest) (*BindListResponse, error)
 }
@@ -55,6 +69,9 @@ type AuthServiceServer interface {
 type UnimplementedAuthServiceServer struct {
 }
 
+func (UnimplementedAuthServiceServer) GetTokenInfo(context.Context, *emptypb.Empty) (*GetTokenInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTokenInfo not implemented")
+}
 func (UnimplementedAuthServiceServer) GetBindListByUserIdList(context.Context, *UserIdListRequest) (*BindListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBindListByUserIdList not implemented")
 }
@@ -68,6 +85,24 @@ type UnsafeAuthServiceServer interface {
 
 func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
 	s.RegisterService(&AuthService_ServiceDesc, srv)
+}
+
+func _AuthService_GetTokenInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetTokenInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetTokenInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetTokenInfo(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_GetBindListByUserIdList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -95,6 +130,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "gatewayapis.auth.v1.AuthService",
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetTokenInfo",
+			Handler:    _AuthService_GetTokenInfo_Handler,
+		},
 		{
 			MethodName: "GetBindListByUserIdList",
 			Handler:    _AuthService_GetBindListByUserIdList_Handler,

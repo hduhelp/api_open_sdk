@@ -2,50 +2,67 @@ syntax = "proto3";
 
 package gatewayapis.auth.v1;
 
-option go_package = "./gatewayapis/auth/v1";
-
+import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
+option go_package = "./gatewayapis/auth/v1";
+
 service AuthService {
-    // 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
+  //获得Token基本信息
+  rpc GetTokenInfo(google.protobuf.Empty) returns (GetTokenInfoResponse) {}
+  // 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
   rpc GetBindListByUserIdList(UserIdListRequest) returns (BindListResponse) {}
 }
 
+enum TokenType {
+  ORIGIN = 0;
+  OAUTH = 1;
+}
+
+message GetTokenInfoResponse {
+  bool isValid = 1;
+  string accessToken = 2;
+  uint32 expiredTime = 3;
+  string grantType = 4;
+  string clientID = 5;
+  TokenType tokenType = 6;
+}
+
 message UserIdListRequest {
-    // 助手user_id列表
-    repeated string userIds = 1;
+  // 助手user_id列表
+  repeated string userIds = 1;
 }
 
 // 用户绑定信息查询响应
 message BindListResponse {
-    // 绑定信息列表
-    repeated Bind items = 1;
+  // 绑定信息列表
+  repeated Bind items = 1;
 }
 
 // 用户绑定信息
 message Bind {
-    // 助手用户user_id
-    string userId = 1;
-    // 绑定平台：
-    // platform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；
-    // platform=qzu 衢州学院学（工）号，uid 为学工号
-    // platform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；
-    // platform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；
-    // platform=idCard 身份证，uid 为身份证号；
-    // platform=alipay 支付宝, uid todo
-    // platform=apple 苹果，uid todo, uid2 todo
-    // platform=github github, uid todo, uid2 todo
-    // platform=qq QQ号，uid todo, uid2 todo
-    // platform=yiban 易班，uid todo
-    string platform = 2;
-    // uid 不同平台含义不同，见 platform 解释
-    string uid = 3;
-    // uid 不同平台含义不同，见 platform 解释
-    string uid2 = 4;
-    // 是否为主学工号
-    bool primary = 5;
-    // 备注
-    string remark = 6;
-    // 额外信息，json 格式
-    google.protobuf.Struct attributes = 7;
+  // 助手用户user_id
+  string userId = 1;
+  // 绑定平台：
+  // platform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；
+  // platform=qzu 衢州学院学（工）号，uid 为学工号
+  // platform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；
+  // platform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；
+  // platform=idCard 身份证，uid 为身份证号；
+  // platform=alipay 支付宝, uid todo
+  // platform=apple 苹果，uid todo, uid2 todo
+  // platform=github github, uid todo, uid2 todo
+  // platform=qq QQ号，uid todo, uid2 todo
+  // platform=yiban 易班，uid todo
+  string platform = 2;
+  // uid 不同平台含义不同，见 platform 解释
+  string uid = 3;
+  // uid 不同平台含义不同，见 platform 解释
+  string uid2 = 4;
+  // 是否为主学工号
+  bool primary = 5;
+  // 备注
+  string remark = 6;
+  // 额外信息，json 格式
+  google.protobuf.Struct attributes = 7;
 }

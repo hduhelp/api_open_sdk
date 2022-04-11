@@ -98,6 +98,38 @@
         }
       },
       "title": "用户绑定信息查询响应"
+    },
+    "v1GetTokenInfoResponse": {
+      "type": "object",
+      "properties": {
+        "isValid": {
+          "type": "boolean"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "expiredTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "grantType": {
+          "type": "string"
+        },
+        "clientID": {
+          "type": "string"
+        },
+        "tokenType": {
+          "$ref": "#/definitions/v1TokenType"
+        }
+      }
+    },
+    "v1TokenType": {
+      "type": "string",
+      "enum": [
+        "ORIGIN",
+        "OAUTH"
+      ],
+      "default": "ORIGIN"
     }
   }
 }
