@@ -2,65 +2,78 @@ syntax = "proto3";
 
 package campusapis.health.v1;
 
-option go_package = "./campusapis/health/v1";
-
 import "campusapis/staff/base.proto";
-import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./campusapis/health/v1";
 
 //健康打卡相关服务
 service HealthService {
   //获取指定日期健康打卡记录
-  rpc GetCheckinRecord(GetCheckinRecordRequest)
-      returns (GetCheckinRecordResponse) {
+  rpc GetCheckinRecord(GetCheckinRecordRequest) returns (GetCheckinRecordResponse) {
     option (google.api.http) = {
-      get : "/health/v1/checkin"
-      additional_bindings {get : "/health/checkin"}
-      additional_bindings {get : "/health/checkin/today"}
+      get: "/health/v1/checkin"
+      additional_bindings {
+        get: "/health/checkin"
+      }
+      additional_bindings {
+        get: "/health/checkin/today"
+      }
     };
   }
   //获取历史健康打卡记录
-  rpc GetCheckinRecords(google.protobuf.Empty)
-      returns (GetCheckinRecordsResponse) {
+  rpc GetCheckinRecords(google.protobuf.Empty) returns (GetCheckinRecordsResponse) {
     option (google.api.http) = {
-      get : "/health/v1/checkins"
-      response_body : "items"
-      additional_bindings {get : "/health/checkins" response_body : "items"}
+      get: "/health/v1/checkins"
+      response_body: "items"
+      additional_bindings {
+        get: "/health/checkins"
+        response_body: "items"
+      }
     };
   }
   //提交今日健康打卡
-  rpc PostCheckinRecord(PostCheckinRecordRequest)
-      returns (PostCheckinRecordResponse) {
+  rpc PostCheckinRecord(PostCheckinRecordRequest) returns (PostCheckinRecordResponse) {
     option (google.api.http) = {
-      post : "/health/v1/checkin"
-      body : "content"
-      additional_bindings {post : "/health/checkin" body : "content"}
+      post: "/health/v1/checkin"
+      body: "content"
+      additional_bindings {
+        post: "/health/checkin"
+        body: "content"
+      }
     };
   }
   //获取健康打卡平台的手机号
   rpc GetCheckinPhone(google.protobuf.Empty) returns (GetCheckinPhoneResponse) {
     option (google.api.http) = {
-      get : "/health/v1/phone"
-      additional_bindings {get : "/health/phone"}
+      get: "/health/v1/phone"
+      additional_bindings {
+        get: "/health/phone"
+      }
     };
   }
   //更新健康打卡平台的手机号
-  rpc PostCheckinPhone(PostCheckinPhoneRequest)
-      returns (google.protobuf.Empty) {
+  rpc PostCheckinPhone(PostCheckinPhoneRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post : "/health/v1/phone"
-      body : "*"
-      additional_bindings {post : "/health/phone" body : "*"}
+      post: "/health/v1/phone"
+      body: "*"
+      additional_bindings {
+        post: "/health/phone"
+        body: "*"
+      }
     };
   }
   //获取当前健康码
   rpc GetHealthCode(google.protobuf.Empty) returns (GetHealthCodeResponse) {
     option (google.api.http) = {
-      get : "/health/v1/code"
-      additional_bindings {get : "/health/code"}
+      get: "/health/v1/code"
+      additional_bindings {
+        get: "/health/code"
+      }
     };
   }
 }
@@ -140,7 +153,9 @@ message GetCheckinPhoneResponse {
   string StaffID = 2;
 }
 
-message PostCheckinPhoneRequest { string phone = 1; }
+message PostCheckinPhoneRequest {
+  string phone = 1;
+}
 
 //健康码
 message HealthCode {

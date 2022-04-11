@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package gatewayapis.server.v1;
+
+import "gatewayapis/server/v1/defined.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./gatewayapis/server/v1";
+
+//服务管理端
+service ServerManageerService {
+  //获取可管理的所有HTTP路由
+  rpc GetHTTPRouterList(google.protobuf.Empty) returns (GetHTTPRouterListResponse) {}
+  //查询路由
+  rpc GetHTTPRouter(HTTPRouterKeyRequest) returns (gatewayapis.server.v1.HTTPRouter) {}
+  //创建或者更新路由
+  rpc PostOrPutHTTPRouter(gatewayapis.server.v1.HTTPRouter) returns (google.protobuf.Empty) {}
+  //删除路由
+  rpc DeleteHTTPRouter(HTTPRouterKeyRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetHTTPRouterListResponse {
+  repeated gatewayapis.server.v1.HTTPRouter routers = 1;
+}
+
+//三个参数需要都不为空
+message HTTPRouterKeyRequest {
+  //服务名称
+  string service = 1;
+  //方法
+  string method = 2;
+  //挂载地址
+  string servePath = 3;
+}
