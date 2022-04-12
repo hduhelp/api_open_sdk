@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package gatewayapis.auth.v1;
 
+import "gatewayapis/option.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
@@ -11,7 +12,9 @@ service AuthService {
   //获得Token基本信息
   rpc GetTokenInfo(google.protobuf.Empty) returns (GetTokenInfoResponse) {}
   // 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
-  rpc GetBindListByUserIdList(UserIdListRequest) returns (BindListResponse) {}
+  rpc GetBindListByUserIdList(UserIdListRequest) returns (BindListResponse) {
+    option (gatewayapis.auth_token_needed) = true;
+  }
 }
 
 enum TokenType {

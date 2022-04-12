@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package campusapis;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "./campusapis";
+
+extend google.protobuf.MessageOptions {
+  optional string staff_id_needed = 50001;
+  optional string staff_type_needed = 50002;
+}

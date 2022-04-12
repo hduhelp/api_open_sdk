@@ -2,54 +2,54 @@ syntax = "proto3";
 
 package campusapis.library.v1;
 
-option go_package = "./campusapis/library/v1";
-
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/empty.proto";
-import "google/api/annotations.proto";
 import "campusapis/schoolTime/defined.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./campusapis/library/v1";
 
 service LibraryService {
   //查询书本信息
   rpc GetBookInfo(GetBookInfoRequest) returns (GetBookInfoResponse) {
     option (google.api.http) = {
-      get : "/library/v1/book/info"
-      response_body : "book"
+      get: "/library/v1/book/info"
+      response_body: "book"
     };
   }
   //查询书本信息列表，只能查询一个书籍的书本信息
   rpc GetBookInfoList(GetBookInfoListRequest) returns (GetBookInfoListResponse) {
     option (google.api.http) = {
-      get : "/library/v1/book/info/list"
-      response_body : "books"
+      get: "/library/v1/book/info/list"
+      response_body: "books"
     };
   }
   //查询书籍信息
   rpc GetBookMARC(GetBookMARCRequest) returns (GetBookMARCResponse) {
     option (google.api.http) = {
-      get : "/library/v1/book/marc"
-      response_body : "marc"
+      get: "/library/v1/book/marc"
+      response_body: "marc"
     };
   }
   //查询书籍信息列表
   rpc GetBookMARCList(GetBookMARCListRequest) returns (GetBookMARCListResponse) {
     option (google.api.http) = {
-      get : "/library/v1/book/marc/list"
-      response_body : "marcs"
+      get: "/library/v1/book/marc/list"
+      response_body: "marcs"
     };
   }
   //查询当前图书借阅记录
   rpc GetBookLendLast(GetLendLastRequest) returns (GetBookLendLastResponse) {
     option (google.api.http) = {
-      get : "/library/v1/book/lend/last"
-      response_body : "items"
+      get: "/library/v1/book/lend/last"
+      response_body: "items"
     };
   }
   //查询历史图书借阅记录
   rpc GetBookLendHistory(GetLendHistoryRequest) returns (GetBookLendHistoryResponse) {
     option (google.api.http) = {
-      get : "/library/v1/book/lend/history"
-      response_body : "items"
+      get: "/library/v1/book/lend/history"
+      response_body: "items"
     };
   }
 }
@@ -60,7 +60,9 @@ message GetBookInfoRequest {
   string propNo = 1;
 }
 
-message GetBookInfoResponse { BookInfo book = 1; }
+message GetBookInfoResponse {
+  BookInfo book = 1;
+}
 
 //书本信息
 message BookInfo {
@@ -105,7 +107,9 @@ message GetBookInfoListRequest {
   string marcRecNo = 1;
 }
 
-message GetBookInfoListResponse { repeated BookInfo books = 1; }
+message GetBookInfoListResponse {
+  repeated BookInfo books = 1;
+}
 
 //书籍信息查询关键字
 message GetBookMARCRequest {
@@ -113,7 +117,9 @@ message GetBookMARCRequest {
   string marcRecNo = 2;
 }
 
-message GetBookMARCResponse { BookMARC marc = 1; }
+message GetBookMARCResponse {
+  BookMARC marc = 1;
+}
 
 message BookMARC {
   //书籍编号
@@ -166,7 +172,9 @@ message GetBookMARCListRequest {
   uint32 offset = 4;
 }
 
-message GetBookMARCListResponse { repeated BookMARC marcs = 1; }
+message GetBookMARCListResponse {
+  repeated BookMARC marcs = 1;
+}
 
 message GetLendLastRequest {
   uint32 startTime = 1;
