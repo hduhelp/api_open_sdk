@@ -1,6 +1,9 @@
 package serverv1
 
-import "google.golang.org/grpc"
+import (
+	"github.com/gin-gonic/gin"
+	"google.golang.org/grpc"
+)
 
 func (x *PostRegistGRPCMethodsRequest) FormGRPCServer(server interface {
 	GetServiceInfo() map[string]grpc.ServiceInfo
@@ -15,5 +18,15 @@ func (x *PostRegistGRPCMethodsRequest) FormGRPCServer(server interface {
 				IsServerStream: method.IsServerStream,
 			})
 		}
+	}
+}
+
+func (x *PostRegistRoutersRequest) FromGinEngine(e *gin.Engine) {
+	x.Routers = make([]*HTTPRouter, 0)
+	for _, route := range e.Routes() {
+		x.Routers = append(x.Routers, &HTTPRouter{
+			Method:     route.Method,
+			RemotePath: route.Path,
+		})
 	}
 }
