@@ -1,15 +1,15 @@
 package transfer
 
 import (
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/hduhelp/api_open_sdk/utils"
-	"github.com/parnurzeal/gorequest"
 	"net/http"
 	"net/url"
 	"strconv"
 	"time"
+
+	"github.com/hduhelp/api_open_sdk/utils"
+	"github.com/parnurzeal/gorequest"
 )
 
 type Response struct {
@@ -120,25 +120,10 @@ func NewRequest(from string, to string, path string, param map[string]string,
 }
 
 func (r *Request) make() {
-	dataBodyB, err := json.Marshal(r.body)
-	if err != nil {
-		r.doneWithError(40301, err)
-		return
-	}
-
-	queries := map[string]string{
-		"from":      r.From,
-		"to":        r.To,
-		"path":      r.Path,
-		"timestamp": r.timestampStr(),
-		"body":      base64.StdEncoding.EncodeToString(dataBodyB),
-	}
-
 	r.SuperAgent.
 		Post(instance.endpoint).
 		Set("sign", "sign "+r.sign()).
 		Set("x-hduhelp-cache", "no-cache").
-		Query(queries).
 		Send(r.body)
 	for _, option := range r.options {
 		option.apply(r)
