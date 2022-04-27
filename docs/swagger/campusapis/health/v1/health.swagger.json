@@ -167,6 +167,29 @@
         ]
       }
     },
+    "/health/nucleic_acid_tests": {
+      "get": {
+        "summary": "获取核酸检测记录",
+        "operationId": "HealthService_GetNucleicAcidTests2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNucleicAcidTestsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
     "/health/phone": {
       "get": {
         "summary": "获取健康打卡平台的手机号",
@@ -340,6 +363,29 @@
         ]
       }
     },
+    "/health/v1/nucleic_acid_tests": {
+      "get": {
+        "summary": "获取核酸检测记录",
+        "operationId": "HealthService_GetNucleicAcidTests",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNucleicAcidTestsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
     "/health/v1/phone": {
       "get": {
         "summary": "获取健康打卡平台的手机号",
@@ -389,6 +435,52 @@
             }
           }
         ],
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/v1/vaccines": {
+      "get": {
+        "summary": "获取疫苗接种记录",
+        "operationId": "HealthService_GetVaccineRecords",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetVaccineRecordsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/health/vaccines": {
+      "get": {
+        "summary": "获取疫苗接种记录",
+        "operationId": "HealthService_GetVaccineRecords2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetVaccineRecordsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "HealthService"
         ]
@@ -567,6 +659,48 @@
       },
       "title": "健康码老"
     },
+    "v1GetNucleicAcidTestsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1NucleicAcidTest"
+          }
+        }
+      },
+      "title": "核酸检测返回体"
+    },
+    "v1GetVaccineRecordsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1VaccineRecord"
+          }
+        }
+      },
+      "title": "疫苗接种记录返回"
+    },
+    "v1NucleicAcidTest": {
+      "type": "object",
+      "properties": {
+        "testUnitName": {
+          "type": "string",
+          "title": "检测机构名称"
+        },
+        "reportTime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "报告时间"
+        },
+        "result": {
+          "type": "string",
+          "title": "检测结果，枚举：阴性 阴性"
+        }
+      }
+    },
     "v1PostCheckinPhoneRequest": {
       "type": "object",
       "properties": {
@@ -619,6 +753,41 @@
           "type": "string"
         }
       }
+    },
+    "v1VaccineRecord": {
+      "type": "object",
+      "properties": {
+        "typeName": {
+          "type": "string",
+          "title": "疫苗种类，例：非免疫规划疫苗"
+        },
+        "vacName": {
+          "type": "string",
+          "title": "疫苗名称"
+        },
+        "producerName": {
+          "type": "string",
+          "title": "疫苗生产厂家"
+        },
+        "inoculationTime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "接种时间"
+        },
+        "batch": {
+          "type": "string",
+          "title": "疫苗批次号"
+        },
+        "inoculationOrder": {
+          "type": "string",
+          "title": "剂次"
+        },
+        "maxInoculationTime": {
+          "type": "string",
+          "title": "该疫苗最大接种次数"
+        }
+      },
+      "title": "疫苗接种记录"
     }
   }
 }
