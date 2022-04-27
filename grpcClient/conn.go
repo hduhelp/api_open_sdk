@@ -9,6 +9,7 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/metadata"
 )
 
 var defaultEndpoint = "gapi.hduhelp.com:443"
@@ -28,4 +29,9 @@ func Conn(ctx context.Context, endpoints ...string) grpc.ClientConnInterface {
 		log.Fatal("grpc client did not connect", zap.Error(err))
 	}
 	return conn
+}
+
+func WithToken(ctx context.Context, token string) context.Context {
+	md := metadata.New(map[string]string{"authorization": "token " + token})
+	return metadata.NewOutgoingContext(ctx, md)
 }
