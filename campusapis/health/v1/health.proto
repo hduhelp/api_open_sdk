@@ -85,12 +85,24 @@ service HealthService {
       }
     };
   }
-  // 获取核酸检测记录
+  // 获取历史核酸检测记录
   rpc GetNucleicAcidTests(google.protobuf.Empty) returns (GetNucleicAcidTestsResponse) {
     option (google.api.http) = {
       get: "/health/v1/nucleic_acid_tests"
       additional_bindings {
         get: "/health/nucleic_acid_tests"
+      }
+    };
+  }
+  // 获取最新核酸检测记录
+  rpc GetNucleicAcidTestLatest(google.protobuf.Empty) returns (GetNucleicAcidTestLatestResponse) {
+    option (google.api.http) = {
+      get: "/health/v1/nucleic_acid_test"
+      additional_bindings {
+        get: "/health/nucleic_acid_test"
+      }
+      additional_bindings {
+        get: "/health/nucleic_acid_test/latest"
       }
     };
   }
@@ -232,7 +244,7 @@ message VaccineRecord {
   string maxInoculationTime = 7;
 }
 
-// 核酸检测返回体
+// 历史核酸检测返回体
 message GetNucleicAcidTestsResponse {
   repeated NucleicAcidTest items = 1;
 }
@@ -244,4 +256,9 @@ message NucleicAcidTest {
   google.protobuf.Timestamp reportTime = 2;
   // 检测结果，枚举：阴性 阴性
   string result = 3;
+}
+
+// 最新核酸检测返回体
+message GetNucleicAcidTestLatestResponse {
+  NucleicAcidTest item = 1;
 }

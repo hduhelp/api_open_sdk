@@ -37,8 +37,10 @@ type HealthServiceClient interface {
 	GetHealthCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHealthCodeResponse, error)
 	// 获取疫苗接种记录
 	GetVaccineRecords(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetVaccineRecordsResponse, error)
-	// 获取核酸检测记录
+	// 获取历史核酸检测记录
 	GetNucleicAcidTests(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetNucleicAcidTestsResponse, error)
+	// 获取最新核酸检测记录
+	GetNucleicAcidTestLatest(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetNucleicAcidTestLatestResponse, error)
 }
 
 type healthServiceClient struct {
@@ -121,6 +123,15 @@ func (c *healthServiceClient) GetNucleicAcidTests(ctx context.Context, in *empty
 	return out, nil
 }
 
+func (c *healthServiceClient) GetNucleicAcidTestLatest(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetNucleicAcidTestLatestResponse, error) {
+	out := new(GetNucleicAcidTestLatestResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/GetNucleicAcidTestLatest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HealthServiceServer is the server API for HealthService service.
 // All implementations should embed UnimplementedHealthServiceServer
 // for forward compatibility
@@ -139,8 +150,10 @@ type HealthServiceServer interface {
 	GetHealthCode(context.Context, *emptypb.Empty) (*GetHealthCodeResponse, error)
 	// 获取疫苗接种记录
 	GetVaccineRecords(context.Context, *emptypb.Empty) (*GetVaccineRecordsResponse, error)
-	// 获取核酸检测记录
+	// 获取历史核酸检测记录
 	GetNucleicAcidTests(context.Context, *emptypb.Empty) (*GetNucleicAcidTestsResponse, error)
+	// 获取最新核酸检测记录
+	GetNucleicAcidTestLatest(context.Context, *emptypb.Empty) (*GetNucleicAcidTestLatestResponse, error)
 }
 
 // UnimplementedHealthServiceServer should be embedded to have forward compatible implementations.
@@ -170,6 +183,9 @@ func (UnimplementedHealthServiceServer) GetVaccineRecords(context.Context, *empt
 }
 func (UnimplementedHealthServiceServer) GetNucleicAcidTests(context.Context, *emptypb.Empty) (*GetNucleicAcidTestsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNucleicAcidTests not implemented")
+}
+func (UnimplementedHealthServiceServer) GetNucleicAcidTestLatest(context.Context, *emptypb.Empty) (*GetNucleicAcidTestLatestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNucleicAcidTestLatest not implemented")
 }
 
 // UnsafeHealthServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -327,6 +343,24 @@ func _HealthService_GetNucleicAcidTests_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HealthService_GetNucleicAcidTestLatest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServiceServer).GetNucleicAcidTestLatest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.health.v1.HealthService/GetNucleicAcidTestLatest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServiceServer).GetNucleicAcidTestLatest(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HealthService_ServiceDesc is the grpc.ServiceDesc for HealthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -365,6 +399,10 @@ var HealthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetNucleicAcidTests",
 			Handler:    _HealthService_GetNucleicAcidTests_Handler,
+		},
+		{
+			MethodName: "GetNucleicAcidTestLatest",
+			Handler:    _HealthService_GetNucleicAcidTestLatest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
