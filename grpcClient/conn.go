@@ -5,7 +5,6 @@ import (
 	"crypto/x509"
 	"log"
 
-	"github.com/samber/lo"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -15,10 +14,12 @@ import (
 var defaultEndpoint = "gapi.hduhelp.com:443"
 
 func Conn(ctx context.Context, endpoints ...string) grpc.ClientConnInterface {
-	endpoint := lo.Ternary(len(endpoints) != 0,
-		endpoints[0],
-		defaultEndpoint,
-	)
+	var endpoint string
+	if len(endpoints) != 0 {
+		endpoint = endpoints[0]
+	} else {
+		endpoint = defaultEndpoint
+	}
 	certPool, err := x509.SystemCertPool()
 	if err != nil {
 		log.Fatalf("failed to load credentials: %v", err)
