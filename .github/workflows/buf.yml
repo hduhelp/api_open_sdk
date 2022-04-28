@@ -16,25 +16,32 @@ jobs:
 
       - name: checkout
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
 
-      - run: echo $(go env GOPATH)/bin
-      - run: echo go env
-      # - uses: actions/cache@v3
-      #   id: cache-golang
-      #   with:
-      #     path: |
-      #       ~/.cache/go-build
-      #       ~/go/pkg/mod
-      #       $(go env GOPATH)/bin
-      #     key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-go-
+      - uses: actions/cache@v3
+        id: cache-golang
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+            ~/go/bin
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      
+      - name: make go bin exec
+        if: steps.cache-golang.outputs.cache-hit == 'true'
+        run: |
+          ls -l ~/go/bin
+          chmod -R +x ~/go/bin
+          ls -l ~/go/bin
 
       - name: init dependance
-        # if: steps.cache-golang.outputs.cache-hit != 'true'
+        if: steps.cache-golang.outputs.cache-hit != 'true'
         run: make install-tools
 
-      - run: ls $(go env GOPATH)/bin
+      - run: ls -l ~/go/bin
 
       - name: generate proto
         run: make generate-proto
@@ -42,6 +49,9 @@ jobs:
       - name: check if files up to date
         run: |
           if [[ `git status --porcelain` ]]; then
-            echo "codes not up to date, please buf generate before"
-            exit 1
+            git config --global user.name 'FDKevin'
+            git config --global user.email 'fdkevinzero@gmail.com'
+            git add -A
+            git commit -m "ci(gen): buf generate up to date"
+            git push
           fi
