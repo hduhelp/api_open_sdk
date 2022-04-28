@@ -33,3 +33,11 @@ enum GateType {
   //图书馆门禁
   LIBRARY = 2;
 }
+
+//通过方式
+enum AccessMethod {
+  //校园卡
+  SCHOOL_CARD = 0;
+  //人脸识别
+  FACE = 1;
+}

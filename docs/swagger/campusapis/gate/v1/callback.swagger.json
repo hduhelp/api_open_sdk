@@ -44,6 +44,16 @@
         }
       }
     },
+    "v1AccessMethod": {
+      "type": "string",
+      "enum": [
+        "SCHOOL_CARD",
+        "FACE"
+      ],
+      "default": "SCHOOL_CARD",
+      "description": "- SCHOOL_CARD: 校园卡\n - FACE: 人脸识别",
+      "title": "通过方式"
+    },
     "v1Direction": {
       "type": "string",
       "enum": [

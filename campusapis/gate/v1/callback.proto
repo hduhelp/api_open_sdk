@@ -20,13 +20,14 @@ service GateCallbackService {
 message PostGateEventCallbackRequest {
   string staff_id = 1;
   string staff_name = 2;
-  //事件事件
+  //事件时间
   google.protobuf.Timestamp time = 3;
   //门禁名称
   string gate_name = 4;
   GateType gate_type = 5;
   Direction direction = 6;
   Service service = 7;
+  AccessMethod method = 8;
 }
 
 // 推送门禁事件回调返回体
