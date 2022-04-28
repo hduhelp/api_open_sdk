@@ -17,20 +17,24 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - uses: actions/cache@v3
-        id: cache-golang
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-            $(go env GOPATH)/bin
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
+      - run: echo $(go env GOPATH)/bin
+      - run: echo go env
+      # - uses: actions/cache@v3
+      #   id: cache-golang
+      #   with:
+      #     path: |
+      #       ~/.cache/go-build
+      #       ~/go/pkg/mod
+      #       $(go env GOPATH)/bin
+      #     key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-go-
 
       - name: init dependance
-        if: steps.cache-golang.outputs.cache-hit != 'true'
+        # if: steps.cache-golang.outputs.cache-hit != 'true'
         run: make install-tools
+
+      - run: ls $(go env GOPATH)/bin
 
       - name: generate proto
         run: make generate-proto
