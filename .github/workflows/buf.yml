@@ -49,7 +49,7 @@ jobs:
       
       - name: warming go proxy
         run: |
-          $hash=$(git show -s --format=%h)
+          hash=$(git show -s --format=%h)
           echo $hash
           mkdir ~/warm
           cd ~/warm

@@ -1,6 +1,6 @@
 # api_open_sdk
 
-![Goproxy.cn](https://goproxy.cn/stats/github.com/hduhelp/api_open_sdk/badges/download-count.svg)]
+![Goproxy.cn](https://goproxy.cn/stats/github.com/hduhelp/api_open_sdk/badges/download-count.svg)
 ![buf lint](https://github.com/hduhelp/api_open_sdk/actions/workflows/buf.yml/badge.svg)
 
 ## 前置步骤
