@@ -30,6 +30,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
+      - run: echo ${{ steps.cache-golang.outputs.cache-hit }}
+      
       - name: init dependance
         if: steps.cache-golang.outputs.cache-hit != 'true'
         run: make install-tools

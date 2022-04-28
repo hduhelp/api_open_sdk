@@ -19,7 +19,7 @@
     "/gate/v1/callback/{service}": {
       "post": {
         "summary": "门禁回调，给第三方服务使用",
-        "operationId": "GateManagerService_PostCampusGateEventCallbackCallback",
+        "operationId": "GateManagerService_PostCampusGateEventCallback",
         "responses": {
           "200": {
             "description": "",

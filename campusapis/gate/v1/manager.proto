@@ -13,7 +13,7 @@ option go_package = "./campusapis/gate/v1";
 //门禁服务管理端
 service GateManagerService {
   //门禁回调，给第三方服务使用
-  rpc PostCampusGateEventCallbackCallback(PostCampusGateEventCallbackRequest) returns (PostCampusGateEventCallbackResponse) {
+  rpc PostCampusGateEventCallback(PostCampusGateEventCallbackRequest) returns (PostCampusGateEventCallbackResponse) {
     option (google.api.http) = {
       post: "/gate/v1/callback/{service}"
       body: "data"
