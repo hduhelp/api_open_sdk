@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GateManagerServiceClient interface {
 	//门禁回调，给第三方服务使用
-	PostGateAccessCallback(ctx context.Context, in *PostGateAccessRequest, opts ...grpc.CallOption) (*PostGateAccessResponse, error)
+	PostCampusGateEventCallbackCallback(ctx context.Context, in *PostCampusGateEventCallbackRequest, opts ...grpc.CallOption) (*PostCampusGateEventCallbackResponse, error)
 	//推送学生门禁通行信息，仅供内部服务调用
 	PostStudentGateAccess(ctx context.Context, in *PostStudentGateAccessRequest, opts ...grpc.CallOption) (*PostStudentGateAccessResponse, error)
 	//注册门禁事件回调至应用，仅供内部服务调用，对应服务需要实现GateCallbackService服务，重复推送视为累加
@@ -38,9 +38,9 @@ func NewGateManagerServiceClient(cc grpc.ClientConnInterface) GateManagerService
 	return &gateManagerServiceClient{cc}
 }
 
-func (c *gateManagerServiceClient) PostGateAccessCallback(ctx context.Context, in *PostGateAccessRequest, opts ...grpc.CallOption) (*PostGateAccessResponse, error) {
-	out := new(PostGateAccessResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.gate.v1.GateManagerService/PostGateAccessCallback", in, out, opts...)
+func (c *gateManagerServiceClient) PostCampusGateEventCallbackCallback(ctx context.Context, in *PostCampusGateEventCallbackRequest, opts ...grpc.CallOption) (*PostCampusGateEventCallbackResponse, error) {
+	out := new(PostCampusGateEventCallbackResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.gate.v1.GateManagerService/PostCampusGateEventCallbackCallback", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -70,7 +70,7 @@ func (c *gateManagerServiceClient) PostRegisterGateEvent(ctx context.Context, in
 // for forward compatibility
 type GateManagerServiceServer interface {
 	//门禁回调，给第三方服务使用
-	PostGateAccessCallback(context.Context, *PostGateAccessRequest) (*PostGateAccessResponse, error)
+	PostCampusGateEventCallbackCallback(context.Context, *PostCampusGateEventCallbackRequest) (*PostCampusGateEventCallbackResponse, error)
 	//推送学生门禁通行信息，仅供内部服务调用
 	PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error)
 	//注册门禁事件回调至应用，仅供内部服务调用，对应服务需要实现GateCallbackService服务，重复推送视为累加
@@ -81,8 +81,8 @@ type GateManagerServiceServer interface {
 type UnimplementedGateManagerServiceServer struct {
 }
 
-func (UnimplementedGateManagerServiceServer) PostGateAccessCallback(context.Context, *PostGateAccessRequest) (*PostGateAccessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PostGateAccessCallback not implemented")
+func (UnimplementedGateManagerServiceServer) PostCampusGateEventCallbackCallback(context.Context, *PostCampusGateEventCallbackRequest) (*PostCampusGateEventCallbackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostCampusGateEventCallbackCallback not implemented")
 }
 func (UnimplementedGateManagerServiceServer) PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostStudentGateAccess not implemented")
@@ -102,20 +102,20 @@ func RegisterGateManagerServiceServer(s grpc.ServiceRegistrar, srv GateManagerSe
 	s.RegisterService(&GateManagerService_ServiceDesc, srv)
 }
 
-func _GateManagerService_PostGateAccessCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostGateAccessRequest)
+func _GateManagerService_PostCampusGateEventCallbackCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostCampusGateEventCallbackRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GateManagerServiceServer).PostGateAccessCallback(ctx, in)
+		return srv.(GateManagerServiceServer).PostCampusGateEventCallbackCallback(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.gate.v1.GateManagerService/PostGateAccessCallback",
+		FullMethod: "/campusapis.gate.v1.GateManagerService/PostCampusGateEventCallbackCallback",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GateManagerServiceServer).PostGateAccessCallback(ctx, req.(*PostGateAccessRequest))
+		return srv.(GateManagerServiceServer).PostCampusGateEventCallbackCallback(ctx, req.(*PostCampusGateEventCallbackRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -164,8 +164,8 @@ var GateManagerService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*GateManagerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "PostGateAccessCallback",
-			Handler:    _GateManagerService_PostGateAccessCallback_Handler,
+			MethodName: "PostCampusGateEventCallbackCallback",
+			Handler:    _GateManagerService_PostCampusGateEventCallbackCallback_Handler,
 		},
 		{
 			MethodName: "PostStudentGateAccess",
