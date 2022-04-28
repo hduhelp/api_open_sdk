@@ -1,0 +1,36 @@
+name: check buf generate up to date
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: load Go 1.18 env
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+        id: go
+
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+            
+      - name: init-dependance
+        run: |
+          make install-tools
+      - name: generate proto
+        run: make generate-proto
+      - name: check if files up to date
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            echo "codes not up to date, please buf generate before"
+            exit 1
+          fi

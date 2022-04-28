@@ -92,6 +92,7 @@ service HealthService {
   rpc GetNucleicAcidTestLatest(google.protobuf.Empty) returns (GetNucleicAcidTestLatestResponse) {
     option (google.api.http) = {
       get: "/health/v1/nucleic_acid_test"
+      response_body: "item"
     };
   }
 }
@@ -242,7 +243,7 @@ message NucleicAcidTest {
   string testUnitName = 1;
   // 报告时间
   google.protobuf.Timestamp reportTime = 2;
-  // 检测结果，枚举：阴性 阴性
+  // 检测结果，枚举：阴性 阳性
   string result = 3;
 }
 

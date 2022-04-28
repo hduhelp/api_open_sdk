@@ -346,9 +346,9 @@
         "operationId": "HealthService_GetNucleicAcidTestLatest",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1GetNucleicAcidTestLatestResponse"
+              "$ref": "#/definitions/v1NucleicAcidTest"
             }
           },
           "default": {
@@ -683,7 +683,7 @@
         },
         "result": {
           "type": "string",
-          "title": "检测结果，枚举：阴性 阴性"
+          "title": "检测结果，枚举：阴性 阳性"
         }
       }
     },
