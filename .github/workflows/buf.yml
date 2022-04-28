@@ -29,19 +29,10 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      
-      - name: make go bin exec
-        if: steps.cache-golang.outputs.cache-hit == 'true'
-        run: |
-          ls -l ~/go/bin
-          chmod -R +x ~/go/bin
-          ls -l ~/go/bin
 
       - name: init dependance
         if: steps.cache-golang.outputs.cache-hit != 'true'
         run: make install-tools
-
-      - run: ls -l ~/go/bin
 
       - name: generate proto
         run: make generate-proto
@@ -55,3 +46,11 @@ jobs:
             git commit -m "ci(gen): buf generate up to date"
             git push
           fi
+      
+      - name: warming go proxy proxy.golang.org
+        uses: andrewslotin/go-proxy-pull-action@master
+
+      - name: warming go proxy goproxy.cn
+        uses: andrewslotin/go-proxy-pull-action@master
+        with:
+          goproxy: https://goproxy.cn
