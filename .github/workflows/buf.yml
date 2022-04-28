@@ -47,10 +47,14 @@ jobs:
             git push
           fi
       
-      - name: warming go proxy proxy.golang.org
-        uses: andrewslotin/go-proxy-pull-action@master
+      - name: warming go proxy
+        run: |
+          $hash=$(git show -s --format=%h)
+          echo $hash
+          mkdir ~/warm
+          cd ~/warm
+          go mod init warm
+          go get github.com/hduhelp/api_open_sdk@$hash
+          GOPROXY=https://goproxy.io,direct go get github.com/hduhelp/api_open_sdk@$hash
+          GOPROXY=https://goproxy.cn,direct go get github.com/hduhelp/api_open_sdk@$hash
 
-      - name: warming go proxy goproxy.cn
-        uses: andrewslotin/go-proxy-pull-action@master
-        with:
-          goproxy: https://goproxy.cn
