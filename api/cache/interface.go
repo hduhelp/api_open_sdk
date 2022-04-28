@@ -78,6 +78,16 @@ func GetCacheOf(ctx context.Context, c Interface) error {
 	return errors.New("cache not found")
 }
 
+func Invalidate(ctx context.Context, c Interface) {
+	tags := c.Option().Tags
+	if tags == nil || len(tags) == 0 {
+		return
+	}
+	marshal.Invalidate(ctx, store.InvalidateOptions{
+		Tags: tags,
+	})
+}
+
 func DeleteCacheOf(ctx context.Context, c Interface) {
 	for _, key := range c.CacheKey() {
 		if gc, ok := ctx.(*gin.Context); ok {
