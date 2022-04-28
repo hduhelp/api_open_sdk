@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "campusapis/gate/v1/gate.proto",
+    "title": "campusapis/gate/v1/manager.proto",
     "version": "version not set"
   },
   "tags": [
     {
-      "name": "GateService"
+      "name": "GateManagerService"
     }
   ],
   "consumes": [
@@ -19,7 +19,7 @@
     "/gate/v1/callback/{service}": {
       "post": {
         "summary": "门禁回调，给第三方服务使用",
-        "operationId": "GateService_PostGateAccessCallback",
+        "operationId": "GateManagerService_PostGateAccessCallback",
         "responses": {
           "200": {
             "description": "",
@@ -51,7 +51,7 @@
           }
         ],
         "tags": [
-          "GateService"
+          "GateManagerService"
         ]
       }
     }
@@ -107,13 +107,41 @@
         }
       }
     },
+    "v1GateType": {
+      "type": "string",
+      "enum": [
+        "CAMPUS",
+        "DORMITORY",
+        "LIBRARY"
+      ],
+      "default": "CAMPUS",
+      "description": "- CAMPUS: 学校大门门禁，包括生活区、教学区、研究生公寓门禁\n - DORMITORY: 宿舍门禁\n - LIBRARY: 图书馆门禁",
+      "title": "门禁类型"
+    },
     "v1PostGateAccessResponse": {
       "type": "object",
       "properties": {
         "message": {
           "type": "string"
         }
-      }
+      },
+      "title": "门禁回调返回体"
+    },
+    "v1PostRegisterGateEventResponse": {
+      "type": "object",
+      "title": "门禁事件回调注册返回体"
+    },
+    "v1PostStudentGateAccessResponse": {
+      "type": "object",
+      "properties": {
+        "done": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "推送学生门禁通行信息"
     }
   }
 }

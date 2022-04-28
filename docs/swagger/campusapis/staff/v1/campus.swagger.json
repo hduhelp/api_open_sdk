@@ -1359,7 +1359,7 @@
           "title": "每学年贫困详情"
         }
       },
-      "title": "GetStudentNeedyInfoResponse 查询贫困生信息返回体"
+      "title": "查询贫困生信息返回体"
     },
     "v1GetStudentNeedyInfoResponseNested": {
       "type": "object",

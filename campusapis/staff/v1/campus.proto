@@ -2,19 +2,21 @@ syntax = "proto3";
 
 package campusapis.staff.v1;
 
-option go_package = "./campusapis/staff/v1";
-
 import "campusapis/staff/base.proto";
-import "school/school.proto";
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "school/school.proto";
+
+option go_package = "./campusapis/staff/v1";
 
 service CampusService {
   //获取员工信息
   rpc GetPersonInfo(google.protobuf.Empty) returns (GetPersonInfoResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/person/info"
-      additional_bindings {get : "/person/info"}
+      get: "/staff/v1/person/info"
+      additional_bindings {
+        get: "/person/info"
+      }
     };
   }
 
@@ -23,103 +25,123 @@ service CampusService {
   //获取学生基本信息
   rpc GetStudentInfo(google.protobuf.Empty) returns (GetStudentInfoResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/info"
-      additional_bindings {get : "/student/info"}
+      get: "/staff/v1/student/info"
+      additional_bindings {
+        get: "/student/info"
+      }
     };
-  };
+  }
+
   //获取学生贫困生申请记录
-  rpc GetStudentNeedyInfo(google.protobuf.Empty)
-      returns (GetStudentNeedyInfoResponse) {
+  rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/needy"
-      additional_bindings {get : "/student/needy"}
+      get: "/staff/v1/student/needy"
+      additional_bindings {
+        get: "/student/needy"
+      }
     };
   }
   //获取学生宿舍信息
-  rpc GetStudentDormInfo(google.protobuf.Empty)
-      returns (GetStudentDormInfoResponse) {
+  rpc GetStudentDormInfo(google.protobuf.Empty) returns (GetStudentDormInfoResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/dorm"
-      additional_bindings {get : "/student/dorm"}
+      get: "/staff/v1/student/dorm"
+      additional_bindings {
+        get: "/student/dorm"
+      }
     };
   }
   //获取学生生日信息
-  rpc GetStudentBirthdayInfo(google.protobuf.Empty)
-      returns (GetStudentBirthdayResponse) {
+  rpc GetStudentBirthdayInfo(google.protobuf.Empty) returns (GetStudentBirthdayResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/birthday"
-      additional_bindings {get : "/student/birthday"}
+      get: "/staff/v1/student/birthday"
+      additional_bindings {
+        get: "/student/birthday"
+      }
     };
   }
   //获取生日为指定日期的学生列表
-  rpc GetStudentBirthdaysIn(GetStudentBirthdaysInRequest)
-      returns (GetStudentBirthdaysInResponse) {
+  rpc GetStudentBirthdaysIn(GetStudentBirthdaysInRequest) returns (GetStudentBirthdaysInResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/birthdays"
-      additional_bindings {get : "/student/birthdays"}
+      get: "/staff/v1/student/birthdays"
+      additional_bindings {
+        get: "/student/birthdays"
+      }
     };
   }
   //获取学生奖学金信息
   rpc GetStudentRewards(SemesterRequest) returns (GetStudentRewardsResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/reward"
-      response_body : "items"
-      additional_bindings {get : "/student/reward" response_body : "items"}
+      get: "/staff/v1/student/reward"
+      response_body: "items"
+      additional_bindings {
+        get: "/student/reward"
+        response_body: "items"
+      }
     };
   }
   //获取学生选课信息
   rpc GetStudentSelect(SemesterRequest) returns (GetStudentSelectResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/select"
-      response_body : "items"
-      additional_bindings {get : "/student/select" response_body : "items"}
+      get: "/staff/v1/student/select"
+      response_body: "items"
+      additional_bindings {
+        get: "/student/select"
+        response_body: "items"
+      }
     };
   }
   //获取学生成绩信息
   rpc GetStudentGrade(SemesterRequest) returns (GetStudentGradeResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/grade"
-      response_body : "items"
-      additional_bindings {get : "/student/grade" response_body : "items"}
+      get: "/staff/v1/student/grade"
+      response_body: "items"
+      additional_bindings {
+        get: "/student/grade"
+        response_body: "items"
+      }
     };
   }
   //推送学生门禁通行信息
-  rpc PostStudentGateAccess(PostStudentGateAccessRequest)
-      returns (PostStudentGateAccessResponse) {}
+  rpc PostStudentGateAccess(PostStudentGateAccessRequest) returns (PostStudentGateAccessResponse) {}
+
   //获取学生留校信息
-  rpc GetStudentStaySchoolInfo(google.protobuf.Empty)
-      returns (GetStudentStaySchoolInfoResponse) {
+  rpc GetStudentStaySchoolInfo(google.protobuf.Empty) returns (GetStudentStaySchoolInfoResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/student/holidayStay"
-      additional_bindings {get : "/student/holidayStay"}
+      get: "/staff/v1/student/holidayStay"
+      additional_bindings {
+        get: "/student/holidayStay"
+      }
     };
   }
 
   //下方为新生服务
 
   //获取新生基本信息
-  rpc GetFreshmanBaseInfo(FreshmanKeywordRequest)
-      returns (GetFreshmanBaseInfoResponse) {
+  rpc GetFreshmanBaseInfo(FreshmanKeywordRequest) returns (GetFreshmanBaseInfoResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/freshman/base"
-      additional_bindings {get : "/freshman/base"}
+      get: "/staff/v1/freshman/base"
+      additional_bindings {
+        get: "/freshman/base"
+      }
     };
   }
   //获取新生详细信息
-  rpc GetFreshmanInfo(FreshmanKeywordRequest)
-      returns (GetFreshmanInfoResponse) {
+  rpc GetFreshmanInfo(FreshmanKeywordRequest) returns (GetFreshmanInfoResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/freshman/info"
-      additional_bindings {get : "/freshman/info"}
+      get: "/staff/v1/freshman/info"
+      additional_bindings {
+        get: "/freshman/info"
+      }
     };
   }
   //获取新生宿舍信息
-  rpc GetFreshmanRoommates(FreshmanKeywordRequest)
-      returns (GetFreshmanRoommatesResponse) {
+  rpc GetFreshmanRoommates(FreshmanKeywordRequest) returns (GetFreshmanRoommatesResponse) {
     option (google.api.http) = {
-      get : "/staff/v1/freshman/roommate"
-      response_body : "items"
-      additional_bindings {get : "/freshman/roommate"}
+      get: "/staff/v1/freshman/roommate"
+      response_body: "items"
+      additional_bindings {
+        get: "/freshman/roommate"
+      }
     };
   }
 }
@@ -168,8 +190,7 @@ message GetStudentInfoResponse {
   string teacherName = 9;
 }
 
-
-// GetStudentNeedyInfoResponse 查询贫困生信息返回体
+//查询贫困生信息返回体
 message GetStudentNeedyInfoResponse {
   //学工号
   string staffId = 1;
@@ -340,7 +361,7 @@ message PostStudentGateAccessRequest {
 
 // PostStudentGateAccessResponse  推送学生门禁通行信息
 message PostStudentGateAccessResponse {
-  bool done = 1;      //是否完成
+  bool done = 1; //是否完成
   string message = 2; //完成信息
 }
 
