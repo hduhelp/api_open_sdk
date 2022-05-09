@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package consultingapis.faq.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "./consultingapis/faq/v1";
+
+service FAQService {
+  rpc CreateFAQ(FAQUpdateInfo) returns (FAQ) {}
+  rpc GetFAQDetail(FAQIDRequest) returns (FAQ) {}
+  rpc UpdateFAQ(FAQUpdateInfo) returns (google.protobuf.Empty) {}
+  rpc DeleteFAQ(FAQIDRequest) returns (FAQ) {}
+  rpc GetFAQImage(GetFAQImageRequest) returns (GetFAQImageResponse) {}
+  rpc SearchFAQAnswerRichtext(SearchFAQAnswerRichtextRequest) returns (SearchFAQAnswerRichtextResponse) {}
+}
+
+message FAQUpdateInfo {
+  string category_id = 1;
+  string question = 2;
+  string answer = 3;
+  string answer_richtext = 4;
+  repeated string tags = 5;
+}
+
+message FAQIDRequest {
+  string id = 1;
+}
+
+message GetFAQImageRequest {
+  string faq_id = 1;
+  string image_key = 2;
+}
+
+message GetFAQImageResponse {
+  bytes image = 1;
+}
+
+message SearchFAQAnswerRichtextRequest {
+  string key = 1;
+}
+
+message SearchFAQAnswerRichtextResponse {
+  repeated AnswerRichtext answer = 1;
+}
+
+message FAQ {
+  string faq_id = 1;
+  string id = 2;
+  string helpdesk_id = 3;
+  string question = 4;
+  string answer = 5;
+  string answer_richtext = 6;
+  uint32 create_time = 7;
+  uint32 update_time = 8;
+  repeated Category categories = 9;
+  repeated string tags = 10;
+  uint32 expire_time = 11;
+  User update_user = 12;
+  User create_user = 13;
+}
+
+message AnswerRichtext {
+  //text, hyperlink, img, line break
+  string type = 1;
+
+  //text/line break
+  string content = 2;
+
+  //hyperlink
+  string text = 3;
+  string url = 4;
+
+  //img
+  string src = 5;
+  string key = 6;
+  string width = 7;
+  string height = 8;
+}
+
+message Category {
+  string category_id = 1;
+  string id = 2;
+  string name = 3;
+  string parent_id = 4;
+  string helpdesk_id = 5;
+  string language = 6;
+}
+
+message User {
+  string id = 1;
+  string avatar_url = 2;
+  string name = 3;
+}

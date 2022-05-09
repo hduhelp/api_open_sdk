@@ -1,0 +1,191 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "consultingapis/faq/v1/faq.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "FAQService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1AnswerRichtext": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "text, hyperlink, img, line break"
+        },
+        "content": {
+          "type": "string",
+          "title": "text/line break"
+        },
+        "text": {
+          "type": "string",
+          "title": "hyperlink"
+        },
+        "url": {
+          "type": "string"
+        },
+        "src": {
+          "type": "string",
+          "title": "img"
+        },
+        "key": {
+          "type": "string"
+        },
+        "width": {
+          "type": "string"
+        },
+        "height": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Category": {
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "helpdeskId": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      }
+    },
+    "v1FAQ": {
+      "type": "object",
+      "properties": {
+        "faqId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "helpdeskId": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "answerRichtext": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Category"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expireTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateUser": {
+          "$ref": "#/definitions/v1User"
+        },
+        "createUser": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1GetFAQImageResponse": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "v1SearchFAQAnswerRichtextResponse": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AnswerRichtext"
+          }
+        }
+      }
+    },
+    "v1User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
