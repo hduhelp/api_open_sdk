@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "./common";
+
+// 请求状态 错误定义
+enum Status {
+  UNKNOWN = 0;
+
+  OK = 20000;
+
+  INVALID_ARGUMENT = 40000;
+
+  NOT_FOUND = 40400;
+
+  SERVICE_ERROR = 50000;
+}

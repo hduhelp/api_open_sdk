@@ -1,4 +1,4 @@
-package grpc_server
+package grpcserver
 
 import (
 	"log"
@@ -20,8 +20,8 @@ func GetInstance() *grpc.Server {
 }
 
 // NewService initializes a new grpc service
-func NewService(opts []grpc.ServerOption, backends ...Backend) http.HandlerFunc {
-	instance := grpc.NewServer(opts...)
+func NewService(backends ...Backend) http.HandlerFunc {
+	instance := grpc.NewServer(DefaultServerOptions...)
 
 	// Register all grpc backends
 	for _, b := range backends {
