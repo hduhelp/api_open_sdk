@@ -19,7 +19,7 @@ import (
 
 type Register func(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error
 
-func RoutingErrorHandlerFinal(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, httpStatus int) {
+func DefaultRoutingErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, httpStatus int) {
 	sterr := status.Error(codes.Internal, "Unexpected routing error")
 	switch httpStatus {
 	case http.StatusBadRequest:
@@ -29,10 +29,10 @@ func RoutingErrorHandlerFinal(ctx context.Context, mux *runtime.ServeMux, marsha
 	case http.StatusNotFound:
 		sterr = status.Error(codes.NotFound, "router not found")
 	}
-	ErrorHandler(ctx, mux, marshaler, w, r, sterr)
+	DefaultErrorHandler(ctx, mux, marshaler, w, r, sterr)
 }
 
-func ErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, err error) {
+func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, err error) {
 	// return Internal when Marshal failed
 	var msg = "internal error"
 	var customStatus *runtime.HTTPStatusError
@@ -92,7 +92,7 @@ func AddToHeaderAllowList(allowList ...string) {
 	}
 }
 
-func HeaderWarp(key string) (string, bool) {
+func DefaultHeaderWarp(key string) (string, bool) {
 	key = textproto.CanonicalMIMEHeaderKey(key)
 	for _, allowed := range headerAllowList {
 		if key == allowed {
