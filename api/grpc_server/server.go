@@ -2,7 +2,6 @@ package grpcserver
 
 import (
 	"log"
-	"net/http"
 	"reflect"
 
 	"google.golang.org/grpc"
@@ -13,15 +12,15 @@ type Backend interface {
 	RegisterGRPC(*grpc.Server)
 }
 
-var server *grpc.Server
+var instance *grpc.Server
 
 func GetInstance() *grpc.Server {
-	return server
+	return instance
 }
 
 // NewService initializes a new grpc service
-func NewService(backends ...Backend) http.HandlerFunc {
-	instance := grpc.NewServer(DefaultServerOptions...)
+func NewService(backends ...Backend) *grpc.Server {
+	instance = grpc.NewServer(DefaultServerOptions...)
 
 	// Register all grpc backends
 	for _, b := range backends {
@@ -29,5 +28,5 @@ func NewService(backends ...Backend) http.HandlerFunc {
 		log.Printf("grpc server %s init successfully", reflect.TypeOf(b))
 	}
 	log.Println("grpc server is running")
-	return instance.ServeHTTP
+	return instance
 }
