@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/bufbuild/buf v1.4.0
 	github.com/eko/gocache/v2 v2.3.0
+	github.com/felixge/httpsnoop v1.0.3
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0

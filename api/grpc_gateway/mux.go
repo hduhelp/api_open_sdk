@@ -3,9 +3,12 @@ package grpcgateway
 import (
 	"context"
 	"fmt"
+	"log"
 	"net"
+	"net/http"
 	"reflect"
 
+	"github.com/felixge/httpsnoop"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/soheilhy/cmux"
 	"google.golang.org/grpc"
@@ -51,4 +54,11 @@ func GRPCGatewayListener(mux cmux.CMux) net.Listener {
 
 func GRPCServerListener(mux cmux.CMux) net.Listener {
 	return mux.MatchWithWriters(cmux.HTTP2MatchHeaderFieldSendSettings("content-type", "application/grpc"))
+}
+
+func WithLogger(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		m := httpsnoop.CaptureMetrics(handler, writer, request)
+		log.Printf("http[%d]-- %s -- %s\n", m.Code, m.Duration, request.URL.Path)
+	})
 }
