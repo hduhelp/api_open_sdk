@@ -165,6 +165,9 @@
     "v1SearchFAQAnswerRichtextResponse": {
       "type": "object",
       "properties": {
+        "faqId": {
+          "type": "string"
+        },
         "answer": {
           "type": "array",
           "items": {

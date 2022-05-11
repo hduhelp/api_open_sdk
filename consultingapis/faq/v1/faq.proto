@@ -42,7 +42,8 @@ message SearchFAQAnswerRichtextRequest {
 }
 
 message SearchFAQAnswerRichtextResponse {
-  repeated AnswerRichtext answer = 1;
+  string faq_id = 1;
+  repeated AnswerRichtext answer = 2;
 }
 
 message FAQ {
