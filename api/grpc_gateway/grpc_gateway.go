@@ -1,16 +1,16 @@
 package grpcgateway
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"net/textproto"
+	"strings"
 
-	"github.com/gin-gonic/gin"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/hduhelp/api_open_sdk/campusapis"
+	"github.com/hduhelp/api_open_sdk/common"
 	"github.com/samber/lo"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -48,7 +48,7 @@ func ErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.
 	contentType := marshaler.ContentType(pb)
 	w.Header().Set("Content-Type", contentType)
 
-	code := campusapis.UnwarpCode(s.Code())
+	code := common.UnwarpCode(s.Code())
 
 	if code.GrpcCode == codes.Unauthenticated {
 		w.Header().Set("WWW-Authenticate", s.Message())
@@ -62,39 +62,26 @@ func ErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.
 	}
 	//当httpStatus为非200且错误码为0时，错误码设为httpStatus*100
 	codeStatus := lo.Ternary(
-		code.Status == campusapis.Status_OK && st != http.StatusOK,
-		campusapis.Status(st*100),
+		code.Status == common.Status_OK && st != http.StatusOK,
+		common.Status(st*100),
 		code.Status,
 	)
 	switch {
-	case pb.Message != "" && codeStatus == campusapis.Status_OK:
+	case pb.Message != "" && codeStatus == common.Status_OK:
 		msg = pb.Message
-	case pb.Message != "" && codeStatus != campusapis.Status_OK:
+	case pb.Message != "" && codeStatus != common.Status_OK:
 		msg = codeStatus.Message() + ": " + pb.Message
-	case pb.Message == "" && codeStatus == campusapis.Status_OK:
+	case pb.Message == "" && codeStatus == common.Status_OK:
 		msg = "success"
 	default:
 		msg = codeStatus.Message()
 	}
-	if mw, ok := w.(*bodyWarper); ok {
-		mw.code = lo.Ternary(codeStatus == campusapis.Status_OK, 0, int(codeStatus))
+	if mw, ok := w.(*ResponseWriter); ok {
+		mw.code = lo.Ternary(codeStatus == common.Status_OK, 0, int(codeStatus))
 		mw.message = msg
 	}
 
 	w.WriteHeader(st)
-}
-
-type bodyWarper struct {
-	code    int
-	message string
-	// noWarpFlag 标记是否需要包一层标准返回
-	noWarpFlag bool
-	gin.ResponseWriter
-	body *bytes.Buffer
-}
-
-func (w bodyWarper) Write(b []byte) (int, error) {
-	return w.body.Write(b)
 }
 
 var headerAllowList = make([]string, 0)
@@ -115,39 +102,38 @@ func HeaderWarp(key string) (string, bool) {
 	return runtime.DefaultHeaderMatcher(key)
 }
 
-func GinResponseWarpMiddleware(c *gin.Context) {
-	blw := &bodyWarper{body: bytes.NewBufferString(""), ResponseWriter: c.Writer}
-	originalWriter := c.Writer
-	c.Writer = blw
-
-	c.Next()
-
-	var responseBytes []byte
-	var err error
-	if !blw.noWarpFlag {
-		responseBytes, err = json.Marshal(&response{
-			Code: blw.code,
-			Msg:  lo.Ternary(blw.message == "", "success", blw.message),
-			//处理如果返回的是空，则替换为null
-			Data: json.RawMessage(lo.Ternary(
-				len(blw.body.Bytes()) == 0,
-				[]byte("null"),
-				blw.body.Bytes(),
-			)),
-		})
-		if err != nil {
-			responseBytes = []byte(`{"code":50000,"msg":"internal error"}`)
-		}
-	} else {
-		responseBytes = blw.body.Bytes()
-	}
-
-	originalWriter.Write(responseBytes)
-	c.Abort()
-}
-
 type response struct {
 	Data json.RawMessage `json:"data"`
 	Code int             `json:"error"`
 	Msg  string          `json:"msg"`
+}
+
+type ResponseWriter struct {
+	code    int
+	message string
+	// noWarpFlag 标记是否需要包一层标准返回
+	noWarpFlag bool
+	http.ResponseWriter
+}
+
+func (w ResponseWriter) Write(body []byte) (int, error) {
+	switch {
+	case len(body) == 0:
+		body = []byte("null")
+
+	case w.noWarpFlag ||
+		//非标准json输出
+		!strings.HasPrefix(string(body), "{") || !strings.HasSuffix(string(body), "}"):
+		return w.ResponseWriter.Write(body)
+	}
+	responseBytes, err := json.Marshal(&response{
+		Code: w.code,
+		Msg:  lo.Ternary(w.message == "", "success", w.message),
+		Data: json.RawMessage(body),
+	})
+	if err != nil {
+		fmt.Println(err)
+		responseBytes = []byte(`{"code":50000,"msg":"internal error"}`)
+	}
+	return w.ResponseWriter.Write(responseBytes)
 }
