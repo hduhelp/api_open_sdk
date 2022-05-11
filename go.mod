@@ -14,6 +14,7 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pkg/errors v0.9.1
 	github.com/samber/lo v1.21.0
+	github.com/soheilhy/cmux v0.1.5
 	go.uber.org/zap v1.21.0
 	google.golang.org/genproto v0.0.0-20220426171045-31bebdecfb46
 	google.golang.org/grpc v1.46.0
