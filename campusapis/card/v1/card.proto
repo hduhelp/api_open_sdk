@@ -2,45 +2,42 @@ syntax = "proto3";
 
 package campusapis.card.v1;
 
-option go_package = "./campusapis/card/v1";
-
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "./campusapis/card/v1";
 
 //校园一卡通服务
 service CardService {
   //查询校园卡信息
-  rpc GetCardInfo(google.protobuf.Empty)
-    returns (GetCardInfoResponse) {
-      option (google.api.http) = {
-      get : "/card/v1/info"
-        additional_bindings {
-          get : "/card/info"
-        }
+  rpc GetCardInfo(google.protobuf.Empty) returns (GetCardInfoResponse) {
+    option (google.api.http) = {
+      get: "/card/v1/info"
+      additional_bindings {
+        get: "/card/info"
+      }
     };
   }
   //查询校园卡余额
-  rpc GetCardBalance(google.protobuf.Empty)
-  returns (GetCardBalanceResponse) {
+  rpc GetCardBalance(google.protobuf.Empty) returns (GetCardBalanceResponse) {
     option (google.api.http) = {
-    get : "/card/v1/balance"
-    response_body : "remaining"
+      get: "/card/v1/balance"
+      response_body: "remaining"
       additional_bindings {
-        get : "/card/balance"
-        response_body : "remaining"
+        get: "/card/balance"
+        response_body: "remaining"
       }
     };
   }
   //查询校园卡消费记录
-  rpc GetCardConsume(google.protobuf.Empty)
-  returns (GetCardConsumeResponse) {
+  rpc GetCardConsume(google.protobuf.Empty) returns (GetCardConsumeResponse) {
     option (google.api.http) = {
-    get : "/card/v1/consume"
-    response_body : "items"
+      get: "/card/v1/consume"
+      response_body: "items"
       additional_bindings {
-        get : "/card/consume"
-        response_body : "items"
+        get: "/card/consume"
+        response_body: "items"
       }
     };
   }

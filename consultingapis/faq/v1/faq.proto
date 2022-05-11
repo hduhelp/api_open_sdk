@@ -2,21 +2,53 @@ syntax = "proto3";
 
 package consultingapis.faq.v1;
 
+import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
 option go_package = "./consultingapis/faq/v1";
 
 service FAQService {
-  rpc CreateFAQ(FAQUpdateInfo) returns (FAQ) {}
-  rpc GetFAQDetail(FAQIDRequest) returns (FAQ) {}
-  rpc UpdateFAQ(FAQUpdateInfo) returns (google.protobuf.Empty) {}
-  rpc DeleteFAQ(FAQIDRequest) returns (FAQ) {}
-  rpc GetFAQImage(GetFAQImageRequest) returns (GetFAQImageResponse) {}
-  rpc SearchFAQAnswerRichtext(SearchFAQAnswerRichtextRequest) returns (SearchFAQAnswerRichtextResponse) {}
+  rpc CreateFAQ(FAQInfo) returns (FAQ) {
+    option (google.api.http) = {
+      post: "/faq/v1"
+      body: "*"
+    };
+  }
+  rpc GetFAQDetail(FAQIDRequest) returns (FAQ) {
+    option (google.api.http) = {
+      get: "/faq/v1"
+    };
+  }
+  rpc UpdateFAQ(FAQUpdateInfo) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      patch: "/faq/v1"
+    };
+  }
+  rpc DeleteFAQ(FAQIDRequest) returns (FAQ) {
+    option (google.api.http) = {
+      delete: "/faq/v1"
+    };
+  }
+  rpc GetFAQImage(GetFAQImageRequest) returns (GetFAQImageResponse) {
+    option (google.api.http) = {
+      get: "/faq/v1/image"
+    };
+  }
+  rpc SearchFAQAnswerRichtext(SearchFAQAnswerRichtextRequest) returns (SearchFAQAnswerRichtextResponse) {
+    option (google.api.http) = {
+      get: "/faq/v1/search"
+    };
+  }
 }
 
 message FAQUpdateInfo {
+  string faq_id = 1;
+  FAQInfo info = 2;
+}
+
+message FAQInfo {
   string category_id = 1;
   string question = 2;
   string answer = 3;

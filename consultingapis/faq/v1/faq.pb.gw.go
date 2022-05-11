@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_FAQService_CreateFAQ_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FAQUpdateInfo
+	var protoReq FAQInfo
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,7 +49,7 @@ func request_FAQService_CreateFAQ_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_FAQService_CreateFAQ_0(ctx context.Context, marshaler runtime.Marshaler, server FAQServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FAQUpdateInfo
+	var protoReq FAQInfo
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -65,15 +65,18 @@ func local_request_FAQService_CreateFAQ_0(ctx context.Context, marshaler runtime
 
 }
 
+var (
+	filter_FAQService_GetFAQDetail_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_FAQService_GetFAQDetail_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq FAQIDRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_GetFAQDetail_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -86,11 +89,10 @@ func local_request_FAQService_GetFAQDetail_0(ctx context.Context, marshaler runt
 	var protoReq FAQIDRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_GetFAQDetail_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -99,15 +101,18 @@ func local_request_FAQService_GetFAQDetail_0(ctx context.Context, marshaler runt
 
 }
 
+var (
+	filter_FAQService_UpdateFAQ_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_FAQService_UpdateFAQ_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq FAQUpdateInfo
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_UpdateFAQ_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -120,11 +125,10 @@ func local_request_FAQService_UpdateFAQ_0(ctx context.Context, marshaler runtime
 	var protoReq FAQUpdateInfo
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_UpdateFAQ_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -133,15 +137,18 @@ func local_request_FAQService_UpdateFAQ_0(ctx context.Context, marshaler runtime
 
 }
 
+var (
+	filter_FAQService_DeleteFAQ_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_FAQService_DeleteFAQ_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq FAQIDRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_DeleteFAQ_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -154,11 +161,10 @@ func local_request_FAQService_DeleteFAQ_0(ctx context.Context, marshaler runtime
 	var protoReq FAQIDRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_DeleteFAQ_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -167,15 +173,18 @@ func local_request_FAQService_DeleteFAQ_0(ctx context.Context, marshaler runtime
 
 }
 
+var (
+	filter_FAQService_GetFAQImage_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_FAQService_GetFAQImage_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetFAQImageRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_GetFAQImage_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -188,11 +197,10 @@ func local_request_FAQService_GetFAQImage_0(ctx context.Context, marshaler runti
 	var protoReq GetFAQImageRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_GetFAQImage_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -201,15 +209,18 @@ func local_request_FAQService_GetFAQImage_0(ctx context.Context, marshaler runti
 
 }
 
+var (
+	filter_FAQService_SearchFAQAnswerRichtext_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_FAQService_SearchFAQAnswerRichtext_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq SearchFAQAnswerRichtextRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_SearchFAQAnswerRichtext_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -222,11 +233,10 @@ func local_request_FAQService_SearchFAQAnswerRichtext_0(ctx context.Context, mar
 	var protoReq SearchFAQAnswerRichtextRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_SearchFAQAnswerRichtext_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -248,7 +258,7 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/CreateFAQ", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/CreateFAQ"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/CreateFAQ", runtime.WithHTTPPathPattern("/faq/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -265,14 +275,14 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_GetFAQDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FAQService_GetFAQDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/GetFAQDetail", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/GetFAQDetail"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/GetFAQDetail", runtime.WithHTTPPathPattern("/faq/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -289,14 +299,14 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_UpdateFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_FAQService_UpdateFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/UpdateFAQ", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/UpdateFAQ"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/UpdateFAQ", runtime.WithHTTPPathPattern("/faq/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -313,14 +323,14 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_DeleteFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_FAQService_DeleteFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/DeleteFAQ", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/DeleteFAQ"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/DeleteFAQ", runtime.WithHTTPPathPattern("/faq/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -337,14 +347,14 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_GetFAQImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FAQService_GetFAQImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/GetFAQImage", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/GetFAQImage"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/GetFAQImage", runtime.WithHTTPPathPattern("/faq/v1/image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -361,14 +371,14 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_SearchFAQAnswerRichtext_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FAQService_SearchFAQAnswerRichtext_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/SearchFAQAnswerRichtext", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/SearchFAQAnswerRichtext"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/SearchFAQAnswerRichtext", runtime.WithHTTPPathPattern("/faq/v1/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -431,7 +441,7 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/CreateFAQ", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/CreateFAQ"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/CreateFAQ", runtime.WithHTTPPathPattern("/faq/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -447,12 +457,12 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_GetFAQDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FAQService_GetFAQDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/GetFAQDetail", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/GetFAQDetail"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/GetFAQDetail", runtime.WithHTTPPathPattern("/faq/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -468,12 +478,12 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_UpdateFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_FAQService_UpdateFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/UpdateFAQ", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/UpdateFAQ"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/UpdateFAQ", runtime.WithHTTPPathPattern("/faq/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -489,12 +499,12 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_DeleteFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_FAQService_DeleteFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/DeleteFAQ", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/DeleteFAQ"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/DeleteFAQ", runtime.WithHTTPPathPattern("/faq/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -510,12 +520,12 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_GetFAQImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FAQService_GetFAQImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/GetFAQImage", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/GetFAQImage"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/GetFAQImage", runtime.WithHTTPPathPattern("/faq/v1/image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -531,12 +541,12 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_FAQService_SearchFAQAnswerRichtext_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FAQService_SearchFAQAnswerRichtext_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/SearchFAQAnswerRichtext", runtime.WithHTTPPathPattern("/consultingapis.faq.v1.FAQService/SearchFAQAnswerRichtext"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.faq.v1.FAQService/SearchFAQAnswerRichtext", runtime.WithHTTPPathPattern("/faq/v1/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -556,17 +566,17 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 }
 
 var (
-	pattern_FAQService_CreateFAQ_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"consultingapis.faq.v1.FAQService", "CreateFAQ"}, ""))
+	pattern_FAQService_CreateFAQ_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"faq", "v1"}, ""))
 
-	pattern_FAQService_GetFAQDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"consultingapis.faq.v1.FAQService", "GetFAQDetail"}, ""))
+	pattern_FAQService_GetFAQDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"faq", "v1"}, ""))
 
-	pattern_FAQService_UpdateFAQ_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"consultingapis.faq.v1.FAQService", "UpdateFAQ"}, ""))
+	pattern_FAQService_UpdateFAQ_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"faq", "v1"}, ""))
 
-	pattern_FAQService_DeleteFAQ_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"consultingapis.faq.v1.FAQService", "DeleteFAQ"}, ""))
+	pattern_FAQService_DeleteFAQ_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"faq", "v1"}, ""))
 
-	pattern_FAQService_GetFAQImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"consultingapis.faq.v1.FAQService", "GetFAQImage"}, ""))
+	pattern_FAQService_GetFAQImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"faq", "v1", "image"}, ""))
 
-	pattern_FAQService_SearchFAQAnswerRichtext_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"consultingapis.faq.v1.FAQService", "SearchFAQAnswerRichtext"}, ""))
+	pattern_FAQService_SearchFAQAnswerRichtext_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"faq", "v1", "search"}, ""))
 )
 
 var (
