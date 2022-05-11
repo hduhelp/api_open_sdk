@@ -56,6 +56,12 @@ func GRPCServerListener(mux cmux.CMux) net.Listener {
 	return mux.MatchWithWriters(cmux.HTTP2MatchHeaderFieldSendSettings("content-type", "application/grpc"))
 }
 
+func HTTPServer(handler http.Handler) *http.Server {
+	return &http.Server{
+		Handler: WithResponseWriter(handler),
+	}
+}
+
 func WithLogger(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		m := httpsnoop.CaptureMetrics(handler, writer, request)

@@ -34,7 +34,7 @@ func DefaultRoutingErrorHandler(ctx context.Context, mux *runtime.ServeMux, mars
 
 func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, err error) {
 	// return Internal when Marshal failed
-	var msg = "internal error"
+	var msg = err.Error()
 	var customStatus *runtime.HTTPStatusError
 	if errors.As(err, &customStatus) {
 		err = customStatus.Err
@@ -79,6 +79,8 @@ func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler r
 	if mw, ok := w.(*ResponseWriter); ok {
 		mw.code = lo.Ternary(codeStatus == common.Status_OK, 0, int(codeStatus))
 		mw.message = msg
+	} else {
+		w.Write([]byte(msg))
 	}
 
 	w.WriteHeader(st)
@@ -136,4 +138,10 @@ func (w ResponseWriter) Write(body []byte) (int, error) {
 		responseBytes = []byte(`{"code":50000,"msg":"internal error"}`)
 	}
 	return w.ResponseWriter.Write(responseBytes)
+}
+
+func WithResponseWriter(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		handler.ServeHTTP(ResponseWriter{ResponseWriter: writer}, request)
+	})
 }
