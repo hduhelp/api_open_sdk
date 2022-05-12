@@ -88,6 +88,16 @@ func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler r
 
 var headerAllowList = make([]string, 0)
 
+func init() {
+	AddToHeaderAllowList(
+		"sign",
+		"requestid",
+		"userid",
+		"staffid",
+		"stafftype",
+	)
+}
+
 func AddToHeaderAllowList(allowList ...string) {
 	for _, allowed := range allowList {
 		headerAllowList = append(headerAllowList, textproto.CanonicalMIMEHeaderKey(allowed))

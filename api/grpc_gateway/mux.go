@@ -56,10 +56,15 @@ func GRPCServerListener(mux cmux.CMux) net.Listener {
 	return mux.MatchWithWriters(cmux.HTTP2MatchHeaderFieldSendSettings("content-type", "application/grpc"))
 }
 
-func HTTPServer(handler http.Handler) *http.Server {
-	return &http.Server{
-		Handler: WithResponseWriter(handler),
+func DefaultHTTPServer(handler http.Handler) *http.Server {
+	return HTTPServer(handler, WithLogger, WithResponseWriter)
+}
+
+func HTTPServer(handler http.Handler, warps ...func(http.Handler) http.Handler) *http.Server {
+	for _, warp := range warps {
+		handler = warp(handler)
 	}
+	return &http.Server{Handler: handler}
 }
 
 func WithLogger(handler http.Handler) http.Handler {
