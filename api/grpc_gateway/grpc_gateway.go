@@ -4,10 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"net/textproto"
-	"strings"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/hduhelp/api_open_sdk/common"
@@ -34,7 +32,7 @@ func DefaultRoutingErrorHandler(ctx context.Context, mux *runtime.ServeMux, mars
 
 func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, err error) {
 	// return Internal when Marshal failed
-	var msg = err.Error()
+	var msg = string(lo.Must(json.Marshal(err.Error())))
 	var customStatus *runtime.HTTPStatusError
 	if errors.As(err, &customStatus) {
 		err = customStatus.Err
@@ -132,10 +130,7 @@ func (w ResponseWriter) Write(body []byte) (int, error) {
 	switch {
 	case len(body) == 0:
 		body = []byte("null")
-
-	case w.noWarpFlag ||
-		//非标准json输出
-		!strings.HasPrefix(string(body), "{") || !strings.HasSuffix(string(body), "}"):
+	case w.noWarpFlag:
 		return w.ResponseWriter.Write(body)
 	}
 	responseBytes, err := json.Marshal(&response{
@@ -144,8 +139,7 @@ func (w ResponseWriter) Write(body []byte) (int, error) {
 		Data: json.RawMessage(body),
 	})
 	if err != nil {
-		fmt.Println(err)
-		responseBytes = []byte(`{"code":50000,"msg":"internal error"}`)
+		return w.ResponseWriter.Write(body)
 	}
 	return w.ResponseWriter.Write(responseBytes)
 }
