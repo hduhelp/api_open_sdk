@@ -133,13 +133,18 @@ func (w ResponseWriter) Write(body []byte) (int, error) {
 	case w.noWarpFlag:
 		return w.ResponseWriter.Write(body)
 	}
-	responseBytes, err := json.Marshal(&response{
+	resp := &response{
 		Code: w.code,
 		Msg:  lo.Ternary(w.message == "", "success", w.message),
 		Data: json.RawMessage(body),
-	})
-	if err != nil {
+	}
+	responseBytes, err := json.Marshal(resp)
+	switch {
+	case err != nil && w.message == "":
 		return w.ResponseWriter.Write(body)
+	case err != nil && w.message != "":
+		resp.Data, _ = json.Marshal(string(body))
+		return w.ResponseWriter.Write(lo.Must(json.Marshal(resp)))
 	}
 	return w.ResponseWriter.Write(responseBytes)
 }
