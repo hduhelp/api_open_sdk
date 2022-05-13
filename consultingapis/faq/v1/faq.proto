@@ -108,8 +108,8 @@ message AnswerRichtext {
   //img
   string src = 5;
   string key = 6;
-  string width = 7;
-  string height = 8;
+  uint32 width = 7;
+  uint32 height = 8;
 }
 
 message Category {

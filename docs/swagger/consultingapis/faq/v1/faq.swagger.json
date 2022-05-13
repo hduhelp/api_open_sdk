@@ -289,10 +289,12 @@
           "type": "string"
         },
         "width": {
-          "type": "string"
+          "type": "integer",
+          "format": "int64"
         },
         "height": {
-          "type": "string"
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
