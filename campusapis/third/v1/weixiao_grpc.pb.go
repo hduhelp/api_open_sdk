@@ -28,6 +28,15 @@ type WeixiaoServiceClient interface {
 	//用户校园卡面借书字段同步
 	//https://wiki.weixiao.qq.com/api/school/borrow.html
 	GetLibraryBorrow(ctx context.Context, in *CommonWeixiaoPostRequest, opts ...grpc.CallOption) (*CommonWeixiaoPostResponse, error)
+	//查课表Pro数据同步
+	//https://wiki.weixiao.qq.com/api/school/course.html
+	GetStudentCourse(ctx context.Context, in *CommonWeixiaoPostRequest, opts ...grpc.CallOption) (*CommonWeixiaoPostResponse, error)
+	//查成绩Pro数据同步
+	//https://wiki.weixiao.qq.com/api/school/courseScore.html
+	GetStudentCourseScore(ctx context.Context, in *CommonWeixiaoPostRequest, opts ...grpc.CallOption) (*CommonWeixiaoPostResponse, error)
+	//查考试数据同步
+	//https://wiki.weixiao.qq.com/api/school/checkExam.html
+	GetStudentExam(ctx context.Context, in *CommonWeixiaoPostRequest, opts ...grpc.CallOption) (*CommonWeixiaoPostResponse, error)
 }
 
 type weixiaoServiceClient struct {
@@ -56,6 +65,33 @@ func (c *weixiaoServiceClient) GetLibraryBorrow(ctx context.Context, in *CommonW
 	return out, nil
 }
 
+func (c *weixiaoServiceClient) GetStudentCourse(ctx context.Context, in *CommonWeixiaoPostRequest, opts ...grpc.CallOption) (*CommonWeixiaoPostResponse, error) {
+	out := new(CommonWeixiaoPostResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.third.v1.WeixiaoService/GetStudentCourse", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *weixiaoServiceClient) GetStudentCourseScore(ctx context.Context, in *CommonWeixiaoPostRequest, opts ...grpc.CallOption) (*CommonWeixiaoPostResponse, error) {
+	out := new(CommonWeixiaoPostResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.third.v1.WeixiaoService/GetStudentCourseScore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *weixiaoServiceClient) GetStudentExam(ctx context.Context, in *CommonWeixiaoPostRequest, opts ...grpc.CallOption) (*CommonWeixiaoPostResponse, error) {
+	out := new(CommonWeixiaoPostResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.third.v1.WeixiaoService/GetStudentExam", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WeixiaoServiceServer is the server API for WeixiaoService service.
 // All implementations should embed UnimplementedWeixiaoServiceServer
 // for forward compatibility
@@ -66,6 +102,15 @@ type WeixiaoServiceServer interface {
 	//用户校园卡面借书字段同步
 	//https://wiki.weixiao.qq.com/api/school/borrow.html
 	GetLibraryBorrow(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error)
+	//查课表Pro数据同步
+	//https://wiki.weixiao.qq.com/api/school/course.html
+	GetStudentCourse(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error)
+	//查成绩Pro数据同步
+	//https://wiki.weixiao.qq.com/api/school/courseScore.html
+	GetStudentCourseScore(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error)
+	//查考试数据同步
+	//https://wiki.weixiao.qq.com/api/school/checkExam.html
+	GetStudentExam(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error)
 }
 
 // UnimplementedWeixiaoServiceServer should be embedded to have forward compatible implementations.
@@ -77,6 +122,15 @@ func (UnimplementedWeixiaoServiceServer) GetSchoolCardBalance(context.Context, *
 }
 func (UnimplementedWeixiaoServiceServer) GetLibraryBorrow(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLibraryBorrow not implemented")
+}
+func (UnimplementedWeixiaoServiceServer) GetStudentCourse(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentCourse not implemented")
+}
+func (UnimplementedWeixiaoServiceServer) GetStudentCourseScore(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentCourseScore not implemented")
+}
+func (UnimplementedWeixiaoServiceServer) GetStudentExam(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentExam not implemented")
 }
 
 // UnsafeWeixiaoServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -126,6 +180,60 @@ func _WeixiaoService_GetLibraryBorrow_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WeixiaoService_GetStudentCourse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CommonWeixiaoPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WeixiaoServiceServer).GetStudentCourse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.third.v1.WeixiaoService/GetStudentCourse",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WeixiaoServiceServer).GetStudentCourse(ctx, req.(*CommonWeixiaoPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WeixiaoService_GetStudentCourseScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CommonWeixiaoPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WeixiaoServiceServer).GetStudentCourseScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.third.v1.WeixiaoService/GetStudentCourseScore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WeixiaoServiceServer).GetStudentCourseScore(ctx, req.(*CommonWeixiaoPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WeixiaoService_GetStudentExam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CommonWeixiaoPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WeixiaoServiceServer).GetStudentExam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.third.v1.WeixiaoService/GetStudentExam",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WeixiaoServiceServer).GetStudentExam(ctx, req.(*CommonWeixiaoPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WeixiaoService_ServiceDesc is the grpc.ServiceDesc for WeixiaoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -140,6 +248,18 @@ var WeixiaoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLibraryBorrow",
 			Handler:    _WeixiaoService_GetLibraryBorrow_Handler,
+		},
+		{
+			MethodName: "GetStudentCourse",
+			Handler:    _WeixiaoService_GetStudentCourse_Handler,
+		},
+		{
+			MethodName: "GetStudentCourseScore",
+			Handler:    _WeixiaoService_GetStudentCourseScore_Handler,
+		},
+		{
+			MethodName: "GetStudentExam",
+			Handler:    _WeixiaoService_GetStudentExam_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

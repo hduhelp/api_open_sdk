@@ -27,6 +27,33 @@ service WeixiaoService {
       body: "*"
     };
   }
+
+  //查课表Pro数据同步
+  //https://wiki.weixiao.qq.com/api/school/course.html
+  rpc GetStudentCourse(CommonWeixiaoPostRequest) returns (CommonWeixiaoPostResponse) {
+    option (google.api.http) = {
+      post: "/third/v1/weixiao/school/course"
+      body: "*"
+    };
+  }
+
+  //查成绩Pro数据同步
+  //https://wiki.weixiao.qq.com/api/school/courseScore.html
+  rpc GetStudentCourseScore(CommonWeixiaoPostRequest) returns (CommonWeixiaoPostResponse) {
+    option (google.api.http) = {
+      post: "/third/v1/weixiao/school/courseScore"
+      body: "*"
+    };
+  }
+
+  //查考试数据同步
+  //https://wiki.weixiao.qq.com/api/school/checkExam.html
+  rpc GetStudentExam(CommonWeixiaoPostRequest) returns (CommonWeixiaoPostResponse) {
+    option (google.api.http) = {
+      post: "/third/v1/weixiao/school/checkExam"
+      body: "*"
+    };
+  }
 }
 
 message CommonWeixiaoPostRequest {

@@ -81,6 +81,105 @@
           "WeixiaoService"
         ]
       }
+    },
+    "/third/v1/weixiao/school/checkExam": {
+      "post": {
+        "summary": "查考试数据同步\nhttps://wiki.weixiao.qq.com/api/school/checkExam.html",
+        "operationId": "WeixiaoService_GetStudentExam",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CommonWeixiaoPostResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CommonWeixiaoPostRequest"
+            }
+          }
+        ],
+        "tags": [
+          "WeixiaoService"
+        ]
+      }
+    },
+    "/third/v1/weixiao/school/course": {
+      "post": {
+        "summary": "查课表Pro数据同步\nhttps://wiki.weixiao.qq.com/api/school/course.html",
+        "operationId": "WeixiaoService_GetStudentCourse",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CommonWeixiaoPostResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CommonWeixiaoPostRequest"
+            }
+          }
+        ],
+        "tags": [
+          "WeixiaoService"
+        ]
+      }
+    },
+    "/third/v1/weixiao/school/courseScore": {
+      "post": {
+        "summary": "查成绩Pro数据同步\nhttps://wiki.weixiao.qq.com/api/school/courseScore.html",
+        "operationId": "WeixiaoService_GetStudentCourseScore",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CommonWeixiaoPostResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CommonWeixiaoPostRequest"
+            }
+          }
+        ],
+        "tags": [
+          "WeixiaoService"
+        ]
+      }
     }
   },
   "definitions": {
