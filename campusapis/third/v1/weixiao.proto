@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package campusapis.third.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "./campusapis/teaching/v1";
+
+//微校卡数据同步接口
+service WeixiaoService {
+  //用户校园卡面余额字段同步
+  //https://wiki.weixiao.qq.com/api/school/balance.html
+  rpc GetSchoolCardBalance(CommonWeixiaoPostRequest) returns (CommonWeixiaoPostResponse) {
+    option (google.api.http) = {
+      post: "/third/v1/weixiao/school/balance"
+      body: "*"
+    };
+  }
+
+  //用户校园卡面借书字段同步
+  //https://wiki.weixiao.qq.com/api/school/borrow.html
+  rpc GetLibraryBorrow(CommonWeixiaoPostRequest) returns (CommonWeixiaoPostResponse) {
+    option (google.api.http) = {
+      post: "/third/v1/weixiao/school/borrow"
+      body: "*"
+    };
+  }
+}
+
+message CommonWeixiaoPostRequest {
+  string raw_data = 1;
+  string app_key = 2;
+}
+
+message CommonWeixiaoPostResponse {
+  int32 code = 1;
+  string message = 2;
+  string raw_data = 3;
+  string app_key = 4;
+}
