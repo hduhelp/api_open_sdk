@@ -2,13 +2,11 @@ syntax = "proto3";
 
 package campusapis.teaching.v1;
 
-option go_package = "./campusapis/teaching/v1";
-
-import "campusapis/staff/base.proto";
 import "campusapis/schoolTime/defined.proto";
+import "campusapis/staff/base.proto";
 import "google/api/annotations.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
 import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
@@ -29,10 +27,11 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   consumes: "application/json";
   produces: "application/json";
 };
+option go_package = "./campusapis/teaching/v1";
 
 service TeachingService {
   // 获取学生/教师课程表
-  rpc GetSchedule(GetScheduleRequest) returns (GetScheduleResponse){
+  rpc GetSchedule(GetScheduleRequest) returns (GetScheduleResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/schedule"
       response_body: "items"
@@ -46,6 +45,7 @@ service TeachingService {
       }
     };
   }
+
   // 获取学生/教师当前课程表
   rpc GetScheduleNow(google.protobuf.Empty) returns (GetScheduleNowResponse) {
     option (google.api.http) = {
@@ -55,6 +55,7 @@ service TeachingService {
       }
     };
   }
+
   // 获取学生/教师当前课程表V2 返回更详细的信息
   rpc GetScheduleNowV2(google.protobuf.Empty) returns (GetScheduleNowV2Response) {
     option (google.api.http) = {
@@ -64,8 +65,12 @@ service TeachingService {
       }
     };
   }
+
+  // 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
+  rpc GetGlobalSchedule(GetGlobalScheduleRequest) returns (GetGlobalScheduleResponse) {}
+
   // 获取所有教室列表
-  rpc GetClassrooms (GetClassroomsRequest) returns (ClassroomsResponse) {
+  rpc GetClassrooms(GetClassroomsRequest) returns (ClassroomsResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom"
       response_body: "items"
@@ -75,8 +80,9 @@ service TeachingService {
       }
     };
   }
+
   // 获取某一教室的使用情况
-  rpc GetClassroomUsages (GetClassroomUsageRequest) returns (ClassroomUsagesResponse) {
+  rpc GetClassroomUsages(GetClassroomUsageRequest) returns (ClassroomUsagesResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom/usage"
       response_body: "items"
@@ -86,8 +92,9 @@ service TeachingService {
       }
     };
   }
+
   // 获取所有空教室列表
-  rpc GetUnusedClassrooms (GetUnusedClassroomsRequest) returns (ClassroomsResponse) {
+  rpc GetUnusedClassrooms(GetUnusedClassroomsRequest) returns (ClassroomsResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom/unused"
       response_body: "items"
@@ -218,7 +225,7 @@ message ScheduleItem {
   // 周次列表
   repeated int32 Week = 1;
   // 星期
-  int32 WeekDay = 2 ;
+  int32 WeekDay = 2;
   // 节次列表，升序
   repeated int32 Section = 3;
   // 是否本周
@@ -288,6 +295,25 @@ message GetScheduleNowV2Response {
   repeated ScheduleResponseCourse Tomorrow = 2;
 }
 
+// GetGlobalScheduleRequest 全局课表请求体
+message GetGlobalScheduleRequest {
+  // 学年
+  string schoolYear = 1;
+  // 学期
+  string semester = 2;
+  // 星期
+  int32 weekday = 3;
+  // 周次
+  int32 week = 4;
+  // 节次
+  int32 section = 5;
+}
+
+// GetGlobalScheduleResponse 全局课表返回体
+message GetGlobalScheduleResponse {
+  repeated ScheduleResponseCourse items = 1;
+}
+
 // GetClassroomsRequest 教室列表查询关键字
 message GetClassroomsRequest {
   // 学年
@@ -298,11 +324,13 @@ message GetClassroomsRequest {
 
 message GetClassroomUsageRequest {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    example: '{ "locationID": "111222" }'
+    example: "{ \"locationID\": \"111222\" }"
     json_schema: {
       title: "GetClassroomUsageRequest"
       description: "教室使用情况请求体"
-      required: ["locationID"]
+      required: [
+        "locationID"
+      ]
     }
   };
 
@@ -311,7 +339,11 @@ message GetClassroomUsageRequest {
   //学年
   string schoolYear = 2;
   //教室ID
-  string locationID = 3 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {required: ['locationID']}];;
+  string locationID = 3 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    required: [
+      "locationID"
+    ]
+  }];
 }
 
 // 教室信息查询关键字
