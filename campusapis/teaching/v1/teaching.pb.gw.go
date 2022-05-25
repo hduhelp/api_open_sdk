@@ -213,7 +213,7 @@ func local_request_TeachingService_GetScheduleNowV2_1(ctx context.Context, marsh
 }
 
 func request_TeachingService_GetGlobalSchedule_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetScheduleRequest
+	var protoReq GetGlobalScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -230,7 +230,7 @@ func request_TeachingService_GetGlobalSchedule_0(ctx context.Context, marshaler 
 }
 
 func local_request_TeachingService_GetGlobalSchedule_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetScheduleRequest
+	var protoReq GetGlobalScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

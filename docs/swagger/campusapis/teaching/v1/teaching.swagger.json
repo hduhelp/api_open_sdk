@@ -866,6 +866,18 @@
       },
       "title": "ClassroomsResponse 教室查询返回体"
     },
+    "v1GetGlobalScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleResponseCourse"
+          }
+        }
+      },
+      "title": "GetGlobalScheduleResponse 全局课表返回体"
+    },
     "v1GetScheduleNowResponse": {
       "type": "object",
       "properties": {
