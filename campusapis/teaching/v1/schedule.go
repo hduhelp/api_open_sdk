@@ -77,6 +77,22 @@ type CourseReader interface {
 	ScheduleReader() ScheduleReader
 }
 
+type CourseReaders []CourseReader
+
+func (readers CourseReaders) ToTeachingV1Courses(q *CourseQuery) (courses *Courses) {
+	courses = &Courses{
+		Items: make(map[string]*CourseItem),
+	}
+	//合并课程信息内容到标准课程信息中
+	for _, v := range readers {
+		if courses.Items[v.CourseID()] == nil {
+			courses.Items[v.CourseID()] = v.CourseInfo()
+		}
+		courses.Items[v.CourseID()].AddSchedule(q, v.ScheduleReader())
+	}
+	return courses
+}
+
 type ScheduleReader interface {
 	ScheduleID() string
 	ScheduleInfo() *ScheduleItem
