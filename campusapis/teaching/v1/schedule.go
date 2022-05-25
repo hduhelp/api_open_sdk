@@ -43,9 +43,10 @@ type ShowMemberOptionable interface {
 type OptionShowMember uint32
 
 const (
-	OptionShowMemberAll OptionShowMember = iota
+	OptionShowMemberNone OptionShowMember = iota
 	OptionShowMemberStudent
 	OptionShowMemberTeacher
+	OptionShowMemberAll
 )
 
 // AddMember 添加课程人员

@@ -16,6 +16,19 @@ type CourseQuery struct {
 	Courses CourseReaders
 }
 
+func (q CourseQuery) GetOptionShowMemberOption() OptionShowMember {
+	switch q.QueryStaff.Type {
+	case staff.Type_TEACHER:
+		//教师展示上课学生
+		return OptionShowMemberStudent
+	case staff.Type_UNDERGRADUATE, staff.Type_POSTGRADUATE:
+		//学生添加展示授课教师
+		return OptionShowMemberTeacher
+	default:
+		return OptionShowMemberNone
+	}
+}
+
 type Queryable interface {
 	GetCourses(staff *staff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
 }
