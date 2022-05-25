@@ -44,3 +44,9 @@ type TimeToSchoolDater interface {
 type SchoolDateToDater interface {
 	GetSchoolDateFrom(schoolDate *SchoolDate, weekDay int32) (*types.Date, error)
 }
+
+type Timeable interface {
+	GetSchoolDate() *SchoolDate
+	GetSectionReader() SectionReader
+	GetSchoolDateToDater() SchoolDateToDater
+}

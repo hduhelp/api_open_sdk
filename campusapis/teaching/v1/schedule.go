@@ -5,46 +5,60 @@ import (
 	"fmt"
 	"sort"
 
+	"github.com/hduhelp/api_open_sdk/campusapis/schoolTime"
 	"github.com/hduhelp/api_open_sdk/campusapis/staff"
 )
 
 // AddSchedule 添加课表
-func (x *CourseItem) AddSchedule(q *CourseQuery, r ScheduleReader) {
+func (x *CourseItem) AddSchedule(timeable schoolTime.Timeable, optionable ShowMemberOptionable, r ScheduleReader) {
 	if x.Schedule == nil {
 		x.Schedule = &Schedule{Items: map[string]*ScheduleItem{}}
 	}
 	if x.Schedule.Items[r.ScheduleID()] == nil {
 		x.Schedule.Items[r.ScheduleID()] = r.ScheduleInfo()
-		x.Schedule.Items[r.ScheduleID()].SetTime(q)
+		x.Schedule.Items[r.ScheduleID()].SetTime(timeable)
 	}
 
-	x.Schedule.Items[r.ScheduleID()].AddMember(q, r)
+	x.Schedule.Items[r.ScheduleID()].AddMember(optionable, r)
 }
 
-func (x *ScheduleItem) SetTime(q *CourseQuery) {
+func (x *ScheduleItem) SetTime(timeable schoolTime.Timeable) {
 	//非当前周课程 跳过时间赋值
-	if _, ok := InArray(x.Week, q.SchoolDate.Week); !ok {
+	if _, ok := InArray(x.Week, timeable.GetSchoolDate().Week); !ok {
 		return
 	}
-	d, err := q.SchoolDateToDater.GetSchoolDateFrom(q.SchoolDate, x.WeekDay)
+	d, err := timeable.GetSchoolDateToDater().GetSchoolDateFrom(timeable.GetSchoolDate(), x.WeekDay)
 	if err != nil {
 		return
 	}
-	x.StartTime = uint32(q.SectionReader.StartTime(d, FirstOfArray(x.Section)).Unix())
-	x.EndTime = uint32(q.SectionReader.EndTime(d, LastOfArray(x.Section)).Unix())
+	x.StartTime = uint32(timeable.GetSectionReader().StartTime(d, FirstOfArray(x.Section)).Unix())
+	x.EndTime = uint32(timeable.GetSectionReader().EndTime(d, LastOfArray(x.Section)).Unix())
 	x.IsThisWeek = true
 }
 
+type ShowMemberOptionable interface {
+	GetOptionShowMemberOption() OptionShowMember
+}
+
+type OptionShowMember uint32
+
+const (
+	OptionShowMemberAll OptionShowMember = iota
+	OptionShowMemberStudent
+	OptionShowMemberTeacher
+)
+
 // AddMember 添加课程人员
-func (x *ScheduleItem) AddMember(q *CourseQuery, r ScheduleReader) {
+func (x *ScheduleItem) AddMember(optionable ShowMemberOptionable, r ScheduleReader) {
 	// 初始化 Teachers 和 Students ，保证非空，防止调用方出现空指针错误
 	x.InitMember()
-	switch q.QueryStaff.Type {
-	case staff.Type_TEACHER:
-		//教师展示上课学生
+	switch optionable.GetOptionShowMemberOption() {
+	case OptionShowMemberAll:
 		x.AddStudent(r)
-	case staff.Type_UNDERGRADUATE, staff.Type_POSTGRADUATE:
-		//学生添加展示授课教师
+		x.AddTeacher(r)
+	case OptionShowMemberStudent:
+		x.AddStudent(r)
+	case OptionShowMemberTeacher:
 		x.AddTeacher(r)
 	}
 }
@@ -79,7 +93,7 @@ type CourseReader interface {
 
 type CourseReaders []CourseReader
 
-func (readers CourseReaders) ToTeachingV1Courses(q *CourseQuery) (courses *Courses) {
+func (readers CourseReaders) ToTeachingV1Courses(timeable schoolTime.Timeable, optionable ShowMemberOptionable) (courses *Courses) {
 	courses = &Courses{
 		Items: make(map[string]*CourseItem),
 	}
@@ -88,7 +102,7 @@ func (readers CourseReaders) ToTeachingV1Courses(q *CourseQuery) (courses *Cours
 		if courses.Items[v.CourseID()] == nil {
 			courses.Items[v.CourseID()] = v.CourseInfo()
 		}
-		courses.Items[v.CourseID()].AddSchedule(q, v.ScheduleReader())
+		courses.Items[v.CourseID()].AddSchedule(timeable, optionable, v.ScheduleReader())
 	}
 	return courses
 }

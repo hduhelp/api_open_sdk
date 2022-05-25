@@ -13,9 +13,6 @@ type CourseQuery struct {
 
 	*schoolTime.SchoolDate
 
-	schoolTime.SchoolDateToDater
-	schoolTime.SectionReader
-
 	Courses CourseReaders
 }
 
@@ -23,13 +20,11 @@ type Queryable interface {
 	GetCourses(staff *staff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
 }
 
-func NewCourseQuery(staff *staff.Staff, st *schoolTime.SchoolDate, dater schoolTime.SchoolDateToDater, sectionReader schoolTime.SectionReader, q ...Queryable) *CourseQuery {
+func NewCourseQuery(staff *staff.Staff, st *schoolTime.SchoolDate, q ...Queryable) *CourseQuery {
 	return &CourseQuery{
-		QueryStaff:        staff,
-		SchoolDate:        st,
-		SchoolDateToDater: dater,
-		SectionReader:     sectionReader,
-		Queries:           q,
+		QueryStaff: staff,
+		SchoolDate: st,
+		Queries:    q,
 	}
 }
 
