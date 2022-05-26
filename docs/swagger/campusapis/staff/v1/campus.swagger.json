@@ -968,6 +968,23 @@
         }
       }
     },
+    "v1DormInfo": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学工号"
+        },
+        "building": {
+          "type": "string",
+          "title": "楼号"
+        },
+        "room": {
+          "type": "string",
+          "title": "寝室号"
+        }
+      }
+    },
     "v1FreshmanBaseInfo": {
       "type": "object",
       "properties": {
@@ -1259,17 +1276,15 @@
     "v1GetStudentDormInfoResponse": {
       "type": "object",
       "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学工号"
+        "error": {
+          "type": "integer",
+          "format": "int64"
         },
-        "building": {
-          "type": "string",
-          "title": "楼号"
+        "msg": {
+          "type": "string"
         },
-        "room": {
-          "type": "string",
-          "title": "寝室号"
+        "data": {
+          "$ref": "#/definitions/v1DormInfo"
         }
       },
       "title": "查询学生寝室信息返回体"

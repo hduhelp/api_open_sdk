@@ -247,6 +247,12 @@ message StudentNeedyInfo {
 
 // 查询学生寝室信息返回体
 message GetStudentDormInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  DormInfo data = 3;
+}
+
+message DormInfo {
   //学工号
   string staffId = 1;
   //楼号
