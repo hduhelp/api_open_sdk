@@ -102,7 +102,7 @@ message GetCheckinRecordRequest {
 message GetCheckinRecordsResponse {
   uint32 error = 1;
   string msg = 2;
-  repeated GetCheckinRecordResponse data = 3;
+  repeated CheckinRecord data = 3;
 }
 
 message GetCheckinRecordResponse {
