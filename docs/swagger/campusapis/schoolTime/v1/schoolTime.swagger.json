@@ -22,12 +22,9 @@
         "operationId": "SchoolTimeService_GetSemesterList",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetSemesterListResponseSemester"
-              }
+              "$ref": "#/definitions/v1GetSemesterListResponse"
             }
           },
           "default": {
@@ -85,12 +82,9 @@
         "operationId": "SchoolTimeService_GetSemesterList2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetSemesterListResponseSemester"
-              }
+              "$ref": "#/definitions/v1GetSemesterListResponse"
             }
           },
           "default": {
@@ -144,6 +138,33 @@
     }
   },
   "definitions": {
+    "GetSchoolTimeResponseData": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string"
+        },
+        "section": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "timeStamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "weekDayNow": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weekNow": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -174,34 +195,29 @@
     "v1GetSchoolTimeResponse": {
       "type": "object",
       "properties": {
-        "schoolYear": {
-          "type": "string"
-        },
-        "section": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "semester": {
-          "type": "string"
-        },
-        "timeStamp": {
+        "error": {
           "type": "integer",
           "format": "int64"
         },
-        "weekDayNow": {
-          "type": "integer",
-          "format": "int32"
+        "msg": {
+          "type": "string"
         },
-        "weekNow": {
-          "type": "integer",
-          "format": "int32"
+        "data": {
+          "$ref": "#/definitions/GetSchoolTimeResponseData"
         }
       }
     },
     "v1GetSemesterListResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1GetSemesterListResponseSemester"

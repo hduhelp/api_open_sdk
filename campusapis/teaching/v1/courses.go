@@ -4,7 +4,7 @@ import "github.com/hduhelp/api_open_sdk/campusapis/staff"
 
 func (x *Courses) ToGetScheduleResponse() *GetScheduleResponse {
 	return &GetScheduleResponse{
-		Items: x.GetScheduleResponseCourse(),
+		Data: x.GetScheduleResponseCourse(),
 	}
 }
 

@@ -110,12 +110,13 @@
     "v1GateType": {
       "type": "string",
       "enum": [
-        "CAMPUS",
-        "DORMITORY",
-        "LIBRARY"
+        "GATE_TYPE_UNSPECIFIED",
+        "GATE_TYPE_CAMPUS",
+        "GATE_TYPE_DORMITORY",
+        "GATE_TYPE_LIBRARY"
       ],
-      "default": "CAMPUS",
-      "description": "- CAMPUS: 学校大门门禁，包括生活区、教学区、研究生公寓门禁\n - DORMITORY: 宿舍门禁\n - LIBRARY: 图书馆门禁",
+      "default": "GATE_TYPE_UNSPECIFIED",
+      "description": "- GATE_TYPE_CAMPUS: 学校大门门禁，包括生活区、教学区、研究生公寓门禁\n - GATE_TYPE_DORMITORY: 宿舍门禁\n - GATE_TYPE_LIBRARY: 图书馆门禁",
       "title": "门禁类型"
     },
     "v1PostCampusGateEventCallbackResponse": {

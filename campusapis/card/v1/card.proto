@@ -23,10 +23,8 @@ service CardService {
   rpc GetCardBalance(google.protobuf.Empty) returns (GetCardBalanceResponse) {
     option (google.api.http) = {
       get: "/card/v1/balance"
-      response_body: "remaining"
       additional_bindings {
         get: "/card/balance"
-        response_body: "remaining"
       }
     };
   }
@@ -34,20 +32,24 @@ service CardService {
   rpc GetCardConsume(google.protobuf.Empty) returns (GetCardConsumeResponse) {
     option (google.api.http) = {
       get: "/card/v1/consume"
-      response_body: "items"
       additional_bindings {
         get: "/card/consume"
-        response_body: "items"
       }
     };
   }
 }
 
 message GetCardInfoResponse {
-  //余额，精确到小数点后两位，单位元
-  float remaining = 1;
-  //交易记录
-  repeated Consumption flow = 2;
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+
+  message Data {
+    //余额，精确到小数点后两位，单位元
+    float remaining = 1;
+    //交易记录
+    repeated Consumption flow = 2;
+  }
 }
 
 message Consumption {
@@ -67,9 +69,14 @@ message Consumption {
 }
 
 message GetCardBalanceResponse {
-  float remaining = 1;
+  uint32 error = 1;
+  string msg = 2;
+  // remaining 余额
+  float data = 3;
 }
 
 message GetCardConsumeResponse {
-  repeated Consumption items = 2;
+  uint32 error = 1;
+  string msg = 2;
+  repeated Consumption data = 3;
 }

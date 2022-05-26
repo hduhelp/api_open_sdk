@@ -22,9 +22,9 @@
         "operationId": "LibraryService_GetBookInfo",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1BookInfo"
+              "$ref": "#/definitions/v1GetBookInfoResponse"
             }
           },
           "default": {
@@ -54,12 +54,9 @@
         "operationId": "LibraryService_GetBookInfoList",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1BookInfo"
-              }
+              "$ref": "#/definitions/v1GetBookInfoListResponse"
             }
           },
           "default": {
@@ -89,12 +86,9 @@
         "operationId": "LibraryService_GetBookLendHistory",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetBookLendHistoryResponseNested"
-              }
+              "$ref": "#/definitions/v1GetBookLendHistoryResponse"
             }
           },
           "default": {
@@ -131,12 +125,9 @@
         "operationId": "LibraryService_GetBookLendLast",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetBookLendLastResponseNested"
-              }
+              "$ref": "#/definitions/v1GetBookLendLastResponse"
             }
           },
           "default": {
@@ -166,9 +157,9 @@
         "operationId": "LibraryService_GetBookMARC",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1BookMARC"
+              "$ref": "#/definitions/v1GetBookMARCResponse"
             }
           },
           "default": {
@@ -203,12 +194,9 @@
         "operationId": "LibraryService_GetBookMARCList",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1BookMARC"
-              }
+              "$ref": "#/definitions/v1GetBookMARCListResponse"
             }
           },
           "default": {
@@ -579,7 +567,14 @@
     "v1GetBookInfoListResponse": {
       "type": "object",
       "properties": {
-        "books": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1BookInfo"
@@ -590,7 +585,14 @@
     "v1GetBookInfoResponse": {
       "type": "object",
       "properties": {
-        "book": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "$ref": "#/definitions/v1BookInfo"
         }
       }
@@ -598,7 +600,14 @@
     "v1GetBookLendHistoryResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1GetBookLendHistoryResponseNested"
@@ -642,7 +651,14 @@
     "v1GetBookLendLastResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1GetBookLendLastResponseNested"
@@ -686,7 +702,14 @@
     "v1GetBookMARCListResponse": {
       "type": "object",
       "properties": {
-        "marcs": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1BookMARC"
@@ -697,7 +720,14 @@
     "v1GetBookMARCResponse": {
       "type": "object",
       "properties": {
-        "marc": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "$ref": "#/definitions/v1BookMARC"
         }
       }
@@ -705,12 +735,12 @@
     "v1LendStatus": {
       "type": "string",
       "enum": [
-        "UNKNOWN",
-        "LENDING",
-        "RETURNED"
+        "LEND_STATUS_UNSPECIFIED",
+        "LEND_STATUS_LENDING",
+        "LEND_STATUS_RETURNED"
       ],
-      "default": "UNKNOWN",
-      "title": "- UNKNOWN: 未知\n - LENDING: 借阅中\n - RETURNED: 已归还"
+      "default": "LEND_STATUS_UNSPECIFIED",
+      "title": "- LEND_STATUS_UNSPECIFIED: 未知\n - LEND_STATUS_LENDING: 借阅中\n - LEND_STATUS_RETURNED: 已归还"
     }
   }
 }

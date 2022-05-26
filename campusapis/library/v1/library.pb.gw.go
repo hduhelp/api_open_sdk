@@ -180,7 +180,7 @@ var (
 )
 
 func request_LibraryService_GetBookLendLast_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLendLastRequest
+	var protoReq GetBookLendLastRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -196,7 +196,7 @@ func request_LibraryService_GetBookLendLast_0(ctx context.Context, marshaler run
 }
 
 func local_request_LibraryService_GetBookLendLast_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLendLastRequest
+	var protoReq GetBookLendLastRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -216,7 +216,7 @@ var (
 )
 
 func request_LibraryService_GetBookLendHistory_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLendHistoryRequest
+	var protoReq GetBookLendHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -232,7 +232,7 @@ func request_LibraryService_GetBookLendHistory_0(ctx context.Context, marshaler 
 }
 
 func local_request_LibraryService_GetBookLendHistory_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetLendHistoryRequest
+	var protoReq GetBookLendHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -273,7 +273,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookInfo_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookInfo_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookInfo_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -297,7 +297,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookInfoList_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookInfoList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookInfoList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -321,7 +321,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookMARC_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookMARC_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookMARC_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -345,7 +345,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookMARCList_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookMARCList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookMARCList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -369,7 +369,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookLendLast_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookLendLast_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookLendLast_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -393,7 +393,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookLendHistory_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookLendHistory_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookLendHistory_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -455,7 +455,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookInfo_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookInfo_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookInfo_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -476,7 +476,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookInfoList_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookInfoList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookInfoList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -497,7 +497,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookMARC_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookMARC_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookMARC_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -518,7 +518,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookMARCList_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookMARCList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookMARCList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -539,7 +539,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookLendLast_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookLendLast_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookLendLast_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -560,65 +560,11 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_LibraryService_GetBookLendHistory_0(ctx, mux, outboundMarshaler, w, req, response_LibraryService_GetBookLendHistory_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetBookLendHistory_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
-}
-
-type response_LibraryService_GetBookInfo_0 struct {
-	proto.Message
-}
-
-func (m response_LibraryService_GetBookInfo_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetBookInfoResponse)
-	return response.Book
-}
-
-type response_LibraryService_GetBookInfoList_0 struct {
-	proto.Message
-}
-
-func (m response_LibraryService_GetBookInfoList_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetBookInfoListResponse)
-	return response.Books
-}
-
-type response_LibraryService_GetBookMARC_0 struct {
-	proto.Message
-}
-
-func (m response_LibraryService_GetBookMARC_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetBookMARCResponse)
-	return response.Marc
-}
-
-type response_LibraryService_GetBookMARCList_0 struct {
-	proto.Message
-}
-
-func (m response_LibraryService_GetBookMARCList_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetBookMARCListResponse)
-	return response.Marcs
-}
-
-type response_LibraryService_GetBookLendLast_0 struct {
-	proto.Message
-}
-
-func (m response_LibraryService_GetBookLendLast_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetBookLendLastResponse)
-	return response.Items
-}
-
-type response_LibraryService_GetBookLendHistory_0 struct {
-	proto.Message
-}
-
-func (m response_LibraryService_GetBookLendHistory_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetBookLendHistoryResponse)
-	return response.Items
 }
 
 var (

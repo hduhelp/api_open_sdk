@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -23,10 +22,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FAQServiceClient interface {
-	CreateFAQ(ctx context.Context, in *FAQInfo, opts ...grpc.CallOption) (*FAQ, error)
-	GetFAQDetail(ctx context.Context, in *FAQIDRequest, opts ...grpc.CallOption) (*FAQ, error)
-	UpdateFAQ(ctx context.Context, in *FAQUpdateInfo, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	DeleteFAQ(ctx context.Context, in *FAQIDRequest, opts ...grpc.CallOption) (*FAQ, error)
+	CreateFAQ(ctx context.Context, in *CreateFAQRequest, opts ...grpc.CallOption) (*CreateFAQResponse, error)
+	GetFAQ(ctx context.Context, in *GetFAQRequest, opts ...grpc.CallOption) (*GetFAQResponse, error)
+	UpdateFAQ(ctx context.Context, in *UpdateFAQRequest, opts ...grpc.CallOption) (*UpdateFAQResponse, error)
+	DeleteFAQ(ctx context.Context, in *DeleteFAQRequest, opts ...grpc.CallOption) (*DeleteFAQResponse, error)
 	GetFAQImage(ctx context.Context, in *GetFAQImageRequest, opts ...grpc.CallOption) (*GetFAQImageResponse, error)
 	SearchFAQAnswerRichtext(ctx context.Context, in *SearchFAQAnswerRichtextRequest, opts ...grpc.CallOption) (*SearchFAQAnswerRichtextResponse, error)
 }
@@ -39,8 +38,8 @@ func NewFAQServiceClient(cc grpc.ClientConnInterface) FAQServiceClient {
 	return &fAQServiceClient{cc}
 }
 
-func (c *fAQServiceClient) CreateFAQ(ctx context.Context, in *FAQInfo, opts ...grpc.CallOption) (*FAQ, error) {
-	out := new(FAQ)
+func (c *fAQServiceClient) CreateFAQ(ctx context.Context, in *CreateFAQRequest, opts ...grpc.CallOption) (*CreateFAQResponse, error) {
+	out := new(CreateFAQResponse)
 	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/CreateFAQ", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -48,17 +47,17 @@ func (c *fAQServiceClient) CreateFAQ(ctx context.Context, in *FAQInfo, opts ...g
 	return out, nil
 }
 
-func (c *fAQServiceClient) GetFAQDetail(ctx context.Context, in *FAQIDRequest, opts ...grpc.CallOption) (*FAQ, error) {
-	out := new(FAQ)
-	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/GetFAQDetail", in, out, opts...)
+func (c *fAQServiceClient) GetFAQ(ctx context.Context, in *GetFAQRequest, opts ...grpc.CallOption) (*GetFAQResponse, error) {
+	out := new(GetFAQResponse)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/GetFAQ", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fAQServiceClient) UpdateFAQ(ctx context.Context, in *FAQUpdateInfo, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *fAQServiceClient) UpdateFAQ(ctx context.Context, in *UpdateFAQRequest, opts ...grpc.CallOption) (*UpdateFAQResponse, error) {
+	out := new(UpdateFAQResponse)
 	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/UpdateFAQ", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -66,8 +65,8 @@ func (c *fAQServiceClient) UpdateFAQ(ctx context.Context, in *FAQUpdateInfo, opt
 	return out, nil
 }
 
-func (c *fAQServiceClient) DeleteFAQ(ctx context.Context, in *FAQIDRequest, opts ...grpc.CallOption) (*FAQ, error) {
-	out := new(FAQ)
+func (c *fAQServiceClient) DeleteFAQ(ctx context.Context, in *DeleteFAQRequest, opts ...grpc.CallOption) (*DeleteFAQResponse, error) {
+	out := new(DeleteFAQResponse)
 	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/DeleteFAQ", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -97,10 +96,10 @@ func (c *fAQServiceClient) SearchFAQAnswerRichtext(ctx context.Context, in *Sear
 // All implementations should embed UnimplementedFAQServiceServer
 // for forward compatibility
 type FAQServiceServer interface {
-	CreateFAQ(context.Context, *FAQInfo) (*FAQ, error)
-	GetFAQDetail(context.Context, *FAQIDRequest) (*FAQ, error)
-	UpdateFAQ(context.Context, *FAQUpdateInfo) (*emptypb.Empty, error)
-	DeleteFAQ(context.Context, *FAQIDRequest) (*FAQ, error)
+	CreateFAQ(context.Context, *CreateFAQRequest) (*CreateFAQResponse, error)
+	GetFAQ(context.Context, *GetFAQRequest) (*GetFAQResponse, error)
+	UpdateFAQ(context.Context, *UpdateFAQRequest) (*UpdateFAQResponse, error)
+	DeleteFAQ(context.Context, *DeleteFAQRequest) (*DeleteFAQResponse, error)
 	GetFAQImage(context.Context, *GetFAQImageRequest) (*GetFAQImageResponse, error)
 	SearchFAQAnswerRichtext(context.Context, *SearchFAQAnswerRichtextRequest) (*SearchFAQAnswerRichtextResponse, error)
 }
@@ -109,16 +108,16 @@ type FAQServiceServer interface {
 type UnimplementedFAQServiceServer struct {
 }
 
-func (UnimplementedFAQServiceServer) CreateFAQ(context.Context, *FAQInfo) (*FAQ, error) {
+func (UnimplementedFAQServiceServer) CreateFAQ(context.Context, *CreateFAQRequest) (*CreateFAQResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFAQ not implemented")
 }
-func (UnimplementedFAQServiceServer) GetFAQDetail(context.Context, *FAQIDRequest) (*FAQ, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFAQDetail not implemented")
+func (UnimplementedFAQServiceServer) GetFAQ(context.Context, *GetFAQRequest) (*GetFAQResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFAQ not implemented")
 }
-func (UnimplementedFAQServiceServer) UpdateFAQ(context.Context, *FAQUpdateInfo) (*emptypb.Empty, error) {
+func (UnimplementedFAQServiceServer) UpdateFAQ(context.Context, *UpdateFAQRequest) (*UpdateFAQResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFAQ not implemented")
 }
-func (UnimplementedFAQServiceServer) DeleteFAQ(context.Context, *FAQIDRequest) (*FAQ, error) {
+func (UnimplementedFAQServiceServer) DeleteFAQ(context.Context, *DeleteFAQRequest) (*DeleteFAQResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFAQ not implemented")
 }
 func (UnimplementedFAQServiceServer) GetFAQImage(context.Context, *GetFAQImageRequest) (*GetFAQImageResponse, error) {
@@ -140,7 +139,7 @@ func RegisterFAQServiceServer(s grpc.ServiceRegistrar, srv FAQServiceServer) {
 }
 
 func _FAQService_CreateFAQ_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FAQInfo)
+	in := new(CreateFAQRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -152,31 +151,31 @@ func _FAQService_CreateFAQ_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/consultingapis.faq.v1.FAQService/CreateFAQ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FAQServiceServer).CreateFAQ(ctx, req.(*FAQInfo))
+		return srv.(FAQServiceServer).CreateFAQ(ctx, req.(*CreateFAQRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FAQService_GetFAQDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FAQIDRequest)
+func _FAQService_GetFAQ_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFAQRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FAQServiceServer).GetFAQDetail(ctx, in)
+		return srv.(FAQServiceServer).GetFAQ(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/consultingapis.faq.v1.FAQService/GetFAQDetail",
+		FullMethod: "/consultingapis.faq.v1.FAQService/GetFAQ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FAQServiceServer).GetFAQDetail(ctx, req.(*FAQIDRequest))
+		return srv.(FAQServiceServer).GetFAQ(ctx, req.(*GetFAQRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _FAQService_UpdateFAQ_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FAQUpdateInfo)
+	in := new(UpdateFAQRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -188,13 +187,13 @@ func _FAQService_UpdateFAQ_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/consultingapis.faq.v1.FAQService/UpdateFAQ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FAQServiceServer).UpdateFAQ(ctx, req.(*FAQUpdateInfo))
+		return srv.(FAQServiceServer).UpdateFAQ(ctx, req.(*UpdateFAQRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _FAQService_DeleteFAQ_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FAQIDRequest)
+	in := new(DeleteFAQRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -206,7 +205,7 @@ func _FAQService_DeleteFAQ_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/consultingapis.faq.v1.FAQService/DeleteFAQ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FAQServiceServer).DeleteFAQ(ctx, req.(*FAQIDRequest))
+		return srv.(FAQServiceServer).DeleteFAQ(ctx, req.(*DeleteFAQRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -259,8 +258,8 @@ var FAQService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FAQService_CreateFAQ_Handler,
 		},
 		{
-			MethodName: "GetFAQDetail",
-			Handler:    _FAQService_GetFAQDetail_Handler,
+			MethodName: "GetFAQ",
+			Handler:    _FAQService_GetFAQ_Handler,
 		},
 		{
 			MethodName: "UpdateFAQ",

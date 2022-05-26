@@ -214,7 +214,7 @@ func RegisterCardServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_CardService_GetCardBalance_0(ctx, mux, outboundMarshaler, w, req, response_CardService_GetCardBalance_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_CardService_GetCardBalance_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -238,7 +238,7 @@ func RegisterCardServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_CardService_GetCardBalance_1(ctx, mux, outboundMarshaler, w, req, response_CardService_GetCardBalance_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_CardService_GetCardBalance_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -262,7 +262,7 @@ func RegisterCardServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_CardService_GetCardConsume_0(ctx, mux, outboundMarshaler, w, req, response_CardService_GetCardConsume_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_CardService_GetCardConsume_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -286,7 +286,7 @@ func RegisterCardServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_CardService_GetCardConsume_1(ctx, mux, outboundMarshaler, w, req, response_CardService_GetCardConsume_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_CardService_GetCardConsume_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -390,7 +390,7 @@ func RegisterCardServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_CardService_GetCardBalance_0(ctx, mux, outboundMarshaler, w, req, response_CardService_GetCardBalance_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_CardService_GetCardBalance_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -411,7 +411,7 @@ func RegisterCardServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_CardService_GetCardBalance_1(ctx, mux, outboundMarshaler, w, req, response_CardService_GetCardBalance_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_CardService_GetCardBalance_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -432,7 +432,7 @@ func RegisterCardServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_CardService_GetCardConsume_0(ctx, mux, outboundMarshaler, w, req, response_CardService_GetCardConsume_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_CardService_GetCardConsume_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -453,47 +453,11 @@ func RegisterCardServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 			return
 		}
 
-		forward_CardService_GetCardConsume_1(ctx, mux, outboundMarshaler, w, req, response_CardService_GetCardConsume_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_CardService_GetCardConsume_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
-}
-
-type response_CardService_GetCardBalance_0 struct {
-	proto.Message
-}
-
-func (m response_CardService_GetCardBalance_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCardBalanceResponse)
-	return response.Remaining
-}
-
-type response_CardService_GetCardBalance_1 struct {
-	proto.Message
-}
-
-func (m response_CardService_GetCardBalance_1) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCardBalanceResponse)
-	return response.Remaining
-}
-
-type response_CardService_GetCardConsume_0 struct {
-	proto.Message
-}
-
-func (m response_CardService_GetCardConsume_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCardConsumeResponse)
-	return response.Items
-}
-
-type response_CardService_GetCardConsume_1 struct {
-	proto.Message
-}
-
-func (m response_CardService_GetCardConsume_1) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCardConsumeResponse)
-	return response.Items
 }
 
 var (

@@ -14,42 +14,41 @@ service LibraryService {
   rpc GetBookInfo(GetBookInfoRequest) returns (GetBookInfoResponse) {
     option (google.api.http) = {
       get: "/library/v1/book/info"
-      response_body: "book"
     };
   }
+
   //查询书本信息列表，只能查询一个书籍的书本信息
   rpc GetBookInfoList(GetBookInfoListRequest) returns (GetBookInfoListResponse) {
     option (google.api.http) = {
       get: "/library/v1/book/info/list"
-      response_body: "books"
     };
   }
+
   //查询书籍信息
   rpc GetBookMARC(GetBookMARCRequest) returns (GetBookMARCResponse) {
     option (google.api.http) = {
       get: "/library/v1/book/marc"
-      response_body: "marc"
     };
   }
+
   //查询书籍信息列表
   rpc GetBookMARCList(GetBookMARCListRequest) returns (GetBookMARCListResponse) {
     option (google.api.http) = {
       get: "/library/v1/book/marc/list"
-      response_body: "marcs"
     };
   }
+  
   //查询当前图书借阅记录
-  rpc GetBookLendLast(GetLendLastRequest) returns (GetBookLendLastResponse) {
+  rpc GetBookLendLast(GetBookLendLastRequest) returns (GetBookLendLastResponse) {
     option (google.api.http) = {
       get: "/library/v1/book/lend/last"
-      response_body: "items"
     };
   }
+
   //查询历史图书借阅记录
-  rpc GetBookLendHistory(GetLendHistoryRequest) returns (GetBookLendHistoryResponse) {
+  rpc GetBookLendHistory(GetBookLendHistoryRequest) returns (GetBookLendHistoryResponse) {
     option (google.api.http) = {
       get: "/library/v1/book/lend/history"
-      response_body: "items"
     };
   }
 }
@@ -61,7 +60,9 @@ message GetBookInfoRequest {
 }
 
 message GetBookInfoResponse {
-  BookInfo book = 1;
+  uint32 error = 1;
+  string msg = 2;
+  BookInfo data = 3;
 }
 
 //书本信息
@@ -108,7 +109,9 @@ message GetBookInfoListRequest {
 }
 
 message GetBookInfoListResponse {
-  repeated BookInfo books = 1;
+  uint32 error = 1;
+  string msg = 2;
+  repeated BookInfo data = 3;
 }
 
 //书籍信息查询关键字
@@ -118,7 +121,9 @@ message GetBookMARCRequest {
 }
 
 message GetBookMARCResponse {
-  BookMARC marc = 1;
+  uint32 error = 1;
+  string msg = 2;
+  BookMARC data = 3;
 }
 
 message BookMARC {
@@ -173,28 +178,34 @@ message GetBookMARCListRequest {
 }
 
 message GetBookMARCListResponse {
-  repeated BookMARC marcs = 1;
+  uint32 error = 1;
+  string msg = 2;
+  repeated BookMARC data = 3;
 }
 
-message GetLendLastRequest {
+message GetBookLendLastRequest {
   uint32 startTime = 1;
 }
 
-message GetLendHistoryRequest {
+message GetBookLendHistoryRequest {
   uint32 startTime = 1;
   uint32 endTime = 2;
 }
 
 enum LendStatus {
   //未知
-  UNKNOWN = 0;
+  LEND_STATUS_UNSPECIFIED = 0;
   //借阅中
-  LENDING = 1;
+  LEND_STATUS_LENDING = 1;
   //已归还
-  RETURNED = 2;
+  LEND_STATUS_RETURNED = 2;
 }
 
 message GetBookLendLastResponse {
+  uint32 error = 1;
+  string msg = 2;
+  repeated Nested data = 3;
+
   message Nested {
     BookInfo book = 1;
     string staffID = 2;
@@ -205,10 +216,13 @@ message GetBookLendLastResponse {
     string location = 7;
     LendStatus status = 8;
   }
-  repeated Nested items = 1;
 }
 
 message GetBookLendHistoryResponse {
+  uint32 error = 1;
+  string msg = 2;
+  repeated Nested data = 3;
+
   message Nested {
     BookInfo book = 1;
     string staffID = 2;
@@ -219,5 +233,4 @@ message GetBookLendHistoryResponse {
     string location = 7;
     LendStatus status = 8;
   }
-  repeated Nested items = 1;
 }

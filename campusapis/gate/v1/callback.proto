@@ -31,4 +31,7 @@ message PostGateEventCallbackRequest {
 }
 
 // 推送门禁事件回调返回体
-message PostGateEventCallbackResponse {}
+message PostGateEventCallbackResponse {
+  uint32 error = 1;
+  string msg = 2;
+}

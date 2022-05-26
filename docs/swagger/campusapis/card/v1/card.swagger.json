@@ -22,10 +22,9 @@
         "operationId": "CardService_GetCardBalance2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "number",
-              "format": "float"
+              "$ref": "#/definitions/v1GetCardBalanceResponse"
             }
           },
           "default": {
@@ -46,12 +45,9 @@
         "operationId": "CardService_GetCardConsume2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1Consumption"
-              }
+              "$ref": "#/definitions/v1GetCardConsumeResponse"
             }
           },
           "default": {
@@ -95,10 +91,9 @@
         "operationId": "CardService_GetCardBalance",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "number",
-              "format": "float"
+              "$ref": "#/definitions/v1GetCardBalanceResponse"
             }
           },
           "default": {
@@ -119,12 +114,9 @@
         "operationId": "CardService_GetCardConsume",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1Consumption"
-              }
+              "$ref": "#/definitions/v1GetCardConsumeResponse"
             }
           },
           "default": {
@@ -164,6 +156,23 @@
     }
   },
   "definitions": {
+    "GetCardInfoResponseData": {
+      "type": "object",
+      "properties": {
+        "remaining": {
+          "type": "number",
+          "format": "float",
+          "title": "余额，精确到小数点后两位，单位元"
+        },
+        "flow": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Consumption"
+          },
+          "title": "交易记录"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -228,16 +237,31 @@
     "v1GetCardBalanceResponse": {
       "type": "object",
       "properties": {
-        "remaining": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "title": "remaining 余额"
         }
       }
     },
     "v1GetCardConsumeResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Consumption"
@@ -248,17 +272,15 @@
     "v1GetCardInfoResponse": {
       "type": "object",
       "properties": {
-        "remaining": {
-          "type": "number",
-          "format": "float",
-          "title": "余额，精确到小数点后两位，单位元"
+        "error": {
+          "type": "integer",
+          "format": "int64"
         },
-        "flow": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Consumption"
-          },
-          "title": "交易记录"
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetCardInfoResponseData"
         }
       }
     }

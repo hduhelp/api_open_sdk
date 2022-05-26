@@ -214,7 +214,7 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetSemesterList_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_SchoolTimeService_GetSemesterList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -238,7 +238,7 @@ func RegisterSchoolTimeServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetSemesterList_1(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterList_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_SchoolTimeService_GetSemesterList_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -342,7 +342,7 @@ func RegisterSchoolTimeServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetSemesterList_0(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterList_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_SchoolTimeService_GetSemesterList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -363,29 +363,11 @@ func RegisterSchoolTimeServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_SchoolTimeService_GetSemesterList_1(ctx, mux, outboundMarshaler, w, req, response_SchoolTimeService_GetSemesterList_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_SchoolTimeService_GetSemesterList_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
-}
-
-type response_SchoolTimeService_GetSemesterList_0 struct {
-	proto.Message
-}
-
-func (m response_SchoolTimeService_GetSemesterList_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetSemesterListResponse)
-	return response.Items
-}
-
-type response_SchoolTimeService_GetSemesterList_1 struct {
-	proto.Message
-}
-
-func (m response_SchoolTimeService_GetSemesterList_1) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetSemesterListResponse)
-	return response.Items
 }
 
 var (
