@@ -44,7 +44,7 @@ func splitrTagToName(tag string) string {
 
 func RequireWarped(req any, list ...string) error {
 	if err := Require(req, list...); err != nil {
-		return Status_STATUS_INVALID_ARGUMENT.With(codes.InvalidArgument, err.Error())
+		return Status_INVALID_ARGUMENT.With(codes.InvalidArgument, err.Error())
 	}
 	return nil
 }

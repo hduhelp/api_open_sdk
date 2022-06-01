@@ -15,7 +15,457 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/console/bind": {
+      "delete": {
+        "summary": "删除用户绑定",
+        "operationId": "AuthService_DeleteUserBind2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteUserBindResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "platformID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/console/bind/check": {
+      "get": {
+        "summary": "检查用户绑定",
+        "operationId": "AuthService_GetUserBindCheck2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserBindCheckResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/console/binds": {
+      "get": {
+        "summary": "用户获取绑定列表",
+        "operationId": "AuthService_GetUserBindList2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserBindListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/console/login": {
+      "delete": {
+        "summary": "删除用户指定令牌",
+        "operationId": "AuthService_DeleteUserLoginToken2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteUserLoginTokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "EncryptedToken",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/console/login/history": {
+      "get": {
+        "summary": "获取用户登录历史信息",
+        "operationId": "AuthService_GetUserLoginHistory2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserLoginHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "rpp",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "showAll",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/token": {
+      "delete": {
+        "summary": "用户注销当前令牌",
+        "operationId": "AuthService_DeleteToken2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteTokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/token/validate": {
+      "get": {
+        "summary": "用户获得Token基本信息",
+        "operationId": "AuthService_GetTokenInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTokenInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/v1/token": {
+      "get": {
+        "summary": "用户获得Token基本信息",
+        "operationId": "AuthService_GetTokenInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTokenInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AuthService"
+        ]
+      },
+      "delete": {
+        "summary": "用户注销当前令牌",
+        "operationId": "AuthService_DeleteToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteTokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/v1/user/bind": {
+      "get": {
+        "summary": "获取用户绑定信息",
+        "operationId": "AuthService_GetUserBind",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserBindResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AuthService"
+        ]
+      },
+      "delete": {
+        "summary": "删除用户绑定",
+        "operationId": "AuthService_DeleteUserBind",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteUserBindResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "platformID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/v1/user/bind/check": {
+      "get": {
+        "summary": "检查用户绑定",
+        "operationId": "AuthService_GetUserBindCheck",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserBindCheckResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/v1/user/bind/list": {
+      "get": {
+        "summary": "用户获取绑定列表",
+        "operationId": "AuthService_GetUserBindList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserBindListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/v1/user/login/history": {
+      "get": {
+        "summary": "获取用户登录历史信息",
+        "operationId": "AuthService_GetUserLoginHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserLoginHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "rpp",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "showAll",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/v1/user/login/token": {
+      "delete": {
+        "summary": "删除用户指定令牌",
+        "operationId": "AuthService_DeleteUserLoginToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteUserLoginTokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "EncryptedToken",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "protobufAny": {
       "type": "object",
@@ -57,19 +507,17 @@
       "properties": {
         "userId": {
           "type": "string",
-          "title": "助手用户user_id"
+          "title": "用户user_id"
         },
         "platform": {
           "type": "string",
-          "title": "绑定平台：\nplatform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；\nplatform=qzu 衢州学院学（工）号，uid 为学工号\nplatform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；\nplatform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；\nplatform=idCard 身份证，uid 为身份证号；\nplatform=alipay 支付宝, uid todo\nplatform=apple 苹果，uid todo, uid2 todo\nplatform=github github, uid todo, uid2 todo\nplatform=qq QQ号，uid todo, uid2 todo\nplatform=yiban 易班，uid todo"
+          "title": "绑定平台"
         },
         "uid": {
-          "type": "string",
-          "title": "uid 不同平台含义不同，见 platform 解释"
+          "type": "string"
         },
         "uid2": {
-          "type": "string",
-          "title": "uid 不同平台含义不同，见 platform 解释"
+          "type": "string"
         },
         "primary": {
           "type": "boolean",
@@ -86,10 +534,80 @@
       },
       "title": "用户绑定信息"
     },
-    "v1BindListResponse": {
+    "v1BindInfo": {
       "type": "object",
       "properties": {
-        "items": {
+        "platformID": {
+          "type": "string"
+        },
+        "platformName": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1DeleteTokenResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DeleteUserBindResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DeleteUserDeviceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DeleteUserLoginTokenResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetBindListByUserIdListResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Bind"
@@ -99,7 +617,248 @@
       },
       "title": "用户绑定信息查询响应"
     },
+    "v1GetImageUploadTicketResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "Data": {
+          "$ref": "#/definitions/v1ImageUploadTicket"
+        }
+      }
+    },
     "v1GetTokenInfoResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1TokenInfo"
+        }
+      }
+    },
+    "v1GetUserBindCheckResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetUserBindListResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1GetUserBindListResponseData"
+        }
+      }
+    },
+    "v1GetUserBindListResponseData": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "bindDetail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1BindInfo"
+          }
+        }
+      }
+    },
+    "v1GetUserBindResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetUserDeviceListResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetUserDeviceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetUserInfoLegacyResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1UserInfoLegacy"
+        }
+      }
+    },
+    "v1GetUserInfoResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetUserLoginHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1GetUserLoginHistoryResponseData"
+        }
+      }
+    },
+    "v1GetUserLoginHistoryResponseData": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1LoginSession"
+          }
+        }
+      }
+    },
+    "v1ImageUploadTicket": {
+      "type": "object",
+      "properties": {
+        "ticket": {
+          "type": "string"
+        },
+        "validTIme": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1LoginSession": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "deletedAt": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "encryptedToken": {
+          "type": "string"
+        },
+        "clientID": {
+          "type": "string"
+        },
+        "clientName": {
+          "type": "string"
+        },
+        "grantType": {
+          "type": "string"
+        },
+        "grantTypeDesc": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PostUserDeviceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PutUserPrimaryBindLegacyResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PutUserPrimaryBindResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TokenInfo": {
       "type": "object",
       "properties": {
         "isValid": {
@@ -130,6 +889,23 @@
         "OAUTH"
       ],
       "default": "ORIGIN"
+    },
+    "v1UserInfoLegacy": {
+      "type": "object",
+      "properties": {
+        "nowStaffId": {
+          "type": "string"
+        },
+        "staffIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "school": {
+          "type": "string"
+        }
+      }
     }
   }
 }

@@ -31,7 +31,7 @@ type Codes struct {
 func UnwarpCode(code codes.Code) Codes {
 	if code < 10000 {
 		return Codes{
-			Status:   Status_STATUS_OK,
+			Status:   Status_OK,
 			GrpcCode: code,
 		}
 	}

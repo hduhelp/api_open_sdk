@@ -12,6 +12,8 @@ lint:
     - FIELD_LOWER_SNAKE_CASE
     - PACKAGE_VERSION_SUFFIX
     - PACKAGE_LOWER_SNAKE_CASE
+    - ENUM_VALUE_PREFIX
+    - ENUM_ZERO_VALUE_SUFFIX
   enum_zero_value_suffix: _UNSPECIFIED
   rpc_allow_google_protobuf_empty_requests: true
   rpc_allow_google_protobuf_empty_responses: false

@@ -2,19 +2,110 @@ syntax = "proto3";
 
 package gatewayapis.auth.v1;
 
-import "gatewayapis/option.proto";
+import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "./gatewayapis/auth/v1";
 
 service AuthService {
-  //获得Token基本信息
-  rpc GetTokenInfo(google.protobuf.Empty) returns (GetTokenInfoResponse) {}
-  // 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
-  rpc GetBindListByUserIdList(UserIdListRequest) returns (BindListResponse) {
-    option (gatewayapis.auth_token_needed) = true;
+  //用户获得Token基本信息
+  rpc GetTokenInfo(GetTokenInfoRequest) returns (GetTokenInfoResponse) {
+    option (google.api.http) = {
+      get: "/v1/token"
+      additional_bindings {
+        get: "/token/validate"
+      }
+    };
   }
+
+  //用户注销当前令牌
+  rpc DeleteToken(DeleteTokenRequest) returns (DeleteTokenResponse) {
+    option (google.api.http) = {
+      delete: "/v1/token"
+      additional_bindings {
+        delete: "/token"
+      }
+    };
+  }
+
+  //用户获取绑定列表
+  rpc GetUserBindList(GetUserBindListRequest) returns (GetUserBindListResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/bind/list"
+      additional_bindings {
+        get: "/console/binds"
+      }
+    };
+  }
+
+  //获取用户绑定信息
+  rpc GetUserBind(GetUserBindRequest) returns (GetUserBindResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/bind"
+    };
+  }
+
+  //删除用户绑定
+  rpc DeleteUserBind(DeleteUserBindRequest) returns (DeleteUserBindResponse) {
+    option (google.api.http) = {
+      delete: "/v1/user/bind"
+      additional_bindings {
+        delete: "/console/bind"
+      }
+    };
+  }
+
+  //获取用户登录历史信息
+  rpc GetUserLoginHistory(GetUserLoginHistoryRequest) returns (GetUserLoginHistoryResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/login/history"
+      additional_bindings {
+        get: "/console/login/history"
+      }
+    };
+  }
+
+  //删除用户指定令牌
+  rpc DeleteUserLoginToken(DeleteUserLoginTokenRequest) returns (DeleteUserLoginTokenResponse) {
+    option (google.api.http) = {
+      delete: "/v1/user/login/token"
+      additional_bindings {
+        delete: "/console/login"
+      }
+    };
+  }
+
+  //检查用户绑定
+  rpc GetUserBindCheck(GetUserBindCheckRequest) returns (GetUserBindCheckResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/bind/check"
+      additional_bindings {
+        get: "/console/bind/check"
+      }
+    };
+  }
+
+  //Devices Management
+  rpc GetUserDeviceList(GetUserDeviceListRequest) returns (GetUserDeviceListResponse) {}
+  rpc GetUserDevice(GetUserDeviceRequest) returns (GetUserDeviceResponse) {}
+  rpc PostUserDevice(PostUserDeviceRequest) returns (PostUserDeviceResponse) {}
+  rpc DeleteUserDevice(DeleteUserDeviceRequest) returns (DeleteUserDeviceResponse) {}
+
+  //OAUTH2 Server
+
+  //User
+  rpc GetUserInfo(GetUserInfoRequest) returns (GetUserInfoResponse) {}
+  rpc GetUserInfoLegacy(GetUserInfoLegacyRequest) returns (GetUserInfoLegacyResponse) {}
+  rpc PutUserPrimaryBind(PutUserPrimaryBindRequest) returns (PutUserPrimaryBindResponse) {}
+  rpc PutUserPrimaryBindLegacy(PutUserPrimaryBindLegacyRequest) returns (PutUserPrimaryBindLegacyResponse) {}
+
+  //Static Server
+  rpc GetImageUploadTicket(GetImageUploadTicketRequest) returns (GetImageUploadTicketResponse) {}
+
+  //（内部接口）通过助手user_id获得用户的其他绑定信息
+  rpc GetBindListByUserIdList(GetBindListByUserIdListRequest) returns (GetBindListByUserIdListResponse) {}
 }
 
 enum TokenType {
@@ -22,7 +113,15 @@ enum TokenType {
   OAUTH = 1;
 }
 
+message GetTokenInfoRequest {}
+
 message GetTokenInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  TokenInfo data = 3;
+}
+
+message TokenInfo {
   bool isValid = 1;
   string accessToken = 2;
   uint32 expiredTime = 3;
@@ -31,36 +130,193 @@ message GetTokenInfoResponse {
   TokenType tokenType = 6;
 }
 
-message UserIdListRequest {
-  // 助手user_id列表
+message DeleteTokenRequest {
+  string token = 1;
+}
+
+message DeleteTokenResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message GetUserBindListRequest {}
+
+message GetUserBindListResponse {
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+
+  message Data {
+    uint32 count = 1;
+    repeated BindInfo bindDetail = 2;
+  }
+}
+
+message BindInfo {
+  string platformID = 1;
+  string platformName = 2;
+  uint32 createdAt = 3;
+}
+
+message GetUserBindRequest {}
+
+message GetUserBindResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message DeleteUserBindRequest {
+  string platformID = 1;
+}
+
+message DeleteUserBindResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message GetUserLoginHistoryRequest {
+  uint32 page = 1;
+  uint32 rpp = 2;
+  bool showAll = 3;
+}
+
+message GetUserLoginHistoryResponse {
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+
+  message Data {
+    uint32 count = 1;
+    repeated LoginSession detail = 2;
+  }
+}
+
+message LoginSession {
+  uint32 createdAt = 1;
+  uint32 deletedAt = 2;
+  string encryptedToken = 3;
+  string clientID = 4;
+  string clientName = 5;
+  string grantType = 6;
+  string grantTypeDesc = 7;
+}
+
+message DeleteUserLoginTokenRequest {
+  string EncryptedToken = 1;
+}
+
+message DeleteUserLoginTokenResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message GetUserBindCheckRequest {
+  string platform = 1;
+}
+
+message GetUserBindCheckResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message GetUserDeviceListRequest {}
+
+message GetUserDeviceListResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message GetUserDeviceRequest {}
+
+message GetUserDeviceResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message PostUserDeviceRequest {}
+
+message PostUserDeviceResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message DeleteUserDeviceRequest {}
+
+message DeleteUserDeviceResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message GetUserInfoRequest {}
+
+message GetUserInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message GetUserInfoLegacyRequest {}
+
+message GetUserInfoLegacyResponse {
+  uint32 error = 1;
+  string msg = 2;
+  UserInfoLegacy data = 3;
+}
+
+message UserInfoLegacy {
+  string nowStaffId = 1;
+  repeated string staffIds = 2;
+  string school = 3;
+}
+
+message PutUserPrimaryBindRequest {}
+
+message PutUserPrimaryBindResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message PutUserPrimaryBindLegacyRequest {
+  string newStaffId = 1;
+}
+
+message PutUserPrimaryBindLegacyResponse {
+  uint32 error = 1;
+  string msg = 2;
+}
+
+message GetImageUploadTicketRequest {}
+
+message GetImageUploadTicketResponse {
+  uint32 error = 1;
+  string msg = 2;
+  ImageUploadTicket Data = 3;
+}
+
+message ImageUploadTicket {
+  string ticket = 1;
+  uint32 validTIme = 2;
+}
+
+message GetBindListByUserIdListRequest {
+  // 用户user_id列表
   repeated string userIds = 1;
 }
 
 // 用户绑定信息查询响应
-message BindListResponse {
+message GetBindListByUserIdListResponse {
+  uint32 error = 1;
+  string msg = 2;
   // 绑定信息列表
-  repeated Bind items = 1;
+  repeated Bind data = 3;
 }
 
 // 用户绑定信息
 message Bind {
-  // 助手用户user_id
+  // 用户user_id
   string userId = 1;
-  // 绑定平台：
-  // platform=hdu 杭电学（工）号，uid 为学工号，同一用户可能存在多个学号（二学位，研究生）；
-  // platform=qzu 衢州学院学（工）号，uid 为学工号
-  // platform=wxmp 微信公众号，uid 为微信open id，uid2 为微信union id；
-  // platform=dingtalk 钉钉，uid 为钉钉 user id，同一用户可能存在多个钉钉绑定记录，优先用 uid2 存在的记录条的 uid；
-  // platform=idCard 身份证，uid 为身份证号；
-  // platform=alipay 支付宝, uid todo
-  // platform=apple 苹果，uid todo, uid2 todo
-  // platform=github github, uid todo, uid2 todo
-  // platform=qq QQ号，uid todo, uid2 todo
-  // platform=yiban 易班，uid todo
+  // 绑定平台
   string platform = 2;
-  // uid 不同平台含义不同，见 platform 解释
   string uid = 3;
-  // uid 不同平台含义不同，见 platform 解释
   string uid2 = 4;
   // 是否为主学工号
   bool primary = 5;
