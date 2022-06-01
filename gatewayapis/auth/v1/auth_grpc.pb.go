@@ -50,6 +50,12 @@ type AuthServiceClient interface {
 	PutUserPrimaryBindLegacy(ctx context.Context, in *PutUserPrimaryBindLegacyRequest, opts ...grpc.CallOption) (*PutUserPrimaryBindLegacyResponse, error)
 	//Static Server
 	GetImageUploadTicket(ctx context.Context, in *GetImageUploadTicketRequest, opts ...grpc.CallOption) (*GetImageUploadTicketResponse, error)
+	PutUploadImage(ctx context.Context, in *PutUploadImageRequest, opts ...grpc.CallOption) (*PutUploadImageResponse, error)
+	//HTML
+	GetDoctorPage(ctx context.Context, in *GetDoctorPageRequest, opts ...grpc.CallOption) (*GetDoctorPageResponse, error)
+	//Deprecated APIs
+	GetSchoolTime(ctx context.Context, in *GetSchoolTimeRequest, opts ...grpc.CallOption) (*GetSchoolTimeResponse, error)
+	GetWeChatSignature(ctx context.Context, in *GetWeChatSignatureRequest, opts ...grpc.CallOption) (*GetWeChatSignatureResponse, error)
 	//（内部接口）通过助手user_id获得用户的其他绑定信息
 	GetBindListByUserIdList(ctx context.Context, in *GetBindListByUserIdListRequest, opts ...grpc.CallOption) (*GetBindListByUserIdListResponse, error)
 }
@@ -215,6 +221,42 @@ func (c *authServiceClient) GetImageUploadTicket(ctx context.Context, in *GetIma
 	return out, nil
 }
 
+func (c *authServiceClient) PutUploadImage(ctx context.Context, in *PutUploadImageRequest, opts ...grpc.CallOption) (*PutUploadImageResponse, error) {
+	out := new(PutUploadImageResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/PutUploadImage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetDoctorPage(ctx context.Context, in *GetDoctorPageRequest, opts ...grpc.CallOption) (*GetDoctorPageResponse, error) {
+	out := new(GetDoctorPageResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetDoctorPage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetSchoolTime(ctx context.Context, in *GetSchoolTimeRequest, opts ...grpc.CallOption) (*GetSchoolTimeResponse, error) {
+	out := new(GetSchoolTimeResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetSchoolTime", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetWeChatSignature(ctx context.Context, in *GetWeChatSignatureRequest, opts ...grpc.CallOption) (*GetWeChatSignatureResponse, error) {
+	out := new(GetWeChatSignatureResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetWeChatSignature", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *GetBindListByUserIdListRequest, opts ...grpc.CallOption) (*GetBindListByUserIdListResponse, error) {
 	out := new(GetBindListByUserIdListResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetBindListByUserIdList", in, out, opts...)
@@ -256,6 +298,12 @@ type AuthServiceServer interface {
 	PutUserPrimaryBindLegacy(context.Context, *PutUserPrimaryBindLegacyRequest) (*PutUserPrimaryBindLegacyResponse, error)
 	//Static Server
 	GetImageUploadTicket(context.Context, *GetImageUploadTicketRequest) (*GetImageUploadTicketResponse, error)
+	PutUploadImage(context.Context, *PutUploadImageRequest) (*PutUploadImageResponse, error)
+	//HTML
+	GetDoctorPage(context.Context, *GetDoctorPageRequest) (*GetDoctorPageResponse, error)
+	//Deprecated APIs
+	GetSchoolTime(context.Context, *GetSchoolTimeRequest) (*GetSchoolTimeResponse, error)
+	GetWeChatSignature(context.Context, *GetWeChatSignatureRequest) (*GetWeChatSignatureResponse, error)
 	//（内部接口）通过助手user_id获得用户的其他绑定信息
 	GetBindListByUserIdList(context.Context, *GetBindListByUserIdListRequest) (*GetBindListByUserIdListResponse, error)
 }
@@ -314,6 +362,18 @@ func (UnimplementedAuthServiceServer) PutUserPrimaryBindLegacy(context.Context, 
 }
 func (UnimplementedAuthServiceServer) GetImageUploadTicket(context.Context, *GetImageUploadTicketRequest) (*GetImageUploadTicketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetImageUploadTicket not implemented")
+}
+func (UnimplementedAuthServiceServer) PutUploadImage(context.Context, *PutUploadImageRequest) (*PutUploadImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PutUploadImage not implemented")
+}
+func (UnimplementedAuthServiceServer) GetDoctorPage(context.Context, *GetDoctorPageRequest) (*GetDoctorPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDoctorPage not implemented")
+}
+func (UnimplementedAuthServiceServer) GetSchoolTime(context.Context, *GetSchoolTimeRequest) (*GetSchoolTimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSchoolTime not implemented")
+}
+func (UnimplementedAuthServiceServer) GetWeChatSignature(context.Context, *GetWeChatSignatureRequest) (*GetWeChatSignatureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWeChatSignature not implemented")
 }
 func (UnimplementedAuthServiceServer) GetBindListByUserIdList(context.Context, *GetBindListByUserIdListRequest) (*GetBindListByUserIdListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBindListByUserIdList not implemented")
@@ -636,6 +696,78 @@ func _AuthService_GetImageUploadTicket_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_PutUploadImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutUploadImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).PutUploadImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/PutUploadImage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).PutUploadImage(ctx, req.(*PutUploadImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetDoctorPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorPageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetDoctorPage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetDoctorPage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetDoctorPage(ctx, req.(*GetDoctorPageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetSchoolTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSchoolTimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetSchoolTime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetSchoolTime",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetSchoolTime(ctx, req.(*GetSchoolTimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetWeChatSignature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWeChatSignatureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetWeChatSignature(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetWeChatSignature",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetWeChatSignature(ctx, req.(*GetWeChatSignatureRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthService_GetBindListByUserIdList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBindListByUserIdListRequest)
 	if err := dec(in); err != nil {
@@ -728,6 +860,22 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetImageUploadTicket",
 			Handler:    _AuthService_GetImageUploadTicket_Handler,
+		},
+		{
+			MethodName: "PutUploadImage",
+			Handler:    _AuthService_PutUploadImage_Handler,
+		},
+		{
+			MethodName: "GetDoctorPage",
+			Handler:    _AuthService_GetDoctorPage_Handler,
+		},
+		{
+			MethodName: "GetSchoolTime",
+			Handler:    _AuthService_GetSchoolTime_Handler,
+		},
+		{
+			MethodName: "GetWeChatSignature",
+			Handler:    _AuthService_GetWeChatSignature_Handler,
 		},
 		{
 			MethodName: "GetBindListByUserIdList",

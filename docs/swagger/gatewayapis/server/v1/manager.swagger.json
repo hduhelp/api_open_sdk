@@ -44,6 +44,9 @@
         }
       }
     },
+    "v1DeleteHTTPRouterResponse": {
+      "type": "object"
+    },
     "v1GetHTTPRouterListResponse": {
       "type": "object",
       "properties": {
@@ -52,6 +55,21 @@
           "items": {
             "$ref": "#/definitions/v1HTTPRouter"
           }
+        }
+      }
+    },
+    "v1GetHTTPRouterResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1HTTPRouter"
         }
       }
     },
@@ -111,6 +129,9 @@
         }
       },
       "title": "HTTP路由注册"
+    },
+    "v1PostOrPutHTTPRouterResponse": {
+      "type": "object"
     }
   }
 }

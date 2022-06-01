@@ -13,21 +13,22 @@ option go_package = "./gatewayapis/server/v1";
 //服务管理端
 service ServerManageerService {
   //获取可管理的所有HTTP路由
-  rpc GetHTTPRouterList(google.protobuf.Empty) returns (GetHTTPRouterListResponse) {}
+  rpc GetHTTPRouterList(GetHTTPRouterListRequest) returns (GetHTTPRouterListResponse) {}
   //查询路由
-  rpc GetHTTPRouter(HTTPRouterKeyRequest) returns (gatewayapis.server.v1.HTTPRouter) {}
+  rpc GetHTTPRouter(GetHTTPRouterRequest) returns (GetHTTPRouterResponse) {}
   //创建或者更新路由
-  rpc PostOrPutHTTPRouter(gatewayapis.server.v1.HTTPRouter) returns (google.protobuf.Empty) {}
+  rpc PostOrPutHTTPRouter(PostOrPutHTTPRouterRequest) returns (PostOrPutHTTPRouterResponse) {}
   //删除路由
-  rpc DeleteHTTPRouter(HTTPRouterKeyRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteHTTPRouter(DeleteHTTPRouterRequest) returns (DeleteHTTPRouterResponse) {}
 }
+
+message GetHTTPRouterListRequest {}
 
 message GetHTTPRouterListResponse {
   repeated gatewayapis.server.v1.HTTPRouter routers = 1;
 }
 
-//三个参数需要都不为空
-message HTTPRouterKeyRequest {
+message GetHTTPRouterRequest {
   //服务名称
   string service = 1;
   //方法
@@ -35,3 +36,26 @@ message HTTPRouterKeyRequest {
   //挂载地址
   string servePath = 3;
 }
+
+message GetHTTPRouterResponse {
+  uint32 error = 1;
+  string msg = 2;
+  gatewayapis.server.v1.HTTPRouter data = 3;
+}
+
+message PostOrPutHTTPRouterRequest {
+  gatewayapis.server.v1.HTTPRouter router = 1;
+}
+
+message PostOrPutHTTPRouterResponse {}
+
+message DeleteHTTPRouterRequest {
+  //服务名称
+  string service = 1;
+  //方法
+  string method = 2;
+  //挂载地址
+  string servePath = 3;
+}
+
+message DeleteHTTPRouterResponse {}

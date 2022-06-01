@@ -66,7 +66,7 @@ func local_request_ServerRegisterService_PostRegistServiceInstance_0(ctx context
 }
 
 func request_ServerRegisterService_PostRegistHTTPRouters_0(ctx context.Context, marshaler runtime.Marshaler, client ServerRegisterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegistRoutersRequest
+	var protoReq PostRegistHTTPRoutersRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,7 +83,7 @@ func request_ServerRegisterService_PostRegistHTTPRouters_0(ctx context.Context, 
 }
 
 func local_request_ServerRegisterService_PostRegistHTTPRouters_0(ctx context.Context, marshaler runtime.Marshaler, server ServerRegisterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegistRoutersRequest
+	var protoReq PostRegistHTTPRoutersRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

@@ -21,7 +21,6 @@ import (
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 // Suppress "imported and not used" errors
@@ -33,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_ServerManageerService_GetHTTPRouterList_0(ctx context.Context, marshaler runtime.Marshaler, client ServerManageerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq GetHTTPRouterListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +49,7 @@ func request_ServerManageerService_GetHTTPRouterList_0(ctx context.Context, mars
 }
 
 func local_request_ServerManageerService_GetHTTPRouterList_0(ctx context.Context, marshaler runtime.Marshaler, server ServerManageerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq GetHTTPRouterListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,7 +66,7 @@ func local_request_ServerManageerService_GetHTTPRouterList_0(ctx context.Context
 }
 
 func request_ServerManageerService_GetHTTPRouter_0(ctx context.Context, marshaler runtime.Marshaler, client ServerManageerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq HTTPRouterKeyRequest
+	var protoReq GetHTTPRouterRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +83,7 @@ func request_ServerManageerService_GetHTTPRouter_0(ctx context.Context, marshale
 }
 
 func local_request_ServerManageerService_GetHTTPRouter_0(ctx context.Context, marshaler runtime.Marshaler, server ServerManageerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq HTTPRouterKeyRequest
+	var protoReq GetHTTPRouterRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +100,7 @@ func local_request_ServerManageerService_GetHTTPRouter_0(ctx context.Context, ma
 }
 
 func request_ServerManageerService_PostOrPutHTTPRouter_0(ctx context.Context, marshaler runtime.Marshaler, client ServerManageerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq HTTPRouter
+	var protoReq PostOrPutHTTPRouterRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +117,7 @@ func request_ServerManageerService_PostOrPutHTTPRouter_0(ctx context.Context, ma
 }
 
 func local_request_ServerManageerService_PostOrPutHTTPRouter_0(ctx context.Context, marshaler runtime.Marshaler, server ServerManageerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq HTTPRouter
+	var protoReq PostOrPutHTTPRouterRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +134,7 @@ func local_request_ServerManageerService_PostOrPutHTTPRouter_0(ctx context.Conte
 }
 
 func request_ServerManageerService_DeleteHTTPRouter_0(ctx context.Context, marshaler runtime.Marshaler, client ServerManageerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq HTTPRouterKeyRequest
+	var protoReq DeleteHTTPRouterRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +151,7 @@ func request_ServerManageerService_DeleteHTTPRouter_0(ctx context.Context, marsh
 }
 
 func local_request_ServerManageerService_DeleteHTTPRouter_0(ctx context.Context, marshaler runtime.Marshaler, server ServerManageerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq HTTPRouterKeyRequest
+	var protoReq DeleteHTTPRouterRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
