@@ -914,6 +914,17 @@
     }
   },
   "definitions": {
+    "PostStudentGateAccessResponseData": {
+      "type": "object",
+      "properties": {
+        "done": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "StudentNeedyInfoNested": {
       "type": "object",
       "properties": {
@@ -1194,35 +1205,10 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/v1GetPersonInfoResponseData"
+          "$ref": "#/definitions/v1PersonInfo"
         }
       },
       "title": "查询人员信息返回体"
-    },
-    "v1GetPersonInfoResponseData": {
-      "type": "object",
-      "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学工号"
-        },
-        "staffName": {
-          "type": "string",
-          "title": "姓名"
-        },
-        "staffState": {
-          "type": "string",
-          "title": "人员状态"
-        },
-        "staffType": {
-          "type": "string",
-          "title": "人员类型"
-        },
-        "unitCode": {
-          "type": "string",
-          "title": "学院代码"
-        }
-      }
     },
     "v1GetStudentBirthdayInfoResponse": {
       "type": "object",
@@ -1320,51 +1306,10 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/v1GetStudentInfoResponseData"
+          "$ref": "#/definitions/v1StudentInfo"
         }
       },
       "title": "GetStudentInfoResponse 查询学生信息返回体"
-    },
-    "v1GetStudentInfoResponseData": {
-      "type": "object",
-      "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学号"
-        },
-        "staffName": {
-          "type": "string",
-          "title": "学生姓名"
-        },
-        "classId": {
-          "type": "string",
-          "title": "学生班级号"
-        },
-        "unitId": {
-          "type": "string",
-          "title": "学生学院编号"
-        },
-        "unitName": {
-          "type": "string",
-          "title": "学生学院名称"
-        },
-        "majorId": {
-          "type": "string",
-          "title": "学生专业编号"
-        },
-        "majorName": {
-          "type": "string",
-          "title": "学生专业名称"
-        },
-        "teacherId": {
-          "type": "string",
-          "title": "学生辅导员工号"
-        },
-        "teacherName": {
-          "type": "string",
-          "title": "学生辅导员姓名"
-        }
-      }
     },
     "v1GetStudentNeedyInfoResponse": {
       "type": "object",
@@ -1418,6 +1363,31 @@
       },
       "title": "留校生信息查询-返回体"
     },
+    "v1PersonInfo": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学工号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "staffState": {
+          "type": "string",
+          "title": "人员状态"
+        },
+        "staffType": {
+          "type": "string",
+          "title": "人员类型"
+        },
+        "unitCode": {
+          "type": "string",
+          "title": "学院代码"
+        }
+      }
+    },
     "v1PostStudentGateAccessResponse": {
       "type": "object",
       "properties": {
@@ -1429,21 +1399,10 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/v1PostStudentGateAccessResponseData"
+          "$ref": "#/definitions/PostStudentGateAccessResponseData"
         }
       },
       "title": "PostStudentGateAccessResponse  推送学生门禁通行信息"
-    },
-    "v1PostStudentGateAccessResponseData": {
-      "type": "object",
-      "properties": {
-        "done": {
-          "type": "boolean"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
     },
     "v1StudentBirthdayInfo": {
       "type": "object",
@@ -1578,6 +1537,47 @@
         }
       },
       "title": "成绩详情"
+    },
+    "v1StudentInfo": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "学生姓名"
+        },
+        "classId": {
+          "type": "string",
+          "title": "学生班级号"
+        },
+        "unitId": {
+          "type": "string",
+          "title": "学生学院编号"
+        },
+        "unitName": {
+          "type": "string",
+          "title": "学生学院名称"
+        },
+        "majorId": {
+          "type": "string",
+          "title": "学生专业编号"
+        },
+        "majorName": {
+          "type": "string",
+          "title": "学生专业名称"
+        },
+        "teacherId": {
+          "type": "string",
+          "title": "学生辅导员工号"
+        },
+        "teacherName": {
+          "type": "string",
+          "title": "学生辅导员姓名"
+        }
+      }
     },
     "v1StudentNeedyInfo": {
       "type": "object",

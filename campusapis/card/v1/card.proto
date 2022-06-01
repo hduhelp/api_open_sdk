@@ -42,14 +42,14 @@ service CardService {
 message GetCardInfoResponse {
   uint32 error = 1;
   string msg = 2;
-  Data data = 3;
+  CardInfo data = 3;
+}
 
-  message Data {
-    //余额，精确到小数点后两位，单位元
-    float remaining = 1;
-    //交易记录
-    repeated Consumption flow = 2;
-  }
+message CardInfo {
+  //余额，精确到小数点后两位，单位元
+  float remaining = 1;
+  //交易记录
+  repeated Consumption flow = 2;
 }
 
 message Consumption {

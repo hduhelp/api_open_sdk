@@ -19,6 +19,13 @@ make install-tools
 3. 开启 swagger-ui 实时预览
 
 ## 预览 swagger 效果 (多数情况下没必要预览) (感觉还有更简单的)
+
+### 公开文档
+
+在 https://github.com/hduhelp/api/config.json 中添加对应 OpenAPI 文件，提交后会自动拉取api_open_sdk最新文档
+
+可在 https://hduhelp.github.io/api/ 页面查看接口文档
+
 1. 安装 swagger-ui
 ```shell
 # 新建目录
@@ -44,5 +51,5 @@ http://localhost:8080/campusapis/staff/v1/freshman.swagger.json
 
 ## 接口注释
 
-有效：rpc 方法前，Response message 前，message内部字段前
-无效（不会显示到 swagger 中）：Request message 前
+- 有效：rpc 方法前，Response message 前，message内部字段前
+- 无效（不会显示到 swagger 中）：Request message 前

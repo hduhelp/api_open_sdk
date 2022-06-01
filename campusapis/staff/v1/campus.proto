@@ -145,19 +145,20 @@ service CampusService {
 message GetPersonInfoResponse {
   uint32 error = 1;
   string msg = 2;
-  Data data = 3;
-  message Data {
-    //学工号
-    string staffId = 1;
-    //姓名
-    string staffName = 2;
-    //人员状态
-    string staffState = 3;
-    //人员类型
-    string staffType = 4;
-    //学院代码
-    string unitCode = 5;
-  }
+  PersonInfo data = 3;
+}
+
+message PersonInfo {
+  //学工号
+  string staffId = 1;
+  //姓名
+  string staffName = 2;
+  //人员状态
+  string staffState = 3;
+  //人员类型
+  string staffType = 4;
+  //学院代码
+  string unitCode = 5;
 }
 
 message GetStudentRewardsRequest {
@@ -193,27 +194,28 @@ message SemesterRequest {
 message GetStudentInfoResponse {
   uint32 error = 1;
   string msg = 2;
-  Data data = 3;
-  message Data {
-    //学号
-    string staffId = 1;
-    //学生姓名
-    string staffName = 2;
-    //学生班级号
-    string classId = 3;
-    //学生学院编号
-    string unitId = 4;
-    //学生学院名称
-    string unitName = 5;
-    //学生专业编号
-    string majorId = 6;
-    //学生专业名称
-    string majorName = 7;
-    //学生辅导员工号
-    string teacherId = 8;
-    //学生辅导员姓名
-    string teacherName = 9;
-  }
+  StudentInfo data = 3;
+}
+
+message StudentInfo {
+  //学号
+  string staffId = 1;
+  //学生姓名
+  string staffName = 2;
+  //学生班级号
+  string classId = 3;
+  //学生学院编号
+  string unitId = 4;
+  //学生学院名称
+  string unitName = 5;
+  //学生专业编号
+  string majorId = 6;
+  //学生专业名称
+  string majorName = 7;
+  //学生辅导员工号
+  string teacherId = 8;
+  //学生辅导员姓名
+  string teacherName = 9;
 }
 
 //查询贫困生信息返回体
@@ -428,7 +430,7 @@ message PostStudentGateAccessResponse {
 }
 
 // 留校生信息查询-返回体
-message GetStudentStaySchoolInfoResponse { 
+message GetStudentStaySchoolInfoResponse {
   uint32 error = 1;
   string msg = 2;
   StudentStaySchoolInfo data = 3;

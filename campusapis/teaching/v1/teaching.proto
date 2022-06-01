@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
+option go_package = "./campusapis/teaching/v1";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     title: "Teaching API";
@@ -27,7 +28,6 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   consumes: "application/json";
   produces: "application/json";
 };
-option go_package = "./campusapis/teaching/v1";
 
 service TeachingService {
   // 获取学生/教师课程表
@@ -382,12 +382,6 @@ message GetUnusedClassroomsResponse {
   repeated Classroom data = 3;
 }
 
-// ClassroomsResponse 教室查询返回体
-message ClassroomsResponse {
-  // 教室列表
-  repeated Classroom items = 1;
-}
-
 // 教室信息
 message Classroom {
   // 学期
@@ -406,23 +400,26 @@ message Classroom {
 
 // GetClassroomUsagesResponse 教室使用情况返回体
 message GetClassroomUsagesResponse {
-  // 内嵌信息
-  message Nested {
-    // 教室信息
-    Classroom classroom = 1;
-    // 星期
-    int32 weekday = 2;
-    // 周次列表
-    repeated int32 week = 3;
-    // 节次列表
-    repeated int32 Section = 4;
-    // 课程内部ID
-    string ClassID = 5;
-    // 课程号
-    string CourseCode = 6;
-    // 课程名
-    string CourseName = 7;
-  }
+  uint32 error = 1;
+  string msg = 2;
   // 教室使用情况列表
-  repeated Nested items = 1;
+  repeated ClassroomUsage data = 3;
+}
+
+// 教室使用情况
+message ClassroomUsage {
+  // 教室信息
+  Classroom classroom = 1;
+  // 星期
+  int32 weekday = 2;
+  // 周次列表
+  repeated int32 week = 3;
+  // 节次列表
+  repeated int32 Section = 4;
+  // 课程内部ID
+  string ClassID = 5;
+  // 课程号
+  string CourseCode = 6;
+  // 课程名
+  string CourseName = 7;
 }

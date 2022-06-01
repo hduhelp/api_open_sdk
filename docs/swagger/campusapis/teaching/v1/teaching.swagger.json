@@ -608,49 +608,6 @@
     }
   },
   "definitions": {
-    "GetClassroomUsagesResponseNested": {
-      "type": "object",
-      "properties": {
-        "classroom": {
-          "$ref": "#/definitions/v1Classroom",
-          "title": "教室信息"
-        },
-        "weekday": {
-          "type": "integer",
-          "format": "int32",
-          "title": "星期"
-        },
-        "week": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "title": "周次列表"
-        },
-        "Section": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "title": "节次列表"
-        },
-        "ClassID": {
-          "type": "string",
-          "title": "课程内部ID"
-        },
-        "CourseCode": {
-          "type": "string",
-          "title": "课程号"
-        },
-        "CourseName": {
-          "type": "string",
-          "title": "课程名"
-        }
-      },
-      "title": "内嵌信息"
-    },
     "GetScheduleNowResponseCourse": {
       "type": "object",
       "properties": {
@@ -813,13 +770,63 @@
       },
       "title": "教室信息"
     },
+    "v1ClassroomUsage": {
+      "type": "object",
+      "properties": {
+        "classroom": {
+          "$ref": "#/definitions/v1Classroom",
+          "title": "教室信息"
+        },
+        "weekday": {
+          "type": "integer",
+          "format": "int32",
+          "title": "星期"
+        },
+        "week": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "周次列表"
+        },
+        "Section": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "节次列表"
+        },
+        "ClassID": {
+          "type": "string",
+          "title": "课程内部ID"
+        },
+        "CourseCode": {
+          "type": "string",
+          "title": "课程号"
+        },
+        "CourseName": {
+          "type": "string",
+          "title": "课程名"
+        }
+      },
+      "title": "教室使用情况"
+    },
     "v1GetClassroomUsagesResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/GetClassroomUsagesResponseNested"
+            "$ref": "#/definitions/v1ClassroomUsage"
           },
           "title": "教室使用情况列表"
         }

@@ -156,23 +156,6 @@
     }
   },
   "definitions": {
-    "GetCardInfoResponseData": {
-      "type": "object",
-      "properties": {
-        "remaining": {
-          "type": "number",
-          "format": "float",
-          "title": "余额，精确到小数点后两位，单位元"
-        },
-        "flow": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Consumption"
-          },
-          "title": "交易记录"
-        }
-      }
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -199,6 +182,23 @@
           "items": {
             "$ref": "#/definitions/protobufAny"
           }
+        }
+      }
+    },
+    "v1CardInfo": {
+      "type": "object",
+      "properties": {
+        "remaining": {
+          "type": "number",
+          "format": "float",
+          "title": "余额，精确到小数点后两位，单位元"
+        },
+        "flow": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Consumption"
+          },
+          "title": "交易记录"
         }
       }
     },
@@ -280,7 +280,7 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/GetCardInfoResponseData"
+          "$ref": "#/definitions/v1CardInfo"
         }
       }
     }
