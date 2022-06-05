@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package consultingapis.faq.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "./consultingapis/wiki/v1";
+
+service FAQService {
+  rpc GetDriveDocContent(DocTokenRequest) returns (DocTokenResp) {
+    option (google.api.http) = {
+      get: "/wiki/v1/content"
+    };
+  }
+}
+
+message DocTokenRequest {
+  string token = 1;
+}
+
+message DocTokenResp {
+  string content = 1;
+  uint32 revision = 2;
+}
