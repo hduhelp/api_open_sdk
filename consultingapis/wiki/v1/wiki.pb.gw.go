@@ -34,48 +34,84 @@ var _ = descriptor.ForMessage
 var _ = metadata.Join
 
 var (
-	filter_FAQService_GetDriveDocContent_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_WikiService_GetDocContent_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_FAQService_GetDriveDocContent_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DocTokenRequest
+func request_WikiService_GetDocContent_0(ctx context.Context, marshaler runtime.Marshaler, client WikiServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DocTokenReq
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_GetDriveDocContent_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_WikiService_GetDocContent_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetDriveDocContent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetDocContent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_FAQService_GetDriveDocContent_0(ctx context.Context, marshaler runtime.Marshaler, server FAQServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DocTokenRequest
+func local_request_WikiService_GetDocContent_0(ctx context.Context, marshaler runtime.Marshaler, server WikiServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DocTokenReq
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FAQService_GetDriveDocContent_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_WikiService_GetDocContent_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetDriveDocContent(ctx, &protoReq)
+	msg, err := server.GetDocContent(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-// RegisterFAQServiceHandlerServer registers the http handlers for service FAQService to "mux".
-// UnaryRPC     :call FAQServiceServer directly.
+var (
+	filter_WikiService_GetNodeList_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_WikiService_GetNodeList_0(ctx context.Context, marshaler runtime.Marshaler, client WikiServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq NodeReq
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_WikiService_GetNodeList_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetNodeList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_WikiService_GetNodeList_0(ctx context.Context, marshaler runtime.Marshaler, server WikiServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq NodeReq
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_WikiService_GetNodeList_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetNodeList(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+// RegisterWikiServiceHandlerServer registers the http handlers for service WikiService to "mux".
+// UnaryRPC     :call WikiServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterFAQServiceHandlerFromEndpoint instead.
-func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server FAQServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWikiServiceHandlerFromEndpoint instead.
+func RegisterWikiServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server WikiServiceServer) error {
 
-	mux.Handle("GET", pattern_FAQService_GetDriveDocContent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_WikiService_GetDocContent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -86,7 +122,7 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_FAQService_GetDriveDocContent_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_WikiService_GetDocContent_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -94,16 +130,39 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_FAQService_GetDriveDocContent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_WikiService_GetDocContent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_WikiService_GetNodeList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_WikiService_GetNodeList_0(rctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_WikiService_GetNodeList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterFAQServiceHandlerFromEndpoint is same as RegisterFAQServiceHandler but
+// RegisterWikiServiceHandlerFromEndpoint is same as RegisterWikiServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterFAQServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterWikiServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -123,23 +182,23 @@ func RegisterFAQServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.Ser
 		}()
 	}()
 
-	return RegisterFAQServiceHandler(ctx, mux, conn)
+	return RegisterWikiServiceHandler(ctx, mux, conn)
 }
 
-// RegisterFAQServiceHandler registers the http handlers for service FAQService to "mux".
+// RegisterWikiServiceHandler registers the http handlers for service WikiService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterFAQServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterFAQServiceHandlerClient(ctx, mux, NewFAQServiceClient(conn))
+func RegisterWikiServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterWikiServiceHandlerClient(ctx, mux, NewWikiServiceClient(conn))
 }
 
-// RegisterFAQServiceHandlerClient registers the http handlers for service FAQService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "FAQServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "FAQServiceClient"
+// RegisterWikiServiceHandlerClient registers the http handlers for service WikiService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "WikiServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "WikiServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "FAQServiceClient" to call the correct interceptors.
-func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client FAQServiceClient) error {
+// "WikiServiceClient" to call the correct interceptors.
+func RegisterWikiServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client WikiServiceClient) error {
 
-	mux.Handle("GET", pattern_FAQService_GetDriveDocContent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_WikiService_GetDocContent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -148,14 +207,34 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_FAQService_GetDriveDocContent_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_WikiService_GetDocContent_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_FAQService_GetDriveDocContent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_WikiService_GetDocContent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_WikiService_GetNodeList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_WikiService_GetNodeList_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_WikiService_GetNodeList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -163,9 +242,13 @@ func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 }
 
 var (
-	pattern_FAQService_GetDriveDocContent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"wiki", "v1", "content"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_WikiService_GetDocContent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"wiki", "v1", "content"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_WikiService_GetNodeList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"wiki", "v1", "nodes"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
-	forward_FAQService_GetDriveDocContent_0 = runtime.ForwardResponseMessage
+	forward_WikiService_GetDocContent_0 = runtime.ForwardResponseMessage
+
+	forward_WikiService_GetNodeList_0 = runtime.ForwardResponseMessage
 )

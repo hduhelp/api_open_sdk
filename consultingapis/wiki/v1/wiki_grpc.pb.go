@@ -14,86 +14,122 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// FAQServiceClient is the client API for FAQService service.
+// WikiServiceClient is the client API for WikiService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type FAQServiceClient interface {
-	GetDriveDocContent(ctx context.Context, in *DocTokenRequest, opts ...grpc.CallOption) (*DocTokenResp, error)
+type WikiServiceClient interface {
+	GetDocContent(ctx context.Context, in *DocTokenReq, opts ...grpc.CallOption) (*DocTokenResp, error)
+	GetNodeList(ctx context.Context, in *NodeReq, opts ...grpc.CallOption) (*NodeResp, error)
 }
 
-type fAQServiceClient struct {
+type wikiServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewFAQServiceClient(cc grpc.ClientConnInterface) FAQServiceClient {
-	return &fAQServiceClient{cc}
+func NewWikiServiceClient(cc grpc.ClientConnInterface) WikiServiceClient {
+	return &wikiServiceClient{cc}
 }
 
-func (c *fAQServiceClient) GetDriveDocContent(ctx context.Context, in *DocTokenRequest, opts ...grpc.CallOption) (*DocTokenResp, error) {
+func (c *wikiServiceClient) GetDocContent(ctx context.Context, in *DocTokenReq, opts ...grpc.CallOption) (*DocTokenResp, error) {
 	out := new(DocTokenResp)
-	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/GetDriveDocContent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.WikiService/GetDocContent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// FAQServiceServer is the server API for FAQService service.
-// All implementations must embed UnimplementedFAQServiceServer
+func (c *wikiServiceClient) GetNodeList(ctx context.Context, in *NodeReq, opts ...grpc.CallOption) (*NodeResp, error) {
+	out := new(NodeResp)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.WikiService/GetNodeList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// WikiServiceServer is the server API for WikiService service.
+// All implementations must embed UnimplementedWikiServiceServer
 // for forward compatibility
-type FAQServiceServer interface {
-	GetDriveDocContent(context.Context, *DocTokenRequest) (*DocTokenResp, error)
-	mustEmbedUnimplementedFAQServiceServer()
+type WikiServiceServer interface {
+	GetDocContent(context.Context, *DocTokenReq) (*DocTokenResp, error)
+	GetNodeList(context.Context, *NodeReq) (*NodeResp, error)
+	mustEmbedUnimplementedWikiServiceServer()
 }
 
-// UnimplementedFAQServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedFAQServiceServer struct {
+// UnimplementedWikiServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedWikiServiceServer struct {
 }
 
-func (UnimplementedFAQServiceServer) GetDriveDocContent(context.Context, *DocTokenRequest) (*DocTokenResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDriveDocContent not implemented")
+func (UnimplementedWikiServiceServer) GetDocContent(context.Context, *DocTokenReq) (*DocTokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDocContent not implemented")
 }
-func (UnimplementedFAQServiceServer) mustEmbedUnimplementedFAQServiceServer() {}
+func (UnimplementedWikiServiceServer) GetNodeList(context.Context, *NodeReq) (*NodeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNodeList not implemented")
+}
+func (UnimplementedWikiServiceServer) mustEmbedUnimplementedWikiServiceServer() {}
 
-// UnsafeFAQServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to FAQServiceServer will
+// UnsafeWikiServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WikiServiceServer will
 // result in compilation errors.
-type UnsafeFAQServiceServer interface {
-	mustEmbedUnimplementedFAQServiceServer()
+type UnsafeWikiServiceServer interface {
+	mustEmbedUnimplementedWikiServiceServer()
 }
 
-func RegisterFAQServiceServer(s grpc.ServiceRegistrar, srv FAQServiceServer) {
-	s.RegisterService(&FAQService_ServiceDesc, srv)
+func RegisterWikiServiceServer(s grpc.ServiceRegistrar, srv WikiServiceServer) {
+	s.RegisterService(&WikiService_ServiceDesc, srv)
 }
 
-func _FAQService_GetDriveDocContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DocTokenRequest)
+func _WikiService_GetDocContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DocTokenReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FAQServiceServer).GetDriveDocContent(ctx, in)
+		return srv.(WikiServiceServer).GetDocContent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/consultingapis.faq.v1.FAQService/GetDriveDocContent",
+		FullMethod: "/consultingapis.faq.v1.WikiService/GetDocContent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FAQServiceServer).GetDriveDocContent(ctx, req.(*DocTokenRequest))
+		return srv.(WikiServiceServer).GetDocContent(ctx, req.(*DocTokenReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// FAQService_ServiceDesc is the grpc.ServiceDesc for FAQService service.
+func _WikiService_GetNodeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NodeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WikiServiceServer).GetNodeList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/consultingapis.faq.v1.WikiService/GetNodeList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WikiServiceServer).GetNodeList(ctx, req.(*NodeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// WikiService_ServiceDesc is the grpc.ServiceDesc for WikiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var FAQService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "consultingapis.faq.v1.FAQService",
-	HandlerType: (*FAQServiceServer)(nil),
+var WikiService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "consultingapis.faq.v1.WikiService",
+	HandlerType: (*WikiServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetDriveDocContent",
-			Handler:    _FAQService_GetDriveDocContent_Handler,
+			MethodName: "GetDocContent",
+			Handler:    _WikiService_GetDocContent_Handler,
+		},
+		{
+			MethodName: "GetNodeList",
+			Handler:    _WikiService_GetNodeList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
