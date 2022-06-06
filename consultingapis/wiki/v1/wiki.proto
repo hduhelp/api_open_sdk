@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package consultingapis.faq.v1;
+package consultingapis.wiki.v1;
 
 import "google/api/annotations.proto";
 
