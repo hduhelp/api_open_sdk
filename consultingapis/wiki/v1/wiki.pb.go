@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: consultingapis/wiki/v1/wiki.proto
 
-package wikiv1
+package faqv1
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"

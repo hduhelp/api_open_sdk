@@ -6,7 +6,7 @@ Package faqv1 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package wikiv1
+package faqv1
 
 import (
 	"context"
