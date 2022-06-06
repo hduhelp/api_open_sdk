@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package consultingapis.faq.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "./consultingapis/wiki/v1";
+
+service WikiService {
+  rpc GetDocContent(DocTokenReq) returns (DocTokenResp) {
+    option (google.api.http) = {
+      get: "/wiki/v1/content"
+    };
+  }
+  rpc GetNodeList(nodeReq) returns (nodeResp) {
+    option (google.api.http) = {
+      get: "/wiki/v1/nodes"
+    };
+  }
+}
+
+message DocTokenReq {
+  string token = 1;
+}
+
+message DocTokenResp {
+  string content = 1;
+  uint32 revision = 2;
+}
+
+message nodeReq {
+  string spaceID = 1;
+  string parentNodeToken = 2;
+}
+
+message nodeResp {
+  repeated nodeItem items = 1;
+  string pageToken = 2;
+  bool hasMore = 3;
+}
+
+message nodeItem {
+  string spaceId = 1;
+  string nodeToken = 2;
+  string objToken = 3;
+  string objType = 4;
+  string parentNodeToken = 5;
+  string nodeType = 6;
+  string originNodeToken = 7;
+  string originSpaceId = 8;
+  bool hasChild = 9;
+  string title = 10;
+  string objCreateTime = 11;
+  string objEditTime = 12;
+  string nodeCreateTime = 13;
+}
