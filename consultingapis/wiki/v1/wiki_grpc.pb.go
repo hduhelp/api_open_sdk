@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: consultingapis/wiki/v1/wiki.proto
 
-package faqv1
+package wikiv1
 
 import (
 	context "context"
