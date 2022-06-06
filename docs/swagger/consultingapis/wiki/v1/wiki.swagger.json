@@ -1,0 +1,188 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "consultingapis/wiki/v1/wiki.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "WikiService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/wiki/v1/content": {
+      "get": {
+        "operationId": "WikiService_GetDocContent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DocTokenResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WikiService"
+        ]
+      }
+    },
+    "/wiki/v1/nodes": {
+      "get": {
+        "operationId": "WikiService_GetNodeList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1nodeResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "spaceID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "parentNodeToken",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WikiService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1DocTokenResp": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1nodeItem": {
+      "type": "object",
+      "properties": {
+        "spaceId": {
+          "type": "string"
+        },
+        "nodeToken": {
+          "type": "string"
+        },
+        "objToken": {
+          "type": "string"
+        },
+        "objType": {
+          "type": "string"
+        },
+        "parentNodeToken": {
+          "type": "string"
+        },
+        "nodeType": {
+          "type": "string"
+        },
+        "originNodeToken": {
+          "type": "string"
+        },
+        "originSpaceId": {
+          "type": "string"
+        },
+        "hasChild": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string"
+        },
+        "objCreateTime": {
+          "type": "string"
+        },
+        "objEditTime": {
+          "type": "string"
+        },
+        "nodeCreateTime": {
+          "type": "string"
+        }
+      }
+    },
+    "v1nodeResp": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1nodeItem"
+          }
+        },
+        "pageToken": {
+          "type": "string"
+        },
+        "hasMore": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
