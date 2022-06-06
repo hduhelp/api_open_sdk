@@ -53,4 +53,5 @@ message nodeItem {
   string obj_create_time = 11;
   string obj_edit_time = 12;
   string node_create_time = 13;
+  repeated nodeItem subNode = 14;
 }
