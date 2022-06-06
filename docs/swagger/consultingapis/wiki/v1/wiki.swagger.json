@@ -65,7 +65,7 @@
         },
         "parameters": [
           {
-            "name": "spaceID",
+            "name": "spaceId",
             "in": "query",
             "required": false,
             "type": "string"
