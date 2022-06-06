@@ -29,28 +29,28 @@ message DocTokenResp {
 }
 
 message nodeReq {
-  string spaceID = 1;
-  string parentNodeToken = 2;
+  string space_id = 1;
+  string parent_node_token = 2;
 }
 
 message nodeResp {
   repeated nodeItem items = 1;
-  string pageToken = 2;
-  bool hasMore = 3;
+  string page_token = 2;
+  bool has_more = 3;
 }
 
 message nodeItem {
-  string spaceId = 1;
-  string nodeToken = 2;
-  string objToken = 3;
-  string objType = 4;
-  string parentNodeToken = 5;
-  string nodeType = 6;
-  string originNodeToken = 7;
-  string originSpaceId = 8;
-  bool hasChild = 9;
+  string space_id = 1;
+  string node_token = 2;
+  string obj_token = 3;
+  string obj_type = 4;
+  string parent_node_token = 5;
+  string node_type = 6;
+  string origin_node_token = 7;
+  string origin_space_id = 8;
+  bool has_child = 9;
   string title = 10;
-  string objCreateTime = 11;
-  string objEditTime = 12;
-  string nodeCreateTime = 13;
+  string obj_create_time = 11;
+  string obj_edit_time = 12;
+  string node_create_time = 13;
 }
