@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: consultingapis/wiki/v1/wiki.proto
 
-package faqv1
+package wikiv1
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewWikiServiceClient(cc grpc.ClientConnInterface) WikiServiceClient {
 
 func (c *wikiServiceClient) GetDocContent(ctx context.Context, in *DocTokenReq, opts ...grpc.CallOption) (*DocTokenResp, error) {
 	out := new(DocTokenResp)
-	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.WikiService/GetDocContent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.wiki.v1.WikiService/GetDocContent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *wikiServiceClient) GetDocContent(ctx context.Context, in *DocTokenReq, 
 
 func (c *wikiServiceClient) GetNodeList(ctx context.Context, in *NodeReq, opts ...grpc.CallOption) (*NodeResp, error) {
 	out := new(NodeResp)
-	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.WikiService/GetNodeList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.wiki.v1.WikiService/GetNodeList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +92,7 @@ func _WikiService_GetDocContent_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/consultingapis.faq.v1.WikiService/GetDocContent",
+		FullMethod: "/consultingapis.wiki.v1.WikiService/GetDocContent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WikiServiceServer).GetDocContent(ctx, req.(*DocTokenReq))
@@ -110,7 +110,7 @@ func _WikiService_GetNodeList_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/consultingapis.faq.v1.WikiService/GetNodeList",
+		FullMethod: "/consultingapis.wiki.v1.WikiService/GetNodeList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WikiServiceServer).GetNodeList(ctx, req.(*NodeReq))
@@ -122,7 +122,7 @@ func _WikiService_GetNodeList_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var WikiService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "consultingapis.faq.v1.WikiService",
+	ServiceName: "consultingapis.wiki.v1.WikiService",
 	HandlerType: (*WikiServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
