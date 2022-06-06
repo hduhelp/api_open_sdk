@@ -164,6 +164,12 @@
         },
         "nodeCreateTime": {
           "type": "string"
+        },
+        "subNode": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1nodeItem"
+          }
         }
       }
     },
