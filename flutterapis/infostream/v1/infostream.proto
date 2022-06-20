@@ -19,14 +19,19 @@ message InfoStreamReq {
 }
 
 message InfoStreamResp {
-  weatherResp weather = 1;
-  scheduleResp schedule = 2;
-  examResp exam = 3;
-  scoreResp score = 4;
-  sunRunResp sunrun = 5;
-  cardResp card = 6;
-  electricResp electronic = 7;
-  settingsResp settings = 8;
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data {
+    weatherResp weather = 1;
+    scheduleResp schedule = 2;
+    examResp exam = 3;
+    scoreResp score = 4;
+    sunRunResp sunrun = 5;
+    cardResp card = 6;
+    electricResp electronic = 7;
+    settingsResp settings = 8;
+  }
 }
 
 message weatherResp {
