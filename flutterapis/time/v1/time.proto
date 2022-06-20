@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package flutterapis.time.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "./flutterapis/time/v1";
+
+service TimeService {
+  rpc GetTime(TimeReq) returns (TimeResp) {
+    option (google.api.http) = {
+      get: "/time/v1"
+    };
+  }
+}
+
+message TimeReq {
+}
+
+message TimeResp {
+  uint32 school_year = 1;
+  uint32 semester = 2;
+  uint32 semester_start_timestamp = 3;
+  uint32 week_now = 4;
+  uint32 week_day_now = 5;
+  uint32 timestamp = 6;
+  uint32 section = 7;
+
+  uint32 schedule_school_year = 8;
+  uint32 schedule_semester = 9;
+  uint32 exam_school_year = 10;
+  uint32 exam_semester = 11;
+  uint32 score_school_year = 12;
+  uint32 score_semester = 13;
+}

@@ -1,0 +1,149 @@
+syntax = "proto3";
+
+package flutterapis.infoStream.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "./flutterapis/infoStream/v1";
+
+service InfoStreamService {
+  rpc GetInfoStream(InfoStreamReq) returns (InfoStreamResp) {
+    option (google.api.http) = {
+      get: "/infoStream/v1"
+    };
+  }
+}
+
+message InfoStreamReq {
+  string staffId = 1;
+}
+
+message InfoStreamResp {
+  weatherResp weather = 1;
+  scheduleResp schedule = 2;
+  examResp exam = 3;
+  scoreResp score = 4;
+  sunRunResp sunrun = 5;
+  cardResp card = 6;
+  electricResp electronic = 7;
+  settingsResp settings = 8;
+}
+
+message weatherResp {
+  bool available = 1;
+  weatherData data = 2;
+}
+
+message weatherData {
+  uint32 aqi = 1;
+  string desc = 2;
+  string skycon_now = 3;
+  uint32 temperature_max = 4;
+  uint32 temperature_min = 5;
+  uint32 temperature_now = 6;
+  uint32 timestamp = 7;
+}
+
+message scheduleResp {
+  bool available = 1;
+  repeated scheduleData today = 2;
+  repeated scheduleData tomorrow = 3;
+}
+
+message scheduleData {
+  uint32 start_section = 1;
+  uint32 end_section = 2;
+  string start_time = 3;
+  string end_time = 4;
+  string course_name = 5;
+  string classroom = 6;
+  string teacher = 7;
+  string duration = 8;
+}
+
+message examResp {
+  bool available = 1;
+  repeated examData data = 2;
+}
+
+message examData {
+  string classroom = 1;
+  string course = 2;
+  string exam_time = 3;
+  string exam_type = 4;
+  string school_year = 5;
+  string seat = 6;
+  string select_code = 7;
+  string semester = 8;
+  string staff_id = 9;
+}
+
+message scoreResp {
+  bool available = 1;
+  repeated scoreData data = 2;
+}
+
+message scoreData {
+  string course = 1;
+  string course_code = 2;
+  string course_type = 3;
+  string credit = 4;
+  string jd = 5;
+  string schoolYear = 6;
+  string score = 7;
+  string score_ps = 8;
+  string score_qm = 9;
+  string score_qz = 10;
+  string score_sy = 11;
+  string select_code = 12;
+  string semester = 13;
+  string score_bk = 14;
+  string staff_id = 15;
+  string staff_name = 16;
+}
+
+message sunRunResp {
+  bool available = 1;
+  sunRunData data = 2;
+}
+
+message sunRunData {
+  uint32 am_mileage = 1;
+  double am_speed = 2;
+  string created_at = 3;
+  string data_updated_at = 4;
+  string date = 5;
+  uint32 days = 6;
+  uint32 final_times = 7;
+  string name = 8;
+  uint32 pm_mileage = 9;
+  double pm_speed = 10;
+  uint32 rand = 11;
+  string sex = 12;
+  double speed = 13;
+  uint32 total_mileages = 14;
+  string updated_at = 15;
+  uint32 valid_mileages = 16;
+  uint32 valid_times = 17;
+  string code = 18;
+}
+
+message cardResp {
+  bool available = 1;
+  float data = 2;
+}
+
+message electricResp {
+  bool available = 1;
+  electricData data = 2;
+}
+
+message electricData {
+  string fee = 1;
+  string room_id = 2;
+  string room_name = 3;
+}
+
+message settingsResp {
+
+}
