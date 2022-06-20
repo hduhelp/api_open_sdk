@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TimeServiceClient interface {
-	GetTime(ctx context.Context, in *TimeReq, opts ...grpc.CallOption) (*TimeResp, error)
+	GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TimeResp, error)
 }
 
 type timeServiceClient struct {
@@ -33,7 +34,7 @@ func NewTimeServiceClient(cc grpc.ClientConnInterface) TimeServiceClient {
 	return &timeServiceClient{cc}
 }
 
-func (c *timeServiceClient) GetTime(ctx context.Context, in *TimeReq, opts ...grpc.CallOption) (*TimeResp, error) {
+func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TimeResp, error) {
 	out := new(TimeResp)
 	err := c.cc.Invoke(ctx, "/flutterapis.time.v1.TimeService/GetTime", in, out, opts...)
 	if err != nil {
@@ -46,14 +47,14 @@ func (c *timeServiceClient) GetTime(ctx context.Context, in *TimeReq, opts ...gr
 // All implementations should embed UnimplementedTimeServiceServer
 // for forward compatibility
 type TimeServiceServer interface {
-	GetTime(context.Context, *TimeReq) (*TimeResp, error)
+	GetTime(context.Context, *emptypb.Empty) (*TimeResp, error)
 }
 
 // UnimplementedTimeServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedTimeServiceServer struct {
 }
 
-func (UnimplementedTimeServiceServer) GetTime(context.Context, *TimeReq) (*TimeResp, error) {
+func (UnimplementedTimeServiceServer) GetTime(context.Context, *emptypb.Empty) (*TimeResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTime not implemented")
 }
 
@@ -69,7 +70,7 @@ func RegisterTimeServiceServer(s grpc.ServiceRegistrar, srv TimeServiceServer) {
 }
 
 func _TimeService_GetTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TimeReq)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -81,7 +82,7 @@ func _TimeService_GetTime_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/flutterapis.time.v1.TimeService/GetTime",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TimeServiceServer).GetTime(ctx, req.(*TimeReq))
+		return srv.(TimeServiceServer).GetTime(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }

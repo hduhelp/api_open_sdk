@@ -48,6 +48,35 @@
     }
   },
   "definitions": {
+    "InfoStreamRespData": {
+      "type": "object",
+      "properties": {
+        "weather": {
+          "$ref": "#/definitions/v1weatherResp"
+        },
+        "schedule": {
+          "$ref": "#/definitions/v1scheduleResp"
+        },
+        "exam": {
+          "$ref": "#/definitions/v1examResp"
+        },
+        "score": {
+          "$ref": "#/definitions/v1scoreResp"
+        },
+        "sunrun": {
+          "$ref": "#/definitions/v1sunRunResp"
+        },
+        "card": {
+          "$ref": "#/definitions/v1cardResp"
+        },
+        "electronic": {
+          "$ref": "#/definitions/v1electricResp"
+        },
+        "settings": {
+          "$ref": "#/definitions/v1settingsResp"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -78,29 +107,15 @@
     "v1InfoStreamResp": {
       "type": "object",
       "properties": {
-        "weather": {
-          "$ref": "#/definitions/v1weatherResp"
+        "error": {
+          "type": "integer",
+          "format": "int64"
         },
-        "schedule": {
-          "$ref": "#/definitions/v1scheduleResp"
+        "msg": {
+          "type": "string"
         },
-        "exam": {
-          "$ref": "#/definitions/v1examResp"
-        },
-        "score": {
-          "$ref": "#/definitions/v1scoreResp"
-        },
-        "sunrun": {
-          "$ref": "#/definitions/v1sunRunResp"
-        },
-        "card": {
-          "$ref": "#/definitions/v1cardResp"
-        },
-        "electronic": {
-          "$ref": "#/definitions/v1electricResp"
-        },
-        "settings": {
-          "$ref": "#/definitions/v1settingsResp"
+        "data": {
+          "$ref": "#/definitions/InfoStreamRespData"
         }
       }
     },
