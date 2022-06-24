@@ -89,22 +89,36 @@ message scoreResp {
 }
 
 message scoreData {
-  string course = 1;
-  string course_code = 2;
-  string course_type = 3;
-  string credit = 4;
-  string jd = 5;
-  string schoolYear = 6;
-  string score = 7;
-  string score_ps = 8;
-  string score_qm = 9;
-  string score_qz = 10;
-  string score_sy = 11;
-  string select_code = 12;
-  string semester = 13;
-  string score_bk = 14;
-  string staff_id = 15;
-  string staff_name = 16;
+  //学年
+  string schoolYear = 1;
+  //学期
+  string semester = 2;
+  //选课号
+  string selectCode = 3;
+  //最后分数
+  string score = 4;
+  //平时分
+  string scoreDaily = 5;
+  //期中分数
+  string scoreMidTerm = 6;
+  //期末分数
+  string scoreFinal = 7;
+  //补考分数
+  string scoreSubstitute = 8;
+  //实验分数
+  string scorePractice = 9;
+  //课程号
+  string courseCode = 10;
+  //课程名
+  string course = 11;
+  //学号
+  string staffId = 12;
+  //姓名
+  string staffName = 13;
+  //学分
+  string credit = 14;
+  //GPA
+  string GPA = 15;
 }
 
 message sunRunResp {
