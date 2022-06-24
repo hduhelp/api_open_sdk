@@ -256,53 +256,65 @@
     "v1scoreData": {
       "type": "object",
       "properties": {
-        "course": {
-          "type": "string"
-        },
-        "courseCode": {
-          "type": "string"
-        },
-        "courseType": {
-          "type": "string"
-        },
-        "credit": {
-          "type": "string"
-        },
-        "jd": {
-          "type": "string"
-        },
         "schoolYear": {
-          "type": "string"
-        },
-        "score": {
-          "type": "string"
-        },
-        "scorePs": {
-          "type": "string"
-        },
-        "scoreQm": {
-          "type": "string"
-        },
-        "scoreQz": {
-          "type": "string"
-        },
-        "scoreSy": {
-          "type": "string"
-        },
-        "selectCode": {
-          "type": "string"
+          "type": "string",
+          "title": "学年"
         },
         "semester": {
-          "type": "string"
+          "type": "string",
+          "title": "学期"
         },
-        "scoreBk": {
-          "type": "string"
+        "selectCode": {
+          "type": "string",
+          "title": "选课号"
+        },
+        "score": {
+          "type": "string",
+          "title": "最后分数"
+        },
+        "scoreDaily": {
+          "type": "string",
+          "title": "平时分"
+        },
+        "scoreMidTerm": {
+          "type": "string",
+          "title": "期中分数"
+        },
+        "scoreFinal": {
+          "type": "string",
+          "title": "期末分数"
+        },
+        "scoreSubstitute": {
+          "type": "string",
+          "title": "补考分数"
+        },
+        "scorePractice": {
+          "type": "string",
+          "title": "实验分数"
+        },
+        "courseCode": {
+          "type": "string",
+          "title": "课程号"
+        },
+        "course": {
+          "type": "string",
+          "title": "课程名"
         },
         "staffId": {
-          "type": "string"
+          "type": "string",
+          "title": "学号"
         },
         "staffName": {
-          "type": "string"
+          "type": "string",
+          "title": "姓名"
+        },
+        "credit": {
+          "type": "string",
+          "title": "学分"
+        },
+        "GPA": {
+          "type": "string",
+          "title": "GPA"
         }
       }
     },
