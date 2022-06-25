@@ -101,6 +101,15 @@ service CampusService {
       }
     };
   }
+  //获取学生考试信息
+  rpc GetStudentExam(GetStudentExamRequest) returns (GetStudentExamResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/exam"
+      additional_bindings {
+        get: "/student/exam"
+      }
+    };
+  }
   //推送学生门禁通行信息
   rpc PostStudentGateAccess(PostStudentGateAccessRequest) returns (PostStudentGateAccessResponse) {}
 
@@ -158,6 +167,34 @@ message GetPersonInfoResponse {
   string staffType = 4;
   //学院代码
   string unitCode = 5;
+}
+
+message GetStudentRewardsRequest {
+  //学年，只支持一种格式，例：2021-2022学年，应传 2021
+  string schoolYear = 1;
+  //学期，枚举：第一学期 | 第二学期
+  string semester = 2;
+}
+
+message GetStudentCourseSelectionsRequest {
+  //学年，只支持一种格式，例：2021-2022学年，应传 2021
+  string schoolYear = 1;
+  //学期，枚举：第一学期 | 第二学期
+  string semester = 2;
+}
+
+message GetStudentGradeRequest {
+  //学年，只支持一种格式，例：2021-2022学年，应传 2021
+  string schoolYear = 1;
+  //学期，枚举：第一学期 | 第二学期
+  string semester = 2;
+}
+
+message GetStudentExamRequest {
+  //学年，只支持一种格式，例：2021-2022学年，应传 2021
+  string schoolYear = 1;
+  //学期，枚举：第一学期 | 第二学期
+  string semester = 2;
 }
 
 //学期查询关键字
@@ -336,6 +373,36 @@ message GetStudentGradeResponse {
   }
   // 成绩详情列表
   repeated Nested items = 1;
+}
+
+// 查询学生考试返回体
+message GetStudentExamResponse {
+  uint32 error = 1;
+  string msg = 2;
+  // 考试详情列表
+  repeated StudentExam data = 3;
+}
+
+// 考试详情
+message StudentExam {
+  // 教室
+  string classroom = 1;
+  // 课程
+  string course = 2;
+  // 考试时间
+  string examTime = 3;
+  // 考试类型
+  string examType = 4;
+  // 学年
+  string schoolYear = 5;
+  // 学期
+  string semester = 6;
+  // 座位号
+  string seat = 7;
+  // 课程号
+  string selectCode = 8;
+  // 学号
+  string staffId = 9;
 }
 
 // 推送学生门禁通行信息-请求关键字
