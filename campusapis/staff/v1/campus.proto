@@ -91,13 +91,11 @@ service CampusService {
     };
   }
   //获取学生成绩信息
-  rpc GetStudentGrade(SemesterRequest) returns (GetStudentGradeResponse) {
+  rpc GetStudentGrade(GetStudentGradeRequest) returns (GetStudentGradeResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/grade"
-      response_body: "items"
       additional_bindings {
         get: "/student/grade"
-        response_body: "items"
       }
     };
   }
@@ -338,41 +336,44 @@ message GetStudentSelectResponse {
 
 // GetStudentGradeResponse 查询学生成绩返回体
 message GetStudentGradeResponse {
-  // 成绩详情
-  message Nested {
-    //学年
-    string schoolYear = 1;
-    //学期
-    string semester = 2;
-    //选课号
-    string selectCode = 3;
-    //最后分数
-    string score = 4;
-    //平时分
-    string scoreDaily = 5;
-    //期中分数
-    string scoreMidTerm = 6;
-    //期末分数
-    string scoreFinal = 7;
-    //补考分数
-    string scoreSubstitute = 8;
-    //实验分数
-    string scorePractice = 9;
-    //课程号
-    string courseCode = 10;
-    //课程名
-    string course = 11;
-    //学号
-    string staffId = 12;
-    //姓名
-    string staffName = 13;
-    //学分
-    string credit = 14;
-    //GPA
-    string GPA = 15;
-  }
+  uint32 error = 1;
+  string msg = 2;
   // 成绩详情列表
-  repeated Nested items = 1;
+  repeated StudentGrade data = 3;
+}
+
+// 成绩详情
+message StudentGrade {
+  //学年
+  string schoolYear = 1;
+  //学期
+  string semester = 2;
+  //选课号
+  string selectCode = 3;
+  //最后分数
+  string score = 4;
+  //平时分
+  string scoreDaily = 5;
+  //期中分数
+  string scoreMidTerm = 6;
+  //期末分数
+  string scoreFinal = 7;
+  //补考分数
+  string scoreSubstitute = 8;
+  //实验分数
+  string scorePractice = 9;
+  //课程号
+  string courseCode = 10;
+  //课程名
+  string course = 11;
+  //学号
+  string staffId = 12;
+  //姓名
+  string staffName = 13;
+  //学分
+  string credit = 14;
+  //GPA
+  string GPA = 15;
 }
 
 // 查询学生考试返回体
