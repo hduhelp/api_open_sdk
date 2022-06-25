@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: flutterapis/time/v1/time.proto
+// source: aggregatingapis/time/v1/time.proto
 
 package timev1
 
@@ -100,5 +100,5 @@ var TimeService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "flutterapis/time/v1/time.proto",
+	Metadata: "aggregatingapis/time/v1/time.proto",
 }
