@@ -29,7 +29,7 @@ message InfoStreamResp {
     scoreResp score = 4;
     sunRunResp sunrun = 5;
     cardResp card = 6;
-    electricResp electronic = 7;
+    electricResp electric = 7;
     settingsResp settings = 8;
   }
 }
