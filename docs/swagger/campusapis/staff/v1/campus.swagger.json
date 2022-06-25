@@ -442,6 +442,45 @@
         ]
       }
     },
+    "/staff/v1/student/exam": {
+      "get": {
+        "summary": "获取学生考试信息",
+        "operationId": "CampusService_GetStudentExam",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentExamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，只支持一种格式，例：2021-2022学年，应传 2021",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "description": "学期，枚举：第一学期 | 第二学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/student/grade": {
       "get": {
         "summary": "获取学生成绩信息",
@@ -733,6 +772,45 @@
             }
           }
         },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/exam": {
+      "get": {
+        "summary": "获取学生考试信息",
+        "operationId": "CampusService_GetStudentExam2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentExamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，只支持一种格式，例：2021-2022学年，应传 2021",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "description": "学期，枚举：第一学期 | 第二学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "CampusService"
         ]
@@ -1210,6 +1288,26 @@
       },
       "title": "GetStudentDormInfoResponse 查询学生寝室信息返回体"
     },
+    "v1GetStudentExamResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1StudentExam"
+          },
+          "title": "考试详情列表"
+        }
+      },
+      "title": "查询学生考试返回体"
+    },
     "v1GetStudentGradeResponse": {
       "type": "object",
       "properties": {
@@ -1559,6 +1657,48 @@
         }
       },
       "title": "PostStudentGateAccessResponse  推送学生门禁通行信息"
+    },
+    "v1StudentExam": {
+      "type": "object",
+      "properties": {
+        "classroom": {
+          "type": "string",
+          "title": "教室"
+        },
+        "course": {
+          "type": "string",
+          "title": "课程"
+        },
+        "examTime": {
+          "type": "string",
+          "title": "考试时间"
+        },
+        "examType": {
+          "type": "string",
+          "title": "考试类型"
+        },
+        "schoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "semester": {
+          "type": "string",
+          "title": "学期"
+        },
+        "seat": {
+          "type": "string",
+          "title": "座位号"
+        },
+        "selectCode": {
+          "type": "string",
+          "title": "课程号"
+        },
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        }
+      },
+      "title": "考试详情"
     }
   }
 }

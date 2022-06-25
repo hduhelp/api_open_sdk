@@ -41,6 +41,8 @@ type CampusServiceClient interface {
 	GetStudentSelect(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentSelectResponse, error)
 	//获取学生成绩信息
 	GetStudentGrade(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error)
+	//获取学生考试信息
+	GetStudentExam(ctx context.Context, in *GetStudentExamRequest, opts ...grpc.CallOption) (*GetStudentExamResponse, error)
 	//推送学生门禁通行信息
 	PostStudentGateAccess(ctx context.Context, in *PostStudentGateAccessRequest, opts ...grpc.CallOption) (*PostStudentGateAccessResponse, error)
 	//获取学生留校信息
@@ -142,6 +144,15 @@ func (c *campusServiceClient) GetStudentGrade(ctx context.Context, in *SemesterR
 	return out, nil
 }
 
+func (c *campusServiceClient) GetStudentExam(ctx context.Context, in *GetStudentExamRequest, opts ...grpc.CallOption) (*GetStudentExamResponse, error) {
+	out := new(GetStudentExamResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentExam", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *campusServiceClient) PostStudentGateAccess(ctx context.Context, in *PostStudentGateAccessRequest, opts ...grpc.CallOption) (*PostStudentGateAccessResponse, error) {
 	out := new(PostStudentGateAccessResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/PostStudentGateAccess", in, out, opts...)
@@ -209,6 +220,8 @@ type CampusServiceServer interface {
 	GetStudentSelect(context.Context, *SemesterRequest) (*GetStudentSelectResponse, error)
 	//获取学生成绩信息
 	GetStudentGrade(context.Context, *SemesterRequest) (*GetStudentGradeResponse, error)
+	//获取学生考试信息
+	GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error)
 	//推送学生门禁通行信息
 	PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error)
 	//获取学生留校信息
@@ -251,6 +264,9 @@ func (UnimplementedCampusServiceServer) GetStudentSelect(context.Context, *Semes
 }
 func (UnimplementedCampusServiceServer) GetStudentGrade(context.Context, *SemesterRequest) (*GetStudentGradeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentGrade not implemented")
+}
+func (UnimplementedCampusServiceServer) GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentExam not implemented")
 }
 func (UnimplementedCampusServiceServer) PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostStudentGateAccess not implemented")
@@ -441,6 +457,24 @@ func _CampusService_GetStudentGrade_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_GetStudentExam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStudentExamRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetStudentExam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentExam",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetStudentExam(ctx, req.(*GetStudentExamRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CampusService_PostStudentGateAccess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PostStudentGateAccessRequest)
 	if err := dec(in); err != nil {
@@ -573,6 +607,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStudentGrade",
 			Handler:    _CampusService_GetStudentGrade_Handler,
+		},
+		{
+			MethodName: "GetStudentExam",
+			Handler:    _CampusService_GetStudentExam_Handler,
 		},
 		{
 			MethodName: "PostStudentGateAccess",
