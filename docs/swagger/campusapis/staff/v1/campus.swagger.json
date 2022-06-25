@@ -487,12 +487,9 @@
         "operationId": "CampusService_GetStudentGrade",
         "responses": {
           "200": {
-            "description": "成绩详情列表",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetStudentGradeResponseNested"
-              }
+              "$ref": "#/definitions/v1GetStudentGradeResponse"
             }
           },
           "default": {
@@ -822,12 +819,9 @@
         "operationId": "CampusService_GetStudentGrade2",
         "responses": {
           "200": {
-            "description": "成绩详情列表",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetStudentGradeResponseNested"
-              }
+              "$ref": "#/definitions/v1GetStudentGradeResponse"
             }
           },
           "default": {
@@ -1311,81 +1305,22 @@
     "v1GetStudentGradeResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1GetStudentGradeResponseNested"
+            "$ref": "#/definitions/v1StudentGrade"
           },
           "title": "成绩详情列表"
         }
       },
       "title": "GetStudentGradeResponse 查询学生成绩返回体"
-    },
-    "v1GetStudentGradeResponseNested": {
-      "type": "object",
-      "properties": {
-        "schoolYear": {
-          "type": "string",
-          "title": "学年"
-        },
-        "semester": {
-          "type": "string",
-          "title": "学期"
-        },
-        "selectCode": {
-          "type": "string",
-          "title": "选课号"
-        },
-        "score": {
-          "type": "string",
-          "title": "最后分数"
-        },
-        "scoreDaily": {
-          "type": "string",
-          "title": "平时分"
-        },
-        "scoreMidTerm": {
-          "type": "string",
-          "title": "期中分数"
-        },
-        "scoreFinal": {
-          "type": "string",
-          "title": "期末分数"
-        },
-        "scoreSubstitute": {
-          "type": "string",
-          "title": "补考分数"
-        },
-        "scorePractice": {
-          "type": "string",
-          "title": "实验分数"
-        },
-        "courseCode": {
-          "type": "string",
-          "title": "课程号"
-        },
-        "course": {
-          "type": "string",
-          "title": "课程名"
-        },
-        "staffId": {
-          "type": "string",
-          "title": "学号"
-        },
-        "staffName": {
-          "type": "string",
-          "title": "姓名"
-        },
-        "credit": {
-          "type": "string",
-          "title": "学分"
-        },
-        "GPA": {
-          "type": "string",
-          "title": "GPA"
-        }
-      },
-      "title": "成绩详情"
     },
     "v1GetStudentInfoResponse": {
       "type": "object",
@@ -1699,6 +1634,72 @@
         }
       },
       "title": "考试详情"
+    },
+    "v1StudentGrade": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "semester": {
+          "type": "string",
+          "title": "学期"
+        },
+        "selectCode": {
+          "type": "string",
+          "title": "选课号"
+        },
+        "score": {
+          "type": "string",
+          "title": "最后分数"
+        },
+        "scoreDaily": {
+          "type": "string",
+          "title": "平时分"
+        },
+        "scoreMidTerm": {
+          "type": "string",
+          "title": "期中分数"
+        },
+        "scoreFinal": {
+          "type": "string",
+          "title": "期末分数"
+        },
+        "scoreSubstitute": {
+          "type": "string",
+          "title": "补考分数"
+        },
+        "scorePractice": {
+          "type": "string",
+          "title": "实验分数"
+        },
+        "courseCode": {
+          "type": "string",
+          "title": "课程号"
+        },
+        "course": {
+          "type": "string",
+          "title": "课程名"
+        },
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "credit": {
+          "type": "string",
+          "title": "学分"
+        },
+        "GPA": {
+          "type": "string",
+          "title": "GPA"
+        }
+      },
+      "title": "成绩详情"
     }
   }
 }

@@ -40,7 +40,7 @@ type CampusServiceClient interface {
 	//获取学生选课信息
 	GetStudentSelect(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentSelectResponse, error)
 	//获取学生成绩信息
-	GetStudentGrade(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error)
+	GetStudentGrade(ctx context.Context, in *GetStudentGradeRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error)
 	//获取学生考试信息
 	GetStudentExam(ctx context.Context, in *GetStudentExamRequest, opts ...grpc.CallOption) (*GetStudentExamResponse, error)
 	//推送学生门禁通行信息
@@ -135,7 +135,7 @@ func (c *campusServiceClient) GetStudentSelect(ctx context.Context, in *Semester
 	return out, nil
 }
 
-func (c *campusServiceClient) GetStudentGrade(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error) {
+func (c *campusServiceClient) GetStudentGrade(ctx context.Context, in *GetStudentGradeRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error) {
 	out := new(GetStudentGradeResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentGrade", in, out, opts...)
 	if err != nil {
@@ -219,7 +219,7 @@ type CampusServiceServer interface {
 	//获取学生选课信息
 	GetStudentSelect(context.Context, *SemesterRequest) (*GetStudentSelectResponse, error)
 	//获取学生成绩信息
-	GetStudentGrade(context.Context, *SemesterRequest) (*GetStudentGradeResponse, error)
+	GetStudentGrade(context.Context, *GetStudentGradeRequest) (*GetStudentGradeResponse, error)
 	//获取学生考试信息
 	GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error)
 	//推送学生门禁通行信息
@@ -262,7 +262,7 @@ func (UnimplementedCampusServiceServer) GetStudentRewards(context.Context, *Seme
 func (UnimplementedCampusServiceServer) GetStudentSelect(context.Context, *SemesterRequest) (*GetStudentSelectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentSelect not implemented")
 }
-func (UnimplementedCampusServiceServer) GetStudentGrade(context.Context, *SemesterRequest) (*GetStudentGradeResponse, error) {
+func (UnimplementedCampusServiceServer) GetStudentGrade(context.Context, *GetStudentGradeRequest) (*GetStudentGradeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentGrade not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error) {
@@ -440,7 +440,7 @@ func _CampusService_GetStudentSelect_Handler(srv interface{}, ctx context.Contex
 }
 
 func _CampusService_GetStudentGrade_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SemesterRequest)
+	in := new(GetStudentGradeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -452,7 +452,7 @@ func _CampusService_GetStudentGrade_Handler(srv interface{}, ctx context.Context
 		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentGrade",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).GetStudentGrade(ctx, req.(*SemesterRequest))
+		return srv.(CampusServiceServer).GetStudentGrade(ctx, req.(*GetStudentGradeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

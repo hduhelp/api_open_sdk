@@ -433,7 +433,7 @@ var (
 )
 
 func request_CampusService_GetStudentGrade_0(ctx context.Context, marshaler runtime.Marshaler, client CampusServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SemesterRequest
+	var protoReq GetStudentGradeRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -449,7 +449,7 @@ func request_CampusService_GetStudentGrade_0(ctx context.Context, marshaler runt
 }
 
 func local_request_CampusService_GetStudentGrade_0(ctx context.Context, marshaler runtime.Marshaler, server CampusServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SemesterRequest
+	var protoReq GetStudentGradeRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -469,7 +469,7 @@ var (
 )
 
 func request_CampusService_GetStudentGrade_1(ctx context.Context, marshaler runtime.Marshaler, client CampusServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SemesterRequest
+	var protoReq GetStudentGradeRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -485,7 +485,7 @@ func request_CampusService_GetStudentGrade_1(ctx context.Context, marshaler runt
 }
 
 func local_request_CampusService_GetStudentGrade_1(ctx context.Context, marshaler runtime.Marshaler, server CampusServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SemesterRequest
+	var protoReq GetStudentGradeRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -1268,7 +1268,7 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_CampusService_GetStudentGrade_0(ctx, mux, outboundMarshaler, w, req, response_CampusService_GetStudentGrade_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_CampusService_GetStudentGrade_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1292,7 +1292,7 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_CampusService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, response_CampusService_GetStudentGrade_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_CampusService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1954,7 +1954,7 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_CampusService_GetStudentGrade_0(ctx, mux, outboundMarshaler, w, req, response_CampusService_GetStudentGrade_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_CampusService_GetStudentGrade_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1975,7 +1975,7 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_CampusService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, response_CampusService_GetStudentGrade_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_CampusService_GetStudentGrade_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2246,24 +2246,6 @@ type response_CampusService_GetStudentSelect_1 struct {
 
 func (m response_CampusService_GetStudentSelect_1) XXX_ResponseBody() interface{} {
 	response := m.Message.(*GetStudentSelectResponse)
-	return response.Items
-}
-
-type response_CampusService_GetStudentGrade_0 struct {
-	proto.Message
-}
-
-func (m response_CampusService_GetStudentGrade_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetStudentGradeResponse)
-	return response.Items
-}
-
-type response_CampusService_GetStudentGrade_1 struct {
-	proto.Message
-}
-
-func (m response_CampusService_GetStudentGrade_1) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetStudentGradeResponse)
 	return response.Items
 }
 
