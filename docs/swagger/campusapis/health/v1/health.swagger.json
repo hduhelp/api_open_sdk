@@ -124,9 +124,12 @@
         "operationId": "HealthService_GetCheckinRecords2",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1GetCheckinRecordsResponse"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetCheckinRecordResponse"
+              }
             }
           },
           "default": {
@@ -193,7 +196,8 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1PostCheckinPhoneResponse"
+              "type": "object",
+              "properties": {}
             }
           },
           "default": {
@@ -294,9 +298,12 @@
         "operationId": "HealthService_GetCheckinRecords",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1GetCheckinRecordsResponse"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1GetCheckinRecordResponse"
+              }
             }
           },
           "default": {
@@ -340,9 +347,9 @@
         "operationId": "HealthService_GetNucleicAcidTestLatest",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/v1GetNucleicAcidTestLatestResponse"
+              "$ref": "#/definitions/v1NucleicAcidTest"
             }
           },
           "default": {
@@ -409,7 +416,8 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1PostCheckinPhoneResponse"
+              "type": "object",
+              "properties": {}
             }
           },
           "default": {
@@ -496,7 +504,18 @@
         }
       }
     },
-    "v1CheckinRecord": {
+    "v1GetCheckinPhoneResponse": {
+      "type": "object",
+      "properties": {
+        "Phone": {
+          "type": "string"
+        },
+        "StaffID": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetCheckinRecordResponse": {
       "type": "object",
       "properties": {
         "id": {
@@ -565,152 +584,18 @@
       },
       "title": "健康打卡记录"
     },
-    "v1GetCheckinPhoneResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1GetCheckinPhoneResponseData"
-        }
-      }
-    },
-    "v1GetCheckinPhoneResponseData": {
-      "type": "object",
-      "properties": {
-        "Phone": {
-          "type": "string"
-        },
-        "StaffID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1GetCheckinRecordResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1CheckinRecord"
-        }
-      }
-    },
     "v1GetCheckinRecordsResponse": {
       "type": "object",
       "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
+        "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1CheckinRecord"
+            "$ref": "#/definitions/v1GetCheckinRecordResponse"
           }
         }
       }
     },
     "v1GetHealthCodeResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1HealthCodeRaw"
-        }
-      },
-      "title": "健康码老"
-    },
-    "v1GetNucleicAcidTestLatestResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1NucleicAcidTest"
-        }
-      },
-      "title": "最新核酸检测返回体"
-    },
-    "v1GetNucleicAcidTestsResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1GetNucleicAcidTestsResponseData"
-        }
-      },
-      "title": "历史核酸检测返回体"
-    },
-    "v1GetNucleicAcidTestsResponseData": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1NucleicAcidTest"
-          }
-        }
-      }
-    },
-    "v1GetVaccineRecordsResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1GetVaccineRecordsResponseData"
-        }
-      },
-      "title": "疫苗接种记录返回"
-    },
-    "v1GetVaccineRecordsResponseData": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1VaccineRecord"
-          }
-        }
-      }
-    },
-    "v1HealthCodeRaw": {
       "type": "object",
       "properties": {
         "staffId": {
@@ -750,7 +635,41 @@
           "type": "string",
           "title": "服务器更新时间（服务器获取到的时间）\n通常是每日更新一次"
         }
-      }
+      },
+      "title": "健康码老"
+    },
+    "v1GetNucleicAcidTestLatestResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1NucleicAcidTest"
+        }
+      },
+      "title": "最新核酸检测返回体"
+    },
+    "v1GetNucleicAcidTestsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1NucleicAcidTest"
+          }
+        }
+      },
+      "title": "历史核酸检测返回体"
+    },
+    "v1GetVaccineRecordsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1VaccineRecord"
+          }
+        }
+      },
+      "title": "疫苗接种记录返回"
     },
     "v1NucleicAcidTest": {
       "type": "object",
@@ -774,21 +693,6 @@
       "type": "object",
       "properties": {
         "phone": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PostCheckinPhoneResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "message": {
           "type": "string"
         }
       }
@@ -826,21 +730,6 @@
     "v1PostCheckinRecordResponse": {
       "type": "object",
       "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1PostCheckinRecordResponseData"
-        }
-      }
-    },
-    "v1PostCheckinRecordResponseData": {
-      "type": "object",
-      "properties": {
         "code": {
           "type": "integer",
           "format": "int64"
@@ -851,8 +740,7 @@
         "message": {
           "type": "string"
         }
-      },
-      "title": "学校健康打卡服务返回值"
+      }
     },
     "v1VaccineRecord": {
       "type": "object",

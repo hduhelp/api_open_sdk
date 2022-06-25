@@ -18,12 +18,12 @@
   "paths": {
     "/faq/v1": {
       "get": {
-        "operationId": "FAQService_GetFAQ",
+        "operationId": "FAQService_GetFAQDetail",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetFAQResponse"
+              "$ref": "#/definitions/v1FAQ"
             }
           },
           "default": {
@@ -35,7 +35,7 @@
         },
         "parameters": [
           {
-            "name": "faqId",
+            "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -51,7 +51,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1DeleteFAQResponse"
+              "$ref": "#/definitions/v1FAQ"
             }
           },
           "default": {
@@ -63,7 +63,7 @@
         },
         "parameters": [
           {
-            "name": "faqId",
+            "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -79,7 +79,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CreateFAQResponse"
+              "$ref": "#/definitions/v1FAQ"
             }
           },
           "default": {
@@ -91,7 +91,7 @@
         },
         "parameters": [
           {
-            "name": "data",
+            "name": "body",
             "in": "body",
             "required": true,
             "schema": {
@@ -109,7 +109,8 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1UpdateFAQResponse"
+              "type": "object",
+              "properties": {}
             }
           },
           "default": {
@@ -121,18 +122,44 @@
         },
         "parameters": [
           {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1FAQInfo"
-            }
-          },
-          {
             "name": "faqId",
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "info.categoryId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "info.question",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "info.answer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "info.answerRichtext",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "info.tags",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           }
         ],
         "tags": [
@@ -295,33 +322,6 @@
         }
       }
     },
-    "v1CreateFAQResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1FAQ"
-        }
-      }
-    },
-    "v1DeleteFAQResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        }
-      }
-    },
     "v1FAQ": {
       "type": "object",
       "properties": {
@@ -407,21 +407,6 @@
         }
       }
     },
-    "v1GetFAQResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1FAQ"
-        }
-      }
-    },
     "v1SearchFAQAnswerRichtextResponse": {
       "type": "object",
       "properties": {
@@ -433,21 +418,6 @@
           "items": {
             "$ref": "#/definitions/v1AnswerRichtext"
           }
-        }
-      }
-    },
-    "v1UpdateFAQResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1FAQ"
         }
       }
     },
