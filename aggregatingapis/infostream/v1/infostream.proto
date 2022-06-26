@@ -42,11 +42,16 @@ message weatherResp {
 message weatherData {
   uint32 aqi = 1;
   string desc = 2;
-  string skycon_now = 3;
-  uint32 temperature_max = 4;
-  uint32 temperature_min = 5;
-  uint32 temperature_now = 6;
-  uint32 timestamp = 7;
+  string skyconNow = 3;
+  bool isRain = 4;
+  bool willStop = 5;
+  bool willRain = 6;
+  uint32 RainContinue = 7;
+  uint32 RainCome = 8;
+  float temperatureMax = 9;
+  float temperatureMin = 10;
+  float temperatureNow = 11;
+  uint32 timestamp = 12;
 }
 
 message scheduleResp {
@@ -56,11 +61,11 @@ message scheduleResp {
 }
 
 message scheduleData {
-  uint32 start_section = 1;
-  uint32 end_section = 2;
-  string start_time = 3;
-  string end_time = 4;
-  string course_name = 5;
+  uint32 startSection = 1;
+  uint32 endSection = 2;
+  string startTime = 3;
+  string endTime = 4;
+  string courseName = 5;
   string classroom = 6;
   string teacher = 7;
   string duration = 8;
@@ -74,13 +79,13 @@ message examResp {
 message examData {
   string classroom = 1;
   string course = 2;
-  string exam_time = 3;
-  string exam_type = 4;
-  string school_year = 5;
+  string examTime = 3;
+  string examType = 4;
+  string schoolYear = 5;
   string seat = 6;
-  string select_code = 7;
+  string selectCode = 7;
   string semester = 8;
-  string staff_id = 9;
+  string staffId = 9;
 }
 
 message scoreResp {
@@ -127,23 +132,23 @@ message sunRunResp {
 }
 
 message sunRunData {
-  uint32 am_mileage = 1;
-  double am_speed = 2;
-  string created_at = 3;
-  string data_updated_at = 4;
+  uint32 amMileage = 1;
+  double amSpeed = 2;
+  string createdAt = 3;
+  string dataUpdatedAt = 4;
   string date = 5;
   uint32 days = 6;
-  uint32 final_times = 7;
+  uint32 finalTimes = 7;
   string name = 8;
-  uint32 pm_mileage = 9;
-  double pm_speed = 10;
+  uint32 pmMileage = 9;
+  double pmSpeed = 10;
   uint32 rand = 11;
   string sex = 12;
   double speed = 13;
-  uint32 total_mileages = 14;
-  string updated_at = 15;
-  uint32 valid_mileages = 16;
-  uint32 valid_times = 17;
+  uint32 totalMileages = 14;
+  string updatedAt = 15;
+  uint32 validMileages = 16;
+  uint32 validTimes = 17;
   string code = 18;
 }
 
@@ -159,8 +164,8 @@ message electricResp {
 
 message electricData {
   string fee = 1;
-  string room_id = 2;
-  string room_name = 3;
+  string roomId = 2;
+  string roomName = 3;
 }
 
 message settingsResp {
