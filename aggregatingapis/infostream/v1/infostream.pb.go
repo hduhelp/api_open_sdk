@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.0
 // 	protoc        (unknown)
-// source: flutterapis/infostream/v1/infostream.proto
+// source: aggregatingapis/infostream/v1/infostream.proto
 
 package infoStreamv1
 
@@ -32,7 +32,7 @@ type InfoStreamReq struct {
 func (x *InfoStreamReq) Reset() {
 	*x = InfoStreamReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[0]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -45,7 +45,7 @@ func (x *InfoStreamReq) String() string {
 func (*InfoStreamReq) ProtoMessage() {}
 
 func (x *InfoStreamReq) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[0]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *InfoStreamReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoStreamReq.ProtoReflect.Descriptor instead.
 func (*InfoStreamReq) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{0}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *InfoStreamReq) GetStaffId() string {
@@ -81,7 +81,7 @@ type InfoStreamResp struct {
 func (x *InfoStreamResp) Reset() {
 	*x = InfoStreamResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[1]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -94,7 +94,7 @@ func (x *InfoStreamResp) String() string {
 func (*InfoStreamResp) ProtoMessage() {}
 
 func (x *InfoStreamResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[1]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -107,7 +107,7 @@ func (x *InfoStreamResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoStreamResp.ProtoReflect.Descriptor instead.
 func (*InfoStreamResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{1}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *InfoStreamResp) GetError() uint32 {
@@ -143,7 +143,7 @@ type WeatherResp struct {
 func (x *WeatherResp) Reset() {
 	*x = WeatherResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[2]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -156,7 +156,7 @@ func (x *WeatherResp) String() string {
 func (*WeatherResp) ProtoMessage() {}
 
 func (x *WeatherResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[2]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -169,7 +169,7 @@ func (x *WeatherResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WeatherResp.ProtoReflect.Descriptor instead.
 func (*WeatherResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{2}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *WeatherResp) GetAvailable() bool {
@@ -203,7 +203,7 @@ type WeatherData struct {
 func (x *WeatherData) Reset() {
 	*x = WeatherData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[3]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -216,7 +216,7 @@ func (x *WeatherData) String() string {
 func (*WeatherData) ProtoMessage() {}
 
 func (x *WeatherData) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[3]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -229,7 +229,7 @@ func (x *WeatherData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WeatherData.ProtoReflect.Descriptor instead.
 func (*WeatherData) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{3}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *WeatherData) GetAqi() uint32 {
@@ -294,7 +294,7 @@ type ScheduleResp struct {
 func (x *ScheduleResp) Reset() {
 	*x = ScheduleResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[4]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -307,7 +307,7 @@ func (x *ScheduleResp) String() string {
 func (*ScheduleResp) ProtoMessage() {}
 
 func (x *ScheduleResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[4]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -320,7 +320,7 @@ func (x *ScheduleResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScheduleResp.ProtoReflect.Descriptor instead.
 func (*ScheduleResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{4}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ScheduleResp) GetAvailable() bool {
@@ -362,7 +362,7 @@ type ScheduleData struct {
 func (x *ScheduleData) Reset() {
 	*x = ScheduleData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[5]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -375,7 +375,7 @@ func (x *ScheduleData) String() string {
 func (*ScheduleData) ProtoMessage() {}
 
 func (x *ScheduleData) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[5]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -388,7 +388,7 @@ func (x *ScheduleData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScheduleData.ProtoReflect.Descriptor instead.
 func (*ScheduleData) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{5}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ScheduleData) GetStartSection() uint32 {
@@ -459,7 +459,7 @@ type ExamResp struct {
 func (x *ExamResp) Reset() {
 	*x = ExamResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[6]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -472,7 +472,7 @@ func (x *ExamResp) String() string {
 func (*ExamResp) ProtoMessage() {}
 
 func (x *ExamResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[6]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -485,7 +485,7 @@ func (x *ExamResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExamResp.ProtoReflect.Descriptor instead.
 func (*ExamResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{6}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ExamResp) GetAvailable() bool {
@@ -521,7 +521,7 @@ type ExamData struct {
 func (x *ExamData) Reset() {
 	*x = ExamData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[7]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -534,7 +534,7 @@ func (x *ExamData) String() string {
 func (*ExamData) ProtoMessage() {}
 
 func (x *ExamData) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[7]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -547,7 +547,7 @@ func (x *ExamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExamData.ProtoReflect.Descriptor instead.
 func (*ExamData) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{7}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ExamData) GetClassroom() string {
@@ -625,7 +625,7 @@ type ScoreResp struct {
 func (x *ScoreResp) Reset() {
 	*x = ScoreResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[8]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -638,7 +638,7 @@ func (x *ScoreResp) String() string {
 func (*ScoreResp) ProtoMessage() {}
 
 func (x *ScoreResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[8]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -651,7 +651,7 @@ func (x *ScoreResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScoreResp.ProtoReflect.Descriptor instead.
 func (*ScoreResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{8}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ScoreResp) GetAvailable() bool {
@@ -708,7 +708,7 @@ type ScoreData struct {
 func (x *ScoreData) Reset() {
 	*x = ScoreData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[9]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -721,7 +721,7 @@ func (x *ScoreData) String() string {
 func (*ScoreData) ProtoMessage() {}
 
 func (x *ScoreData) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[9]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -734,7 +734,7 @@ func (x *ScoreData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScoreData.ProtoReflect.Descriptor instead.
 func (*ScoreData) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{9}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ScoreData) GetSchoolYear() string {
@@ -854,7 +854,7 @@ type SunRunResp struct {
 func (x *SunRunResp) Reset() {
 	*x = SunRunResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[10]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -867,7 +867,7 @@ func (x *SunRunResp) String() string {
 func (*SunRunResp) ProtoMessage() {}
 
 func (x *SunRunResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[10]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -880,7 +880,7 @@ func (x *SunRunResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SunRunResp.ProtoReflect.Descriptor instead.
 func (*SunRunResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{10}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SunRunResp) GetAvailable() bool {
@@ -925,7 +925,7 @@ type SunRunData struct {
 func (x *SunRunData) Reset() {
 	*x = SunRunData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[11]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -938,7 +938,7 @@ func (x *SunRunData) String() string {
 func (*SunRunData) ProtoMessage() {}
 
 func (x *SunRunData) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[11]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -951,7 +951,7 @@ func (x *SunRunData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SunRunData.ProtoReflect.Descriptor instead.
 func (*SunRunData) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{11}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SunRunData) GetAmMileage() uint32 {
@@ -1092,7 +1092,7 @@ type CardResp struct {
 func (x *CardResp) Reset() {
 	*x = CardResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[12]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1105,7 +1105,7 @@ func (x *CardResp) String() string {
 func (*CardResp) ProtoMessage() {}
 
 func (x *CardResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[12]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1118,7 +1118,7 @@ func (x *CardResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CardResp.ProtoReflect.Descriptor instead.
 func (*CardResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{12}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CardResp) GetAvailable() bool {
@@ -1147,7 +1147,7 @@ type ElectricResp struct {
 func (x *ElectricResp) Reset() {
 	*x = ElectricResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[13]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1160,7 +1160,7 @@ func (x *ElectricResp) String() string {
 func (*ElectricResp) ProtoMessage() {}
 
 func (x *ElectricResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[13]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1173,7 +1173,7 @@ func (x *ElectricResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ElectricResp.ProtoReflect.Descriptor instead.
 func (*ElectricResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{13}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ElectricResp) GetAvailable() bool {
@@ -1203,7 +1203,7 @@ type ElectricData struct {
 func (x *ElectricData) Reset() {
 	*x = ElectricData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[14]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1216,7 +1216,7 @@ func (x *ElectricData) String() string {
 func (*ElectricData) ProtoMessage() {}
 
 func (x *ElectricData) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[14]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1229,7 +1229,7 @@ func (x *ElectricData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ElectricData.ProtoReflect.Descriptor instead.
 func (*ElectricData) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{14}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ElectricData) GetFee() string {
@@ -1262,7 +1262,7 @@ type SettingsResp struct {
 func (x *SettingsResp) Reset() {
 	*x = SettingsResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[15]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1275,7 +1275,7 @@ func (x *SettingsResp) String() string {
 func (*SettingsResp) ProtoMessage() {}
 
 func (x *SettingsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[15]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1288,7 +1288,7 @@ func (x *SettingsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SettingsResp.ProtoReflect.Descriptor instead.
 func (*SettingsResp) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{15}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{15}
 }
 
 type InfoStreamResp_Data struct {
@@ -1296,20 +1296,20 @@ type InfoStreamResp_Data struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Weather    *WeatherResp  `protobuf:"bytes,1,opt,name=weather,proto3" json:"weather,omitempty"`
-	Schedule   *ScheduleResp `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`
-	Exam       *ExamResp     `protobuf:"bytes,3,opt,name=exam,proto3" json:"exam,omitempty"`
-	Score      *ScoreResp    `protobuf:"bytes,4,opt,name=score,proto3" json:"score,omitempty"`
-	Sunrun     *SunRunResp   `protobuf:"bytes,5,opt,name=sunrun,proto3" json:"sunrun,omitempty"`
-	Card       *CardResp     `protobuf:"bytes,6,opt,name=card,proto3" json:"card,omitempty"`
-	Electronic *ElectricResp `protobuf:"bytes,7,opt,name=electronic,proto3" json:"electronic,omitempty"`
-	Settings   *SettingsResp `protobuf:"bytes,8,opt,name=settings,proto3" json:"settings,omitempty"`
+	Weather  *WeatherResp  `protobuf:"bytes,1,opt,name=weather,proto3" json:"weather,omitempty"`
+	Schedule *ScheduleResp `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`
+	Exam     *ExamResp     `protobuf:"bytes,3,opt,name=exam,proto3" json:"exam,omitempty"`
+	Score    *ScoreResp    `protobuf:"bytes,4,opt,name=score,proto3" json:"score,omitempty"`
+	Sunrun   *SunRunResp   `protobuf:"bytes,5,opt,name=sunrun,proto3" json:"sunrun,omitempty"`
+	Card     *CardResp     `protobuf:"bytes,6,opt,name=card,proto3" json:"card,omitempty"`
+	Electric *ElectricResp `protobuf:"bytes,7,opt,name=electric,proto3" json:"electric,omitempty"`
+	Settings *SettingsResp `protobuf:"bytes,8,opt,name=settings,proto3" json:"settings,omitempty"`
 }
 
 func (x *InfoStreamResp_Data) Reset() {
 	*x = InfoStreamResp_Data{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[16]
+		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1322,7 +1322,7 @@ func (x *InfoStreamResp_Data) String() string {
 func (*InfoStreamResp_Data) ProtoMessage() {}
 
 func (x *InfoStreamResp_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_flutterapis_infostream_v1_infostream_proto_msgTypes[16]
+	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1335,7 +1335,7 @@ func (x *InfoStreamResp_Data) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoStreamResp_Data.ProtoReflect.Descriptor instead.
 func (*InfoStreamResp_Data) Descriptor() ([]byte, []int) {
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{1, 0}
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *InfoStreamResp_Data) GetWeather() *WeatherResp {
@@ -1380,9 +1380,9 @@ func (x *InfoStreamResp_Data) GetCard() *CardResp {
 	return nil
 }
 
-func (x *InfoStreamResp_Data) GetElectronic() *ElectricResp {
+func (x *InfoStreamResp_Data) GetElectric() *ElectricResp {
 	if x != nil {
-		return x.Electronic
+		return x.Electric
 	}
 	return nil
 }
@@ -1394,55 +1394,55 @@ func (x *InfoStreamResp_Data) GetSettings() *SettingsResp {
 	return nil
 }
 
-var File_flutterapis_infostream_v1_infostream_proto protoreflect.FileDescriptor
+var File_aggregatingapis_infostream_v1_infostream_proto protoreflect.FileDescriptor
 
-var file_flutterapis_infostream_v1_infostream_proto_rawDesc = []byte{
-	0x0a, 0x2a, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x69, 0x6e,
-	0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2f, 0x76, 0x31, 0x2f, 0x69, 0x6e, 0x66, 0x6f,
-	0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x19, 0x66, 0x6c,
-	0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74,
-	0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
-	0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x29, 0x0a, 0x0d, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72,
-	0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x74, 0x61, 0x66, 0x66, 0x49,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x73, 0x74, 0x61, 0x66, 0x66, 0x49, 0x64,
-	0x22, 0x87, 0x05, 0x0a, 0x0e, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52,
-	0x65, 0x73, 0x70, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0d, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x42, 0x0a, 0x04, 0x64,
-	0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x66, 0x6c, 0x75, 0x74,
-	0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
-	0x52, 0x65, 0x73, 0x70, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a,
-	0x88, 0x04, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x40, 0x0a, 0x07, 0x77, 0x65, 0x61, 0x74,
-	0x68, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x66, 0x6c, 0x75, 0x74,
-	0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x77, 0x65, 0x61, 0x74, 0x68, 0x65, 0x72, 0x52, 0x65, 0x73,
-	0x70, 0x52, 0x07, 0x77, 0x65, 0x61, 0x74, 0x68, 0x65, 0x72, 0x12, 0x43, 0x0a, 0x08, 0x73, 0x63,
-	0x68, 0x65, 0x64, 0x75, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x66,
-	0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53,
-	0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x63, 0x68, 0x65, 0x64, 0x75, 0x6c,
-	0x65, 0x52, 0x65, 0x73, 0x70, 0x52, 0x08, 0x73, 0x63, 0x68, 0x65, 0x64, 0x75, 0x6c, 0x65, 0x12,
-	0x37, 0x0a, 0x04, 0x65, 0x78, 0x61, 0x6d, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x23, 0x2e,
+var file_aggregatingapis_infostream_v1_infostream_proto_rawDesc = []byte{
+	0x0a, 0x2e, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x61, 0x70, 0x69,
+	0x73, 0x2f, 0x69, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2f, 0x76, 0x31, 0x2f,
+	0x69, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x12, 0x19, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e,
+	0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x1a, 0x1c, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x29, 0x0a, 0x0d, 0x49, 0x6e, 0x66,
+	0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x74,
+	0x61, 0x66, 0x66, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x73, 0x74, 0x61,
+	0x66, 0x66, 0x49, 0x64, 0x22, 0x83, 0x05, 0x0a, 0x0e, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x10, 0x0a,
+	0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12,
+	0x42, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e,
 	0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f,
-	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x65, 0x78, 0x61, 0x6d, 0x52, 0x65,
-	0x73, 0x70, 0x52, 0x04, 0x65, 0x78, 0x61, 0x6d, 0x12, 0x3a, 0x0a, 0x05, 0x73, 0x63, 0x6f, 0x72,
-	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65,
-	0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
-	0x2e, 0x76, 0x31, 0x2e, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x52, 0x05, 0x73,
-	0x63, 0x6f, 0x72, 0x65, 0x12, 0x3d, 0x0a, 0x06, 0x73, 0x75, 0x6e, 0x72, 0x75, 0x6e, 0x18, 0x05,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70,
-	0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31,
-	0x2e, 0x73, 0x75, 0x6e, 0x52, 0x75, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x52, 0x06, 0x73, 0x75, 0x6e,
-	0x72, 0x75, 0x6e, 0x12, 0x37, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x23, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e,
-	0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x61,
-	0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x52, 0x04, 0x63, 0x61, 0x72, 0x64, 0x12, 0x47, 0x0a, 0x0a,
-	0x65, 0x6c, 0x65, 0x63, 0x74, 0x72, 0x6f, 0x6e, 0x69, 0x63, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64,
+	0x61, 0x74, 0x61, 0x1a, 0x84, 0x04, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x40, 0x0a, 0x07,
+	0x77, 0x65, 0x61, 0x74, 0x68, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e,
+	0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x77, 0x65, 0x61, 0x74, 0x68, 0x65,
+	0x72, 0x52, 0x65, 0x73, 0x70, 0x52, 0x07, 0x77, 0x65, 0x61, 0x74, 0x68, 0x65, 0x72, 0x12, 0x43,
+	0x0a, 0x08, 0x73, 0x63, 0x68, 0x65, 0x64, 0x75, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x27, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69,
-	0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x65, 0x6c, 0x65,
-	0x63, 0x74, 0x72, 0x69, 0x63, 0x52, 0x65, 0x73, 0x70, 0x52, 0x0a, 0x65, 0x6c, 0x65, 0x63, 0x74,
-	0x72, 0x6f, 0x6e, 0x69, 0x63, 0x12, 0x43, 0x0a, 0x08, 0x73, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67,
+	0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x63, 0x68,
+	0x65, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x52, 0x08, 0x73, 0x63, 0x68, 0x65, 0x64,
+	0x75, 0x6c, 0x65, 0x12, 0x37, 0x0a, 0x04, 0x65, 0x78, 0x61, 0x6d, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x23, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e,
+	0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x65, 0x78,
+	0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x52, 0x04, 0x65, 0x78, 0x61, 0x6d, 0x12, 0x3a, 0x0a, 0x05,
+	0x73, 0x63, 0x6f, 0x72, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x66, 0x6c,
+	0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x52, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x12, 0x3d, 0x0a, 0x06, 0x73, 0x75, 0x6e, 0x72,
+	0x75, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74,
+	0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x75, 0x6e, 0x52, 0x75, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x52,
+	0x06, 0x73, 0x75, 0x6e, 0x72, 0x75, 0x6e, 0x12, 0x37, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x64, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x23, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61,
+	0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76,
+	0x31, 0x2e, 0x63, 0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x52, 0x04, 0x63, 0x61, 0x72, 0x64,
+	0x12, 0x43, 0x0a, 0x08, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x72, 0x69, 0x63, 0x18, 0x07, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x27, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73,
+	0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x65,
+	0x6c, 0x65, 0x63, 0x74, 0x72, 0x69, 0x63, 0x52, 0x65, 0x73, 0x70, 0x52, 0x08, 0x65, 0x6c, 0x65,
+	0x63, 0x74, 0x72, 0x69, 0x63, 0x12, 0x43, 0x0a, 0x08, 0x73, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67,
 	0x73, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65,
 	0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
 	0x2e, 0x76, 0x31, 0x2e, 0x73, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70,
@@ -1618,40 +1618,40 @@ var file_flutterapis_infostream_v1_infostream_proto_rawDesc = []byte{
 	0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61,
 	0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52,
 	0x65, 0x73, 0x70, 0x22, 0x16, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x10, 0x12, 0x0e, 0x2f, 0x69, 0x6e,
-	0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2f, 0x76, 0x31, 0x42, 0xfe, 0x01, 0x0a, 0x1d,
+	0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2f, 0x76, 0x31, 0x42, 0x82, 0x02, 0x0a, 0x1d,
 	0x63, 0x6f, 0x6d, 0x2e, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e,
 	0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x42, 0x0f, 0x49,
 	0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
-	0x5a, 0x46, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x68, 0x64, 0x75,
+	0x5a, 0x4a, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x68, 0x64, 0x75,
 	0x68, 0x65, 0x6c, 0x70, 0x2f, 0x61, 0x70, 0x69, 0x5f, 0x6f, 0x70, 0x65, 0x6e, 0x5f, 0x73, 0x64,
-	0x6b, 0x2f, 0x66, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x69, 0x6e,
-	0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2f, 0x76, 0x31, 0x3b, 0x69, 0x6e, 0x66, 0x6f,
-	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x46, 0x49, 0x58, 0xaa, 0x02,
-	0x19, 0x46, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x49, 0x6e, 0x66,
-	0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x19, 0x46, 0x6c, 0x75,
+	0x6b, 0x2f, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x61, 0x70, 0x69,
+	0x73, 0x2f, 0x69, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2f, 0x76, 0x31, 0x3b,
+	0x69, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x46,
+	0x49, 0x58, 0xaa, 0x02, 0x19, 0x46, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73,
+	0x2e, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x56, 0x31, 0xca, 0x02,
+	0x19, 0x46, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x5c, 0x49, 0x6e, 0x66,
+	0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x25, 0x46, 0x6c, 0x75,
 	0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x5c, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72,
-	0x65, 0x61, 0x6d, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x25, 0x46, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72,
-	0x61, 0x70, 0x69, 0x73, 0x5c, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x5c,
-	0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
-	0x1b, 0x46, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73, 0x3a, 0x3a, 0x49, 0x6e,
-	0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x61, 0x6d, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0xea, 0x02, 0x1b, 0x46, 0x6c, 0x75, 0x74, 0x74, 0x65, 0x72, 0x61, 0x70, 0x69, 0x73,
+	0x3a, 0x3a, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x3a, 0x3a, 0x56, 0x31,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_flutterapis_infostream_v1_infostream_proto_rawDescOnce sync.Once
-	file_flutterapis_infostream_v1_infostream_proto_rawDescData = file_flutterapis_infostream_v1_infostream_proto_rawDesc
+	file_aggregatingapis_infostream_v1_infostream_proto_rawDescOnce sync.Once
+	file_aggregatingapis_infostream_v1_infostream_proto_rawDescData = file_aggregatingapis_infostream_v1_infostream_proto_rawDesc
 )
 
-func file_flutterapis_infostream_v1_infostream_proto_rawDescGZIP() []byte {
-	file_flutterapis_infostream_v1_infostream_proto_rawDescOnce.Do(func() {
-		file_flutterapis_infostream_v1_infostream_proto_rawDescData = protoimpl.X.CompressGZIP(file_flutterapis_infostream_v1_infostream_proto_rawDescData)
+func file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP() []byte {
+	file_aggregatingapis_infostream_v1_infostream_proto_rawDescOnce.Do(func() {
+		file_aggregatingapis_infostream_v1_infostream_proto_rawDescData = protoimpl.X.CompressGZIP(file_aggregatingapis_infostream_v1_infostream_proto_rawDescData)
 	})
-	return file_flutterapis_infostream_v1_infostream_proto_rawDescData
+	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescData
 }
 
-var file_flutterapis_infostream_v1_infostream_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
-var file_flutterapis_infostream_v1_infostream_proto_goTypes = []interface{}{
+var file_aggregatingapis_infostream_v1_infostream_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_aggregatingapis_infostream_v1_infostream_proto_goTypes = []interface{}{
 	(*InfoStreamReq)(nil),       // 0: flutterapis.infoStream.v1.InfoStreamReq
 	(*InfoStreamResp)(nil),      // 1: flutterapis.infoStream.v1.InfoStreamResp
 	(*WeatherResp)(nil),         // 2: flutterapis.infoStream.v1.weatherResp
@@ -1670,7 +1670,7 @@ var file_flutterapis_infostream_v1_infostream_proto_goTypes = []interface{}{
 	(*SettingsResp)(nil),        // 15: flutterapis.infoStream.v1.settingsResp
 	(*InfoStreamResp_Data)(nil), // 16: flutterapis.infoStream.v1.InfoStreamResp.Data
 }
-var file_flutterapis_infostream_v1_infostream_proto_depIdxs = []int32{
+var file_aggregatingapis_infostream_v1_infostream_proto_depIdxs = []int32{
 	16, // 0: flutterapis.infoStream.v1.InfoStreamResp.data:type_name -> flutterapis.infoStream.v1.InfoStreamResp.Data
 	3,  // 1: flutterapis.infoStream.v1.weatherResp.data:type_name -> flutterapis.infoStream.v1.weatherData
 	5,  // 2: flutterapis.infoStream.v1.scheduleResp.today:type_name -> flutterapis.infoStream.v1.scheduleData
@@ -1685,7 +1685,7 @@ var file_flutterapis_infostream_v1_infostream_proto_depIdxs = []int32{
 	8,  // 11: flutterapis.infoStream.v1.InfoStreamResp.Data.score:type_name -> flutterapis.infoStream.v1.scoreResp
 	10, // 12: flutterapis.infoStream.v1.InfoStreamResp.Data.sunrun:type_name -> flutterapis.infoStream.v1.sunRunResp
 	12, // 13: flutterapis.infoStream.v1.InfoStreamResp.Data.card:type_name -> flutterapis.infoStream.v1.cardResp
-	13, // 14: flutterapis.infoStream.v1.InfoStreamResp.Data.electronic:type_name -> flutterapis.infoStream.v1.electricResp
+	13, // 14: flutterapis.infoStream.v1.InfoStreamResp.Data.electric:type_name -> flutterapis.infoStream.v1.electricResp
 	15, // 15: flutterapis.infoStream.v1.InfoStreamResp.Data.settings:type_name -> flutterapis.infoStream.v1.settingsResp
 	0,  // 16: flutterapis.infoStream.v1.InfoStreamService.GetInfoStream:input_type -> flutterapis.infoStream.v1.InfoStreamReq
 	1,  // 17: flutterapis.infoStream.v1.InfoStreamService.GetInfoStream:output_type -> flutterapis.infoStream.v1.InfoStreamResp
@@ -1696,13 +1696,13 @@ var file_flutterapis_infostream_v1_infostream_proto_depIdxs = []int32{
 	0,  // [0:16] is the sub-list for field type_name
 }
 
-func init() { file_flutterapis_infostream_v1_infostream_proto_init() }
-func file_flutterapis_infostream_v1_infostream_proto_init() {
-	if File_flutterapis_infostream_v1_infostream_proto != nil {
+func init() { file_aggregatingapis_infostream_v1_infostream_proto_init() }
+func file_aggregatingapis_infostream_v1_infostream_proto_init() {
+	if File_aggregatingapis_infostream_v1_infostream_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InfoStreamReq); i {
 			case 0:
 				return &v.state
@@ -1714,7 +1714,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InfoStreamResp); i {
 			case 0:
 				return &v.state
@@ -1726,7 +1726,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*WeatherResp); i {
 			case 0:
 				return &v.state
@@ -1738,7 +1738,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*WeatherData); i {
 			case 0:
 				return &v.state
@@ -1750,7 +1750,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ScheduleResp); i {
 			case 0:
 				return &v.state
@@ -1762,7 +1762,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ScheduleData); i {
 			case 0:
 				return &v.state
@@ -1774,7 +1774,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ExamResp); i {
 			case 0:
 				return &v.state
@@ -1786,7 +1786,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ExamData); i {
 			case 0:
 				return &v.state
@@ -1798,7 +1798,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ScoreResp); i {
 			case 0:
 				return &v.state
@@ -1810,7 +1810,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ScoreData); i {
 			case 0:
 				return &v.state
@@ -1822,7 +1822,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SunRunResp); i {
 			case 0:
 				return &v.state
@@ -1834,7 +1834,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SunRunData); i {
 			case 0:
 				return &v.state
@@ -1846,7 +1846,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CardResp); i {
 			case 0:
 				return &v.state
@@ -1858,7 +1858,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ElectricResp); i {
 			case 0:
 				return &v.state
@@ -1870,7 +1870,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ElectricData); i {
 			case 0:
 				return &v.state
@@ -1882,7 +1882,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SettingsResp); i {
 			case 0:
 				return &v.state
@@ -1894,7 +1894,7 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 				return nil
 			}
 		}
-		file_flutterapis_infostream_v1_infostream_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InfoStreamResp_Data); i {
 			case 0:
 				return &v.state
@@ -1911,18 +1911,18 @@ func file_flutterapis_infostream_v1_infostream_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_flutterapis_infostream_v1_infostream_proto_rawDesc,
+			RawDescriptor: file_aggregatingapis_infostream_v1_infostream_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_flutterapis_infostream_v1_infostream_proto_goTypes,
-		DependencyIndexes: file_flutterapis_infostream_v1_infostream_proto_depIdxs,
-		MessageInfos:      file_flutterapis_infostream_v1_infostream_proto_msgTypes,
+		GoTypes:           file_aggregatingapis_infostream_v1_infostream_proto_goTypes,
+		DependencyIndexes: file_aggregatingapis_infostream_v1_infostream_proto_depIdxs,
+		MessageInfos:      file_aggregatingapis_infostream_v1_infostream_proto_msgTypes,
 	}.Build()
-	File_flutterapis_infostream_v1_infostream_proto = out.File
-	file_flutterapis_infostream_v1_infostream_proto_rawDesc = nil
-	file_flutterapis_infostream_v1_infostream_proto_goTypes = nil
-	file_flutterapis_infostream_v1_infostream_proto_depIdxs = nil
+	File_aggregatingapis_infostream_v1_infostream_proto = out.File
+	file_aggregatingapis_infostream_v1_infostream_proto_rawDesc = nil
+	file_aggregatingapis_infostream_v1_infostream_proto_goTypes = nil
+	file_aggregatingapis_infostream_v1_infostream_proto_depIdxs = nil
 }

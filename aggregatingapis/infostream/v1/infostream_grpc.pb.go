@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: flutterapis/infostream/v1/infostream.proto
+// source: aggregatingapis/infostream/v1/infostream.proto
 
 package infoStreamv1
 
@@ -99,5 +99,5 @@ var InfoStreamService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "flutterapis/infostream/v1/infostream.proto",
+	Metadata: "aggregatingapis/infostream/v1/infostream.proto",
 }

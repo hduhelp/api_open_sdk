@@ -1,0 +1,143 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "aggregatingapis/time/v1/time.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "TimeService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/time/v1": {
+      "get": {
+        "operationId": "TimeService_GetTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TimeResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TimeService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "TimeRespData": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "semester": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "semesterStartTimestamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "weekNow": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "weekDayNow": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "section": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleSchoolYear": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleSemester": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "examSchoolYear": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "examSemester": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scoreSchoolYear": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scoreSemester": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1TimeResp": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/TimeRespData"
+        }
+      }
+    }
+  }
+}
