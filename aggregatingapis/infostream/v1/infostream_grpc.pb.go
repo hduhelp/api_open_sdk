@@ -35,7 +35,7 @@ func NewInfoStreamServiceClient(cc grpc.ClientConnInterface) InfoStreamServiceCl
 
 func (c *infoStreamServiceClient) GetInfoStream(ctx context.Context, in *InfoStreamReq, opts ...grpc.CallOption) (*InfoStreamResp, error) {
 	out := new(InfoStreamResp)
-	err := c.cc.Invoke(ctx, "/flutterapis.infoStream.v1.InfoStreamService/GetInfoStream", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.infoStream.v1.InfoStreamService/GetInfoStream", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func _InfoStreamService_GetInfoStream_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/flutterapis.infoStream.v1.InfoStreamService/GetInfoStream",
+		FullMethod: "/aggregatingapis.infoStream.v1.InfoStreamService/GetInfoStream",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(InfoStreamServiceServer).GetInfoStream(ctx, req.(*InfoStreamReq))
@@ -90,7 +90,7 @@ func _InfoStreamService_GetInfoStream_Handler(srv interface{}, ctx context.Conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var InfoStreamService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "flutterapis.infoStream.v1.InfoStreamService",
+	ServiceName: "aggregatingapis.infoStream.v1.InfoStreamService",
 	HandlerType: (*InfoStreamServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

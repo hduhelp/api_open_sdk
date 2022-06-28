@@ -2,7 +2,7 @@
 // source: campusapis/staff/v1/campus.proto
 
 /*
-Package v1 is a reverse proxy.
+Package staffv1 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
@@ -13,15 +13,14 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/golang/protobuf/descriptor"
-	"github.com/golang/protobuf/proto"
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"github.com/grpc-ecosystem/grpc-gateway/utilities"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
@@ -31,7 +30,6 @@ var _ io.Reader
 var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
-var _ = descriptor.ForMessage
 var _ = metadata.Join
 
 func request_CampusService_GetPersonInfo_0(ctx context.Context, marshaler runtime.Marshaler, client CampusServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -574,6 +572,40 @@ func local_request_CampusService_GetStudentExam_1(ctx context.Context, marshaler
 
 }
 
+func request_CampusService_PostStudentGateAccess_0(ctx context.Context, marshaler runtime.Marshaler, client CampusServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq PostStudentGateAccessRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.PostStudentGateAccess(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_CampusService_PostStudentGateAccess_0(ctx context.Context, marshaler runtime.Marshaler, server CampusServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq PostStudentGateAccessRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.PostStudentGateAccess(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_CampusService_GetStudentStaySchoolInfo_0(ctx context.Context, marshaler runtime.Marshaler, client CampusServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
@@ -838,12 +870,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetPersonInfo", runtime.WithHTTPPathPattern("/staff/v1/person/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetPersonInfo_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetPersonInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -861,12 +894,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetPersonInfo", runtime.WithHTTPPathPattern("/person/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetPersonInfo_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetPersonInfo_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -884,12 +918,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentInfo", runtime.WithHTTPPathPattern("/staff/v1/student/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentInfo_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -907,12 +942,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentInfo", runtime.WithHTTPPathPattern("/student/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentInfo_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentInfo_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -930,12 +966,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/staff/v1/student/needy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentNeedyInfo_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentNeedyInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -953,12 +990,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/student/needy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentNeedyInfo_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentNeedyInfo_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -976,12 +1014,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentDormInfo", runtime.WithHTTPPathPattern("/staff/v1/student/dorm"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentDormInfo_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentDormInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -999,12 +1038,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentDormInfo", runtime.WithHTTPPathPattern("/student/dorm"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentDormInfo_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentDormInfo_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1022,12 +1062,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentBirthdayInfo", runtime.WithHTTPPathPattern("/staff/v1/student/birthday"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentBirthdayInfo_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentBirthdayInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1045,12 +1086,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentBirthdayInfo", runtime.WithHTTPPathPattern("/student/birthday"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentBirthdayInfo_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentBirthdayInfo_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1068,12 +1110,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentBirthdaysIn", runtime.WithHTTPPathPattern("/staff/v1/student/birthdays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentBirthdaysIn_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentBirthdaysIn_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1091,12 +1134,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentBirthdaysIn", runtime.WithHTTPPathPattern("/student/birthdays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentBirthdaysIn_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentBirthdaysIn_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1114,12 +1158,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentRewards", runtime.WithHTTPPathPattern("/staff/v1/student/reward"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentRewards_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentRewards_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1137,12 +1182,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentRewards", runtime.WithHTTPPathPattern("/student/reward"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentRewards_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentRewards_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1160,12 +1206,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentCourseSelections", runtime.WithHTTPPathPattern("/staff/v1/student/select"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentCourseSelections_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentCourseSelections_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1183,12 +1230,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentCourseSelections", runtime.WithHTTPPathPattern("/student/select"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentCourseSelections_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentCourseSelections_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1206,12 +1254,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentGrade_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentGrade_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1229,12 +1278,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentGrade", runtime.WithHTTPPathPattern("/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentGrade_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentGrade_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1252,12 +1302,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentExam", runtime.WithHTTPPathPattern("/staff/v1/student/exam"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentExam_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentExam_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1275,12 +1326,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentExam", runtime.WithHTTPPathPattern("/student/exam"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentExam_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentExam_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1292,18 +1344,43 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 
 	})
 
+	mux.Handle("POST", pattern_CampusService_PostStudentGateAccess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/PostStudentGateAccess", runtime.WithHTTPPathPattern("/campusapis.staff.v1.CampusService/PostStudentGateAccess"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_CampusService_PostStudentGateAccess_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_CampusService_PostStudentGateAccess_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_CampusService_GetStudentStaySchoolInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentStaySchoolInfo", runtime.WithHTTPPathPattern("/staff/v1/student/holidayStay"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentStaySchoolInfo_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentStaySchoolInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1321,12 +1398,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentStaySchoolInfo", runtime.WithHTTPPathPattern("/student/holidayStay"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetStudentStaySchoolInfo_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetStudentStaySchoolInfo_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1344,12 +1422,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo", runtime.WithHTTPPathPattern("/staff/v1/freshman/base"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetFreshmanBaseInfo_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetFreshmanBaseInfo_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1367,12 +1446,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo", runtime.WithHTTPPathPattern("/freshman/base"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetFreshmanBaseInfo_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetFreshmanBaseInfo_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1390,12 +1470,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanDetail", runtime.WithHTTPPathPattern("/staff/v1/freshman/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetFreshmanDetail_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetFreshmanDetail_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1413,12 +1494,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanDetail", runtime.WithHTTPPathPattern("/freshman/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetFreshmanDetail_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetFreshmanDetail_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1436,12 +1518,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanRoommates", runtime.WithHTTPPathPattern("/staff/v1/freshman/roommate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetFreshmanRoommates_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetFreshmanRoommates_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1459,12 +1542,13 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanRoommates", runtime.WithHTTPPathPattern("/freshman/roommate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CampusService_GetFreshmanRoommates_1(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CampusService_GetFreshmanRoommates_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1521,12 +1605,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetPersonInfo", runtime.WithHTTPPathPattern("/staff/v1/person/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetPersonInfo_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetPersonInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1541,12 +1626,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetPersonInfo", runtime.WithHTTPPathPattern("/person/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetPersonInfo_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetPersonInfo_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1561,12 +1647,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentInfo", runtime.WithHTTPPathPattern("/staff/v1/student/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentInfo_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1581,12 +1668,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentInfo", runtime.WithHTTPPathPattern("/student/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentInfo_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentInfo_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1601,12 +1689,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/staff/v1/student/needy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentNeedyInfo_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentNeedyInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1621,12 +1710,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/student/needy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentNeedyInfo_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentNeedyInfo_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1641,12 +1731,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentDormInfo", runtime.WithHTTPPathPattern("/staff/v1/student/dorm"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentDormInfo_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentDormInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1661,12 +1752,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentDormInfo", runtime.WithHTTPPathPattern("/student/dorm"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentDormInfo_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentDormInfo_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1681,12 +1773,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentBirthdayInfo", runtime.WithHTTPPathPattern("/staff/v1/student/birthday"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentBirthdayInfo_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentBirthdayInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1701,12 +1794,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentBirthdayInfo", runtime.WithHTTPPathPattern("/student/birthday"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentBirthdayInfo_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentBirthdayInfo_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1721,12 +1815,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentBirthdaysIn", runtime.WithHTTPPathPattern("/staff/v1/student/birthdays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentBirthdaysIn_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentBirthdaysIn_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1741,12 +1836,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentBirthdaysIn", runtime.WithHTTPPathPattern("/student/birthdays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentBirthdaysIn_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentBirthdaysIn_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1761,12 +1857,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentRewards", runtime.WithHTTPPathPattern("/staff/v1/student/reward"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentRewards_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentRewards_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1781,12 +1878,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentRewards", runtime.WithHTTPPathPattern("/student/reward"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentRewards_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentRewards_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1801,12 +1899,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentCourseSelections", runtime.WithHTTPPathPattern("/staff/v1/student/select"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentCourseSelections_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentCourseSelections_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1821,12 +1920,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentCourseSelections", runtime.WithHTTPPathPattern("/student/select"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentCourseSelections_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentCourseSelections_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1841,12 +1941,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentGrade_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentGrade_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1861,12 +1962,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentGrade", runtime.WithHTTPPathPattern("/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentGrade_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentGrade_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1881,12 +1983,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentExam", runtime.WithHTTPPathPattern("/staff/v1/student/exam"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentExam_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentExam_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1901,12 +2004,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentExam", runtime.WithHTTPPathPattern("/student/exam"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentExam_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentExam_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1917,16 +2021,38 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_CampusService_GetStudentStaySchoolInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_CampusService_PostStudentGateAccess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/PostStudentGateAccess", runtime.WithHTTPPathPattern("/campusapis.staff.v1.CampusService/PostStudentGateAccess"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentStaySchoolInfo_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_PostStudentGateAccess_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_CampusService_PostStudentGateAccess_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_CampusService_GetStudentStaySchoolInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentStaySchoolInfo", runtime.WithHTTPPathPattern("/staff/v1/student/holidayStay"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_CampusService_GetStudentStaySchoolInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1941,12 +2067,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetStudentStaySchoolInfo", runtime.WithHTTPPathPattern("/student/holidayStay"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetStudentStaySchoolInfo_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetStudentStaySchoolInfo_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1961,12 +2088,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo", runtime.WithHTTPPathPattern("/staff/v1/freshman/base"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetFreshmanBaseInfo_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetFreshmanBaseInfo_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1981,12 +2109,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo", runtime.WithHTTPPathPattern("/freshman/base"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetFreshmanBaseInfo_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetFreshmanBaseInfo_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2001,12 +2130,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanDetail", runtime.WithHTTPPathPattern("/staff/v1/freshman/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetFreshmanDetail_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetFreshmanDetail_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2021,12 +2151,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanDetail", runtime.WithHTTPPathPattern("/freshman/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetFreshmanDetail_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetFreshmanDetail_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2041,12 +2172,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanRoommates", runtime.WithHTTPPathPattern("/staff/v1/freshman/roommate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetFreshmanRoommates_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetFreshmanRoommates_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2061,12 +2193,13 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetFreshmanRoommates", runtime.WithHTTPPathPattern("/freshman/roommate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CampusService_GetFreshmanRoommates_1(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CampusService_GetFreshmanRoommates_1(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2081,61 +2214,63 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 }
 
 var (
-	pattern_CampusService_GetPersonInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "person", "info"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetPersonInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "person", "info"}, ""))
 
-	pattern_CampusService_GetPersonInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"person", "info"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetPersonInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"person", "info"}, ""))
 
-	pattern_CampusService_GetStudentInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "info"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "info"}, ""))
 
-	pattern_CampusService_GetStudentInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "info"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "info"}, ""))
 
-	pattern_CampusService_GetStudentNeedyInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "needy"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentNeedyInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "needy"}, ""))
 
-	pattern_CampusService_GetStudentNeedyInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "needy"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentNeedyInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "needy"}, ""))
 
-	pattern_CampusService_GetStudentDormInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "dorm"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentDormInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "dorm"}, ""))
 
-	pattern_CampusService_GetStudentDormInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "dorm"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentDormInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "dorm"}, ""))
 
-	pattern_CampusService_GetStudentBirthdayInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "birthday"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentBirthdayInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "birthday"}, ""))
 
-	pattern_CampusService_GetStudentBirthdayInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "birthday"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentBirthdayInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "birthday"}, ""))
 
-	pattern_CampusService_GetStudentBirthdaysIn_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "birthdays"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentBirthdaysIn_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "birthdays"}, ""))
 
-	pattern_CampusService_GetStudentBirthdaysIn_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "birthdays"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentBirthdaysIn_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "birthdays"}, ""))
 
-	pattern_CampusService_GetStudentRewards_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "reward"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentRewards_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "reward"}, ""))
 
-	pattern_CampusService_GetStudentRewards_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "reward"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentRewards_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "reward"}, ""))
 
-	pattern_CampusService_GetStudentCourseSelections_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "select"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentCourseSelections_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "select"}, ""))
 
-	pattern_CampusService_GetStudentCourseSelections_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "select"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentCourseSelections_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "select"}, ""))
 
-	pattern_CampusService_GetStudentGrade_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "grade"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentGrade_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "grade"}, ""))
 
-	pattern_CampusService_GetStudentGrade_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "grade"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentGrade_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "grade"}, ""))
 
-	pattern_CampusService_GetStudentExam_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "exam"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentExam_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "exam"}, ""))
 
-	pattern_CampusService_GetStudentExam_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "exam"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentExam_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "exam"}, ""))
 
-	pattern_CampusService_GetStudentStaySchoolInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "holidayStay"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_PostStudentGateAccess_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.staff.v1.CampusService", "PostStudentGateAccess"}, ""))
 
-	pattern_CampusService_GetStudentStaySchoolInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "holidayStay"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentStaySchoolInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "holidayStay"}, ""))
 
-	pattern_CampusService_GetFreshmanBaseInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "freshman", "base"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetStudentStaySchoolInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "holidayStay"}, ""))
 
-	pattern_CampusService_GetFreshmanBaseInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"freshman", "base"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetFreshmanBaseInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "freshman", "base"}, ""))
 
-	pattern_CampusService_GetFreshmanDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "freshman", "info"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetFreshmanBaseInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"freshman", "base"}, ""))
 
-	pattern_CampusService_GetFreshmanDetail_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"freshman", "info"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetFreshmanDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "freshman", "info"}, ""))
 
-	pattern_CampusService_GetFreshmanRoommates_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "freshman", "roommate"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetFreshmanDetail_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"freshman", "info"}, ""))
 
-	pattern_CampusService_GetFreshmanRoommates_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"freshman", "roommate"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CampusService_GetFreshmanRoommates_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "freshman", "roommate"}, ""))
+
+	pattern_CampusService_GetFreshmanRoommates_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"freshman", "roommate"}, ""))
 )
 
 var (
@@ -2178,6 +2313,8 @@ var (
 	forward_CampusService_GetStudentExam_0 = runtime.ForwardResponseMessage
 
 	forward_CampusService_GetStudentExam_1 = runtime.ForwardResponseMessage
+
+	forward_CampusService_PostStudentGateAccess_0 = runtime.ForwardResponseMessage
 
 	forward_CampusService_GetStudentStaySchoolInfo_0 = runtime.ForwardResponseMessage
 

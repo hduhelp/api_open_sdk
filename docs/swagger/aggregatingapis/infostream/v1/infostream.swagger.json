@@ -429,17 +429,34 @@
         "skyconNow": {
           "type": "string"
         },
-        "temperatureMax": {
+        "isRain": {
+          "type": "boolean"
+        },
+        "willStop": {
+          "type": "boolean"
+        },
+        "willRain": {
+          "type": "boolean"
+        },
+        "RainContinue": {
           "type": "integer",
           "format": "int64"
+        },
+        "RainCome": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "temperatureMax": {
+          "type": "number",
+          "format": "float"
         },
         "temperatureMin": {
-          "type": "integer",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "temperatureNow": {
-          "type": "integer",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "timestamp": {
           "type": "integer",
