@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package flutterapis.infoStream.v1;
+package aggregatingapis.infoStream.v1;
 
 import "google/api/annotations.proto";
 
-option go_package = "./flutterapis/infoStream/v1";
+option go_package = "./aggregatingapis/infoStream/v1";
 
 service InfoStreamService {
   rpc GetInfoStream(InfoStreamReq) returns (InfoStreamResp) {

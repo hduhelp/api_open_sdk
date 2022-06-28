@@ -2,7 +2,8 @@ name: check buf generate up to date
 on:
   push:
     branches:
-      - main
+      #- main
+      - dev-standard-rpc
 jobs:
   build:
     name: Build
@@ -46,7 +47,7 @@ jobs:
             git config --global user.email 'fdkevinzero@gmail.com'
             git add -A
             git commit -m "ci(gen): buf generate up to date"
-            git push
+            git push origin dev-standard-rpc
           fi
       
       - name: warming go proxy
