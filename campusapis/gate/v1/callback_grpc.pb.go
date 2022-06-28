@@ -44,20 +44,22 @@ func (c *gateCallbackServiceClient) PostGateEventCallback(ctx context.Context, i
 }
 
 // GateCallbackServiceServer is the server API for GateCallbackService service.
-// All implementations should embed UnimplementedGateCallbackServiceServer
+// All implementations must embed UnimplementedGateCallbackServiceServer
 // for forward compatibility
 type GateCallbackServiceServer interface {
 	//门禁事件回调接口
 	PostGateEventCallback(context.Context, *PostGateEventCallbackRequest) (*PostGateEventCallbackResponse, error)
+	mustEmbedUnimplementedGateCallbackServiceServer()
 }
 
-// UnimplementedGateCallbackServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedGateCallbackServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedGateCallbackServiceServer struct {
 }
 
 func (UnimplementedGateCallbackServiceServer) PostGateEventCallback(context.Context, *PostGateEventCallbackRequest) (*PostGateEventCallbackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostGateEventCallback not implemented")
 }
+func (UnimplementedGateCallbackServiceServer) mustEmbedUnimplementedGateCallbackServiceServer() {}
 
 // UnsafeGateCallbackServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to GateCallbackServiceServer will

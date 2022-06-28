@@ -199,7 +199,7 @@ func (c *campusServiceClient) GetFreshmanRoommates(ctx context.Context, in *GetF
 }
 
 // CampusServiceServer is the server API for CampusService service.
-// All implementations should embed UnimplementedCampusServiceServer
+// All implementations must embed UnimplementedCampusServiceServer
 // for forward compatibility
 type CampusServiceServer interface {
 	//获取员工信息
@@ -232,9 +232,10 @@ type CampusServiceServer interface {
 	GetFreshmanDetail(context.Context, *GetFreshmanDetailRequest) (*GetFreshmanDetailResponse, error)
 	//获取新生宿舍信息
 	GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error)
+	mustEmbedUnimplementedCampusServiceServer()
 }
 
-// UnimplementedCampusServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedCampusServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedCampusServiceServer struct {
 }
 
@@ -283,6 +284,7 @@ func (UnimplementedCampusServiceServer) GetFreshmanDetail(context.Context, *GetF
 func (UnimplementedCampusServiceServer) GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFreshmanRoommates not implemented")
 }
+func (UnimplementedCampusServiceServer) mustEmbedUnimplementedCampusServiceServer() {}
 
 // UnsafeCampusServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to CampusServiceServer will

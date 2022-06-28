@@ -93,7 +93,7 @@ func (c *fAQServiceClient) SearchFAQAnswerRichtext(ctx context.Context, in *Sear
 }
 
 // FAQServiceServer is the server API for FAQService service.
-// All implementations should embed UnimplementedFAQServiceServer
+// All implementations must embed UnimplementedFAQServiceServer
 // for forward compatibility
 type FAQServiceServer interface {
 	CreateFAQ(context.Context, *CreateFAQRequest) (*CreateFAQResponse, error)
@@ -102,9 +102,10 @@ type FAQServiceServer interface {
 	DeleteFAQ(context.Context, *DeleteFAQRequest) (*DeleteFAQResponse, error)
 	GetFAQImage(context.Context, *GetFAQImageRequest) (*GetFAQImageResponse, error)
 	SearchFAQAnswerRichtext(context.Context, *SearchFAQAnswerRichtextRequest) (*SearchFAQAnswerRichtextResponse, error)
+	mustEmbedUnimplementedFAQServiceServer()
 }
 
-// UnimplementedFAQServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedFAQServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedFAQServiceServer struct {
 }
 
@@ -126,6 +127,7 @@ func (UnimplementedFAQServiceServer) GetFAQImage(context.Context, *GetFAQImageRe
 func (UnimplementedFAQServiceServer) SearchFAQAnswerRichtext(context.Context, *SearchFAQAnswerRichtextRequest) (*SearchFAQAnswerRichtextResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchFAQAnswerRichtext not implemented")
 }
+func (UnimplementedFAQServiceServer) mustEmbedUnimplementedFAQServiceServer() {}
 
 // UnsafeFAQServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to FAQServiceServer will

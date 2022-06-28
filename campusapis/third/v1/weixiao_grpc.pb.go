@@ -93,7 +93,7 @@ func (c *weixiaoServiceClient) GetStudentExam(ctx context.Context, in *CommonWei
 }
 
 // WeixiaoServiceServer is the server API for WeixiaoService service.
-// All implementations should embed UnimplementedWeixiaoServiceServer
+// All implementations must embed UnimplementedWeixiaoServiceServer
 // for forward compatibility
 type WeixiaoServiceServer interface {
 	//用户校园卡面余额字段同步
@@ -111,9 +111,10 @@ type WeixiaoServiceServer interface {
 	//查考试数据同步
 	//https://wiki.weixiao.qq.com/api/school/checkExam.html
 	GetStudentExam(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error)
+	mustEmbedUnimplementedWeixiaoServiceServer()
 }
 
-// UnimplementedWeixiaoServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedWeixiaoServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedWeixiaoServiceServer struct {
 }
 
@@ -132,6 +133,7 @@ func (UnimplementedWeixiaoServiceServer) GetStudentCourseScore(context.Context, 
 func (UnimplementedWeixiaoServiceServer) GetStudentExam(context.Context, *CommonWeixiaoPostRequest) (*CommonWeixiaoPostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentExam not implemented")
 }
+func (UnimplementedWeixiaoServiceServer) mustEmbedUnimplementedWeixiaoServiceServer() {}
 
 // UnsafeWeixiaoServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to WeixiaoServiceServer will

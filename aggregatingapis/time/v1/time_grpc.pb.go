@@ -44,19 +44,21 @@ func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts
 }
 
 // TimeServiceServer is the server API for TimeService service.
-// All implementations should embed UnimplementedTimeServiceServer
+// All implementations must embed UnimplementedTimeServiceServer
 // for forward compatibility
 type TimeServiceServer interface {
 	GetTime(context.Context, *emptypb.Empty) (*TimeResp, error)
+	mustEmbedUnimplementedTimeServiceServer()
 }
 
-// UnimplementedTimeServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedTimeServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedTimeServiceServer struct {
 }
 
 func (UnimplementedTimeServiceServer) GetTime(context.Context, *emptypb.Empty) (*TimeResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTime not implemented")
 }
+func (UnimplementedTimeServiceServer) mustEmbedUnimplementedTimeServiceServer() {}
 
 // UnsafeTimeServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TimeServiceServer will

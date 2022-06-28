@@ -77,7 +77,7 @@ func (c *serverManageerServiceClient) DeleteHTTPRouter(ctx context.Context, in *
 }
 
 // ServerManageerServiceServer is the server API for ServerManageerService service.
-// All implementations should embed UnimplementedServerManageerServiceServer
+// All implementations must embed UnimplementedServerManageerServiceServer
 // for forward compatibility
 type ServerManageerServiceServer interface {
 	//获取可管理的所有HTTP路由
@@ -88,9 +88,10 @@ type ServerManageerServiceServer interface {
 	PostOrPutHTTPRouter(context.Context, *PostOrPutHTTPRouterRequest) (*PostOrPutHTTPRouterResponse, error)
 	//删除路由
 	DeleteHTTPRouter(context.Context, *DeleteHTTPRouterRequest) (*DeleteHTTPRouterResponse, error)
+	mustEmbedUnimplementedServerManageerServiceServer()
 }
 
-// UnimplementedServerManageerServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedServerManageerServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedServerManageerServiceServer struct {
 }
 
@@ -106,6 +107,7 @@ func (UnimplementedServerManageerServiceServer) PostOrPutHTTPRouter(context.Cont
 func (UnimplementedServerManageerServiceServer) DeleteHTTPRouter(context.Context, *DeleteHTTPRouterRequest) (*DeleteHTTPRouterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteHTTPRouter not implemented")
 }
+func (UnimplementedServerManageerServiceServer) mustEmbedUnimplementedServerManageerServiceServer() {}
 
 // UnsafeServerManageerServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ServerManageerServiceServer will

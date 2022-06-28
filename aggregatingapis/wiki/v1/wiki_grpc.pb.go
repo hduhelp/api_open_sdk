@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: consultingapis/wiki/v1/wiki.proto
+// source: aggregatingapis/wiki/v1/wiki.proto
 
 package wikiv1
 
@@ -36,7 +36,7 @@ func NewWikiServiceClient(cc grpc.ClientConnInterface) WikiServiceClient {
 
 func (c *wikiServiceClient) GetDocContent(ctx context.Context, in *DocTokenReq, opts ...grpc.CallOption) (*DocTokenResp, error) {
 	out := new(DocTokenResp)
-	err := c.cc.Invoke(ctx, "/consultingapis.wiki.v1.WikiService/GetDocContent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.wiki.v1.WikiService/GetDocContent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *wikiServiceClient) GetDocContent(ctx context.Context, in *DocTokenReq, 
 
 func (c *wikiServiceClient) GetNodeList(ctx context.Context, in *NodeReq, opts ...grpc.CallOption) (*NodeResp, error) {
 	out := new(NodeResp)
-	err := c.cc.Invoke(ctx, "/consultingapis.wiki.v1.WikiService/GetNodeList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.wiki.v1.WikiService/GetNodeList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -53,14 +53,15 @@ func (c *wikiServiceClient) GetNodeList(ctx context.Context, in *NodeReq, opts .
 }
 
 // WikiServiceServer is the server API for WikiService service.
-// All implementations should embed UnimplementedWikiServiceServer
+// All implementations must embed UnimplementedWikiServiceServer
 // for forward compatibility
 type WikiServiceServer interface {
 	GetDocContent(context.Context, *DocTokenReq) (*DocTokenResp, error)
 	GetNodeList(context.Context, *NodeReq) (*NodeResp, error)
+	mustEmbedUnimplementedWikiServiceServer()
 }
 
-// UnimplementedWikiServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedWikiServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedWikiServiceServer struct {
 }
 
@@ -70,6 +71,7 @@ func (UnimplementedWikiServiceServer) GetDocContent(context.Context, *DocTokenRe
 func (UnimplementedWikiServiceServer) GetNodeList(context.Context, *NodeReq) (*NodeResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNodeList not implemented")
 }
+func (UnimplementedWikiServiceServer) mustEmbedUnimplementedWikiServiceServer() {}
 
 // UnsafeWikiServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to WikiServiceServer will
@@ -92,7 +94,7 @@ func _WikiService_GetDocContent_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/consultingapis.wiki.v1.WikiService/GetDocContent",
+		FullMethod: "/aggregatingapis.wiki.v1.WikiService/GetDocContent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WikiServiceServer).GetDocContent(ctx, req.(*DocTokenReq))
@@ -110,7 +112,7 @@ func _WikiService_GetNodeList_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/consultingapis.wiki.v1.WikiService/GetNodeList",
+		FullMethod: "/aggregatingapis.wiki.v1.WikiService/GetNodeList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WikiServiceServer).GetNodeList(ctx, req.(*NodeReq))
@@ -122,7 +124,7 @@ func _WikiService_GetNodeList_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var WikiService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "consultingapis.wiki.v1.WikiService",
+	ServiceName: "aggregatingapis.wiki.v1.WikiService",
 	HandlerType: (*WikiServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -135,5 +137,5 @@ var WikiService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "consultingapis/wiki/v1/wiki.proto",
+	Metadata: "aggregatingapis/wiki/v1/wiki.proto",
 }

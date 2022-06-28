@@ -133,7 +133,7 @@ func (c *healthServiceClient) GetNucleicAcidTestLatest(ctx context.Context, in *
 }
 
 // HealthServiceServer is the server API for HealthService service.
-// All implementations should embed UnimplementedHealthServiceServer
+// All implementations must embed UnimplementedHealthServiceServer
 // for forward compatibility
 type HealthServiceServer interface {
 	//获取指定日期健康打卡记录
@@ -154,9 +154,10 @@ type HealthServiceServer interface {
 	GetNucleicAcidTests(context.Context, *emptypb.Empty) (*GetNucleicAcidTestsResponse, error)
 	// 获取最新核酸检测记录
 	GetNucleicAcidTestLatest(context.Context, *emptypb.Empty) (*GetNucleicAcidTestLatestResponse, error)
+	mustEmbedUnimplementedHealthServiceServer()
 }
 
-// UnimplementedHealthServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedHealthServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedHealthServiceServer struct {
 }
 
@@ -187,6 +188,7 @@ func (UnimplementedHealthServiceServer) GetNucleicAcidTests(context.Context, *em
 func (UnimplementedHealthServiceServer) GetNucleicAcidTestLatest(context.Context, *emptypb.Empty) (*GetNucleicAcidTestLatestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNucleicAcidTestLatest not implemented")
 }
+func (UnimplementedHealthServiceServer) mustEmbedUnimplementedHealthServiceServer() {}
 
 // UnsafeHealthServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to HealthServiceServer will

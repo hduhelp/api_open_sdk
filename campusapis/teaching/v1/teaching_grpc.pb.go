@@ -111,7 +111,7 @@ func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *Get
 }
 
 // TeachingServiceServer is the server API for TeachingService service.
-// All implementations should embed UnimplementedTeachingServiceServer
+// All implementations must embed UnimplementedTeachingServiceServer
 // for forward compatibility
 type TeachingServiceServer interface {
 	// 获取学生/教师课程表
@@ -128,9 +128,10 @@ type TeachingServiceServer interface {
 	GetClassroomUsages(context.Context, *GetClassroomUsagesRequest) (*GetClassroomUsagesResponse, error)
 	// 获取所有空教室列表
 	GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*GetUnusedClassroomsResponse, error)
+	mustEmbedUnimplementedTeachingServiceServer()
 }
 
-// UnimplementedTeachingServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedTeachingServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedTeachingServiceServer struct {
 }
 
@@ -155,6 +156,7 @@ func (UnimplementedTeachingServiceServer) GetClassroomUsages(context.Context, *G
 func (UnimplementedTeachingServiceServer) GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*GetUnusedClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnusedClassrooms not implemented")
 }
+func (UnimplementedTeachingServiceServer) mustEmbedUnimplementedTeachingServiceServer() {}
 
 // UnsafeTeachingServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TeachingServiceServer will

@@ -66,7 +66,7 @@ func (c *serverRegisterServiceClient) PostRegistGRPCMethods(ctx context.Context,
 }
 
 // ServerRegisterServiceServer is the server API for ServerRegisterService service.
-// All implementations should embed UnimplementedServerRegisterServiceServer
+// All implementations must embed UnimplementedServerRegisterServiceServer
 // for forward compatibility
 type ServerRegisterServiceServer interface {
 	//注册服务实例
@@ -75,9 +75,10 @@ type ServerRegisterServiceServer interface {
 	PostRegistHTTPRouters(context.Context, *PostRegistHTTPRoutersRequest) (*PostRegistHTTPRoutersResponse, error)
 	//注册服务GRPC方法
 	PostRegistGRPCMethods(context.Context, *PostRegistGRPCMethodsRequest) (*PostRegistGRPCMethodsResponse, error)
+	mustEmbedUnimplementedServerRegisterServiceServer()
 }
 
-// UnimplementedServerRegisterServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedServerRegisterServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedServerRegisterServiceServer struct {
 }
 
@@ -90,6 +91,7 @@ func (UnimplementedServerRegisterServiceServer) PostRegistHTTPRouters(context.Co
 func (UnimplementedServerRegisterServiceServer) PostRegistGRPCMethods(context.Context, *PostRegistGRPCMethodsRequest) (*PostRegistGRPCMethodsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostRegistGRPCMethods not implemented")
 }
+func (UnimplementedServerRegisterServiceServer) mustEmbedUnimplementedServerRegisterServiceServer() {}
 
 // UnsafeServerRegisterServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ServerRegisterServiceServer will

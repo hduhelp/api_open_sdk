@@ -99,7 +99,7 @@ func (c *libraryServiceClient) GetBookLendHistory(ctx context.Context, in *GetBo
 }
 
 // LibraryServiceServer is the server API for LibraryService service.
-// All implementations should embed UnimplementedLibraryServiceServer
+// All implementations must embed UnimplementedLibraryServiceServer
 // for forward compatibility
 type LibraryServiceServer interface {
 	//查询书本信息
@@ -114,9 +114,10 @@ type LibraryServiceServer interface {
 	GetBookLendLast(context.Context, *GetBookLendLastRequest) (*GetBookLendLastResponse, error)
 	//查询历史图书借阅记录
 	GetBookLendHistory(context.Context, *GetBookLendHistoryRequest) (*GetBookLendHistoryResponse, error)
+	mustEmbedUnimplementedLibraryServiceServer()
 }
 
-// UnimplementedLibraryServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedLibraryServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedLibraryServiceServer struct {
 }
 
@@ -138,6 +139,7 @@ func (UnimplementedLibraryServiceServer) GetBookLendLast(context.Context, *GetBo
 func (UnimplementedLibraryServiceServer) GetBookLendHistory(context.Context, *GetBookLendHistoryRequest) (*GetBookLendHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookLendHistory not implemented")
 }
+func (UnimplementedLibraryServiceServer) mustEmbedUnimplementedLibraryServiceServer() {}
 
 // UnsafeLibraryServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to LibraryServiceServer will

@@ -267,7 +267,7 @@ func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *Get
 }
 
 // AuthServiceServer is the server API for AuthService service.
-// All implementations should embed UnimplementedAuthServiceServer
+// All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility
 type AuthServiceServer interface {
 	//用户获得Token基本信息
@@ -306,9 +306,10 @@ type AuthServiceServer interface {
 	GetWeChatSignature(context.Context, *GetWeChatSignatureRequest) (*GetWeChatSignatureResponse, error)
 	//（内部接口）通过助手user_id获得用户的其他绑定信息
 	GetBindListByUserIdList(context.Context, *GetBindListByUserIdListRequest) (*GetBindListByUserIdListResponse, error)
+	mustEmbedUnimplementedAuthServiceServer()
 }
 
-// UnimplementedAuthServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedAuthServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedAuthServiceServer struct {
 }
 
@@ -378,6 +379,7 @@ func (UnimplementedAuthServiceServer) GetWeChatSignature(context.Context, *GetWe
 func (UnimplementedAuthServiceServer) GetBindListByUserIdList(context.Context, *GetBindListByUserIdListRequest) (*GetBindListByUserIdListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBindListByUserIdList not implemented")
 }
+func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 
 // UnsafeAuthServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to AuthServiceServer will

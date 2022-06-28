@@ -67,7 +67,7 @@ func (c *cardServiceClient) GetCardConsume(ctx context.Context, in *emptypb.Empt
 }
 
 // CardServiceServer is the server API for CardService service.
-// All implementations should embed UnimplementedCardServiceServer
+// All implementations must embed UnimplementedCardServiceServer
 // for forward compatibility
 type CardServiceServer interface {
 	//查询校园卡信息
@@ -76,9 +76,10 @@ type CardServiceServer interface {
 	GetCardBalance(context.Context, *emptypb.Empty) (*GetCardBalanceResponse, error)
 	//查询校园卡消费记录
 	GetCardConsume(context.Context, *emptypb.Empty) (*GetCardConsumeResponse, error)
+	mustEmbedUnimplementedCardServiceServer()
 }
 
-// UnimplementedCardServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedCardServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedCardServiceServer struct {
 }
 
@@ -91,6 +92,7 @@ func (UnimplementedCardServiceServer) GetCardBalance(context.Context, *emptypb.E
 func (UnimplementedCardServiceServer) GetCardConsume(context.Context, *emptypb.Empty) (*GetCardConsumeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCardConsume not implemented")
 }
+func (UnimplementedCardServiceServer) mustEmbedUnimplementedCardServiceServer() {}
 
 // UnsafeCardServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to CardServiceServer will

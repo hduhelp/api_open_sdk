@@ -43,19 +43,21 @@ func (c *infoStreamServiceClient) GetInfoStream(ctx context.Context, in *InfoStr
 }
 
 // InfoStreamServiceServer is the server API for InfoStreamService service.
-// All implementations should embed UnimplementedInfoStreamServiceServer
+// All implementations must embed UnimplementedInfoStreamServiceServer
 // for forward compatibility
 type InfoStreamServiceServer interface {
 	GetInfoStream(context.Context, *InfoStreamReq) (*InfoStreamResp, error)
+	mustEmbedUnimplementedInfoStreamServiceServer()
 }
 
-// UnimplementedInfoStreamServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedInfoStreamServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedInfoStreamServiceServer struct {
 }
 
 func (UnimplementedInfoStreamServiceServer) GetInfoStream(context.Context, *InfoStreamReq) (*InfoStreamResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetInfoStream not implemented")
 }
+func (UnimplementedInfoStreamServiceServer) mustEmbedUnimplementedInfoStreamServiceServer() {}
 
 // UnsafeInfoStreamServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to InfoStreamServiceServer will
