@@ -8,3 +8,6 @@ install-tools: download
 
 generate-proto:
 	buf generate -v
+
+lint:
+	golangci-lint run --fix

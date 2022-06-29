@@ -2,8 +2,11 @@ name: check buf generate up to date
 on:
   push:
     branches:
-      #- main
-      - dev-standard-rpc
+      - main
+  pull_request:
+    branches:
+      - main
+      
 jobs:
   build:
     name: Build

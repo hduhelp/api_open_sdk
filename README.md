@@ -12,6 +12,11 @@
 make install-tools
 ```
 
+## 依赖
+
+- [go-task](https://taskfile.dev/installation/)
+- [golangci-lint](https://golangci-lint.run/)
+
 ## 开发流程
 
 1. 修改 proto 文件
@@ -48,6 +53,10 @@ http://localhost:8080/campusapis/staff/v1/freshman.swagger.json
 点击 Explore 按钮，即可看到 swagger 文档
 
 4. 每次改动 proto 后需要重新运行 `buf generate`，并且「清空缓存并进行硬刷新」网页
+
+## Code Lint
+
+
 
 ## 接口注释
 

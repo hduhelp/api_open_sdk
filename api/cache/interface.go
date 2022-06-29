@@ -78,12 +78,12 @@ func GetCacheOf(ctx context.Context, c Interface) error {
 	return errors.New("cache not found")
 }
 
-func Invalidate(ctx context.Context, c Interface) {
+func Invalidate(ctx context.Context, c Interface) error {
 	tags := c.Option().Tags
-	if tags == nil || len(tags) == 0 {
-		return
+	if len(tags) == 0 {
+		return nil
 	}
-	marshal.Invalidate(ctx, store.InvalidateOptions{
+	return marshal.Invalidate(ctx, store.InvalidateOptions{
 		Tags: tags,
 	})
 }

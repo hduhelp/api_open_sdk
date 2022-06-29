@@ -14,13 +14,13 @@ func (*SchoolYear) GormDataType() string {
 }
 
 func CastSchoolYear(in interface{}) *SchoolYear {
-	switch in.(type) {
+	switch v := in.(type) {
 	case int, uint, int8, int16, int32, int64:
 		return &SchoolYear{
-			Year: in.(int32),
+			Year: v.(int32),
 		}
 	case string:
-		if arr := strings.Split(in.(string), "-"); len(arr) != 0 {
+		if arr := strings.Split(v, "-"); len(arr) != 0 {
 			if y, err := strconv.Atoi(arr[0]); err == nil {
 				return &SchoolYear{
 					Year: int32(y),

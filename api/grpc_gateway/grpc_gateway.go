@@ -31,8 +31,7 @@ func DefaultRoutingErrorHandler(ctx context.Context, mux *runtime.ServeMux, mars
 }
 
 func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, err error) {
-	// return Internal when Marshal failed
-	var msg = string(lo.Must(json.Marshal(err.Error())))
+	var msg string
 	var customStatus *runtime.HTTPStatusError
 	if errors.As(err, &customStatus) {
 		err = customStatus.Err
@@ -78,6 +77,7 @@ func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler r
 		mw.code = lo.Ternary(codeStatus == common.Status_OK, 0, int(codeStatus))
 		mw.message = msg
 	} else {
+		//nolint:errcheck
 		w.Write([]byte(msg))
 	}
 
