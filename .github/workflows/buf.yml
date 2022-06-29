@@ -55,7 +55,7 @@ jobs:
             git config --global user.email 'fdkevinzero@gmail.com'
             git add -A
             git commit -m "ci(gen): buf generate up to date"
-            git push origin dev-standard-rpc
+            git push
           fi
       
       - name: warming go proxy
