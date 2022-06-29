@@ -2,10 +2,8 @@ syntax = "proto3";
 
 package campusapis.schoolTime.v1;
 
-import "campusapis/schoolTime/defined.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
 
 option go_package = "./campusapis/schoolTime/v1";
 

@@ -5,7 +5,6 @@ package campusapis.staff.v1;
 import "campusapis/staff/base.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "school/school.proto";
 
 option go_package = "./campusapis/staff/v1";
 

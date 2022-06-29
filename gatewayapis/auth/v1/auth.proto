@@ -5,7 +5,6 @@ package gatewayapis.auth.v1;
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "google/protobuf/struct.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "./gatewayapis/auth/v1";
 

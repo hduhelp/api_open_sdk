@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: campusapis/schoolTime/v1/schoolTime.proto
+// source: campusapis/schoolTime/v1/school_time.proto
 
 package schoolTimev1
 
@@ -142,5 +142,5 @@ var SchoolTimeService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "campusapis/schoolTime/v1/schoolTime.proto",
+	Metadata: "campusapis/schoolTime/v1/school_time.proto",
 }

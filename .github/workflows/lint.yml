@@ -1,4 +1,4 @@
-name: check buf generate up to date
+name: check code lint
 on:
   push:
     branches:

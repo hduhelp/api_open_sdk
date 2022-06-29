@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TimeServiceClient interface {
-	GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TimeResp, error)
+	GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTimeResponse, error)
 }
 
 type timeServiceClient struct {
@@ -34,8 +34,8 @@ func NewTimeServiceClient(cc grpc.ClientConnInterface) TimeServiceClient {
 	return &timeServiceClient{cc}
 }
 
-func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TimeResp, error) {
-	out := new(TimeResp)
+func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTimeResponse, error) {
+	out := new(GetTimeResponse)
 	err := c.cc.Invoke(ctx, "/flutterapis.time.v1.TimeService/GetTime", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -47,7 +47,7 @@ func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts
 // All implementations must embed UnimplementedTimeServiceServer
 // for forward compatibility
 type TimeServiceServer interface {
-	GetTime(context.Context, *emptypb.Empty) (*TimeResp, error)
+	GetTime(context.Context, *emptypb.Empty) (*GetTimeResponse, error)
 	mustEmbedUnimplementedTimeServiceServer()
 }
 
@@ -55,7 +55,7 @@ type TimeServiceServer interface {
 type UnimplementedTimeServiceServer struct {
 }
 
-func (UnimplementedTimeServiceServer) GetTime(context.Context, *emptypb.Empty) (*TimeResp, error) {
+func (UnimplementedTimeServiceServer) GetTime(context.Context, *emptypb.Empty) (*GetTimeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTime not implemented")
 }
 func (UnimplementedTimeServiceServer) mustEmbedUnimplementedTimeServiceServer() {}

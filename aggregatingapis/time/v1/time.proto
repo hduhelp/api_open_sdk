@@ -2,24 +2,24 @@ syntax = "proto3";
 
 package flutterapis.time.v1;
 
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = "./flutterapis/time/v1";
 
 service TimeService {
-  rpc GetTime(google.protobuf.Empty) returns (TimeResp) {
+  rpc GetTime(google.protobuf.Empty) returns (GetTimeResponse) {
     option (google.api.http) = {
       get: "/time/v1"
     };
   }
 }
 
-
-message TimeResp {
+message GetTimeResponse {
   uint32 error = 1;
   string msg = 2;
   Data data = 3;
+
   message Data {
     uint32 school_year = 1;
     uint32 semester = 2;

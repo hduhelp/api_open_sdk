@@ -1,4 +1,4 @@
-name: check buf generate up to date
+name: check buf lint
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths:
-      - "*.proto"
+      - "**.proto"
       - "buf.yaml"
       - ".github/workflows/buf-lint.yaml"
 
