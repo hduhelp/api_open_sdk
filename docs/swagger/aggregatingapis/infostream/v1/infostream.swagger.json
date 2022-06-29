@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "InfoStreamService"
+      "name": "InfostreamService"
     }
   ],
   "consumes": [
@@ -18,7 +18,7 @@
   "paths": {
     "/infostream/v1": {
       "get": {
-        "operationId": "InfoStreamService_GetInfostream",
+        "operationId": "InfostreamService_GetInfostream",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -42,7 +42,7 @@
           }
         ],
         "tags": [
-          "InfoStreamService"
+          "InfostreamService"
         ]
       }
     }

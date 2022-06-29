@@ -36,7 +36,7 @@ var (
 )
 
 func request_WikiService_GetDocContent_0(ctx context.Context, marshaler runtime.Marshaler, client WikiServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DocTokenReq
+	var protoReq GetDocContentRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -52,7 +52,7 @@ func request_WikiService_GetDocContent_0(ctx context.Context, marshaler runtime.
 }
 
 func local_request_WikiService_GetDocContent_0(ctx context.Context, marshaler runtime.Marshaler, server WikiServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DocTokenReq
+	var protoReq GetDocContentRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -72,7 +72,7 @@ var (
 )
 
 func request_WikiService_GetNodeList_0(ctx context.Context, marshaler runtime.Marshaler, client WikiServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq NodeReq
+	var protoReq GetNodeListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -88,7 +88,7 @@ func request_WikiService_GetNodeList_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_WikiService_GetNodeList_0(ctx context.Context, marshaler runtime.Marshaler, server WikiServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq NodeReq
+	var protoReq GetNodeListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {

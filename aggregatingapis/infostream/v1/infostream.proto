@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package aggregatingapis.infotream.v1;
+package aggregatingapis.infostream.v1;
 
 import "google/api/annotations.proto";
 
-option go_package = "./aggregatingapis/infoStream/v1";
+option go_package = "./aggregatingapis/infostream/v1";
 
-service InfoStreamService {
+service InfostreamService {
   rpc GetInfostream(GetInfostreamRequest) returns (GetInfostreamResponse) {
     option (google.api.http) = {
       get: "/infostream/v1"

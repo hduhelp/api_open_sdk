@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1DocTokenResp"
+              "$ref": "#/definitions/v1GetDocContentResponse"
             }
           },
           "default": {
@@ -53,7 +53,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1nodeResp"
+              "$ref": "#/definitions/v1GetNodeListResponse"
             }
           },
           "default": {
@@ -111,7 +111,7 @@
         }
       }
     },
-    "v1DocTokenResp": {
+    "v1GetDocContentResponse": {
       "type": "object",
       "properties": {
         "content": {
@@ -123,7 +123,24 @@
         }
       }
     },
-    "v1nodeItem": {
+    "v1GetNodeListResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1NodeItem"
+          }
+        },
+        "pageToken": {
+          "type": "string"
+        },
+        "hasMore": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1NodeItem": {
       "type": "object",
       "properties": {
         "spaceId": {
@@ -168,25 +185,8 @@
         "subNode": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1nodeItem"
+            "$ref": "#/definitions/v1NodeItem"
           }
-        }
-      }
-    },
-    "v1nodeResp": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1nodeItem"
-          }
-        },
-        "pageToken": {
-          "type": "string"
-        },
-        "hasMore": {
-          "type": "boolean"
         }
       }
     }
