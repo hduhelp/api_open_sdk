@@ -59,6 +59,7 @@ jobs:
           fi
       
       - name: warming go proxy
+        if: github.ref == 'refs/heads/main'
         run: |
           hash=$(git show -s --format=%h)
           echo $hash
