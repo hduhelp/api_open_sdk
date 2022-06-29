@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package aggregatingapis.faq.v1;
+package consultingapis.faq.v1;
 
 import "google/api/annotations.proto";
 
-option go_package = "./aggregatingapis/faq/v1";
+option go_package = "./consultingapis/faq/v1";
 
 service FAQService {
   rpc CreateFAQ(CreateFAQRequest) returns (CreateFAQResponse) {

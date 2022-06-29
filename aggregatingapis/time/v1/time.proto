@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package flutterapis.time.v1;
+package aggregatingapis.time.v1;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "./flutterapis/time/v1";
+option go_package = "./aggregatingapis/time/v1";
 
 service TimeService {
   rpc GetTime(google.protobuf.Empty) returns (GetTimeResponse) {

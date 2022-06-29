@@ -24,13 +24,12 @@ message GetInfostreamResponse {
   Data data = 3;
   message Data {
     WeatherResponse weather = 1;
-    scheduleResp schedule = 2;
-    examResp exam = 3;
-    scoreResp score = 4;
-    sunRunResp sunrun = 5;
-    cardResp card = 6;
-    electricResp electric = 7;
-    settingsResp settings = 8;
+    ScheduleResp schedule = 2;
+    ExamResp exam = 3;
+    ScoreResp score = 4;
+    SunRunResp sunrun = 5;
+    CardResp card = 6;
+    ElectricResp electric = 7;
   }
 }
 
@@ -54,13 +53,13 @@ message WeatherData {
   uint32 timestamp = 12;
 }
 
-message scheduleResp {
+message ScheduleResp {
   bool available = 1;
-  repeated scheduleData today = 2;
-  repeated scheduleData tomorrow = 3;
+  repeated ScheduleData today = 2;
+  repeated ScheduleData tomorrow = 3;
 }
 
-message scheduleData {
+message ScheduleData {
   uint32 startSection = 1;
   uint32 endSection = 2;
   string startTime = 3;
@@ -71,12 +70,12 @@ message scheduleData {
   string duration = 8;
 }
 
-message examResp {
+message ExamResp {
   bool available = 1;
-  repeated examData data = 2;
+  repeated ExamData data = 2;
 }
 
-message examData {
+message ExamData {
   string classroom = 1;
   string course = 2;
   string examTime = 3;
@@ -88,12 +87,12 @@ message examData {
   string staffId = 9;
 }
 
-message scoreResp {
+message ScoreResp {
   bool available = 1;
-  repeated scoreData data = 2;
+  repeated ScoreData data = 2;
 }
 
-message scoreData {
+message ScoreData {
   //学年
   string schoolYear = 1;
   //学期
@@ -126,12 +125,12 @@ message scoreData {
   string GPA = 15;
 }
 
-message sunRunResp {
+message SunRunResp {
   bool available = 1;
-  sunRunData data = 2;
+  SunRunData data = 2;
 }
 
-message sunRunData {
+message SunRunData {
   uint32 amMileage = 1;
   double amSpeed = 2;
   string createdAt = 3;
@@ -152,20 +151,18 @@ message sunRunData {
   string code = 18;
 }
 
-message cardResp {
+message CardResp {
   bool available = 1;
   float data = 2;
 }
 
-message electricResp {
+message ElectricResp {
   bool available = 1;
-  electricData data = 2;
+  ElectricData data = 2;
 }
 
-message electricData {
+message ElectricData {
   string fee = 1;
   string roomId = 2;
   string roomName = 3;
 }
-
-message settingsResp {}

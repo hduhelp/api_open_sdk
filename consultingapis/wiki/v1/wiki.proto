@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package aggregatingapis.wiki.v1;
+package consultingapis.wiki.v1;
 
 import "google/api/annotations.proto";
 
-option go_package = "./aggregatingapis/wiki/v1";
+option go_package = "./consultingapis/wiki/v1";
 
 service WikiService {
   rpc GetDocContent(GetDocContentRequest) returns (GetDocContentResponse) {

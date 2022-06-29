@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: consultingapis/wiki/v1/wiki.proto
+// source: aggregatingapis/wiki/v1/wiki.proto
 
 package wikiv1
 
@@ -22,8 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WikiServiceClient interface {
-	GetDocContent(ctx context.Context, in *DocTokenReq, opts ...grpc.CallOption) (*DocTokenResp, error)
-	GetNodeList(ctx context.Context, in *NodeReq, opts ...grpc.CallOption) (*NodeResp, error)
+	GetDocContent(ctx context.Context, in *GetDocContentRequest, opts ...grpc.CallOption) (*GetDocContentResponse, error)
+	GetNodeList(ctx context.Context, in *GetNodeListRequest, opts ...grpc.CallOption) (*GetNodeListResponse, error)
 }
 
 type wikiServiceClient struct {
@@ -34,18 +34,18 @@ func NewWikiServiceClient(cc grpc.ClientConnInterface) WikiServiceClient {
 	return &wikiServiceClient{cc}
 }
 
-func (c *wikiServiceClient) GetDocContent(ctx context.Context, in *DocTokenReq, opts ...grpc.CallOption) (*DocTokenResp, error) {
-	out := new(DocTokenResp)
-	err := c.cc.Invoke(ctx, "/consultingapis.wiki.v1.WikiService/GetDocContent", in, out, opts...)
+func (c *wikiServiceClient) GetDocContent(ctx context.Context, in *GetDocContentRequest, opts ...grpc.CallOption) (*GetDocContentResponse, error) {
+	out := new(GetDocContentResponse)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.wiki.v1.WikiService/GetDocContent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *wikiServiceClient) GetNodeList(ctx context.Context, in *NodeReq, opts ...grpc.CallOption) (*NodeResp, error) {
-	out := new(NodeResp)
-	err := c.cc.Invoke(ctx, "/consultingapis.wiki.v1.WikiService/GetNodeList", in, out, opts...)
+func (c *wikiServiceClient) GetNodeList(ctx context.Context, in *GetNodeListRequest, opts ...grpc.CallOption) (*GetNodeListResponse, error) {
+	out := new(GetNodeListResponse)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.wiki.v1.WikiService/GetNodeList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -53,23 +53,25 @@ func (c *wikiServiceClient) GetNodeList(ctx context.Context, in *NodeReq, opts .
 }
 
 // WikiServiceServer is the server API for WikiService service.
-// All implementations should embed UnimplementedWikiServiceServer
+// All implementations must embed UnimplementedWikiServiceServer
 // for forward compatibility
 type WikiServiceServer interface {
-	GetDocContent(context.Context, *DocTokenReq) (*DocTokenResp, error)
-	GetNodeList(context.Context, *NodeReq) (*NodeResp, error)
+	GetDocContent(context.Context, *GetDocContentRequest) (*GetDocContentResponse, error)
+	GetNodeList(context.Context, *GetNodeListRequest) (*GetNodeListResponse, error)
+	mustEmbedUnimplementedWikiServiceServer()
 }
 
-// UnimplementedWikiServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedWikiServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedWikiServiceServer struct {
 }
 
-func (UnimplementedWikiServiceServer) GetDocContent(context.Context, *DocTokenReq) (*DocTokenResp, error) {
+func (UnimplementedWikiServiceServer) GetDocContent(context.Context, *GetDocContentRequest) (*GetDocContentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDocContent not implemented")
 }
-func (UnimplementedWikiServiceServer) GetNodeList(context.Context, *NodeReq) (*NodeResp, error) {
+func (UnimplementedWikiServiceServer) GetNodeList(context.Context, *GetNodeListRequest) (*GetNodeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNodeList not implemented")
 }
+func (UnimplementedWikiServiceServer) mustEmbedUnimplementedWikiServiceServer() {}
 
 // UnsafeWikiServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to WikiServiceServer will
@@ -83,7 +85,7 @@ func RegisterWikiServiceServer(s grpc.ServiceRegistrar, srv WikiServiceServer) {
 }
 
 func _WikiService_GetDocContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DocTokenReq)
+	in := new(GetDocContentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -92,16 +94,16 @@ func _WikiService_GetDocContent_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/consultingapis.wiki.v1.WikiService/GetDocContent",
+		FullMethod: "/aggregatingapis.wiki.v1.WikiService/GetDocContent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WikiServiceServer).GetDocContent(ctx, req.(*DocTokenReq))
+		return srv.(WikiServiceServer).GetDocContent(ctx, req.(*GetDocContentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _WikiService_GetNodeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NodeReq)
+	in := new(GetNodeListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -110,10 +112,10 @@ func _WikiService_GetNodeList_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/consultingapis.wiki.v1.WikiService/GetNodeList",
+		FullMethod: "/aggregatingapis.wiki.v1.WikiService/GetNodeList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WikiServiceServer).GetNodeList(ctx, req.(*NodeReq))
+		return srv.(WikiServiceServer).GetNodeList(ctx, req.(*GetNodeListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -122,7 +124,7 @@ func _WikiService_GetNodeList_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var WikiService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "consultingapis.wiki.v1.WikiService",
+	ServiceName: "aggregatingapis.wiki.v1.WikiService",
 	HandlerType: (*WikiServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -135,5 +137,5 @@ var WikiService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "consultingapis/wiki/v1/wiki.proto",
+	Metadata: "aggregatingapis/wiki/v1/wiki.proto",
 }
