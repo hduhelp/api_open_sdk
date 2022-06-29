@@ -3,10 +3,6 @@ syntax = "proto3";
 package gatewayapis.server.v1;
 
 import "gatewayapis/server/v1/defined.proto";
-import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
-import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 
 option go_package = "./gatewayapis/server/v1";
 

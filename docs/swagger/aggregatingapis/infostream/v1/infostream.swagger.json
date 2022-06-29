@@ -16,14 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/infoStream/v1": {
+    "/infostream/v1": {
       "get": {
-        "operationId": "InfoStreamService_GetInfoStream",
+        "operationId": "InfoStreamService_GetInfostream",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1InfoStreamResp"
+              "$ref": "#/definitions/v1GetInfostreamResponse"
             }
           },
           "default": {
@@ -48,11 +48,11 @@
     }
   },
   "definitions": {
-    "InfoStreamRespData": {
+    "GetInfostreamResponseData": {
       "type": "object",
       "properties": {
         "weather": {
-          "$ref": "#/definitions/v1weatherResp"
+          "$ref": "#/definitions/v1WeatherResponse"
         },
         "schedule": {
           "$ref": "#/definitions/v1scheduleResp"
@@ -104,7 +104,7 @@
         }
       }
     },
-    "v1InfoStreamResp": {
+    "v1GetInfostreamResponse": {
       "type": "object",
       "properties": {
         "error": {
@@ -115,7 +115,66 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/InfoStreamRespData"
+          "$ref": "#/definitions/GetInfostreamResponseData"
+        }
+      }
+    },
+    "v1WeatherData": {
+      "type": "object",
+      "properties": {
+        "aqi": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "skyconNow": {
+          "type": "string"
+        },
+        "isRain": {
+          "type": "boolean"
+        },
+        "willStop": {
+          "type": "boolean"
+        },
+        "willRain": {
+          "type": "boolean"
+        },
+        "RainContinue": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "RainCome": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "temperatureMax": {
+          "type": "number",
+          "format": "float"
+        },
+        "temperatureMin": {
+          "type": "number",
+          "format": "float"
+        },
+        "temperatureNow": {
+          "type": "number",
+          "format": "float"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1WeatherResponse": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/definitions/v1WeatherData"
         }
       }
     },
@@ -413,65 +472,6 @@
         },
         "data": {
           "$ref": "#/definitions/v1sunRunData"
-        }
-      }
-    },
-    "v1weatherData": {
-      "type": "object",
-      "properties": {
-        "aqi": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "desc": {
-          "type": "string"
-        },
-        "skyconNow": {
-          "type": "string"
-        },
-        "isRain": {
-          "type": "boolean"
-        },
-        "willStop": {
-          "type": "boolean"
-        },
-        "willRain": {
-          "type": "boolean"
-        },
-        "RainContinue": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "RainCome": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "temperatureMax": {
-          "type": "number",
-          "format": "float"
-        },
-        "temperatureMin": {
-          "type": "number",
-          "format": "float"
-        },
-        "temperatureNow": {
-          "type": "number",
-          "format": "float"
-        },
-        "timestamp": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "v1weatherResp": {
-      "type": "object",
-      "properties": {
-        "available": {
-          "type": "boolean"
-        },
-        "data": {
-          "$ref": "#/definitions/v1weatherData"
         }
       }
     }

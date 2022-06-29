@@ -3,14 +3,10 @@ syntax = "proto3";
 package aggregatingapis.faq.v1;
 
 import "google/api/annotations.proto";
-import "google/api/httpbody.proto";
-import "google/protobuf/empty.proto";
-import "google/protobuf/struct.proto";
 
 option go_package = "./aggregatingapis/faq/v1";
 
 service FAQService {
-
   rpc CreateFAQ(CreateFAQRequest) returns (CreateFAQResponse) {
     option (google.api.http) = {
       post: "/faq/v1"
@@ -36,7 +32,7 @@ service FAQService {
       delete: "/faq/v1"
     };
   }
-  
+
   rpc GetFAQImage(GetFAQImageRequest) returns (GetFAQImageResponse) {
     option (google.api.http) = {
       get: "/faq/v1/image"

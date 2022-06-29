@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: aggregatingapis/infostream/v1/infostream.proto
 
-package infoStreamv1
+package infotreamv1
 
 import (
 	context "context"
@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type InfoStreamServiceClient interface {
-	GetInfoStream(ctx context.Context, in *InfoStreamReq, opts ...grpc.CallOption) (*InfoStreamResp, error)
+	GetInfostream(ctx context.Context, in *GetInfostreamRequest, opts ...grpc.CallOption) (*GetInfostreamResponse, error)
 }
 
 type infoStreamServiceClient struct {
@@ -33,9 +33,9 @@ func NewInfoStreamServiceClient(cc grpc.ClientConnInterface) InfoStreamServiceCl
 	return &infoStreamServiceClient{cc}
 }
 
-func (c *infoStreamServiceClient) GetInfoStream(ctx context.Context, in *InfoStreamReq, opts ...grpc.CallOption) (*InfoStreamResp, error) {
-	out := new(InfoStreamResp)
-	err := c.cc.Invoke(ctx, "/aggregatingapis.infoStream.v1.InfoStreamService/GetInfoStream", in, out, opts...)
+func (c *infoStreamServiceClient) GetInfostream(ctx context.Context, in *GetInfostreamRequest, opts ...grpc.CallOption) (*GetInfostreamResponse, error) {
+	out := new(GetInfostreamResponse)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.infotream.v1.InfoStreamService/GetInfostream", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *infoStreamServiceClient) GetInfoStream(ctx context.Context, in *InfoStr
 // All implementations must embed UnimplementedInfoStreamServiceServer
 // for forward compatibility
 type InfoStreamServiceServer interface {
-	GetInfoStream(context.Context, *InfoStreamReq) (*InfoStreamResp, error)
+	GetInfostream(context.Context, *GetInfostreamRequest) (*GetInfostreamResponse, error)
 	mustEmbedUnimplementedInfoStreamServiceServer()
 }
 
@@ -54,8 +54,8 @@ type InfoStreamServiceServer interface {
 type UnimplementedInfoStreamServiceServer struct {
 }
 
-func (UnimplementedInfoStreamServiceServer) GetInfoStream(context.Context, *InfoStreamReq) (*InfoStreamResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetInfoStream not implemented")
+func (UnimplementedInfoStreamServiceServer) GetInfostream(context.Context, *GetInfostreamRequest) (*GetInfostreamResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInfostream not implemented")
 }
 func (UnimplementedInfoStreamServiceServer) mustEmbedUnimplementedInfoStreamServiceServer() {}
 
@@ -70,20 +70,20 @@ func RegisterInfoStreamServiceServer(s grpc.ServiceRegistrar, srv InfoStreamServ
 	s.RegisterService(&InfoStreamService_ServiceDesc, srv)
 }
 
-func _InfoStreamService_GetInfoStream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InfoStreamReq)
+func _InfoStreamService_GetInfostream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetInfostreamRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoStreamServiceServer).GetInfoStream(ctx, in)
+		return srv.(InfoStreamServiceServer).GetInfostream(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aggregatingapis.infoStream.v1.InfoStreamService/GetInfoStream",
+		FullMethod: "/aggregatingapis.infotream.v1.InfoStreamService/GetInfostream",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoStreamServiceServer).GetInfoStream(ctx, req.(*InfoStreamReq))
+		return srv.(InfoStreamServiceServer).GetInfostream(ctx, req.(*GetInfostreamRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -92,12 +92,12 @@ func _InfoStreamService_GetInfoStream_Handler(srv interface{}, ctx context.Conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var InfoStreamService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "aggregatingapis.infoStream.v1.InfoStreamService",
+	ServiceName: "aggregatingapis.infotream.v1.InfoStreamService",
 	HandlerType: (*InfoStreamServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetInfoStream",
-			Handler:    _InfoStreamService_GetInfoStream_Handler,
+			MethodName: "GetInfostream",
+			Handler:    _InfoStreamService_GetInfostream_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

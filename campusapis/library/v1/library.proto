@@ -2,10 +2,7 @@ syntax = "proto3";
 
 package campusapis.library.v1;
 
-import "campusapis/schoolTime/defined.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
 
 option go_package = "./campusapis/library/v1";
 
@@ -37,7 +34,7 @@ service LibraryService {
       get: "/library/v1/book/marc/list"
     };
   }
-  
+
   //查询当前图书借阅记录
   rpc GetBookLendLast(GetBookLendLastRequest) returns (GetBookLendLastResponse) {
     option (google.api.http) = {
