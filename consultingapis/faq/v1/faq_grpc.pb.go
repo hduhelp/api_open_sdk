@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: aggregatingapis/faq/v1/faq.proto
+// source: consultingapis/faq/v1/faq.proto
 
 package faqv1
 
@@ -40,7 +40,7 @@ func NewFAQServiceClient(cc grpc.ClientConnInterface) FAQServiceClient {
 
 func (c *fAQServiceClient) CreateFAQ(ctx context.Context, in *CreateFAQRequest, opts ...grpc.CallOption) (*CreateFAQResponse, error) {
 	out := new(CreateFAQResponse)
-	err := c.cc.Invoke(ctx, "/aggregatingapis.faq.v1.FAQService/CreateFAQ", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/CreateFAQ", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func (c *fAQServiceClient) CreateFAQ(ctx context.Context, in *CreateFAQRequest, 
 
 func (c *fAQServiceClient) GetFAQ(ctx context.Context, in *GetFAQRequest, opts ...grpc.CallOption) (*GetFAQResponse, error) {
 	out := new(GetFAQResponse)
-	err := c.cc.Invoke(ctx, "/aggregatingapis.faq.v1.FAQService/GetFAQ", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/GetFAQ", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (c *fAQServiceClient) GetFAQ(ctx context.Context, in *GetFAQRequest, opts .
 
 func (c *fAQServiceClient) UpdateFAQ(ctx context.Context, in *UpdateFAQRequest, opts ...grpc.CallOption) (*UpdateFAQResponse, error) {
 	out := new(UpdateFAQResponse)
-	err := c.cc.Invoke(ctx, "/aggregatingapis.faq.v1.FAQService/UpdateFAQ", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/UpdateFAQ", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +67,7 @@ func (c *fAQServiceClient) UpdateFAQ(ctx context.Context, in *UpdateFAQRequest, 
 
 func (c *fAQServiceClient) DeleteFAQ(ctx context.Context, in *DeleteFAQRequest, opts ...grpc.CallOption) (*DeleteFAQResponse, error) {
 	out := new(DeleteFAQResponse)
-	err := c.cc.Invoke(ctx, "/aggregatingapis.faq.v1.FAQService/DeleteFAQ", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/DeleteFAQ", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func (c *fAQServiceClient) DeleteFAQ(ctx context.Context, in *DeleteFAQRequest, 
 
 func (c *fAQServiceClient) GetFAQImage(ctx context.Context, in *GetFAQImageRequest, opts ...grpc.CallOption) (*GetFAQImageResponse, error) {
 	out := new(GetFAQImageResponse)
-	err := c.cc.Invoke(ctx, "/aggregatingapis.faq.v1.FAQService/GetFAQImage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/GetFAQImage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func (c *fAQServiceClient) GetFAQImage(ctx context.Context, in *GetFAQImageReque
 
 func (c *fAQServiceClient) SearchFAQAnswerRichtext(ctx context.Context, in *SearchFAQAnswerRichtextRequest, opts ...grpc.CallOption) (*SearchFAQAnswerRichtextResponse, error) {
 	out := new(SearchFAQAnswerRichtextResponse)
-	err := c.cc.Invoke(ctx, "/aggregatingapis.faq.v1.FAQService/SearchFAQAnswerRichtext", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/consultingapis.faq.v1.FAQService/SearchFAQAnswerRichtext", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func _FAQService_CreateFAQ_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aggregatingapis.faq.v1.FAQService/CreateFAQ",
+		FullMethod: "/consultingapis.faq.v1.FAQService/CreateFAQ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FAQServiceServer).CreateFAQ(ctx, req.(*CreateFAQRequest))
@@ -168,7 +168,7 @@ func _FAQService_GetFAQ_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aggregatingapis.faq.v1.FAQService/GetFAQ",
+		FullMethod: "/consultingapis.faq.v1.FAQService/GetFAQ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FAQServiceServer).GetFAQ(ctx, req.(*GetFAQRequest))
@@ -186,7 +186,7 @@ func _FAQService_UpdateFAQ_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aggregatingapis.faq.v1.FAQService/UpdateFAQ",
+		FullMethod: "/consultingapis.faq.v1.FAQService/UpdateFAQ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FAQServiceServer).UpdateFAQ(ctx, req.(*UpdateFAQRequest))
@@ -204,7 +204,7 @@ func _FAQService_DeleteFAQ_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aggregatingapis.faq.v1.FAQService/DeleteFAQ",
+		FullMethod: "/consultingapis.faq.v1.FAQService/DeleteFAQ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FAQServiceServer).DeleteFAQ(ctx, req.(*DeleteFAQRequest))
@@ -222,7 +222,7 @@ func _FAQService_GetFAQImage_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aggregatingapis.faq.v1.FAQService/GetFAQImage",
+		FullMethod: "/consultingapis.faq.v1.FAQService/GetFAQImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FAQServiceServer).GetFAQImage(ctx, req.(*GetFAQImageRequest))
@@ -240,7 +240,7 @@ func _FAQService_SearchFAQAnswerRichtext_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aggregatingapis.faq.v1.FAQService/SearchFAQAnswerRichtext",
+		FullMethod: "/consultingapis.faq.v1.FAQService/SearchFAQAnswerRichtext",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FAQServiceServer).SearchFAQAnswerRichtext(ctx, req.(*SearchFAQAnswerRichtextRequest))
@@ -252,7 +252,7 @@ func _FAQService_SearchFAQAnswerRichtext_Handler(srv interface{}, ctx context.Co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var FAQService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "aggregatingapis.faq.v1.FAQService",
+	ServiceName: "consultingapis.faq.v1.FAQService",
 	HandlerType: (*FAQServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -281,5 +281,5 @@ var FAQService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "aggregatingapis/faq/v1/faq.proto",
+	Metadata: "consultingapis/faq/v1/faq.proto",
 }

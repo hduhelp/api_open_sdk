@@ -36,7 +36,7 @@ func NewTimeServiceClient(cc grpc.ClientConnInterface) TimeServiceClient {
 
 func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTimeResponse, error) {
 	out := new(GetTimeResponse)
-	err := c.cc.Invoke(ctx, "/flutterapis.time.v1.TimeService/GetTime", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.time.v1.TimeService/GetTime", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func _TimeService_GetTime_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/flutterapis.time.v1.TimeService/GetTime",
+		FullMethod: "/aggregatingapis.time.v1.TimeService/GetTime",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TimeServiceServer).GetTime(ctx, req.(*emptypb.Empty))
@@ -93,7 +93,7 @@ func _TimeService_GetTime_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TimeService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "flutterapis.time.v1.TimeService",
+	ServiceName: "aggregatingapis.time.v1.TimeService",
 	HandlerType: (*TimeServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

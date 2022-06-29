@@ -63,7 +63,7 @@ func RegisterTimeServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/flutterapis.time.v1.TimeService/GetTime", runtime.WithHTTPPathPattern("/time/v1"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aggregatingapis.time.v1.TimeService/GetTime", runtime.WithHTTPPathPattern("/time/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -126,7 +126,7 @@ func RegisterTimeServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/flutterapis.time.v1.TimeService/GetTime", runtime.WithHTTPPathPattern("/time/v1"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/aggregatingapis.time.v1.TimeService/GetTime", runtime.WithHTTPPathPattern("/time/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
