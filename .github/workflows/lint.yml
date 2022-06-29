@@ -6,6 +6,13 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - "**.go"
+      - "**.go.json"
+      - "go.mod"
+      - "go.sum"
+      - ".golangci.yaml"
+      - ".github/workflows/lint.yaml"
   
 jobs:
   lint:
