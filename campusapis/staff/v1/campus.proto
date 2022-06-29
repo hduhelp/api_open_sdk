@@ -111,9 +111,9 @@ service CampusService {
   //获取学生GPA信息
   rpc GetStudentGPA(google.protobuf.Empty) returns (GetStudentExamResponse) {
     option (google.api.http) = {
-      get: "/staff/v1/student/exam"
+      get: "/staff/v1/student/gpa"
       additional_bindings {
-        get: "/student/exam"
+        get: "/student/gpa"
       }
     };
   }
