@@ -481,6 +481,29 @@
         ]
       }
     },
+    "/staff/v1/student/gpa": {
+      "get": {
+        "summary": "获取学生GPA信息",
+        "operationId": "CampusService_GetStudentGPA",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentExamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/student/grade": {
       "get": {
         "summary": "获取学生成绩信息",
@@ -808,6 +831,29 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/gpa": {
+      "get": {
+        "summary": "获取学生GPA信息",
+        "operationId": "CampusService_GetStudentGPA2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentExamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "CampusService"
         ]
