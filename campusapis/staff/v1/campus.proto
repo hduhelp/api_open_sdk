@@ -109,7 +109,7 @@ service CampusService {
     };
   }
   //获取学生GPA信息
-  rpc GetStudentGPA(google.protobuf.Empty) returns (GetStudentExamResponse) {
+  rpc GetStudentGPA(google.protobuf.Empty) returns (GetStudentGPAResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/gpa"
       additional_bindings {
@@ -416,7 +416,7 @@ message StudentExam {
 }
 
 // 查询学生GPA返回体
-message GetStudentGpaResponse {
+message GetStudentGPAResponse {
   uint32 error = 1;
   string msg = 2;
   // 绩点详情

@@ -44,7 +44,7 @@ type CampusServiceClient interface {
 	//获取学生考试信息
 	GetStudentExam(ctx context.Context, in *GetStudentExamRequest, opts ...grpc.CallOption) (*GetStudentExamResponse, error)
 	//获取学生GPA信息
-	GetStudentGPA(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentExamResponse, error)
+	GetStudentGPA(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentGPAResponse, error)
 	//推送学生门禁通行信息
 	PostStudentGateAccess(ctx context.Context, in *PostStudentGateAccessRequest, opts ...grpc.CallOption) (*PostStudentGateAccessResponse, error)
 	//获取学生留校信息
@@ -155,8 +155,8 @@ func (c *campusServiceClient) GetStudentExam(ctx context.Context, in *GetStudent
 	return out, nil
 }
 
-func (c *campusServiceClient) GetStudentGPA(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentExamResponse, error) {
-	out := new(GetStudentExamResponse)
+func (c *campusServiceClient) GetStudentGPA(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentGPAResponse, error) {
+	out := new(GetStudentGPAResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentGPA", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -234,7 +234,7 @@ type CampusServiceServer interface {
 	//获取学生考试信息
 	GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error)
 	//获取学生GPA信息
-	GetStudentGPA(context.Context, *emptypb.Empty) (*GetStudentExamResponse, error)
+	GetStudentGPA(context.Context, *emptypb.Empty) (*GetStudentGPAResponse, error)
 	//推送学生门禁通行信息
 	PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error)
 	//获取学生留校信息
@@ -281,7 +281,7 @@ func (UnimplementedCampusServiceServer) GetStudentGrade(context.Context, *GetStu
 func (UnimplementedCampusServiceServer) GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentExam not implemented")
 }
-func (UnimplementedCampusServiceServer) GetStudentGPA(context.Context, *emptypb.Empty) (*GetStudentExamResponse, error) {
+func (UnimplementedCampusServiceServer) GetStudentGPA(context.Context, *emptypb.Empty) (*GetStudentGPAResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentGPA not implemented")
 }
 func (UnimplementedCampusServiceServer) PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error) {

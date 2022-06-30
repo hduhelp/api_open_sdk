@@ -489,7 +489,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetStudentExamResponse"
+              "$ref": "#/definitions/v1GetStudentGPAResponse"
             }
           },
           "default": {
@@ -844,7 +844,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetStudentExamResponse"
+              "$ref": "#/definitions/v1GetStudentGPAResponse"
             }
           },
           "default": {
@@ -1107,6 +1107,40 @@
         }
       }
     },
+    "v1GPAPerSemester": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "semester": {
+          "type": "string",
+          "title": "学期"
+        },
+        "gradePointAverage": {
+          "type": "string",
+          "title": "绩点"
+        },
+        "staffID": {
+          "type": "string",
+          "title": "学号"
+        }
+      }
+    },
+    "v1GPATotal": {
+      "type": "object",
+      "properties": {
+        "gradePointAverage": {
+          "type": "string",
+          "title": "绩点"
+        },
+        "staffID": {
+          "type": "string",
+          "title": "学号"
+        }
+      }
+    },
     "v1GetFreshmanBaseInfoResponse": {
       "type": "object",
       "properties": {
@@ -1347,6 +1381,23 @@
         }
       },
       "title": "查询学生考试返回体"
+    },
+    "v1GetStudentGPAResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1StudentGPA",
+          "title": "绩点详情"
+        }
+      },
+      "title": "查询学生GPA返回体"
     },
     "v1GetStudentGradeResponse": {
       "type": "object",
@@ -1677,6 +1728,23 @@
         "staffId": {
           "type": "string",
           "title": "学号"
+        }
+      },
+      "title": "考试详情"
+    },
+    "v1StudentGPA": {
+      "type": "object",
+      "properties": {
+        "perSemester": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GPAPerSemester"
+          },
+          "title": "每学期绩点"
+        },
+        "total": {
+          "$ref": "#/definitions/v1GPATotal",
+          "title": "总绩点"
         }
       },
       "title": "考试详情"
