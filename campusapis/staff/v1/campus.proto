@@ -32,6 +32,12 @@ service CampusService {
     };
   }
 
+  rpc GetStudentStatus(google.protobuf.Empty) returns (GetStudentSchoolRollStatusResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/schoolRollStatus"
+    };
+  }
+
   //获取学生贫困生申请记录
   rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
     option (google.api.http) = {
@@ -232,6 +238,18 @@ message GetStudentInfoResponse {
   string teacherId = 8;
   //学生辅导员姓名
   string teacherName = 9;
+}
+
+// 查询学生学籍状态返回体
+message GetStudentSchoolRollStatusResponse {
+  //学号
+  string staffId = 1;
+  //学生姓名
+  string staffName = 2;
+  //学籍状态代码
+  string statusCode = 3;
+  //学籍状态中文描述
+  string statusDesc = 4;
 }
 
 //查询贫困生信息返回体

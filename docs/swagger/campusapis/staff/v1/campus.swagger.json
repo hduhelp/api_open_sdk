@@ -654,6 +654,28 @@
         ]
       }
     },
+    "/staff/v1/student/schoolRollStatus": {
+      "get": {
+        "operationId": "CampusService_GetStudentStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentSchoolRollStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/student/select": {
       "get": {
         "summary": "获取学生选课信息",
@@ -1548,6 +1570,28 @@
         }
       },
       "title": "奖学金信息"
+    },
+    "v1GetStudentSchoolRollStatusResponse": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "学生姓名"
+        },
+        "statusCode": {
+          "type": "string",
+          "title": "学籍状态代码"
+        },
+        "statusDesc": {
+          "type": "string",
+          "title": "学籍状态中文描述"
+        }
+      },
+      "title": "查询学生学籍状态返回体"
     },
     "v1GetStudentSelectResponse": {
       "type": "object",
