@@ -27,7 +27,8 @@ type CampusServiceClient interface {
 	GetPersonInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPersonInfoResponse, error)
 	//获取学生基本信息
 	GetStudentInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentInfoResponse, error)
-	GetStudentStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error)
+	//获取学生学籍状态
+	GetStudentSchoolRollStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error)
 	//获取学生贫困生申请记录
 	GetStudentNeedyInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentNeedyInfoResponse, error)
 	//获取学生宿舍信息
@@ -84,9 +85,9 @@ func (c *campusServiceClient) GetStudentInfo(ctx context.Context, in *emptypb.Em
 	return out, nil
 }
 
-func (c *campusServiceClient) GetStudentStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error) {
+func (c *campusServiceClient) GetStudentSchoolRollStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error) {
 	out := new(GetStudentSchoolRollStatusResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentSchoolRollStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -227,7 +228,8 @@ type CampusServiceServer interface {
 	GetPersonInfo(context.Context, *emptypb.Empty) (*GetPersonInfoResponse, error)
 	//获取学生基本信息
 	GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error)
-	GetStudentStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error)
+	//获取学生学籍状态
+	GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error)
 	//获取学生贫困生申请记录
 	GetStudentNeedyInfo(context.Context, *emptypb.Empty) (*GetStudentNeedyInfoResponse, error)
 	//获取学生宿舍信息
@@ -268,8 +270,8 @@ func (UnimplementedCampusServiceServer) GetPersonInfo(context.Context, *emptypb.
 func (UnimplementedCampusServiceServer) GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentInfo not implemented")
 }
-func (UnimplementedCampusServiceServer) GetStudentStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStudentStatus not implemented")
+func (UnimplementedCampusServiceServer) GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentSchoolRollStatus not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentNeedyInfo(context.Context, *emptypb.Empty) (*GetStudentNeedyInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentNeedyInfo not implemented")
@@ -361,20 +363,20 @@ func _CampusService_GetStudentInfo_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CampusService_GetStudentStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CampusService_GetStudentSchoolRollStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CampusServiceServer).GetStudentStatus(ctx, in)
+		return srv.(CampusServiceServer).GetStudentSchoolRollStatus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentStatus",
+		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentSchoolRollStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).GetStudentStatus(ctx, req.(*emptypb.Empty))
+		return srv.(CampusServiceServer).GetStudentSchoolRollStatus(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -647,8 +649,8 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CampusService_GetStudentInfo_Handler,
 		},
 		{
-			MethodName: "GetStudentStatus",
-			Handler:    _CampusService_GetStudentStatus_Handler,
+			MethodName: "GetStudentSchoolRollStatus",
+			Handler:    _CampusService_GetStudentSchoolRollStatus_Handler,
 		},
 		{
 			MethodName: "GetStudentNeedyInfo",

@@ -656,7 +656,8 @@
     },
     "/staff/v1/student/schoolRollStatus": {
       "get": {
-        "operationId": "CampusService_GetStudentStatus",
+        "summary": "获取学生学籍状态",
+        "operationId": "CampusService_GetStudentSchoolRollStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
