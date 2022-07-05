@@ -27,6 +27,8 @@ type CampusServiceClient interface {
 	GetPersonInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPersonInfoResponse, error)
 	//获取学生基本信息
 	GetStudentInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentInfoResponse, error)
+	//获取学生学籍状态
+	GetStudentSchoolRollStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error)
 	//获取学生贫困生申请记录
 	GetStudentNeedyInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentNeedyInfoResponse, error)
 	//获取学生宿舍信息
@@ -43,6 +45,8 @@ type CampusServiceClient interface {
 	GetStudentGrade(ctx context.Context, in *GetStudentGradeRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error)
 	//获取学生考试信息
 	GetStudentExam(ctx context.Context, in *GetStudentExamRequest, opts ...grpc.CallOption) (*GetStudentExamResponse, error)
+	//获取学生GPA信息
+	GetStudentGPA(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentGPAResponse, error)
 	//推送学生门禁通行信息
 	PostStudentGateAccess(ctx context.Context, in *PostStudentGateAccessRequest, opts ...grpc.CallOption) (*PostStudentGateAccessResponse, error)
 	//获取学生留校信息
@@ -75,6 +79,15 @@ func (c *campusServiceClient) GetPersonInfo(ctx context.Context, in *emptypb.Emp
 func (c *campusServiceClient) GetStudentInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentInfoResponse, error) {
 	out := new(GetStudentInfoResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *campusServiceClient) GetStudentSchoolRollStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error) {
+	out := new(GetStudentSchoolRollStatusResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentSchoolRollStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,6 +166,15 @@ func (c *campusServiceClient) GetStudentExam(ctx context.Context, in *GetStudent
 	return out, nil
 }
 
+func (c *campusServiceClient) GetStudentGPA(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentGPAResponse, error) {
+	out := new(GetStudentGPAResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentGPA", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *campusServiceClient) PostStudentGateAccess(ctx context.Context, in *PostStudentGateAccessRequest, opts ...grpc.CallOption) (*PostStudentGateAccessResponse, error) {
 	out := new(PostStudentGateAccessResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/PostStudentGateAccess", in, out, opts...)
@@ -206,6 +228,8 @@ type CampusServiceServer interface {
 	GetPersonInfo(context.Context, *emptypb.Empty) (*GetPersonInfoResponse, error)
 	//获取学生基本信息
 	GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error)
+	//获取学生学籍状态
+	GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error)
 	//获取学生贫困生申请记录
 	GetStudentNeedyInfo(context.Context, *emptypb.Empty) (*GetStudentNeedyInfoResponse, error)
 	//获取学生宿舍信息
@@ -222,6 +246,8 @@ type CampusServiceServer interface {
 	GetStudentGrade(context.Context, *GetStudentGradeRequest) (*GetStudentGradeResponse, error)
 	//获取学生考试信息
 	GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error)
+	//获取学生GPA信息
+	GetStudentGPA(context.Context, *emptypb.Empty) (*GetStudentGPAResponse, error)
 	//推送学生门禁通行信息
 	PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error)
 	//获取学生留校信息
@@ -244,6 +270,9 @@ func (UnimplementedCampusServiceServer) GetPersonInfo(context.Context, *emptypb.
 }
 func (UnimplementedCampusServiceServer) GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentInfo not implemented")
+}
+func (UnimplementedCampusServiceServer) GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentSchoolRollStatus not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentNeedyInfo(context.Context, *emptypb.Empty) (*GetStudentNeedyInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentNeedyInfo not implemented")
@@ -268,6 +297,9 @@ func (UnimplementedCampusServiceServer) GetStudentGrade(context.Context, *GetStu
 }
 func (UnimplementedCampusServiceServer) GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentExam not implemented")
+}
+func (UnimplementedCampusServiceServer) GetStudentGPA(context.Context, *emptypb.Empty) (*GetStudentGPAResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentGPA not implemented")
 }
 func (UnimplementedCampusServiceServer) PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostStudentGateAccess not implemented")
@@ -329,6 +361,24 @@ func _CampusService_GetStudentInfo_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CampusServiceServer).GetStudentInfo(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CampusService_GetStudentSchoolRollStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetStudentSchoolRollStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentSchoolRollStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetStudentSchoolRollStatus(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -477,6 +527,24 @@ func _CampusService_GetStudentExam_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_GetStudentGPA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetStudentGPA(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentGPA",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetStudentGPA(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CampusService_PostStudentGateAccess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PostStudentGateAccessRequest)
 	if err := dec(in); err != nil {
@@ -583,6 +651,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CampusService_GetStudentInfo_Handler,
 		},
 		{
+			MethodName: "GetStudentSchoolRollStatus",
+			Handler:    _CampusService_GetStudentSchoolRollStatus_Handler,
+		},
+		{
 			MethodName: "GetStudentNeedyInfo",
 			Handler:    _CampusService_GetStudentNeedyInfo_Handler,
 		},
@@ -613,6 +685,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStudentExam",
 			Handler:    _CampusService_GetStudentExam_Handler,
+		},
+		{
+			MethodName: "GetStudentGPA",
+			Handler:    _CampusService_GetStudentGPA_Handler,
 		},
 		{
 			MethodName: "PostStudentGateAccess",
