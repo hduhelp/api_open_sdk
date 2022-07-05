@@ -35,6 +35,9 @@ service CampusService {
   rpc GetStudentSchoolRollStatus(google.protobuf.Empty) returns (GetStudentSchoolRollStatusResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/schoolRollStatus"
+      additional_bindings {
+        get: "/student/schoolRollStatus"
+      }
     };
   }
 
@@ -251,6 +254,13 @@ message StudentInfo {
 
 // 查询学生学籍状态返回体
 message GetStudentSchoolRollStatusResponse {
+  uint32 error = 1;
+  string msg = 2;
+  StudentSchoolRollStatus data = 3;
+}
+
+// 学生学籍状态
+message StudentSchoolRollStatus {
   //学号
   string staffId = 1;
   //学生姓名

@@ -478,6 +478,29 @@
         ]
       }
     },
+    "/staff/v1/student/gpa": {
+      "get": {
+        "summary": "获取学生GPA信息",
+        "operationId": "CampusService_GetStudentGPA",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentGPAResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/student/grade": {
       "get": {
         "summary": "获取学生成绩信息",
@@ -620,6 +643,29 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/student/schoolRollStatus": {
+      "get": {
+        "summary": "获取学生学籍状态",
+        "operationId": "CampusService_GetStudentSchoolRollStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentSchoolRollStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "CampusService"
         ]
@@ -804,6 +850,29 @@
         ]
       }
     },
+    "/student/gpa": {
+      "get": {
+        "summary": "获取学生GPA信息",
+        "operationId": "CampusService_GetStudentGPA2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentGPAResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/student/grade": {
       "get": {
         "summary": "获取学生成绩信息",
@@ -946,6 +1015,29 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/schoolRollStatus": {
+      "get": {
+        "summary": "获取学生学籍状态",
+        "operationId": "CampusService_GetStudentSchoolRollStatus2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentSchoolRollStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "CampusService"
         ]
@@ -1222,6 +1314,40 @@
         }
       }
     },
+    "v1GPAPerSemester": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "semester": {
+          "type": "string",
+          "title": "学期"
+        },
+        "gradePointAverage": {
+          "type": "string",
+          "title": "绩点"
+        },
+        "staffID": {
+          "type": "string",
+          "title": "学号"
+        }
+      }
+    },
+    "v1GPATotal": {
+      "type": "object",
+      "properties": {
+        "gradePointAverage": {
+          "type": "string",
+          "title": "绩点"
+        },
+        "staffID": {
+          "type": "string",
+          "title": "学号"
+        }
+      }
+    },
     "v1GetFreshmanBaseInfoResponse": {
       "type": "object",
       "properties": {
@@ -1373,6 +1499,23 @@
       },
       "title": "查询学生考试返回体"
     },
+    "v1GetStudentGPAResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1StudentGPA",
+          "title": "绩点详情"
+        }
+      },
+      "title": "查询学生GPA返回体"
+    },
     "v1GetStudentGradeResponse": {
       "type": "object",
       "properties": {
@@ -1444,6 +1587,22 @@
         }
       },
       "title": "GetStudentRewardsResponse 奖学金查询返回体"
+    },
+    "v1GetStudentSchoolRollStatusResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1StudentSchoolRollStatus"
+        }
+      },
+      "title": "查询学生学籍状态返回体"
     },
     "v1GetStudentStaySchoolInfoResponse": {
       "type": "object",
@@ -1608,6 +1767,23 @@
         "staffId": {
           "type": "string",
           "title": "学号"
+        }
+      },
+      "title": "考试详情"
+    },
+    "v1StudentGPA": {
+      "type": "object",
+      "properties": {
+        "perSemester": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GPAPerSemester"
+          },
+          "title": "每学期绩点"
+        },
+        "total": {
+          "$ref": "#/definitions/v1GPATotal",
+          "title": "总绩点"
         }
       },
       "title": "考试详情"
@@ -1778,6 +1954,28 @@
         }
       },
       "title": "奖学金信息"
+    },
+    "v1StudentSchoolRollStatus": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "学生姓名"
+        },
+        "statusCode": {
+          "type": "string",
+          "title": "学籍状态代码"
+        },
+        "statusDesc": {
+          "type": "string",
+          "title": "学籍状态中文描述"
+        }
+      },
+      "title": "学生学籍状态"
     },
     "v1StudentStaySchoolInfo": {
       "type": "object",
