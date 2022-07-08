@@ -5,7 +5,6 @@ package campusapis.staff.v1;
 import "campusapis/staff/base.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "school/school.proto";
 
 option go_package = "./campusapis/staff/v1";
 
@@ -36,6 +35,9 @@ service CampusService {
   rpc GetStudentSchoolRollStatus(google.protobuf.Empty) returns (GetStudentSchoolRollStatusResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/schoolRollStatus"
+      additional_bindings {
+        get: "/student/schoolRollStatus"
+      }
     };
   }
 
@@ -58,7 +60,7 @@ service CampusService {
     };
   }
   //获取学生生日信息
-  rpc GetStudentBirthdayInfo(google.protobuf.Empty) returns (GetStudentBirthdayResponse) {
+  rpc GetStudentBirthdayInfo(google.protobuf.Empty) returns (GetStudentBirthdayInfoResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/birthday"
       additional_bindings {
@@ -76,24 +78,20 @@ service CampusService {
     };
   }
   //获取学生奖学金信息
-  rpc GetStudentRewards(SemesterRequest) returns (GetStudentRewardsResponse) {
+  rpc GetStudentRewards(GetStudentRewardsRequest) returns (GetStudentRewardsResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/reward"
-      response_body: "items"
       additional_bindings {
         get: "/student/reward"
-        response_body: "items"
       }
     };
   }
   //获取学生选课信息
-  rpc GetStudentSelect(SemesterRequest) returns (GetStudentSelectResponse) {
+  rpc GetStudentCourseSelections(GetStudentCourseSelectionsRequest) returns (GetStudentCourseSelectionsResponse) {
     option (google.api.http) = {
       get: "/staff/v1/student/select"
-      response_body: "items"
       additional_bindings {
         get: "/student/select"
-        response_body: "items"
       }
     };
   }
@@ -140,7 +138,7 @@ service CampusService {
   //下方为新生服务
 
   //获取新生基本信息
-  rpc GetFreshmanBaseInfo(FreshmanKeywordRequest) returns (GetFreshmanBaseInfoResponse) {
+  rpc GetFreshmanBaseInfo(GetFreshmanBaseInfoRequest) returns (GetFreshmanBaseInfoResponse) {
     option (google.api.http) = {
       get: "/staff/v1/freshman/base"
       additional_bindings {
@@ -148,8 +146,9 @@ service CampusService {
       }
     };
   }
+
   //获取新生详细信息
-  rpc GetFreshmanInfo(FreshmanKeywordRequest) returns (GetFreshmanInfoResponse) {
+  rpc GetFreshmanDetail(GetFreshmanDetailRequest) returns (GetFreshmanDetailResponse) {
     option (google.api.http) = {
       get: "/staff/v1/freshman/info"
       additional_bindings {
@@ -157,11 +156,11 @@ service CampusService {
       }
     };
   }
+
   //获取新生宿舍信息
-  rpc GetFreshmanRoommates(FreshmanKeywordRequest) returns (GetFreshmanRoommatesResponse) {
+  rpc GetFreshmanRoommates(GetFreshmanRoommatesRequest) returns (GetFreshmanRoommatesResponse) {
     option (google.api.http) = {
       get: "/staff/v1/freshman/roommate"
-      response_body: "items"
       additional_bindings {
         get: "/freshman/roommate"
       }
@@ -171,6 +170,12 @@ service CampusService {
 
 //查询人员信息返回体
 message GetPersonInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  PersonInfo data = 3;
+}
+
+message PersonInfo {
   //学工号
   string staffId = 1;
   //姓名
@@ -221,6 +226,12 @@ message SemesterRequest {
 
 // GetStudentInfoResponse 查询学生信息返回体
 message GetStudentInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  StudentInfo data = 3;
+}
+
+message StudentInfo {
   //学号
   string staffId = 1;
   //学生姓名
@@ -243,6 +254,13 @@ message GetStudentInfoResponse {
 
 // 查询学生学籍状态返回体
 message GetStudentSchoolRollStatusResponse {
+  uint32 error = 1;
+  string msg = 2;
+  StudentSchoolRollStatus data = 3;
+}
+
+// 学生学籍状态
+message StudentSchoolRollStatus {
   //学号
   string staffId = 1;
   //学生姓名
@@ -255,6 +273,13 @@ message GetStudentSchoolRollStatusResponse {
 
 //查询贫困生信息返回体
 message GetStudentNeedyInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  StudentNeedyInfo data = 3;
+}
+
+//贫困生信息
+message StudentNeedyInfo {
   //学工号
   string staffId = 1;
   //姓名
@@ -263,6 +288,9 @@ message GetStudentNeedyInfoResponse {
   int32 sex = 3;
   //是否贫困生
   bool needyStudent = 4;
+  //每学年贫困详情
+  repeated Nested items = 5;
+
   //某年贫困详情
   message Nested {
     //特定学年
@@ -270,12 +298,16 @@ message GetStudentNeedyInfoResponse {
     //是否是贫困生
     bool needyStudent = 2;
   }
-  //每学年贫困详情
-  repeated Nested items = 5;
 }
 
-// GetStudentDormInfoResponse 查询学生寝室信息返回体
+// 查询学生寝室信息返回体
 message GetStudentDormInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  DormInfo data = 3;
+}
+
+message DormInfo {
   //学工号
   string staffId = 1;
   //楼号
@@ -284,8 +316,15 @@ message GetStudentDormInfoResponse {
   string room = 3;
 }
 
-// GetStudentBirthdayResponse 学生生日查询返回体
-message GetStudentBirthdayResponse {
+// GetStudentBirthdayInfoResponse 学生生日查询返回体
+message GetStudentBirthdayInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  StudentBirthdayInfo data = 3;
+}
+
+//学生生日信息
+message StudentBirthdayInfo {
   //学工号
   string staffId = 1;
   //姓名
@@ -307,62 +346,68 @@ message GetStudentBirthdaysInRequest {
 //  GetStudentBirthdaysInResponse 查询某天生日所有人员-返回体
 message GetStudentBirthdaysInResponse {
   // 生日详情列表
-  repeated GetStudentBirthdayResponse birthdays = 1;
+  repeated StudentBirthdayInfo birthdays = 1;
 }
 
 // GetStudentRewardsResponse 奖学金查询返回体
 message GetStudentRewardsResponse {
-  // 奖学金信息
-  message Nested {
-    //学工号
-    string staffID = 1;
-    //姓名
-    string staffName = 2;
-    //奖项名
-    string rewardName = 3;
-    //学年
-    string schoolYear = 4;
-    //学期
-    string semester = 5;
-    //奖项等级
-    string rewardLevel = 6;
-  }
+  uint32 error = 1;
+  string msg = 2;
   // 奖学金列表
-  repeated Nested items = 1;
+  repeated StudentReward data = 3;
 }
 
-// GetStudentSelectResponse 学生选课查询返回体
-message GetStudentSelectResponse {
-  //选课详情
-  message Nested {
-    //学年
-    string schoolYear = 1;
-    //学期
-    string semester = 2;
-    //学号
-    string staffID = 3;
-    //姓名
-    string staffName = 4;
-    //选课号
-    string selectCode = 5;
-    //课程中文名
-    string courseName = 6;
-    //课程号
-    string courseCode = 7;
-    //教师工号
-    string teacherID = 8;
-    //教师姓名
-    string teacherName = 9;
-    //上课时间中文描述
-    string classTime = 10;
-    //教室
-    string classRoom = 11;
-  }
+// 奖学金信息
+message StudentReward {
+  //学工号
+  string staffID = 1;
+  //姓名
+  string staffName = 2;
+  //奖项名
+  string rewardName = 3;
+  //学年
+  string schoolYear = 4;
+  //学期
+  string semester = 5;
+  //奖项等级
+  string rewardLevel = 6;
+}
+
+// 学生选课查询返回体
+message GetStudentCourseSelectionsResponse {
+  uint32 error = 1;
+  string msg = 2;
   //详情列表
-  repeated Nested items = 1;
+  repeated StudentCourseSelection data = 3;
 }
 
-// GetStudentGradeResponse 查询学生成绩返回体
+//选课详情
+message StudentCourseSelection {
+  //学年
+  string schoolYear = 1;
+  //学期
+  string semester = 2;
+  //学号
+  string staffID = 3;
+  //姓名
+  string staffName = 4;
+  //选课号
+  string selectCode = 5;
+  //课程中文名
+  string courseName = 6;
+  //课程号
+  string courseCode = 7;
+  //教师工号
+  string teacherID = 8;
+  //教师姓名
+  string teacherName = 9;
+  //上课时间中文描述
+  string classTime = 10;
+  //教室
+  string classRoom = 11;
+}
+
+// 查询学生成绩返回体
 message GetStudentGradeResponse {
   uint32 error = 1;
   string msg = 2;
@@ -491,12 +536,25 @@ message PostStudentGateAccessRequest {
 
 // PostStudentGateAccessResponse  推送学生门禁通行信息
 message PostStudentGateAccessResponse {
-  bool done = 1; //是否完成
-  string message = 2; //完成信息
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+
+  message Data {
+    bool done = 1; //是否完成
+    string message = 2; //完成信息
+  }
 }
 
 // 留校生信息查询-返回体
 message GetStudentStaySchoolInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  StudentStaySchoolInfo data = 3;
+}
+
+// 留校生信息
+message StudentStaySchoolInfo {
   // 学工号
   string staffId = 1;
   // 姓名
@@ -529,6 +587,33 @@ message GetStudentStaySchoolInfoResponse {
   string cancelStatus = 15;
 }
 
+message GetFreshmanBaseInfoRequest {
+  //学号
+  string staffId = 1;
+  //录取通知书号或者是准考证号，不同省份并不一样
+  string offerId = 2;
+  //身份证号
+  string idCardNo = 3;
+}
+
+message GetFreshmanDetailRequest {
+  //学号
+  string staffId = 1;
+  //录取通知书号或者是准考证号，不同省份并不一样
+  string offerId = 2;
+  //身份证号
+  string idCardNo = 3;
+}
+
+message GetFreshmanRoommatesRequest {
+  //学号
+  string staffId = 1;
+  //录取通知书号或者是准考证号，不同省份并不一样
+  string offerId = 2;
+  //身份证号
+  string idCardNo = 3;
+}
+
 //新生三要素请求，依次判断（学号）、（录取通知书或准考证号）、（身份证号），要求其中最少两项不为空
 //有鉴权时接受鉴权内学号，忽略请求参数
 message FreshmanKeywordRequest {
@@ -540,8 +625,14 @@ message FreshmanKeywordRequest {
   string idCardNo = 3;
 }
 
-//新生基本信息
 message GetFreshmanBaseInfoResponse {
+  uint32 error = 1;
+  string msg = 2;
+  FreshmanBaseInfo data = 3;
+}
+
+//新生基本信息
+message FreshmanBaseInfo {
   //学号
   string staffId = 1;
   //姓名
@@ -556,8 +647,14 @@ message GetFreshmanBaseInfoResponse {
   string province = 6;
 }
 
+message GetFreshmanDetailResponse {
+  uint32 error = 1;
+  string msg = 2;
+  FreshmanDetail data = 3;
+}
+
 //新生详细信息
-message GetFreshmanInfoResponse {
+message FreshmanDetail {
   //学号
   string staffId = 1;
   //姓名
@@ -609,12 +706,15 @@ message GetFreshmanInfoResponse {
 
 //新生室友查询
 message GetFreshmanRoommatesResponse {
-  message Roommate {
-    //室友姓名
-    string staffName = 1;
-    string qq = 2;
-    string phone = 3;
-  }
+  uint32 error = 1;
+  string msg = 2;
   // 室友列表
-  repeated Roommate items = 1;
+  repeated FreshmanRoommate data = 3;
+}
+
+message FreshmanRoommate {
+  //室友姓名
+  string staffName = 1;
+  string qq = 2;
+  string phone = 3;
 }

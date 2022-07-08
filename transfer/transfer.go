@@ -129,7 +129,6 @@ func (r *Request) make() {
 		option.apply(r)
 	}
 	r.setToken()
-	return
 }
 
 func (r *Request) doneWithError(code int, err error) {

@@ -66,7 +66,7 @@ func (c *gateManagerServiceClient) PostRegisterGateEvent(ctx context.Context, in
 }
 
 // GateManagerServiceServer is the server API for GateManagerService service.
-// All implementations should embed UnimplementedGateManagerServiceServer
+// All implementations must embed UnimplementedGateManagerServiceServer
 // for forward compatibility
 type GateManagerServiceServer interface {
 	//门禁回调，给第三方服务使用
@@ -75,9 +75,10 @@ type GateManagerServiceServer interface {
 	PostStudentGateAccess(context.Context, *PostStudentGateAccessRequest) (*PostStudentGateAccessResponse, error)
 	//注册门禁事件回调至应用，仅供内部服务调用，对应服务需要实现GateCallbackService服务，重复推送视为累加
 	PostRegisterGateEvent(context.Context, *PostRegisterGateEventRequest) (*PostRegisterGateEventResponse, error)
+	mustEmbedUnimplementedGateManagerServiceServer()
 }
 
-// UnimplementedGateManagerServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedGateManagerServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedGateManagerServiceServer struct {
 }
 
@@ -90,6 +91,7 @@ func (UnimplementedGateManagerServiceServer) PostStudentGateAccess(context.Conte
 func (UnimplementedGateManagerServiceServer) PostRegisterGateEvent(context.Context, *PostRegisterGateEventRequest) (*PostRegisterGateEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostRegisterGateEvent not implemented")
 }
+func (UnimplementedGateManagerServiceServer) mustEmbedUnimplementedGateManagerServiceServer() {}
 
 // UnsafeGateManagerServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to GateManagerServiceServer will

@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
+option go_package = "./campusapis/teaching/v1";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     title: "Teaching API";
@@ -27,21 +28,17 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   consumes: "application/json";
   produces: "application/json";
 };
-option go_package = "./campusapis/teaching/v1";
 
 service TeachingService {
   // 获取学生/教师课程表
   rpc GetSchedule(GetScheduleRequest) returns (GetScheduleResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/schedule"
-      response_body: "items"
       additional_bindings {
         get: "/teaching/schedule"
-        response_body: "items"
       }
       additional_bindings {
         get: "/student/v2/schedule"
-        response_body: "items"
       }
     };
   }
@@ -70,37 +67,31 @@ service TeachingService {
   rpc GetGlobalSchedule(GetGlobalScheduleRequest) returns (GetGlobalScheduleResponse) {}
 
   // 获取所有教室列表
-  rpc GetClassrooms(GetClassroomsRequest) returns (ClassroomsResponse) {
+  rpc GetClassrooms(GetClassroomsRequest) returns (GetClassroomsResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom"
-      response_body: "items"
       additional_bindings {
         get: "/teaching/classroom"
-        response_body: "items"
       }
     };
   }
 
   // 获取某一教室的使用情况
-  rpc GetClassroomUsages(GetClassroomUsageRequest) returns (ClassroomUsagesResponse) {
+  rpc GetClassroomUsages(GetClassroomUsagesRequest) returns (GetClassroomUsagesResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom/usage"
-      response_body: "items"
       additional_bindings {
         get: "/teaching/classroom/usage"
-        response_body: "items"
       }
     };
   }
 
   // 获取所有空教室列表
-  rpc GetUnusedClassrooms(GetUnusedClassroomsRequest) returns (ClassroomsResponse) {
+  rpc GetUnusedClassrooms(GetUnusedClassroomsRequest) returns (GetUnusedClassroomsResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/classroom/unused"
-      response_body: "items"
       additional_bindings {
         get: "/teaching/classroom/unused"
-        response_body: "items"
       }
     };
   }
@@ -127,7 +118,9 @@ message GetScheduleRequest {
 
 // GetScheduleResponse 课表列表返回体
 message GetScheduleResponse {
-  repeated ScheduleResponseCourse items = 1;
+  uint32 error = 1;
+  string msg = 2;
+  repeated ScheduleResponseCourse data = 3;
 }
 
 // ScheduleResponseCourse 单课程返回体（如高等数学课）
@@ -262,6 +255,17 @@ message StaffInfo {
 
 // GetScheduleNowResponse 今天，明天课表信息返回体
 message GetScheduleNowResponse {
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+
+  message Data {
+    // 今天课表
+    repeated Course today = 1;
+    // 明天课表
+    repeated Course tomorrow = 2;
+  }
+
   // 课表
   message Course {
     // 开始节次
@@ -281,18 +285,20 @@ message GetScheduleNowResponse {
     // 时长
     string duration = 8;
   }
-  // 今天课表
-  repeated Course today = 1;
-  // 明天课表
-  repeated Course tomorrow = 2;
 }
 
 // GetScheduleNowV2Response 今天，明天课表信息返回体
 message GetScheduleNowV2Response {
-  // 今天的课表
-  repeated ScheduleResponseCourse Today = 1;
-  // 明天的课表
-  repeated ScheduleResponseCourse Tomorrow = 2;
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+
+  message Data {
+    // 今天的课表
+    repeated ScheduleResponseCourse Today = 1;
+    // 明天的课表
+    repeated ScheduleResponseCourse Tomorrow = 2;
+  }
 }
 
 // GetGlobalScheduleRequest 全局课表请求体
@@ -311,7 +317,9 @@ message GetGlobalScheduleRequest {
 
 // GetGlobalScheduleResponse 全局课表返回体
 message GetGlobalScheduleResponse {
-  repeated ScheduleResponseCourse items = 1;
+  uint32 error = 1;
+  string msg = 2;
+  repeated ScheduleResponseCourse data = 3;
 }
 
 // GetClassroomsRequest 教室列表查询关键字
@@ -322,11 +330,11 @@ message GetClassroomsRequest {
   string semester = 2;
 }
 
-message GetClassroomUsageRequest {
+message GetClassroomUsagesRequest {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
     example: "{ \"locationID\": \"111222\" }"
     json_schema: {
-      title: "GetClassroomUsageRequest"
+      title: "GetClassroomUsagesRequest"
       description: "教室使用情况请求体"
       required: [
         "locationID"
@@ -360,10 +368,18 @@ message GetUnusedClassroomsRequest {
   int32 section = 5;
 }
 
-// ClassroomsResponse 教室查询返回体
-message ClassroomsResponse {
+message GetClassroomsResponse {
+  uint32 error = 1;
+  string msg = 2;
   // 教室列表
-  repeated Classroom items = 1;
+  repeated Classroom data = 3;
+}
+
+message GetUnusedClassroomsResponse {
+  uint32 error = 1;
+  string msg = 2;
+  // 教室列表
+  repeated Classroom data = 3;
 }
 
 // 教室信息
@@ -382,25 +398,28 @@ message Classroom {
   string buildingName = 6;
 }
 
-// ClassroomUsagesResponse 教室使用情况返回体
-message ClassroomUsagesResponse {
-  // 内嵌信息
-  message Nested {
-    // 教室信息
-    Classroom classroom = 1;
-    // 星期
-    int32 weekday = 2;
-    // 周次列表
-    repeated int32 week = 3;
-    // 节次列表
-    repeated int32 Section = 4;
-    // 课程内部ID
-    string ClassID = 5;
-    // 课程号
-    string CourseCode = 6;
-    // 课程名
-    string CourseName = 7;
-  }
+// GetClassroomUsagesResponse 教室使用情况返回体
+message GetClassroomUsagesResponse {
+  uint32 error = 1;
+  string msg = 2;
   // 教室使用情况列表
-  repeated Nested items = 1;
+  repeated ClassroomUsage data = 3;
+}
+
+// 教室使用情况
+message ClassroomUsage {
+  // 教室信息
+  Classroom classroom = 1;
+  // 星期
+  int32 weekday = 2;
+  // 周次列表
+  repeated int32 week = 3;
+  // 节次列表
+  repeated int32 Section = 4;
+  // 课程内部ID
+  string ClassID = 5;
+  // 课程号
+  string CourseCode = 6;
+  // 课程名
+  string CourseName = 7;
 }

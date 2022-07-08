@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -24,11 +23,11 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServerRegisterServiceClient interface {
 	//注册服务实例
-	PostRegistServiceInstance(ctx context.Context, in *PostRegistServiceInstanceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	PostRegistServiceInstance(ctx context.Context, in *PostRegistServiceInstanceRequest, opts ...grpc.CallOption) (*PostRegistServiceInstanceResponse, error)
 	//注册服务HTTP路由
-	PostRegistHTTPRouters(ctx context.Context, in *PostRegistRoutersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	PostRegistHTTPRouters(ctx context.Context, in *PostRegistHTTPRoutersRequest, opts ...grpc.CallOption) (*PostRegistHTTPRoutersResponse, error)
 	//注册服务GRPC方法
-	PostRegistGRPCMethods(ctx context.Context, in *PostRegistGRPCMethodsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	PostRegistGRPCMethods(ctx context.Context, in *PostRegistGRPCMethodsRequest, opts ...grpc.CallOption) (*PostRegistGRPCMethodsResponse, error)
 }
 
 type serverRegisterServiceClient struct {
@@ -39,8 +38,8 @@ func NewServerRegisterServiceClient(cc grpc.ClientConnInterface) ServerRegisterS
 	return &serverRegisterServiceClient{cc}
 }
 
-func (c *serverRegisterServiceClient) PostRegistServiceInstance(ctx context.Context, in *PostRegistServiceInstanceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *serverRegisterServiceClient) PostRegistServiceInstance(ctx context.Context, in *PostRegistServiceInstanceRequest, opts ...grpc.CallOption) (*PostRegistServiceInstanceResponse, error) {
+	out := new(PostRegistServiceInstanceResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -48,8 +47,8 @@ func (c *serverRegisterServiceClient) PostRegistServiceInstance(ctx context.Cont
 	return out, nil
 }
 
-func (c *serverRegisterServiceClient) PostRegistHTTPRouters(ctx context.Context, in *PostRegistRoutersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *serverRegisterServiceClient) PostRegistHTTPRouters(ctx context.Context, in *PostRegistHTTPRoutersRequest, opts ...grpc.CallOption) (*PostRegistHTTPRoutersResponse, error) {
+	out := new(PostRegistHTTPRoutersResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -57,8 +56,8 @@ func (c *serverRegisterServiceClient) PostRegistHTTPRouters(ctx context.Context,
 	return out, nil
 }
 
-func (c *serverRegisterServiceClient) PostRegistGRPCMethods(ctx context.Context, in *PostRegistGRPCMethodsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *serverRegisterServiceClient) PostRegistGRPCMethods(ctx context.Context, in *PostRegistGRPCMethodsRequest, opts ...grpc.CallOption) (*PostRegistGRPCMethodsResponse, error) {
+	out := new(PostRegistGRPCMethodsResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -67,30 +66,32 @@ func (c *serverRegisterServiceClient) PostRegistGRPCMethods(ctx context.Context,
 }
 
 // ServerRegisterServiceServer is the server API for ServerRegisterService service.
-// All implementations should embed UnimplementedServerRegisterServiceServer
+// All implementations must embed UnimplementedServerRegisterServiceServer
 // for forward compatibility
 type ServerRegisterServiceServer interface {
 	//注册服务实例
-	PostRegistServiceInstance(context.Context, *PostRegistServiceInstanceRequest) (*emptypb.Empty, error)
+	PostRegistServiceInstance(context.Context, *PostRegistServiceInstanceRequest) (*PostRegistServiceInstanceResponse, error)
 	//注册服务HTTP路由
-	PostRegistHTTPRouters(context.Context, *PostRegistRoutersRequest) (*emptypb.Empty, error)
+	PostRegistHTTPRouters(context.Context, *PostRegistHTTPRoutersRequest) (*PostRegistHTTPRoutersResponse, error)
 	//注册服务GRPC方法
-	PostRegistGRPCMethods(context.Context, *PostRegistGRPCMethodsRequest) (*emptypb.Empty, error)
+	PostRegistGRPCMethods(context.Context, *PostRegistGRPCMethodsRequest) (*PostRegistGRPCMethodsResponse, error)
+	mustEmbedUnimplementedServerRegisterServiceServer()
 }
 
-// UnimplementedServerRegisterServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedServerRegisterServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedServerRegisterServiceServer struct {
 }
 
-func (UnimplementedServerRegisterServiceServer) PostRegistServiceInstance(context.Context, *PostRegistServiceInstanceRequest) (*emptypb.Empty, error) {
+func (UnimplementedServerRegisterServiceServer) PostRegistServiceInstance(context.Context, *PostRegistServiceInstanceRequest) (*PostRegistServiceInstanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostRegistServiceInstance not implemented")
 }
-func (UnimplementedServerRegisterServiceServer) PostRegistHTTPRouters(context.Context, *PostRegistRoutersRequest) (*emptypb.Empty, error) {
+func (UnimplementedServerRegisterServiceServer) PostRegistHTTPRouters(context.Context, *PostRegistHTTPRoutersRequest) (*PostRegistHTTPRoutersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostRegistHTTPRouters not implemented")
 }
-func (UnimplementedServerRegisterServiceServer) PostRegistGRPCMethods(context.Context, *PostRegistGRPCMethodsRequest) (*emptypb.Empty, error) {
+func (UnimplementedServerRegisterServiceServer) PostRegistGRPCMethods(context.Context, *PostRegistGRPCMethodsRequest) (*PostRegistGRPCMethodsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostRegistGRPCMethods not implemented")
 }
+func (UnimplementedServerRegisterServiceServer) mustEmbedUnimplementedServerRegisterServiceServer() {}
 
 // UnsafeServerRegisterServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ServerRegisterServiceServer will
@@ -122,7 +123,7 @@ func _ServerRegisterService_PostRegistServiceInstance_Handler(srv interface{}, c
 }
 
 func _ServerRegisterService_PostRegistHTTPRouters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostRegistRoutersRequest)
+	in := new(PostRegistHTTPRoutersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -134,7 +135,7 @@ func _ServerRegisterService_PostRegistHTTPRouters_Handler(srv interface{}, ctx c
 		FullMethod: "/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerRegisterServiceServer).PostRegistHTTPRouters(ctx, req.(*PostRegistRoutersRequest))
+		return srv.(ServerRegisterServiceServer).PostRegistHTTPRouters(ctx, req.(*PostRegistHTTPRoutersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

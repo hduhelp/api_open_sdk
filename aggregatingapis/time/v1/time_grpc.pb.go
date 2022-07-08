@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TimeServiceClient interface {
-	GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TimeResp, error)
+	GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTimeResponse, error)
 }
 
 type timeServiceClient struct {
@@ -34,9 +34,9 @@ func NewTimeServiceClient(cc grpc.ClientConnInterface) TimeServiceClient {
 	return &timeServiceClient{cc}
 }
 
-func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TimeResp, error) {
-	out := new(TimeResp)
-	err := c.cc.Invoke(ctx, "/flutterapis.time.v1.TimeService/GetTime", in, out, opts...)
+func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTimeResponse, error) {
+	out := new(GetTimeResponse)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.time.v1.TimeService/GetTime", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -44,19 +44,21 @@ func (c *timeServiceClient) GetTime(ctx context.Context, in *emptypb.Empty, opts
 }
 
 // TimeServiceServer is the server API for TimeService service.
-// All implementations should embed UnimplementedTimeServiceServer
+// All implementations must embed UnimplementedTimeServiceServer
 // for forward compatibility
 type TimeServiceServer interface {
-	GetTime(context.Context, *emptypb.Empty) (*TimeResp, error)
+	GetTime(context.Context, *emptypb.Empty) (*GetTimeResponse, error)
+	mustEmbedUnimplementedTimeServiceServer()
 }
 
-// UnimplementedTimeServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedTimeServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedTimeServiceServer struct {
 }
 
-func (UnimplementedTimeServiceServer) GetTime(context.Context, *emptypb.Empty) (*TimeResp, error) {
+func (UnimplementedTimeServiceServer) GetTime(context.Context, *emptypb.Empty) (*GetTimeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTime not implemented")
 }
+func (UnimplementedTimeServiceServer) mustEmbedUnimplementedTimeServiceServer() {}
 
 // UnsafeTimeServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TimeServiceServer will
@@ -79,7 +81,7 @@ func _TimeService_GetTime_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/flutterapis.time.v1.TimeService/GetTime",
+		FullMethod: "/aggregatingapis.time.v1.TimeService/GetTime",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TimeServiceServer).GetTime(ctx, req.(*emptypb.Empty))
@@ -91,7 +93,7 @@ func _TimeService_GetTime_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TimeService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "flutterapis.time.v1.TimeService",
+	ServiceName: "aggregatingapis.time.v1.TimeService",
 	HandlerType: (*TimeServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

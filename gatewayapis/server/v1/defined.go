@@ -21,7 +21,7 @@ func (x *PostRegistGRPCMethodsRequest) FormGRPCServer(server interface {
 	}
 }
 
-func (x *PostRegistRoutersRequest) FromGinEngine(e *gin.Engine) {
+func (x *PostRegistHTTPRoutersRequest) FromGinEngine(e *gin.Engine) {
 	x.Routers = make([]*HTTPRouter, 0)
 	for _, route := range e.Routes() {
 		x.Routers = append(x.Routers, &HTTPRouter{

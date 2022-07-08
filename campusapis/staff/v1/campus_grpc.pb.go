@@ -34,13 +34,13 @@ type CampusServiceClient interface {
 	//获取学生宿舍信息
 	GetStudentDormInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentDormInfoResponse, error)
 	//获取学生生日信息
-	GetStudentBirthdayInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentBirthdayResponse, error)
+	GetStudentBirthdayInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentBirthdayInfoResponse, error)
 	//获取生日为指定日期的学生列表
 	GetStudentBirthdaysIn(ctx context.Context, in *GetStudentBirthdaysInRequest, opts ...grpc.CallOption) (*GetStudentBirthdaysInResponse, error)
 	//获取学生奖学金信息
-	GetStudentRewards(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentRewardsResponse, error)
+	GetStudentRewards(ctx context.Context, in *GetStudentRewardsRequest, opts ...grpc.CallOption) (*GetStudentRewardsResponse, error)
 	//获取学生选课信息
-	GetStudentSelect(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentSelectResponse, error)
+	GetStudentCourseSelections(ctx context.Context, in *GetStudentCourseSelectionsRequest, opts ...grpc.CallOption) (*GetStudentCourseSelectionsResponse, error)
 	//获取学生成绩信息
 	GetStudentGrade(ctx context.Context, in *GetStudentGradeRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error)
 	//获取学生考试信息
@@ -52,11 +52,11 @@ type CampusServiceClient interface {
 	//获取学生留校信息
 	GetStudentStaySchoolInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentStaySchoolInfoResponse, error)
 	//获取新生基本信息
-	GetFreshmanBaseInfo(ctx context.Context, in *FreshmanKeywordRequest, opts ...grpc.CallOption) (*GetFreshmanBaseInfoResponse, error)
+	GetFreshmanBaseInfo(ctx context.Context, in *GetFreshmanBaseInfoRequest, opts ...grpc.CallOption) (*GetFreshmanBaseInfoResponse, error)
 	//获取新生详细信息
-	GetFreshmanInfo(ctx context.Context, in *FreshmanKeywordRequest, opts ...grpc.CallOption) (*GetFreshmanInfoResponse, error)
+	GetFreshmanDetail(ctx context.Context, in *GetFreshmanDetailRequest, opts ...grpc.CallOption) (*GetFreshmanDetailResponse, error)
 	//获取新生宿舍信息
-	GetFreshmanRoommates(ctx context.Context, in *FreshmanKeywordRequest, opts ...grpc.CallOption) (*GetFreshmanRoommatesResponse, error)
+	GetFreshmanRoommates(ctx context.Context, in *GetFreshmanRoommatesRequest, opts ...grpc.CallOption) (*GetFreshmanRoommatesResponse, error)
 }
 
 type campusServiceClient struct {
@@ -112,8 +112,8 @@ func (c *campusServiceClient) GetStudentDormInfo(ctx context.Context, in *emptyp
 	return out, nil
 }
 
-func (c *campusServiceClient) GetStudentBirthdayInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentBirthdayResponse, error) {
-	out := new(GetStudentBirthdayResponse)
+func (c *campusServiceClient) GetStudentBirthdayInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentBirthdayInfoResponse, error) {
+	out := new(GetStudentBirthdayInfoResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentBirthdayInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -130,7 +130,7 @@ func (c *campusServiceClient) GetStudentBirthdaysIn(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (c *campusServiceClient) GetStudentRewards(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentRewardsResponse, error) {
+func (c *campusServiceClient) GetStudentRewards(ctx context.Context, in *GetStudentRewardsRequest, opts ...grpc.CallOption) (*GetStudentRewardsResponse, error) {
 	out := new(GetStudentRewardsResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentRewards", in, out, opts...)
 	if err != nil {
@@ -139,9 +139,9 @@ func (c *campusServiceClient) GetStudentRewards(ctx context.Context, in *Semeste
 	return out, nil
 }
 
-func (c *campusServiceClient) GetStudentSelect(ctx context.Context, in *SemesterRequest, opts ...grpc.CallOption) (*GetStudentSelectResponse, error) {
-	out := new(GetStudentSelectResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentSelect", in, out, opts...)
+func (c *campusServiceClient) GetStudentCourseSelections(ctx context.Context, in *GetStudentCourseSelectionsRequest, opts ...grpc.CallOption) (*GetStudentCourseSelectionsResponse, error) {
+	out := new(GetStudentCourseSelectionsResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentCourseSelections", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -193,7 +193,7 @@ func (c *campusServiceClient) GetStudentStaySchoolInfo(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *campusServiceClient) GetFreshmanBaseInfo(ctx context.Context, in *FreshmanKeywordRequest, opts ...grpc.CallOption) (*GetFreshmanBaseInfoResponse, error) {
+func (c *campusServiceClient) GetFreshmanBaseInfo(ctx context.Context, in *GetFreshmanBaseInfoRequest, opts ...grpc.CallOption) (*GetFreshmanBaseInfoResponse, error) {
 	out := new(GetFreshmanBaseInfoResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo", in, out, opts...)
 	if err != nil {
@@ -202,16 +202,16 @@ func (c *campusServiceClient) GetFreshmanBaseInfo(ctx context.Context, in *Fresh
 	return out, nil
 }
 
-func (c *campusServiceClient) GetFreshmanInfo(ctx context.Context, in *FreshmanKeywordRequest, opts ...grpc.CallOption) (*GetFreshmanInfoResponse, error) {
-	out := new(GetFreshmanInfoResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetFreshmanInfo", in, out, opts...)
+func (c *campusServiceClient) GetFreshmanDetail(ctx context.Context, in *GetFreshmanDetailRequest, opts ...grpc.CallOption) (*GetFreshmanDetailResponse, error) {
+	out := new(GetFreshmanDetailResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetFreshmanDetail", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *campusServiceClient) GetFreshmanRoommates(ctx context.Context, in *FreshmanKeywordRequest, opts ...grpc.CallOption) (*GetFreshmanRoommatesResponse, error) {
+func (c *campusServiceClient) GetFreshmanRoommates(ctx context.Context, in *GetFreshmanRoommatesRequest, opts ...grpc.CallOption) (*GetFreshmanRoommatesResponse, error) {
 	out := new(GetFreshmanRoommatesResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetFreshmanRoommates", in, out, opts...)
 	if err != nil {
@@ -221,7 +221,7 @@ func (c *campusServiceClient) GetFreshmanRoommates(ctx context.Context, in *Fres
 }
 
 // CampusServiceServer is the server API for CampusService service.
-// All implementations should embed UnimplementedCampusServiceServer
+// All implementations must embed UnimplementedCampusServiceServer
 // for forward compatibility
 type CampusServiceServer interface {
 	//获取员工信息
@@ -235,13 +235,13 @@ type CampusServiceServer interface {
 	//获取学生宿舍信息
 	GetStudentDormInfo(context.Context, *emptypb.Empty) (*GetStudentDormInfoResponse, error)
 	//获取学生生日信息
-	GetStudentBirthdayInfo(context.Context, *emptypb.Empty) (*GetStudentBirthdayResponse, error)
+	GetStudentBirthdayInfo(context.Context, *emptypb.Empty) (*GetStudentBirthdayInfoResponse, error)
 	//获取生日为指定日期的学生列表
 	GetStudentBirthdaysIn(context.Context, *GetStudentBirthdaysInRequest) (*GetStudentBirthdaysInResponse, error)
 	//获取学生奖学金信息
-	GetStudentRewards(context.Context, *SemesterRequest) (*GetStudentRewardsResponse, error)
+	GetStudentRewards(context.Context, *GetStudentRewardsRequest) (*GetStudentRewardsResponse, error)
 	//获取学生选课信息
-	GetStudentSelect(context.Context, *SemesterRequest) (*GetStudentSelectResponse, error)
+	GetStudentCourseSelections(context.Context, *GetStudentCourseSelectionsRequest) (*GetStudentCourseSelectionsResponse, error)
 	//获取学生成绩信息
 	GetStudentGrade(context.Context, *GetStudentGradeRequest) (*GetStudentGradeResponse, error)
 	//获取学生考试信息
@@ -253,14 +253,15 @@ type CampusServiceServer interface {
 	//获取学生留校信息
 	GetStudentStaySchoolInfo(context.Context, *emptypb.Empty) (*GetStudentStaySchoolInfoResponse, error)
 	//获取新生基本信息
-	GetFreshmanBaseInfo(context.Context, *FreshmanKeywordRequest) (*GetFreshmanBaseInfoResponse, error)
+	GetFreshmanBaseInfo(context.Context, *GetFreshmanBaseInfoRequest) (*GetFreshmanBaseInfoResponse, error)
 	//获取新生详细信息
-	GetFreshmanInfo(context.Context, *FreshmanKeywordRequest) (*GetFreshmanInfoResponse, error)
+	GetFreshmanDetail(context.Context, *GetFreshmanDetailRequest) (*GetFreshmanDetailResponse, error)
 	//获取新生宿舍信息
-	GetFreshmanRoommates(context.Context, *FreshmanKeywordRequest) (*GetFreshmanRoommatesResponse, error)
+	GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error)
+	mustEmbedUnimplementedCampusServiceServer()
 }
 
-// UnimplementedCampusServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedCampusServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedCampusServiceServer struct {
 }
 
@@ -279,17 +280,17 @@ func (UnimplementedCampusServiceServer) GetStudentNeedyInfo(context.Context, *em
 func (UnimplementedCampusServiceServer) GetStudentDormInfo(context.Context, *emptypb.Empty) (*GetStudentDormInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentDormInfo not implemented")
 }
-func (UnimplementedCampusServiceServer) GetStudentBirthdayInfo(context.Context, *emptypb.Empty) (*GetStudentBirthdayResponse, error) {
+func (UnimplementedCampusServiceServer) GetStudentBirthdayInfo(context.Context, *emptypb.Empty) (*GetStudentBirthdayInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentBirthdayInfo not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentBirthdaysIn(context.Context, *GetStudentBirthdaysInRequest) (*GetStudentBirthdaysInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentBirthdaysIn not implemented")
 }
-func (UnimplementedCampusServiceServer) GetStudentRewards(context.Context, *SemesterRequest) (*GetStudentRewardsResponse, error) {
+func (UnimplementedCampusServiceServer) GetStudentRewards(context.Context, *GetStudentRewardsRequest) (*GetStudentRewardsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentRewards not implemented")
 }
-func (UnimplementedCampusServiceServer) GetStudentSelect(context.Context, *SemesterRequest) (*GetStudentSelectResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStudentSelect not implemented")
+func (UnimplementedCampusServiceServer) GetStudentCourseSelections(context.Context, *GetStudentCourseSelectionsRequest) (*GetStudentCourseSelectionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentCourseSelections not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentGrade(context.Context, *GetStudentGradeRequest) (*GetStudentGradeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentGrade not implemented")
@@ -306,15 +307,16 @@ func (UnimplementedCampusServiceServer) PostStudentGateAccess(context.Context, *
 func (UnimplementedCampusServiceServer) GetStudentStaySchoolInfo(context.Context, *emptypb.Empty) (*GetStudentStaySchoolInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentStaySchoolInfo not implemented")
 }
-func (UnimplementedCampusServiceServer) GetFreshmanBaseInfo(context.Context, *FreshmanKeywordRequest) (*GetFreshmanBaseInfoResponse, error) {
+func (UnimplementedCampusServiceServer) GetFreshmanBaseInfo(context.Context, *GetFreshmanBaseInfoRequest) (*GetFreshmanBaseInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFreshmanBaseInfo not implemented")
 }
-func (UnimplementedCampusServiceServer) GetFreshmanInfo(context.Context, *FreshmanKeywordRequest) (*GetFreshmanInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFreshmanInfo not implemented")
+func (UnimplementedCampusServiceServer) GetFreshmanDetail(context.Context, *GetFreshmanDetailRequest) (*GetFreshmanDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFreshmanDetail not implemented")
 }
-func (UnimplementedCampusServiceServer) GetFreshmanRoommates(context.Context, *FreshmanKeywordRequest) (*GetFreshmanRoommatesResponse, error) {
+func (UnimplementedCampusServiceServer) GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFreshmanRoommates not implemented")
 }
+func (UnimplementedCampusServiceServer) mustEmbedUnimplementedCampusServiceServer() {}
 
 // UnsafeCampusServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to CampusServiceServer will
@@ -454,7 +456,7 @@ func _CampusService_GetStudentBirthdaysIn_Handler(srv interface{}, ctx context.C
 }
 
 func _CampusService_GetStudentRewards_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SemesterRequest)
+	in := new(GetStudentRewardsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -466,25 +468,25 @@ func _CampusService_GetStudentRewards_Handler(srv interface{}, ctx context.Conte
 		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentRewards",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).GetStudentRewards(ctx, req.(*SemesterRequest))
+		return srv.(CampusServiceServer).GetStudentRewards(ctx, req.(*GetStudentRewardsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CampusService_GetStudentSelect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SemesterRequest)
+func _CampusService_GetStudentCourseSelections_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStudentCourseSelectionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CampusServiceServer).GetStudentSelect(ctx, in)
+		return srv.(CampusServiceServer).GetStudentCourseSelections(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentSelect",
+		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentCourseSelections",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).GetStudentSelect(ctx, req.(*SemesterRequest))
+		return srv.(CampusServiceServer).GetStudentCourseSelections(ctx, req.(*GetStudentCourseSelectionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -580,7 +582,7 @@ func _CampusService_GetStudentStaySchoolInfo_Handler(srv interface{}, ctx contex
 }
 
 func _CampusService_GetFreshmanBaseInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FreshmanKeywordRequest)
+	in := new(GetFreshmanBaseInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -592,31 +594,31 @@ func _CampusService_GetFreshmanBaseInfo_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).GetFreshmanBaseInfo(ctx, req.(*FreshmanKeywordRequest))
+		return srv.(CampusServiceServer).GetFreshmanBaseInfo(ctx, req.(*GetFreshmanBaseInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CampusService_GetFreshmanInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FreshmanKeywordRequest)
+func _CampusService_GetFreshmanDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreshmanDetailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CampusServiceServer).GetFreshmanInfo(ctx, in)
+		return srv.(CampusServiceServer).GetFreshmanDetail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/campusapis.staff.v1.CampusService/GetFreshmanInfo",
+		FullMethod: "/campusapis.staff.v1.CampusService/GetFreshmanDetail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).GetFreshmanInfo(ctx, req.(*FreshmanKeywordRequest))
+		return srv.(CampusServiceServer).GetFreshmanDetail(ctx, req.(*GetFreshmanDetailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CampusService_GetFreshmanRoommates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FreshmanKeywordRequest)
+	in := new(GetFreshmanRoommatesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -628,7 +630,7 @@ func _CampusService_GetFreshmanRoommates_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/campusapis.staff.v1.CampusService/GetFreshmanRoommates",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).GetFreshmanRoommates(ctx, req.(*FreshmanKeywordRequest))
+		return srv.(CampusServiceServer).GetFreshmanRoommates(ctx, req.(*GetFreshmanRoommatesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -673,8 +675,8 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CampusService_GetStudentRewards_Handler,
 		},
 		{
-			MethodName: "GetStudentSelect",
-			Handler:    _CampusService_GetStudentSelect_Handler,
+			MethodName: "GetStudentCourseSelections",
+			Handler:    _CampusService_GetStudentCourseSelections_Handler,
 		},
 		{
 			MethodName: "GetStudentGrade",
@@ -701,8 +703,8 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CampusService_GetFreshmanBaseInfo_Handler,
 		},
 		{
-			MethodName: "GetFreshmanInfo",
-			Handler:    _CampusService_GetFreshmanInfo_Handler,
+			MethodName: "GetFreshmanDetail",
+			Handler:    _CampusService_GetFreshmanDetail_Handler,
 		},
 		{
 			MethodName: "GetFreshmanRoommates",

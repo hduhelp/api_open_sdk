@@ -65,12 +65,12 @@
     "/freshman/info": {
       "get": {
         "summary": "获取新生详细信息",
-        "operationId": "CampusService_GetFreshmanInfo2",
+        "operationId": "CampusService_GetFreshmanDetail2",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetFreshmanInfoResponse"
+              "$ref": "#/definitions/v1GetFreshmanDetailResponse"
             }
           },
           "default": {
@@ -226,12 +226,12 @@
     "/staff/v1/freshman/info": {
       "get": {
         "summary": "获取新生详细信息",
-        "operationId": "CampusService_GetFreshmanInfo",
+        "operationId": "CampusService_GetFreshmanDetail",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetFreshmanInfoResponse"
+              "$ref": "#/definitions/v1GetFreshmanDetailResponse"
             }
           },
           "default": {
@@ -275,12 +275,9 @@
         "operationId": "CampusService_GetFreshmanRoommates",
         "responses": {
           "200": {
-            "description": "室友列表",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/GetFreshmanRoommatesResponseRoommate"
-              }
+              "$ref": "#/definitions/v1GetFreshmanRoommatesResponse"
             }
           },
           "default": {
@@ -349,7 +346,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+              "$ref": "#/definitions/v1GetStudentBirthdayInfoResponse"
             }
           },
           "default": {
@@ -618,12 +615,9 @@
         "operationId": "CampusService_GetStudentRewards",
         "responses": {
           "200": {
-            "description": "奖学金列表",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
-              }
+              "$ref": "#/definitions/v1GetStudentRewardsResponse"
             }
           },
           "default": {
@@ -680,15 +674,12 @@
     "/staff/v1/student/select": {
       "get": {
         "summary": "获取学生选课信息",
-        "operationId": "CampusService_GetStudentSelect",
+        "operationId": "CampusService_GetStudentCourseSelections",
         "responses": {
           "200": {
-            "description": "详情列表",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetStudentSelectResponseNested"
-              }
+              "$ref": "#/definitions/v1GetStudentCourseSelectionsResponse"
             }
           },
           "default": {
@@ -727,7 +718,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+              "$ref": "#/definitions/v1GetStudentBirthdayInfoResponse"
             }
           },
           "default": {
@@ -996,12 +987,9 @@
         "operationId": "CampusService_GetStudentRewards2",
         "responses": {
           "200": {
-            "description": "奖学金列表",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
-              }
+              "$ref": "#/definitions/v1GetStudentRewardsResponse"
             }
           },
           "default": {
@@ -1032,18 +1020,38 @@
         ]
       }
     },
+    "/student/schoolRollStatus": {
+      "get": {
+        "summary": "获取学生学籍状态",
+        "operationId": "CampusService_GetStudentSchoolRollStatus2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentSchoolRollStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/student/select": {
       "get": {
         "summary": "获取学生选课信息",
-        "operationId": "CampusService_GetStudentSelect2",
+        "operationId": "CampusService_GetStudentCourseSelections2",
         "responses": {
           "200": {
-            "description": "详情列表",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetStudentSelectResponseNested"
-              }
+              "$ref": "#/definitions/v1GetStudentCourseSelectionsResponse"
             }
           },
           "default": {
@@ -1076,20 +1084,31 @@
     }
   },
   "definitions": {
-    "GetFreshmanRoommatesResponseRoommate": {
+    "PostStudentGateAccessResponseData": {
       "type": "object",
       "properties": {
-        "staffName": {
-          "type": "string",
-          "title": "室友姓名"
+        "done": {
+          "type": "boolean"
         },
-        "qq": {
-          "type": "string"
-        },
-        "phone": {
+        "message": {
           "type": "string"
         }
       }
+    },
+    "StudentNeedyInfoNested": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "integer",
+          "format": "int32",
+          "title": "特定学年"
+        },
+        "needyStudent": {
+          "type": "boolean",
+          "title": "是否是贫困生"
+        }
+      },
+      "title": "某年贫困详情"
     },
     "campusapisstaffType": {
       "type": "string",
@@ -1130,41 +1149,24 @@
         }
       }
     },
-    "v1GPAPerSemester": {
+    "v1DormInfo": {
       "type": "object",
       "properties": {
-        "schoolYear": {
+        "staffId": {
           "type": "string",
-          "title": "学年"
+          "title": "学工号"
         },
-        "semester": {
+        "building": {
           "type": "string",
-          "title": "学期"
+          "title": "楼号"
         },
-        "gradePointAverage": {
+        "room": {
           "type": "string",
-          "title": "绩点"
-        },
-        "staffID": {
-          "type": "string",
-          "title": "学号"
+          "title": "寝室号"
         }
       }
     },
-    "v1GPATotal": {
-      "type": "object",
-      "properties": {
-        "gradePointAverage": {
-          "type": "string",
-          "title": "绩点"
-        },
-        "staffID": {
-          "type": "string",
-          "title": "学号"
-        }
-      }
-    },
-    "v1GetFreshmanBaseInfoResponse": {
+    "v1FreshmanBaseInfo": {
       "type": "object",
       "properties": {
         "staffId": {
@@ -1194,7 +1196,7 @@
       },
       "title": "新生基本信息"
     },
-    "v1GetFreshmanInfoResponse": {
+    "v1FreshmanDetail": {
       "type": "object",
       "properties": {
         "staffId": {
@@ -1297,13 +1299,99 @@
       },
       "title": "新生详细信息"
     },
+    "v1FreshmanRoommate": {
+      "type": "object",
+      "properties": {
+        "staffName": {
+          "type": "string",
+          "title": "室友姓名"
+        },
+        "qq": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GPAPerSemester": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "semester": {
+          "type": "string",
+          "title": "学期"
+        },
+        "gradePointAverage": {
+          "type": "string",
+          "title": "绩点"
+        },
+        "staffID": {
+          "type": "string",
+          "title": "学号"
+        }
+      }
+    },
+    "v1GPATotal": {
+      "type": "object",
+      "properties": {
+        "gradePointAverage": {
+          "type": "string",
+          "title": "绩点"
+        },
+        "staffID": {
+          "type": "string",
+          "title": "学号"
+        }
+      }
+    },
+    "v1GetFreshmanBaseInfoResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1FreshmanBaseInfo"
+        }
+      }
+    },
+    "v1GetFreshmanDetailResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1FreshmanDetail"
+        }
+      }
+    },
     "v1GetFreshmanRoommatesResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/GetFreshmanRoommatesResponseRoommate"
+            "$ref": "#/definitions/v1FreshmanRoommate"
           },
           "title": "室友列表"
         }
@@ -1313,46 +1401,34 @@
     "v1GetPersonInfoResponse": {
       "type": "object",
       "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学工号"
+        "error": {
+          "type": "integer",
+          "format": "int64"
         },
-        "staffName": {
-          "type": "string",
-          "title": "姓名"
+        "msg": {
+          "type": "string"
         },
-        "staffState": {
-          "type": "string",
-          "title": "人员状态"
-        },
-        "staffType": {
-          "type": "string",
-          "title": "人员类型"
-        },
-        "unitCode": {
-          "type": "string",
-          "title": "学院代码"
+        "data": {
+          "$ref": "#/definitions/v1PersonInfo"
         }
       },
       "title": "查询人员信息返回体"
     },
-    "v1GetStudentBirthdayResponse": {
+    "v1GetStudentBirthdayInfoResponse": {
       "type": "object",
       "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学工号"
+        "error": {
+          "type": "integer",
+          "format": "int64"
         },
-        "name": {
-          "type": "string",
-          "title": "姓名"
+        "msg": {
+          "type": "string"
         },
-        "birthday": {
-          "type": "string",
-          "title": "生日"
+        "data": {
+          "$ref": "#/definitions/v1StudentBirthdayInfo"
         }
       },
-      "title": "GetStudentBirthdayResponse 学生生日查询返回体"
+      "title": "GetStudentBirthdayInfoResponse 学生生日查询返回体"
     },
     "v1GetStudentBirthdaysInResponse": {
       "type": "object",
@@ -1360,30 +1436,48 @@
         "birthdays": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1GetStudentBirthdayResponse"
+            "$ref": "#/definitions/v1StudentBirthdayInfo"
           },
           "title": "生日详情列表"
         }
       },
       "title": "GetStudentBirthdaysInResponse 查询某天生日所有人员-返回体"
     },
+    "v1GetStudentCourseSelectionsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1StudentCourseSelection"
+          },
+          "title": "详情列表"
+        }
+      },
+      "title": "学生选课查询返回体"
+    },
     "v1GetStudentDormInfoResponse": {
       "type": "object",
       "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学工号"
+        "error": {
+          "type": "integer",
+          "format": "int64"
         },
-        "building": {
-          "type": "string",
-          "title": "楼号"
+        "msg": {
+          "type": "string"
         },
-        "room": {
-          "type": "string",
-          "title": "寝室号"
+        "data": {
+          "$ref": "#/definitions/v1DormInfo"
         }
       },
-      "title": "GetStudentDormInfoResponse 查询学生寝室信息返回体"
+      "title": "查询学生寝室信息返回体"
     },
     "v1GetStudentExamResponse": {
       "type": "object",
@@ -1440,46 +1534,20 @@
           "title": "成绩详情列表"
         }
       },
-      "title": "GetStudentGradeResponse 查询学生成绩返回体"
+      "title": "查询学生成绩返回体"
     },
     "v1GetStudentInfoResponse": {
       "type": "object",
       "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学号"
+        "error": {
+          "type": "integer",
+          "format": "int64"
         },
-        "staffName": {
-          "type": "string",
-          "title": "学生姓名"
+        "msg": {
+          "type": "string"
         },
-        "classId": {
-          "type": "string",
-          "title": "学生班级号"
-        },
-        "unitId": {
-          "type": "string",
-          "title": "学生学院编号"
-        },
-        "unitName": {
-          "type": "string",
-          "title": "学生学院名称"
-        },
-        "majorId": {
-          "type": "string",
-          "title": "学生专业编号"
-        },
-        "majorName": {
-          "type": "string",
-          "title": "学生专业名称"
-        },
-        "teacherId": {
-          "type": "string",
-          "title": "学生辅导员工号"
-        },
-        "teacherName": {
-          "type": "string",
-          "title": "学生辅导员姓名"
+        "data": {
+          "$ref": "#/definitions/v1StudentInfo"
         }
       },
       "title": "GetStudentInfoResponse 查询学生信息返回体"
@@ -1487,65 +1555,75 @@
     "v1GetStudentNeedyInfoResponse": {
       "type": "object",
       "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学工号"
-        },
-        "staffName": {
-          "type": "string",
-          "title": "姓名"
-        },
-        "sex": {
+        "error": {
           "type": "integer",
-          "format": "int32",
-          "title": "性别，枚举及含义：1-\u003e男 | 2-\u003e女"
+          "format": "int64"
         },
-        "needyStudent": {
-          "type": "boolean",
-          "title": "是否贫困生"
+        "msg": {
+          "type": "string"
         },
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1GetStudentNeedyInfoResponseNested"
-          },
-          "title": "每学年贫困详情"
+        "data": {
+          "$ref": "#/definitions/v1StudentNeedyInfo"
         }
       },
       "title": "查询贫困生信息返回体"
     },
-    "v1GetStudentNeedyInfoResponseNested": {
-      "type": "object",
-      "properties": {
-        "schoolYear": {
-          "type": "integer",
-          "format": "int32",
-          "title": "特定学年"
-        },
-        "needyStudent": {
-          "type": "boolean",
-          "title": "是否是贫困生"
-        }
-      },
-      "title": "某年贫困详情"
-    },
     "v1GetStudentRewardsResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1GetStudentRewardsResponseNested"
+            "$ref": "#/definitions/v1StudentReward"
           },
           "title": "奖学金列表"
         }
       },
       "title": "GetStudentRewardsResponse 奖学金查询返回体"
     },
-    "v1GetStudentRewardsResponseNested": {
+    "v1GetStudentSchoolRollStatusResponse": {
       "type": "object",
       "properties": {
-        "staffID": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1StudentSchoolRollStatus"
+        }
+      },
+      "title": "查询学生学籍状态返回体"
+    },
+    "v1GetStudentStaySchoolInfoResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1StudentStaySchoolInfo"
+        }
+      },
+      "title": "留校生信息查询-返回体"
+    },
+    "v1PersonInfo": {
+      "type": "object",
+      "properties": {
+        "staffId": {
           "type": "string",
           "title": "学工号"
         },
@@ -1553,61 +1631,55 @@
           "type": "string",
           "title": "姓名"
         },
-        "rewardName": {
+        "staffState": {
           "type": "string",
-          "title": "奖项名"
+          "title": "人员状态"
         },
-        "schoolYear": {
+        "staffType": {
           "type": "string",
-          "title": "学年"
+          "title": "人员类型"
         },
-        "semester": {
+        "unitCode": {
           "type": "string",
-          "title": "学期"
+          "title": "学院代码"
+        }
+      }
+    },
+    "v1PostStudentGateAccessResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
         },
-        "rewardLevel": {
-          "type": "string",
-          "title": "奖项等级"
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/PostStudentGateAccessResponseData"
         }
       },
-      "title": "奖学金信息"
+      "title": "PostStudentGateAccessResponse  推送学生门禁通行信息"
     },
-    "v1GetStudentSchoolRollStatusResponse": {
+    "v1StudentBirthdayInfo": {
       "type": "object",
       "properties": {
         "staffId": {
           "type": "string",
-          "title": "学号"
+          "title": "学工号"
         },
-        "staffName": {
+        "name": {
           "type": "string",
-          "title": "学生姓名"
+          "title": "姓名"
         },
-        "statusCode": {
+        "birthday": {
           "type": "string",
-          "title": "学籍状态代码"
-        },
-        "statusDesc": {
-          "type": "string",
-          "title": "学籍状态中文描述"
+          "title": "生日"
         }
       },
-      "title": "查询学生学籍状态返回体"
+      "title": "学生生日信息"
     },
-    "v1GetStudentSelectResponse": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1GetStudentSelectResponseNested"
-          },
-          "title": "详情列表"
-        }
-      },
-      "title": "GetStudentSelectResponse 学生选课查询返回体"
-    },
-    "v1GetStudentSelectResponseNested": {
+    "v1StudentCourseSelection": {
       "type": "object",
       "properties": {
         "schoolYear": {
@@ -1656,84 +1728,6 @@
         }
       },
       "title": "选课详情"
-    },
-    "v1GetStudentStaySchoolInfoResponse": {
-      "type": "object",
-      "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学工号"
-        },
-        "staffName": {
-          "type": "string",
-          "title": "姓名"
-        },
-        "reportTime": {
-          "type": "string",
-          "title": "报告日期"
-        },
-        "reason": {
-          "type": "string",
-          "title": "原因"
-        },
-        "time1Start": {
-          "type": "string",
-          "title": "时间段1-开始"
-        },
-        "time1End": {
-          "type": "string",
-          "title": "时间段1-结束"
-        },
-        "time2Start": {
-          "type": "string",
-          "title": "时间段2-开始"
-        },
-        "time2End": {
-          "type": "string",
-          "title": "时间段2-结束"
-        },
-        "teacherStatus": {
-          "type": "string",
-          "title": "辅导员审批状态，枚举及含义：0-\u003e未审批 | 1-\u003e审批通过 | 2-\u003e拒绝"
-        },
-        "teacherRemark": {
-          "type": "string",
-          "title": "辅导员审批备注"
-        },
-        "teacherReviewTime": {
-          "type": "string",
-          "title": "辅导员审批时间"
-        },
-        "unitStatus": {
-          "type": "string",
-          "title": "学院审批状态，枚举及含义：0-\u003e未审批 | 1-\u003e审批通过 | 2-\u003e拒绝"
-        },
-        "unitRemark": {
-          "type": "string",
-          "title": "学院审批备注"
-        },
-        "unitReviewTime": {
-          "type": "string",
-          "title": "学院审批时间"
-        },
-        "cancelStatus": {
-          "type": "string",
-          "title": "撤回状态，枚举及含义：1-\u003e未撤回 | 2-\u003e已撤回"
-        }
-      },
-      "title": "留校生信息查询-返回体"
-    },
-    "v1PostStudentGateAccessResponse": {
-      "type": "object",
-      "properties": {
-        "done": {
-          "type": "boolean"
-        },
-        "message": {
-          "type": "string"
-        }
-      },
-      "title": "PostStudentGateAccessResponse  推送学生门禁通行信息"
     },
     "v1StudentExam": {
       "type": "object",
@@ -1859,6 +1853,195 @@
         }
       },
       "title": "成绩详情"
+    },
+    "v1StudentInfo": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "学生姓名"
+        },
+        "classId": {
+          "type": "string",
+          "title": "学生班级号"
+        },
+        "unitId": {
+          "type": "string",
+          "title": "学生学院编号"
+        },
+        "unitName": {
+          "type": "string",
+          "title": "学生学院名称"
+        },
+        "majorId": {
+          "type": "string",
+          "title": "学生专业编号"
+        },
+        "majorName": {
+          "type": "string",
+          "title": "学生专业名称"
+        },
+        "teacherId": {
+          "type": "string",
+          "title": "学生辅导员工号"
+        },
+        "teacherName": {
+          "type": "string",
+          "title": "学生辅导员姓名"
+        }
+      }
+    },
+    "v1StudentNeedyInfo": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学工号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int32",
+          "title": "性别，枚举及含义：1-\u003e男 | 2-\u003e女"
+        },
+        "needyStudent": {
+          "type": "boolean",
+          "title": "是否贫困生"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudentNeedyInfoNested"
+          },
+          "title": "每学年贫困详情"
+        }
+      },
+      "title": "贫困生信息"
+    },
+    "v1StudentReward": {
+      "type": "object",
+      "properties": {
+        "staffID": {
+          "type": "string",
+          "title": "学工号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "rewardName": {
+          "type": "string",
+          "title": "奖项名"
+        },
+        "schoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "semester": {
+          "type": "string",
+          "title": "学期"
+        },
+        "rewardLevel": {
+          "type": "string",
+          "title": "奖项等级"
+        }
+      },
+      "title": "奖学金信息"
+    },
+    "v1StudentSchoolRollStatus": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "学生姓名"
+        },
+        "statusCode": {
+          "type": "string",
+          "title": "学籍状态代码"
+        },
+        "statusDesc": {
+          "type": "string",
+          "title": "学籍状态中文描述"
+        }
+      },
+      "title": "学生学籍状态"
+    },
+    "v1StudentStaySchoolInfo": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学工号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "reportTime": {
+          "type": "string",
+          "title": "报告日期"
+        },
+        "reason": {
+          "type": "string",
+          "title": "原因"
+        },
+        "time1Start": {
+          "type": "string",
+          "title": "时间段1-开始"
+        },
+        "time1End": {
+          "type": "string",
+          "title": "时间段1-结束"
+        },
+        "time2Start": {
+          "type": "string",
+          "title": "时间段2-开始"
+        },
+        "time2End": {
+          "type": "string",
+          "title": "时间段2-结束"
+        },
+        "teacherStatus": {
+          "type": "string",
+          "title": "辅导员审批状态，枚举及含义：0-\u003e未审批 | 1-\u003e审批通过 | 2-\u003e拒绝"
+        },
+        "teacherRemark": {
+          "type": "string",
+          "title": "辅导员审批备注"
+        },
+        "teacherReviewTime": {
+          "type": "string",
+          "title": "辅导员审批时间"
+        },
+        "unitStatus": {
+          "type": "string",
+          "title": "学院审批状态，枚举及含义：0-\u003e未审批 | 1-\u003e审批通过 | 2-\u003e拒绝"
+        },
+        "unitRemark": {
+          "type": "string",
+          "title": "学院审批备注"
+        },
+        "unitReviewTime": {
+          "type": "string",
+          "title": "学院审批时间"
+        },
+        "cancelStatus": {
+          "type": "string",
+          "title": "撤回状态，枚举及含义：1-\u003e未撤回 | 2-\u003e已撤回"
+        }
+      },
+      "title": "留校生信息"
     }
   }
 }

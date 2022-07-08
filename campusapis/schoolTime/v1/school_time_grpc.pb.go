@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: campusapis/schoolTime/v1/schoolTime.proto
+// source: campusapis/schoolTime/v1/school_time.proto
 
 package schoolTimev1
 
@@ -56,16 +56,17 @@ func (c *schoolTimeServiceClient) GetSemesterList(ctx context.Context, in *GetSe
 }
 
 // SchoolTimeServiceServer is the server API for SchoolTimeService service.
-// All implementations should embed UnimplementedSchoolTimeServiceServer
+// All implementations must embed UnimplementedSchoolTimeServiceServer
 // for forward compatibility
 type SchoolTimeServiceServer interface {
 	// 获取当前学校时间
 	GetSchoolTime(context.Context, *emptypb.Empty) (*GetSchoolTimeResponse, error)
 	// 获取学校学期信息列表
 	GetSemesterList(context.Context, *GetSemesterListRequest) (*GetSemesterListResponse, error)
+	mustEmbedUnimplementedSchoolTimeServiceServer()
 }
 
-// UnimplementedSchoolTimeServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedSchoolTimeServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedSchoolTimeServiceServer struct {
 }
 
@@ -75,6 +76,7 @@ func (UnimplementedSchoolTimeServiceServer) GetSchoolTime(context.Context, *empt
 func (UnimplementedSchoolTimeServiceServer) GetSemesterList(context.Context, *GetSemesterListRequest) (*GetSemesterListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSemesterList not implemented")
 }
+func (UnimplementedSchoolTimeServiceServer) mustEmbedUnimplementedSchoolTimeServiceServer() {}
 
 // UnsafeSchoolTimeServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to SchoolTimeServiceServer will
@@ -140,5 +142,5 @@ var SchoolTimeService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "campusapis/schoolTime/v1/schoolTime.proto",
+	Metadata: "campusapis/schoolTime/v1/school_time.proto",
 }

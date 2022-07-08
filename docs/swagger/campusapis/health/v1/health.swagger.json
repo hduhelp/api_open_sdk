@@ -124,12 +124,9 @@
         "operationId": "HealthService_GetCheckinRecords2",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetCheckinRecordResponse"
-              }
+              "$ref": "#/definitions/v1GetCheckinRecordsResponse"
             }
           },
           "default": {
@@ -196,8 +193,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/definitions/v1PostCheckinPhoneResponse"
             }
           },
           "default": {
@@ -298,12 +294,9 @@
         "operationId": "HealthService_GetCheckinRecords",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/v1GetCheckinRecordResponse"
-              }
+              "$ref": "#/definitions/v1GetCheckinRecordsResponse"
             }
           },
           "default": {
@@ -347,9 +340,9 @@
         "operationId": "HealthService_GetNucleicAcidTestLatest",
         "responses": {
           "200": {
-            "description": "",
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1NucleicAcidTest"
+              "$ref": "#/definitions/v1GetNucleicAcidTestLatestResponse"
             }
           },
           "default": {
@@ -416,8 +409,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/definitions/v1PostCheckinPhoneResponse"
             }
           },
           "default": {
@@ -471,12 +463,10 @@
       "type": "object",
       "properties": {
         "@type": {
-          "type": "string",
-          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+          "type": "string"
         }
       },
-      "additionalProperties": {},
-      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := \u0026pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+      "additionalProperties": {}
     },
     "protobufNullValue": {
       "type": "string",
@@ -504,18 +494,7 @@
         }
       }
     },
-    "v1GetCheckinPhoneResponse": {
-      "type": "object",
-      "properties": {
-        "Phone": {
-          "type": "string"
-        },
-        "StaffID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1GetCheckinRecordResponse": {
+    "v1CheckinRecord": {
       "type": "object",
       "properties": {
         "id": {
@@ -584,18 +563,152 @@
       },
       "title": "健康打卡记录"
     },
+    "v1GetCheckinPhoneResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1GetCheckinPhoneResponseData"
+        }
+      }
+    },
+    "v1GetCheckinPhoneResponseData": {
+      "type": "object",
+      "properties": {
+        "Phone": {
+          "type": "string"
+        },
+        "StaffID": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetCheckinRecordResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1CheckinRecord"
+        }
+      }
+    },
     "v1GetCheckinRecordsResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1GetCheckinRecordResponse"
+            "$ref": "#/definitions/v1CheckinRecord"
           }
         }
       }
     },
     "v1GetHealthCodeResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1HealthCodeRaw"
+        }
+      },
+      "title": "健康码老"
+    },
+    "v1GetNucleicAcidTestLatestResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1NucleicAcidTest"
+        }
+      },
+      "title": "最新核酸检测返回体"
+    },
+    "v1GetNucleicAcidTestsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1GetNucleicAcidTestsResponseData"
+        }
+      },
+      "title": "历史核酸检测返回体"
+    },
+    "v1GetNucleicAcidTestsResponseData": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1NucleicAcidTest"
+          }
+        }
+      }
+    },
+    "v1GetVaccineRecordsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1GetVaccineRecordsResponseData"
+        }
+      },
+      "title": "疫苗接种记录返回"
+    },
+    "v1GetVaccineRecordsResponseData": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1VaccineRecord"
+          }
+        }
+      }
+    },
+    "v1HealthCodeRaw": {
       "type": "object",
       "properties": {
         "staffId": {
@@ -635,41 +748,7 @@
           "type": "string",
           "title": "服务器更新时间（服务器获取到的时间）\n通常是每日更新一次"
         }
-      },
-      "title": "健康码老"
-    },
-    "v1GetNucleicAcidTestLatestResponse": {
-      "type": "object",
-      "properties": {
-        "item": {
-          "$ref": "#/definitions/v1NucleicAcidTest"
-        }
-      },
-      "title": "最新核酸检测返回体"
-    },
-    "v1GetNucleicAcidTestsResponse": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1NucleicAcidTest"
-          }
-        }
-      },
-      "title": "历史核酸检测返回体"
-    },
-    "v1GetVaccineRecordsResponse": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1VaccineRecord"
-          }
-        }
-      },
-      "title": "疫苗接种记录返回"
+      }
     },
     "v1NucleicAcidTest": {
       "type": "object",
@@ -693,6 +772,21 @@
       "type": "object",
       "properties": {
         "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PostCheckinPhoneResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "message": {
           "type": "string"
         }
       }
@@ -730,6 +824,21 @@
     "v1PostCheckinRecordResponse": {
       "type": "object",
       "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1PostCheckinRecordResponseData"
+        }
+      }
+    },
+    "v1PostCheckinRecordResponseData": {
+      "type": "object",
+      "properties": {
         "code": {
           "type": "integer",
           "format": "int64"
@@ -740,7 +849,8 @@
         "message": {
           "type": "string"
         }
-      }
+      },
+      "title": "学校健康打卡服务返回值"
     },
     "v1VaccineRecord": {
       "type": "object",

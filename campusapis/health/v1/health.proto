@@ -2,9 +2,7 @@ syntax = "proto3";
 
 package campusapis.health.v1;
 
-import "campusapis/staff/base.proto";
 import "google/api/annotations.proto";
-import "google/api/httpbody.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
@@ -29,10 +27,8 @@ service HealthService {
   rpc GetCheckinRecords(google.protobuf.Empty) returns (GetCheckinRecordsResponse) {
     option (google.api.http) = {
       get: "/health/v1/checkins"
-      response_body: "items"
       additional_bindings {
         get: "/health/checkins"
-        response_body: "items"
       }
     };
   }
@@ -57,7 +53,7 @@ service HealthService {
     };
   }
   //更新健康打卡平台的手机号
-  rpc PostCheckinPhone(PostCheckinPhoneRequest) returns (google.protobuf.Empty) {
+  rpc PostCheckinPhone(PostCheckinPhoneRequest) returns (PostCheckinPhoneResponse) {
     option (google.api.http) = {
       post: "/health/v1/phone"
       body: "*"
@@ -92,7 +88,6 @@ service HealthService {
   rpc GetNucleicAcidTestLatest(google.protobuf.Empty) returns (GetNucleicAcidTestLatestResponse) {
     option (google.api.http) = {
       get: "/health/v1/nucleic_acid_test"
-      response_body: "item"
     };
   }
 }
@@ -103,11 +98,19 @@ message GetCheckinRecordRequest {
 }
 
 message GetCheckinRecordsResponse {
-  repeated GetCheckinRecordResponse items = 1;
+  uint32 error = 1;
+  string msg = 2;
+  repeated CheckinRecord data = 3;
+}
+
+message GetCheckinRecordResponse {
+  uint32 error = 1;
+  string msg = 2;
+  CheckinRecord data = 3;
 }
 
 //健康打卡记录
-message GetCheckinRecordResponse {
+message CheckinRecord {
   uint32 id = 1;
   //姓名
   string creator = 2;
@@ -162,18 +165,36 @@ message PostCheckinRecordBody {
 }
 
 message PostCheckinRecordResponse {
-  uint32 code = 1;
-  string data = 2;
-  string message = 3;
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+
+  //学校健康打卡服务返回值
+  message Data {
+    uint32 code = 1;
+    string data = 2;
+    string message = 3;
+  }
 }
 
 message GetCheckinPhoneResponse {
-  string Phone = 1;
-  string StaffID = 2;
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data {
+    string Phone = 1;
+    string StaffID = 2;
+  }
 }
 
 message PostCheckinPhoneRequest {
   string phone = 1;
+}
+
+message PostCheckinPhoneResponse {
+  uint32 error = 1;
+  string msg = 2;
+  string message = 3;
 }
 
 //健康码
@@ -190,6 +211,12 @@ message HealthCode {
 
 //健康码老
 message GetHealthCodeResponse {
+  uint32 error = 1;
+  string msg = 2;
+  HealthCodeRaw data = 3;
+}
+
+message HealthCodeRaw {
   string staffId = 1;
   string staffName = 2;
   string phoneNum = 3;
@@ -212,7 +239,12 @@ message GetHealthCodeResponse {
 
 // 疫苗接种记录返回
 message GetVaccineRecordsResponse {
-  repeated VaccineRecord items = 1;
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data {
+    repeated VaccineRecord items = 1;
+  }
 }
 
 // 疫苗接种记录
@@ -235,7 +267,12 @@ message VaccineRecord {
 
 // 历史核酸检测返回体
 message GetNucleicAcidTestsResponse {
-  repeated NucleicAcidTest items = 1;
+  uint32 error = 1;
+  string msg = 2;
+  Data data = 3;
+  message Data {
+    repeated NucleicAcidTest items = 1;
+  }
 }
 
 message NucleicAcidTest {
@@ -249,5 +286,7 @@ message NucleicAcidTest {
 
 // 最新核酸检测返回体
 message GetNucleicAcidTestLatestResponse {
-  NucleicAcidTest item = 1;
+  uint32 error = 1;
+  string msg = 2;
+  NucleicAcidTest data = 3;
 }

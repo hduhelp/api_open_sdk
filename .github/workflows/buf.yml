@@ -29,9 +29,8 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-
       - run: echo ${{ steps.cache-golang.outputs.cache-hit }}
-      
+
       - name: init dependance
         if: steps.cache-golang.outputs.cache-hit != 'true'
         run: make install-tools
@@ -48,7 +47,7 @@ jobs:
             git commit -m "ci(gen): buf generate up to date"
             git push
           fi
-      
+
       - name: warming go proxy
         run: |
           hash=$(git show -s --format=%h)
@@ -59,4 +58,3 @@ jobs:
           go get github.com/hduhelp/api_open_sdk@$hash
           GOPROXY=https://goproxy.io,direct go get github.com/hduhelp/api_open_sdk@$hash
           GOPROXY=https://goproxy.cn,direct go get github.com/hduhelp/api_open_sdk@$hash
-

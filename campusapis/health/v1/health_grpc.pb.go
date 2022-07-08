@@ -32,7 +32,7 @@ type HealthServiceClient interface {
 	//获取健康打卡平台的手机号
 	GetCheckinPhone(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCheckinPhoneResponse, error)
 	//更新健康打卡平台的手机号
-	PostCheckinPhone(ctx context.Context, in *PostCheckinPhoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	PostCheckinPhone(ctx context.Context, in *PostCheckinPhoneRequest, opts ...grpc.CallOption) (*PostCheckinPhoneResponse, error)
 	//获取当前健康码
 	GetHealthCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHealthCodeResponse, error)
 	// 获取疫苗接种记录
@@ -87,8 +87,8 @@ func (c *healthServiceClient) GetCheckinPhone(ctx context.Context, in *emptypb.E
 	return out, nil
 }
 
-func (c *healthServiceClient) PostCheckinPhone(ctx context.Context, in *PostCheckinPhoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *healthServiceClient) PostCheckinPhone(ctx context.Context, in *PostCheckinPhoneRequest, opts ...grpc.CallOption) (*PostCheckinPhoneResponse, error) {
+	out := new(PostCheckinPhoneResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.health.v1.HealthService/PostCheckinPhone", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -133,7 +133,7 @@ func (c *healthServiceClient) GetNucleicAcidTestLatest(ctx context.Context, in *
 }
 
 // HealthServiceServer is the server API for HealthService service.
-// All implementations should embed UnimplementedHealthServiceServer
+// All implementations must embed UnimplementedHealthServiceServer
 // for forward compatibility
 type HealthServiceServer interface {
 	//获取指定日期健康打卡记录
@@ -145,7 +145,7 @@ type HealthServiceServer interface {
 	//获取健康打卡平台的手机号
 	GetCheckinPhone(context.Context, *emptypb.Empty) (*GetCheckinPhoneResponse, error)
 	//更新健康打卡平台的手机号
-	PostCheckinPhone(context.Context, *PostCheckinPhoneRequest) (*emptypb.Empty, error)
+	PostCheckinPhone(context.Context, *PostCheckinPhoneRequest) (*PostCheckinPhoneResponse, error)
 	//获取当前健康码
 	GetHealthCode(context.Context, *emptypb.Empty) (*GetHealthCodeResponse, error)
 	// 获取疫苗接种记录
@@ -154,9 +154,10 @@ type HealthServiceServer interface {
 	GetNucleicAcidTests(context.Context, *emptypb.Empty) (*GetNucleicAcidTestsResponse, error)
 	// 获取最新核酸检测记录
 	GetNucleicAcidTestLatest(context.Context, *emptypb.Empty) (*GetNucleicAcidTestLatestResponse, error)
+	mustEmbedUnimplementedHealthServiceServer()
 }
 
-// UnimplementedHealthServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedHealthServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedHealthServiceServer struct {
 }
 
@@ -172,7 +173,7 @@ func (UnimplementedHealthServiceServer) PostCheckinRecord(context.Context, *Post
 func (UnimplementedHealthServiceServer) GetCheckinPhone(context.Context, *emptypb.Empty) (*GetCheckinPhoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCheckinPhone not implemented")
 }
-func (UnimplementedHealthServiceServer) PostCheckinPhone(context.Context, *PostCheckinPhoneRequest) (*emptypb.Empty, error) {
+func (UnimplementedHealthServiceServer) PostCheckinPhone(context.Context, *PostCheckinPhoneRequest) (*PostCheckinPhoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostCheckinPhone not implemented")
 }
 func (UnimplementedHealthServiceServer) GetHealthCode(context.Context, *emptypb.Empty) (*GetHealthCodeResponse, error) {
@@ -187,6 +188,7 @@ func (UnimplementedHealthServiceServer) GetNucleicAcidTests(context.Context, *em
 func (UnimplementedHealthServiceServer) GetNucleicAcidTestLatest(context.Context, *emptypb.Empty) (*GetNucleicAcidTestLatestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNucleicAcidTestLatest not implemented")
 }
+func (UnimplementedHealthServiceServer) mustEmbedUnimplementedHealthServiceServer() {}
 
 // UnsafeHealthServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to HealthServiceServer will

@@ -63,11 +63,11 @@ func (d Date) Value() (driver.Value, error) {
 
 func (d *Date) Scan(src interface{}) error {
 	var str string
-	switch src.(type) {
+	switch v := src.(type) {
 	case string:
-		str = src.(string)
+		str = v
 	case []byte:
-		str = string(src.([]byte))
+		str = string([]byte(v))
 	default:
 		return errors.New("cannot parse src into string")
 	}

@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: aggregatingapis/infostream/v1/infostream.proto
 
-package infoStreamv1
+package infostreamv1
 
 import (
 	context "context"
@@ -18,84 +18,86 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// InfoStreamServiceClient is the client API for InfoStreamService service.
+// InfostreamServiceClient is the client API for InfostreamService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type InfoStreamServiceClient interface {
-	GetInfoStream(ctx context.Context, in *InfoStreamReq, opts ...grpc.CallOption) (*InfoStreamResp, error)
+type InfostreamServiceClient interface {
+	GetInfostream(ctx context.Context, in *GetInfostreamRequest, opts ...grpc.CallOption) (*GetInfostreamResponse, error)
 }
 
-type infoStreamServiceClient struct {
+type infostreamServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewInfoStreamServiceClient(cc grpc.ClientConnInterface) InfoStreamServiceClient {
-	return &infoStreamServiceClient{cc}
+func NewInfostreamServiceClient(cc grpc.ClientConnInterface) InfostreamServiceClient {
+	return &infostreamServiceClient{cc}
 }
 
-func (c *infoStreamServiceClient) GetInfoStream(ctx context.Context, in *InfoStreamReq, opts ...grpc.CallOption) (*InfoStreamResp, error) {
-	out := new(InfoStreamResp)
-	err := c.cc.Invoke(ctx, "/flutterapis.infoStream.v1.InfoStreamService/GetInfoStream", in, out, opts...)
+func (c *infostreamServiceClient) GetInfostream(ctx context.Context, in *GetInfostreamRequest, opts ...grpc.CallOption) (*GetInfostreamResponse, error) {
+	out := new(GetInfostreamResponse)
+	err := c.cc.Invoke(ctx, "/aggregatingapis.infostream.v1.InfostreamService/GetInfostream", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// InfoStreamServiceServer is the server API for InfoStreamService service.
-// All implementations should embed UnimplementedInfoStreamServiceServer
+// InfostreamServiceServer is the server API for InfostreamService service.
+// All implementations must embed UnimplementedInfostreamServiceServer
 // for forward compatibility
-type InfoStreamServiceServer interface {
-	GetInfoStream(context.Context, *InfoStreamReq) (*InfoStreamResp, error)
+type InfostreamServiceServer interface {
+	GetInfostream(context.Context, *GetInfostreamRequest) (*GetInfostreamResponse, error)
+	mustEmbedUnimplementedInfostreamServiceServer()
 }
 
-// UnimplementedInfoStreamServiceServer should be embedded to have forward compatible implementations.
-type UnimplementedInfoStreamServiceServer struct {
+// UnimplementedInfostreamServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedInfostreamServiceServer struct {
 }
 
-func (UnimplementedInfoStreamServiceServer) GetInfoStream(context.Context, *InfoStreamReq) (*InfoStreamResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetInfoStream not implemented")
+func (UnimplementedInfostreamServiceServer) GetInfostream(context.Context, *GetInfostreamRequest) (*GetInfostreamResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInfostream not implemented")
 }
+func (UnimplementedInfostreamServiceServer) mustEmbedUnimplementedInfostreamServiceServer() {}
 
-// UnsafeInfoStreamServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to InfoStreamServiceServer will
+// UnsafeInfostreamServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to InfostreamServiceServer will
 // result in compilation errors.
-type UnsafeInfoStreamServiceServer interface {
-	mustEmbedUnimplementedInfoStreamServiceServer()
+type UnsafeInfostreamServiceServer interface {
+	mustEmbedUnimplementedInfostreamServiceServer()
 }
 
-func RegisterInfoStreamServiceServer(s grpc.ServiceRegistrar, srv InfoStreamServiceServer) {
-	s.RegisterService(&InfoStreamService_ServiceDesc, srv)
+func RegisterInfostreamServiceServer(s grpc.ServiceRegistrar, srv InfostreamServiceServer) {
+	s.RegisterService(&InfostreamService_ServiceDesc, srv)
 }
 
-func _InfoStreamService_GetInfoStream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InfoStreamReq)
+func _InfostreamService_GetInfostream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetInfostreamRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoStreamServiceServer).GetInfoStream(ctx, in)
+		return srv.(InfostreamServiceServer).GetInfostream(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/flutterapis.infoStream.v1.InfoStreamService/GetInfoStream",
+		FullMethod: "/aggregatingapis.infostream.v1.InfostreamService/GetInfostream",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoStreamServiceServer).GetInfoStream(ctx, req.(*InfoStreamReq))
+		return srv.(InfostreamServiceServer).GetInfostream(ctx, req.(*GetInfostreamRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// InfoStreamService_ServiceDesc is the grpc.ServiceDesc for InfoStreamService service.
+// InfostreamService_ServiceDesc is the grpc.ServiceDesc for InfostreamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var InfoStreamService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "flutterapis.infoStream.v1.InfoStreamService",
-	HandlerType: (*InfoStreamServiceServer)(nil),
+var InfostreamService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "aggregatingapis.infostream.v1.InfostreamService",
+	HandlerType: (*InfostreamServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetInfoStream",
-			Handler:    _InfoStreamService_GetInfoStream_Handler,
+			MethodName: "GetInfostream",
+			Handler:    _InfostreamService_GetInfostream_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

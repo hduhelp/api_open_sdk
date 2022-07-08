@@ -12,17 +12,17 @@ func (*Semester) GormDataType() string {
 }
 
 func CastSemester(in interface{}) *Semester {
-	switch in.(type) {
+	switch v := in.(type) {
 	case int, uint, int8, int16, int32, int64:
 		return &Semester{
-			Num: in.(int32),
+			Num: v.(int32),
 		}
 	case float32, float64:
 		return &Semester{
-			Num: int32(in.(float64)),
+			Num: int32(v.(float64)),
 		}
 	case string:
-		if v, err := strconv.Atoi(in.(string)); err == nil {
+		if v, err := strconv.Atoi(v); err == nil {
 			return &Semester{
 				Num: int32(v),
 			}

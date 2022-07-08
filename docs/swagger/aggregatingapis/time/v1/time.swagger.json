@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1TimeResp"
+              "$ref": "#/definitions/v1GetTimeResponse"
             }
           },
           "default": {
@@ -40,7 +40,7 @@
     }
   },
   "definitions": {
-    "TimeRespData": {
+    "GetTimeResponseData": {
       "type": "object",
       "properties": {
         "schoolYear": {
@@ -124,7 +124,7 @@
         }
       }
     },
-    "v1TimeResp": {
+    "v1GetTimeResponse": {
       "type": "object",
       "properties": {
         "error": {
@@ -135,7 +135,7 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/TimeRespData"
+          "$ref": "#/definitions/GetTimeResponseData"
         }
       }
     }

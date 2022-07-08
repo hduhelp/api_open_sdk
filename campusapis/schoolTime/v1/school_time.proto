@@ -2,16 +2,14 @@ syntax = "proto3";
 
 package campusapis.schoolTime.v1;
 
-option go_package = "./campusapis/schoolTime/v1";
-
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
-import "campusapis/schoolTime/defined.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "./campusapis/schoolTime/v1";
 
 service SchoolTimeService {
   // 获取当前学校时间
-  rpc GetSchoolTime (google.protobuf.Empty) returns (GetSchoolTimeResponse) {
+  rpc GetSchoolTime(google.protobuf.Empty) returns (GetSchoolTimeResponse) {
     option (google.api.http) = {
       get: "/schooltime/v1/time"
       additional_bindings {
@@ -19,21 +17,26 @@ service SchoolTimeService {
       }
     };
   }
+
   // 获取学校学期信息列表
-  rpc GetSemesterList (GetSemesterListRequest) returns (GetSemesterListResponse) {
+  rpc GetSemesterList(GetSemesterListRequest) returns (GetSemesterListResponse) {
     option (google.api.http) = {
       get: "/schooltime/v1/semester/listByDate"
-      response_body: "items"
       additional_bindings {
         get: "/semester/listByDate"
-        response_body: "items"
       }
     };
   }
 }
 
 message GetSchoolTimeResponse {
-  string schoolYear = 1;  
+  uint32 error = 1;
+  string msg = 2;
+  SchoolTime data = 3;
+}
+
+message SchoolTime {
+  string schoolYear = 1;
   int32 section = 2;
   string semester = 3;
   uint32 timeStamp = 4;
@@ -47,12 +50,15 @@ message GetSemesterListRequest {
 }
 
 message GetSemesterListResponse {
-  message Semester {
-    string schoolYear = 1;
-    string semester = 2;
-    string startDate = 3;
-    string endDate = 4;
-    int32 state = 5;
-  }
-  repeated Semester items = 1;
+  uint32 error = 1;
+  string msg = 2;
+  repeated SemesterInfo data = 3;
+}
+
+message SemesterInfo {
+  string schoolYear = 1;
+  string semester = 2;
+  string startDate = 3;
+  string endDate = 4;
+  int32 state = 5;
 }

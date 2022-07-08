@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "InfoStreamService"
+      "name": "InfostreamService"
     }
   ],
   "consumes": [
@@ -16,14 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/infoStream/v1": {
+    "/infostream/v1": {
       "get": {
-        "operationId": "InfoStreamService_GetInfoStream",
+        "operationId": "InfostreamService_GetInfostream",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1InfoStreamResp"
+              "$ref": "#/definitions/v1GetInfostreamResponse"
             }
           },
           "default": {
@@ -42,38 +42,35 @@
           }
         ],
         "tags": [
-          "InfoStreamService"
+          "InfostreamService"
         ]
       }
     }
   },
   "definitions": {
-    "InfoStreamRespData": {
+    "GetInfostreamResponseData": {
       "type": "object",
       "properties": {
         "weather": {
-          "$ref": "#/definitions/v1weatherResp"
+          "$ref": "#/definitions/v1WeatherResponse"
         },
         "schedule": {
-          "$ref": "#/definitions/v1scheduleResp"
+          "$ref": "#/definitions/v1ScheduleResp"
         },
         "exam": {
-          "$ref": "#/definitions/v1examResp"
+          "$ref": "#/definitions/v1ExamResp"
         },
         "score": {
-          "$ref": "#/definitions/v1scoreResp"
+          "$ref": "#/definitions/v1ScoreResp"
         },
         "sunrun": {
-          "$ref": "#/definitions/v1sunRunResp"
+          "$ref": "#/definitions/v1SunRunResp"
         },
         "card": {
-          "$ref": "#/definitions/v1cardResp"
+          "$ref": "#/definitions/v1CardResp"
         },
         "electric": {
-          "$ref": "#/definitions/v1electricResp"
-        },
-        "settings": {
-          "$ref": "#/definitions/v1settingsResp"
+          "$ref": "#/definitions/v1ElectricResp"
         }
       }
     },
@@ -104,22 +101,7 @@
         }
       }
     },
-    "v1InfoStreamResp": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/InfoStreamRespData"
-        }
-      }
-    },
-    "v1cardResp": {
+    "v1CardResp": {
       "type": "object",
       "properties": {
         "available": {
@@ -131,7 +113,7 @@
         }
       }
     },
-    "v1electricData": {
+    "v1ElectricData": {
       "type": "object",
       "properties": {
         "fee": {
@@ -145,18 +127,18 @@
         }
       }
     },
-    "v1electricResp": {
+    "v1ElectricResp": {
       "type": "object",
       "properties": {
         "available": {
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/v1electricData"
+          "$ref": "#/definitions/v1ElectricData"
         }
       }
     },
-    "v1examData": {
+    "v1ExamData": {
       "type": "object",
       "properties": {
         "classroom": {
@@ -188,7 +170,7 @@
         }
       }
     },
-    "v1examResp": {
+    "v1ExamResp": {
       "type": "object",
       "properties": {
         "available": {
@@ -197,12 +179,27 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1examData"
+            "$ref": "#/definitions/v1ExamData"
           }
         }
       }
     },
-    "v1scheduleData": {
+    "v1GetInfostreamResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetInfostreamResponseData"
+        }
+      }
+    },
+    "v1ScheduleData": {
       "type": "object",
       "properties": {
         "startSection": {
@@ -233,7 +230,7 @@
         }
       }
     },
-    "v1scheduleResp": {
+    "v1ScheduleResp": {
       "type": "object",
       "properties": {
         "available": {
@@ -242,18 +239,18 @@
         "today": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1scheduleData"
+            "$ref": "#/definitions/v1ScheduleData"
           }
         },
         "tomorrow": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1scheduleData"
+            "$ref": "#/definitions/v1ScheduleData"
           }
         }
       }
     },
-    "v1scoreData": {
+    "v1ScoreData": {
       "type": "object",
       "properties": {
         "schoolYear": {
@@ -318,7 +315,7 @@
         }
       }
     },
-    "v1scoreResp": {
+    "v1ScoreResp": {
       "type": "object",
       "properties": {
         "available": {
@@ -327,15 +324,12 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1scoreData"
+            "$ref": "#/definitions/v1ScoreData"
           }
         }
       }
     },
-    "v1settingsResp": {
-      "type": "object"
-    },
-    "v1sunRunData": {
+    "v1SunRunData": {
       "type": "object",
       "properties": {
         "amMileage": {
@@ -405,18 +399,18 @@
         }
       }
     },
-    "v1sunRunResp": {
+    "v1SunRunResp": {
       "type": "object",
       "properties": {
         "available": {
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/v1sunRunData"
+          "$ref": "#/definitions/v1SunRunData"
         }
       }
     },
-    "v1weatherData": {
+    "v1WeatherData": {
       "type": "object",
       "properties": {
         "aqi": {
@@ -464,14 +458,14 @@
         }
       }
     },
-    "v1weatherResp": {
+    "v1WeatherResponse": {
       "type": "object",
       "properties": {
         "available": {
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/v1weatherData"
+          "$ref": "#/definitions/v1WeatherData"
         }
       }
     }

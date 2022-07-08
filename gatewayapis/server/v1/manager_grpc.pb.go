@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -24,13 +23,13 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServerManageerServiceClient interface {
 	//获取可管理的所有HTTP路由
-	GetHTTPRouterList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHTTPRouterListResponse, error)
+	GetHTTPRouterList(ctx context.Context, in *GetHTTPRouterListRequest, opts ...grpc.CallOption) (*GetHTTPRouterListResponse, error)
 	//查询路由
-	GetHTTPRouter(ctx context.Context, in *HTTPRouterKeyRequest, opts ...grpc.CallOption) (*HTTPRouter, error)
+	GetHTTPRouter(ctx context.Context, in *GetHTTPRouterRequest, opts ...grpc.CallOption) (*GetHTTPRouterResponse, error)
 	//创建或者更新路由
-	PostOrPutHTTPRouter(ctx context.Context, in *HTTPRouter, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	PostOrPutHTTPRouter(ctx context.Context, in *PostOrPutHTTPRouterRequest, opts ...grpc.CallOption) (*PostOrPutHTTPRouterResponse, error)
 	//删除路由
-	DeleteHTTPRouter(ctx context.Context, in *HTTPRouterKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteHTTPRouter(ctx context.Context, in *DeleteHTTPRouterRequest, opts ...grpc.CallOption) (*DeleteHTTPRouterResponse, error)
 }
 
 type serverManageerServiceClient struct {
@@ -41,7 +40,7 @@ func NewServerManageerServiceClient(cc grpc.ClientConnInterface) ServerManageerS
 	return &serverManageerServiceClient{cc}
 }
 
-func (c *serverManageerServiceClient) GetHTTPRouterList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetHTTPRouterListResponse, error) {
+func (c *serverManageerServiceClient) GetHTTPRouterList(ctx context.Context, in *GetHTTPRouterListRequest, opts ...grpc.CallOption) (*GetHTTPRouterListResponse, error) {
 	out := new(GetHTTPRouterListResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.server.v1.ServerManageerService/GetHTTPRouterList", in, out, opts...)
 	if err != nil {
@@ -50,8 +49,8 @@ func (c *serverManageerServiceClient) GetHTTPRouterList(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *serverManageerServiceClient) GetHTTPRouter(ctx context.Context, in *HTTPRouterKeyRequest, opts ...grpc.CallOption) (*HTTPRouter, error) {
-	out := new(HTTPRouter)
+func (c *serverManageerServiceClient) GetHTTPRouter(ctx context.Context, in *GetHTTPRouterRequest, opts ...grpc.CallOption) (*GetHTTPRouterResponse, error) {
+	out := new(GetHTTPRouterResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.server.v1.ServerManageerService/GetHTTPRouter", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -59,8 +58,8 @@ func (c *serverManageerServiceClient) GetHTTPRouter(ctx context.Context, in *HTT
 	return out, nil
 }
 
-func (c *serverManageerServiceClient) PostOrPutHTTPRouter(ctx context.Context, in *HTTPRouter, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *serverManageerServiceClient) PostOrPutHTTPRouter(ctx context.Context, in *PostOrPutHTTPRouterRequest, opts ...grpc.CallOption) (*PostOrPutHTTPRouterResponse, error) {
+	out := new(PostOrPutHTTPRouterResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.server.v1.ServerManageerService/PostOrPutHTTPRouter", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,8 +67,8 @@ func (c *serverManageerServiceClient) PostOrPutHTTPRouter(ctx context.Context, i
 	return out, nil
 }
 
-func (c *serverManageerServiceClient) DeleteHTTPRouter(ctx context.Context, in *HTTPRouterKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *serverManageerServiceClient) DeleteHTTPRouter(ctx context.Context, in *DeleteHTTPRouterRequest, opts ...grpc.CallOption) (*DeleteHTTPRouterResponse, error) {
+	out := new(DeleteHTTPRouterResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.server.v1.ServerManageerService/DeleteHTTPRouter", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,35 +77,37 @@ func (c *serverManageerServiceClient) DeleteHTTPRouter(ctx context.Context, in *
 }
 
 // ServerManageerServiceServer is the server API for ServerManageerService service.
-// All implementations should embed UnimplementedServerManageerServiceServer
+// All implementations must embed UnimplementedServerManageerServiceServer
 // for forward compatibility
 type ServerManageerServiceServer interface {
 	//获取可管理的所有HTTP路由
-	GetHTTPRouterList(context.Context, *emptypb.Empty) (*GetHTTPRouterListResponse, error)
+	GetHTTPRouterList(context.Context, *GetHTTPRouterListRequest) (*GetHTTPRouterListResponse, error)
 	//查询路由
-	GetHTTPRouter(context.Context, *HTTPRouterKeyRequest) (*HTTPRouter, error)
+	GetHTTPRouter(context.Context, *GetHTTPRouterRequest) (*GetHTTPRouterResponse, error)
 	//创建或者更新路由
-	PostOrPutHTTPRouter(context.Context, *HTTPRouter) (*emptypb.Empty, error)
+	PostOrPutHTTPRouter(context.Context, *PostOrPutHTTPRouterRequest) (*PostOrPutHTTPRouterResponse, error)
 	//删除路由
-	DeleteHTTPRouter(context.Context, *HTTPRouterKeyRequest) (*emptypb.Empty, error)
+	DeleteHTTPRouter(context.Context, *DeleteHTTPRouterRequest) (*DeleteHTTPRouterResponse, error)
+	mustEmbedUnimplementedServerManageerServiceServer()
 }
 
-// UnimplementedServerManageerServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedServerManageerServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedServerManageerServiceServer struct {
 }
 
-func (UnimplementedServerManageerServiceServer) GetHTTPRouterList(context.Context, *emptypb.Empty) (*GetHTTPRouterListResponse, error) {
+func (UnimplementedServerManageerServiceServer) GetHTTPRouterList(context.Context, *GetHTTPRouterListRequest) (*GetHTTPRouterListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHTTPRouterList not implemented")
 }
-func (UnimplementedServerManageerServiceServer) GetHTTPRouter(context.Context, *HTTPRouterKeyRequest) (*HTTPRouter, error) {
+func (UnimplementedServerManageerServiceServer) GetHTTPRouter(context.Context, *GetHTTPRouterRequest) (*GetHTTPRouterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHTTPRouter not implemented")
 }
-func (UnimplementedServerManageerServiceServer) PostOrPutHTTPRouter(context.Context, *HTTPRouter) (*emptypb.Empty, error) {
+func (UnimplementedServerManageerServiceServer) PostOrPutHTTPRouter(context.Context, *PostOrPutHTTPRouterRequest) (*PostOrPutHTTPRouterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostOrPutHTTPRouter not implemented")
 }
-func (UnimplementedServerManageerServiceServer) DeleteHTTPRouter(context.Context, *HTTPRouterKeyRequest) (*emptypb.Empty, error) {
+func (UnimplementedServerManageerServiceServer) DeleteHTTPRouter(context.Context, *DeleteHTTPRouterRequest) (*DeleteHTTPRouterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteHTTPRouter not implemented")
 }
+func (UnimplementedServerManageerServiceServer) mustEmbedUnimplementedServerManageerServiceServer() {}
 
 // UnsafeServerManageerServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ServerManageerServiceServer will
@@ -120,7 +121,7 @@ func RegisterServerManageerServiceServer(s grpc.ServiceRegistrar, srv ServerMana
 }
 
 func _ServerManageerService_GetHTTPRouterList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetHTTPRouterListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -132,13 +133,13 @@ func _ServerManageerService_GetHTTPRouterList_Handler(srv interface{}, ctx conte
 		FullMethod: "/gatewayapis.server.v1.ServerManageerService/GetHTTPRouterList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerManageerServiceServer).GetHTTPRouterList(ctx, req.(*emptypb.Empty))
+		return srv.(ServerManageerServiceServer).GetHTTPRouterList(ctx, req.(*GetHTTPRouterListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ServerManageerService_GetHTTPRouter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HTTPRouterKeyRequest)
+	in := new(GetHTTPRouterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -150,13 +151,13 @@ func _ServerManageerService_GetHTTPRouter_Handler(srv interface{}, ctx context.C
 		FullMethod: "/gatewayapis.server.v1.ServerManageerService/GetHTTPRouter",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerManageerServiceServer).GetHTTPRouter(ctx, req.(*HTTPRouterKeyRequest))
+		return srv.(ServerManageerServiceServer).GetHTTPRouter(ctx, req.(*GetHTTPRouterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ServerManageerService_PostOrPutHTTPRouter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HTTPRouter)
+	in := new(PostOrPutHTTPRouterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -168,13 +169,13 @@ func _ServerManageerService_PostOrPutHTTPRouter_Handler(srv interface{}, ctx con
 		FullMethod: "/gatewayapis.server.v1.ServerManageerService/PostOrPutHTTPRouter",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerManageerServiceServer).PostOrPutHTTPRouter(ctx, req.(*HTTPRouter))
+		return srv.(ServerManageerServiceServer).PostOrPutHTTPRouter(ctx, req.(*PostOrPutHTTPRouterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ServerManageerService_DeleteHTTPRouter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HTTPRouterKeyRequest)
+	in := new(DeleteHTTPRouterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -186,7 +187,7 @@ func _ServerManageerService_DeleteHTTPRouter_Handler(srv interface{}, ctx contex
 		FullMethod: "/gatewayapis.server.v1.ServerManageerService/DeleteHTTPRouter",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerManageerServiceServer).DeleteHTTPRouter(ctx, req.(*HTTPRouterKeyRequest))
+		return srv.(ServerManageerServiceServer).DeleteHTTPRouter(ctx, req.(*DeleteHTTPRouterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

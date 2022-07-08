@@ -572,7 +572,7 @@ func RegisterHealthServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecords_0(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecords_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecords_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -596,7 +596,7 @@ func RegisterHealthServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecords_1(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecords_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecords_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -860,7 +860,7 @@ func RegisterHealthServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetNucleicAcidTestLatest_0(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetNucleicAcidTestLatest_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetNucleicAcidTestLatest_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -985,7 +985,7 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecords_0(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecords_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecords_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1006,7 +1006,7 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetCheckinRecords_1(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetCheckinRecords_1{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetCheckinRecords_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1237,38 +1237,11 @@ func RegisterHealthServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_HealthService_GetNucleicAcidTestLatest_0(ctx, mux, outboundMarshaler, w, req, response_HealthService_GetNucleicAcidTestLatest_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_HealthService_GetNucleicAcidTestLatest_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
-}
-
-type response_HealthService_GetCheckinRecords_0 struct {
-	proto.Message
-}
-
-func (m response_HealthService_GetCheckinRecords_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCheckinRecordsResponse)
-	return response.Items
-}
-
-type response_HealthService_GetCheckinRecords_1 struct {
-	proto.Message
-}
-
-func (m response_HealthService_GetCheckinRecords_1) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetCheckinRecordsResponse)
-	return response.Items
-}
-
-type response_HealthService_GetNucleicAcidTestLatest_0 struct {
-	proto.Message
-}
-
-func (m response_HealthService_GetNucleicAcidTestLatest_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*GetNucleicAcidTestLatestResponse)
-	return response.Item
 }
 
 var (

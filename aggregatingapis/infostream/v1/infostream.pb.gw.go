@@ -2,11 +2,11 @@
 // source: aggregatingapis/infostream/v1/infostream.proto
 
 /*
-Package infoStreamv1 is a reverse proxy.
+Package infostreamv1 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package infoStreamv1
+package infostreamv1
 
 import (
 	"context"
@@ -32,60 +32,60 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_InfoStreamService_GetInfoStream_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_InfostreamService_GetInfostream_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_InfoStreamService_GetInfoStream_0(ctx context.Context, marshaler runtime.Marshaler, client InfoStreamServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq InfoStreamReq
+func request_InfostreamService_GetInfostream_0(ctx context.Context, marshaler runtime.Marshaler, client InfostreamServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetInfostreamRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_InfoStreamService_GetInfoStream_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_InfostreamService_GetInfostream_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetInfoStream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetInfostream(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_InfoStreamService_GetInfoStream_0(ctx context.Context, marshaler runtime.Marshaler, server InfoStreamServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq InfoStreamReq
+func local_request_InfostreamService_GetInfostream_0(ctx context.Context, marshaler runtime.Marshaler, server InfostreamServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetInfostreamRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_InfoStreamService_GetInfoStream_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_InfostreamService_GetInfostream_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetInfoStream(ctx, &protoReq)
+	msg, err := server.GetInfostream(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-// RegisterInfoStreamServiceHandlerServer registers the http handlers for service InfoStreamService to "mux".
-// UnaryRPC     :call InfoStreamServiceServer directly.
+// RegisterInfostreamServiceHandlerServer registers the http handlers for service InfostreamService to "mux".
+// UnaryRPC     :call InfostreamServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterInfoStreamServiceHandlerFromEndpoint instead.
-func RegisterInfoStreamServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server InfoStreamServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterInfostreamServiceHandlerFromEndpoint instead.
+func RegisterInfostreamServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server InfostreamServiceServer) error {
 
-	mux.Handle("GET", pattern_InfoStreamService_GetInfoStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_InfostreamService_GetInfostream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/flutterapis.infoStream.v1.InfoStreamService/GetInfoStream", runtime.WithHTTPPathPattern("/infoStream/v1"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aggregatingapis.infostream.v1.InfostreamService/GetInfostream", runtime.WithHTTPPathPattern("/infostream/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_InfoStreamService_GetInfoStream_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_InfostreamService_GetInfostream_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -93,16 +93,16 @@ func RegisterInfoStreamServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			return
 		}
 
-		forward_InfoStreamService_GetInfoStream_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InfostreamService_GetInfostream_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterInfoStreamServiceHandlerFromEndpoint is same as RegisterInfoStreamServiceHandler but
+// RegisterInfostreamServiceHandlerFromEndpoint is same as RegisterInfostreamServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterInfoStreamServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterInfostreamServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -122,40 +122,40 @@ func RegisterInfoStreamServiceHandlerFromEndpoint(ctx context.Context, mux *runt
 		}()
 	}()
 
-	return RegisterInfoStreamServiceHandler(ctx, mux, conn)
+	return RegisterInfostreamServiceHandler(ctx, mux, conn)
 }
 
-// RegisterInfoStreamServiceHandler registers the http handlers for service InfoStreamService to "mux".
+// RegisterInfostreamServiceHandler registers the http handlers for service InfostreamService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterInfoStreamServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterInfoStreamServiceHandlerClient(ctx, mux, NewInfoStreamServiceClient(conn))
+func RegisterInfostreamServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterInfostreamServiceHandlerClient(ctx, mux, NewInfostreamServiceClient(conn))
 }
 
-// RegisterInfoStreamServiceHandlerClient registers the http handlers for service InfoStreamService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "InfoStreamServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "InfoStreamServiceClient"
+// RegisterInfostreamServiceHandlerClient registers the http handlers for service InfostreamService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "InfostreamServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "InfostreamServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "InfoStreamServiceClient" to call the correct interceptors.
-func RegisterInfoStreamServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client InfoStreamServiceClient) error {
+// "InfostreamServiceClient" to call the correct interceptors.
+func RegisterInfostreamServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client InfostreamServiceClient) error {
 
-	mux.Handle("GET", pattern_InfoStreamService_GetInfoStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_InfostreamService_GetInfostream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/flutterapis.infoStream.v1.InfoStreamService/GetInfoStream", runtime.WithHTTPPathPattern("/infoStream/v1"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/aggregatingapis.infostream.v1.InfostreamService/GetInfostream", runtime.WithHTTPPathPattern("/infostream/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_InfoStreamService_GetInfoStream_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_InfostreamService_GetInfostream_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InfoStreamService_GetInfoStream_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InfostreamService_GetInfostream_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -163,9 +163,9 @@ func RegisterInfoStreamServiceHandlerClient(ctx context.Context, mux *runtime.Se
 }
 
 var (
-	pattern_InfoStreamService_GetInfoStream_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"infoStream", "v1"}, ""))
+	pattern_InfostreamService_GetInfostream_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"infostream", "v1"}, ""))
 )
 
 var (
-	forward_InfoStreamService_GetInfoStream_0 = runtime.ForwardResponseMessage
+	forward_InfostreamService_GetInfostream_0 = runtime.ForwardResponseMessage
 )

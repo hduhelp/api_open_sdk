@@ -7,39 +7,39 @@ import "google/api/annotations.proto";
 option go_package = "./consultingapis/wiki/v1";
 
 service WikiService {
-  rpc GetDocContent(DocTokenReq) returns (DocTokenResp) {
+  rpc GetDocContent(GetDocContentRequest) returns (GetDocContentResponse) {
     option (google.api.http) = {
       get: "/wiki/v1/content"
     };
   }
-  rpc GetNodeList(nodeReq) returns (nodeResp) {
+  rpc GetNodeList(GetNodeListRequest) returns (GetNodeListResponse) {
     option (google.api.http) = {
       get: "/wiki/v1/nodes"
     };
   }
 }
 
-message DocTokenReq {
+message GetDocContentRequest {
   string token = 1;
 }
 
-message DocTokenResp {
+message GetDocContentResponse {
   string content = 1;
   uint32 revision = 2;
 }
 
-message nodeReq {
+message GetNodeListRequest {
   string space_id = 1;
   string parent_node_token = 2;
 }
 
-message nodeResp {
-  repeated nodeItem items = 1;
+message GetNodeListResponse {
+  repeated NodeItem items = 1;
   string page_token = 2;
   bool has_more = 3;
 }
 
-message nodeItem {
+message NodeItem {
   string space_id = 1;
   string node_token = 2;
   string obj_token = 3;
@@ -53,5 +53,5 @@ message nodeItem {
   string obj_create_time = 11;
   string obj_edit_time = 12;
   string node_create_time = 13;
-  repeated nodeItem subNode = 14;
+  repeated NodeItem subNode = 14;
 }

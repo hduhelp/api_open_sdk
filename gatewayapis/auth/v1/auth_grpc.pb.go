@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -23,10 +22,42 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthServiceClient interface {
-	//获得Token基本信息
-	GetTokenInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTokenInfoResponse, error)
-	// 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
-	GetBindListByUserIdList(ctx context.Context, in *UserIdListRequest, opts ...grpc.CallOption) (*BindListResponse, error)
+	//用户获得Token基本信息
+	GetTokenInfo(ctx context.Context, in *GetTokenInfoRequest, opts ...grpc.CallOption) (*GetTokenInfoResponse, error)
+	//用户注销当前令牌
+	DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error)
+	//用户获取绑定列表
+	GetUserBindList(ctx context.Context, in *GetUserBindListRequest, opts ...grpc.CallOption) (*GetUserBindListResponse, error)
+	//获取用户绑定信息
+	GetUserBind(ctx context.Context, in *GetUserBindRequest, opts ...grpc.CallOption) (*GetUserBindResponse, error)
+	//删除用户绑定
+	DeleteUserBind(ctx context.Context, in *DeleteUserBindRequest, opts ...grpc.CallOption) (*DeleteUserBindResponse, error)
+	//获取用户登录历史信息
+	GetUserLoginHistory(ctx context.Context, in *GetUserLoginHistoryRequest, opts ...grpc.CallOption) (*GetUserLoginHistoryResponse, error)
+	//删除用户指定令牌
+	DeleteUserLoginToken(ctx context.Context, in *DeleteUserLoginTokenRequest, opts ...grpc.CallOption) (*DeleteUserLoginTokenResponse, error)
+	//检查用户绑定
+	GetUserBindCheck(ctx context.Context, in *GetUserBindCheckRequest, opts ...grpc.CallOption) (*GetUserBindCheckResponse, error)
+	//Devices Management
+	GetUserDeviceList(ctx context.Context, in *GetUserDeviceListRequest, opts ...grpc.CallOption) (*GetUserDeviceListResponse, error)
+	GetUserDevice(ctx context.Context, in *GetUserDeviceRequest, opts ...grpc.CallOption) (*GetUserDeviceResponse, error)
+	PostUserDevice(ctx context.Context, in *PostUserDeviceRequest, opts ...grpc.CallOption) (*PostUserDeviceResponse, error)
+	DeleteUserDevice(ctx context.Context, in *DeleteUserDeviceRequest, opts ...grpc.CallOption) (*DeleteUserDeviceResponse, error)
+	//User
+	GetUserInfo(ctx context.Context, in *GetUserInfoRequest, opts ...grpc.CallOption) (*GetUserInfoResponse, error)
+	GetUserInfoLegacy(ctx context.Context, in *GetUserInfoLegacyRequest, opts ...grpc.CallOption) (*GetUserInfoLegacyResponse, error)
+	PutUserPrimaryBind(ctx context.Context, in *PutUserPrimaryBindRequest, opts ...grpc.CallOption) (*PutUserPrimaryBindResponse, error)
+	PutUserPrimaryBindLegacy(ctx context.Context, in *PutUserPrimaryBindLegacyRequest, opts ...grpc.CallOption) (*PutUserPrimaryBindLegacyResponse, error)
+	//Static Server
+	GetImageUploadTicket(ctx context.Context, in *GetImageUploadTicketRequest, opts ...grpc.CallOption) (*GetImageUploadTicketResponse, error)
+	PutUploadImage(ctx context.Context, in *PutUploadImageRequest, opts ...grpc.CallOption) (*PutUploadImageResponse, error)
+	//HTML
+	GetDoctorPage(ctx context.Context, in *GetDoctorPageRequest, opts ...grpc.CallOption) (*GetDoctorPageResponse, error)
+	//Deprecated APIs
+	GetSchoolTime(ctx context.Context, in *GetSchoolTimeRequest, opts ...grpc.CallOption) (*GetSchoolTimeResponse, error)
+	GetWeChatSignature(ctx context.Context, in *GetWeChatSignatureRequest, opts ...grpc.CallOption) (*GetWeChatSignatureResponse, error)
+	//（内部接口）通过助手user_id获得用户的其他绑定信息
+	GetBindListByUserIdList(ctx context.Context, in *GetBindListByUserIdListRequest, opts ...grpc.CallOption) (*GetBindListByUserIdListResponse, error)
 }
 
 type authServiceClient struct {
@@ -37,7 +68,7 @@ func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
 	return &authServiceClient{cc}
 }
 
-func (c *authServiceClient) GetTokenInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTokenInfoResponse, error) {
+func (c *authServiceClient) GetTokenInfo(ctx context.Context, in *GetTokenInfoRequest, opts ...grpc.CallOption) (*GetTokenInfoResponse, error) {
 	out := new(GetTokenInfoResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetTokenInfo", in, out, opts...)
 	if err != nil {
@@ -46,8 +77,188 @@ func (c *authServiceClient) GetTokenInfo(ctx context.Context, in *emptypb.Empty,
 	return out, nil
 }
 
-func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *UserIdListRequest, opts ...grpc.CallOption) (*BindListResponse, error) {
-	out := new(BindListResponse)
+func (c *authServiceClient) DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error) {
+	out := new(DeleteTokenResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/DeleteToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetUserBindList(ctx context.Context, in *GetUserBindListRequest, opts ...grpc.CallOption) (*GetUserBindListResponse, error) {
+	out := new(GetUserBindListResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetUserBindList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetUserBind(ctx context.Context, in *GetUserBindRequest, opts ...grpc.CallOption) (*GetUserBindResponse, error) {
+	out := new(GetUserBindResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetUserBind", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) DeleteUserBind(ctx context.Context, in *DeleteUserBindRequest, opts ...grpc.CallOption) (*DeleteUserBindResponse, error) {
+	out := new(DeleteUserBindResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/DeleteUserBind", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetUserLoginHistory(ctx context.Context, in *GetUserLoginHistoryRequest, opts ...grpc.CallOption) (*GetUserLoginHistoryResponse, error) {
+	out := new(GetUserLoginHistoryResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetUserLoginHistory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) DeleteUserLoginToken(ctx context.Context, in *DeleteUserLoginTokenRequest, opts ...grpc.CallOption) (*DeleteUserLoginTokenResponse, error) {
+	out := new(DeleteUserLoginTokenResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/DeleteUserLoginToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetUserBindCheck(ctx context.Context, in *GetUserBindCheckRequest, opts ...grpc.CallOption) (*GetUserBindCheckResponse, error) {
+	out := new(GetUserBindCheckResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetUserBindCheck", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetUserDeviceList(ctx context.Context, in *GetUserDeviceListRequest, opts ...grpc.CallOption) (*GetUserDeviceListResponse, error) {
+	out := new(GetUserDeviceListResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetUserDeviceList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetUserDevice(ctx context.Context, in *GetUserDeviceRequest, opts ...grpc.CallOption) (*GetUserDeviceResponse, error) {
+	out := new(GetUserDeviceResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetUserDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) PostUserDevice(ctx context.Context, in *PostUserDeviceRequest, opts ...grpc.CallOption) (*PostUserDeviceResponse, error) {
+	out := new(PostUserDeviceResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/PostUserDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) DeleteUserDevice(ctx context.Context, in *DeleteUserDeviceRequest, opts ...grpc.CallOption) (*DeleteUserDeviceResponse, error) {
+	out := new(DeleteUserDeviceResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/DeleteUserDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetUserInfo(ctx context.Context, in *GetUserInfoRequest, opts ...grpc.CallOption) (*GetUserInfoResponse, error) {
+	out := new(GetUserInfoResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetUserInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetUserInfoLegacy(ctx context.Context, in *GetUserInfoLegacyRequest, opts ...grpc.CallOption) (*GetUserInfoLegacyResponse, error) {
+	out := new(GetUserInfoLegacyResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetUserInfoLegacy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) PutUserPrimaryBind(ctx context.Context, in *PutUserPrimaryBindRequest, opts ...grpc.CallOption) (*PutUserPrimaryBindResponse, error) {
+	out := new(PutUserPrimaryBindResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/PutUserPrimaryBind", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) PutUserPrimaryBindLegacy(ctx context.Context, in *PutUserPrimaryBindLegacyRequest, opts ...grpc.CallOption) (*PutUserPrimaryBindLegacyResponse, error) {
+	out := new(PutUserPrimaryBindLegacyResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/PutUserPrimaryBindLegacy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetImageUploadTicket(ctx context.Context, in *GetImageUploadTicketRequest, opts ...grpc.CallOption) (*GetImageUploadTicketResponse, error) {
+	out := new(GetImageUploadTicketResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetImageUploadTicket", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) PutUploadImage(ctx context.Context, in *PutUploadImageRequest, opts ...grpc.CallOption) (*PutUploadImageResponse, error) {
+	out := new(PutUploadImageResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/PutUploadImage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetDoctorPage(ctx context.Context, in *GetDoctorPageRequest, opts ...grpc.CallOption) (*GetDoctorPageResponse, error) {
+	out := new(GetDoctorPageResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetDoctorPage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetSchoolTime(ctx context.Context, in *GetSchoolTimeRequest, opts ...grpc.CallOption) (*GetSchoolTimeResponse, error) {
+	out := new(GetSchoolTimeResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetSchoolTime", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetWeChatSignature(ctx context.Context, in *GetWeChatSignatureRequest, opts ...grpc.CallOption) (*GetWeChatSignatureResponse, error) {
+	out := new(GetWeChatSignatureResponse)
+	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetWeChatSignature", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *GetBindListByUserIdListRequest, opts ...grpc.CallOption) (*GetBindListByUserIdListResponse, error) {
+	out := new(GetBindListByUserIdListResponse)
 	err := c.cc.Invoke(ctx, "/gatewayapis.auth.v1.AuthService/GetBindListByUserIdList", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -56,25 +267,119 @@ func (c *authServiceClient) GetBindListByUserIdList(ctx context.Context, in *Use
 }
 
 // AuthServiceServer is the server API for AuthService service.
-// All implementations should embed UnimplementedAuthServiceServer
+// All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility
 type AuthServiceServer interface {
-	//获得Token基本信息
-	GetTokenInfo(context.Context, *emptypb.Empty) (*GetTokenInfoResponse, error)
-	// 通过助手user_id获得用户的其他绑定id信息（学号、微信open id、钉钉id、身份证等）
-	GetBindListByUserIdList(context.Context, *UserIdListRequest) (*BindListResponse, error)
+	//用户获得Token基本信息
+	GetTokenInfo(context.Context, *GetTokenInfoRequest) (*GetTokenInfoResponse, error)
+	//用户注销当前令牌
+	DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error)
+	//用户获取绑定列表
+	GetUserBindList(context.Context, *GetUserBindListRequest) (*GetUserBindListResponse, error)
+	//获取用户绑定信息
+	GetUserBind(context.Context, *GetUserBindRequest) (*GetUserBindResponse, error)
+	//删除用户绑定
+	DeleteUserBind(context.Context, *DeleteUserBindRequest) (*DeleteUserBindResponse, error)
+	//获取用户登录历史信息
+	GetUserLoginHistory(context.Context, *GetUserLoginHistoryRequest) (*GetUserLoginHistoryResponse, error)
+	//删除用户指定令牌
+	DeleteUserLoginToken(context.Context, *DeleteUserLoginTokenRequest) (*DeleteUserLoginTokenResponse, error)
+	//检查用户绑定
+	GetUserBindCheck(context.Context, *GetUserBindCheckRequest) (*GetUserBindCheckResponse, error)
+	//Devices Management
+	GetUserDeviceList(context.Context, *GetUserDeviceListRequest) (*GetUserDeviceListResponse, error)
+	GetUserDevice(context.Context, *GetUserDeviceRequest) (*GetUserDeviceResponse, error)
+	PostUserDevice(context.Context, *PostUserDeviceRequest) (*PostUserDeviceResponse, error)
+	DeleteUserDevice(context.Context, *DeleteUserDeviceRequest) (*DeleteUserDeviceResponse, error)
+	//User
+	GetUserInfo(context.Context, *GetUserInfoRequest) (*GetUserInfoResponse, error)
+	GetUserInfoLegacy(context.Context, *GetUserInfoLegacyRequest) (*GetUserInfoLegacyResponse, error)
+	PutUserPrimaryBind(context.Context, *PutUserPrimaryBindRequest) (*PutUserPrimaryBindResponse, error)
+	PutUserPrimaryBindLegacy(context.Context, *PutUserPrimaryBindLegacyRequest) (*PutUserPrimaryBindLegacyResponse, error)
+	//Static Server
+	GetImageUploadTicket(context.Context, *GetImageUploadTicketRequest) (*GetImageUploadTicketResponse, error)
+	PutUploadImage(context.Context, *PutUploadImageRequest) (*PutUploadImageResponse, error)
+	//HTML
+	GetDoctorPage(context.Context, *GetDoctorPageRequest) (*GetDoctorPageResponse, error)
+	//Deprecated APIs
+	GetSchoolTime(context.Context, *GetSchoolTimeRequest) (*GetSchoolTimeResponse, error)
+	GetWeChatSignature(context.Context, *GetWeChatSignatureRequest) (*GetWeChatSignatureResponse, error)
+	//（内部接口）通过助手user_id获得用户的其他绑定信息
+	GetBindListByUserIdList(context.Context, *GetBindListByUserIdListRequest) (*GetBindListByUserIdListResponse, error)
+	mustEmbedUnimplementedAuthServiceServer()
 }
 
-// UnimplementedAuthServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedAuthServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedAuthServiceServer struct {
 }
 
-func (UnimplementedAuthServiceServer) GetTokenInfo(context.Context, *emptypb.Empty) (*GetTokenInfoResponse, error) {
+func (UnimplementedAuthServiceServer) GetTokenInfo(context.Context, *GetTokenInfoRequest) (*GetTokenInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTokenInfo not implemented")
 }
-func (UnimplementedAuthServiceServer) GetBindListByUserIdList(context.Context, *UserIdListRequest) (*BindListResponse, error) {
+func (UnimplementedAuthServiceServer) DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteToken not implemented")
+}
+func (UnimplementedAuthServiceServer) GetUserBindList(context.Context, *GetUserBindListRequest) (*GetUserBindListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserBindList not implemented")
+}
+func (UnimplementedAuthServiceServer) GetUserBind(context.Context, *GetUserBindRequest) (*GetUserBindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserBind not implemented")
+}
+func (UnimplementedAuthServiceServer) DeleteUserBind(context.Context, *DeleteUserBindRequest) (*DeleteUserBindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserBind not implemented")
+}
+func (UnimplementedAuthServiceServer) GetUserLoginHistory(context.Context, *GetUserLoginHistoryRequest) (*GetUserLoginHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserLoginHistory not implemented")
+}
+func (UnimplementedAuthServiceServer) DeleteUserLoginToken(context.Context, *DeleteUserLoginTokenRequest) (*DeleteUserLoginTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserLoginToken not implemented")
+}
+func (UnimplementedAuthServiceServer) GetUserBindCheck(context.Context, *GetUserBindCheckRequest) (*GetUserBindCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserBindCheck not implemented")
+}
+func (UnimplementedAuthServiceServer) GetUserDeviceList(context.Context, *GetUserDeviceListRequest) (*GetUserDeviceListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserDeviceList not implemented")
+}
+func (UnimplementedAuthServiceServer) GetUserDevice(context.Context, *GetUserDeviceRequest) (*GetUserDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserDevice not implemented")
+}
+func (UnimplementedAuthServiceServer) PostUserDevice(context.Context, *PostUserDeviceRequest) (*PostUserDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostUserDevice not implemented")
+}
+func (UnimplementedAuthServiceServer) DeleteUserDevice(context.Context, *DeleteUserDeviceRequest) (*DeleteUserDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserDevice not implemented")
+}
+func (UnimplementedAuthServiceServer) GetUserInfo(context.Context, *GetUserInfoRequest) (*GetUserInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserInfo not implemented")
+}
+func (UnimplementedAuthServiceServer) GetUserInfoLegacy(context.Context, *GetUserInfoLegacyRequest) (*GetUserInfoLegacyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserInfoLegacy not implemented")
+}
+func (UnimplementedAuthServiceServer) PutUserPrimaryBind(context.Context, *PutUserPrimaryBindRequest) (*PutUserPrimaryBindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PutUserPrimaryBind not implemented")
+}
+func (UnimplementedAuthServiceServer) PutUserPrimaryBindLegacy(context.Context, *PutUserPrimaryBindLegacyRequest) (*PutUserPrimaryBindLegacyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PutUserPrimaryBindLegacy not implemented")
+}
+func (UnimplementedAuthServiceServer) GetImageUploadTicket(context.Context, *GetImageUploadTicketRequest) (*GetImageUploadTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetImageUploadTicket not implemented")
+}
+func (UnimplementedAuthServiceServer) PutUploadImage(context.Context, *PutUploadImageRequest) (*PutUploadImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PutUploadImage not implemented")
+}
+func (UnimplementedAuthServiceServer) GetDoctorPage(context.Context, *GetDoctorPageRequest) (*GetDoctorPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDoctorPage not implemented")
+}
+func (UnimplementedAuthServiceServer) GetSchoolTime(context.Context, *GetSchoolTimeRequest) (*GetSchoolTimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSchoolTime not implemented")
+}
+func (UnimplementedAuthServiceServer) GetWeChatSignature(context.Context, *GetWeChatSignatureRequest) (*GetWeChatSignatureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWeChatSignature not implemented")
+}
+func (UnimplementedAuthServiceServer) GetBindListByUserIdList(context.Context, *GetBindListByUserIdListRequest) (*GetBindListByUserIdListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBindListByUserIdList not implemented")
 }
+func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 
 // UnsafeAuthServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to AuthServiceServer will
@@ -88,7 +393,7 @@ func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
 }
 
 func _AuthService_GetTokenInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetTokenInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -100,13 +405,373 @@ func _AuthService_GetTokenInfo_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/gatewayapis.auth.v1.AuthService/GetTokenInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetTokenInfo(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServiceServer).GetTokenInfo(ctx, req.(*GetTokenInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_DeleteToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).DeleteToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/DeleteToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).DeleteToken(ctx, req.(*DeleteTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetUserBindList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserBindListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetUserBindList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetUserBindList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetUserBindList(ctx, req.(*GetUserBindListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetUserBind_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserBindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetUserBind(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetUserBind",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetUserBind(ctx, req.(*GetUserBindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_DeleteUserBind_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserBindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).DeleteUserBind(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/DeleteUserBind",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).DeleteUserBind(ctx, req.(*DeleteUserBindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetUserLoginHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserLoginHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetUserLoginHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetUserLoginHistory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetUserLoginHistory(ctx, req.(*GetUserLoginHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_DeleteUserLoginToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserLoginTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).DeleteUserLoginToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/DeleteUserLoginToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).DeleteUserLoginToken(ctx, req.(*DeleteUserLoginTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetUserBindCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserBindCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetUserBindCheck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetUserBindCheck",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetUserBindCheck(ctx, req.(*GetUserBindCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetUserDeviceList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserDeviceListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetUserDeviceList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetUserDeviceList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetUserDeviceList(ctx, req.(*GetUserDeviceListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetUserDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserDeviceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetUserDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetUserDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetUserDevice(ctx, req.(*GetUserDeviceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_PostUserDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostUserDeviceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).PostUserDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/PostUserDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).PostUserDevice(ctx, req.(*PostUserDeviceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_DeleteUserDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserDeviceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).DeleteUserDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/DeleteUserDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).DeleteUserDevice(ctx, req.(*DeleteUserDeviceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetUserInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetUserInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetUserInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetUserInfo(ctx, req.(*GetUserInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetUserInfoLegacy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserInfoLegacyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetUserInfoLegacy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetUserInfoLegacy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetUserInfoLegacy(ctx, req.(*GetUserInfoLegacyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_PutUserPrimaryBind_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutUserPrimaryBindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).PutUserPrimaryBind(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/PutUserPrimaryBind",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).PutUserPrimaryBind(ctx, req.(*PutUserPrimaryBindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_PutUserPrimaryBindLegacy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutUserPrimaryBindLegacyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).PutUserPrimaryBindLegacy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/PutUserPrimaryBindLegacy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).PutUserPrimaryBindLegacy(ctx, req.(*PutUserPrimaryBindLegacyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetImageUploadTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetImageUploadTicketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetImageUploadTicket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetImageUploadTicket",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetImageUploadTicket(ctx, req.(*GetImageUploadTicketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_PutUploadImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutUploadImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).PutUploadImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/PutUploadImage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).PutUploadImage(ctx, req.(*PutUploadImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetDoctorPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorPageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetDoctorPage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetDoctorPage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetDoctorPage(ctx, req.(*GetDoctorPageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetSchoolTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSchoolTimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetSchoolTime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetSchoolTime",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetSchoolTime(ctx, req.(*GetSchoolTimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetWeChatSignature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWeChatSignatureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetWeChatSignature(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gatewayapis.auth.v1.AuthService/GetWeChatSignature",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetWeChatSignature(ctx, req.(*GetWeChatSignatureRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_GetBindListByUserIdList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserIdListRequest)
+	in := new(GetBindListByUserIdListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -118,7 +783,7 @@ func _AuthService_GetBindListByUserIdList_Handler(srv interface{}, ctx context.C
 		FullMethod: "/gatewayapis.auth.v1.AuthService/GetBindListByUserIdList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetBindListByUserIdList(ctx, req.(*UserIdListRequest))
+		return srv.(AuthServiceServer).GetBindListByUserIdList(ctx, req.(*GetBindListByUserIdListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -133,6 +798,86 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTokenInfo",
 			Handler:    _AuthService_GetTokenInfo_Handler,
+		},
+		{
+			MethodName: "DeleteToken",
+			Handler:    _AuthService_DeleteToken_Handler,
+		},
+		{
+			MethodName: "GetUserBindList",
+			Handler:    _AuthService_GetUserBindList_Handler,
+		},
+		{
+			MethodName: "GetUserBind",
+			Handler:    _AuthService_GetUserBind_Handler,
+		},
+		{
+			MethodName: "DeleteUserBind",
+			Handler:    _AuthService_DeleteUserBind_Handler,
+		},
+		{
+			MethodName: "GetUserLoginHistory",
+			Handler:    _AuthService_GetUserLoginHistory_Handler,
+		},
+		{
+			MethodName: "DeleteUserLoginToken",
+			Handler:    _AuthService_DeleteUserLoginToken_Handler,
+		},
+		{
+			MethodName: "GetUserBindCheck",
+			Handler:    _AuthService_GetUserBindCheck_Handler,
+		},
+		{
+			MethodName: "GetUserDeviceList",
+			Handler:    _AuthService_GetUserDeviceList_Handler,
+		},
+		{
+			MethodName: "GetUserDevice",
+			Handler:    _AuthService_GetUserDevice_Handler,
+		},
+		{
+			MethodName: "PostUserDevice",
+			Handler:    _AuthService_PostUserDevice_Handler,
+		},
+		{
+			MethodName: "DeleteUserDevice",
+			Handler:    _AuthService_DeleteUserDevice_Handler,
+		},
+		{
+			MethodName: "GetUserInfo",
+			Handler:    _AuthService_GetUserInfo_Handler,
+		},
+		{
+			MethodName: "GetUserInfoLegacy",
+			Handler:    _AuthService_GetUserInfoLegacy_Handler,
+		},
+		{
+			MethodName: "PutUserPrimaryBind",
+			Handler:    _AuthService_PutUserPrimaryBind_Handler,
+		},
+		{
+			MethodName: "PutUserPrimaryBindLegacy",
+			Handler:    _AuthService_PutUserPrimaryBindLegacy_Handler,
+		},
+		{
+			MethodName: "GetImageUploadTicket",
+			Handler:    _AuthService_GetImageUploadTicket_Handler,
+		},
+		{
+			MethodName: "PutUploadImage",
+			Handler:    _AuthService_PutUploadImage_Handler,
+		},
+		{
+			MethodName: "GetDoctorPage",
+			Handler:    _AuthService_GetDoctorPage_Handler,
+		},
+		{
+			MethodName: "GetSchoolTime",
+			Handler:    _AuthService_GetSchoolTime_Handler,
+		},
+		{
+			MethodName: "GetWeChatSignature",
+			Handler:    _AuthService_GetWeChatSignature_Handler,
 		},
 		{
 			MethodName: "GetBindListByUserIdList",

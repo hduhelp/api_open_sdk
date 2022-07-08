@@ -121,6 +121,15 @@
       },
       "title": "HTTP路由注册"
     },
+    "v1PostRegistGRPCMethodsResponse": {
+      "type": "object"
+    },
+    "v1PostRegistHTTPRoutersResponse": {
+      "type": "object"
+    },
+    "v1PostRegistServiceInstanceResponse": {
+      "type": "object"
+    },
     "v1ServiceInstance": {
       "type": "object",
       "properties": {

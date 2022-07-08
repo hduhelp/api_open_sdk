@@ -32,11 +32,11 @@ type TeachingServiceClient interface {
 	// 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
 	GetGlobalSchedule(ctx context.Context, in *GetGlobalScheduleRequest, opts ...grpc.CallOption) (*GetGlobalScheduleResponse, error)
 	// 获取所有教室列表
-	GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
+	GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error)
 	// 获取某一教室的使用情况
-	GetClassroomUsages(ctx context.Context, in *GetClassroomUsageRequest, opts ...grpc.CallOption) (*ClassroomUsagesResponse, error)
+	GetClassroomUsages(ctx context.Context, in *GetClassroomUsagesRequest, opts ...grpc.CallOption) (*GetClassroomUsagesResponse, error)
 	// 获取所有空教室列表
-	GetUnusedClassrooms(ctx context.Context, in *GetUnusedClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error)
+	GetUnusedClassrooms(ctx context.Context, in *GetUnusedClassroomsRequest, opts ...grpc.CallOption) (*GetUnusedClassroomsResponse, error)
 }
 
 type teachingServiceClient struct {
@@ -83,8 +83,8 @@ func (c *teachingServiceClient) GetGlobalSchedule(ctx context.Context, in *GetGl
 	return out, nil
 }
 
-func (c *teachingServiceClient) GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error) {
-	out := new(ClassroomsResponse)
+func (c *teachingServiceClient) GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error) {
+	out := new(GetClassroomsResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassrooms", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,8 +92,8 @@ func (c *teachingServiceClient) GetClassrooms(ctx context.Context, in *GetClassr
 	return out, nil
 }
 
-func (c *teachingServiceClient) GetClassroomUsages(ctx context.Context, in *GetClassroomUsageRequest, opts ...grpc.CallOption) (*ClassroomUsagesResponse, error) {
-	out := new(ClassroomUsagesResponse)
+func (c *teachingServiceClient) GetClassroomUsages(ctx context.Context, in *GetClassroomUsagesRequest, opts ...grpc.CallOption) (*GetClassroomUsagesResponse, error) {
+	out := new(GetClassroomUsagesResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,8 +101,8 @@ func (c *teachingServiceClient) GetClassroomUsages(ctx context.Context, in *GetC
 	return out, nil
 }
 
-func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *GetUnusedClassroomsRequest, opts ...grpc.CallOption) (*ClassroomsResponse, error) {
-	out := new(ClassroomsResponse)
+func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *GetUnusedClassroomsRequest, opts ...grpc.CallOption) (*GetUnusedClassroomsResponse, error) {
+	out := new(GetUnusedClassroomsResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -111,7 +111,7 @@ func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *Get
 }
 
 // TeachingServiceServer is the server API for TeachingService service.
-// All implementations should embed UnimplementedTeachingServiceServer
+// All implementations must embed UnimplementedTeachingServiceServer
 // for forward compatibility
 type TeachingServiceServer interface {
 	// 获取学生/教师课程表
@@ -123,14 +123,15 @@ type TeachingServiceServer interface {
 	// 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
 	GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error)
 	// 获取所有教室列表
-	GetClassrooms(context.Context, *GetClassroomsRequest) (*ClassroomsResponse, error)
+	GetClassrooms(context.Context, *GetClassroomsRequest) (*GetClassroomsResponse, error)
 	// 获取某一教室的使用情况
-	GetClassroomUsages(context.Context, *GetClassroomUsageRequest) (*ClassroomUsagesResponse, error)
+	GetClassroomUsages(context.Context, *GetClassroomUsagesRequest) (*GetClassroomUsagesResponse, error)
 	// 获取所有空教室列表
-	GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*ClassroomsResponse, error)
+	GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*GetUnusedClassroomsResponse, error)
+	mustEmbedUnimplementedTeachingServiceServer()
 }
 
-// UnimplementedTeachingServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedTeachingServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedTeachingServiceServer struct {
 }
 
@@ -146,15 +147,16 @@ func (UnimplementedTeachingServiceServer) GetScheduleNowV2(context.Context, *emp
 func (UnimplementedTeachingServiceServer) GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGlobalSchedule not implemented")
 }
-func (UnimplementedTeachingServiceServer) GetClassrooms(context.Context, *GetClassroomsRequest) (*ClassroomsResponse, error) {
+func (UnimplementedTeachingServiceServer) GetClassrooms(context.Context, *GetClassroomsRequest) (*GetClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassrooms not implemented")
 }
-func (UnimplementedTeachingServiceServer) GetClassroomUsages(context.Context, *GetClassroomUsageRequest) (*ClassroomUsagesResponse, error) {
+func (UnimplementedTeachingServiceServer) GetClassroomUsages(context.Context, *GetClassroomUsagesRequest) (*GetClassroomUsagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassroomUsages not implemented")
 }
-func (UnimplementedTeachingServiceServer) GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*ClassroomsResponse, error) {
+func (UnimplementedTeachingServiceServer) GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*GetUnusedClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnusedClassrooms not implemented")
 }
+func (UnimplementedTeachingServiceServer) mustEmbedUnimplementedTeachingServiceServer() {}
 
 // UnsafeTeachingServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TeachingServiceServer will
@@ -258,7 +260,7 @@ func _TeachingService_GetClassrooms_Handler(srv interface{}, ctx context.Context
 }
 
 func _TeachingService_GetClassroomUsages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetClassroomUsageRequest)
+	in := new(GetClassroomUsagesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -270,7 +272,7 @@ func _TeachingService_GetClassroomUsages_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/campusapis.teaching.v1.TeachingService/GetClassroomUsages",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServiceServer).GetClassroomUsages(ctx, req.(*GetClassroomUsageRequest))
+		return srv.(TeachingServiceServer).GetClassroomUsages(ctx, req.(*GetClassroomUsagesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
