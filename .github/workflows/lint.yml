@@ -11,8 +11,8 @@ on:
       - "**.go.json"
       - "go.mod"
       - "go.sum"
-      - ".golangci.yaml"
-      - ".github/workflows/lint.yaml"
+      - ".golangci.yml"
+      - ".github/workflows/lint.yml"
   
 jobs:
   lint:

@@ -1,8 +1,16 @@
 name: check buf generate up to date
 on:
-  push:
+  pull_request:
     branches:
       - main
+    paths:
+      - "**.go"
+      - "**.proto"
+      - "**.go.json"
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/buf-pr.yml"
+
 jobs:
   build:
     name: Build
@@ -29,8 +37,9 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - run: echo ${{ steps.cache-golang.outputs.cache-hit }}
 
+      - run: echo ${{ steps.cache-golang.outputs.cache-hit }}
+      
       - name: init dependance
         if: steps.cache-golang.outputs.cache-hit != 'true'
         run: make install-tools
@@ -41,14 +50,12 @@ jobs:
       - name: check if files up to date
         run: |
           if [[ `git status --porcelain` ]]; then
-            git config --global user.name 'FDKevin'
-            git config --global user.email 'fdkevinzero@gmail.com'
-            git add -A
-            git commit -m "ci(gen): buf generate up to date"
-            git push
+            echo "buf gen code not up to date"
+            exit 1
           fi
-
+      
       - name: warming go proxy
+        if: github.ref == 'refs/heads/main'
         run: |
           hash=$(git show -s --format=%h)
           echo $hash
@@ -58,3 +65,4 @@ jobs:
           go get github.com/hduhelp/api_open_sdk@$hash
           GOPROXY=https://goproxy.io,direct go get github.com/hduhelp/api_open_sdk@$hash
           GOPROXY=https://goproxy.cn,direct go get github.com/hduhelp/api_open_sdk@$hash
+

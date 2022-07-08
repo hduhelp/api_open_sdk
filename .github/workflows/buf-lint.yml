@@ -9,7 +9,7 @@ on:
     paths:
       - "**.proto"
       - "buf.yaml"
-      - ".github/workflows/buf-lint.yaml"
+      - ".github/workflows/buf-lint.yml"
 
 jobs:
   lint-protos:
