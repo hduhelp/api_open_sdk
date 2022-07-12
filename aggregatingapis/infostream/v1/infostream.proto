@@ -6,19 +6,19 @@ import "google/api/annotations.proto";
 
 option go_package = "./aggregatingapis/infostream/v1";
 
-service InfostreamService {
-  rpc GetInfostream(GetInfostreamRequest) returns (GetInfostreamResponse) {
+service InfoStreamService {
+  rpc GetInfoStream(GetInfoStreamRequest) returns (GetInfoStreamResponse) {
     option (google.api.http) = {
       get: "/infostream/v1"
     };
   }
 }
 
-message GetInfostreamRequest {
+message GetInfoStreamRequest {
   string staffId = 1;
 }
 
-message GetInfostreamResponse {
+message GetInfoStreamResponse {
   uint32 error = 1;
   string msg = 2;
   Data data = 3;

@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetInfostreamRequest struct {
+type GetInfoStreamRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -29,8 +29,8 @@ type GetInfostreamRequest struct {
 	StaffId string `protobuf:"bytes,1,opt,name=staffId,proto3" json:"staffId,omitempty"`
 }
 
-func (x *GetInfostreamRequest) Reset() {
-	*x = GetInfostreamRequest{}
+func (x *GetInfoStreamRequest) Reset() {
+	*x = GetInfoStreamRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -38,13 +38,13 @@ func (x *GetInfostreamRequest) Reset() {
 	}
 }
 
-func (x *GetInfostreamRequest) String() string {
+func (x *GetInfoStreamRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetInfostreamRequest) ProtoMessage() {}
+func (*GetInfoStreamRequest) ProtoMessage() {}
 
-func (x *GetInfostreamRequest) ProtoReflect() protoreflect.Message {
+func (x *GetInfoStreamRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,30 +56,30 @@ func (x *GetInfostreamRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetInfostreamRequest.ProtoReflect.Descriptor instead.
-func (*GetInfostreamRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetInfoStreamRequest.ProtoReflect.Descriptor instead.
+func (*GetInfoStreamRequest) Descriptor() ([]byte, []int) {
 	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetInfostreamRequest) GetStaffId() string {
+func (x *GetInfoStreamRequest) GetStaffId() string {
 	if x != nil {
 		return x.StaffId
 	}
 	return ""
 }
 
-type GetInfostreamResponse struct {
+type GetInfoStreamResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	Error uint32                      `protobuf:"varint,1,opt,name=error,proto3" json:"error,omitempty"`
 	Msg   string                      `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
-	Data  *GetInfostreamResponse_Data `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	Data  *GetInfoStreamResponse_Data `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 }
 
-func (x *GetInfostreamResponse) Reset() {
-	*x = GetInfostreamResponse{}
+func (x *GetInfoStreamResponse) Reset() {
+	*x = GetInfoStreamResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -87,13 +87,13 @@ func (x *GetInfostreamResponse) Reset() {
 	}
 }
 
-func (x *GetInfostreamResponse) String() string {
+func (x *GetInfoStreamResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetInfostreamResponse) ProtoMessage() {}
+func (*GetInfoStreamResponse) ProtoMessage() {}
 
-func (x *GetInfostreamResponse) ProtoReflect() protoreflect.Message {
+func (x *GetInfoStreamResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -105,26 +105,26 @@ func (x *GetInfostreamResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetInfostreamResponse.ProtoReflect.Descriptor instead.
-func (*GetInfostreamResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetInfoStreamResponse.ProtoReflect.Descriptor instead.
+func (*GetInfoStreamResponse) Descriptor() ([]byte, []int) {
 	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetInfostreamResponse) GetError() uint32 {
+func (x *GetInfoStreamResponse) GetError() uint32 {
 	if x != nil {
 		return x.Error
 	}
 	return 0
 }
 
-func (x *GetInfostreamResponse) GetMsg() string {
+func (x *GetInfoStreamResponse) GetMsg() string {
 	if x != nil {
 		return x.Msg
 	}
 	return ""
 }
 
-func (x *GetInfostreamResponse) GetData() *GetInfostreamResponse_Data {
+func (x *GetInfoStreamResponse) GetData() *GetInfoStreamResponse_Data {
 	if x != nil {
 		return x.Data
 	}
@@ -1293,7 +1293,7 @@ func (x *ElectricData) GetRoomName() string {
 	return ""
 }
 
-type GetInfostreamResponse_Data struct {
+type GetInfoStreamResponse_Data struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1307,8 +1307,8 @@ type GetInfostreamResponse_Data struct {
 	Electric *ElectricResp    `protobuf:"bytes,7,opt,name=electric,proto3" json:"electric,omitempty"`
 }
 
-func (x *GetInfostreamResponse_Data) Reset() {
-	*x = GetInfostreamResponse_Data{}
+func (x *GetInfoStreamResponse_Data) Reset() {
+	*x = GetInfoStreamResponse_Data{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1316,13 +1316,13 @@ func (x *GetInfostreamResponse_Data) Reset() {
 	}
 }
 
-func (x *GetInfostreamResponse_Data) String() string {
+func (x *GetInfoStreamResponse_Data) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetInfostreamResponse_Data) ProtoMessage() {}
+func (*GetInfoStreamResponse_Data) ProtoMessage() {}
 
-func (x *GetInfostreamResponse_Data) ProtoReflect() protoreflect.Message {
+func (x *GetInfoStreamResponse_Data) ProtoReflect() protoreflect.Message {
 	mi := &file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1334,54 +1334,54 @@ func (x *GetInfostreamResponse_Data) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetInfostreamResponse_Data.ProtoReflect.Descriptor instead.
-func (*GetInfostreamResponse_Data) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetInfoStreamResponse_Data.ProtoReflect.Descriptor instead.
+func (*GetInfoStreamResponse_Data) Descriptor() ([]byte, []int) {
 	return file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP(), []int{1, 0}
 }
 
-func (x *GetInfostreamResponse_Data) GetWeather() *WeatherResponse {
+func (x *GetInfoStreamResponse_Data) GetWeather() *WeatherResponse {
 	if x != nil {
 		return x.Weather
 	}
 	return nil
 }
 
-func (x *GetInfostreamResponse_Data) GetSchedule() *ScheduleResp {
+func (x *GetInfoStreamResponse_Data) GetSchedule() *ScheduleResp {
 	if x != nil {
 		return x.Schedule
 	}
 	return nil
 }
 
-func (x *GetInfostreamResponse_Data) GetExam() *ExamResp {
+func (x *GetInfoStreamResponse_Data) GetExam() *ExamResp {
 	if x != nil {
 		return x.Exam
 	}
 	return nil
 }
 
-func (x *GetInfostreamResponse_Data) GetScore() *ScoreResp {
+func (x *GetInfoStreamResponse_Data) GetScore() *ScoreResp {
 	if x != nil {
 		return x.Score
 	}
 	return nil
 }
 
-func (x *GetInfostreamResponse_Data) GetSunrun() *SunRunResp {
+func (x *GetInfoStreamResponse_Data) GetSunrun() *SunRunResp {
 	if x != nil {
 		return x.Sunrun
 	}
 	return nil
 }
 
-func (x *GetInfostreamResponse_Data) GetCard() *CardResp {
+func (x *GetInfoStreamResponse_Data) GetCard() *CardResp {
 	if x != nil {
 		return x.Card
 	}
 	return nil
 }
 
-func (x *GetInfostreamResponse_Data) GetElectric() *ElectricResp {
+func (x *GetInfoStreamResponse_Data) GetElectric() *ElectricResp {
 	if x != nil {
 		return x.Electric
 	}
@@ -1398,17 +1398,17 @@ var file_aggregatingapis_infostream_v1_infostream_proto_rawDesc = []byte{
 	0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x1a,
 	0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f,
 	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x30, 0x0a,
-	0x14, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65,
+	0x14, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x74, 0x61, 0x66, 0x66, 0x49, 0x64,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x73, 0x74, 0x61, 0x66, 0x66, 0x49, 0x64, 0x22,
-	0xf0, 0x04, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61,
+	0xf0, 0x04, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61,
 	0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72,
 	0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12,
 	0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73,
 	0x67, 0x12, 0x4d, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x39, 0x2e, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x61, 0x70, 0x69,
 	0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e,
-	0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73,
+	0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73,
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61,
 	0x1a, 0xdf, 0x03, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x48, 0x0a, 0x07, 0x77, 0x65, 0x61,
 	0x74, 0x68, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x61, 0x67, 0x67,
@@ -1611,15 +1611,15 @@ var file_aggregatingapis_infostream_v1_infostream_proto_rawDesc = []byte{
 	0x16, 0x0a, 0x06, 0x72, 0x6f, 0x6f, 0x6d, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x06, 0x72, 0x6f, 0x6f, 0x6d, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x72, 0x6f, 0x6f, 0x6d, 0x4e,
 	0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x72, 0x6f, 0x6f, 0x6d, 0x4e,
-	0x61, 0x6d, 0x65, 0x32, 0xa8, 0x01, 0x0a, 0x11, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x65, 0x32, 0xa8, 0x01, 0x0a, 0x11, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65,
 	0x61, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x92, 0x01, 0x0a, 0x0d, 0x47, 0x65,
-	0x74, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x33, 0x2e, 0x61, 0x67,
+	0x74, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x33, 0x2e, 0x61, 0x67,
 	0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e,
 	0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x49,
-	0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x34, 0x2e, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x61, 0x70,
 	0x69, 0x73, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2e, 0x76, 0x31,
-	0x2e, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65,
+	0x2e, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x16, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x10, 0x12, 0x0e,
 	0x2f, 0x69, 0x6e, 0x66, 0x6f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x2f, 0x76, 0x31, 0x42, 0x96,
 	0x02, 0x0a, 0x21, 0x63, 0x6f, 0x6d, 0x2e, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x69,
@@ -1656,8 +1656,8 @@ func file_aggregatingapis_infostream_v1_infostream_proto_rawDescGZIP() []byte {
 
 var file_aggregatingapis_infostream_v1_infostream_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_aggregatingapis_infostream_v1_infostream_proto_goTypes = []interface{}{
-	(*GetInfostreamRequest)(nil),       // 0: aggregatingapis.infostream.v1.GetInfostreamRequest
-	(*GetInfostreamResponse)(nil),      // 1: aggregatingapis.infostream.v1.GetInfostreamResponse
+	(*GetInfoStreamRequest)(nil),       // 0: aggregatingapis.infostream.v1.GetInfoStreamRequest
+	(*GetInfoStreamResponse)(nil),      // 1: aggregatingapis.infostream.v1.GetInfoStreamResponse
 	(*WeatherResponse)(nil),            // 2: aggregatingapis.infostream.v1.WeatherResponse
 	(*WeatherData)(nil),                // 3: aggregatingapis.infostream.v1.WeatherData
 	(*ScheduleResp)(nil),               // 4: aggregatingapis.infostream.v1.ScheduleResp
@@ -1671,10 +1671,10 @@ var file_aggregatingapis_infostream_v1_infostream_proto_goTypes = []interface{}{
 	(*CardResp)(nil),                   // 12: aggregatingapis.infostream.v1.CardResp
 	(*ElectricResp)(nil),               // 13: aggregatingapis.infostream.v1.ElectricResp
 	(*ElectricData)(nil),               // 14: aggregatingapis.infostream.v1.ElectricData
-	(*GetInfostreamResponse_Data)(nil), // 15: aggregatingapis.infostream.v1.GetInfostreamResponse.Data
+	(*GetInfoStreamResponse_Data)(nil), // 15: aggregatingapis.infostream.v1.GetInfoStreamResponse.Data
 }
 var file_aggregatingapis_infostream_v1_infostream_proto_depIdxs = []int32{
-	15, // 0: aggregatingapis.infostream.v1.GetInfostreamResponse.data:type_name -> aggregatingapis.infostream.v1.GetInfostreamResponse.Data
+	15, // 0: aggregatingapis.infostream.v1.GetInfoStreamResponse.data:type_name -> aggregatingapis.infostream.v1.GetInfoStreamResponse.Data
 	3,  // 1: aggregatingapis.infostream.v1.WeatherResponse.data:type_name -> aggregatingapis.infostream.v1.WeatherData
 	5,  // 2: aggregatingapis.infostream.v1.ScheduleResp.today:type_name -> aggregatingapis.infostream.v1.ScheduleData
 	5,  // 3: aggregatingapis.infostream.v1.ScheduleResp.tomorrow:type_name -> aggregatingapis.infostream.v1.ScheduleData
@@ -1682,15 +1682,15 @@ var file_aggregatingapis_infostream_v1_infostream_proto_depIdxs = []int32{
 	9,  // 5: aggregatingapis.infostream.v1.ScoreResp.data:type_name -> aggregatingapis.infostream.v1.ScoreData
 	11, // 6: aggregatingapis.infostream.v1.SunRunResp.data:type_name -> aggregatingapis.infostream.v1.SunRunData
 	14, // 7: aggregatingapis.infostream.v1.ElectricResp.data:type_name -> aggregatingapis.infostream.v1.ElectricData
-	2,  // 8: aggregatingapis.infostream.v1.GetInfostreamResponse.Data.weather:type_name -> aggregatingapis.infostream.v1.WeatherResponse
-	4,  // 9: aggregatingapis.infostream.v1.GetInfostreamResponse.Data.schedule:type_name -> aggregatingapis.infostream.v1.ScheduleResp
-	6,  // 10: aggregatingapis.infostream.v1.GetInfostreamResponse.Data.exam:type_name -> aggregatingapis.infostream.v1.ExamResp
-	8,  // 11: aggregatingapis.infostream.v1.GetInfostreamResponse.Data.score:type_name -> aggregatingapis.infostream.v1.ScoreResp
-	10, // 12: aggregatingapis.infostream.v1.GetInfostreamResponse.Data.sunrun:type_name -> aggregatingapis.infostream.v1.SunRunResp
-	12, // 13: aggregatingapis.infostream.v1.GetInfostreamResponse.Data.card:type_name -> aggregatingapis.infostream.v1.CardResp
-	13, // 14: aggregatingapis.infostream.v1.GetInfostreamResponse.Data.electric:type_name -> aggregatingapis.infostream.v1.ElectricResp
-	0,  // 15: aggregatingapis.infostream.v1.InfostreamService.GetInfostream:input_type -> aggregatingapis.infostream.v1.GetInfostreamRequest
-	1,  // 16: aggregatingapis.infostream.v1.InfostreamService.GetInfostream:output_type -> aggregatingapis.infostream.v1.GetInfostreamResponse
+	2,  // 8: aggregatingapis.infostream.v1.GetInfoStreamResponse.Data.weather:type_name -> aggregatingapis.infostream.v1.WeatherResponse
+	4,  // 9: aggregatingapis.infostream.v1.GetInfoStreamResponse.Data.schedule:type_name -> aggregatingapis.infostream.v1.ScheduleResp
+	6,  // 10: aggregatingapis.infostream.v1.GetInfoStreamResponse.Data.exam:type_name -> aggregatingapis.infostream.v1.ExamResp
+	8,  // 11: aggregatingapis.infostream.v1.GetInfoStreamResponse.Data.score:type_name -> aggregatingapis.infostream.v1.ScoreResp
+	10, // 12: aggregatingapis.infostream.v1.GetInfoStreamResponse.Data.sunrun:type_name -> aggregatingapis.infostream.v1.SunRunResp
+	12, // 13: aggregatingapis.infostream.v1.GetInfoStreamResponse.Data.card:type_name -> aggregatingapis.infostream.v1.CardResp
+	13, // 14: aggregatingapis.infostream.v1.GetInfoStreamResponse.Data.electric:type_name -> aggregatingapis.infostream.v1.ElectricResp
+	0,  // 15: aggregatingapis.infostream.v1.InfoStreamService.GetInfoStream:input_type -> aggregatingapis.infostream.v1.GetInfoStreamRequest
+	1,  // 16: aggregatingapis.infostream.v1.InfoStreamService.GetInfoStream:output_type -> aggregatingapis.infostream.v1.GetInfoStreamResponse
 	16, // [16:17] is the sub-list for method output_type
 	15, // [15:16] is the sub-list for method input_type
 	15, // [15:15] is the sub-list for extension type_name
@@ -1705,7 +1705,7 @@ func file_aggregatingapis_infostream_v1_infostream_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetInfostreamRequest); i {
+			switch v := v.(*GetInfoStreamRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1717,7 +1717,7 @@ func file_aggregatingapis_infostream_v1_infostream_proto_init() {
 			}
 		}
 		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetInfostreamResponse); i {
+			switch v := v.(*GetInfoStreamResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1885,7 +1885,7 @@ func file_aggregatingapis_infostream_v1_infostream_proto_init() {
 			}
 		}
 		file_aggregatingapis_infostream_v1_infostream_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetInfostreamResponse_Data); i {
+			switch v := v.(*GetInfoStreamResponse_Data); i {
 			case 0:
 				return &v.state
 			case 1:

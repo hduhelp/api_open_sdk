@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "InfostreamService"
+      "name": "InfoStreamService"
     }
   ],
   "consumes": [
@@ -18,12 +18,12 @@
   "paths": {
     "/infostream/v1": {
       "get": {
-        "operationId": "InfostreamService_GetInfostream",
+        "operationId": "InfoStreamService_GetInfoStream",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetInfostreamResponse"
+              "$ref": "#/definitions/v1GetInfoStreamResponse"
             }
           },
           "default": {
@@ -42,13 +42,13 @@
           }
         ],
         "tags": [
-          "InfostreamService"
+          "InfoStreamService"
         ]
       }
     }
   },
   "definitions": {
-    "GetInfostreamResponseData": {
+    "GetInfoStreamResponseData": {
       "type": "object",
       "properties": {
         "weather": {
@@ -184,7 +184,7 @@
         }
       }
     },
-    "v1GetInfostreamResponse": {
+    "v1GetInfoStreamResponse": {
       "type": "object",
       "properties": {
         "error": {
@@ -195,7 +195,7 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/GetInfostreamResponseData"
+          "$ref": "#/definitions/GetInfoStreamResponseData"
         }
       }
     },
