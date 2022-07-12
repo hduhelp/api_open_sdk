@@ -21,19 +21,20 @@ message GetInfoStreamRequest {
 message GetInfoStreamResponse {
   uint32 error = 1;
   string msg = 2;
-  Data data = 3;
-  message Data {
-    WeatherResponse weather = 1;
-    ScheduleResp schedule = 2;
-    ExamResp exam = 3;
-    ScoreResp score = 4;
-    SunRunResp sunrun = 5;
-    CardResp card = 6;
-    ElectricResp electric = 7;
-  }
+  InfoStreamData data = 3;
 }
 
-message WeatherResponse {
+message InfoStreamData {
+  WeatherResp weather = 1;
+  ScheduleResp schedule = 2;
+  ExamResp exam = 3;
+  ScoreResp score = 4;
+  SunRunResp sunrun = 5;
+  CardResp card = 6;
+  ElectricResp electric = 7;
+}
+
+message WeatherResp {
   bool available = 1;
   WeatherData data = 2;
 }
