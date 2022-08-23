@@ -24,14 +24,17 @@ require (
 )
 
 require (
-	github.com/XiaoMi/pegasus-go-client v0.0.0-20210427083443-f3b6b08bc4c2 // indirect
+	cloud.google.com/go/compute v1.6.1 // indirect
+	github.com/BurntSushi/toml v1.1.0 // indirect
+	github.com/XiaoMi/pegasus-go-client v0.0.0-20211220102249-0e7f49437ffe // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bradfitz/gomemcache v0.0.0-20220106215444-fb4bf637b56d // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
-	github.com/elazarl/goproxy v0.0.0-20220328115640-894aeddb713e // indirect
+	github.com/elazarl/goproxy v0.0.0-20220417044921-416226498f94 // indirect
+	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
@@ -41,6 +44,7 @@ require (
 	github.com/golang/glog v1.0.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jdxcode/netrc v0.0.0-20210204082910-926c7f70242a // indirect
 	github.com/jhump/protocompile v0.0.0-20220216033700-d705409f108f // indirect
@@ -62,19 +66,21 @@ require (
 	github.com/prometheus/procfs v0.7.3 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	github.com/spf13/cast v1.4.1 // indirect
+	github.com/smartystreets/assertions v1.13.0 // indirect
+	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/cobra v1.4.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/thoas/go-funk v0.9.2 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
-	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29 // indirect
-	golang.org/x/exp v0.0.0-20220303212507-bbda1eaf7a17 // indirect
-	golang.org/x/net v0.0.0-20220425223048-2871e0cb64e4 // indirect
-	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20220422013727-9388b58f7150 // indirect
+	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4 // indirect
+	golang.org/x/exp v0.0.0-20220328175248-053ad81199eb // indirect
+	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2 // indirect
+	golang.org/x/sync v0.0.0-20220513210516-0976fa681c29 // indirect
+	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 	golang.org/x/term v0.0.0-20220411215600-e5f449aeb171 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
