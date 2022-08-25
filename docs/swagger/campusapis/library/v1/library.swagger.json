@@ -103,14 +103,14 @@
             "name": "startTime",
             "in": "query",
             "required": false,
-            "type": "integer",
+            "type": "string",
             "format": "int64"
           },
           {
             "name": "endTime",
             "in": "query",
             "required": false,
-            "type": "integer",
+            "type": "string",
             "format": "int64"
           }
         ],
@@ -142,7 +142,7 @@
             "name": "startTime",
             "in": "query",
             "required": false,
-            "type": "integer",
+            "type": "string",
             "format": "int64"
           }
         ],
@@ -357,7 +357,7 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           {
             "name": "offset",
@@ -365,7 +365,7 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         ],
         "tags": [
@@ -440,31 +440,31 @@
         },
         "yearCircTimes": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "title": "年累计借阅次数"
         },
         "totalCircTimes": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "title": "总累计借阅次数"
         },
         "firstUseDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "首次借阅时间"
         },
         "lastUseDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "最后借阅时间"
         },
         "recFlagUptDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "记录标志更新时间"
         },
         "regDay": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "登记日期"
         },
@@ -569,7 +569,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -587,7 +587,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -602,7 +602,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -625,19 +625,19 @@
           "type": "string"
         },
         "lendDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "returnDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "renewDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "renewTimes": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "location": {
@@ -653,7 +653,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -676,19 +676,19 @@
           "type": "string"
         },
         "lendDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "normalReturnDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "renewDate": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "renewTimes": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "location": {
@@ -704,7 +704,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -722,7 +722,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"

@@ -499,19 +499,19 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "creator": {
           "type": "string",
           "title": "姓名"
         },
         "createdAt": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "创建时间"
         },
         "modified": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "修改时间 可能为空"
         },
@@ -524,7 +524,7 @@
           "title": "健康打卡内容JSON"
         },
         "reportTime": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "打卡时间"
         },
@@ -568,7 +568,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -594,7 +594,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -609,7 +609,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -627,7 +627,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -643,7 +643,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -659,7 +659,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -686,7 +686,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -781,7 +781,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -800,7 +800,7 @@
         },
         "timestamp": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "title": "签名时间戳"
         },
         "province": {
@@ -826,7 +826,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -841,7 +841,7 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "data": {
           "type": "string"

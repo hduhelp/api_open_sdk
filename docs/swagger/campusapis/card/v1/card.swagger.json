@@ -226,7 +226,7 @@
           "title": "交易后余额"
         },
         "createTime": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "交易事件发生时间戳"
         }
@@ -237,7 +237,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -254,7 +254,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -272,7 +272,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"

@@ -63,7 +63,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -106,7 +106,7 @@
         },
         "cacheExpire": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "title": "缓存过期时间"
         },
         "directThroughRequestHeaders": {

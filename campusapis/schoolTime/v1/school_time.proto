@@ -30,7 +30,7 @@ service SchoolTimeService {
 }
 
 message GetSchoolTimeResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   SchoolTime data = 3;
 }
@@ -39,7 +39,7 @@ message SchoolTime {
   string schoolYear = 1;
   int32 section = 2;
   string semester = 3;
-  uint32 timeStamp = 4;
+  int64 timeStamp = 4;
   int32 weekDayNow = 5;
   int32 weekNow = 6;
 }
@@ -50,7 +50,7 @@ message GetSemesterListRequest {
 }
 
 message GetSemesterListResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   repeated SemesterInfo data = 3;
 }

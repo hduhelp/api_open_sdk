@@ -57,7 +57,7 @@ message GetBookInfoRequest {
 }
 
 message GetBookInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   BookInfo data = 3;
 }
@@ -81,17 +81,17 @@ message BookInfo {
   //收录时间
   string inDate = 8;
   //年累计借阅次数
-  uint32 yearCircTimes = 9;
+  int32 yearCircTimes = 9;
   //总累计借阅次数
-  uint32 totalCircTimes = 10;
+  int32 totalCircTimes = 10;
   //首次借阅时间
-  uint32 firstUseDate = 11;
+  int64 firstUseDate = 11;
   //最后借阅时间
-  uint32 lastUseDate = 12;
+  int64 lastUseDate = 12;
   //记录标志更新时间
-  uint32 recFlagUptDate = 13;
+  int64 recFlagUptDate = 13;
   //登记日期
-  uint32 regDay = 14;
+  int64 regDay = 14;
   //馆藏地
   string location = 15;
   //中图法分类号
@@ -106,7 +106,7 @@ message GetBookInfoListRequest {
 }
 
 message GetBookInfoListResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   repeated BookInfo data = 3;
 }
@@ -118,7 +118,7 @@ message GetBookMARCRequest {
 }
 
 message GetBookMARCResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   BookMARC data = 3;
 }
@@ -169,24 +169,24 @@ message GetBookMARCListRequest {
   //模糊查询关键字，当前仅允许查询作者，书名，出版社
   repeated string searchKeys = 2;
   //限制条数，允许为0-100之间
-  uint32 limit = 3;
+  int32 limit = 3;
   //偏移
-  uint32 offset = 4;
+  int32 offset = 4;
 }
 
 message GetBookMARCListResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   repeated BookMARC data = 3;
 }
 
 message GetBookLendLastRequest {
-  uint32 startTime = 1;
+  int64 startTime = 1;
 }
 
 message GetBookLendHistoryRequest {
-  uint32 startTime = 1;
-  uint32 endTime = 2;
+  int64 startTime = 1;
+  int64 endTime = 2;
 }
 
 enum LendStatus {
@@ -199,34 +199,34 @@ enum LendStatus {
 }
 
 message GetBookLendLastResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   repeated Nested data = 3;
 
   message Nested {
     BookInfo book = 1;
     string staffID = 2;
-    uint32 lendDate = 3;
-    uint32 normalReturnDate = 4;
-    uint32 renewDate = 5;
-    uint32 renewTimes = 6;
+    int64 lendDate = 3;
+    int64 normalReturnDate = 4;
+    int64 renewDate = 5;
+    int64 renewTimes = 6;
     string location = 7;
     LendStatus status = 8;
   }
 }
 
 message GetBookLendHistoryResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   repeated Nested data = 3;
 
   message Nested {
     BookInfo book = 1;
     string staffID = 2;
-    uint32 lendDate = 3;
-    uint32 returnDate = 4;
-    uint32 renewDate = 5;
-    uint32 renewTimes = 6;
+    int64 lendDate = 3;
+    int64 returnDate = 4;
+    int64 renewDate = 5;
+    int64 renewTimes = 6;
     string location = 7;
     LendStatus status = 8;
   }

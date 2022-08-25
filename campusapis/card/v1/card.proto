@@ -39,7 +39,7 @@ service CardService {
 }
 
 message GetCardInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   CardInfo data = 3;
 }
@@ -64,18 +64,18 @@ message Consumption {
   //交易后余额
   double remaining = 5;
   //交易事件发生时间戳
-  uint32 createTime = 6;
+  int64 createTime = 6;
 }
 
 message GetCardBalanceResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // remaining 余额
   float data = 3;
 }
 
 message GetCardConsumeResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   repeated Consumption data = 3;
 }

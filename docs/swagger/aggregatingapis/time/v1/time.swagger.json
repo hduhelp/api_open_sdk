@@ -72,7 +72,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -86,56 +86,54 @@
       "type": "object",
       "properties": {
         "schoolYear": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "semester": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "semesterStartTimestamp": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "weekNow": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "weekDayNow": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "timestamp": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "section": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "scheduleSchoolYear": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "scheduleSemester": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "examSchoolYear": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "examSemester": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "scoreSchoolYear": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "scoreSemester": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     }

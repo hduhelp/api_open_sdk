@@ -109,7 +109,7 @@ message GetScheduleRequest {
   //学年 支持多种格式 如：2019-2020 2019
   string schoolYear = 2;
   //时间戳
-  uint32 timestamp = 3;
+  int32 timestamp = 3;
   //周次
   int32 week = 4;
   //星期几
@@ -118,7 +118,7 @@ message GetScheduleRequest {
 
 // GetScheduleResponse 课表列表返回体
 message GetScheduleResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   repeated ScheduleResponseCourse data = 3;
 }
@@ -154,9 +154,9 @@ message ScheduleResponseCourse {
     // 是否本周课程
     bool IsThisWeek = 8;
     // 上课时间
-    uint32 StartTime = 9;
+    int64 StartTime = 9;
     // 下课时间
-    uint32 EndTime = 10;
+    int64 EndTime = 10;
   }
 
   // 课程内部ID
@@ -225,9 +225,9 @@ message ScheduleItem {
   bool IsThisWeek = 4;
 
   // 上课时间
-  uint32 StartTime = 5;
+  int64 StartTime = 5;
   // 下课时间
-  uint32 EndTime = 6;
+  int64 EndTime = 6;
 
   // 老师列表
   campusapis.staff.InfoMapList Teachers = 7;
@@ -255,7 +255,7 @@ message StaffInfo {
 
 // GetScheduleNowResponse 今天，明天课表信息返回体
 message GetScheduleNowResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   Data data = 3;
 
@@ -269,9 +269,9 @@ message GetScheduleNowResponse {
   // 课表
   message Course {
     // 开始节次
-    uint32 start_section = 1;
+    int32 start_section = 1;
     // 结束节次
-    uint32 end_section = 2;
+    int32 end_section = 2;
     // 上课时间
     string start_time = 3;
     // 下课时间
@@ -289,7 +289,7 @@ message GetScheduleNowResponse {
 
 // GetScheduleNowV2Response 今天，明天课表信息返回体
 message GetScheduleNowV2Response {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   Data data = 3;
 
@@ -317,7 +317,7 @@ message GetGlobalScheduleRequest {
 
 // GetGlobalScheduleResponse 全局课表返回体
 message GetGlobalScheduleResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   repeated ScheduleResponseCourse data = 3;
 }
@@ -369,14 +369,14 @@ message GetUnusedClassroomsRequest {
 }
 
 message GetClassroomsResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // 教室列表
   repeated Classroom data = 3;
 }
 
 message GetUnusedClassroomsResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // 教室列表
   repeated Classroom data = 3;
@@ -400,7 +400,7 @@ message Classroom {
 
 // GetClassroomUsagesResponse 教室使用情况返回体
 message GetClassroomUsagesResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // 教室使用情况列表
   repeated ClassroomUsage data = 3;

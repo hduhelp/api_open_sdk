@@ -156,14 +156,14 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           {
             "name": "rpp",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           {
             "name": "showAll",
@@ -482,14 +482,14 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           {
             "name": "rpp",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           {
             "name": "showAll",
@@ -668,7 +668,7 @@
         },
         "createdAt": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     },
@@ -677,7 +677,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -689,7 +689,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -701,7 +701,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -713,7 +713,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -725,7 +725,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -745,7 +745,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -760,7 +760,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -775,7 +775,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -790,7 +790,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -805,7 +805,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -817,7 +817,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -832,7 +832,7 @@
       "properties": {
         "count": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "bindDetail": {
           "type": "array",
@@ -847,7 +847,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -859,7 +859,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -871,7 +871,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -883,7 +883,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -898,7 +898,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -910,7 +910,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -925,7 +925,7 @@
       "properties": {
         "count": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "detail": {
           "type": "array",
@@ -940,7 +940,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -958,7 +958,7 @@
         },
         "validTIme": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     },
@@ -967,11 +967,11 @@
       "properties": {
         "createdAt": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "deletedAt": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "encryptedToken": {
           "type": "string"
@@ -995,7 +995,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1007,7 +1007,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1025,7 +1025,7 @@
         },
         "Size": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     },
@@ -1034,7 +1034,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1046,7 +1046,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1064,19 +1064,19 @@
         },
         "semesterStartTimestamp": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "weekNow": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "weekDayNow": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "timeStamp": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "section": {
           "type": "integer",
@@ -1094,7 +1094,7 @@
           "type": "string"
         },
         "expiredTime": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "grantType": {
@@ -1144,7 +1144,7 @@
         },
         "timestamp": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "appid": {
           "type": "string"

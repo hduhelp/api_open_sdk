@@ -51,7 +51,7 @@ message CreateFAQRequest {
 }
 
 message CreateFAQResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   FAQ data = 3;
 }
@@ -61,7 +61,7 @@ message GetFAQRequest {
 }
 
 message GetFAQResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   FAQ data = 3;
 }
@@ -72,7 +72,7 @@ message UpdateFAQRequest {
 }
 
 message UpdateFAQResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   FAQ data = 3;
 }
@@ -82,7 +82,7 @@ message DeleteFAQRequest {
 }
 
 message DeleteFAQResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
 }
 
@@ -124,11 +124,11 @@ message FAQ {
   string question = 4;
   string answer = 5;
   string answer_richtext = 6;
-  uint32 create_time = 7;
-  uint32 update_time = 8;
+  int64 create_time = 7;
+  int64 update_time = 8;
   repeated Category categories = 9;
   repeated string tags = 10;
-  uint32 expire_time = 11;
+  int64 expire_time = 11;
   User update_user = 12;
   User create_user = 13;
 }
@@ -147,8 +147,8 @@ message AnswerRichtext {
   //img
   string src = 5;
   string key = 6;
-  uint32 width = 7;
-  uint32 height = 8;
+  int32 width = 7;
+  int32 height = 8;
 }
 
 message Category {

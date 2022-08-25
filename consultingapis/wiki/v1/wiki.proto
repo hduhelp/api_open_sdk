@@ -25,7 +25,7 @@ message GetDocContentRequest {
 
 message GetDocContentResponse {
   string content = 1;
-  uint32 revision = 2;
+  int32 revision = 2;
 }
 
 message GetNodeListRequest {
