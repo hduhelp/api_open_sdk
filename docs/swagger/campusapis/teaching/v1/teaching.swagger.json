@@ -1,0 +1,1048 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Teaching API",
+    "description": "Teaching API",
+    "version": "0.1",
+    "contact": {
+      "name": "hduhelp salmon base project",
+      "url": "https://github.com/hduhelp/salmon_api_base",
+      "email": "none@example.com"
+    },
+    "license": {
+      "name": "BSD 3-Clause License",
+      "url": "https://github.com/grpc-ecosystem/grpc-gateway/blob/master/LICENSE.txt"
+    }
+  },
+  "tags": [
+    {
+      "name": "TeachingService"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/student/schedule/now": {
+      "get": {
+        "summary": "获取学生/教师当前课程表",
+        "operationId": "TeachingService_GetScheduleNow2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetScheduleNowResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/student/v2/schedule": {
+      "get": {
+        "summary": "获取学生/教师课程表",
+        "operationId": "TeachingService_GetSchedule3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetScheduleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolYear",
+            "description": "学年 支持多种格式 如：2019-2020 2019",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "description": "时间戳",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "week",
+            "description": "周次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "weekday",
+            "description": "星期几",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/student/v2/schedule/now": {
+      "get": {
+        "summary": "获取学生/教师当前课程表V2 返回更详细的信息",
+        "operationId": "TeachingService_GetScheduleNowV22",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetScheduleNowV2Response"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/classroom": {
+      "get": {
+        "summary": "获取所有教室列表",
+        "operationId": "TeachingService_GetClassrooms2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetClassroomsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/classroom/unused": {
+      "get": {
+        "summary": "获取所有空教室列表",
+        "operationId": "TeachingService_GetUnusedClassrooms2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUnusedClassroomsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolYear",
+            "description": "学年",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "weekday",
+            "description": "星期",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "week",
+            "description": "周次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "section",
+            "description": "节次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/classroom/usage": {
+      "get": {
+        "summary": "获取某一教室的使用情况",
+        "operationId": "TeachingService_GetClassroomUsages2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetClassroomUsagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolYear",
+            "description": "学年",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locationID",
+            "description": "教室ID",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/schedule": {
+      "get": {
+        "summary": "获取学生/教师课程表",
+        "operationId": "TeachingService_GetSchedule2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetScheduleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolYear",
+            "description": "学年 支持多种格式 如：2019-2020 2019",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "description": "时间戳",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "week",
+            "description": "周次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "weekday",
+            "description": "星期几",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/classroom": {
+      "get": {
+        "summary": "获取所有教室列表",
+        "operationId": "TeachingService_GetClassrooms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetClassroomsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/classroom/unused": {
+      "get": {
+        "summary": "获取所有空教室列表",
+        "operationId": "TeachingService_GetUnusedClassrooms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUnusedClassroomsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolYear",
+            "description": "学年",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "weekday",
+            "description": "星期",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "week",
+            "description": "周次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "section",
+            "description": "节次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/classroom/usage": {
+      "get": {
+        "summary": "获取某一教室的使用情况",
+        "operationId": "TeachingService_GetClassroomUsages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetClassroomUsagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolYear",
+            "description": "学年",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locationID",
+            "description": "教室ID",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/schedule": {
+      "get": {
+        "summary": "获取学生/教师课程表",
+        "operationId": "TeachingService_GetSchedule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetScheduleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolYear",
+            "description": "学年 支持多种格式 如：2019-2020 2019",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "description": "时间戳",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "week",
+            "description": "周次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "weekday",
+            "description": "星期几",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/schedule/now": {
+      "get": {
+        "summary": "获取学生/教师当前课程表",
+        "operationId": "TeachingService_GetScheduleNow",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetScheduleNowResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/schedule/v2/now": {
+      "get": {
+        "summary": "获取学生/教师当前课程表V2 返回更详细的信息",
+        "operationId": "TeachingService_GetScheduleNowV2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetScheduleNowV2Response"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "GetScheduleNowResponseCourse": {
+      "type": "object",
+      "properties": {
+        "startSection": {
+          "type": "integer",
+          "format": "int64",
+          "title": "开始节次"
+        },
+        "endSection": {
+          "type": "integer",
+          "format": "int64",
+          "title": "结束节次"
+        },
+        "startTime": {
+          "type": "string",
+          "title": "上课时间"
+        },
+        "endTime": {
+          "type": "string",
+          "title": "下课时间"
+        },
+        "courseName": {
+          "type": "string",
+          "title": "课程名"
+        },
+        "classroom": {
+          "type": "string",
+          "title": "教室"
+        },
+        "teacher": {
+          "type": "string",
+          "title": "老师"
+        },
+        "duration": {
+          "type": "string",
+          "title": "时长"
+        }
+      },
+      "title": "课表"
+    },
+    "ScheduleResponseCourseScheduleInfo": {
+      "type": "object",
+      "properties": {
+        "Location": {
+          "type": "string",
+          "title": "上课地点"
+        },
+        "SeatsNum": {
+          "type": "integer",
+          "format": "int32",
+          "title": "教室作为数量"
+        },
+        "Section": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "节次数组, 升序"
+        },
+        "Teachers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleResponseCourseStaffInfo"
+          },
+          "title": "老师列表"
+        },
+        "Students": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleResponseCourseStaffInfo"
+          },
+          "title": "学生列表"
+        },
+        "Week": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "周次数组"
+        },
+        "WeekDay": {
+          "type": "integer",
+          "format": "int32",
+          "title": "星期"
+        },
+        "IsThisWeek": {
+          "type": "boolean",
+          "title": "是否本周课程"
+        },
+        "StartTime": {
+          "type": "integer",
+          "format": "int64",
+          "title": "上课时间"
+        },
+        "EndTime": {
+          "type": "integer",
+          "format": "int64",
+          "title": "下课时间"
+        }
+      },
+      "title": "单个排课信息（如高等数学的周一的3-5节）"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Classroom": {
+      "type": "object",
+      "properties": {
+        "semester": {
+          "type": "integer",
+          "format": "int32",
+          "title": "学期"
+        },
+        "schoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "locationID": {
+          "type": "string",
+          "title": "教室ID"
+        },
+        "locationName": {
+          "type": "string",
+          "title": "教室名字"
+        },
+        "buildingID": {
+          "type": "string",
+          "title": "教学楼ID"
+        },
+        "buildingName": {
+          "type": "string",
+          "title": "教学楼名字"
+        }
+      },
+      "title": "教室信息"
+    },
+    "v1ClassroomUsage": {
+      "type": "object",
+      "properties": {
+        "classroom": {
+          "$ref": "#/definitions/v1Classroom",
+          "title": "教室信息"
+        },
+        "weekday": {
+          "type": "integer",
+          "format": "int32",
+          "title": "星期"
+        },
+        "week": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "周次列表"
+        },
+        "Section": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "节次列表"
+        },
+        "ClassID": {
+          "type": "string",
+          "title": "课程内部ID"
+        },
+        "CourseCode": {
+          "type": "string",
+          "title": "课程号"
+        },
+        "CourseName": {
+          "type": "string",
+          "title": "课程名"
+        }
+      },
+      "title": "教室使用情况"
+    },
+    "v1GetClassroomUsagesResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ClassroomUsage"
+          },
+          "title": "教室使用情况列表"
+        }
+      },
+      "title": "GetClassroomUsagesResponse 教室使用情况返回体"
+    },
+    "v1GetClassroomsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Classroom"
+          },
+          "title": "教室列表"
+        }
+      }
+    },
+    "v1GetGlobalScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleResponseCourse"
+          }
+        }
+      },
+      "title": "GetGlobalScheduleResponse 全局课表返回体"
+    },
+    "v1GetScheduleNowResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1GetScheduleNowResponseData"
+        }
+      },
+      "title": "GetScheduleNowResponse 今天，明天课表信息返回体"
+    },
+    "v1GetScheduleNowResponseData": {
+      "type": "object",
+      "properties": {
+        "today": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetScheduleNowResponseCourse"
+          },
+          "title": "今天课表"
+        },
+        "tomorrow": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetScheduleNowResponseCourse"
+          },
+          "title": "明天课表"
+        }
+      }
+    },
+    "v1GetScheduleNowV2Response": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1GetScheduleNowV2ResponseData"
+        }
+      },
+      "title": "GetScheduleNowV2Response 今天，明天课表信息返回体"
+    },
+    "v1GetScheduleNowV2ResponseData": {
+      "type": "object",
+      "properties": {
+        "Today": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleResponseCourse"
+          },
+          "title": "今天的课表"
+        },
+        "Tomorrow": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleResponseCourse"
+          },
+          "title": "明天的课表"
+        }
+      }
+    },
+    "v1GetScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleResponseCourse"
+          }
+        }
+      },
+      "title": "GetScheduleResponse 课表列表返回体"
+    },
+    "v1GetUnusedClassroomsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Classroom"
+          },
+          "title": "教室列表"
+        }
+      }
+    },
+    "v1ScheduleResponseCourse": {
+      "type": "object",
+      "properties": {
+        "ClassID": {
+          "type": "string",
+          "title": "课程内部ID"
+        },
+        "ClassName": {
+          "type": "string",
+          "title": "选课号"
+        },
+        "ClassTime": {
+          "type": "string",
+          "title": "上课时间中文，如: 星期一第6-7节{1-2周};星期一第6-7节{3-17周}"
+        },
+        "CourseID": {
+          "type": "string",
+          "title": "课程代码"
+        },
+        "CourseName": {
+          "type": "string",
+          "title": "课程中文名"
+        },
+        "Credit": {
+          "type": "string",
+          "title": "学分"
+        },
+        "Schedule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScheduleResponseCourseScheduleInfo"
+          },
+          "title": "此课程排课列表"
+        },
+        "SchoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "Semester": {
+          "type": "integer",
+          "format": "int32",
+          "title": "学期"
+        }
+      },
+      "title": "ScheduleResponseCourse 单课程返回体（如高等数学课）"
+    },
+    "v1ScheduleResponseCourseStaffInfo": {
+      "type": "object",
+      "properties": {
+        "StaffID": {
+          "type": "string",
+          "title": "学工号"
+        },
+        "StaffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "StaffType": {
+          "type": "integer",
+          "format": "int32",
+          "title": "人员类型，枚举及其含义：0-\u003e未知 | 1-\u003e本科生 | 2-\u003e研究生 | 3-\u003e教职工"
+        }
+      },
+      "title": "人员信息"
+    }
+  }
+}

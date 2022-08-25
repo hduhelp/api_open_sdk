@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package gatewayapis.server.v1;
+
+option go_package = "./gatewayapis/server/v1";
+
+//服务
+message Service {
+  //服务名称 同时作为ID使用
+  string name = 1;
+  //服务描述
+  string description = 2;
+  //服务路由前缀
+  string route_prefix = 3;
+}
+
+//服务实例
+message ServiceInstance {
+  //实例ID
+  string instance_id = 1;
+  //实例名称
+  string instance_name = 2;
+  //服务名称
+  string service_name = 3;
+}
+
+//HTTP路由注册
+message HTTPRouter {
+  //服务名称
+  string service = 1;
+  //方法
+  string method = 2;
+  //远端path，即服务内地址
+  string remotePath = 3;
+  //挂载地址
+  string servePath = 4;
+  //是否需要鉴权后才能访问
+  bool needAuthorized = 5;
+  //是否开启只读缓存
+  bool readOnlyCache = 6;
+  //公共缓存
+  bool publicCache = 7;
+  //缓存过期时间
+  uint32 cacheExpire = 8;
+  //客户端到服务请求可传递的请求头
+  repeated string directThroughRequestHeaders = 9;
+  //服务到客户端返回可传递的响应头
+  repeated string directThroughResponseHeaders = 10;
+  //是否启用
+  bool enable = 11;
+}
+
+//GRPC路由 GRPC方法
+message GRPCMethod {
+  //服务名称
+  //Service names include the package names, in the form of <package>.<service>.
+  string service_name = 1;
+  //方法名称
+  string method_name = 2;
+  bool isClientStream = 3;
+  bool isServerStream = 4;
+}

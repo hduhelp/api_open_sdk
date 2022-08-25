@@ -1,0 +1,286 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/card/v1/card.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "CardService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/card/balance": {
+      "get": {
+        "summary": "查询校园卡余额",
+        "operationId": "CardService_GetCardBalance2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCardBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CardService"
+        ]
+      }
+    },
+    "/card/consume": {
+      "get": {
+        "summary": "查询校园卡消费记录",
+        "operationId": "CardService_GetCardConsume2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCardConsumeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CardService"
+        ]
+      }
+    },
+    "/card/info": {
+      "get": {
+        "summary": "查询校园卡信息",
+        "operationId": "CardService_GetCardInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCardInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CardService"
+        ]
+      }
+    },
+    "/card/v1/balance": {
+      "get": {
+        "summary": "查询校园卡余额",
+        "operationId": "CardService_GetCardBalance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCardBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CardService"
+        ]
+      }
+    },
+    "/card/v1/consume": {
+      "get": {
+        "summary": "查询校园卡消费记录",
+        "operationId": "CardService_GetCardConsume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCardConsumeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CardService"
+        ]
+      }
+    },
+    "/card/v1/info": {
+      "get": {
+        "summary": "查询校园卡信息",
+        "operationId": "CardService_GetCardInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCardInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CardService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CardInfo": {
+      "type": "object",
+      "properties": {
+        "remaining": {
+          "type": "number",
+          "format": "float",
+          "title": "余额，精确到小数点后两位，单位元"
+        },
+        "flow": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Consumption"
+          },
+          "title": "交易记录"
+        }
+      }
+    },
+    "v1Consumption": {
+      "type": "object",
+      "properties": {
+        "deviceName": {
+          "type": "string",
+          "title": "交易设备名称"
+        },
+        "deviceNum": {
+          "type": "string",
+          "title": "交易设备代码"
+        },
+        "totalFee": {
+          "type": "number",
+          "format": "double",
+          "title": "交易金额，精确到小数点后两位，单位元\n负数为消费，正数为充值"
+        },
+        "feeName": {
+          "type": "string",
+          "title": "交易名称"
+        },
+        "remaining": {
+          "type": "number",
+          "format": "double",
+          "title": "交易后余额"
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "title": "交易事件发生时间戳"
+        }
+      }
+    },
+    "v1GetCardBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "number",
+          "format": "float",
+          "title": "remaining 余额"
+        }
+      }
+    },
+    "v1GetCardConsumeResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Consumption"
+          }
+        }
+      }
+    },
+    "v1GetCardInfoResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1CardInfo"
+        }
+      }
+    }
+  }
+}

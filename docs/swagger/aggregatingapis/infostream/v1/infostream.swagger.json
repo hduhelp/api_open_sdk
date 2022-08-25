@@ -1,0 +1,473 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "aggregatingapis/infostream/v1/infostream.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "InfoStreamService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/infostream/v1": {
+      "get": {
+        "operationId": "InfoStreamService_GetInfoStream",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetInfoStreamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "InfoStreamService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CardResp": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "data": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "v1ElectricData": {
+      "type": "object",
+      "properties": {
+        "fee": {
+          "type": "string"
+        },
+        "roomId": {
+          "type": "string"
+        },
+        "roomName": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ElectricResp": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/definitions/v1ElectricData"
+        }
+      }
+    },
+    "v1ExamData": {
+      "type": "object",
+      "properties": {
+        "classroom": {
+          "type": "string"
+        },
+        "course": {
+          "type": "string"
+        },
+        "examTime": {
+          "type": "string"
+        },
+        "examType": {
+          "type": "string"
+        },
+        "schoolYear": {
+          "type": "string"
+        },
+        "seat": {
+          "type": "string"
+        },
+        "selectCode": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "staffId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ExamResp": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ExamData"
+          }
+        }
+      }
+    },
+    "v1GetInfoStreamResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1InfoStreamData"
+        }
+      }
+    },
+    "v1InfoStreamData": {
+      "type": "object",
+      "properties": {
+        "weather": {
+          "$ref": "#/definitions/v1WeatherResp"
+        },
+        "schedule": {
+          "$ref": "#/definitions/v1ScheduleResp"
+        },
+        "exam": {
+          "$ref": "#/definitions/v1ExamResp"
+        },
+        "score": {
+          "$ref": "#/definitions/v1ScoreResp"
+        },
+        "sunrun": {
+          "$ref": "#/definitions/v1SunRunResp"
+        },
+        "card": {
+          "$ref": "#/definitions/v1CardResp"
+        },
+        "electric": {
+          "$ref": "#/definitions/v1ElectricResp"
+        }
+      }
+    },
+    "v1ScheduleData": {
+      "type": "object",
+      "properties": {
+        "startSection": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "endSection": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "courseName": {
+          "type": "string"
+        },
+        "classroom": {
+          "type": "string"
+        },
+        "teacher": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ScheduleResp": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "today": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleData"
+          }
+        },
+        "tomorrow": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleData"
+          }
+        }
+      }
+    },
+    "v1ScoreData": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "string",
+          "title": "学年"
+        },
+        "semester": {
+          "type": "string",
+          "title": "学期"
+        },
+        "selectCode": {
+          "type": "string",
+          "title": "选课号"
+        },
+        "score": {
+          "type": "string",
+          "title": "最后分数"
+        },
+        "scoreDaily": {
+          "type": "string",
+          "title": "平时分"
+        },
+        "scoreMidTerm": {
+          "type": "string",
+          "title": "期中分数"
+        },
+        "scoreFinal": {
+          "type": "string",
+          "title": "期末分数"
+        },
+        "scoreSubstitute": {
+          "type": "string",
+          "title": "补考分数"
+        },
+        "scorePractice": {
+          "type": "string",
+          "title": "实验分数"
+        },
+        "courseCode": {
+          "type": "string",
+          "title": "课程号"
+        },
+        "course": {
+          "type": "string",
+          "title": "课程名"
+        },
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "credit": {
+          "type": "string",
+          "title": "学分"
+        },
+        "GPA": {
+          "type": "string",
+          "title": "GPA"
+        }
+      }
+    },
+    "v1ScoreResp": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScoreData"
+          }
+        }
+      }
+    },
+    "v1SunRunData": {
+      "type": "object",
+      "properties": {
+        "amMileage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "amSpeed": {
+          "type": "number",
+          "format": "double"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "dataUpdatedAt": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "days": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "finalTimes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pmMileage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pmSpeed": {
+          "type": "number",
+          "format": "double"
+        },
+        "rand": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "speed": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalMileages": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "validMileages": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "validTimes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SunRunResp": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/definitions/v1SunRunData"
+        }
+      }
+    },
+    "v1WeatherData": {
+      "type": "object",
+      "properties": {
+        "aqi": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "skyconNow": {
+          "type": "string"
+        },
+        "isRain": {
+          "type": "boolean"
+        },
+        "willStop": {
+          "type": "boolean"
+        },
+        "willRain": {
+          "type": "boolean"
+        },
+        "RainContinue": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "RainCome": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "temperatureMax": {
+          "type": "number",
+          "format": "float"
+        },
+        "temperatureMin": {
+          "type": "number",
+          "format": "float"
+        },
+        "temperatureNow": {
+          "type": "number",
+          "format": "float"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1WeatherResp": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/definitions/v1WeatherData"
+        }
+      }
+    }
+  }
+}
