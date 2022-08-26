@@ -170,7 +170,7 @@ service CampusService {
 
 //查询人员信息返回体
 message GetPersonInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   PersonInfo data = 3;
 }
@@ -226,7 +226,7 @@ message SemesterRequest {
 
 // GetStudentInfoResponse 查询学生信息返回体
 message GetStudentInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   StudentInfo data = 3;
 }
@@ -254,7 +254,7 @@ message StudentInfo {
 
 // 查询学生学籍状态返回体
 message GetStudentSchoolRollStatusResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   StudentSchoolRollStatus data = 3;
 }
@@ -273,7 +273,7 @@ message StudentSchoolRollStatus {
 
 //查询贫困生信息返回体
 message GetStudentNeedyInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   StudentNeedyInfo data = 3;
 }
@@ -302,7 +302,7 @@ message StudentNeedyInfo {
 
 // 查询学生寝室信息返回体
 message GetStudentDormInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   DormInfo data = 3;
 }
@@ -318,7 +318,7 @@ message DormInfo {
 
 // GetStudentBirthdayInfoResponse 学生生日查询返回体
 message GetStudentBirthdayInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   StudentBirthdayInfo data = 3;
 }
@@ -351,7 +351,7 @@ message GetStudentBirthdaysInResponse {
 
 // GetStudentRewardsResponse 奖学金查询返回体
 message GetStudentRewardsResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // 奖学金列表
   repeated StudentReward data = 3;
@@ -375,7 +375,7 @@ message StudentReward {
 
 // 学生选课查询返回体
 message GetStudentCourseSelectionsResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   //详情列表
   repeated StudentCourseSelection data = 3;
@@ -409,7 +409,7 @@ message StudentCourseSelection {
 
 // 查询学生成绩返回体
 message GetStudentGradeResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // 成绩详情列表
   repeated StudentGrade data = 3;
@@ -451,7 +451,7 @@ message StudentGrade {
 
 // 查询学生考试返回体
 message GetStudentExamResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // 考试详情列表
   repeated StudentExam data = 3;
@@ -481,7 +481,7 @@ message StudentExam {
 
 // 查询学生GPA返回体
 message GetStudentGPAResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // 绩点详情
   StudentGPA data = 3;
@@ -536,7 +536,7 @@ message PostStudentGateAccessRequest {
 
 // PostStudentGateAccessResponse  推送学生门禁通行信息
 message PostStudentGateAccessResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   Data data = 3;
 
@@ -548,7 +548,7 @@ message PostStudentGateAccessResponse {
 
 // 留校生信息查询-返回体
 message GetStudentStaySchoolInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   StudentStaySchoolInfo data = 3;
 }
@@ -626,7 +626,7 @@ message FreshmanKeywordRequest {
 }
 
 message GetFreshmanBaseInfoResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   FreshmanBaseInfo data = 3;
 }
@@ -648,7 +648,7 @@ message FreshmanBaseInfo {
 }
 
 message GetFreshmanDetailResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   FreshmanDetail data = 3;
 }
@@ -706,7 +706,7 @@ message FreshmanDetail {
 
 //新生室友查询
 message GetFreshmanRoommatesResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   // 室友列表
   repeated FreshmanRoommate data = 3;

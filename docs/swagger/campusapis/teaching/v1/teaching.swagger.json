@@ -91,7 +91,7 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           {
             "name": "week",
@@ -325,7 +325,7 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           {
             "name": "week",
@@ -536,7 +536,7 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           {
             "name": "week",
@@ -613,12 +613,12 @@
       "properties": {
         "startSection": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "title": "开始节次"
         },
         "endSection": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "title": "结束节次"
         },
         "startTime": {
@@ -700,12 +700,12 @@
           "title": "是否本周课程"
         },
         "StartTime": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "上课时间"
         },
         "EndTime": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "下课时间"
         }
@@ -818,7 +818,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -838,7 +838,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -857,7 +857,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -876,7 +876,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -911,7 +911,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -946,7 +946,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -965,7 +965,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"

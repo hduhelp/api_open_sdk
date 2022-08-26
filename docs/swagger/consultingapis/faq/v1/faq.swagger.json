@@ -262,11 +262,11 @@
         },
         "width": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "height": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     },
@@ -298,7 +298,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -313,7 +313,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -342,11 +342,11 @@
           "type": "string"
         },
         "createTime": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "updateTime": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "categories": {
@@ -362,7 +362,7 @@
           }
         },
         "expireTime": {
-          "type": "integer",
+          "type": "string",
           "format": "int64"
         },
         "updateUser": {
@@ -410,7 +410,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -439,7 +439,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"

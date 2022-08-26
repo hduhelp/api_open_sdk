@@ -1353,7 +1353,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1368,7 +1368,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1383,7 +1383,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1403,7 +1403,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1419,7 +1419,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1448,7 +1448,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1468,7 +1468,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1484,7 +1484,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1504,7 +1504,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1521,7 +1521,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1541,7 +1541,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1557,7 +1557,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1573,7 +1573,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1593,7 +1593,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1609,7 +1609,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -1650,7 +1650,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"

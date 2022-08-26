@@ -8,18 +8,18 @@ import (
 )
 
 func (x Status) Warp(status codes.Code) codes.Code {
-	return WarpCode(status, uint32(x))
+	return WarpCode(status, int32(x))
 }
 
 func (x Status) With(c codes.Code, msg string) error {
-	return status.Error(WarpCode(c, uint32(x)), msg)
+	return status.Error(WarpCode(c, int32(x)), msg)
 }
 
 func (x Status) Message() string {
 	return strings.Replace(strings.ToLower(x.String()), "_", " ", -1)
 }
 
-func WarpCode(code codes.Code, errorCode uint32) codes.Code {
+func WarpCode(code codes.Code, errorCode int32) codes.Code {
 	return code*100000 + codes.Code(errorCode)
 }
 

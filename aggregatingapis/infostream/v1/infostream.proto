@@ -19,7 +19,7 @@ message GetInfoStreamRequest {
 }
 
 message GetInfoStreamResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   InfoStreamData data = 3;
 }
@@ -40,18 +40,18 @@ message WeatherResp {
 }
 
 message WeatherData {
-  uint32 aqi = 1;
+  int32 aqi = 1;
   string desc = 2;
   string skyconNow = 3;
   bool isRain = 4;
   bool willStop = 5;
   bool willRain = 6;
-  uint32 RainContinue = 7;
-  uint32 RainCome = 8;
+  int32 RainContinue = 7;
+  int32 RainCome = 8;
   float temperatureMax = 9;
   float temperatureMin = 10;
   float temperatureNow = 11;
-  uint32 timestamp = 12;
+  int32 timestamp = 12;
 }
 
 message ScheduleResp {
@@ -61,8 +61,8 @@ message ScheduleResp {
 }
 
 message ScheduleData {
-  uint32 startSection = 1;
-  uint32 endSection = 2;
+  int32 startSection = 1;
+  int32 endSection = 2;
   string startTime = 3;
   string endTime = 4;
   string courseName = 5;
@@ -132,23 +132,23 @@ message SunRunResp {
 }
 
 message SunRunData {
-  uint32 amMileage = 1;
+  int32 amMileage = 1;
   double amSpeed = 2;
   string createdAt = 3;
   string dataUpdatedAt = 4;
   string date = 5;
-  uint32 days = 6;
-  uint32 finalTimes = 7;
+  int32 days = 6;
+  int32 finalTimes = 7;
   string name = 8;
-  uint32 pmMileage = 9;
+  int32 pmMileage = 9;
   double pmSpeed = 10;
-  uint32 rand = 11;
+  int32 rand = 11;
   string sex = 12;
   double speed = 13;
-  uint32 totalMileages = 14;
+  int32 totalMileages = 14;
   string updatedAt = 15;
-  uint32 validMileages = 16;
-  uint32 validTimes = 17;
+  int32 validMileages = 16;
+  int32 validTimes = 17;
   string code = 18;
 }
 

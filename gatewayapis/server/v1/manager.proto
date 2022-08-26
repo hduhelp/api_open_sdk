@@ -34,7 +34,7 @@ message GetHTTPRouterRequest {
 }
 
 message GetHTTPRouterResponse {
-  uint32 error = 1;
+  int32 error = 1;
   string msg = 2;
   gatewayapis.server.v1.HTTPRouter data = 3;
 }

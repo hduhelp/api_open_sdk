@@ -41,7 +41,7 @@ message HTTPRouter {
   //公共缓存
   bool publicCache = 7;
   //缓存过期时间
-  uint32 cacheExpire = 8;
+  int32 cacheExpire = 8;
   //客户端到服务请求可传递的请求头
   repeated string directThroughRequestHeaders = 9;
   //服务到客户端返回可传递的响应头

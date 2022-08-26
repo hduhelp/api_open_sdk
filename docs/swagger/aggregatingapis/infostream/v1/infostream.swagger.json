@@ -163,7 +163,7 @@
       "properties": {
         "error": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "msg": {
           "type": "string"
@@ -204,11 +204,11 @@
       "properties": {
         "startSection": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "endSection": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "startTime": {
           "type": "string"
@@ -334,7 +334,7 @@
       "properties": {
         "amMileage": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "amSpeed": {
           "type": "number",
@@ -351,18 +351,18 @@
         },
         "days": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "finalTimes": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "name": {
           "type": "string"
         },
         "pmMileage": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "pmSpeed": {
           "type": "number",
@@ -370,7 +370,7 @@
         },
         "rand": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "sex": {
           "type": "string"
@@ -381,18 +381,18 @@
         },
         "totalMileages": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "updatedAt": {
           "type": "string"
         },
         "validMileages": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "validTimes": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "code": {
           "type": "string"
@@ -415,7 +415,7 @@
       "properties": {
         "aqi": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "desc": {
           "type": "string"
@@ -434,11 +434,11 @@
         },
         "RainContinue": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "RainCome": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "temperatureMax": {
           "type": "number",
@@ -454,7 +454,7 @@
         },
         "timestamp": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     },

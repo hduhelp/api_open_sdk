@@ -31,8 +31,8 @@ func (x *ScheduleItem) SetTime(timeable schoolTime.Timeable) {
 	if err != nil {
 		return
 	}
-	x.StartTime = uint32(timeable.GetSectionReader().StartTime(d, FirstOfArray(x.Section)).Unix())
-	x.EndTime = uint32(timeable.GetSectionReader().EndTime(d, LastOfArray(x.Section)).Unix())
+	x.StartTime = timeable.GetSectionReader().StartTime(d, FirstOfArray(x.Section)).Unix()
+	x.EndTime = timeable.GetSectionReader().EndTime(d, LastOfArray(x.Section)).Unix()
 	x.IsThisWeek = true
 }
 
@@ -40,7 +40,7 @@ type ShowMemberOptionable interface {
 	GetOptionShowMemberOption() OptionShowMember
 }
 
-type OptionShowMember uint32
+type OptionShowMember int32
 
 const (
 	OptionShowMemberNone OptionShowMember = iota
