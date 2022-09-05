@@ -766,6 +766,10 @@
         "buildingName": {
           "type": "string",
           "title": "教学楼名字"
+        },
+        "available": {
+          "type": "boolean",
+          "title": "是否被使用"
         }
       },
       "title": "教室信息"

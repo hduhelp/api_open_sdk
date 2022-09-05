@@ -396,6 +396,8 @@ message Classroom {
   string buildingID = 5;
   // 教学楼名字
   string buildingName = 6;
+  // 是否被使用
+  bool available = 7;
 }
 
 // GetClassroomUsagesResponse 教室使用情况返回体
