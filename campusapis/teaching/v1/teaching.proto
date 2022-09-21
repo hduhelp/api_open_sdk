@@ -331,8 +331,15 @@ message GetClassDetailRequest {
   string classID = 1;
 }
 
-// GetClassDetailResponse 班级信息查询返回体
 message GetClassDetailResponse {
+  int32 error = 1;
+  string msg = 2;
+  // 教室列表
+  ClassDetail data = 3;
+}
+
+// GetClassDetailResponse 班级信息查询返回体
+message ClassDetail {
   // 班级号
   string classID = 1;
   // 班级名
