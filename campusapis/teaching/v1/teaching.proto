@@ -66,6 +66,9 @@ service TeachingService {
   // 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
   rpc GetGlobalSchedule(GetGlobalScheduleRequest) returns (GetGlobalScheduleResponse) {}
 
+  // 通过CLASS_ID获取课程信息，不开放HTTP接口对外使用
+  rpc GetClassDetail(GetClassDetailRequest) returns (GetClassroomsResponse) {}
+
   // 获取所有教室列表
   rpc GetClassrooms(GetClassroomsRequest) returns (GetClassroomsResponse) {
     option (google.api.http) = {
@@ -320,6 +323,28 @@ message GetGlobalScheduleResponse {
   int32 error = 1;
   string msg = 2;
   repeated ScheduleResponseCourse data = 3;
+}
+
+// GetClassDetailRequest 班级信息查询关键字
+message GetClassDetailRequest {
+  // 班级号
+  string classID = 1;
+}
+
+// GetClassDetailResponse 班级信息查询返回体
+message GetClassDetailResponse {
+  // 班级号
+  string classID = 1;
+  // 班级名
+  string className = 2;
+  // 课程号
+  string courseID = 3;
+  // 课程名
+  string courseName = 4;
+  // 学生列表
+  repeated string studentID = 5;
+  // 教师列表
+  repeated string teacherID = 6;
 }
 
 // GetClassroomsRequest 教室列表查询关键字

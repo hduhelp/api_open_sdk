@@ -31,6 +31,8 @@ type TeachingServiceClient interface {
 	GetScheduleNowV2(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetScheduleNowV2Response, error)
 	// 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
 	GetGlobalSchedule(ctx context.Context, in *GetGlobalScheduleRequest, opts ...grpc.CallOption) (*GetGlobalScheduleResponse, error)
+	// 通过CLASS_ID获取课程信息，不开放HTTP接口对外使用
+	GetClassDetail(ctx context.Context, in *GetClassDetailRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error)
 	// 获取所有教室列表
 	GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error)
 	// 获取某一教室的使用情况
@@ -83,6 +85,15 @@ func (c *teachingServiceClient) GetGlobalSchedule(ctx context.Context, in *GetGl
 	return out, nil
 }
 
+func (c *teachingServiceClient) GetClassDetail(ctx context.Context, in *GetClassDetailRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error) {
+	out := new(GetClassroomsResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassDetail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *teachingServiceClient) GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error) {
 	out := new(GetClassroomsResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassrooms", in, out, opts...)
@@ -122,6 +133,8 @@ type TeachingServiceServer interface {
 	GetScheduleNowV2(context.Context, *emptypb.Empty) (*GetScheduleNowV2Response, error)
 	// 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
 	GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error)
+	// 通过CLASS_ID获取课程信息，不开放HTTP接口对外使用
+	GetClassDetail(context.Context, *GetClassDetailRequest) (*GetClassroomsResponse, error)
 	// 获取所有教室列表
 	GetClassrooms(context.Context, *GetClassroomsRequest) (*GetClassroomsResponse, error)
 	// 获取某一教室的使用情况
@@ -146,6 +159,9 @@ func (UnimplementedTeachingServiceServer) GetScheduleNowV2(context.Context, *emp
 }
 func (UnimplementedTeachingServiceServer) GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGlobalSchedule not implemented")
+}
+func (UnimplementedTeachingServiceServer) GetClassDetail(context.Context, *GetClassDetailRequest) (*GetClassroomsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClassDetail not implemented")
 }
 func (UnimplementedTeachingServiceServer) GetClassrooms(context.Context, *GetClassroomsRequest) (*GetClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassrooms not implemented")
@@ -241,6 +257,24 @@ func _TeachingService_GetGlobalSchedule_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeachingService_GetClassDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetClassDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).GetClassDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/GetClassDetail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).GetClassDetail(ctx, req.(*GetClassDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TeachingService_GetClassrooms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetClassroomsRequest)
 	if err := dec(in); err != nil {
@@ -317,6 +351,10 @@ var TeachingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGlobalSchedule",
 			Handler:    _TeachingService_GetGlobalSchedule_Handler,
+		},
+		{
+			MethodName: "GetClassDetail",
+			Handler:    _TeachingService_GetClassDetail_Handler,
 		},
 		{
 			MethodName: "GetClassrooms",
