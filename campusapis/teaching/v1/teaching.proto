@@ -66,8 +66,8 @@ service TeachingService {
   // 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
   rpc GetGlobalSchedule(GetGlobalScheduleRequest) returns (GetGlobalScheduleResponse) {}
 
-  // 通过CLASS_ID获取课程信息，不开放HTTP接口对外使用
-  rpc GetClassDetail(GetClassDetailRequest) returns (GetClassroomsResponse) {}
+  // 通过CLASS_ID获取学生老师列表，不开放HTTP接口对外使用
+  rpc GetClassDetail(GetClassDetailRequest) returns (GetClassDetailResponse) {}
 
   // 获取所有教室列表
   rpc GetClassrooms(GetClassroomsRequest) returns (GetClassroomsResponse) {
