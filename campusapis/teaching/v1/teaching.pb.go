@@ -1052,24 +1052,15 @@ func (x *GetClassDetailRequest) GetClassID() string {
 	return ""
 }
 
-// GetClassDetailResponse 班级信息查询返回体
 type GetClassDetailResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// 班级号
-	ClassID string `protobuf:"bytes,1,opt,name=classID,proto3" json:"classID,omitempty"`
-	// 班级名
-	ClassName string `protobuf:"bytes,2,opt,name=className,proto3" json:"className,omitempty"`
-	// 课程号
-	CourseID string `protobuf:"bytes,3,opt,name=courseID,proto3" json:"courseID,omitempty"`
-	// 课程名
-	CourseName string `protobuf:"bytes,4,opt,name=courseName,proto3" json:"courseName,omitempty"`
-	// 学生列表
-	StudentID []string `protobuf:"bytes,5,rep,name=studentID,proto3" json:"studentID,omitempty"`
-	// 教师列表
-	TeacherID []string `protobuf:"bytes,6,rep,name=teacherID,proto3" json:"teacherID,omitempty"`
+	Error int32  `protobuf:"varint,1,opt,name=error,proto3" json:"error,omitempty"`
+	Msg   string `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	// 教室列表
+	Data *ClassDetail `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *GetClassDetailResponse) Reset() {
@@ -1104,42 +1095,115 @@ func (*GetClassDetailResponse) Descriptor() ([]byte, []int) {
 	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *GetClassDetailResponse) GetClassID() string {
+func (x *GetClassDetailResponse) GetError() int32 {
+	if x != nil {
+		return x.Error
+	}
+	return 0
+}
+
+func (x *GetClassDetailResponse) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *GetClassDetailResponse) GetData() *ClassDetail {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+// GetClassDetailResponse 班级信息查询返回体
+type ClassDetail struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// 班级号
+	ClassID string `protobuf:"bytes,1,opt,name=classID,proto3" json:"classID,omitempty"`
+	// 班级名
+	ClassName string `protobuf:"bytes,2,opt,name=className,proto3" json:"className,omitempty"`
+	// 课程号
+	CourseID string `protobuf:"bytes,3,opt,name=courseID,proto3" json:"courseID,omitempty"`
+	// 课程名
+	CourseName string `protobuf:"bytes,4,opt,name=courseName,proto3" json:"courseName,omitempty"`
+	// 学生列表
+	StudentID []string `protobuf:"bytes,5,rep,name=studentID,proto3" json:"studentID,omitempty"`
+	// 教师列表
+	TeacherID []string `protobuf:"bytes,6,rep,name=teacherID,proto3" json:"teacherID,omitempty"`
+}
+
+func (x *ClassDetail) Reset() {
+	*x = ClassDetail{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ClassDetail) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClassDetail) ProtoMessage() {}
+
+func (x *ClassDetail) ProtoReflect() protoreflect.Message {
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClassDetail.ProtoReflect.Descriptor instead.
+func (*ClassDetail) Descriptor() ([]byte, []int) {
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ClassDetail) GetClassID() string {
 	if x != nil {
 		return x.ClassID
 	}
 	return ""
 }
 
-func (x *GetClassDetailResponse) GetClassName() string {
+func (x *ClassDetail) GetClassName() string {
 	if x != nil {
 		return x.ClassName
 	}
 	return ""
 }
 
-func (x *GetClassDetailResponse) GetCourseID() string {
+func (x *ClassDetail) GetCourseID() string {
 	if x != nil {
 		return x.CourseID
 	}
 	return ""
 }
 
-func (x *GetClassDetailResponse) GetCourseName() string {
+func (x *ClassDetail) GetCourseName() string {
 	if x != nil {
 		return x.CourseName
 	}
 	return ""
 }
 
-func (x *GetClassDetailResponse) GetStudentID() []string {
+func (x *ClassDetail) GetStudentID() []string {
 	if x != nil {
 		return x.StudentID
 	}
 	return nil
 }
 
-func (x *GetClassDetailResponse) GetTeacherID() []string {
+func (x *ClassDetail) GetTeacherID() []string {
 	if x != nil {
 		return x.TeacherID
 	}
@@ -1161,7 +1225,7 @@ type GetClassroomsRequest struct {
 func (x *GetClassroomsRequest) Reset() {
 	*x = GetClassroomsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[14]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1174,7 +1238,7 @@ func (x *GetClassroomsRequest) String() string {
 func (*GetClassroomsRequest) ProtoMessage() {}
 
 func (x *GetClassroomsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[14]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1187,7 +1251,7 @@ func (x *GetClassroomsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClassroomsRequest.ProtoReflect.Descriptor instead.
 func (*GetClassroomsRequest) Descriptor() ([]byte, []int) {
-	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{14}
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetClassroomsRequest) GetSchoolYear() string {
@@ -1220,7 +1284,7 @@ type GetClassroomUsagesRequest struct {
 func (x *GetClassroomUsagesRequest) Reset() {
 	*x = GetClassroomUsagesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[15]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1233,7 +1297,7 @@ func (x *GetClassroomUsagesRequest) String() string {
 func (*GetClassroomUsagesRequest) ProtoMessage() {}
 
 func (x *GetClassroomUsagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[15]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1246,7 +1310,7 @@ func (x *GetClassroomUsagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClassroomUsagesRequest.ProtoReflect.Descriptor instead.
 func (*GetClassroomUsagesRequest) Descriptor() ([]byte, []int) {
-	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{15}
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetClassroomUsagesRequest) GetSemester() string {
@@ -1291,7 +1355,7 @@ type GetUnusedClassroomsRequest struct {
 func (x *GetUnusedClassroomsRequest) Reset() {
 	*x = GetUnusedClassroomsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[16]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1304,7 +1368,7 @@ func (x *GetUnusedClassroomsRequest) String() string {
 func (*GetUnusedClassroomsRequest) ProtoMessage() {}
 
 func (x *GetUnusedClassroomsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[16]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1317,7 +1381,7 @@ func (x *GetUnusedClassroomsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUnusedClassroomsRequest.ProtoReflect.Descriptor instead.
 func (*GetUnusedClassroomsRequest) Descriptor() ([]byte, []int) {
-	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{16}
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetUnusedClassroomsRequest) GetSemester() string {
@@ -1369,7 +1433,7 @@ type GetClassroomsResponse struct {
 func (x *GetClassroomsResponse) Reset() {
 	*x = GetClassroomsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[17]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1382,7 +1446,7 @@ func (x *GetClassroomsResponse) String() string {
 func (*GetClassroomsResponse) ProtoMessage() {}
 
 func (x *GetClassroomsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[17]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1395,7 +1459,7 @@ func (x *GetClassroomsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClassroomsResponse.ProtoReflect.Descriptor instead.
 func (*GetClassroomsResponse) Descriptor() ([]byte, []int) {
-	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{17}
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetClassroomsResponse) GetError() int32 {
@@ -1433,7 +1497,7 @@ type GetUnusedClassroomsResponse struct {
 func (x *GetUnusedClassroomsResponse) Reset() {
 	*x = GetUnusedClassroomsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[18]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1446,7 +1510,7 @@ func (x *GetUnusedClassroomsResponse) String() string {
 func (*GetUnusedClassroomsResponse) ProtoMessage() {}
 
 func (x *GetUnusedClassroomsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[18]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1459,7 +1523,7 @@ func (x *GetUnusedClassroomsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUnusedClassroomsResponse.ProtoReflect.Descriptor instead.
 func (*GetUnusedClassroomsResponse) Descriptor() ([]byte, []int) {
-	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{18}
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetUnusedClassroomsResponse) GetError() int32 {
@@ -1508,7 +1572,7 @@ type Classroom struct {
 func (x *Classroom) Reset() {
 	*x = Classroom{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[19]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1521,7 +1585,7 @@ func (x *Classroom) String() string {
 func (*Classroom) ProtoMessage() {}
 
 func (x *Classroom) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[19]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1534,7 +1598,7 @@ func (x *Classroom) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Classroom.ProtoReflect.Descriptor instead.
 func (*Classroom) Descriptor() ([]byte, []int) {
-	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{19}
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *Classroom) GetSemester() int32 {
@@ -1601,7 +1665,7 @@ type GetClassroomUsagesResponse struct {
 func (x *GetClassroomUsagesResponse) Reset() {
 	*x = GetClassroomUsagesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[20]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1614,7 +1678,7 @@ func (x *GetClassroomUsagesResponse) String() string {
 func (*GetClassroomUsagesResponse) ProtoMessage() {}
 
 func (x *GetClassroomUsagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[20]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1627,7 +1691,7 @@ func (x *GetClassroomUsagesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClassroomUsagesResponse.ProtoReflect.Descriptor instead.
 func (*GetClassroomUsagesResponse) Descriptor() ([]byte, []int) {
-	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{20}
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetClassroomUsagesResponse) GetError() int32 {
@@ -1676,7 +1740,7 @@ type ClassroomUsage struct {
 func (x *ClassroomUsage) Reset() {
 	*x = ClassroomUsage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[21]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1689,7 +1753,7 @@ func (x *ClassroomUsage) String() string {
 func (*ClassroomUsage) ProtoMessage() {}
 
 func (x *ClassroomUsage) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[21]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1702,7 +1766,7 @@ func (x *ClassroomUsage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClassroomUsage.ProtoReflect.Descriptor instead.
 func (*ClassroomUsage) Descriptor() ([]byte, []int) {
-	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{21}
+	return file_campusapis_teaching_v1_teaching_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ClassroomUsage) GetClassroom() *Classroom {
@@ -1771,7 +1835,7 @@ type ScheduleResponseCourse_StaffInfo struct {
 func (x *ScheduleResponseCourse_StaffInfo) Reset() {
 	*x = ScheduleResponseCourse_StaffInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[22]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1784,7 +1848,7 @@ func (x *ScheduleResponseCourse_StaffInfo) String() string {
 func (*ScheduleResponseCourse_StaffInfo) ProtoMessage() {}
 
 func (x *ScheduleResponseCourse_StaffInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[22]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1852,7 +1916,7 @@ type ScheduleResponseCourse_ScheduleInfo struct {
 func (x *ScheduleResponseCourse_ScheduleInfo) Reset() {
 	*x = ScheduleResponseCourse_ScheduleInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[23]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1865,7 +1929,7 @@ func (x *ScheduleResponseCourse_ScheduleInfo) String() string {
 func (*ScheduleResponseCourse_ScheduleInfo) ProtoMessage() {}
 
 func (x *ScheduleResponseCourse_ScheduleInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[23]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1965,7 +2029,7 @@ type GetScheduleNowResponse_Data struct {
 func (x *GetScheduleNowResponse_Data) Reset() {
 	*x = GetScheduleNowResponse_Data{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[26]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1978,7 +2042,7 @@ func (x *GetScheduleNowResponse_Data) String() string {
 func (*GetScheduleNowResponse_Data) ProtoMessage() {}
 
 func (x *GetScheduleNowResponse_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[26]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2035,7 +2099,7 @@ type GetScheduleNowResponse_Course struct {
 func (x *GetScheduleNowResponse_Course) Reset() {
 	*x = GetScheduleNowResponse_Course{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[27]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2048,7 +2112,7 @@ func (x *GetScheduleNowResponse_Course) String() string {
 func (*GetScheduleNowResponse_Course) ProtoMessage() {}
 
 func (x *GetScheduleNowResponse_Course) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[27]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2134,7 +2198,7 @@ type GetScheduleNowV2Response_Data struct {
 func (x *GetScheduleNowV2Response_Data) Reset() {
 	*x = GetScheduleNowV2Response_Data{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[28]
+		mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2147,7 +2211,7 @@ func (x *GetScheduleNowV2Response_Data) String() string {
 func (*GetScheduleNowV2Response_Data) ProtoMessage() {}
 
 func (x *GetScheduleNowV2Response_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[28]
+	mi := &file_campusapis_teaching_v1_teaching_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2416,9 +2480,16 @@ var file_campusapis_teaching_v1_teaching_proto_rawDesc = []byte{
 	0x61, 0x74, 0x61, 0x22, 0x31, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x43, 0x6c, 0x61, 0x73, 0x73, 0x44,
 	0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07,
 	0x63, 0x6c, 0x61, 0x73, 0x73, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63,
-	0x6c, 0x61, 0x73, 0x73, 0x49, 0x44, 0x22, 0xc8, 0x01, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x43, 0x6c,
-	0x61, 0x73, 0x73, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6c, 0x61, 0x73, 0x73, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01,
+	0x6c, 0x61, 0x73, 0x73, 0x49, 0x44, 0x22, 0x79, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x43, 0x6c, 0x61,
+	0x73, 0x73, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x37, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x23, 0x2e, 0x63, 0x61, 0x6d, 0x70, 0x75, 0x73, 0x61,
+	0x70, 0x69, 0x73, 0x2e, 0x74, 0x65, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e,
+	0x43, 0x6c, 0x61, 0x73, 0x73, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x04, 0x64, 0x61, 0x74,
+	0x61, 0x22, 0xbd, 0x01, 0x0a, 0x0b, 0x43, 0x6c, 0x61, 0x73, 0x73, 0x44, 0x65, 0x74, 0x61, 0x69,
+	0x6c, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6c, 0x61, 0x73, 0x73, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x07, 0x63, 0x6c, 0x61, 0x73, 0x73, 0x49, 0x44, 0x12, 0x1c, 0x0a, 0x09, 0x63,
 	0x6c, 0x61, 0x73, 0x73, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
 	0x63, 0x6c, 0x61, 0x73, 0x73, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x6f, 0x75,
@@ -2642,7 +2713,7 @@ func file_campusapis_teaching_v1_teaching_proto_rawDescGZIP() []byte {
 	return file_campusapis_teaching_v1_teaching_proto_rawDescData
 }
 
-var file_campusapis_teaching_v1_teaching_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
+var file_campusapis_teaching_v1_teaching_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_campusapis_teaching_v1_teaching_proto_goTypes = []interface{}{
 	(*GetScheduleRequest)(nil),                  // 0: campusapis.teaching.v1.GetScheduleRequest
 	(*GetScheduleResponse)(nil),                 // 1: campusapis.teaching.v1.GetScheduleResponse
@@ -2658,72 +2729,74 @@ var file_campusapis_teaching_v1_teaching_proto_goTypes = []interface{}{
 	(*GetGlobalScheduleResponse)(nil),           // 11: campusapis.teaching.v1.GetGlobalScheduleResponse
 	(*GetClassDetailRequest)(nil),               // 12: campusapis.teaching.v1.GetClassDetailRequest
 	(*GetClassDetailResponse)(nil),              // 13: campusapis.teaching.v1.GetClassDetailResponse
-	(*GetClassroomsRequest)(nil),                // 14: campusapis.teaching.v1.GetClassroomsRequest
-	(*GetClassroomUsagesRequest)(nil),           // 15: campusapis.teaching.v1.GetClassroomUsagesRequest
-	(*GetUnusedClassroomsRequest)(nil),          // 16: campusapis.teaching.v1.GetUnusedClassroomsRequest
-	(*GetClassroomsResponse)(nil),               // 17: campusapis.teaching.v1.GetClassroomsResponse
-	(*GetUnusedClassroomsResponse)(nil),         // 18: campusapis.teaching.v1.GetUnusedClassroomsResponse
-	(*Classroom)(nil),                           // 19: campusapis.teaching.v1.Classroom
-	(*GetClassroomUsagesResponse)(nil),          // 20: campusapis.teaching.v1.GetClassroomUsagesResponse
-	(*ClassroomUsage)(nil),                      // 21: campusapis.teaching.v1.ClassroomUsage
-	(*ScheduleResponseCourse_StaffInfo)(nil),    // 22: campusapis.teaching.v1.ScheduleResponseCourse.StaffInfo
-	(*ScheduleResponseCourse_ScheduleInfo)(nil), // 23: campusapis.teaching.v1.ScheduleResponseCourse.ScheduleInfo
-	nil,                                   // 24: campusapis.teaching.v1.Courses.ItemsEntry
-	nil,                                   // 25: campusapis.teaching.v1.Schedule.ItemsEntry
-	(*GetScheduleNowResponse_Data)(nil),   // 26: campusapis.teaching.v1.GetScheduleNowResponse.Data
-	(*GetScheduleNowResponse_Course)(nil), // 27: campusapis.teaching.v1.GetScheduleNowResponse.Course
-	(*GetScheduleNowV2Response_Data)(nil), // 28: campusapis.teaching.v1.GetScheduleNowV2Response.Data
-	(*schoolTime.SchoolYear)(nil),         // 29: campusapis.schoolTime.SchoolYear
-	(*schoolTime.Semester)(nil),           // 30: campusapis.schoolTime.Semester
-	(*staff.InfoMapList)(nil),             // 31: campusapis.staff.InfoMapList
-	(*emptypb.Empty)(nil),                 // 32: google.protobuf.Empty
+	(*ClassDetail)(nil),                         // 14: campusapis.teaching.v1.ClassDetail
+	(*GetClassroomsRequest)(nil),                // 15: campusapis.teaching.v1.GetClassroomsRequest
+	(*GetClassroomUsagesRequest)(nil),           // 16: campusapis.teaching.v1.GetClassroomUsagesRequest
+	(*GetUnusedClassroomsRequest)(nil),          // 17: campusapis.teaching.v1.GetUnusedClassroomsRequest
+	(*GetClassroomsResponse)(nil),               // 18: campusapis.teaching.v1.GetClassroomsResponse
+	(*GetUnusedClassroomsResponse)(nil),         // 19: campusapis.teaching.v1.GetUnusedClassroomsResponse
+	(*Classroom)(nil),                           // 20: campusapis.teaching.v1.Classroom
+	(*GetClassroomUsagesResponse)(nil),          // 21: campusapis.teaching.v1.GetClassroomUsagesResponse
+	(*ClassroomUsage)(nil),                      // 22: campusapis.teaching.v1.ClassroomUsage
+	(*ScheduleResponseCourse_StaffInfo)(nil),    // 23: campusapis.teaching.v1.ScheduleResponseCourse.StaffInfo
+	(*ScheduleResponseCourse_ScheduleInfo)(nil), // 24: campusapis.teaching.v1.ScheduleResponseCourse.ScheduleInfo
+	nil,                                   // 25: campusapis.teaching.v1.Courses.ItemsEntry
+	nil,                                   // 26: campusapis.teaching.v1.Schedule.ItemsEntry
+	(*GetScheduleNowResponse_Data)(nil),   // 27: campusapis.teaching.v1.GetScheduleNowResponse.Data
+	(*GetScheduleNowResponse_Course)(nil), // 28: campusapis.teaching.v1.GetScheduleNowResponse.Course
+	(*GetScheduleNowV2Response_Data)(nil), // 29: campusapis.teaching.v1.GetScheduleNowV2Response.Data
+	(*schoolTime.SchoolYear)(nil),         // 30: campusapis.schoolTime.SchoolYear
+	(*schoolTime.Semester)(nil),           // 31: campusapis.schoolTime.Semester
+	(*staff.InfoMapList)(nil),             // 32: campusapis.staff.InfoMapList
+	(*emptypb.Empty)(nil),                 // 33: google.protobuf.Empty
 }
 var file_campusapis_teaching_v1_teaching_proto_depIdxs = []int32{
 	2,  // 0: campusapis.teaching.v1.GetScheduleResponse.data:type_name -> campusapis.teaching.v1.ScheduleResponseCourse
-	23, // 1: campusapis.teaching.v1.ScheduleResponseCourse.Schedule:type_name -> campusapis.teaching.v1.ScheduleResponseCourse.ScheduleInfo
-	24, // 2: campusapis.teaching.v1.Courses.Items:type_name -> campusapis.teaching.v1.Courses.ItemsEntry
-	29, // 3: campusapis.teaching.v1.CourseItem.SchoolYear:type_name -> campusapis.schoolTime.SchoolYear
-	30, // 4: campusapis.teaching.v1.CourseItem.Semester:type_name -> campusapis.schoolTime.Semester
+	24, // 1: campusapis.teaching.v1.ScheduleResponseCourse.Schedule:type_name -> campusapis.teaching.v1.ScheduleResponseCourse.ScheduleInfo
+	25, // 2: campusapis.teaching.v1.Courses.Items:type_name -> campusapis.teaching.v1.Courses.ItemsEntry
+	30, // 3: campusapis.teaching.v1.CourseItem.SchoolYear:type_name -> campusapis.schoolTime.SchoolYear
+	31, // 4: campusapis.teaching.v1.CourseItem.Semester:type_name -> campusapis.schoolTime.Semester
 	5,  // 5: campusapis.teaching.v1.CourseItem.Schedule:type_name -> campusapis.teaching.v1.Schedule
-	25, // 6: campusapis.teaching.v1.Schedule.Items:type_name -> campusapis.teaching.v1.Schedule.ItemsEntry
-	31, // 7: campusapis.teaching.v1.ScheduleItem.Teachers:type_name -> campusapis.staff.InfoMapList
-	31, // 8: campusapis.teaching.v1.ScheduleItem.Students:type_name -> campusapis.staff.InfoMapList
-	26, // 9: campusapis.teaching.v1.GetScheduleNowResponse.data:type_name -> campusapis.teaching.v1.GetScheduleNowResponse.Data
-	28, // 10: campusapis.teaching.v1.GetScheduleNowV2Response.data:type_name -> campusapis.teaching.v1.GetScheduleNowV2Response.Data
+	26, // 6: campusapis.teaching.v1.Schedule.Items:type_name -> campusapis.teaching.v1.Schedule.ItemsEntry
+	32, // 7: campusapis.teaching.v1.ScheduleItem.Teachers:type_name -> campusapis.staff.InfoMapList
+	32, // 8: campusapis.teaching.v1.ScheduleItem.Students:type_name -> campusapis.staff.InfoMapList
+	27, // 9: campusapis.teaching.v1.GetScheduleNowResponse.data:type_name -> campusapis.teaching.v1.GetScheduleNowResponse.Data
+	29, // 10: campusapis.teaching.v1.GetScheduleNowV2Response.data:type_name -> campusapis.teaching.v1.GetScheduleNowV2Response.Data
 	2,  // 11: campusapis.teaching.v1.GetGlobalScheduleResponse.data:type_name -> campusapis.teaching.v1.ScheduleResponseCourse
-	19, // 12: campusapis.teaching.v1.GetClassroomsResponse.data:type_name -> campusapis.teaching.v1.Classroom
-	19, // 13: campusapis.teaching.v1.GetUnusedClassroomsResponse.data:type_name -> campusapis.teaching.v1.Classroom
-	21, // 14: campusapis.teaching.v1.GetClassroomUsagesResponse.data:type_name -> campusapis.teaching.v1.ClassroomUsage
-	19, // 15: campusapis.teaching.v1.ClassroomUsage.classroom:type_name -> campusapis.teaching.v1.Classroom
-	22, // 16: campusapis.teaching.v1.ScheduleResponseCourse.ScheduleInfo.Teachers:type_name -> campusapis.teaching.v1.ScheduleResponseCourse.StaffInfo
-	22, // 17: campusapis.teaching.v1.ScheduleResponseCourse.ScheduleInfo.Students:type_name -> campusapis.teaching.v1.ScheduleResponseCourse.StaffInfo
-	4,  // 18: campusapis.teaching.v1.Courses.ItemsEntry.value:type_name -> campusapis.teaching.v1.CourseItem
-	6,  // 19: campusapis.teaching.v1.Schedule.ItemsEntry.value:type_name -> campusapis.teaching.v1.ScheduleItem
-	27, // 20: campusapis.teaching.v1.GetScheduleNowResponse.Data.today:type_name -> campusapis.teaching.v1.GetScheduleNowResponse.Course
-	27, // 21: campusapis.teaching.v1.GetScheduleNowResponse.Data.tomorrow:type_name -> campusapis.teaching.v1.GetScheduleNowResponse.Course
-	2,  // 22: campusapis.teaching.v1.GetScheduleNowV2Response.Data.Today:type_name -> campusapis.teaching.v1.ScheduleResponseCourse
-	2,  // 23: campusapis.teaching.v1.GetScheduleNowV2Response.Data.Tomorrow:type_name -> campusapis.teaching.v1.ScheduleResponseCourse
-	0,  // 24: campusapis.teaching.v1.TeachingService.GetSchedule:input_type -> campusapis.teaching.v1.GetScheduleRequest
-	32, // 25: campusapis.teaching.v1.TeachingService.GetScheduleNow:input_type -> google.protobuf.Empty
-	32, // 26: campusapis.teaching.v1.TeachingService.GetScheduleNowV2:input_type -> google.protobuf.Empty
-	10, // 27: campusapis.teaching.v1.TeachingService.GetGlobalSchedule:input_type -> campusapis.teaching.v1.GetGlobalScheduleRequest
-	12, // 28: campusapis.teaching.v1.TeachingService.GetClassDetail:input_type -> campusapis.teaching.v1.GetClassDetailRequest
-	14, // 29: campusapis.teaching.v1.TeachingService.GetClassrooms:input_type -> campusapis.teaching.v1.GetClassroomsRequest
-	15, // 30: campusapis.teaching.v1.TeachingService.GetClassroomUsages:input_type -> campusapis.teaching.v1.GetClassroomUsagesRequest
-	16, // 31: campusapis.teaching.v1.TeachingService.GetUnusedClassrooms:input_type -> campusapis.teaching.v1.GetUnusedClassroomsRequest
-	1,  // 32: campusapis.teaching.v1.TeachingService.GetSchedule:output_type -> campusapis.teaching.v1.GetScheduleResponse
-	8,  // 33: campusapis.teaching.v1.TeachingService.GetScheduleNow:output_type -> campusapis.teaching.v1.GetScheduleNowResponse
-	9,  // 34: campusapis.teaching.v1.TeachingService.GetScheduleNowV2:output_type -> campusapis.teaching.v1.GetScheduleNowV2Response
-	11, // 35: campusapis.teaching.v1.TeachingService.GetGlobalSchedule:output_type -> campusapis.teaching.v1.GetGlobalScheduleResponse
-	13, // 36: campusapis.teaching.v1.TeachingService.GetClassDetail:output_type -> campusapis.teaching.v1.GetClassDetailResponse
-	17, // 37: campusapis.teaching.v1.TeachingService.GetClassrooms:output_type -> campusapis.teaching.v1.GetClassroomsResponse
-	20, // 38: campusapis.teaching.v1.TeachingService.GetClassroomUsages:output_type -> campusapis.teaching.v1.GetClassroomUsagesResponse
-	18, // 39: campusapis.teaching.v1.TeachingService.GetUnusedClassrooms:output_type -> campusapis.teaching.v1.GetUnusedClassroomsResponse
-	32, // [32:40] is the sub-list for method output_type
-	24, // [24:32] is the sub-list for method input_type
-	24, // [24:24] is the sub-list for extension type_name
-	24, // [24:24] is the sub-list for extension extendee
-	0,  // [0:24] is the sub-list for field type_name
+	14, // 12: campusapis.teaching.v1.GetClassDetailResponse.data:type_name -> campusapis.teaching.v1.ClassDetail
+	20, // 13: campusapis.teaching.v1.GetClassroomsResponse.data:type_name -> campusapis.teaching.v1.Classroom
+	20, // 14: campusapis.teaching.v1.GetUnusedClassroomsResponse.data:type_name -> campusapis.teaching.v1.Classroom
+	22, // 15: campusapis.teaching.v1.GetClassroomUsagesResponse.data:type_name -> campusapis.teaching.v1.ClassroomUsage
+	20, // 16: campusapis.teaching.v1.ClassroomUsage.classroom:type_name -> campusapis.teaching.v1.Classroom
+	23, // 17: campusapis.teaching.v1.ScheduleResponseCourse.ScheduleInfo.Teachers:type_name -> campusapis.teaching.v1.ScheduleResponseCourse.StaffInfo
+	23, // 18: campusapis.teaching.v1.ScheduleResponseCourse.ScheduleInfo.Students:type_name -> campusapis.teaching.v1.ScheduleResponseCourse.StaffInfo
+	4,  // 19: campusapis.teaching.v1.Courses.ItemsEntry.value:type_name -> campusapis.teaching.v1.CourseItem
+	6,  // 20: campusapis.teaching.v1.Schedule.ItemsEntry.value:type_name -> campusapis.teaching.v1.ScheduleItem
+	28, // 21: campusapis.teaching.v1.GetScheduleNowResponse.Data.today:type_name -> campusapis.teaching.v1.GetScheduleNowResponse.Course
+	28, // 22: campusapis.teaching.v1.GetScheduleNowResponse.Data.tomorrow:type_name -> campusapis.teaching.v1.GetScheduleNowResponse.Course
+	2,  // 23: campusapis.teaching.v1.GetScheduleNowV2Response.Data.Today:type_name -> campusapis.teaching.v1.ScheduleResponseCourse
+	2,  // 24: campusapis.teaching.v1.GetScheduleNowV2Response.Data.Tomorrow:type_name -> campusapis.teaching.v1.ScheduleResponseCourse
+	0,  // 25: campusapis.teaching.v1.TeachingService.GetSchedule:input_type -> campusapis.teaching.v1.GetScheduleRequest
+	33, // 26: campusapis.teaching.v1.TeachingService.GetScheduleNow:input_type -> google.protobuf.Empty
+	33, // 27: campusapis.teaching.v1.TeachingService.GetScheduleNowV2:input_type -> google.protobuf.Empty
+	10, // 28: campusapis.teaching.v1.TeachingService.GetGlobalSchedule:input_type -> campusapis.teaching.v1.GetGlobalScheduleRequest
+	12, // 29: campusapis.teaching.v1.TeachingService.GetClassDetail:input_type -> campusapis.teaching.v1.GetClassDetailRequest
+	15, // 30: campusapis.teaching.v1.TeachingService.GetClassrooms:input_type -> campusapis.teaching.v1.GetClassroomsRequest
+	16, // 31: campusapis.teaching.v1.TeachingService.GetClassroomUsages:input_type -> campusapis.teaching.v1.GetClassroomUsagesRequest
+	17, // 32: campusapis.teaching.v1.TeachingService.GetUnusedClassrooms:input_type -> campusapis.teaching.v1.GetUnusedClassroomsRequest
+	1,  // 33: campusapis.teaching.v1.TeachingService.GetSchedule:output_type -> campusapis.teaching.v1.GetScheduleResponse
+	8,  // 34: campusapis.teaching.v1.TeachingService.GetScheduleNow:output_type -> campusapis.teaching.v1.GetScheduleNowResponse
+	9,  // 35: campusapis.teaching.v1.TeachingService.GetScheduleNowV2:output_type -> campusapis.teaching.v1.GetScheduleNowV2Response
+	11, // 36: campusapis.teaching.v1.TeachingService.GetGlobalSchedule:output_type -> campusapis.teaching.v1.GetGlobalScheduleResponse
+	13, // 37: campusapis.teaching.v1.TeachingService.GetClassDetail:output_type -> campusapis.teaching.v1.GetClassDetailResponse
+	18, // 38: campusapis.teaching.v1.TeachingService.GetClassrooms:output_type -> campusapis.teaching.v1.GetClassroomsResponse
+	21, // 39: campusapis.teaching.v1.TeachingService.GetClassroomUsages:output_type -> campusapis.teaching.v1.GetClassroomUsagesResponse
+	19, // 40: campusapis.teaching.v1.TeachingService.GetUnusedClassrooms:output_type -> campusapis.teaching.v1.GetUnusedClassroomsResponse
+	33, // [33:41] is the sub-list for method output_type
+	25, // [25:33] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_campusapis_teaching_v1_teaching_proto_init() }
@@ -2901,7 +2974,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetClassroomsRequest); i {
+			switch v := v.(*ClassDetail); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2913,7 +2986,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetClassroomUsagesRequest); i {
+			switch v := v.(*GetClassroomsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2925,7 +2998,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUnusedClassroomsRequest); i {
+			switch v := v.(*GetClassroomUsagesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2937,7 +3010,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetClassroomsResponse); i {
+			switch v := v.(*GetUnusedClassroomsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2949,7 +3022,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUnusedClassroomsResponse); i {
+			switch v := v.(*GetClassroomsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2961,7 +3034,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Classroom); i {
+			switch v := v.(*GetUnusedClassroomsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2973,7 +3046,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetClassroomUsagesResponse); i {
+			switch v := v.(*Classroom); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2985,7 +3058,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClassroomUsage); i {
+			switch v := v.(*GetClassroomUsagesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2997,7 +3070,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ScheduleResponseCourse_StaffInfo); i {
+			switch v := v.(*ClassroomUsage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3009,6 +3082,18 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			}
 		}
 		file_campusapis_teaching_v1_teaching_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ScheduleResponseCourse_StaffInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_campusapis_teaching_v1_teaching_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ScheduleResponseCourse_ScheduleInfo); i {
 			case 0:
 				return &v.state
@@ -3020,7 +3105,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 				return nil
 			}
 		}
-		file_campusapis_teaching_v1_teaching_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_campusapis_teaching_v1_teaching_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetScheduleNowResponse_Data); i {
 			case 0:
 				return &v.state
@@ -3032,7 +3117,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 				return nil
 			}
 		}
-		file_campusapis_teaching_v1_teaching_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_campusapis_teaching_v1_teaching_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetScheduleNowResponse_Course); i {
 			case 0:
 				return &v.state
@@ -3044,7 +3129,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 				return nil
 			}
 		}
-		file_campusapis_teaching_v1_teaching_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_campusapis_teaching_v1_teaching_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetScheduleNowV2Response_Data); i {
 			case 0:
 				return &v.state
@@ -3063,7 +3148,7 @@ func file_campusapis_teaching_v1_teaching_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_campusapis_teaching_v1_teaching_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   29,
+			NumMessages:   30,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
