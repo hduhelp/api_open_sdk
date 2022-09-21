@@ -817,6 +817,42 @@
       },
       "title": "教室使用情况"
     },
+    "v1GetClassDetailResponse": {
+      "type": "object",
+      "properties": {
+        "classID": {
+          "type": "string",
+          "title": "班级号"
+        },
+        "className": {
+          "type": "string",
+          "title": "班级名"
+        },
+        "courseID": {
+          "type": "string",
+          "title": "课程号"
+        },
+        "courseName": {
+          "type": "string",
+          "title": "课程名"
+        },
+        "studentID": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "学生列表"
+        },
+        "teacherID": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "教师列表"
+        }
+      },
+      "title": "GetClassDetailResponse 班级信息查询返回体"
+    },
     "v1GetClassroomUsagesResponse": {
       "type": "object",
       "properties": {

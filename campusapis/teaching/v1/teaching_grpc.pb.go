@@ -31,8 +31,8 @@ type TeachingServiceClient interface {
 	GetScheduleNowV2(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetScheduleNowV2Response, error)
 	// 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
 	GetGlobalSchedule(ctx context.Context, in *GetGlobalScheduleRequest, opts ...grpc.CallOption) (*GetGlobalScheduleResponse, error)
-	// 通过CLASS_ID获取课程信息，不开放HTTP接口对外使用
-	GetClassDetail(ctx context.Context, in *GetClassDetailRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error)
+	// 通过CLASS_ID获取学生老师列表，不开放HTTP接口对外使用
+	GetClassDetail(ctx context.Context, in *GetClassDetailRequest, opts ...grpc.CallOption) (*GetClassDetailResponse, error)
 	// 获取所有教室列表
 	GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error)
 	// 获取某一教室的使用情况
@@ -85,8 +85,8 @@ func (c *teachingServiceClient) GetGlobalSchedule(ctx context.Context, in *GetGl
 	return out, nil
 }
 
-func (c *teachingServiceClient) GetClassDetail(ctx context.Context, in *GetClassDetailRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error) {
-	out := new(GetClassroomsResponse)
+func (c *teachingServiceClient) GetClassDetail(ctx context.Context, in *GetClassDetailRequest, opts ...grpc.CallOption) (*GetClassDetailResponse, error) {
+	out := new(GetClassDetailResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/GetClassDetail", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -133,8 +133,8 @@ type TeachingServiceServer interface {
 	GetScheduleNowV2(context.Context, *emptypb.Empty) (*GetScheduleNowV2Response, error)
 	// 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
 	GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error)
-	// 通过CLASS_ID获取课程信息，不开放HTTP接口对外使用
-	GetClassDetail(context.Context, *GetClassDetailRequest) (*GetClassroomsResponse, error)
+	// 通过CLASS_ID获取学生老师列表，不开放HTTP接口对外使用
+	GetClassDetail(context.Context, *GetClassDetailRequest) (*GetClassDetailResponse, error)
 	// 获取所有教室列表
 	GetClassrooms(context.Context, *GetClassroomsRequest) (*GetClassroomsResponse, error)
 	// 获取某一教室的使用情况
@@ -160,7 +160,7 @@ func (UnimplementedTeachingServiceServer) GetScheduleNowV2(context.Context, *emp
 func (UnimplementedTeachingServiceServer) GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGlobalSchedule not implemented")
 }
-func (UnimplementedTeachingServiceServer) GetClassDetail(context.Context, *GetClassDetailRequest) (*GetClassroomsResponse, error) {
+func (UnimplementedTeachingServiceServer) GetClassDetail(context.Context, *GetClassDetailRequest) (*GetClassDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassDetail not implemented")
 }
 func (UnimplementedTeachingServiceServer) GetClassrooms(context.Context, *GetClassroomsRequest) (*GetClassroomsResponse, error) {
