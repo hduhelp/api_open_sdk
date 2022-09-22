@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: consultingapis/dingtalk/dingtalk.proto
 
-package dingtalkv1
+package v1
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"

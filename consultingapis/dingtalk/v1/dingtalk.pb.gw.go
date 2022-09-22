@@ -6,7 +6,7 @@ Package dingtalkv1 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package dingtalkv1
+package v1
 
 import (
 	"context"
