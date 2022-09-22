@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package consultingapis.dingtalk.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "./consultingapis/dingtalk/v1";
+
+service DingTalkService {
+  rpc CreateClassChatGroup(CreateClassChatGroupRequest) returns (CreateClassChatGroupResponse) {
+    option (google.api.http) = {
+      get: "/dingtalk/chat/v1/create"
+    };
+  }
+
+  rpc GetClassChatGroup(GetClassChatGroupRequest) returns (GetClassChatGroupResponse) {
+    option (google.api.http) = {
+      get: "/dingtalk/chat/v1/get"
+    };
+  }
+
+  rpc JoinClassChatGroup(JoinClassChatGroupRequest) returns (JoinClassChatGroupResponse) {
+    option (google.api.http) = {
+      patch: "/dingtalk/chat/v1/join"
+    };
+  }
+}
+
+message CreateClassChatGroupRequest {
+  string class_id = 1;
+}
+
+message CreateClassChatGroupResponse {
+  string chat_id = 1;
+  string openConversationId = 2;
+}
+
+message GetClassChatGroupRequest {
+  string class_id = 1;
+}
+
+message GetClassChatGroupResponse {
+  bool has_chat = 1;
+  string chat_id = 2;
+  string openConversationId = 3;
+}
+
+message JoinClassChatGroupRequest {
+  string class_id = 1;
+}
+
+message JoinClassChatGroupResponse {
+  string chat_id = 1;
+  string openConversationId = 2;
+}

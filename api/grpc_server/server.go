@@ -19,7 +19,8 @@ func GetInstance() *grpc.Server {
 }
 
 // NewService initializes a new grpc service
-func NewService(backends ...Backend) *grpc.Server {
+func NewService(sign string, backends ...Backend) *grpc.Server {
+	SignKey = sign
 	instance = grpc.NewServer(DefaultServerOptions...)
 
 	// Register all grpc backends

@@ -547,21 +547,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/teaching/v1/schedule"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/teaching/v1/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetSchedule_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetSchedule_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetSchedule_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetSchedule_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -572,21 +571,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/teaching/schedule"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/teaching/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetSchedule_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetSchedule_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetSchedule_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetSchedule_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -597,21 +595,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/student/v2/schedule"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/student/v2/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetSchedule_2(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetSchedule_2(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetSchedule_2(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetSchedule_2(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -622,21 +619,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", runtime.WithHTTPPathPattern("/teaching/v1/schedule/now"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", runtime.WithHTTPPathPattern("/teaching/v1/schedule/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetScheduleNow_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetScheduleNow_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetScheduleNow_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleNow_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -647,21 +643,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", runtime.WithHTTPPathPattern("/student/schedule/now"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", runtime.WithHTTPPathPattern("/student/schedule/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetScheduleNow_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetScheduleNow_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetScheduleNow_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleNow_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -672,21 +667,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/teaching/v1/schedule/v2/now"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/teaching/v1/schedule/v2/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetScheduleNowV2_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetScheduleNowV2_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetScheduleNowV2_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleNowV2_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -697,21 +691,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/student/v2/schedule/now"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/student/v2/schedule/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetScheduleNowV2_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetScheduleNowV2_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetScheduleNowV2_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleNowV2_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -722,21 +715,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetGlobalSchedule", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingService/GetGlobalSchedule"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetGlobalSchedule", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingService/GetGlobalSchedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetGlobalSchedule_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetGlobalSchedule_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetGlobalSchedule_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetGlobalSchedule_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -747,21 +739,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassDetail", runtime.WithHTTPPathPattern("/teaching/v1/class/detail"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassDetail", runtime.WithHTTPPathPattern("/teaching/v1/class/detail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetClassDetail_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetClassDetail_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassDetail_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -772,21 +763,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassDetail", runtime.WithHTTPPathPattern("/teaching/class/detail"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassDetail", runtime.WithHTTPPathPattern("/teaching/class/detail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetClassDetail_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetClassDetail_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassDetail_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassDetail_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -797,21 +787,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetClassrooms_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetClassrooms_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassrooms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -822,21 +811,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetClassrooms_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetClassrooms_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassrooms_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -847,21 +835,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/v1/classroom/usage"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/v1/classroom/usage"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetClassroomUsages_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetClassroomUsages_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassroomUsages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -872,21 +859,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/classroom/usage"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/classroom/usage"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetClassroomUsages_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetClassroomUsages_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassroomUsages_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassroomUsages_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -897,21 +883,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom/unused"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom/unused"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetUnusedClassrooms_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetUnusedClassrooms_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetUnusedClassrooms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -922,21 +907,20 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom/unused"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom/unused"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TeachingService_GetUnusedClassrooms_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TeachingService_GetUnusedClassrooms_1(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetUnusedClassrooms_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetUnusedClassrooms_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -986,20 +970,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/teaching/v1/schedule"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/teaching/v1/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetSchedule_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetSchedule_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetSchedule_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetSchedule_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1008,20 +991,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/teaching/schedule"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/teaching/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetSchedule_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetSchedule_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetSchedule_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetSchedule_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1030,20 +1012,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/student/v2/schedule"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetSchedule", runtime.WithHTTPPathPattern("/student/v2/schedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetSchedule_2(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetSchedule_2(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetSchedule_2(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetSchedule_2(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1052,20 +1033,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", runtime.WithHTTPPathPattern("/teaching/v1/schedule/now"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", runtime.WithHTTPPathPattern("/teaching/v1/schedule/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetScheduleNow_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetScheduleNow_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetScheduleNow_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleNow_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1074,20 +1054,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", runtime.WithHTTPPathPattern("/student/schedule/now"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNow", runtime.WithHTTPPathPattern("/student/schedule/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetScheduleNow_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetScheduleNow_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetScheduleNow_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleNow_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1096,20 +1075,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/teaching/v1/schedule/v2/now"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/teaching/v1/schedule/v2/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetScheduleNowV2_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetScheduleNowV2_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetScheduleNowV2_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleNowV2_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1118,20 +1096,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/student/v2/schedule/now"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/student/v2/schedule/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetScheduleNowV2_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetScheduleNowV2_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetScheduleNowV2_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetScheduleNowV2_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1140,20 +1117,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetGlobalSchedule", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingService/GetGlobalSchedule"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetGlobalSchedule", runtime.WithHTTPPathPattern("/campusapis.teaching.v1.TeachingService/GetGlobalSchedule"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetGlobalSchedule_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetGlobalSchedule_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetGlobalSchedule_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetGlobalSchedule_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1162,20 +1138,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassDetail", runtime.WithHTTPPathPattern("/teaching/v1/class/detail"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassDetail", runtime.WithHTTPPathPattern("/teaching/v1/class/detail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetClassDetail_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetClassDetail_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassDetail_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1184,20 +1159,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassDetail", runtime.WithHTTPPathPattern("/teaching/class/detail"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassDetail", runtime.WithHTTPPathPattern("/teaching/class/detail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetClassDetail_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetClassDetail_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassDetail_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassDetail_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1206,20 +1180,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetClassrooms_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetClassrooms_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassrooms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1228,20 +1201,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetClassrooms_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetClassrooms_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassrooms_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassrooms_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1250,20 +1222,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/v1/classroom/usage"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/v1/classroom/usage"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetClassroomUsages_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetClassroomUsages_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassroomUsages_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassroomUsages_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1272,20 +1243,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/classroom/usage"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetClassroomUsages", runtime.WithHTTPPathPattern("/teaching/classroom/usage"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetClassroomUsages_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetClassroomUsages_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetClassroomUsages_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetClassroomUsages_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1294,20 +1264,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom/unused"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/v1/classroom/unused"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetUnusedClassrooms_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetUnusedClassrooms_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetUnusedClassrooms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetUnusedClassrooms_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1316,20 +1285,19 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom/unused"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/GetUnusedClassrooms", runtime.WithHTTPPathPattern("/teaching/classroom/unused"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TeachingService_GetUnusedClassrooms_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_TeachingService_GetUnusedClassrooms_1(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TeachingService_GetUnusedClassrooms_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TeachingService_GetUnusedClassrooms_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
