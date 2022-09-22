@@ -31,7 +31,7 @@ type TeachingServiceClient interface {
 	GetScheduleNowV2(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetScheduleNowV2Response, error)
 	// 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
 	GetGlobalSchedule(ctx context.Context, in *GetGlobalScheduleRequest, opts ...grpc.CallOption) (*GetGlobalScheduleResponse, error)
-	// 通过CLASS_ID获取学生老师列表，不开放HTTP接口对外使用
+	// 通过CLASS_ID获取学生老师列表
 	GetClassDetail(ctx context.Context, in *GetClassDetailRequest, opts ...grpc.CallOption) (*GetClassDetailResponse, error)
 	// 获取所有教室列表
 	GetClassrooms(ctx context.Context, in *GetClassroomsRequest, opts ...grpc.CallOption) (*GetClassroomsResponse, error)
@@ -133,7 +133,7 @@ type TeachingServiceServer interface {
 	GetScheduleNowV2(context.Context, *emptypb.Empty) (*GetScheduleNowV2Response, error)
 	// 获取全局课表，用于推送课程信息，不开放HTTP接口对外使用
 	GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error)
-	// 通过CLASS_ID获取学生老师列表，不开放HTTP接口对外使用
+	// 通过CLASS_ID获取学生老师列表
 	GetClassDetail(context.Context, *GetClassDetailRequest) (*GetClassDetailResponse, error)
 	// 获取所有教室列表
 	GetClassrooms(context.Context, *GetClassroomsRequest) (*GetClassroomsResponse, error)

@@ -138,6 +138,38 @@
         ]
       }
     },
+    "/teaching/class/detail": {
+      "get": {
+        "summary": "通过CLASS_ID获取学生老师列表",
+        "operationId": "TeachingService_GetClassDetail2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetClassDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "classID",
+            "description": "班级号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
     "/teaching/classroom": {
       "get": {
         "summary": "获取所有教室列表",
@@ -342,6 +374,38 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/class/detail": {
+      "get": {
+        "summary": "通过CLASS_ID获取学生老师列表",
+        "operationId": "TeachingService_GetClassDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetClassDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "classID",
+            "description": "班级号",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
