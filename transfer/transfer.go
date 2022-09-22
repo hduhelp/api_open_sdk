@@ -148,7 +148,6 @@ func (r *Request) EndStruct(data interface{}) (int, int, error) {
 	r.ResponseData = new(Response)
 	r.ResponseData.Data = data
 	if !r.done {
-		r.SuperAgent.Url = "http://localhost:9101/transfer"
 		var errs []error
 		r.Response, bytes, errs = r.SuperAgent.EndStruct(&r.ResponseData)
 		r.RawData = string(bytes)
