@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: consultingapis/dingtalk/dingtalk.proto
+// source: consultingapis/dingtalk/v1/dingtalk.proto
 
-package v1
+package dingtalkv1
 
 import (
 	context "context"
@@ -173,5 +173,5 @@ var DingTalkService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "consultingapis/dingtalk/dingtalk.proto",
+	Metadata: "consultingapis/dingtalk/v1/dingtalk.proto",
 }
