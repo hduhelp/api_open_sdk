@@ -3,29 +3,35 @@ package grpcclient
 import (
 	"context"
 	"crypto/x509"
+	"github.com/hduhelp/api-consulting/config"
+	"google.golang.org/grpc/credentials"
 	"log"
 
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/metadata"
 )
 
-var defaultEndpoint = "gapi.hduhelp.com:443"
+var defaultEndpoint = "gateway-service.hduhelp:9101"
 
-func Conn(ctx context.Context, endpoints ...string) *grpc.ClientConn {
+func Conn(ctx context.Context, endpoints ...string) (conn *grpc.ClientConn) {
 	var endpoint string
 	if len(endpoints) != 0 {
 		endpoint = endpoints[0]
 	} else {
 		endpoint = defaultEndpoint
 	}
-	certPool, err := x509.SystemCertPool()
-	if err != nil {
-		log.Fatalf("failed to load credentials: %v", err)
+	var err error
+	if !config.IsProd() {
+		certPool, err := x509.SystemCertPool()
+		if err != nil {
+			log.Fatalf("failed to load credentials: %v", err)
+		}
+		creds := credentials.NewClientTLSFromCert(certPool, "127.0.0.1")
+		conn, err = grpc.DialContext(ctx, endpoint, grpc.WithTransportCredentials(creds))
+	} else {
+		conn, err = grpc.DialContext(ctx, endpoint, grpc.WithInsecure())
 	}
-	creds := credentials.NewClientTLSFromCert(certPool, "gapi.hduhelp.com")
-	conn, err := grpc.DialContext(ctx, endpoint, grpc.WithTransportCredentials(creds))
 	if err != nil || conn == nil {
 		log.Fatal("grpc client did not connect", zap.Error(err))
 	}
