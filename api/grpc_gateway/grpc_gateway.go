@@ -6,6 +6,8 @@ import (
 	"errors"
 	"net/http"
 	"net/textproto"
+	"strconv"
+	"strings"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/hduhelp/api_open_sdk/common"
@@ -77,8 +79,9 @@ func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler r
 		mw.code = lo.Ternary(codeStatus == common.Status_OK, 0, int(codeStatus))
 		mw.message = msg
 	} else {
-		//nolint:errcheck
-		w.Write([]byte(msg))
+		msg = strings.ReplaceAll(msg, "\\", "\\\\")
+		msg = strings.ReplaceAll(msg, "\"", "\\\"")
+		w.Write([]byte("{\"error\": " + lo.Ternary(codeStatus == common.Status_OK, "0", strconv.Itoa(int(codeStatus))) + ", \"msg\": \"" + msg + "\"}"))
 	}
 
 	w.WriteHeader(st)
