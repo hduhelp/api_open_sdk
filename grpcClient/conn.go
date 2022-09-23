@@ -13,7 +13,7 @@ import (
 
 var defaultEndpoint = "gapi.hduhelp.com:443"
 
-func Conn(ctx context.Context, endpoints ...string) grpc.ClientConnInterface {
+func Conn(ctx context.Context, endpoints ...string) *grpc.ClientConn {
 	var endpoint string
 	if len(endpoints) != 0 {
 		endpoint = endpoints[0]
@@ -26,7 +26,7 @@ func Conn(ctx context.Context, endpoints ...string) grpc.ClientConnInterface {
 	}
 	creds := credentials.NewClientTLSFromCert(certPool, "gapi.hduhelp.com")
 	conn, err := grpc.DialContext(ctx, endpoint, grpc.WithTransportCredentials(creds))
-	if err != nil {
+	if err != nil || conn == nil {
 		log.Fatal("grpc client did not connect", zap.Error(err))
 	}
 	return conn

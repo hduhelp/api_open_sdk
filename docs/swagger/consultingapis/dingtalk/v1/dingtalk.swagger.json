@@ -77,7 +77,7 @@
       }
     },
     "/dingtalk/chat/v1/join": {
-      "patch": {
+      "get": {
         "operationId": "DingTalkService_JoinClassChatGroup",
         "responses": {
           "200": {

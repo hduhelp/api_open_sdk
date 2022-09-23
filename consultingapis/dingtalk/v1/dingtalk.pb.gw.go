@@ -195,7 +195,7 @@ func RegisterDingTalkServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("PATCH", pattern_DingTalkService_JoinClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_DingTalkService_JoinClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream

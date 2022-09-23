@@ -21,7 +21,7 @@ service DingTalkService {
 
   rpc JoinClassChatGroup(JoinClassChatGroupRequest) returns (JoinClassChatGroupResponse) {
     option (google.api.http) = {
-      patch: "/dingtalk/chat/v1/join"
+      get: "/dingtalk/chat/v1/join"
     };
   }
 }
