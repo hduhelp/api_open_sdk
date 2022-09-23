@@ -3,7 +3,7 @@ package grpcclient
 import (
 	"context"
 	"crypto/x509"
-	"github.com/hduhelp/api-consulting/config"
+	"github.com/hduhelp/api_open_sdk/env"
 	"google.golang.org/grpc/credentials"
 	"log"
 
@@ -22,7 +22,7 @@ func Conn(ctx context.Context, endpoints ...string) (conn *grpc.ClientConn) {
 		endpoint = defaultEndpoint
 	}
 	var err error
-	if !config.IsProd() {
+	if !env.IsProd() {
 		certPool, err := x509.SystemCertPool()
 		if err != nil {
 			log.Fatalf("failed to load credentials: %v", err)
