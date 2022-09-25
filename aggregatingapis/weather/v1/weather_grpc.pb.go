@@ -2,11 +2,12 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: weather.proto
+// source: aggregatingapis/weather/v1/weather.proto
 
 package v1
 
 import (
+	v1 "github.com/hduhelp/api_open_sdk/aggregatingapis/infostream/v1"
 	context "context"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -23,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WeatherServiceClient interface {
 	// 信息流接口中的天气相关调用
-	GetWeather(ctx context.Context, in *GetWeatherRequest, opts ...grpc.CallOption) (*WeatherResponse, error)
+	GetWeather(ctx context.Context, in *v1.GetInfoStreamRequest, opts ...grpc.CallOption) (*v1.GetInfoStreamResponse, error)
 }
 
 type weatherServiceClient struct {
@@ -34,8 +35,8 @@ func NewWeatherServiceClient(cc grpc.ClientConnInterface) WeatherServiceClient {
 	return &weatherServiceClient{cc}
 }
 
-func (c *weatherServiceClient) GetWeather(ctx context.Context, in *GetWeatherRequest, opts ...grpc.CallOption) (*WeatherResponse, error) {
-	out := new(WeatherResponse)
+func (c *weatherServiceClient) GetWeather(ctx context.Context, in *v1.GetInfoStreamRequest, opts ...grpc.CallOption) (*v1.GetInfoStreamResponse, error) {
+	out := new(v1.GetInfoStreamResponse)
 	err := c.cc.Invoke(ctx, "/aggregatingapis.weather.v1.WeatherService/GetWeather", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -48,7 +49,7 @@ func (c *weatherServiceClient) GetWeather(ctx context.Context, in *GetWeatherReq
 // for forward compatibility
 type WeatherServiceServer interface {
 	// 信息流接口中的天气相关调用
-	GetWeather(context.Context, *GetWeatherRequest) (*WeatherResponse, error)
+	GetWeather(context.Context, *v1.GetInfoStreamRequest) (*v1.GetInfoStreamResponse, error)
 	mustEmbedUnimplementedWeatherServiceServer()
 }
 
@@ -56,7 +57,7 @@ type WeatherServiceServer interface {
 type UnimplementedWeatherServiceServer struct {
 }
 
-func (UnimplementedWeatherServiceServer) GetWeather(context.Context, *GetWeatherRequest) (*WeatherResponse, error) {
+func (UnimplementedWeatherServiceServer) GetWeather(context.Context, *v1.GetInfoStreamRequest) (*v1.GetInfoStreamResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWeather not implemented")
 }
 func (UnimplementedWeatherServiceServer) mustEmbedUnimplementedWeatherServiceServer() {}
@@ -73,7 +74,7 @@ func RegisterWeatherServiceServer(s grpc.ServiceRegistrar, srv WeatherServiceSer
 }
 
 func _WeatherService_GetWeather_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWeatherRequest)
+	in := new(v1.GetInfoStreamRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -85,7 +86,7 @@ func _WeatherService_GetWeather_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/aggregatingapis.weather.v1.WeatherService/GetWeather",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WeatherServiceServer).GetWeather(ctx, req.(*GetWeatherRequest))
+		return srv.(WeatherServiceServer).GetWeather(ctx, req.(*v1.GetInfoStreamRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -103,5 +104,5 @@ var WeatherService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "weather.proto",
+	Metadata: "aggregatingapis/weather/v1/weather.proto",
 }

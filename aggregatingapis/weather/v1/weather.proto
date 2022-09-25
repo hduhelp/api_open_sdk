@@ -2,34 +2,17 @@ syntax = "proto3";
 
 package aggregatingapis.weather.v1;
 
+import "google/api/annotations.proto";
+import "aggregatingapis/infostream/v1/infostream.proto";
+
 option go_package = "./aggregatingapis/weather/v1";
 
 // 天气相关服务
 service WeatherService {
   // 信息流接口中的天气相关调用
-  rpc GetWeather (GetWeatherRequest) returns (WeatherResponse) {}
-}
-
-message GetWeatherRequest {
-  string staffId = 1;
-}
-
-message WeatherResponse {
-  bool available = 1;
-  WeatherData data = 2;
-}
-
-message WeatherData {
-  int32 aqi = 1;
-  string desc = 2;
-  string skyconNow = 3;
-  bool isRain = 4;
-  bool willStop = 5;
-  bool willRain = 6;
-  int32 RainContinue = 7;
-  int32 RainCome = 8;
-  float temperatureMax = 9;
-  float temperatureMin = 10;
-  float temperatureNow = 11;
-  int32 timestamp = 12;
+  rpc GetWeather (aggregatingapis.infostream.v1.GetInfoStreamRequest) returns (aggregatingapis.infostream.v1.GetInfoStreamResponse) {
+    option (google.api.http) = {
+      get: "/v1/infoStream"
+    };
+  }
 }
