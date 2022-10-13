@@ -83,13 +83,13 @@
           "type": "string",
           "title": "挂载地址"
         },
+        "isPrivate": {
+          "type": "boolean",
+          "title": "是否只允许内部应用访问"
+        },
         "needAuthorized": {
           "type": "boolean",
           "title": "是否需要鉴权后才能访问"
-        },
-        "readOnlyCache": {
-          "type": "boolean",
-          "title": "是否开启只读缓存"
         },
         "publicCache": {
           "type": "boolean",
