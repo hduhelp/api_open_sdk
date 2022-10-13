@@ -29,6 +29,69 @@
     "application/json"
   ],
   "paths": {
+    "/private/teaching/v1/global/schedule": {
+      "get": {
+        "summary": "获取全局课表，用于推送课程信息，仅内部使用",
+        "operationId": "TeachingService_GetGlobalSchedule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetGlobalScheduleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "description": "学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "weekday",
+            "description": "星期",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "week",
+            "description": "周次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "section",
+            "description": "节次",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
     "/student/schedule/now": {
       "get": {
         "summary": "获取学生/教师当前课程表",
