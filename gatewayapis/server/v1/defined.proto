@@ -34,10 +34,10 @@ message HTTPRouter {
   string remotePath = 3;
   //挂载地址
   string servePath = 4;
+  //是否只允许内部应用访问
+  bool isPrivate = 5;
   //是否需要鉴权后才能访问
-  bool needAuthorized = 5;
-  //是否开启只读缓存
-  bool readOnlyCache = 6;
+  bool needAuthorized = 6;
   //公共缓存
   bool publicCache = 7;
   //缓存过期时间
