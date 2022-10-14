@@ -1433,7 +1433,14 @@
     "v1GetStudentBirthdaysInResponse": {
       "type": "object",
       "properties": {
-        "birthdays": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1StudentBirthdayInfo"
