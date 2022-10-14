@@ -109,7 +109,7 @@ func (readers CourseReaders) ToTeachingV1Courses(timeable schoolTime.Timeable, o
 	return courses
 }
 
-func (readers CourseReaders) ToTeachingV1GlobalSchedule(timeable schoolTime.Timeable, optionable ShowMemberOptionable) (courses []*GlobalSchedule) {
+func (readers CourseReaders) ToTeachingV1GlobalSchedule() (courses []*GlobalSchedule) {
 	courses = make([]*GlobalSchedule, 0, len(readers))
 	//合并课程信息内容到标准课程信息中
 	for _, v := range readers {

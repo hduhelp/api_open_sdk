@@ -345,8 +345,10 @@ message GetStudentBirthdaysInRequest {
 
 //  GetStudentBirthdaysInResponse 查询某天生日所有人员-返回体
 message GetStudentBirthdaysInResponse {
+  int32 error = 1;
+  string msg = 2;
   // 生日详情列表
-  repeated StudentBirthdayInfo birthdays = 1;
+  repeated StudentBirthdayInfo data = 3;
 }
 
 // GetStudentRewardsResponse 奖学金查询返回体
