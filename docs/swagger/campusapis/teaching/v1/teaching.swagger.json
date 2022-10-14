@@ -49,28 +49,6 @@
         },
         "parameters": [
           {
-            "name": "schoolYear",
-            "description": "学年",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "description": "学期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "weekday",
-            "description": "星期",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
             "name": "week",
             "description": "周次",
             "in": "query",
@@ -79,8 +57,8 @@
             "format": "int32"
           },
           {
-            "name": "section",
-            "description": "节次",
+            "name": "weekday",
+            "description": "星期",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -1048,7 +1026,7 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1ScheduleResponseCourse"
+            "$ref": "#/definitions/v1GlobalSchedule"
           }
         }
       },
@@ -1159,6 +1137,56 @@
             "$ref": "#/definitions/v1Classroom"
           },
           "title": "教室列表"
+        }
+      }
+    },
+    "v1GlobalSchedule": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "节次数组, 升序"
+        },
+        "weeks": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "周次数组, 升序"
+        },
+        "courseName": {
+          "type": "string",
+          "title": "课程名"
+        },
+        "classroom": {
+          "type": "string",
+          "title": "教室"
+        },
+        "teacherId": {
+          "type": "string",
+          "title": "老师"
+        },
+        "teacherName": {
+          "type": "string",
+          "title": "老师姓名"
+        },
+        "weekday": {
+          "type": "integer",
+          "format": "int32",
+          "title": "周几"
         }
       }
     },
