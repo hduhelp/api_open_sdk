@@ -1,0 +1,6 @@
+{
+  "recommendations": [
+    "bufbuild.vscode-buf",
+    "golang.go"
+  ]
+}
