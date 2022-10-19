@@ -41,15 +41,16 @@ service CampusService {
     };
   }
 
-  //获取学生贫困生申请记录
-  rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
-    option (google.api.http) = {
-      get: "/staff/v1/student/needy"
-      additional_bindings {
-        get: "/student/needy"
-      }
-    };
-  }
+//  迁移至校外部分
+//  //获取学生贫困生申请记录
+//  rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
+//    option (google.api.http) = {
+//      get: "/staff/v1/student/needy"
+//      additional_bindings {
+//        get: "/student/needy"
+//      }
+//    };
+//  }
   //获取学生宿舍信息
   rpc GetStudentDormInfo(google.protobuf.Empty) returns (GetStudentDormInfoResponse) {
     option (google.api.http) = {
