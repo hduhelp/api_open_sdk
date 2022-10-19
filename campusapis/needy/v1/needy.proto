@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package campusapis.needy.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "./campusapis/needy/v1";
+
+service NeedyService {
+  //获取学生贫困生申请记录
+  rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
+    option (google.api.http) = {
+      get: "/student/needy"
+      additional_bindings {
+        get: "/staff/v1/student/needy"
+      }
+    };
+  }
+}
+
+
+//查询贫困生信息返回体
+message GetStudentNeedyInfoResponse {
+  int32 error = 1;
+  string msg = 2;
+  StudentNeedyInfo data = 3;
+}
+
+//贫困生信息
+message StudentNeedyInfo {
+  //学工号
+  string staffId = 1;
+  //姓名
+  string staffName = 2;
+  //性别，枚举及含义：1->男 | 2->女
+  int32 sex = 3;
+  //是否贫困生
+  bool needyStudent = 4;
+  //每学年贫困详情
+  repeated Nested items = 5;
+
+  //某年贫困详情
+  message Nested {
+    //特定学年
+    int32 schoolYear = 1;
+    //是否是贫困生
+    bool needyStudent = 2;
+  }
+}
