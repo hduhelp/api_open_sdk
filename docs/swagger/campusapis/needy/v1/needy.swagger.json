@@ -1,0 +1,156 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/needy/v1/needy.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "NeedyService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/staff/v1/student/needy": {
+      "get": {
+        "summary": "获取学生贫困生申请记录",
+        "operationId": "NeedyService_GetStudentNeedyInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentNeedyInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NeedyService"
+        ]
+      }
+    },
+    "/student/needy": {
+      "get": {
+        "summary": "获取学生贫困生申请记录",
+        "operationId": "NeedyService_GetStudentNeedyInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentNeedyInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NeedyService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "StudentNeedyInfoNested": {
+      "type": "object",
+      "properties": {
+        "schoolYear": {
+          "type": "integer",
+          "format": "int32",
+          "title": "特定学年"
+        },
+        "needyStudent": {
+          "type": "boolean",
+          "title": "是否是贫困生"
+        }
+      },
+      "title": "某年贫困详情"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetStudentNeedyInfoResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1StudentNeedyInfo"
+        }
+      },
+      "title": "查询贫困生信息返回体"
+    },
+    "v1StudentNeedyInfo": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string",
+          "title": "学工号"
+        },
+        "staffName": {
+          "type": "string",
+          "title": "姓名"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int32",
+          "title": "性别，枚举及含义：1-\u003e男 | 2-\u003e女"
+        },
+        "needyStudent": {
+          "type": "boolean",
+          "title": "是否贫困生"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudentNeedyInfoNested"
+          },
+          "title": "每学年贫困详情"
+        }
+      },
+      "title": "贫困生信息"
+    }
+  }
+}

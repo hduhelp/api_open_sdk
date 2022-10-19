@@ -29,8 +29,16 @@ type CampusServiceClient interface {
 	GetStudentInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentInfoResponse, error)
 	//获取学生学籍状态
 	GetStudentSchoolRollStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error)
-	//获取学生贫困生申请记录
-	GetStudentNeedyInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentNeedyInfoResponse, error)
+	//  迁移至校外部分
+	//  //获取学生贫困生申请记录
+	//  rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
+	//    option (google.api.http) = {
+	//      get: "/staff/v1/student/needy"
+	//      additional_bindings {
+	//        get: "/student/needy"
+	//      }
+	//    };
+	//  }
 	//获取学生宿舍信息
 	GetStudentDormInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentDormInfoResponse, error)
 	//获取学生生日信息
@@ -88,15 +96,6 @@ func (c *campusServiceClient) GetStudentInfo(ctx context.Context, in *emptypb.Em
 func (c *campusServiceClient) GetStudentSchoolRollStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error) {
 	out := new(GetStudentSchoolRollStatusResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentSchoolRollStatus", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *campusServiceClient) GetStudentNeedyInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentNeedyInfoResponse, error) {
-	out := new(GetStudentNeedyInfoResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentNeedyInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -230,8 +229,16 @@ type CampusServiceServer interface {
 	GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error)
 	//获取学生学籍状态
 	GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error)
-	//获取学生贫困生申请记录
-	GetStudentNeedyInfo(context.Context, *emptypb.Empty) (*GetStudentNeedyInfoResponse, error)
+	//  迁移至校外部分
+	//  //获取学生贫困生申请记录
+	//  rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
+	//    option (google.api.http) = {
+	//      get: "/staff/v1/student/needy"
+	//      additional_bindings {
+	//        get: "/student/needy"
+	//      }
+	//    };
+	//  }
 	//获取学生宿舍信息
 	GetStudentDormInfo(context.Context, *emptypb.Empty) (*GetStudentDormInfoResponse, error)
 	//获取学生生日信息
@@ -273,9 +280,6 @@ func (UnimplementedCampusServiceServer) GetStudentInfo(context.Context, *emptypb
 }
 func (UnimplementedCampusServiceServer) GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentSchoolRollStatus not implemented")
-}
-func (UnimplementedCampusServiceServer) GetStudentNeedyInfo(context.Context, *emptypb.Empty) (*GetStudentNeedyInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStudentNeedyInfo not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentDormInfo(context.Context, *emptypb.Empty) (*GetStudentDormInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentDormInfo not implemented")
@@ -379,24 +383,6 @@ func _CampusService_GetStudentSchoolRollStatus_Handler(srv interface{}, ctx cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CampusServiceServer).GetStudentSchoolRollStatus(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CampusService_GetStudentNeedyInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CampusServiceServer).GetStudentNeedyInfo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/campusapis.staff.v1.CampusService/GetStudentNeedyInfo",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).GetStudentNeedyInfo(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -653,10 +639,6 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStudentSchoolRollStatus",
 			Handler:    _CampusService_GetStudentSchoolRollStatus_Handler,
-		},
-		{
-			MethodName: "GetStudentNeedyInfo",
-			Handler:    _CampusService_GetStudentNeedyInfo_Handler,
 		},
 		{
 			MethodName: "GetStudentDormInfo",

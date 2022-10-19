@@ -418,7 +418,7 @@
     },
     "/staff/v1/student/dorm": {
       "get": {
-        "summary": "获取学生宿舍信息",
+        "summary": "迁移至校外部分\n //获取学生贫困生申请记录\n rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/student/needy\"\n     additional_bindings {\n       get: \"/student/needy\"\n     }\n   };\n }\n获取学生宿舍信息",
         "operationId": "CampusService_GetStudentDormInfo",
         "responses": {
           "200": {
@@ -572,29 +572,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1GetStudentInfoResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "CampusService"
-        ]
-      }
-    },
-    "/staff/v1/student/needy": {
-      "get": {
-        "summary": "获取学生贫困生申请记录",
-        "operationId": "CampusService_GetStudentNeedyInfo",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetStudentNeedyInfoResponse"
             }
           },
           "default": {
@@ -790,7 +767,7 @@
     },
     "/student/dorm": {
       "get": {
-        "summary": "获取学生宿舍信息",
+        "summary": "迁移至校外部分\n //获取学生贫困生申请记录\n rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/student/needy\"\n     additional_bindings {\n       get: \"/student/needy\"\n     }\n   };\n }\n获取学生宿舍信息",
         "operationId": "CampusService_GetStudentDormInfo2",
         "responses": {
           "200": {
@@ -958,29 +935,6 @@
         ]
       }
     },
-    "/student/needy": {
-      "get": {
-        "summary": "获取学生贫困生申请记录",
-        "operationId": "CampusService_GetStudentNeedyInfo2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetStudentNeedyInfoResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "CampusService"
-        ]
-      }
-    },
     "/student/reward": {
       "get": {
         "summary": "获取学生奖学金信息",
@@ -1094,21 +1048,6 @@
           "type": "string"
         }
       }
-    },
-    "StudentNeedyInfoNested": {
-      "type": "object",
-      "properties": {
-        "schoolYear": {
-          "type": "integer",
-          "format": "int32",
-          "title": "特定学年"
-        },
-        "needyStudent": {
-          "type": "boolean",
-          "title": "是否是贫困生"
-        }
-      },
-      "title": "某年贫困详情"
     },
     "campusapisstaffType": {
       "type": "string",
@@ -1559,22 +1498,6 @@
       },
       "title": "GetStudentInfoResponse 查询学生信息返回体"
     },
-    "v1GetStudentNeedyInfoResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1StudentNeedyInfo"
-        }
-      },
-      "title": "查询贫困生信息返回体"
-    },
     "v1GetStudentRewardsResponse": {
       "type": "object",
       "properties": {
@@ -1901,36 +1824,6 @@
           "title": "学生辅导员姓名"
         }
       }
-    },
-    "v1StudentNeedyInfo": {
-      "type": "object",
-      "properties": {
-        "staffId": {
-          "type": "string",
-          "title": "学工号"
-        },
-        "staffName": {
-          "type": "string",
-          "title": "姓名"
-        },
-        "sex": {
-          "type": "integer",
-          "format": "int32",
-          "title": "性别，枚举及含义：1-\u003e男 | 2-\u003e女"
-        },
-        "needyStudent": {
-          "type": "boolean",
-          "title": "是否贫困生"
-        },
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/StudentNeedyInfoNested"
-          },
-          "title": "每学年贫困详情"
-        }
-      },
-      "title": "贫困生信息"
     },
     "v1StudentReward": {
       "type": "object",
