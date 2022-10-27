@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package campusapis.backup;
+
+import "campusapis/schoolTime/defined.proto";
+import "campusapis/staff/base.proto";
+import "campusapis/staff/v1/campus.proto";
+import "campusapis/teaching/v1/teaching.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "./campusapis/backup";
+
+// 校内服务备份，应急使用
+service CampusBackupService {
+  //获取员工信息
+  rpc GetPersonInfo(google.protobuf.Empty) returns (campusapis.staff.v1.GetPersonInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/person/info"
+      additional_bindings {
+        get: "/person/info"
+      }
+    };
+  }
+  //获取学生基本信息
+  rpc GetStudentInfo(google.protobuf.Empty) returns (campusapis.staff.v1.GetStudentInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/info"
+      additional_bindings {
+        get: "/student/info"
+      }
+    };
+  }
+  //获取学生成绩信息
+  rpc GetStudentGrade(campusapis.staff.v1.GetStudentGradeRequest) returns (campusapis.staff.v1.GetStudentGradeResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/grade"
+      additional_bindings {
+        get: "/student/grade"
+      }
+    };
+  }
+  //获取学生考试信息
+  rpc GetStudentExam(campusapis.staff.v1.GetStudentExamRequest) returns (campusapis.staff.v1.GetStudentExamResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/student/exam"
+      additional_bindings {
+        get: "/student/exam"
+      }
+    };
+  }
+  // 获取学生/教师当前课程表V2 返回更详细的信息
+  rpc GetScheduleNowV2(google.protobuf.Empty) returns (campusapis.teaching.v1.GetScheduleNowV2Response) {
+    option (google.api.http) = {
+      get: "/teaching/v1/schedule/v2/now"
+      additional_bindings {
+        get: "/student/v2/schedule/now"
+      }
+    };
+  }
+}
