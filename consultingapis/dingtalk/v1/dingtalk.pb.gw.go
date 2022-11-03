@@ -145,7 +145,7 @@ func local_request_DingTalkService_JoinClassChatGroup_0(ctx context.Context, mar
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDingTalkServiceHandlerFromEndpoint instead.
 func RegisterDingTalkServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DingTalkServiceServer) error {
 
-	mux.Handle("GET", pattern_DingTalkService_CreateClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DingTalkService_CreateClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -261,7 +261,7 @@ func RegisterDingTalkServiceHandler(ctx context.Context, mux *runtime.ServeMux, 
 // "DingTalkServiceClient" to call the correct interceptors.
 func RegisterDingTalkServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client DingTalkServiceClient) error {
 
-	mux.Handle("GET", pattern_DingTalkService_CreateClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DingTalkService_CreateClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
