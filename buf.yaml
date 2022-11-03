@@ -8,6 +8,7 @@ lint:
     - DEFAULT
   ignore:
     - campusapis/third/v1/weixiao.proto
+    - campusapis/backup/backup.proto
   except:
     - FIELD_LOWER_SNAKE_CASE
     - PACKAGE_VERSION_SUFFIX

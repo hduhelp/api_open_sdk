@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package campusapis.backup;
 
-import "campusapis/schoolTime/defined.proto";
-import "campusapis/staff/base.proto";
 import "campusapis/staff/v1/campus.proto";
 import "campusapis/teaching/v1/teaching.proto";
 import "google/api/annotations.proto";
