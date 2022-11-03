@@ -9,7 +9,7 @@ option go_package = "./consultingapis/dingtalk/v1";
 service DingTalkService {
   rpc CreateClassChatGroup(CreateClassChatGroupRequest) returns (CreateClassChatGroupResponse) {
     option (google.api.http) = {
-      get: "/dingtalk/chat/v1/create"
+      post: "/dingtalk/chat/v1/create"
     };
   }
 
@@ -28,6 +28,7 @@ service DingTalkService {
 
 message CreateClassChatGroupRequest {
   string class_id = 1;
+  string name = 2;
 }
 
 message CreateClassChatGroupResponse {
