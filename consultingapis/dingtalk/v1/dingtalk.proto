@@ -34,6 +34,7 @@ message CreateClassChatGroupRequest {
 message CreateClassChatGroupResponse {
   string chat_id = 1;
   string openConversationId = 2;
+  string invite_url = 3;
 }
 
 message GetClassChatGroupRequest {
@@ -44,6 +45,7 @@ message GetClassChatGroupResponse {
   bool has_chat = 1;
   string chat_id = 2;
   string openConversationId = 3;
+  string invite_url = 4;
 }
 
 message JoinClassChatGroupRequest {
@@ -53,4 +55,5 @@ message JoinClassChatGroupRequest {
 message JoinClassChatGroupResponse {
   string chat_id = 1;
   string openConversationId = 2;
+  string invite_url = 3;
 }
