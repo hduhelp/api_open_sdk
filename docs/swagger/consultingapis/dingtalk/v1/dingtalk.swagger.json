@@ -149,6 +149,9 @@
         },
         "openConversationId": {
           "type": "string"
+        },
+        "inviteUrl": {
+          "type": "string"
         }
       }
     },
@@ -163,6 +166,9 @@
         },
         "openConversationId": {
           "type": "string"
+        },
+        "inviteUrl": {
+          "type": "string"
         }
       }
     },
@@ -173,6 +179,9 @@
           "type": "string"
         },
         "openConversationId": {
+          "type": "string"
+        },
+        "inviteUrl": {
           "type": "string"
         }
       }
