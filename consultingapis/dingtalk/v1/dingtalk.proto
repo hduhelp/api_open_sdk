@@ -10,6 +10,7 @@ service DingTalkService {
   rpc CreateClassChatGroup(CreateClassChatGroupRequest) returns (CreateClassChatGroupResponse) {
     option (google.api.http) = {
       post: "/dingtalk/chat/v1/create"
+      body: "name"
     };
   }
 
