@@ -4,17 +4,16 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"net/http"
-	"net/textproto"
-	"strconv"
-	"strings"
-
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/hduhelp/api_open_sdk/common"
 	"github.com/samber/lo"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"net/http"
+	"net/textproto"
+	"strconv"
+	"strings"
 )
 
 type Register func(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error
@@ -130,6 +129,11 @@ type ResponseWriter struct {
 }
 
 func (w ResponseWriter) Write(body []byte) (int, error) {
+	var res response
+	err := json.Unmarshal(body, &res)
+	if err == nil && (res.Msg != "" || res.Code != 0) {
+		w.noWarpFlag = true
+	}
 	switch {
 	case len(body) == 0:
 		body = []byte("null")
