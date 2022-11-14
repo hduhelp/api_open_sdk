@@ -35,13 +35,15 @@
         },
         "parameters": [
           {
-            "name": "classId",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "name",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "name": "name",
+            "name": "classId",
             "in": "query",
             "required": false,
             "type": "string"
