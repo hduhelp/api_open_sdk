@@ -109,6 +109,18 @@ service TeachingService {
       }
     };
   }
+
+  // 课程查询
+  rpc ClassQuery(ClassQueryRequest) returns (ClassQueryResponse) {
+    option (google.api.http) = {
+      post: "/teaching/v1/class/query"
+      body: "*"
+      additional_bindings {
+        post: "/teaching/class/query"
+        body: "*"
+      }
+    };
+  }
 }
 
 // GetScheduleRequest 根据参数和预设优先级拼装查询日期
@@ -482,4 +494,36 @@ message ClassroomUsage {
   string CourseCode = 6;
   // 课程名
   string CourseName = 7;
+}
+
+message ClassQueryRequest {
+  int32 error = 1;
+  string msg = 2;
+  // 教室使用情况列表
+  repeated ClassQuery data = 3;
+}
+
+message ClassQuery {
+  string query = 1;
+  repeated string tags = 2;
+  string after = 3;
+}
+
+message ClassQueryResponse {
+  string courseID = 1;
+  string courseName = 2;
+  repeated ClassQueryClassInfo class = 3;
+}
+
+message ClassQueryClassInfo {
+  string courseType = 1;
+  string courseNature = 2;
+  string classID = 3;
+  string className = 4;
+  string campusID = 5;
+  string schoolYear = 6;
+  string semester = 7;
+  string schedule = 8;
+  string location = 9;
+  string teacher = 10;
 }
