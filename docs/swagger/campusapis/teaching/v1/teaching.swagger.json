@@ -946,23 +946,6 @@
       },
       "title": "GetClassDetailResponse 班级信息查询返回体"
     },
-    "v1ClassQuery": {
-      "type": "object",
-      "properties": {
-        "query": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "after": {
-          "type": "string"
-        }
-      }
-    },
     "v1ClassQueryClassInfo": {
       "type": "object",
       "properties": {
@@ -998,26 +981,7 @@
         }
       }
     },
-    "v1ClassQueryRequest": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ClassQuery"
-          },
-          "title": "教室使用情况列表"
-        }
-      }
-    },
-    "v1ClassQueryResponse": {
+    "v1ClassQueryCourseInfo": {
       "type": "object",
       "properties": {
         "courseID": {
@@ -1030,6 +994,41 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1ClassQueryClassInfo"
+          }
+        }
+      }
+    },
+    "v1ClassQueryRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "after": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ClassQueryResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ClassQueryCourseInfo"
           }
         }
       }
