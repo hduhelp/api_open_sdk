@@ -39,6 +39,8 @@ type TeachingServiceClient interface {
 	GetClassroomUsages(ctx context.Context, in *GetClassroomUsagesRequest, opts ...grpc.CallOption) (*GetClassroomUsagesResponse, error)
 	// 获取所有空教室列表
 	GetUnusedClassrooms(ctx context.Context, in *GetUnusedClassroomsRequest, opts ...grpc.CallOption) (*GetUnusedClassroomsResponse, error)
+	// 课程查询
+	ClassQuery(ctx context.Context, in *ClassQueryRequest, opts ...grpc.CallOption) (*ClassQueryResponse, error)
 }
 
 type teachingServiceClient struct {
@@ -121,6 +123,15 @@ func (c *teachingServiceClient) GetUnusedClassrooms(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *teachingServiceClient) ClassQuery(ctx context.Context, in *ClassQueryRequest, opts ...grpc.CallOption) (*ClassQueryResponse, error) {
+	out := new(ClassQueryResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeachingServiceServer is the server API for TeachingService service.
 // All implementations must embed UnimplementedTeachingServiceServer
 // for forward compatibility
@@ -141,6 +152,8 @@ type TeachingServiceServer interface {
 	GetClassroomUsages(context.Context, *GetClassroomUsagesRequest) (*GetClassroomUsagesResponse, error)
 	// 获取所有空教室列表
 	GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*GetUnusedClassroomsResponse, error)
+	// 课程查询
+	ClassQuery(context.Context, *ClassQueryRequest) (*ClassQueryResponse, error)
 	mustEmbedUnimplementedTeachingServiceServer()
 }
 
@@ -171,6 +184,9 @@ func (UnimplementedTeachingServiceServer) GetClassroomUsages(context.Context, *G
 }
 func (UnimplementedTeachingServiceServer) GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*GetUnusedClassroomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUnusedClassrooms not implemented")
+}
+func (UnimplementedTeachingServiceServer) ClassQuery(context.Context, *ClassQueryRequest) (*ClassQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClassQuery not implemented")
 }
 func (UnimplementedTeachingServiceServer) mustEmbedUnimplementedTeachingServiceServer() {}
 
@@ -329,6 +345,24 @@ func _TeachingService_GetUnusedClassrooms_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeachingService_ClassQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClassQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).ClassQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/ClassQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).ClassQuery(ctx, req.(*ClassQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeachingService_ServiceDesc is the grpc.ServiceDesc for TeachingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -367,6 +401,10 @@ var TeachingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUnusedClassrooms",
 			Handler:    _TeachingService_GetUnusedClassrooms_Handler,
+		},
+		{
+			MethodName: "ClassQuery",
+			Handler:    _TeachingService_ClassQuery_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

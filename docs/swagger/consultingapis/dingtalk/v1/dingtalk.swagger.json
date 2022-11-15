@@ -35,11 +35,11 @@
         },
         "parameters": [
           {
-            "name": "name",
+            "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/CreateClassChatGroupRequestBody"
             }
           },
           {
@@ -116,6 +116,14 @@
     }
   },
   "definitions": {
+    "CreateClassChatGroupRequestBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {

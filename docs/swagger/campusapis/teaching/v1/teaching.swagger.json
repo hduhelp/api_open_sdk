@@ -211,6 +211,39 @@
         ]
       }
     },
+    "/teaching/class/query": {
+      "post": {
+        "summary": "课程查询",
+        "operationId": "TeachingService_ClassQuery2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
     "/teaching/classroom": {
       "get": {
         "summary": "获取所有教室列表",
@@ -447,6 +480,39 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/class/query": {
+      "post": {
+        "summary": "课程查询",
+        "operationId": "TeachingService_ClassQuery",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryRequest"
+            }
           }
         ],
         "tags": [
@@ -879,6 +945,94 @@
         }
       },
       "title": "GetClassDetailResponse 班级信息查询返回体"
+    },
+    "v1ClassQuery": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "after": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ClassQueryClassInfo": {
+      "type": "object",
+      "properties": {
+        "courseType": {
+          "type": "string"
+        },
+        "courseNature": {
+          "type": "string"
+        },
+        "classID": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        },
+        "campusID": {
+          "type": "string"
+        },
+        "schoolYear": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "schedule": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "teacher": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ClassQueryRequest": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ClassQuery"
+          },
+          "title": "教室使用情况列表"
+        }
+      }
+    },
+    "v1ClassQueryResponse": {
+      "type": "object",
+      "properties": {
+        "courseID": {
+          "type": "string"
+        },
+        "courseName": {
+          "type": "string"
+        },
+        "class": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ClassQueryClassInfo"
+          }
+        }
+      }
     },
     "v1Classroom": {
       "type": "object",
