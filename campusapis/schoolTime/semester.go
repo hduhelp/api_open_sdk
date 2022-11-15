@@ -4,6 +4,7 @@ import (
 	"database/sql/driver"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
 )
 
@@ -69,4 +70,19 @@ func (x *Semester) Scan(src interface{}) error {
 
 func (x *Semester) Value() (driver.Value, error) {
 	return x.Num, nil
+}
+
+func (x *Semester) ShortName() string {
+	if x == nil {
+		return ""
+	}
+	return strconv.Itoa(int(x.Num))
+}
+
+func (x *Semester) FullName() string {
+	return fmt.Sprintf("第%s学期", map[int32]string{
+		1: "一",
+		2: "二",
+		3: "三",
+	}[x.Num])
 }

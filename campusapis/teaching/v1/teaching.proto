@@ -497,19 +497,18 @@ message ClassroomUsage {
 }
 
 message ClassQueryRequest {
-  int32 error = 1;
-  string msg = 2;
-  // 教室使用情况列表
-  repeated ClassQuery data = 3;
-}
-
-message ClassQuery {
   string query = 1;
   repeated string tags = 2;
   string after = 3;
 }
 
 message ClassQueryResponse {
+  int32 error = 1;
+  string msg = 2;
+  repeated ClassQueryCourseInfo data = 3;
+}
+
+message ClassQueryCourseInfo {
   string courseID = 1;
   string courseName = 2;
   repeated ClassQueryClassInfo class = 3;
