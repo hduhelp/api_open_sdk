@@ -19,7 +19,7 @@ func Init(appName, appSign string) {
 	}
 }
 
-// InitOAuthApp OAuth应用认证初始化
+// InitOAuthApp OAuth应用认证初始化 （发送范围仅限授权过该OAuth应用的用户）
 func InitOAuthApp(clientId, clientSecret string) {
 	notifierPool = &sync.Pool{
 		New: func() interface{} {
@@ -27,6 +27,17 @@ func InitOAuthApp(clientId, clientSecret string) {
 				Post("https://api.hduhelp.com/notify").
 				Param("client_id", clientId).
 				Param("client_secret", clientSecret)
+		},
+	}
+}
+
+// InitPrivateApp 个人token认证初始化 （发送范围仅限token对应用户）
+func InitPrivateApp(token *string) {
+	notifierPool = &sync.Pool{
+		New: func() interface{} {
+			return gorequest.New().
+				Post("https://api.hduhelp.com/notify").
+				Param("auth", *token)
 		},
 	}
 }

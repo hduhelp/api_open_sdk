@@ -4,10 +4,15 @@ geteway的附属notify sdk
 ## Usage
 
 ```go
-import "github.com/hduhelp/gateway-notify"
+import "https://github.com/hduhelp/api_open_sdk/notify"
 
 func init() {
     notify.Init("appName","appSign")
+
+    //InitOAuthApp("clientId", "clientSecret")
+
+    //token := "12345678-236c-473a-ba32-1234567890"
+    //InitPrivateApp(&token)
 }
 
 func main() {

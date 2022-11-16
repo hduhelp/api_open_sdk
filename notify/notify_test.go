@@ -9,6 +9,11 @@ import (
 func TestNotify(t *testing.T) {
 	Init("appName", "appSign")
 
+	//InitOAuthApp("clientId", "clientSecret")
+
+	//token := "12345678-236c-473a-ba32-1234567890"
+	//InitPrivateApp(&token)
+
 	notice := New()
 	notice.NewWeChat().
 		SetTmpl("WZsoRBsLvbwRSk_2qr3oTkproxKbwbNjx4iwE7swJ6Y").   // 学校通知
@@ -25,7 +30,7 @@ func TestNotify(t *testing.T) {
 					"#### 通知人：%s\n\n"+
 					"#### 通知时间：%s\n\n"+
 					"通知内容：%s", "通知标题", "通知人", time.Now().Format("2006-01-02"), "通知内容"))
-	notice.Receiver("20322230", "19035405")
+	notice.Receiver("20322230")
 	err := notice.Send()
 	if err != nil {
 		t.Error(err)
