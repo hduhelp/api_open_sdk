@@ -43,6 +43,8 @@ type TeachingServiceClient interface {
 	ClassQuerySearch(ctx context.Context, in *ClassQuerySearchRequest, opts ...grpc.CallOption) (*ClassQuerySearchResponse, error)
 	// 课程人数查询
 	ClassQueryNum(ctx context.Context, in *ClassQueryNumRequest, opts ...grpc.CallOption) (*ClassQueryNumResponse, error)
+	// magic字段映射表
+	ClassQueryMap(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryMapResponse, error)
 }
 
 type teachingServiceClient struct {
@@ -143,6 +145,15 @@ func (c *teachingServiceClient) ClassQueryNum(ctx context.Context, in *ClassQuer
 	return out, nil
 }
 
+func (c *teachingServiceClient) ClassQueryMap(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryMapResponse, error) {
+	out := new(ClassQueryMapResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQueryMap", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeachingServiceServer is the server API for TeachingService service.
 // All implementations must embed UnimplementedTeachingServiceServer
 // for forward compatibility
@@ -167,6 +178,8 @@ type TeachingServiceServer interface {
 	ClassQuerySearch(context.Context, *ClassQuerySearchRequest) (*ClassQuerySearchResponse, error)
 	// 课程人数查询
 	ClassQueryNum(context.Context, *ClassQueryNumRequest) (*ClassQueryNumResponse, error)
+	// magic字段映射表
+	ClassQueryMap(context.Context, *emptypb.Empty) (*ClassQueryMapResponse, error)
 	mustEmbedUnimplementedTeachingServiceServer()
 }
 
@@ -203,6 +216,9 @@ func (UnimplementedTeachingServiceServer) ClassQuerySearch(context.Context, *Cla
 }
 func (UnimplementedTeachingServiceServer) ClassQueryNum(context.Context, *ClassQueryNumRequest) (*ClassQueryNumResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryNum not implemented")
+}
+func (UnimplementedTeachingServiceServer) ClassQueryMap(context.Context, *emptypb.Empty) (*ClassQueryMapResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryMap not implemented")
 }
 func (UnimplementedTeachingServiceServer) mustEmbedUnimplementedTeachingServiceServer() {}
 
@@ -397,6 +413,24 @@ func _TeachingService_ClassQueryNum_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeachingService_ClassQueryMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).ClassQueryMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/ClassQueryMap",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).ClassQueryMap(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeachingService_ServiceDesc is the grpc.ServiceDesc for TeachingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -443,6 +477,10 @@ var TeachingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ClassQueryNum",
 			Handler:    _TeachingService_ClassQueryNum_Handler,
+		},
+		{
+			MethodName: "ClassQueryMap",
+			Handler:    _TeachingService_ClassQueryMap_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

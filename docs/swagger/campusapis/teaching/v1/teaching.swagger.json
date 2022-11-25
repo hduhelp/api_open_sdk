@@ -211,6 +211,29 @@
         ]
       }
     },
+    "/teaching/class/query/map": {
+      "get": {
+        "summary": "magic字段映射表",
+        "operationId": "TeachingService_ClassQueryMap2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryMapResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
     "/teaching/class/query/num": {
       "get": {
         "summary": "课程人数查询",
@@ -525,6 +548,29 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/class/query/map": {
+      "get": {
+        "summary": "magic字段映射表",
+        "operationId": "TeachingService_ClassQueryMap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryMapResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "TeachingService"
         ]
@@ -1032,6 +1078,21 @@
       },
       "title": "GetClassDetailResponse 班级信息查询返回体"
     },
+    "v1ClassQueryMapResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
     "v1ClassQueryNumCount": {
       "type": "object",
       "properties": {
@@ -1084,9 +1145,6 @@
         "courseName": {
           "type": "string"
         },
-        "courseType": {
-          "type": "string"
-        },
         "courseNature": {
           "type": "string"
         },
@@ -1108,16 +1166,10 @@
         "teachingMethodID": {
           "type": "string"
         },
-        "classStatus": {
-          "type": "string"
-        },
         "teachingModel": {
           "type": "string"
         },
         "teacherName": {
-          "type": "string"
-        },
-        "courseTypeID": {
           "type": "string"
         },
         "classSize": {
