@@ -211,15 +211,15 @@
         ]
       }
     },
-    "/teaching/class/query": {
-      "post": {
-        "summary": "课程查询",
-        "operationId": "TeachingService_ClassQuery2",
+    "/teaching/class/query/num": {
+      "get": {
+        "summary": "课程人数查询",
+        "operationId": "TeachingService_ClassQueryNum2",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ClassQueryResponse"
+              "$ref": "#/definitions/v1ClassQueryNumResponse"
             }
           },
           "default": {
@@ -231,12 +231,55 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
+            "name": "classID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/class/query/search": {
+      "get": {
+        "summary": "课程查询",
+        "operationId": "TeachingService_ClassQuerySearch2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ClassQueryRequest"
+              "$ref": "#/definitions/v1ClassQuerySearchResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -487,15 +530,15 @@
         ]
       }
     },
-    "/teaching/v1/class/query": {
-      "post": {
-        "summary": "课程查询",
-        "operationId": "TeachingService_ClassQuery",
+    "/teaching/v1/class/query/num": {
+      "get": {
+        "summary": "课程人数查询",
+        "operationId": "TeachingService_ClassQueryNum",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ClassQueryResponse"
+              "$ref": "#/definitions/v1ClassQueryNumResponse"
             }
           },
           "default": {
@@ -507,12 +550,55 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
+            "name": "classID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/class/query/search": {
+      "get": {
+        "summary": "课程查询",
+        "operationId": "TeachingService_ClassQuerySearch",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ClassQueryRequest"
+              "$ref": "#/definitions/v1ClassQuerySearchResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -946,9 +1032,58 @@
       },
       "title": "GetClassDetailResponse 班级信息查询返回体"
     },
-    "v1ClassQueryClassInfo": {
+    "v1ClassQueryNumCount": {
       "type": "object",
       "properties": {
+        "selectedNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "surplus": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1ClassQueryNumInfo": {
+      "type": "object",
+      "properties": {
+        "last": {
+          "type": "string",
+          "format": "int64"
+        },
+        "latest": {
+          "type": "boolean"
+        },
+        "count": {
+          "$ref": "#/definitions/v1ClassQueryNumCount"
+        }
+      }
+    },
+    "v1ClassQueryNumResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1ClassQueryNumInfo"
+        }
+      }
+    },
+    "v1ClassQuerySearchClass": {
+      "type": "object",
+      "properties": {
+        "courseID": {
+          "type": "string"
+        },
+        "courseName": {
+          "type": "string"
+        },
         "courseType": {
           "type": "string"
         },
@@ -964,58 +1099,69 @@
         "campusID": {
           "type": "string"
         },
-        "schoolYear": {
-          "type": "string"
-        },
-        "semester": {
-          "type": "string"
-        },
-        "schedule": {
+        "classTime": {
           "type": "string"
         },
         "location": {
           "type": "string"
         },
-        "teacher": {
+        "teachingMethodID": {
+          "type": "string"
+        },
+        "classStatus": {
+          "type": "string"
+        },
+        "teachingModel": {
+          "type": "string"
+        },
+        "teacherName": {
+          "type": "string"
+        },
+        "courseTypeID": {
+          "type": "string"
+        },
+        "classSize": {
+          "type": "string"
+        },
+        "classCapacity": {
+          "type": "string"
+        },
+        "targetNum": {
+          "type": "string"
+        },
+        "locationCapacity": {
+          "type": "string"
+        },
+        "credit": {
+          "type": "string"
+        },
+        "unitName": {
+          "type": "string"
+        },
+        "examinationMethod": {
           "type": "string"
         }
       }
     },
-    "v1ClassQueryCourseInfo": {
+    "v1ClassQuerySearchInfo": {
       "type": "object",
       "properties": {
-        "courseID": {
-          "type": "string"
+        "last": {
+          "type": "string",
+          "format": "int64"
         },
-        "courseName": {
-          "type": "string"
+        "latest": {
+          "type": "boolean"
         },
-        "class": {
+        "classes": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1ClassQueryClassInfo"
+            "$ref": "#/definitions/v1ClassQuerySearchClass"
           }
         }
       }
     },
-    "v1ClassQueryRequest": {
-      "type": "object",
-      "properties": {
-        "query": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "after": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ClassQueryResponse": {
+    "v1ClassQuerySearchResponse": {
       "type": "object",
       "properties": {
         "error": {
@@ -1026,10 +1172,7 @@
           "type": "string"
         },
         "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ClassQueryCourseInfo"
-          }
+          "$ref": "#/definitions/v1ClassQuerySearchInfo"
         }
       }
     },
