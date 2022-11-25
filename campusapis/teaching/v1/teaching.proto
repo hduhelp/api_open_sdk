@@ -546,6 +546,7 @@ message ClassQuerySearchClass {
   string credit = 19; // 学分
   string unitName = 20; // 开设学院名称
   string examinationMethod = 21; // 考试方式
+  string classList = 22; // 班级列表
 }
 
 message ClassQueryNumRequest {
