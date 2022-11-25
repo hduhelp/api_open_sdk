@@ -1140,6 +1140,9 @@
         },
         "examinationMethod": {
           "type": "string"
+        },
+        "classList": {
+          "type": "string"
         }
       }
     },
