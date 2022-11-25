@@ -129,6 +129,16 @@ service TeachingService {
       }
     };
   }
+
+  // magic字段映射表
+  rpc ClassQueryMap(google.protobuf.Empty) returns (ClassQueryMapResponse) {
+    option (google.api.http) = {
+      get: "/teaching/v1/class/query/map"
+      additional_bindings {
+        get: "/teaching/class/query/map"
+      }
+    };
+  }
 }
 
 
@@ -527,26 +537,23 @@ message ClassQuerySearchInfo {
 message ClassQuerySearchClass {
   string courseID = 1; // 课程ID
   string courseName = 2; // 课程名称
-  string courseType = 3; // 课程类型
-  string courseNature = 4; // 课程性质
-  string classID = 5; // 班级ID
-  string className = 6; // 班级名称
-  string campusID = 7; // 校区ID, 1:下沙 5:
-  string classTime = 8; // 上课时间
-  string location = 9; // 上课地点
-  string teachingMethodID = 10; // 教学方式ID
-  string classStatus = 11; // 班级状态
-  string teachingModel = 12; // 教学模式
-  string teacherName = 13; // 教师姓名
-  string courseTypeID = 14; // 课程类型ID
-  string classSize = 15; // 班级容量
-  string classCapacity = 16; // 班级容量
-  string targetNum = 17; // 目标人数
-  string locationCapacity = 18; // 教室容量
-  string credit = 19; // 学分
-  string unitName = 20; // 开设学院名称
-  string examinationMethod = 21; // 考试方式
-  string classList = 22; // 班级列表
+  string courseNature = 3; // 课程性质
+  string classID = 4; // 班级ID
+  string className = 5; // 班级名称
+  string campusID = 6; // 校区ID
+  string classTime = 7; // 上课时间
+  string location = 8; // 上课地点
+  string teachingMethodID = 9; // 考试方式
+  string teachingModel = 10; // 教学模式
+  string teacherName = 11; // 教师姓名
+  string classSize = 12; // 班级容量
+  string classCapacity = 13; // 班级容量
+  string targetNum = 14; // 目标人数
+  string locationCapacity = 15; // 教室容量
+  string credit = 16; // 学分
+  string unitName = 17; // 开设学院名称
+  string examinationMethod = 18; // 考核方式
+  string classList = 19; // 班级列表
 }
 
 message ClassQueryNumRequest {
@@ -568,4 +575,10 @@ message ClassQueryNumInfo {
 message ClassQueryNumCount {
   int32 selectedNum = 1; // 已选人数
   int32 surplus = 2; // 剩余容量
+}
+
+message ClassQueryMapResponse {
+  int32 error = 1;
+  string msg = 2;
+  string data = 3; // 映射表JSON字符串
 }
