@@ -2116,7 +2116,7 @@ type ClassQuerySearchClass struct {
 	TeachingMethodID  string `protobuf:"bytes,9,opt,name=teachingMethodID,proto3" json:"teachingMethodID,omitempty"`    // 考试方式
 	TeachingModel     string `protobuf:"bytes,10,opt,name=teachingModel,proto3" json:"teachingModel,omitempty"`         // 教学模式
 	TeacherName       string `protobuf:"bytes,11,opt,name=teacherName,proto3" json:"teacherName,omitempty"`             // 教师姓名
-	ClassSize         string `protobuf:"bytes,12,opt,name=classSize,proto3" json:"classSize,omitempty"`                 // 班级容量
+	ClassSize         string `protobuf:"bytes,12,opt,name=classSize,proto3" json:"classSize,omitempty"`                 // 班级人数
 	ClassCapacity     string `protobuf:"bytes,13,opt,name=classCapacity,proto3" json:"classCapacity,omitempty"`         // 班级容量
 	TargetNum         string `protobuf:"bytes,14,opt,name=targetNum,proto3" json:"targetNum,omitempty"`                 // 目标人数
 	LocationCapacity  string `protobuf:"bytes,15,opt,name=locationCapacity,proto3" json:"locationCapacity,omitempty"`   // 教室容量
