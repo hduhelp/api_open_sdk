@@ -546,7 +546,7 @@ message ClassQuerySearchClass {
   string teachingMethodID = 9; // 考试方式
   string teachingModel = 10; // 教学模式
   string teacherName = 11; // 教师姓名
-  string classSize = 12; // 班级容量
+  string classSize = 12; // 班级人数
   string classCapacity = 13; // 班级容量
   string targetNum = 14; // 目标人数
   string locationCapacity = 15; // 教室容量
