@@ -49,6 +49,8 @@ type TeachingServiceClient interface {
 	ClassQueryFavGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryFavGetResponse, error)
 	// 按classIDs获取课程信息
 	ClassQueryGet(ctx context.Context, in *ClassQueryGetRequest, opts ...grpc.CallOption) (*ClassQueryGetResponse, error)
+	// 获取收藏排行
+	ClassQueryFavRank(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryFavRankResponse, error)
 }
 
 type teachingServiceClient struct {
@@ -176,6 +178,15 @@ func (c *teachingServiceClient) ClassQueryGet(ctx context.Context, in *ClassQuer
 	return out, nil
 }
 
+func (c *teachingServiceClient) ClassQueryFavRank(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryFavRankResponse, error) {
+	out := new(ClassQueryFavRankResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQueryFavRank", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeachingServiceServer is the server API for TeachingService service.
 // All implementations must embed UnimplementedTeachingServiceServer
 // for forward compatibility
@@ -206,6 +217,8 @@ type TeachingServiceServer interface {
 	ClassQueryFavGet(context.Context, *emptypb.Empty) (*ClassQueryFavGetResponse, error)
 	// 按classIDs获取课程信息
 	ClassQueryGet(context.Context, *ClassQueryGetRequest) (*ClassQueryGetResponse, error)
+	// 获取收藏排行
+	ClassQueryFavRank(context.Context, *emptypb.Empty) (*ClassQueryFavRankResponse, error)
 	mustEmbedUnimplementedTeachingServiceServer()
 }
 
@@ -251,6 +264,9 @@ func (UnimplementedTeachingServiceServer) ClassQueryFavGet(context.Context, *emp
 }
 func (UnimplementedTeachingServiceServer) ClassQueryGet(context.Context, *ClassQueryGetRequest) (*ClassQueryGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryGet not implemented")
+}
+func (UnimplementedTeachingServiceServer) ClassQueryFavRank(context.Context, *emptypb.Empty) (*ClassQueryFavRankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryFavRank not implemented")
 }
 func (UnimplementedTeachingServiceServer) mustEmbedUnimplementedTeachingServiceServer() {}
 
@@ -499,6 +515,24 @@ func _TeachingService_ClassQueryGet_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeachingService_ClassQueryFavRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).ClassQueryFavRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/ClassQueryFavRank",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).ClassQueryFavRank(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeachingService_ServiceDesc is the grpc.ServiceDesc for TeachingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -557,6 +591,10 @@ var TeachingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ClassQueryGet",
 			Handler:    _TeachingService_ClassQueryGet_Handler,
+		},
+		{
+			MethodName: "ClassQueryFavRank",
+			Handler:    _TeachingService_ClassQueryFavRank_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

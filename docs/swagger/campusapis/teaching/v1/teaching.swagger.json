@@ -234,6 +234,29 @@
         ]
       }
     },
+    "/teaching/class/query/fav/rank": {
+      "get": {
+        "summary": "获取收藏排行",
+        "operationId": "TeachingService_ClassQueryFavRank2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryFavRankResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
     "/teaching/class/query/fav/set": {
       "post": {
         "summary": "设置课程收藏",
@@ -624,6 +647,29 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1ClassQueryFavGetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/class/query/fav/rank": {
+      "get": {
+        "summary": "获取收藏排行",
+        "operationId": "TeachingService_ClassQueryFavRank",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryFavRankResponse"
             }
           },
           "default": {
@@ -1201,6 +1247,24 @@
       "title": "GetClassDetailResponse 班级信息查询返回体"
     },
     "v1ClassQueryFavGetResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1ClassQueryFavRankResponse": {
       "type": "object",
       "properties": {
         "error": {
