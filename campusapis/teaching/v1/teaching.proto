@@ -160,6 +160,16 @@ service TeachingService {
       }
     };
   }
+
+  // 获取收藏排行
+  rpc ClassQueryFavRank(google.protobuf.Empty) returns (ClassQueryFavRankResponse) {
+    option (google.api.http) = {
+      get: "/teaching/v1/class/query/fav/rank"
+      additional_bindings {
+        get: "/teaching/class/query/fav/rank"
+      }
+    };
+  }
 }
 
 
@@ -614,4 +624,10 @@ message ClassQueryGetResponse{
   int32 error = 1;
   string msg = 2;
   ClassQueryInfo data = 3; // 课程信息
+}
+
+message ClassQueryFavRankResponse{
+  int32 error = 1;
+  string msg = 2;
+  repeated string data = 3; // 班级ID列表
 }
