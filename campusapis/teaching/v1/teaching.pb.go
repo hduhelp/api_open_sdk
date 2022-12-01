@@ -2134,11 +2134,11 @@ type ClassQuerySearchClass struct {
 	CourseNature      string `protobuf:"bytes,3,opt,name=courseNature,proto3" json:"courseNature,omitempty"`            // 课程性质
 	ClassID           string `protobuf:"bytes,4,opt,name=classID,proto3" json:"classID,omitempty"`                      // 班级ID
 	ClassName         string `protobuf:"bytes,5,opt,name=className,proto3" json:"className,omitempty"`                  // 班级名称
-	CampusID          string `protobuf:"bytes,6,opt,name=campusID,proto3" json:"campusID,omitempty"`                    // 校区ID
+	CampusID          string `protobuf:"bytes,6,opt,name=campusID,proto3" json:"campusID,omitempty"`                    // 校区ID,需要映射
 	ClassTime         string `protobuf:"bytes,7,opt,name=classTime,proto3" json:"classTime,omitempty"`                  // 上课时间
 	Location          string `protobuf:"bytes,8,opt,name=location,proto3" json:"location,omitempty"`                    // 上课地点
-	TeachingMethodID  string `protobuf:"bytes,9,opt,name=teachingMethodID,proto3" json:"teachingMethodID,omitempty"`    // 考试方式
-	TeachingModel     string `protobuf:"bytes,10,opt,name=teachingModel,proto3" json:"teachingModel,omitempty"`         // 教学模式
+	TeachingMethodID  string `protobuf:"bytes,9,opt,name=teachingMethodID,proto3" json:"teachingMethodID,omitempty"`    // 考试方式,需要映射
+	TeachingModel     string `protobuf:"bytes,10,opt,name=teachingModel,proto3" json:"teachingModel,omitempty"`         // 教学模式,需要映射
 	TeacherName       string `protobuf:"bytes,11,opt,name=teacherName,proto3" json:"teacherName,omitempty"`             // 教师姓名
 	ClassSize         string `protobuf:"bytes,12,opt,name=classSize,proto3" json:"classSize,omitempty"`                 // 班级人数
 	ClassCapacity     string `protobuf:"bytes,13,opt,name=classCapacity,proto3" json:"classCapacity,omitempty"`         // 班级容量
@@ -2146,7 +2146,7 @@ type ClassQuerySearchClass struct {
 	LocationCapacity  string `protobuf:"bytes,15,opt,name=locationCapacity,proto3" json:"locationCapacity,omitempty"`   // 教室容量
 	Credit            string `protobuf:"bytes,16,opt,name=credit,proto3" json:"credit,omitempty"`                       // 学分
 	UnitName          string `protobuf:"bytes,17,opt,name=unitName,proto3" json:"unitName,omitempty"`                   // 开设学院名称
-	ExaminationMethod string `protobuf:"bytes,18,opt,name=examinationMethod,proto3" json:"examinationMethod,omitempty"` // 考核方式
+	ExaminationMethod string `protobuf:"bytes,18,opt,name=examinationMethod,proto3" json:"examinationMethod,omitempty"` // 考核方式,需要映射
 	ClassList         string `protobuf:"bytes,19,opt,name=classList,proto3" json:"classList,omitempty"`                 // 班级列表
 }
 
@@ -2321,7 +2321,7 @@ type ClassQueryNum struct {
 	unknownFields protoimpl.UnknownFields
 
 	SelectedNum int32 `protobuf:"varint,1,opt,name=selectedNum,proto3" json:"selectedNum,omitempty"` // 已选人数
-	Surplus     int32 `protobuf:"varint,2,opt,name=surplus,proto3" json:"surplus,omitempty"`         // 剩余容量
+	Surplus     int32 `protobuf:"varint,2,opt,name=surplus,proto3" json:"surplus,omitempty"`         // 剩余容量,暂不明两者区别
 }
 
 func (x *ClassQueryNum) Reset() {
@@ -2652,7 +2652,7 @@ type ClassQueryGetResponse struct {
 
 	Error int32           `protobuf:"varint,1,opt,name=error,proto3" json:"error,omitempty"`
 	Msg   string          `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
-	Data  *ClassQueryInfo `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"` // 课程信息map
+	Data  *ClassQueryInfo `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"` // 课程信息
 }
 
 func (x *ClassQueryGetResponse) Reset() {
