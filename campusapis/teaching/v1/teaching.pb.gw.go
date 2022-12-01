@@ -608,78 +608,6 @@ func local_request_TeachingService_ClassQuerySearch_1(ctx context.Context, marsh
 
 }
 
-var (
-	filter_TeachingService_ClassQueryNum_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_TeachingService_ClassQueryNum_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassQueryNumRequest
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryNum_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.ClassQueryNum(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_TeachingService_ClassQueryNum_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassQueryNumRequest
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryNum_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.ClassQueryNum(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
-	filter_TeachingService_ClassQueryNum_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_TeachingService_ClassQueryNum_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassQueryNumRequest
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryNum_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.ClassQueryNum(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_TeachingService_ClassQueryNum_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassQueryNumRequest
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryNum_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.ClassQueryNum(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
 func request_TeachingService_ClassQueryMap_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
@@ -712,6 +640,184 @@ func local_request_TeachingService_ClassQueryMap_1(ctx context.Context, marshale
 	var metadata runtime.ServerMetadata
 
 	msg, err := server.ClassQueryMap(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_TeachingService_ClassQueryFavSet_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassQueryFavSetRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.ClassQueryFavSet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_ClassQueryFavSet_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassQueryFavSetRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.ClassQueryFavSet(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_TeachingService_ClassQueryFavSet_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_ClassQueryFavSet_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassQueryFavSetRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryFavSet_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.ClassQueryFavSet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_ClassQueryFavSet_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassQueryFavSetRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryFavSet_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.ClassQueryFavSet(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_TeachingService_ClassQueryFavGet_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.ClassQueryFavGet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_ClassQueryFavGet_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.ClassQueryFavGet(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_TeachingService_ClassQueryFavGet_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.ClassQueryFavGet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_ClassQueryFavGet_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.ClassQueryFavGet(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_TeachingService_ClassQueryGet_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_ClassQueryGet_0(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassQueryGetRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryGet_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.ClassQueryGet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_ClassQueryGet_0(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassQueryGetRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryGet_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.ClassQueryGet(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_TeachingService_ClassQueryGet_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TeachingService_ClassQueryGet_1(ctx context.Context, marshaler runtime.Marshaler, client TeachingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassQueryGetRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryGet_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.ClassQueryGet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TeachingService_ClassQueryGet_1(ctx context.Context, marshaler runtime.Marshaler, server TeachingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ClassQueryGetRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeachingService_ClassQueryGet_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.ClassQueryGet(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1172,56 +1278,6 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_TeachingService_ClassQueryNum_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryNum", runtime.WithHTTPPathPattern("/teaching/v1/class/query/num"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_TeachingService_ClassQueryNum_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TeachingService_ClassQueryNum_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_TeachingService_ClassQueryNum_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryNum", runtime.WithHTTPPathPattern("/teaching/class/query/num"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_TeachingService_ClassQueryNum_1(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TeachingService_ClassQueryNum_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("GET", pattern_TeachingService_ClassQueryMap_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1269,6 +1325,156 @@ func RegisterTeachingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		}
 
 		forward_TeachingService_ClassQueryMap_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_TeachingService_ClassQueryFavSet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryFavSet", runtime.WithHTTPPathPattern("/teaching/v1/class/query/fav/set"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_ClassQueryFavSet_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryFavSet_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_TeachingService_ClassQueryFavSet_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryFavSet", runtime.WithHTTPPathPattern("/teaching/class/query/fav/set"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_ClassQueryFavSet_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryFavSet_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_ClassQueryFavGet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryFavGet", runtime.WithHTTPPathPattern("/teaching/v1/class/query/fav/get"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_ClassQueryFavGet_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryFavGet_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_ClassQueryFavGet_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryFavGet", runtime.WithHTTPPathPattern("/teaching/class/query/fav/get"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_ClassQueryFavGet_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryFavGet_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_ClassQueryGet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryGet", runtime.WithHTTPPathPattern("/teaching/v1/class/query/get"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_ClassQueryGet_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryGet_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_ClassQueryGet_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryGet", runtime.WithHTTPPathPattern("/teaching/class/query/get"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TeachingService_ClassQueryGet_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryGet_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1709,50 +1915,6 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_TeachingService_ClassQueryNum_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryNum", runtime.WithHTTPPathPattern("/teaching/v1/class/query/num"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_TeachingService_ClassQueryNum_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TeachingService_ClassQueryNum_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_TeachingService_ClassQueryNum_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryNum", runtime.WithHTTPPathPattern("/teaching/class/query/num"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_TeachingService_ClassQueryNum_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TeachingService_ClassQueryNum_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("GET", pattern_TeachingService_ClassQueryMap_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1797,6 +1959,138 @@ func RegisterTeachingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
+	mux.Handle("POST", pattern_TeachingService_ClassQueryFavSet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryFavSet", runtime.WithHTTPPathPattern("/teaching/v1/class/query/fav/set"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_ClassQueryFavSet_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryFavSet_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_TeachingService_ClassQueryFavSet_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryFavSet", runtime.WithHTTPPathPattern("/teaching/class/query/fav/set"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_ClassQueryFavSet_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryFavSet_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_ClassQueryFavGet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryFavGet", runtime.WithHTTPPathPattern("/teaching/v1/class/query/fav/get"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_ClassQueryFavGet_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryFavGet_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_ClassQueryFavGet_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryFavGet", runtime.WithHTTPPathPattern("/teaching/class/query/fav/get"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_ClassQueryFavGet_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryFavGet_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_ClassQueryGet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryGet", runtime.WithHTTPPathPattern("/teaching/v1/class/query/get"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_ClassQueryGet_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryGet_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_TeachingService_ClassQueryGet_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.teaching.v1.TeachingService/ClassQueryGet", runtime.WithHTTPPathPattern("/teaching/class/query/get"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TeachingService_ClassQueryGet_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TeachingService_ClassQueryGet_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -1837,13 +2131,21 @@ var (
 
 	pattern_TeachingService_ClassQuerySearch_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"teaching", "class", "query", "search"}, ""))
 
-	pattern_TeachingService_ClassQueryNum_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"teaching", "v1", "class", "query", "num"}, ""))
-
-	pattern_TeachingService_ClassQueryNum_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"teaching", "class", "query", "num"}, ""))
-
 	pattern_TeachingService_ClassQueryMap_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"teaching", "v1", "class", "query", "map"}, ""))
 
 	pattern_TeachingService_ClassQueryMap_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"teaching", "class", "query", "map"}, ""))
+
+	pattern_TeachingService_ClassQueryFavSet_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"teaching", "v1", "class", "query", "fav", "set"}, ""))
+
+	pattern_TeachingService_ClassQueryFavSet_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"teaching", "class", "query", "fav", "set"}, ""))
+
+	pattern_TeachingService_ClassQueryFavGet_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"teaching", "v1", "class", "query", "fav", "get"}, ""))
+
+	pattern_TeachingService_ClassQueryFavGet_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"teaching", "class", "query", "fav", "get"}, ""))
+
+	pattern_TeachingService_ClassQueryGet_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"teaching", "v1", "class", "query", "get"}, ""))
+
+	pattern_TeachingService_ClassQueryGet_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"teaching", "class", "query", "get"}, ""))
 )
 
 var (
@@ -1883,11 +2185,19 @@ var (
 
 	forward_TeachingService_ClassQuerySearch_1 = runtime.ForwardResponseMessage
 
-	forward_TeachingService_ClassQueryNum_0 = runtime.ForwardResponseMessage
-
-	forward_TeachingService_ClassQueryNum_1 = runtime.ForwardResponseMessage
-
 	forward_TeachingService_ClassQueryMap_0 = runtime.ForwardResponseMessage
 
 	forward_TeachingService_ClassQueryMap_1 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_ClassQueryFavSet_0 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_ClassQueryFavSet_1 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_ClassQueryFavGet_0 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_ClassQueryFavGet_1 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_ClassQueryGet_0 = runtime.ForwardResponseMessage
+
+	forward_TeachingService_ClassQueryGet_1 = runtime.ForwardResponseMessage
 )

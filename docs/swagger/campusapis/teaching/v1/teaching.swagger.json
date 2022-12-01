@@ -211,6 +211,99 @@
         ]
       }
     },
+    "/teaching/class/query/fav/get": {
+      "get": {
+        "summary": "获取课程收藏",
+        "operationId": "TeachingService_ClassQueryFavGet2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryFavGetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/class/query/fav/set": {
+      "post": {
+        "summary": "设置课程收藏",
+        "operationId": "TeachingService_ClassQueryFavSet2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryFavSetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "classes",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/class/query/get": {
+      "get": {
+        "summary": "按classIDs获取课程信息",
+        "operationId": "TeachingService_ClassQueryGet2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryGetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "classes",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
     "/teaching/class/query/map": {
       "get": {
         "summary": "magic字段映射表",
@@ -229,37 +322,6 @@
             }
           }
         },
-        "tags": [
-          "TeachingService"
-        ]
-      }
-    },
-    "/teaching/class/query/num": {
-      "get": {
-        "summary": "课程人数查询",
-        "operationId": "TeachingService_ClassQueryNum2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ClassQueryNumResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "classID",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "TeachingService"
         ]
@@ -553,6 +615,97 @@
         ]
       }
     },
+    "/teaching/v1/class/query/fav/get": {
+      "get": {
+        "summary": "获取课程收藏",
+        "operationId": "TeachingService_ClassQueryFavGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryFavGetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/class/query/fav/set": {
+      "post": {
+        "summary": "设置课程收藏",
+        "operationId": "TeachingService_ClassQueryFavSet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryFavSetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryFavSetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
+    "/teaching/v1/class/query/get": {
+      "get": {
+        "summary": "按classIDs获取课程信息",
+        "operationId": "TeachingService_ClassQueryGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClassQueryGetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "classes",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
     "/teaching/v1/class/query/map": {
       "get": {
         "summary": "magic字段映射表",
@@ -571,37 +724,6 @@
             }
           }
         },
-        "tags": [
-          "TeachingService"
-        ]
-      }
-    },
-    "/teaching/v1/class/query/num": {
-      "get": {
-        "summary": "课程人数查询",
-        "operationId": "TeachingService_ClassQueryNum",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ClassQueryNumResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "classID",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "TeachingService"
         ]
@@ -1078,6 +1200,93 @@
       },
       "title": "GetClassDetailResponse 班级信息查询返回体"
     },
+    "v1ClassQueryFavGetResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1ClassQueryFavSetRequest": {
+      "type": "object",
+      "properties": {
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1ClassQueryFavSetResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ClassQueryGetResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1ClassQueryInfo"
+        }
+      }
+    },
+    "v1ClassQueryInfo": {
+      "type": "object",
+      "properties": {
+        "classLast": {
+          "type": "string",
+          "format": "int64"
+        },
+        "classLatest": {
+          "type": "boolean"
+        },
+        "numLast": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLatest": {
+          "type": "boolean"
+        },
+        "classes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ClassQuerySearchClass"
+          }
+        },
+        "nums": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v1ClassQueryNum"
+          }
+        }
+      }
+    },
     "v1ClassQueryMapResponse": {
       "type": "object",
       "properties": {
@@ -1093,7 +1302,7 @@
         }
       }
     },
-    "v1ClassQueryNumCount": {
+    "v1ClassQueryNum": {
       "type": "object",
       "properties": {
         "selectedNum": {
@@ -1103,36 +1312,6 @@
         "surplus": {
           "type": "integer",
           "format": "int32"
-        }
-      }
-    },
-    "v1ClassQueryNumInfo": {
-      "type": "object",
-      "properties": {
-        "last": {
-          "type": "string",
-          "format": "int64"
-        },
-        "latest": {
-          "type": "boolean"
-        },
-        "count": {
-          "$ref": "#/definitions/v1ClassQueryNumCount"
-        }
-      }
-    },
-    "v1ClassQueryNumResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1ClassQueryNumInfo"
         }
       }
     },
@@ -1198,24 +1377,6 @@
         }
       }
     },
-    "v1ClassQuerySearchInfo": {
-      "type": "object",
-      "properties": {
-        "last": {
-          "type": "string",
-          "format": "int64"
-        },
-        "latest": {
-          "type": "boolean"
-        },
-        "classes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ClassQuerySearchClass"
-          }
-        }
-      }
-    },
     "v1ClassQuerySearchResponse": {
       "type": "object",
       "properties": {
@@ -1227,7 +1388,7 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/v1ClassQuerySearchInfo"
+          "$ref": "#/definitions/v1ClassQueryInfo"
         }
       }
     },

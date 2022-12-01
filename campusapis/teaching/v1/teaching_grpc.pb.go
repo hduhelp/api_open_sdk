@@ -41,10 +41,14 @@ type TeachingServiceClient interface {
 	GetUnusedClassrooms(ctx context.Context, in *GetUnusedClassroomsRequest, opts ...grpc.CallOption) (*GetUnusedClassroomsResponse, error)
 	// 课程查询
 	ClassQuerySearch(ctx context.Context, in *ClassQuerySearchRequest, opts ...grpc.CallOption) (*ClassQuerySearchResponse, error)
-	// 课程人数查询
-	ClassQueryNum(ctx context.Context, in *ClassQueryNumRequest, opts ...grpc.CallOption) (*ClassQueryNumResponse, error)
 	// magic字段映射表
 	ClassQueryMap(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryMapResponse, error)
+	// 设置课程收藏
+	ClassQueryFavSet(ctx context.Context, in *ClassQueryFavSetRequest, opts ...grpc.CallOption) (*ClassQueryFavSetResponse, error)
+	// 获取课程收藏
+	ClassQueryFavGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryFavGetResponse, error)
+	// 按classIDs获取课程信息
+	ClassQueryGet(ctx context.Context, in *ClassQueryGetRequest, opts ...grpc.CallOption) (*ClassQueryGetResponse, error)
 }
 
 type teachingServiceClient struct {
@@ -136,18 +140,36 @@ func (c *teachingServiceClient) ClassQuerySearch(ctx context.Context, in *ClassQ
 	return out, nil
 }
 
-func (c *teachingServiceClient) ClassQueryNum(ctx context.Context, in *ClassQueryNumRequest, opts ...grpc.CallOption) (*ClassQueryNumResponse, error) {
-	out := new(ClassQueryNumResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQueryNum", in, out, opts...)
+func (c *teachingServiceClient) ClassQueryMap(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryMapResponse, error) {
+	out := new(ClassQueryMapResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQueryMap", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *teachingServiceClient) ClassQueryMap(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryMapResponse, error) {
-	out := new(ClassQueryMapResponse)
-	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQueryMap", in, out, opts...)
+func (c *teachingServiceClient) ClassQueryFavSet(ctx context.Context, in *ClassQueryFavSetRequest, opts ...grpc.CallOption) (*ClassQueryFavSetResponse, error) {
+	out := new(ClassQueryFavSetResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQueryFavSet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teachingServiceClient) ClassQueryFavGet(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClassQueryFavGetResponse, error) {
+	out := new(ClassQueryFavGetResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQueryFavGet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teachingServiceClient) ClassQueryGet(ctx context.Context, in *ClassQueryGetRequest, opts ...grpc.CallOption) (*ClassQueryGetResponse, error) {
+	out := new(ClassQueryGetResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.teaching.v1.TeachingService/ClassQueryGet", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -176,10 +198,14 @@ type TeachingServiceServer interface {
 	GetUnusedClassrooms(context.Context, *GetUnusedClassroomsRequest) (*GetUnusedClassroomsResponse, error)
 	// 课程查询
 	ClassQuerySearch(context.Context, *ClassQuerySearchRequest) (*ClassQuerySearchResponse, error)
-	// 课程人数查询
-	ClassQueryNum(context.Context, *ClassQueryNumRequest) (*ClassQueryNumResponse, error)
 	// magic字段映射表
 	ClassQueryMap(context.Context, *emptypb.Empty) (*ClassQueryMapResponse, error)
+	// 设置课程收藏
+	ClassQueryFavSet(context.Context, *ClassQueryFavSetRequest) (*ClassQueryFavSetResponse, error)
+	// 获取课程收藏
+	ClassQueryFavGet(context.Context, *emptypb.Empty) (*ClassQueryFavGetResponse, error)
+	// 按classIDs获取课程信息
+	ClassQueryGet(context.Context, *ClassQueryGetRequest) (*ClassQueryGetResponse, error)
 	mustEmbedUnimplementedTeachingServiceServer()
 }
 
@@ -214,11 +240,17 @@ func (UnimplementedTeachingServiceServer) GetUnusedClassrooms(context.Context, *
 func (UnimplementedTeachingServiceServer) ClassQuerySearch(context.Context, *ClassQuerySearchRequest) (*ClassQuerySearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClassQuerySearch not implemented")
 }
-func (UnimplementedTeachingServiceServer) ClassQueryNum(context.Context, *ClassQueryNumRequest) (*ClassQueryNumResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryNum not implemented")
-}
 func (UnimplementedTeachingServiceServer) ClassQueryMap(context.Context, *emptypb.Empty) (*ClassQueryMapResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryMap not implemented")
+}
+func (UnimplementedTeachingServiceServer) ClassQueryFavSet(context.Context, *ClassQueryFavSetRequest) (*ClassQueryFavSetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryFavSet not implemented")
+}
+func (UnimplementedTeachingServiceServer) ClassQueryFavGet(context.Context, *emptypb.Empty) (*ClassQueryFavGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryFavGet not implemented")
+}
+func (UnimplementedTeachingServiceServer) ClassQueryGet(context.Context, *ClassQueryGetRequest) (*ClassQueryGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClassQueryGet not implemented")
 }
 func (UnimplementedTeachingServiceServer) mustEmbedUnimplementedTeachingServiceServer() {}
 
@@ -395,24 +427,6 @@ func _TeachingService_ClassQuerySearch_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeachingService_ClassQueryNum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClassQueryNumRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TeachingServiceServer).ClassQueryNum(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/campusapis.teaching.v1.TeachingService/ClassQueryNum",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeachingServiceServer).ClassQueryNum(ctx, req.(*ClassQueryNumRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _TeachingService_ClassQueryMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -427,6 +441,60 @@ func _TeachingService_ClassQueryMap_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TeachingServiceServer).ClassQueryMap(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingService_ClassQueryFavSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClassQueryFavSetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).ClassQueryFavSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/ClassQueryFavSet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).ClassQueryFavSet(ctx, req.(*ClassQueryFavSetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingService_ClassQueryFavGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).ClassQueryFavGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/ClassQueryFavGet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).ClassQueryFavGet(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingService_ClassQueryGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClassQueryGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).ClassQueryGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.teaching.v1.TeachingService/ClassQueryGet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).ClassQueryGet(ctx, req.(*ClassQueryGetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -475,12 +543,20 @@ var TeachingService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TeachingService_ClassQuerySearch_Handler,
 		},
 		{
-			MethodName: "ClassQueryNum",
-			Handler:    _TeachingService_ClassQueryNum_Handler,
-		},
-		{
 			MethodName: "ClassQueryMap",
 			Handler:    _TeachingService_ClassQueryMap_Handler,
+		},
+		{
+			MethodName: "ClassQueryFavSet",
+			Handler:    _TeachingService_ClassQueryFavSet_Handler,
+		},
+		{
+			MethodName: "ClassQueryFavGet",
+			Handler:    _TeachingService_ClassQueryFavGet_Handler,
+		},
+		{
+			MethodName: "ClassQueryGet",
+			Handler:    _TeachingService_ClassQueryGet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
