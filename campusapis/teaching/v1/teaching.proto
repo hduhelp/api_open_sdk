@@ -120,22 +120,43 @@ service TeachingService {
     };
   }
 
-  // 课程人数查询
-  rpc ClassQueryNum(ClassQueryNumRequest) returns (ClassQueryNumResponse) {
-    option (google.api.http) = {
-      get: "/teaching/v1/class/query/num"
-      additional_bindings {
-        get: "/teaching/class/query/num"
-      }
-    };
-  }
-
   // magic字段映射表
   rpc ClassQueryMap(google.protobuf.Empty) returns (ClassQueryMapResponse) {
     option (google.api.http) = {
       get: "/teaching/v1/class/query/map"
       additional_bindings {
         get: "/teaching/class/query/map"
+      }
+    };
+  }
+
+  // 设置课程收藏
+  rpc ClassQueryFavSet(ClassQueryFavSetRequest) returns (ClassQueryFavSetResponse) {
+    option (google.api.http) = {
+      post: "/teaching/v1/class/query/fav/set"
+      body: "*"
+      additional_bindings {
+        post: "/teaching/class/query/fav/set"
+      }
+    };
+  }
+
+  // 获取课程收藏
+  rpc ClassQueryFavGet(google.protobuf.Empty) returns (ClassQueryFavGetResponse) {
+    option (google.api.http) = {
+      get: "/teaching/v1/class/query/fav/get"
+      additional_bindings {
+        get: "/teaching/class/query/fav/get"
+      }
+    };
+  }
+
+  // 按classIDs获取课程信息
+  rpc ClassQueryGet(ClassQueryGetRequest) returns (ClassQueryGetResponse) {
+    option (google.api.http) = {
+      get: "/teaching/v1/class/query/get"
+      additional_bindings {
+        get: "/teaching/class/query/get"
       }
     };
   }
@@ -525,16 +546,16 @@ message ClassQuerySearchRequest {
 message ClassQuerySearchResponse {
   int32 error = 1;
   string msg = 2;
-  ClassQuerySearchInfo data = 3;
+  ClassQueryInfo data = 3;
 }
 
-message ClassQuerySearchInfo {
+message ClassQueryInfo {
   int64 classLast = 1; // 上次课程同步成功时间戳
   bool  classLatest = 2; // 课程是否为最新同步数据
   int64 numLast = 3; // 上次课程人数同步成功时间戳
   bool numLatest = 4; // 课程人数是否为最新同步数据
   repeated ClassQuerySearchClass classes = 5;
-  map<string,ClassQueryNum> nums = 6; // 人数信息map
+  map<string, ClassQueryNum> nums = 6; // 人数信息map
 }
 
 message ClassQuerySearchClass {
@@ -568,4 +589,29 @@ message ClassQueryMapResponse {
   int32 error = 1;
   string msg = 2;
   string data = 3; // 映射表JSON字符串
+}
+
+message ClassQueryFavSetRequest{
+  repeated string classes = 1; // 班级ID列表
+}
+
+message ClassQueryFavSetResponse{
+  int32 error = 1;
+  string msg = 2;
+}
+
+message ClassQueryFavGetResponse{
+  int32 error = 1;
+  string msg = 2;
+  repeated string data = 3; // 班级ID列表
+}
+
+message ClassQueryGetRequest{
+  repeated string classes = 1; // 班级ID
+}
+
+message ClassQueryGetResponse{
+  int32 error = 1;
+  string msg = 2;
+  ClassQueryInfo data = 3; // 课程信息map
 }
