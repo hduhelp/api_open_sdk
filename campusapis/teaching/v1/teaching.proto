@@ -564,11 +564,11 @@ message ClassQuerySearchClass {
   string courseNature = 3; // 课程性质
   string classID = 4; // 班级ID
   string className = 5; // 班级名称
-  string campusID = 6; // 校区ID
+  string campusID = 6; // 校区ID,需要映射
   string classTime = 7; // 上课时间
   string location = 8; // 上课地点
-  string teachingMethodID = 9; // 考试方式
-  string teachingModel = 10; // 教学模式
+  string teachingMethodID = 9; // 考试方式,需要映射
+  string teachingModel = 10; // 教学模式,需要映射
   string teacherName = 11; // 教师姓名
   string classSize = 12; // 班级人数
   string classCapacity = 13; // 班级容量
@@ -576,13 +576,13 @@ message ClassQuerySearchClass {
   string locationCapacity = 15; // 教室容量
   string credit = 16; // 学分
   string unitName = 17; // 开设学院名称
-  string examinationMethod = 18; // 考核方式
+  string examinationMethod = 18; // 考核方式,需要映射
   string classList = 19; // 班级列表
 }
 
 message ClassQueryNum{
   int32 selectedNum = 1; // 已选人数
-  int32 surplus = 2; // 剩余容量
+  int32 surplus = 2; // 剩余容量,暂不明两者区别
 }
 
 message ClassQueryMapResponse {
@@ -613,5 +613,5 @@ message ClassQueryGetRequest{
 message ClassQueryGetResponse{
   int32 error = 1;
   string msg = 2;
-  ClassQueryInfo data = 3; // 课程信息map
+  ClassQueryInfo data = 3; // 课程信息
 }
