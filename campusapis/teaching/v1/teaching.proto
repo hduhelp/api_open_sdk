@@ -529,9 +529,12 @@ message ClassQuerySearchResponse {
 }
 
 message ClassQuerySearchInfo {
-  int64 last = 1; // 上次同步成功时间戳
-  bool  latest = 2; // 是否为最新同步数据
-  repeated ClassQuerySearchClass classes = 3;
+  int64 classLast = 1; // 上次课程同步成功时间戳
+  bool  classLatest = 2; // 课程是否为最新同步数据
+  int64 numLast = 3; // 上次课程人数同步成功时间戳
+  bool numLatest = 4; // 课程人数是否为最新同步数据
+  repeated ClassQuerySearchClass classes = 5;
+  map<string,ClassQueryNum> nums = 6; // 人数信息map
 }
 
 message ClassQuerySearchClass {
@@ -556,23 +559,7 @@ message ClassQuerySearchClass {
   string classList = 19; // 班级列表
 }
 
-message ClassQueryNumRequest {
-  string classID = 1;
-}
-
-message ClassQueryNumResponse {
-  int32 error = 1;
-  string msg = 2;
-  ClassQueryNumInfo data = 3;
-}
-
-message ClassQueryNumInfo {
-  int64 last = 1; // 上次同步成功时间戳
-  bool latest = 2; // 是否为最新同步数据
-  ClassQueryNumCount count = 3;
-}
-
-message ClassQueryNumCount {
+message ClassQueryNum{
   int32 selectedNum = 1; // 已选人数
   int32 surplus = 2; // 剩余容量
 }
