@@ -565,7 +565,6 @@ message ClassQueryInfo {
   int64 numLast = 3; // 上次课程人数同步成功时间戳
   bool numLatest = 4; // 课程人数是否为最新同步数据
   repeated ClassQuerySearchClass classes = 5;
-  map<string, ClassQueryNum> nums = 6; // 人数信息map
 }
 
 message ClassQuerySearchClass {
@@ -580,19 +579,11 @@ message ClassQuerySearchClass {
   string teachingMethodID = 9; // 考试方式,需要映射
   string teachingModel = 10; // 教学模式,需要映射
   string teacherName = 11; // 教师姓名
-  string classSize = 12; // 班级人数
-  string classCapacity = 13; // 班级容量
-  string targetNum = 14; // 目标人数
-  string locationCapacity = 15; // 教室容量
-  string credit = 16; // 学分
-  string unitName = 17; // 开设学院名称
-  string examinationMethod = 18; // 考核方式,需要映射
-  string classList = 19; // 班级列表
-}
-
-message ClassQueryNum{
-  int32 selectedNum = 1; // 已选人数
-  int32 surplus = 2; // 剩余容量,暂不明两者区别
+  string credit = 12; // 学分
+  string unitName = 13; // 开设学院名称
+  string examinationMethod = 14; // 考核方式,需要映射
+  string classList = 15; // 班级列表
+  string selectedStatus = 16; // 选课情况（人数信息）
 }
 
 message ClassQueryMapResponse {
