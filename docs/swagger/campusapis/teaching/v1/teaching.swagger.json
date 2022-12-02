@@ -1342,12 +1342,6 @@
           "items": {
             "$ref": "#/definitions/v1ClassQuerySearchClass"
           }
-        },
-        "nums": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v1ClassQueryNum"
-          }
         }
       }
     },
@@ -1363,19 +1357,6 @@
         },
         "data": {
           "type": "string"
-        }
-      }
-    },
-    "v1ClassQueryNum": {
-      "type": "object",
-      "properties": {
-        "selectedNum": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "surplus": {
-          "type": "integer",
-          "format": "int32"
         }
       }
     },
@@ -1415,18 +1396,6 @@
         "teacherName": {
           "type": "string"
         },
-        "classSize": {
-          "type": "string"
-        },
-        "classCapacity": {
-          "type": "string"
-        },
-        "targetNum": {
-          "type": "string"
-        },
-        "locationCapacity": {
-          "type": "string"
-        },
         "credit": {
           "type": "string"
         },
@@ -1437,6 +1406,9 @@
           "type": "string"
         },
         "classList": {
+          "type": "string"
+        },
+        "selectedStatus": {
           "type": "string"
         }
       }
