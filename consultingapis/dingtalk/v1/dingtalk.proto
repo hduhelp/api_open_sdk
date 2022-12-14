@@ -49,23 +49,28 @@ message CreateClassChatGroupResponse {
   string invite_url = 3;
 }
 
+message CreateClassChatGroupV2Request {
+  string class_id = 1;
+  Body body = 2;
+
+  message Body {
+    string name = 1;
+    repeated string students = 2;
+  }
+}
+
+message CreateClassChatGroupV2Response {
+  string chat_id = 1;
+  string openConversationId = 2;
+  string invite_url = 3;
+}
+
 message GetClassChatGroupRequest {
   string class_id = 1;
 }
 
 message GetClassChatGroupResponse {
   bool has_chat = 1;
-  string chat_id = 2;
-  string openConversationId = 3;
-  string invite_url = 4;
-}
-
-message GetClassChatGroupV2Request {
-  string class_id = 1;
-  repeated string students = 2;
-}
-
-message GetClassChatGroupV2Response {
   string chat_id = 2;
   string openConversationId = 3;
   string invite_url = 4;
