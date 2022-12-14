@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DingTalkServiceClient interface {
 	CreateClassChatGroup(ctx context.Context, in *CreateClassChatGroupRequest, opts ...grpc.CallOption) (*CreateClassChatGroupResponse, error)
+	CreateClassChatGroupV2(ctx context.Context, in *CreateClassChatGroupV2Request, opts ...grpc.CallOption) (*CreateClassChatGroupV2Response, error)
 	GetClassChatGroup(ctx context.Context, in *GetClassChatGroupRequest, opts ...grpc.CallOption) (*GetClassChatGroupResponse, error)
 	JoinClassChatGroup(ctx context.Context, in *JoinClassChatGroupRequest, opts ...grpc.CallOption) (*JoinClassChatGroupResponse, error)
 }
@@ -38,6 +39,15 @@ func NewDingTalkServiceClient(cc grpc.ClientConnInterface) DingTalkServiceClient
 func (c *dingTalkServiceClient) CreateClassChatGroup(ctx context.Context, in *CreateClassChatGroupRequest, opts ...grpc.CallOption) (*CreateClassChatGroupResponse, error) {
 	out := new(CreateClassChatGroupResponse)
 	err := c.cc.Invoke(ctx, "/consultingapis.dingtalk.v1.DingTalkService/CreateClassChatGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dingTalkServiceClient) CreateClassChatGroupV2(ctx context.Context, in *CreateClassChatGroupV2Request, opts ...grpc.CallOption) (*CreateClassChatGroupV2Response, error) {
+	out := new(CreateClassChatGroupV2Response)
+	err := c.cc.Invoke(ctx, "/consultingapis.dingtalk.v1.DingTalkService/CreateClassChatGroupV2", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,6 +77,7 @@ func (c *dingTalkServiceClient) JoinClassChatGroup(ctx context.Context, in *Join
 // for forward compatibility
 type DingTalkServiceServer interface {
 	CreateClassChatGroup(context.Context, *CreateClassChatGroupRequest) (*CreateClassChatGroupResponse, error)
+	CreateClassChatGroupV2(context.Context, *CreateClassChatGroupV2Request) (*CreateClassChatGroupV2Response, error)
 	GetClassChatGroup(context.Context, *GetClassChatGroupRequest) (*GetClassChatGroupResponse, error)
 	JoinClassChatGroup(context.Context, *JoinClassChatGroupRequest) (*JoinClassChatGroupResponse, error)
 	mustEmbedUnimplementedDingTalkServiceServer()
@@ -78,6 +89,9 @@ type UnimplementedDingTalkServiceServer struct {
 
 func (UnimplementedDingTalkServiceServer) CreateClassChatGroup(context.Context, *CreateClassChatGroupRequest) (*CreateClassChatGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateClassChatGroup not implemented")
+}
+func (UnimplementedDingTalkServiceServer) CreateClassChatGroupV2(context.Context, *CreateClassChatGroupV2Request) (*CreateClassChatGroupV2Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateClassChatGroupV2 not implemented")
 }
 func (UnimplementedDingTalkServiceServer) GetClassChatGroup(context.Context, *GetClassChatGroupRequest) (*GetClassChatGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassChatGroup not implemented")
@@ -112,6 +126,24 @@ func _DingTalkService_CreateClassChatGroup_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DingTalkServiceServer).CreateClassChatGroup(ctx, req.(*CreateClassChatGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DingTalkService_CreateClassChatGroupV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateClassChatGroupV2Request)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DingTalkServiceServer).CreateClassChatGroupV2(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/consultingapis.dingtalk.v1.DingTalkService/CreateClassChatGroupV2",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DingTalkServiceServer).CreateClassChatGroupV2(ctx, req.(*CreateClassChatGroupV2Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -162,6 +194,10 @@ var DingTalkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateClassChatGroup",
 			Handler:    _DingTalkService_CreateClassChatGroup_Handler,
+		},
+		{
+			MethodName: "CreateClassChatGroupV2",
+			Handler:    _DingTalkService_CreateClassChatGroupV2_Handler,
 		},
 		{
 			MethodName: "GetClassChatGroup",
