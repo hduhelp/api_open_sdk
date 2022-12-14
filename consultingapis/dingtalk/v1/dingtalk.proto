@@ -56,6 +56,8 @@ message CreateClassChatGroupV2Request {
   message Body {
     string name = 1;
     repeated string students = 2;
+    string courseID = 3;
+    string courseName = 4;
   }
 }
 
