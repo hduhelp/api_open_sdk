@@ -14,6 +14,13 @@ service DingTalkService {
     };
   }
 
+  rpc CreateClassChatGroupV2(CreateClassChatGroupV2Request) returns (CreateClassChatGroupV2Response) {
+    option (google.api.http) = {
+      post: "/dingtalk/chat/v1/create/v2"
+      body: "body"
+    };
+  }
+
   rpc GetClassChatGroup(GetClassChatGroupRequest) returns (GetClassChatGroupResponse) {
     option (google.api.http) = {
       get: "/dingtalk/chat/v1/get"
@@ -48,6 +55,17 @@ message GetClassChatGroupRequest {
 
 message GetClassChatGroupResponse {
   bool has_chat = 1;
+  string chat_id = 2;
+  string openConversationId = 3;
+  string invite_url = 4;
+}
+
+message GetClassChatGroupV2Request {
+  string class_id = 1;
+  repeated string students = 2;
+}
+
+message GetClassChatGroupV2Response {
   string chat_id = 2;
   string openConversationId = 3;
   string invite_url = 4;
