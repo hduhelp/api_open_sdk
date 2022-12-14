@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/hduhelp/api_open_sdk/common"
 	"github.com/samber/lo"
@@ -74,6 +75,7 @@ func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler r
 	default:
 		msg = codeStatus.Message()
 	}
+	fmt.Println("service err:", msg)
 	if mw, ok := w.(*ResponseWriter); ok {
 		mw.code = lo.Ternary(codeStatus == common.Status_OK, 0, int(codeStatus))
 		mw.message = msg
