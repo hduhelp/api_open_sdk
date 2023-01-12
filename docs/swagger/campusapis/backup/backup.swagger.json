@@ -451,6 +451,10 @@
             "$ref": "#/definitions/v1ScheduleResponseCourse"
           },
           "title": "明天的课表"
+        },
+        "HasCourseRecently": {
+          "type": "boolean",
+          "title": "近期有无课程"
         }
       }
     },
