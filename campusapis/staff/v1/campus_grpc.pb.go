@@ -51,6 +51,8 @@ type CampusServiceClient interface {
 	GetStudentCourseSelections(ctx context.Context, in *GetStudentCourseSelectionsRequest, opts ...grpc.CallOption) (*GetStudentCourseSelectionsResponse, error)
 	//获取学生成绩信息
 	GetStudentGrade(ctx context.Context, in *GetStudentGradeRequest, opts ...grpc.CallOption) (*GetStudentGradeResponse, error)
+	// 获取全局成绩，用于推送成绩信息，仅内部使用
+	GetGlobalStudentGrade(ctx context.Context, in *GetGlobalStudentGradeRequest, opts ...grpc.CallOption) (*GetGlobalStudentGradeResponse, error)
 	//获取学生考试信息
 	GetStudentExam(ctx context.Context, in *GetStudentExamRequest, opts ...grpc.CallOption) (*GetStudentExamResponse, error)
 	//获取学生GPA信息
@@ -156,6 +158,15 @@ func (c *campusServiceClient) GetStudentGrade(ctx context.Context, in *GetStuden
 	return out, nil
 }
 
+func (c *campusServiceClient) GetGlobalStudentGrade(ctx context.Context, in *GetGlobalStudentGradeRequest, opts ...grpc.CallOption) (*GetGlobalStudentGradeResponse, error) {
+	out := new(GetGlobalStudentGradeResponse)
+	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *campusServiceClient) GetStudentExam(ctx context.Context, in *GetStudentExamRequest, opts ...grpc.CallOption) (*GetStudentExamResponse, error) {
 	out := new(GetStudentExamResponse)
 	err := c.cc.Invoke(ctx, "/campusapis.staff.v1.CampusService/GetStudentExam", in, out, opts...)
@@ -251,6 +262,8 @@ type CampusServiceServer interface {
 	GetStudentCourseSelections(context.Context, *GetStudentCourseSelectionsRequest) (*GetStudentCourseSelectionsResponse, error)
 	//获取学生成绩信息
 	GetStudentGrade(context.Context, *GetStudentGradeRequest) (*GetStudentGradeResponse, error)
+	// 获取全局成绩，用于推送成绩信息，仅内部使用
+	GetGlobalStudentGrade(context.Context, *GetGlobalStudentGradeRequest) (*GetGlobalStudentGradeResponse, error)
 	//获取学生考试信息
 	GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error)
 	//获取学生GPA信息
@@ -298,6 +311,9 @@ func (UnimplementedCampusServiceServer) GetStudentCourseSelections(context.Conte
 }
 func (UnimplementedCampusServiceServer) GetStudentGrade(context.Context, *GetStudentGradeRequest) (*GetStudentGradeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentGrade not implemented")
+}
+func (UnimplementedCampusServiceServer) GetGlobalStudentGrade(context.Context, *GetGlobalStudentGradeRequest) (*GetGlobalStudentGradeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGlobalStudentGrade not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentExam not implemented")
@@ -495,6 +511,24 @@ func _CampusService_GetStudentGrade_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_GetGlobalStudentGrade_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGlobalStudentGradeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetGlobalStudentGrade(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetGlobalStudentGrade(ctx, req.(*GetGlobalStudentGradeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CampusService_GetStudentExam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetStudentExamRequest)
 	if err := dec(in); err != nil {
@@ -663,6 +697,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStudentGrade",
 			Handler:    _CampusService_GetStudentGrade_Handler,
+		},
+		{
+			MethodName: "GetGlobalStudentGrade",
+			Handler:    _CampusService_GetGlobalStudentGrade_Handler,
 		},
 		{
 			MethodName: "GetStudentExam",
