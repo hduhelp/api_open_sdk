@@ -105,6 +105,14 @@ service CampusService {
       }
     };
   }
+
+  // 获取全局成绩，用于推送成绩信息，仅内部使用
+  rpc GetGlobalStudentGrade(GetGlobalStudentGradeRequest) returns (GetGlobalStudentGradeResponse) {
+    option (google.api.http) = {
+      get: "/private/staff/v1/global/student/grade"
+    };
+  }
+
   //获取学生考试信息
   rpc GetStudentExam(GetStudentExamRequest) returns (GetStudentExamResponse) {
     option (google.api.http) = {
@@ -204,6 +212,13 @@ message GetStudentCourseSelectionsRequest {
 }
 
 message GetStudentGradeRequest {
+  //学年，只支持一种格式，例：2021-2022学年，应传 2021
+  string schoolYear = 1;
+  //学期，枚举：第一学期 | 第二学期
+  string semester = 2;
+}
+
+message GetGlobalStudentGradeRequest {
   //学年，只支持一种格式，例：2021-2022学年，应传 2021
   string schoolYear = 1;
   //学期，枚举：第一学期 | 第二学期
@@ -420,6 +435,46 @@ message GetStudentGradeResponse {
 
 // 成绩详情
 message StudentGrade {
+  //学年
+  string schoolYear = 1;
+  //学期
+  string semester = 2;
+  //选课号
+  string selectCode = 3;
+  //最后分数
+  string score = 4;
+  //平时分
+  string scoreDaily = 5;
+  //期中分数
+  string scoreMidTerm = 6;
+  //期末分数
+  string scoreFinal = 7;
+  //补考分数
+  string scoreSubstitute = 8;
+  //实验分数
+  string scorePractice = 9;
+  //课程号
+  string courseCode = 10;
+  //课程名
+  string course = 11;
+  //学号
+  string staffId = 12;
+  //姓名
+  string staffName = 13;
+  //学分
+  string credit = 14;
+  //GPA
+  string GPA = 15;
+}
+
+message GetGlobalStudentGradeResponse {
+  int32 error = 1;
+  string msg = 2;
+  repeated GlobalStudentGrade data = 3;
+}
+
+// 成绩详情
+message GlobalStudentGrade {
   //学年
   string schoolYear = 1;
   //学期
