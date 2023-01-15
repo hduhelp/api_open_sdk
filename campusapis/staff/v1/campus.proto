@@ -219,10 +219,6 @@ message GetStudentGradeRequest {
 }
 
 message GetGlobalStudentGradeRequest {
-  //学年，只支持一种格式，例：2021-2022学年，应传 2021
-  string schoolYear = 1;
-  //学期，枚举：第一学期 | 第二学期
-  string semester = 2;
 }
 
 message GetStudentExamRequest {
@@ -483,28 +479,16 @@ message GlobalStudentGrade {
   string selectCode = 3;
   //最后分数
   string score = 4;
-  //平时分
-  string scoreDaily = 5;
-  //期中分数
-  string scoreMidTerm = 6;
-  //期末分数
-  string scoreFinal = 7;
-  //补考分数
-  string scoreSubstitute = 8;
-  //实验分数
-  string scorePractice = 9;
   //课程号
-  string courseCode = 10;
+  string courseCode = 5;
   //课程名
-  string course = 11;
+  string course = 6;
   //学号
-  string staffId = 12;
-  //姓名
-  string staffName = 13;
+  string staffId = 7;
   //学分
-  string credit = 14;
+  string credit = 8;
   //GPA
-  string GPA = 15;
+  string GPA = 9;
 }
 
 // 查询学生考试返回体
