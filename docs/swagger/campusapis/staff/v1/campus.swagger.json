@@ -195,6 +195,22 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，只支持一种格式，例：2021-2022学年，应传 2021",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "description": "学期，枚举：第一学期 | 第二学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "CampusService"
         ]
