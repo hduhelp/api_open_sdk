@@ -219,6 +219,10 @@ message GetStudentGradeRequest {
 }
 
 message GetGlobalStudentGradeRequest {
+  //学年，只支持一种格式，例：2021-2022学年，应传 2021
+  string schoolYear = 1;
+  //学期，枚举：第一学期 | 第二学期
+  string semester = 2;
 }
 
 message GetStudentExamRequest {
