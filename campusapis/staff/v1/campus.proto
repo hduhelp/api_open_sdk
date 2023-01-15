@@ -493,6 +493,8 @@ message GlobalStudentGrade {
   string credit = 8;
   //GPA
   string GPA = 9;
+  //操作时间
+  string updateAt = 10;
 }
 
 // 查询学生考试返回体
