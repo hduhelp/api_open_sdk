@@ -195,22 +195,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "schoolYear",
-            "description": "学年，只支持一种格式，例：2021-2022学年，应传 2021",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "description": "学期，枚举：第一学期 | 第二学期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "CampusService"
         ]
@@ -1626,26 +1610,6 @@
           "type": "string",
           "title": "最后分数"
         },
-        "scoreDaily": {
-          "type": "string",
-          "title": "平时分"
-        },
-        "scoreMidTerm": {
-          "type": "string",
-          "title": "期中分数"
-        },
-        "scoreFinal": {
-          "type": "string",
-          "title": "期末分数"
-        },
-        "scoreSubstitute": {
-          "type": "string",
-          "title": "补考分数"
-        },
-        "scorePractice": {
-          "type": "string",
-          "title": "实验分数"
-        },
         "courseCode": {
           "type": "string",
           "title": "课程号"
@@ -1657,10 +1621,6 @@
         "staffId": {
           "type": "string",
           "title": "学号"
-        },
-        "staffName": {
-          "type": "string",
-          "title": "姓名"
         },
         "credit": {
           "type": "string",
