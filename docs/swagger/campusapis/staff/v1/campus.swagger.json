@@ -1645,6 +1645,10 @@
         "GPA": {
           "type": "string",
           "title": "GPA"
+        },
+        "updateAt": {
+          "type": "string",
+          "title": "操作时间"
         }
       },
       "title": "成绩详情"
