@@ -135,6 +135,7 @@ func (r *Request) AddHeader(key, value string) *Request {
 func (r *Request) EndStruct(data interface{}) error {
 	opts := []trace.SpanStartOption{
 		trace.WithAttributes(r.AttributesFromRequestBody()...),
+		trace.WithSpanKind(trace.SpanKindClient),
 	}
 	newCtx, span := otel.Tracer(tracerName).Start(r.ctx, fmt.Sprintf("%s-%s-%s", r.body.Method, r.body.To, r.body.Path), opts...)
 	defer span.End()
@@ -152,6 +153,8 @@ func (r *Request) EndStruct(data interface{}) error {
 		return &ResponseError{
 			HttpCode:  r.Response.StatusCode,
 			HttpError: errs,
+			Code:      r.ResponseData.Error,
+			Msg:       r.ResponseData.Msg,
 		}
 	}
 	if r.ResponseData.Error != 0 {
