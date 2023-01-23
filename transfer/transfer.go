@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"go.opentelemetry.io/contrib/propagators/b3"
 	"go.opentelemetry.io/otel/propagation"
 	"net/http"
 	"net/url"
@@ -104,10 +103,9 @@ func NewRequest(ctx context.Context, from string, to string, path string, param 
 		apply(*Request)
 	}) *Request {
 	request := &Request{
-		SuperAgent: gorequest.New(),
+		SuperAgent: gorequest.New().Post(instance.endpoint),
 	}
-	// 将 TraceId 等信息放入 Header 中
-	b3.New().Inject(ctx, propagation.HeaderCarrier(request.SuperAgent.Header))
+	instance.getPropagator().Inject(ctx, propagation.HeaderCarrier(request.SuperAgent.Header))
 
 	timestamp := time.Now().Unix()
 	request.body = &body{
@@ -126,7 +124,6 @@ func NewRequest(ctx context.Context, from string, to string, path string, param 
 
 func (r *Request) make() {
 	r.SuperAgent.
-		Post(instance.endpoint).
 		Set("sign", "sign "+r.sign()).
 		Set("x-hduhelp-cache", "no-cache").
 		Send(r.body)
