@@ -1081,10 +1081,12 @@
       "type": "object",
       "properties": {
         "done": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "是否完成"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "完成信息"
         }
       }
     },

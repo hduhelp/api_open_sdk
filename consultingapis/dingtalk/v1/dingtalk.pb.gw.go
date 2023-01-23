@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_DingTalkService_CreateClassChatGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{"body": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_DingTalkService_CreateClassChatGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{"body": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_DingTalkService_CreateClassChatGroup_0(ctx context.Context, marshaler runtime.Marshaler, client DingTalkServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -84,7 +84,7 @@ func local_request_DingTalkService_CreateClassChatGroup_0(ctx context.Context, m
 }
 
 var (
-	filter_DingTalkService_CreateClassChatGroupV2_0 = &utilities.DoubleArray{Encoding: map[string]int{"body": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_DingTalkService_CreateClassChatGroupV2_0 = &utilities.DoubleArray{Encoding: map[string]int{"body": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_DingTalkService_CreateClassChatGroupV2_0(ctx context.Context, marshaler runtime.Marshaler, client DingTalkServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {

@@ -177,7 +177,7 @@ func local_request_HealthService_GetCheckinRecords_1(ctx context.Context, marsha
 }
 
 var (
-	filter_HealthService_PostCheckinRecord_0 = &utilities.DoubleArray{Encoding: map[string]int{"content": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_HealthService_PostCheckinRecord_0 = &utilities.DoubleArray{Encoding: map[string]int{"content": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_HealthService_PostCheckinRecord_0(ctx context.Context, marshaler runtime.Marshaler, client HealthServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -229,7 +229,7 @@ func local_request_HealthService_PostCheckinRecord_0(ctx context.Context, marsha
 }
 
 var (
-	filter_HealthService_PostCheckinRecord_1 = &utilities.DoubleArray{Encoding: map[string]int{"content": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_HealthService_PostCheckinRecord_1 = &utilities.DoubleArray{Encoding: map[string]int{"content": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_HealthService_PostCheckinRecord_1(ctx context.Context, marshaler runtime.Marshaler, client HealthServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {

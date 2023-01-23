@@ -102,7 +102,7 @@ func local_request_FAQService_GetFAQ_0(ctx context.Context, marshaler runtime.Ma
 }
 
 var (
-	filter_FAQService_UpdateFAQ_0 = &utilities.DoubleArray{Encoding: map[string]int{"data": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_FAQService_UpdateFAQ_0 = &utilities.DoubleArray{Encoding: map[string]int{"data": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_FAQService_UpdateFAQ_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
