@@ -40,16 +40,6 @@ func (r *Response) UnmarshalJSON(bytes []byte) error {
 	return err
 }
 
-func (r Response) error() error {
-	if r.Error == 0 {
-		return nil
-	}
-	return &ResponseError{
-		string: r.Msg,
-		int:    r.Error,
-	}
-}
-
 type Request struct {
 	*gorequest.SuperAgent
 	ResponseData *Response
@@ -59,10 +49,6 @@ type Request struct {
 
 	*body
 	url.Values
-
-	done bool
-	error
-	code int
 
 	options []interface {
 		apply(*Request)
@@ -133,40 +119,39 @@ func (r *Request) make() {
 	r.setToken()
 }
 
-func (r *Request) doneWithError(code int, err error) {
-	r.error = err
-	r.code = code
-	r.done = true
-}
-
 func (r *Request) AddHeader(key, value string) *Request {
 	r.SuperAgent.Set(key, value)
 	return r
 }
 
-func (r *Request) EndStruct(data interface{}) (int, int, error) {
+func (r *Request) EndStruct(data interface{}) error {
 	var bytes []byte
 	r.make()
 	r.ResponseData = new(Response)
 	r.ResponseData.Data = data
-	if !r.done {
-		var errs []error
-		r.Response, bytes, errs = r.SuperAgent.EndStruct(&r.ResponseData)
-		r.RawData = string(bytes)
-		if len(errs) != 0 {
-			r.doneWithError(50000, errs[0])
-			if r.Response == nil {
-				return 50000, 500, r.error
-			}
-			return 50000, r.Response.StatusCode, errs[0]
+	var errs []error
+	r.Response, bytes, errs = r.SuperAgent.EndStruct(&r.ResponseData)
+	r.RawData = string(bytes)
+	if len(errs) != 0 {
+		return &ResponseError{
+			HttpCode:  r.Response.StatusCode,
+			HttpError: errs,
 		}
 	}
-	return r.ResponseData.Error, r.Response.StatusCode, r.ResponseData.error()
+	if r.ResponseData.Error != 0 {
+		return &ResponseError{
+			HttpCode:  r.Response.StatusCode,
+			HttpError: errs,
+			Code:      r.ResponseData.Error,
+			Msg:       r.ResponseData.Msg,
+		}
+	}
+	return nil
 }
 
 func (r *Request) End() (*Response, error) {
 	var in interface{}
-	_, _, err := r.EndStruct(in)
+	err := r.EndStruct(in)
 	return r.ResponseData, err
 }
 
