@@ -1,8 +1,11 @@
 package transfer
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
+	"go.opentelemetry.io/contrib/propagators/b3"
+	"go.opentelemetry.io/otel/propagation"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -67,22 +70,22 @@ type Request struct {
 	}
 }
 
-func Get(appID string, path string, param map[string]string, staffID string, options ...interface {
+func Get(ctx context.Context, appID string, path string, param map[string]string, staffID string, options ...interface {
 	apply(*Request)
 }) (resp *Request) {
-	return NewRequest(instance.appID, appID, path, param, staffID, http.MethodGet, nil, options...)
+	return NewRequest(ctx, instance.appID, appID, path, param, staffID, http.MethodGet, nil, options...)
 }
 
-func Post(appID string, path string, param map[string]string, staffID string, postForm interface{}, options ...interface {
+func Post(ctx context.Context, appID string, path string, param map[string]string, staffID string, postForm interface{}, options ...interface {
 	apply(*Request)
 }) (resp *Request) {
-	return NewRequest(instance.appID, appID, path, param, staffID, http.MethodPost, postForm, options...)
+	return NewRequest(ctx, instance.appID, appID, path, param, staffID, http.MethodPost, postForm, options...)
 }
 
-func Put(appID string, path string, param map[string]string, staffID string, postForm interface{}, options ...interface {
+func Put(ctx context.Context, appID string, path string, param map[string]string, staffID string, postForm interface{}, options ...interface {
 	apply(*Request)
 }) (resp *Request) {
-	return NewRequest(instance.appID, appID, path, param, staffID, http.MethodPut, postForm, options...)
+	return NewRequest(ctx, instance.appID, appID, path, param, staffID, http.MethodPut, postForm, options...)
 }
 
 type body struct {
@@ -96,13 +99,15 @@ type body struct {
 	PostForm  interface{}       `json:"postForm"`
 }
 
-func NewRequest(from string, to string, path string, param map[string]string,
+func NewRequest(ctx context.Context, from string, to string, path string, param map[string]string,
 	staffID string, method string, postBody interface{}, options ...interface {
 		apply(*Request)
 	}) *Request {
 	request := &Request{
 		SuperAgent: gorequest.New(),
 	}
+	// 将 TraceId 等信息放入 Header 中
+	b3.New().Inject(ctx, propagation.HeaderCarrier(request.SuperAgent.Header))
 
 	timestamp := time.Now().Unix()
 	request.body = &body{
