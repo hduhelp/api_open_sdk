@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 	"net/http"
 	"net/url"
@@ -13,6 +14,8 @@ import (
 	"github.com/hduhelp/api_open_sdk/utils"
 	"github.com/parnurzeal/gorequest"
 )
+
+const tracerName = "github.com/hduhelp/api_open_sdk/transfer"
 
 type Response struct {
 	Cache bool        `json:"cache"`
@@ -49,6 +52,8 @@ type Request struct {
 
 	*body
 	url.Values
+
+	ctx context.Context
 
 	options []interface {
 		apply(*Request)
@@ -89,9 +94,9 @@ func NewRequest(ctx context.Context, from string, to string, path string, param 
 		apply(*Request)
 	}) *Request {
 	request := &Request{
-		SuperAgent: gorequest.New().Post(instance.endpoint),
+		SuperAgent: gorequest.New(),
+		ctx:        ctx,
 	}
-	instance.getPropagator().Inject(ctx, propagation.HeaderCarrier(request.SuperAgent.Header))
 
 	timestamp := time.Now().Unix()
 	request.body = &body{
@@ -110,6 +115,7 @@ func NewRequest(ctx context.Context, from string, to string, path string, param 
 
 func (r *Request) make() {
 	r.SuperAgent.
+		Post(instance.endpoint). // Post() 会把 SuperAgent 清空
 		Set("sign", "sign "+r.sign()).
 		Set("x-hduhelp-cache", "no-cache").
 		Send(r.body)
@@ -125,6 +131,11 @@ func (r *Request) AddHeader(key, value string) *Request {
 }
 
 func (r *Request) EndStruct(data interface{}) error {
+	newCtx, span := otel.Tracer(tracerName).Start(r.ctx, fmt.Sprintf("%s-%s-%s", r.body.Method, r.body.To, r.body.Path))
+	defer span.End()
+
+	instance.getPropagator().Inject(newCtx, propagation.HeaderCarrier(r.SuperAgent.Header))
+
 	var bytes []byte
 	r.make()
 	r.ResponseData = new(Response)

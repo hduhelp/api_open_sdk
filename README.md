@@ -1,4 +1,4 @@
-# api_open_sdk
+# api_open_sdk 杭电助手自用 sdk
 
 ![Goproxy.cn](https://goproxy.cn/stats/github.com/hduhelp/api_open_sdk/badges/download-count.svg)
 ![buf lint](https://github.com/hduhelp/api_open_sdk/actions/workflows/buf.yml/badge.svg)
