@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/propagation"
+	"go.opentelemetry.io/otel/trace"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -131,13 +133,16 @@ func (r *Request) AddHeader(key, value string) *Request {
 }
 
 func (r *Request) EndStruct(data interface{}) error {
-	newCtx, span := otel.Tracer(tracerName).Start(r.ctx, fmt.Sprintf("%s-%s-%s", r.body.Method, r.body.To, r.body.Path))
+	opts := []trace.SpanStartOption{
+		trace.WithAttributes(r.AttributesFromRequestBody()...),
+	}
+	newCtx, span := otel.Tracer(tracerName).Start(r.ctx, fmt.Sprintf("%s-%s-%s", r.body.Method, r.body.To, r.body.Path), opts...)
 	defer span.End()
 
+	r.make() // 会把 SuperAgent 清空
 	instance.getPropagator().Inject(newCtx, propagation.HeaderCarrier(r.SuperAgent.Header))
 
 	var bytes []byte
-	r.make()
 	r.ResponseData = new(Response)
 	r.ResponseData.Data = data
 	var errs []error
@@ -172,4 +177,15 @@ func (r Request) timestampStr() string {
 
 func (r *Request) sign() string {
 	return utils.Sha1Encode(fmt.Sprintf("%s%s%s%s", r.From, r.To, instance.appKey, r.timestampStr()))
+}
+
+func (r *Request) AttributesFromRequestBody() []attribute.KeyValue {
+	return []attribute.KeyValue{
+		attribute.String("from", r.body.From),
+		attribute.String("to", r.body.To),
+		attribute.Int64("timestamp", r.body.Timestamp),
+		attribute.String("path", r.body.Path),
+		attribute.String("staffID", r.body.StaffID),
+		attribute.String("method", r.body.Method),
+	}
 }
