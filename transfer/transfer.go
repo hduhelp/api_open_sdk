@@ -183,12 +183,11 @@ func (r *Request) sign() string {
 }
 
 func (r *Request) AttributesFromRequestBody() []attribute.KeyValue {
-	return []attribute.KeyValue{
-		attribute.String("from", r.body.From),
-		attribute.String("to", r.body.To),
-		attribute.Int64("timestamp", r.body.Timestamp),
-		attribute.String("path", r.body.Path),
-		attribute.String("staffID", r.body.StaffID),
-		attribute.String("method", r.body.Method),
+	return []attribute.KeyValue{attribute.String("transfer.from", r.body.From),
+		attribute.String("transfer.to", r.body.To),
+		attribute.Int64("transfer.timestamp", r.body.Timestamp),
+		attribute.String("transfer.path", r.body.Path),
+		attribute.String("transfer.staffID", r.body.StaffID),
+		attribute.String("transfer.method", r.body.Method),
 	}
 }

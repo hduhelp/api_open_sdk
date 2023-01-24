@@ -29,6 +29,7 @@ require (
 	go.opentelemetry.io/otel/metric v0.34.0
 	go.opentelemetry.io/otel/sdk v1.11.2
 	go.opentelemetry.io/otel/sdk/metric v0.34.0
+	go.opentelemetry.io/otel/trace v1.11.2
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20230119192704-9d59e20e5cd1
 	google.golang.org/grpc v1.52.0
@@ -120,7 +121,6 @@ require (
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.11.2 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric v0.34.0 // indirect
-	go.opentelemetry.io/otel/trace v1.11.2 // indirect
 	go.opentelemetry.io/proto/otlp v0.19.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
