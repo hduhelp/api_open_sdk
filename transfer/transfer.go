@@ -151,18 +151,39 @@ func (r *Request) EndStruct(data interface{}) error {
 	r.RawData = string(bytes)
 	if len(errs) != 0 {
 		return &ResponseError{
-			HttpCode:  r.Response.StatusCode,
-			HttpError: errs,
-			Code:      r.ResponseData.Error,
-			Msg:       r.ResponseData.Msg,
+			Errors: errs,
+			Remark: "request error",
+		}
+	}
+	if r.Response == nil {
+		return &ResponseError{
+			Errors: errs,
+			Remark: "response is nil",
+		}
+	}
+	if r.ResponseData == nil {
+		return &ResponseError{
+			Errors:   errs,
+			HttpCode: r.Response.StatusCode,
+			Remark:   "response data is nil",
+		}
+	}
+	if r.Response.StatusCode != 200 {
+		return &ResponseError{
+			Errors:   errs,
+			HttpCode: r.Response.StatusCode,
+			Code:     r.ResponseData.Error,
+			Msg:      r.ResponseData.Msg,
+			Remark:   "http code is not 200",
 		}
 	}
 	if r.ResponseData.Error != 0 {
 		return &ResponseError{
-			HttpCode:  r.Response.StatusCode,
-			HttpError: errs,
-			Code:      r.ResponseData.Error,
-			Msg:       r.ResponseData.Msg,
+			Errors:   errs,
+			HttpCode: r.Response.StatusCode,
+			Code:     r.ResponseData.Error,
+			Msg:      r.ResponseData.Msg,
+			Remark:   "responseData error",
 		}
 	}
 	return nil
