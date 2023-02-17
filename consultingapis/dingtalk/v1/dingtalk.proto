@@ -14,22 +14,15 @@ service DingTalkService {
     };
   }
 
-  rpc CreateClassChatGroupV2(CreateClassChatGroupV2Request) returns (CreateClassChatGroupV2Response) {
-    option (google.api.http) = {
-      post: "/dingtalk/chat/v1/create/v2"
-      body: "body"
-    };
-  }
-
   rpc GetClassChatGroup(GetClassChatGroupRequest) returns (GetClassChatGroupResponse) {
     option (google.api.http) = {
       get: "/dingtalk/chat/v1/get"
     };
   }
 
-  rpc JoinClassChatGroup(JoinClassChatGroupRequest) returns (JoinClassChatGroupResponse) {
+  rpc SyncClassChatGroup(SyncClassChatGroupRequest) returns (SyncClassChatGroupResponse) {
     option (google.api.http) = {
-      get: "/dingtalk/chat/v1/join"
+      get: "/dingtalk/chat/v1/sync"
     };
   }
 }
@@ -49,24 +42,6 @@ message CreateClassChatGroupResponse {
   string invite_url = 3;
 }
 
-message CreateClassChatGroupV2Request {
-  string class_id = 1;
-  Body body = 2;
-
-  message Body {
-    string name = 1;
-    repeated string students = 2;
-    string courseID = 3;
-    string courseName = 4;
-  }
-}
-
-message CreateClassChatGroupV2Response {
-  string chat_id = 1;
-  string openConversationId = 2;
-  string invite_url = 3;
-}
-
 message GetClassChatGroupRequest {
   string class_id = 1;
 }
@@ -78,12 +53,10 @@ message GetClassChatGroupResponse {
   string invite_url = 4;
 }
 
-message JoinClassChatGroupRequest {
+message SyncClassChatGroupRequest {
   string class_id = 1;
 }
 
-message JoinClassChatGroupResponse {
-  string chat_id = 1;
-  string openConversationId = 2;
-  string invite_url = 3;
+message SyncClassChatGroupResponse {
+  string message = 1;
 }
