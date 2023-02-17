@@ -84,58 +84,6 @@ func local_request_DingTalkService_CreateClassChatGroup_0(ctx context.Context, m
 }
 
 var (
-	filter_DingTalkService_CreateClassChatGroupV2_0 = &utilities.DoubleArray{Encoding: map[string]int{"body": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
-)
-
-func request_DingTalkService_CreateClassChatGroupV2_0(ctx context.Context, marshaler runtime.Marshaler, client DingTalkServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateClassChatGroupV2Request
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Body); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DingTalkService_CreateClassChatGroupV2_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.CreateClassChatGroupV2(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_DingTalkService_CreateClassChatGroupV2_0(ctx context.Context, marshaler runtime.Marshaler, server DingTalkServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateClassChatGroupV2Request
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Body); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DingTalkService_CreateClassChatGroupV2_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.CreateClassChatGroupV2(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
 	filter_DingTalkService_GetClassChatGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
@@ -172,37 +120,37 @@ func local_request_DingTalkService_GetClassChatGroup_0(ctx context.Context, mars
 }
 
 var (
-	filter_DingTalkService_JoinClassChatGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_DingTalkService_SyncClassChatGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_DingTalkService_JoinClassChatGroup_0(ctx context.Context, marshaler runtime.Marshaler, client DingTalkServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq JoinClassChatGroupRequest
+func request_DingTalkService_SyncClassChatGroup_0(ctx context.Context, marshaler runtime.Marshaler, client DingTalkServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SyncClassChatGroupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DingTalkService_JoinClassChatGroup_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DingTalkService_SyncClassChatGroup_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.JoinClassChatGroup(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.SyncClassChatGroup(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_DingTalkService_JoinClassChatGroup_0(ctx context.Context, marshaler runtime.Marshaler, server DingTalkServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq JoinClassChatGroupRequest
+func local_request_DingTalkService_SyncClassChatGroup_0(ctx context.Context, marshaler runtime.Marshaler, server DingTalkServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SyncClassChatGroupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DingTalkService_JoinClassChatGroup_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DingTalkService_SyncClassChatGroup_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.JoinClassChatGroup(ctx, &protoReq)
+	msg, err := server.SyncClassChatGroup(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -238,31 +186,6 @@ func RegisterDingTalkServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_DingTalkService_CreateClassChatGroupV2_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/CreateClassChatGroupV2", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/create/v2"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_DingTalkService_CreateClassChatGroupV2_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_DingTalkService_CreateClassChatGroupV2_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("GET", pattern_DingTalkService_GetClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -288,7 +211,7 @@ func RegisterDingTalkServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_DingTalkService_JoinClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_DingTalkService_SyncClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -296,12 +219,12 @@ func RegisterDingTalkServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/JoinClassChatGroup", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/join"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/SyncClassChatGroup", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/sync"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_DingTalkService_JoinClassChatGroup_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_DingTalkService_SyncClassChatGroup_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -309,7 +232,7 @@ func RegisterDingTalkServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_DingTalkService_JoinClassChatGroup_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DingTalkService_SyncClassChatGroup_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -376,28 +299,6 @@ func RegisterDingTalkServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_DingTalkService_CreateClassChatGroupV2_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/CreateClassChatGroupV2", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/create/v2"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_DingTalkService_CreateClassChatGroupV2_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_DingTalkService_CreateClassChatGroupV2_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("GET", pattern_DingTalkService_GetClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -420,25 +321,25 @@ func RegisterDingTalkServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_DingTalkService_JoinClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_DingTalkService_SyncClassChatGroup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/JoinClassChatGroup", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/join"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/SyncClassChatGroup", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/sync"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_DingTalkService_JoinClassChatGroup_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_DingTalkService_SyncClassChatGroup_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_DingTalkService_JoinClassChatGroup_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DingTalkService_SyncClassChatGroup_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -448,19 +349,15 @@ func RegisterDingTalkServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 var (
 	pattern_DingTalkService_CreateClassChatGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dingtalk", "chat", "v1", "create"}, ""))
 
-	pattern_DingTalkService_CreateClassChatGroupV2_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"dingtalk", "chat", "v1", "create", "v2"}, ""))
-
 	pattern_DingTalkService_GetClassChatGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dingtalk", "chat", "v1", "get"}, ""))
 
-	pattern_DingTalkService_JoinClassChatGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dingtalk", "chat", "v1", "join"}, ""))
+	pattern_DingTalkService_SyncClassChatGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dingtalk", "chat", "v1", "sync"}, ""))
 )
 
 var (
 	forward_DingTalkService_CreateClassChatGroup_0 = runtime.ForwardResponseMessage
 
-	forward_DingTalkService_CreateClassChatGroupV2_0 = runtime.ForwardResponseMessage
-
 	forward_DingTalkService_GetClassChatGroup_0 = runtime.ForwardResponseMessage
 
-	forward_DingTalkService_JoinClassChatGroup_0 = runtime.ForwardResponseMessage
+	forward_DingTalkService_SyncClassChatGroup_0 = runtime.ForwardResponseMessage
 )

@@ -39,45 +39,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateClassChatGroupRequestBody"
-            }
-          },
-          {
-            "name": "classId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "DingTalkService"
-        ]
-      }
-    },
-    "/dingtalk/chat/v1/create/v2": {
-      "post": {
-        "operationId": "DingTalkService_CreateClassChatGroupV2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateClassChatGroupV2Response"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateClassChatGroupV2RequestBody"
+              "$ref": "#/definitions/CreateClassChatGroupRequestBody"
             }
           },
           {
@@ -122,14 +84,14 @@
         ]
       }
     },
-    "/dingtalk/chat/v1/join": {
+    "/dingtalk/chat/v1/sync": {
       "get": {
-        "operationId": "DingTalkService_JoinClassChatGroup",
+        "operationId": "DingTalkService_SyncClassChatGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1JoinClassChatGroupResponse"
+              "$ref": "#/definitions/v1SyncClassChatGroupResponse"
             }
           },
           "default": {
@@ -154,6 +116,14 @@
     }
   },
   "definitions": {
+    "CreateClassChatGroupRequestBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -181,49 +151,7 @@
         }
       }
     },
-    "v1CreateClassChatGroupRequestBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
     "v1CreateClassChatGroupResponse": {
-      "type": "object",
-      "properties": {
-        "chatId": {
-          "type": "string"
-        },
-        "openConversationId": {
-          "type": "string"
-        },
-        "inviteUrl": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateClassChatGroupV2RequestBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "students": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "courseID": {
-          "type": "string"
-        },
-        "courseName": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateClassChatGroupV2Response": {
       "type": "object",
       "properties": {
         "chatId": {
@@ -254,16 +182,10 @@
         }
       }
     },
-    "v1JoinClassChatGroupResponse": {
+    "v1SyncClassChatGroupResponse": {
       "type": "object",
       "properties": {
-        "chatId": {
-          "type": "string"
-        },
-        "openConversationId": {
-          "type": "string"
-        },
-        "inviteUrl": {
+        "message": {
           "type": "string"
         }
       }
