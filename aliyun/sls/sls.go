@@ -4,31 +4,22 @@ package aliyunsls
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
+	"github.com/sethvargo/go-envconfig"
+	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
-	"go.opentelemetry.io/otel/exporters/stdout/stdoutmetric"
-	"go.opentelemetry.io/otel/metric/global"
-	semconv "go.opentelemetry.io/otel/semconv/v1.12.0"
-	"os"
-	"strings"
-	"time"
-
-	"github.com/sethvargo/go-envconfig"
-	"go.opentelemetry.io/contrib/instrumentation/host"
-	"go.opentelemetry.io/contrib/instrumentation/runtime"
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"
 	otlpTraceGrpc "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
 	"go.opentelemetry.io/otel/propagation"
-	"go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
+	semconv "go.opentelemetry.io/otel/semconv/v1.12.0"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/encoding/gzip"
+	"os"
+	"strings"
 )
 
 const (
@@ -93,9 +84,8 @@ func mergeResource(c *Config) error {
 }
 
 // 初始化Exporter，如果otlpEndpoint传入的值为 stdout，则默认把信息打印到标准输出用于调试
-func (c *Config) initOtelExporter(otlpEndpoint string, insecure bool) (trace.SpanExporter, metric.Exporter, func(), error) {
+func (c *Config) initOtelExporter(otlpEndpoint string, insecure bool) (trace.SpanExporter, func(), error) {
 	var traceExporter trace.SpanExporter
-	var metricsExporter metric.Exporter
 	var err error
 
 	var exporterStop = func() {
@@ -108,10 +98,8 @@ func (c *Config) initOtelExporter(otlpEndpoint string, insecure bool) (trace.Spa
 		// 使用Pretty的打印方式
 		traceExporter, err = stdouttrace.New(stdouttrace.WithPrettyPrint())
 		if err != nil {
-			return nil, nil, nil, err
+			return nil, nil, err
 		}
-		enc := json.NewEncoder(os.Stdout)
-		metricsExporter, err = stdoutmetric.New(stdoutmetric.WithEncoder(enc))
 	} else if otlpEndpoint != "" {
 		headers := map[string]string{}
 		if c.Project != "" && c.InstanceID != "" {
@@ -134,50 +122,12 @@ func (c *Config) initOtelExporter(otlpEndpoint string, insecure bool) (trace.Spa
 				otlpTraceGrpc.WithHeaders(headers),
 				otlpTraceGrpc.WithCompressor(gzip.Name)))
 		if err != nil {
-			return nil, nil, nil, err
+			return nil, nil, err
 		}
 
-		metricSecureOption := otlpmetricgrpc.WithTLSCredentials(credentials.NewClientTLSFromCert(nil, ""))
-		if insecure {
-			metricSecureOption = otlpmetricgrpc.WithInsecure()
-		}
-
-		metricsExporter, err = otlpmetricgrpc.New(context.Background(), otlpmetricgrpc.WithEndpoint(otlpEndpoint),
-			metricSecureOption, otlpmetricgrpc.WithHeaders(headers), otlpmetricgrpc.WithCompressor(gzip.Name))
 	}
 
-	return traceExporter, metricsExporter, exporterStop, nil
-}
-
-// 初始化Metrics，默认30秒导出一次Metrics
-// 默认该函数导出主机和Golang runtime基础指标
-func (c *Config) initMetric(metricsExporter metric.Exporter, stop func()) error {
-	if metricsExporter == nil {
-		return nil
-	}
-	period, err := time.ParseDuration(c.MetricReportingPeriod)
-	if err != nil {
-		period = time.Second * 30
-	}
-
-	reader := metric.NewPeriodicReader(metricsExporter, metric.WithInterval(period))
-
-	meterProvider := metric.NewMeterProvider(
-		metric.WithReader(reader),
-		metric.WithResource(c.Resource))
-	global.SetMeterProvider(meterProvider)
-
-	// 默认集成主机基础指标
-	if err := host.Start(host.WithMeterProvider(meterProvider)); err != nil {
-		return err
-	}
-	// 默认集成Golang runtime指标
-	err = runtime.Start(runtime.WithMeterProvider(meterProvider), runtime.WithMinimumReadMemStatsInterval(time.Second))
-	c.stop = append(c.stop, func() {
-		meterProvider.Shutdown(context.Background())
-		stop()
-	})
-	return err
+	return traceExporter, exporterStop, nil
 }
 
 // 初始化Traces，默认全量上传
@@ -255,19 +205,11 @@ func Start(c *Config) error {
 	if c.errorHandler != nil {
 		otel.SetErrorHandler(c.errorHandler)
 	}
-	traceExporter, _, traceExpStop, err := c.initOtelExporter(c.TraceExporterEndpoint, c.TraceExporterEndpointInsecure)
-	if err != nil {
-		return err
-	}
-	_, metricExporter, metricExpStop, err := c.initOtelExporter(c.MetricExporterEndpoint, c.MetricExporterEndpointInsecure)
+	traceExporter, traceExpStop, err := c.initOtelExporter(c.TraceExporterEndpoint, c.TraceExporterEndpointInsecure)
 	if err != nil {
 		return err
 	}
 	err = c.initTracer(traceExporter, traceExpStop, c)
-	if err != nil {
-		return err
-	}
-	err = c.initMetric(metricExporter, metricExpStop)
 	return err
 }
 
