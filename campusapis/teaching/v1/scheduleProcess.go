@@ -7,25 +7,42 @@ import (
 
 type RemainFunc func(s *ScheduleItem) bool
 
-// FilterBySchedule 根据 Schedule 的属性判断函数过滤符合要求的课表, 会原地修改课表
+// FilterBySchedule 根据 Schedule 的属性判断函数过滤符合要求的课表
 func (courses *Courses) FilterBySchedule(remains ...RemainFunc) *Courses {
-	for _, course := range courses.Items {
+	// 复制一份Courses
+	var newCourses Courses
+	newCourses.Items = make(map[string]*CourseItem)
+	for key, course := range courses.Items {
+		var newSchedule Schedule
+		newSchedule.Items = make(map[string]*ScheduleItem)
 		for scheduleID, schedule := range course.Schedule.Items {
+			flag := true
 			for _, remain := range remains {
 				if !remain(schedule) {
-					delete(course.Schedule.Items, scheduleID)
+					flag = false
 					break
 				}
 			}
+			if flag {
+				newSchedule.Items[scheduleID] = schedule
+			}
 		}
-	}
-	for key, course := range courses.Items {
-		if len(course.Schedule.Items) == 0 {
-			delete(courses.Items, key)
+		if len(newSchedule.Items) > 0 {
+			newCourses.Items[key] = &CourseItem{
+				ClassID:    course.ClassID,
+				ClassName:  course.ClassName,
+				CourseID:   course.CourseID,
+				CourseName: course.CourseName,
+				ClassTime:  course.ClassTime,
+				Credit:     course.Credit,
+				SchoolYear: course.SchoolYear,
+				Semester:   course.Semester,
+				Schedule:   &newSchedule,
+			}
 		}
 	}
 
-	return courses
+	return &newCourses
 }
 
 // FilterThisWeek 过滤出本周课程, 会原地修改原课表

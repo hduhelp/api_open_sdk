@@ -1,6 +1,6 @@
 module github.com/hduhelp/api_open_sdk
 
-go 1.20
+go 1.19
 
 require (
 	github.com/bufbuild/buf v1.14.0
