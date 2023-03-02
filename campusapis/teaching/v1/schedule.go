@@ -16,25 +16,24 @@ func (x *CourseItem) AddSchedule(timeable schoolTime.Timeable, optionable ShowMe
 	}
 	if x.Schedule.Items[r.ScheduleID()] == nil {
 		x.Schedule.Items[r.ScheduleID()] = r.ScheduleInfo()
-		x.Schedule.Items[r.ScheduleID()].SetTime(timeable)
 	}
 
 	x.Schedule.Items[r.ScheduleID()].AddMember(optionable, r)
 }
 
-func (x *ScheduleItem) SetTime(timeable schoolTime.Timeable) {
-	//非当前周课程 跳过时间赋值
-	if _, ok := InArray(x.Week, timeable.GetSchoolDate().Week); !ok {
-		return
-	}
-	d, err := timeable.GetSchoolDateToDater().GetSchoolDateFrom(timeable.GetSchoolDate(), x.WeekDay)
-	if err != nil {
-		return
-	}
-	x.StartTime = timeable.GetSectionReader().StartTime(d, FirstOfArray(x.Section)).Unix()
-	x.EndTime = timeable.GetSectionReader().EndTime(d, LastOfArray(x.Section)).Unix()
-	x.IsThisWeek = true
-}
+//func (x *ScheduleItem) SetTime(timeable schoolTime.Timeable) {
+//	//非当前周课程 跳过时间赋值
+//	if _, ok := InArray(x.Week, timeable.GetSchoolDate().Week); !ok {
+//		return
+//	}
+//	d, err := timeable.GetSchoolDateToDater().GetSchoolDateFrom(timeable.GetSchoolDate(), x.WeekDay)
+//	if err != nil {
+//		return
+//	}
+//	x.StartTime = timeable.GetSectionReader().StartTime(d, FirstOfArray(x.Section)).Unix()
+//	x.EndTime = timeable.GetSectionReader().EndTime(d, LastOfArray(x.Section)).Unix()
+//	x.IsThisWeek = true
+//}
 
 type ShowMemberOptionable interface {
 	GetOptionShowMemberOption() OptionShowMember
