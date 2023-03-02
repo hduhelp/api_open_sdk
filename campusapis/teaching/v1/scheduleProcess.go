@@ -1,6 +1,7 @@
 package teachingv1
 
 import (
+	"math"
 	"sort"
 	"time"
 )
@@ -18,7 +19,7 @@ func (courses *Courses) FilterBySchedule(remains ...RemainFunc) *Courses {
 		for scheduleID, schedule := range course.Schedule.Items {
 			flag := true
 			for _, remain := range remains {
-				if !remain(schedule) {
+				if !remain(schedule) { // 如果有任何一个不满足，则不保留
 					flag = false
 					break
 				}
@@ -45,42 +46,52 @@ func (courses *Courses) FilterBySchedule(remains ...RemainFunc) *Courses {
 	return &newCourses
 }
 
-// FilterThisWeek 过滤出本周课程, 会原地修改原课表
-// 注意：只是根据接口返回的 IsThisWeek 字段来判断是否是本周课程
-// 如果采用的是salmon base 优先级 3 的请求方式，则需要自己计算是否是本周课程
-func (courses *Courses) FilterThisWeek() *Courses {
-	return courses.FilterBySchedule(RemainThisWeek)
-}
+//// FilterThisWeek 过滤出本周课程, 会原地修改原课表
+//// 注意：只是根据接口返回的 IsThisWeek 字段来判断是否是本周课程
+//// 如果采用的是salmon base 优先级 3 的请求方式，则需要自己计算是否是本周课程
+//func (courses *Courses) FilterThisWeek() *Courses {
+//	return courses.FilterBySchedule(RemainThisWeek)
+//}
+//
+//// FilterByWeekdays 过滤出星期几的课程，会原地修改原课表
+//func (courses *Courses) FilterByWeekdays(weekdays ...int32) *Courses {
+//	return courses.FilterBySchedule(RemainByWeekdays(weekdays...))
+//}
 
-// FilterByWeekdays 过滤出星期几的课程，会原地修改原课表
-func (courses *Courses) FilterByWeekdays(weekdays ...int32) *Courses {
-	return courses.FilterBySchedule(RemainByWeekdays(weekdays...))
-}
+const timeStart = 1677427200 // 2023-02-27 00:00:00
 
 // RemainThisWeek 留下本星期的课程
-func RemainThisWeek(s *ScheduleItem) bool {
-	return s.IsThisWeek
-}
-
-// RemainByWeekdays 留下指定星期几的课程
-func RemainByWeekdays(weekdays ...int32) RemainFunc {
-	in := func(i int32, list []int32) bool {
-		for _, v := range list {
-			if i == v {
+func RemainThisWeek(day time.Time) RemainFunc {
+	return func(s *ScheduleItem) bool {
+		weekNow := int32(math.Floor(float64(day.Unix()-timeStart)/(86400*7))) + 1
+		for _, v := range s.Week {
+			if v == weekNow {
 				return true
 			}
 		}
 		return false
 	}
-	return func(s *ScheduleItem) bool {
-		return in(s.WeekDay, weekdays)
-	}
 }
 
-// RemainByDay 留下当天的课程
-func RemainByDay(day time.Time) RemainFunc {
+//// RemainByWeekdays 留下指定星期几的课程
+//func RemainByWeekdays(weekdays ...int32) RemainFunc {
+//	in := func(i int32, list []int32) bool {
+//		for _, v := range list {
+//			if i == v {
+//				return true
+//			}
+//		}
+//		return false
+//	}
+//	return func(s *ScheduleItem) bool {
+//		return in(s.WeekDay, weekdays)
+//	}
+//}
+
+// RemainByWeekDay 留下当天的课程
+func RemainByWeekDay(day time.Time) RemainFunc {
 	return func(s *ScheduleItem) bool {
-		return day.Format("2006-01-02") == time.Unix(int64(s.StartTime), 0).Format("2006-01-02")
+		return s.WeekDay == int32(day.Weekday())
 	}
 }
 
