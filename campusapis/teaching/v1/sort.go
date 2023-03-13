@@ -36,13 +36,13 @@ var CourseItemsLessByStartTime = func(c CourseItems, i, j int) bool {
 }
 
 func (x *CourseItem) minStartTime() int64 {
-	if x.Schedule == nil {
+	if x.Schedule == nil || x.Schedule.Items == nil || len(x.Schedule.Items) == 0 {
 		return 0
 	}
-	min := int64(0)
+	min := int32(0)
 	for _, v := range x.Schedule.Items {
-		if min == 0 || v.StartTime < min {
-			min = v.StartTime
+		if len(v.Section) > 0 && (min == 0 || v.Section[0] < min) {
+			min = v.Section[0]
 		}
 	}
 	return int64(min)
