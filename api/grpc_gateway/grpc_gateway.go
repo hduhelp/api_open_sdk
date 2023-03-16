@@ -13,7 +13,6 @@ import (
 	"google.golang.org/grpc/status"
 	"net/http"
 	"net/textproto"
-	"strconv"
 	"strings"
 )
 
@@ -82,7 +81,7 @@ func DefaultErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler r
 	} else {
 		msg = strings.ReplaceAll(msg, "\\", "\\\\")
 		msg = strings.ReplaceAll(msg, "\"", "\\\"")
-		w.Write([]byte("{\"error\": " + lo.Ternary(codeStatus == common.Status_OK, "0", strconv.Itoa(int(codeStatus))) + ", \"msg\": \"" + msg + "\"}"))
+		w.Write([]byte("{\"error\": 50000" + ", \"msg\": \"" + msg + "\"}"))
 	}
 
 	w.WriteHeader(st)
