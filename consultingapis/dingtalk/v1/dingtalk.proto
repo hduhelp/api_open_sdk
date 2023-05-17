@@ -28,7 +28,7 @@ service DingTalkService {
 }
 
 message CreateClassChatGroupRequest {
-  string class_id = 1;
+  repeated string class_id = 1;
   Body body = 2;
 
   message Body {
