@@ -230,6 +230,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -352,6 +353,7 @@
         "categories": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Category"
           }
         },
@@ -429,6 +431,7 @@
         "answer": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1AnswerRichtext"
           }
         }

@@ -278,6 +278,7 @@
         "parameters": [
           {
             "name": "classes",
+            "description": "班级ID列表",
             "in": "query",
             "required": false,
             "type": "array",
@@ -313,6 +314,7 @@
         "parameters": [
           {
             "name": "classes",
+            "description": "班级ID",
             "in": "query",
             "required": false,
             "type": "array",
@@ -371,12 +373,14 @@
         "parameters": [
           {
             "name": "query",
+            "description": "查询字符串",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "from",
+            "description": "从0开始",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -384,6 +388,7 @@
           },
           {
             "name": "size",
+            "description": "不大于20",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -738,6 +743,7 @@
         "parameters": [
           {
             "name": "classes",
+            "description": "班级ID",
             "in": "query",
             "required": false,
             "type": "array",
@@ -796,12 +802,14 @@
         "parameters": [
           {
             "name": "query",
+            "description": "查询字符串",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "from",
+            "description": "从0开始",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -809,6 +817,7 @@
           },
           {
             "name": "size",
+            "description": "不大于20",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -1142,6 +1151,7 @@
         "Teachers": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourseStaffInfo"
           },
           "title": "老师列表"
@@ -1149,6 +1159,7 @@
         "Students": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourseStaffInfo"
           },
           "title": "学生列表"
@@ -1205,6 +1216,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -1260,7 +1272,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "title": "班级ID列表"
         }
       }
     },
@@ -1278,7 +1291,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "title": "班级ID列表"
         }
       }
     },
@@ -1289,7 +1303,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "title": "班级ID列表"
         }
       }
     },
@@ -1316,7 +1331,8 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/v1ClassQueryInfo"
+          "$ref": "#/definitions/v1ClassQueryInfo",
+          "title": "课程信息"
         }
       }
     },
@@ -1325,21 +1341,26 @@
       "properties": {
         "classLast": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "title": "上次课程同步成功时间戳"
         },
         "classLatest": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "课程是否为最新同步数据"
         },
         "numLast": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "title": "上次课程人数同步成功时间戳"
         },
         "numLatest": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "课程人数是否为最新同步数据"
         },
         "classes": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ClassQuerySearchClass"
           }
         }
@@ -1356,7 +1377,8 @@
           "type": "string"
         },
         "data": {
-          "type": "string"
+          "type": "string",
+          "title": "映射表JSON字符串"
         }
       }
     },
@@ -1364,52 +1386,68 @@
       "type": "object",
       "properties": {
         "courseID": {
-          "type": "string"
+          "type": "string",
+          "title": "课程ID"
         },
         "courseName": {
-          "type": "string"
+          "type": "string",
+          "title": "课程名称"
         },
         "courseNature": {
-          "type": "string"
+          "type": "string",
+          "title": "课程性质"
         },
         "classID": {
-          "type": "string"
+          "type": "string",
+          "title": "班级ID"
         },
         "className": {
-          "type": "string"
+          "type": "string",
+          "title": "班级名称"
         },
         "campusID": {
-          "type": "string"
+          "type": "string",
+          "title": "校区ID,需要映射"
         },
         "classTime": {
-          "type": "string"
+          "type": "string",
+          "title": "上课时间"
         },
         "location": {
-          "type": "string"
+          "type": "string",
+          "title": "上课地点"
         },
         "teachingMethodID": {
-          "type": "string"
+          "type": "string",
+          "title": "考试方式,需要映射"
         },
         "teachingModel": {
-          "type": "string"
+          "type": "string",
+          "title": "教学模式,需要映射"
         },
         "teacherName": {
-          "type": "string"
+          "type": "string",
+          "title": "教师姓名"
         },
         "credit": {
-          "type": "string"
+          "type": "string",
+          "title": "学分"
         },
         "unitName": {
-          "type": "string"
+          "type": "string",
+          "title": "开设学院名称"
         },
         "examinationMethod": {
-          "type": "string"
+          "type": "string",
+          "title": "考核方式,需要映射"
         },
         "classList": {
-          "type": "string"
+          "type": "string",
+          "title": "班级列表"
         },
         "selectedStatus": {
-          "type": "string"
+          "type": "string",
+          "title": "选课情况（人数信息）"
         }
       }
     },
@@ -1535,6 +1573,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ClassroomUsage"
           },
           "title": "教室使用情况列表"
@@ -1555,6 +1594,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Classroom"
           },
           "title": "教室列表"
@@ -1574,6 +1614,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1GlobalSchedule"
           }
         }
@@ -1602,6 +1643,7 @@
         "today": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/GetScheduleNowResponseCourse"
           },
           "title": "今天课表"
@@ -1609,6 +1651,7 @@
         "tomorrow": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/GetScheduleNowResponseCourse"
           },
           "title": "明天课表"
@@ -1637,6 +1680,7 @@
         "Today": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourse"
           },
           "title": "今天的课表"
@@ -1644,6 +1688,7 @@
         "Tomorrow": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourse"
           },
           "title": "明天的课表"
@@ -1667,6 +1712,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourse"
           }
         }
@@ -1686,6 +1732,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Classroom"
           },
           "title": "教室列表"
@@ -1772,6 +1819,7 @@
         "Schedule": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/ScheduleResponseCourseScheduleInfo"
           },
           "title": "此课程排课列表"

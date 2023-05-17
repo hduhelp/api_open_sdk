@@ -106,6 +106,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -129,6 +130,7 @@
         "items": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1NodeItem"
           }
         },
@@ -185,6 +187,7 @@
         "subNode": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1NodeItem"
           }
         }

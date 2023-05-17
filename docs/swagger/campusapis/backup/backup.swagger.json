@@ -335,6 +335,7 @@
         "Teachers": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourseStaffInfo"
           },
           "title": "老师列表"
@@ -342,6 +343,7 @@
         "Students": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourseStaffInfo"
           },
           "title": "学生列表"
@@ -398,6 +400,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -441,6 +444,7 @@
         "Today": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourse"
           },
           "title": "今天的课表"
@@ -448,6 +452,7 @@
         "Tomorrow": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleResponseCourse"
           },
           "title": "明天的课表"
@@ -471,6 +476,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1StudentExam"
           },
           "title": "考试详情列表"
@@ -491,6 +497,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1StudentGrade"
           },
           "title": "成绩详情列表"
@@ -569,6 +576,7 @@
         "Schedule": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/ScheduleResponseCourseScheduleInfo"
           },
           "title": "此课程排课列表"
