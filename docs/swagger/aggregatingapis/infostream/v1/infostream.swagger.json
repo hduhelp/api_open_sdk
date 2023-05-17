@@ -70,6 +70,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -153,6 +154,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ExamData"
           }
         }
@@ -239,12 +241,14 @@
         "today": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleData"
           }
         },
         "tomorrow": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScheduleData"
           }
         }
@@ -324,6 +328,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ScoreData"
           }
         }

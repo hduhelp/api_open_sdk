@@ -178,6 +178,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -194,6 +195,7 @@
         "flow": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Consumption"
           },
           "title": "交易记录"
@@ -262,6 +264,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Consumption"
           }
         }

@@ -397,6 +397,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -577,6 +578,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1BookInfo"
           }
         }
@@ -610,6 +612,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1GetBookLendHistoryResponseNested"
           }
         }
@@ -661,6 +664,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1GetBookLendLastResponseNested"
           }
         }
@@ -712,6 +716,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1BookMARC"
           }
         }

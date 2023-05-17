@@ -102,6 +102,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -136,10 +137,12 @@
       "type": "object",
       "properties": {
         "done": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "是否完成"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "完成信息"
         }
       },
       "title": "推送学生门禁通行信息"

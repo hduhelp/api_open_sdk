@@ -1081,10 +1081,12 @@
       "type": "object",
       "properties": {
         "done": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "是否完成"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "完成信息"
         }
       }
     },
@@ -1122,6 +1124,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -1369,6 +1372,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1FreshmanRoommate"
           },
           "title": "室友列表"
@@ -1389,6 +1393,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1GlobalStudentGrade"
           }
         }
@@ -1439,6 +1444,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1StudentBirthdayInfo"
           },
           "title": "生日详情列表"
@@ -1459,6 +1465,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1StudentCourseSelection"
           },
           "title": "详情列表"
@@ -1495,6 +1502,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1StudentExam"
           },
           "title": "考试详情列表"
@@ -1532,6 +1540,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1StudentGrade"
           },
           "title": "成绩详情列表"
@@ -1568,6 +1577,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1StudentReward"
           },
           "title": "奖学金列表"
@@ -1810,6 +1820,7 @@
         "perSemester": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1GPAPerSemester"
           },
           "title": "每学期绩点"

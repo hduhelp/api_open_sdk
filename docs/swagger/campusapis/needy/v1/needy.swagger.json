@@ -101,6 +101,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -145,6 +146,7 @@
         "items": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/StudentNeedyInfoNested"
           },
           "title": "每学年贫困详情"
