@@ -278,7 +278,6 @@
         "parameters": [
           {
             "name": "classes",
-            "description": "班级ID列表",
             "in": "query",
             "required": false,
             "type": "array",
@@ -314,7 +313,6 @@
         "parameters": [
           {
             "name": "classes",
-            "description": "班级ID",
             "in": "query",
             "required": false,
             "type": "array",
@@ -373,14 +371,12 @@
         "parameters": [
           {
             "name": "query",
-            "description": "查询字符串",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "from",
-            "description": "从0开始",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -388,7 +384,6 @@
           },
           {
             "name": "size",
-            "description": "不大于20",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -743,7 +738,6 @@
         "parameters": [
           {
             "name": "classes",
-            "description": "班级ID",
             "in": "query",
             "required": false,
             "type": "array",
@@ -802,14 +796,12 @@
         "parameters": [
           {
             "name": "query",
-            "description": "查询字符串",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "from",
-            "description": "从0开始",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -817,7 +809,6 @@
           },
           {
             "name": "size",
-            "description": "不大于20",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -1269,8 +1260,7 @@
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "title": "班级ID列表"
+          }
         }
       }
     },
@@ -1288,8 +1278,7 @@
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "title": "班级ID列表"
+          }
         }
       }
     },
@@ -1300,8 +1289,7 @@
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "title": "班级ID列表"
+          }
         }
       }
     },
@@ -1328,8 +1316,7 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/v1ClassQueryInfo",
-          "title": "课程信息"
+          "$ref": "#/definitions/v1ClassQueryInfo"
         }
       }
     },
@@ -1338,21 +1325,17 @@
       "properties": {
         "classLast": {
           "type": "string",
-          "format": "int64",
-          "title": "上次课程同步成功时间戳"
+          "format": "int64"
         },
         "classLatest": {
-          "type": "boolean",
-          "title": "课程是否为最新同步数据"
+          "type": "boolean"
         },
         "numLast": {
           "type": "string",
-          "format": "int64",
-          "title": "上次课程人数同步成功时间戳"
+          "format": "int64"
         },
         "numLatest": {
-          "type": "boolean",
-          "title": "课程人数是否为最新同步数据"
+          "type": "boolean"
         },
         "classes": {
           "type": "array",
@@ -1373,8 +1356,7 @@
           "type": "string"
         },
         "data": {
-          "type": "string",
-          "title": "映射表JSON字符串"
+          "type": "string"
         }
       }
     },
@@ -1382,68 +1364,52 @@
       "type": "object",
       "properties": {
         "courseID": {
-          "type": "string",
-          "title": "课程ID"
+          "type": "string"
         },
         "courseName": {
-          "type": "string",
-          "title": "课程名称"
+          "type": "string"
         },
         "courseNature": {
-          "type": "string",
-          "title": "课程性质"
+          "type": "string"
         },
         "classID": {
-          "type": "string",
-          "title": "班级ID"
+          "type": "string"
         },
         "className": {
-          "type": "string",
-          "title": "班级名称"
+          "type": "string"
         },
         "campusID": {
-          "type": "string",
-          "title": "校区ID,需要映射"
+          "type": "string"
         },
         "classTime": {
-          "type": "string",
-          "title": "上课时间"
+          "type": "string"
         },
         "location": {
-          "type": "string",
-          "title": "上课地点"
+          "type": "string"
         },
         "teachingMethodID": {
-          "type": "string",
-          "title": "考试方式,需要映射"
+          "type": "string"
         },
         "teachingModel": {
-          "type": "string",
-          "title": "教学模式,需要映射"
+          "type": "string"
         },
         "teacherName": {
-          "type": "string",
-          "title": "教师姓名"
+          "type": "string"
         },
         "credit": {
-          "type": "string",
-          "title": "学分"
+          "type": "string"
         },
         "unitName": {
-          "type": "string",
-          "title": "开设学院名称"
+          "type": "string"
         },
         "examinationMethod": {
-          "type": "string",
-          "title": "考核方式,需要映射"
+          "type": "string"
         },
         "classList": {
-          "type": "string",
-          "title": "班级列表"
+          "type": "string"
         },
         "selectedStatus": {
-          "type": "string",
-          "title": "选课情况（人数信息）"
+          "type": "string"
         }
       }
     },

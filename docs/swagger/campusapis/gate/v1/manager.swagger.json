@@ -136,12 +136,10 @@
       "type": "object",
       "properties": {
         "done": {
-          "type": "boolean",
-          "title": "是否完成"
+          "type": "boolean"
         },
         "message": {
-          "type": "string",
-          "title": "完成信息"
+          "type": "string"
         }
       },
       "title": "推送学生门禁通行信息"
