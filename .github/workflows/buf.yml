@@ -8,10 +8,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: load Go 1.18 env
+      - name: load Go 1.19 env
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18
+          go-version: 1.19
         id: go
 
       - name: checkout
