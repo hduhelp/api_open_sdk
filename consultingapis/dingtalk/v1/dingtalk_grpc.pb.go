@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	DingTalkService_CreateClassChatGroup_FullMethodName = "/consultingapis.dingtalk.v1.DingTalkService/CreateClassChatGroup"
 	DingTalkService_GetClassChatGroup_FullMethodName    = "/consultingapis.dingtalk.v1.DingTalkService/GetClassChatGroup"
+	DingTalkService_MergeClassChatGroup_FullMethodName  = "/consultingapis.dingtalk.v1.DingTalkService/MergeClassChatGroup"
 	DingTalkService_SyncClassChatGroup_FullMethodName   = "/consultingapis.dingtalk.v1.DingTalkService/SyncClassChatGroup"
 )
 
@@ -30,6 +31,7 @@ const (
 type DingTalkServiceClient interface {
 	CreateClassChatGroup(ctx context.Context, in *CreateClassChatGroupRequest, opts ...grpc.CallOption) (*CreateClassChatGroupResponse, error)
 	GetClassChatGroup(ctx context.Context, in *GetClassChatGroupRequest, opts ...grpc.CallOption) (*GetClassChatGroupResponse, error)
+	MergeClassChatGroup(ctx context.Context, in *MergeClassChatGroupRequest, opts ...grpc.CallOption) (*MergeClassChatGroupResponse, error)
 	SyncClassChatGroup(ctx context.Context, in *SyncClassChatGroupRequest, opts ...grpc.CallOption) (*SyncClassChatGroupResponse, error)
 }
 
@@ -59,6 +61,15 @@ func (c *dingTalkServiceClient) GetClassChatGroup(ctx context.Context, in *GetCl
 	return out, nil
 }
 
+func (c *dingTalkServiceClient) MergeClassChatGroup(ctx context.Context, in *MergeClassChatGroupRequest, opts ...grpc.CallOption) (*MergeClassChatGroupResponse, error) {
+	out := new(MergeClassChatGroupResponse)
+	err := c.cc.Invoke(ctx, DingTalkService_MergeClassChatGroup_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dingTalkServiceClient) SyncClassChatGroup(ctx context.Context, in *SyncClassChatGroupRequest, opts ...grpc.CallOption) (*SyncClassChatGroupResponse, error) {
 	out := new(SyncClassChatGroupResponse)
 	err := c.cc.Invoke(ctx, DingTalkService_SyncClassChatGroup_FullMethodName, in, out, opts...)
@@ -74,6 +85,7 @@ func (c *dingTalkServiceClient) SyncClassChatGroup(ctx context.Context, in *Sync
 type DingTalkServiceServer interface {
 	CreateClassChatGroup(context.Context, *CreateClassChatGroupRequest) (*CreateClassChatGroupResponse, error)
 	GetClassChatGroup(context.Context, *GetClassChatGroupRequest) (*GetClassChatGroupResponse, error)
+	MergeClassChatGroup(context.Context, *MergeClassChatGroupRequest) (*MergeClassChatGroupResponse, error)
 	SyncClassChatGroup(context.Context, *SyncClassChatGroupRequest) (*SyncClassChatGroupResponse, error)
 	mustEmbedUnimplementedDingTalkServiceServer()
 }
@@ -87,6 +99,9 @@ func (UnimplementedDingTalkServiceServer) CreateClassChatGroup(context.Context, 
 }
 func (UnimplementedDingTalkServiceServer) GetClassChatGroup(context.Context, *GetClassChatGroupRequest) (*GetClassChatGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassChatGroup not implemented")
+}
+func (UnimplementedDingTalkServiceServer) MergeClassChatGroup(context.Context, *MergeClassChatGroupRequest) (*MergeClassChatGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MergeClassChatGroup not implemented")
 }
 func (UnimplementedDingTalkServiceServer) SyncClassChatGroup(context.Context, *SyncClassChatGroupRequest) (*SyncClassChatGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SyncClassChatGroup not implemented")
@@ -140,6 +155,24 @@ func _DingTalkService_GetClassChatGroup_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DingTalkService_MergeClassChatGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MergeClassChatGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DingTalkServiceServer).MergeClassChatGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DingTalkService_MergeClassChatGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DingTalkServiceServer).MergeClassChatGroup(ctx, req.(*MergeClassChatGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DingTalkService_SyncClassChatGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SyncClassChatGroupRequest)
 	if err := dec(in); err != nil {
@@ -172,6 +205,10 @@ var DingTalkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetClassChatGroup",
 			Handler:    _DingTalkService_GetClassChatGroup_Handler,
+		},
+		{
+			MethodName: "MergeClassChatGroup",
+			Handler:    _DingTalkService_MergeClassChatGroup_Handler,
 		},
 		{
 			MethodName: "SyncClassChatGroup",
