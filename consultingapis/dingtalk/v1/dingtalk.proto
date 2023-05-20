@@ -20,6 +20,12 @@ service DingTalkService {
     };
   }
 
+  rpc MergeClassChatGroup(MergeClassChatGroupRequest) returns (MergeClassChatGroupResponse) {
+    option (google.api.http) = {
+      get: "/dingtalk/chat/v1/merge"
+    };
+  }
+
   rpc SyncClassChatGroup(SyncClassChatGroupRequest) returns (SyncClassChatGroupResponse) {
     option (google.api.http) = {
       get: "/dingtalk/chat/v1/sync"
@@ -28,7 +34,7 @@ service DingTalkService {
 }
 
 message CreateClassChatGroupRequest {
-  repeated string class_id = 1;
+  string class_id = 1;
   Body body = 2;
 
   message Body {
@@ -42,15 +48,26 @@ message CreateClassChatGroupResponse {
   string invite_url = 3;
 }
 
+message MergeClassChatGroupRequest {
+  string class_id = 1;
+  string openConversationId = 2;
+}
+
+message MergeClassChatGroupResponse {}
+
 message GetClassChatGroupRequest {
   string class_id = 1;
 }
 
 message GetClassChatGroupResponse {
-  bool has_chat = 1;
-  string chat_id = 2;
-  string openConversationId = 3;
-  string invite_url = 4;
+  repeated Chat chats = 1;
+
+  message Chat {
+    string chat_id = 1;
+    string openConversationId = 2;
+    string invite_url = 3;
+    int64 created_at = 4;
+  }
 }
 
 message SyncClassChatGroupRequest {
