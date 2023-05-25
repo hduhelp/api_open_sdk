@@ -3,6 +3,8 @@ package grpcgateway
 import (
 	"context"
 	"fmt"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
+	"go.opentelemetry.io/otel"
 	"log"
 	"net"
 	"net/http"
@@ -57,7 +59,7 @@ func GRPCServerListener(mux cmux.CMux) net.Listener {
 }
 
 func DefaultHTTPServer(handler http.Handler) *http.Server {
-	return HTTPServer(handler, WithLogger, WithResponseWriter)
+	return HTTPServer(handler, WithLogger, WithResponseWriter, WithOpenTelemetry)
 }
 
 func HTTPServer(handler http.Handler, warps ...func(http.Handler) http.Handler) *http.Server {
@@ -72,4 +74,8 @@ func WithLogger(handler http.Handler) http.Handler {
 		m := httpsnoop.CaptureMetrics(handler, writer, request)
 		log.Printf("http[%d]-- %s -- %s\n", m.Code, m.Duration, request.URL.Path)
 	})
+}
+
+func WithOpenTelemetry(handler http.Handler) http.Handler {
+	return otelhttp.NewHandler(handler, "grpc-gateway-server", otelhttp.WithTracerProvider(otel.GetTracerProvider()))
 }

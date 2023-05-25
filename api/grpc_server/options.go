@@ -3,13 +3,12 @@ package grpcserver
 import (
 	"context"
 	"errors"
-
+	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 
-	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
@@ -28,16 +27,18 @@ var DefaultCtxTagsOptions = []grpc_ctxtags.Option{
 }
 
 var DefaultServerOptions = []grpc.ServerOption{
-	grpc_middleware.WithStreamServerChain(
+	grpc.ChainStreamInterceptor(
 		grpc_recovery.StreamServerInterceptor(DefaultRecoveryOptions...),
 		grpc_ctxtags.StreamServerInterceptor(DefaultCtxTagsOptions...),
 		grpc_prometheus.StreamServerInterceptor,
+		otelgrpc.StreamServerInterceptor(),
 		grpc_auth.StreamServerInterceptor(GrpcSignCheckFunc),
 	),
-	grpc_middleware.WithUnaryServerChain(
+	grpc.ChainUnaryInterceptor(
 		grpc_recovery.UnaryServerInterceptor(DefaultRecoveryOptions...),
 		grpc_ctxtags.UnaryServerInterceptor(DefaultCtxTagsOptions...),
 		grpc_prometheus.UnaryServerInterceptor,
+		otelgrpc.UnaryServerInterceptor(),
 		grpc_auth.UnaryServerInterceptor(GrpcSignCheckFunc),
 	),
 }
