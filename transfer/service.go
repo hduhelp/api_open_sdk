@@ -1,10 +1,5 @@
 package transfer
 
-import (
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/propagation"
-)
-
 var instance *Server
 
 type Server struct {
@@ -13,8 +8,6 @@ type Server struct {
 	endpoint string
 
 	debug bool
-
-	propagator propagation.TextMapPropagator
 }
 
 func Init(appID, appKey string, options ...interface {
@@ -37,11 +30,4 @@ func defaultServer() *Server {
 	return &Server{
 		endpoint: "https://api.hduhelp.com/transfer",
 	}
-}
-
-func (s *Server) getPropagator() propagation.TextMapPropagator {
-	if s.propagator == nil {
-		return otel.GetTextMapPropagator()
-	}
-	return s.propagator
 }

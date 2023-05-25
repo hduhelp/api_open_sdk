@@ -1,8 +1,11 @@
 package notify
 
 import (
+	"context"
 	"errors"
 	"github.com/parnurzeal/gorequest"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
 	"sync"
 )
 
@@ -53,6 +56,7 @@ type SendResult struct {
 }
 
 type Template struct {
+	ctx      context.Context
 	StaffID  []string            `json:"StaffID"`
 	WeChat   *WeChatNoticeBody   `json:"template,omitempty"`
 	DingTalk *DingTalkNoticeBody `json:"dingtalk,omitempty"`
@@ -61,6 +65,11 @@ type Template struct {
 
 func New() *Template {
 	return &Template{}
+}
+
+func (t *Template) WithContext(ctx context.Context) *Template {
+	t.ctx = ctx
+	return t
 }
 
 func (t *Template) Receiver(staffId ...string) *Template {
@@ -95,8 +104,12 @@ func (t *Template) Send() error {
 
 	notifier := notifierPool.Get().(*gorequest.SuperAgent)
 	defer notifierPool.Put(notifier)
-	_, _, errs := notifier.Send(t).EndStruct(result)
 
+	// Add tracing information to the request header.
+	propagator := otel.GetTextMapPropagator()
+	propagator.Inject(t.ctx, propagation.HeaderCarrier(notifier.Header))
+
+	_, _, errs := notifier.Send(t).EndStruct(result)
 	if errs != nil || result.Msg != "success" || result.Data.Failed != 0 {
 		return errors.New("send notify failed")
 	}

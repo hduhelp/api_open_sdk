@@ -2,7 +2,6 @@ package transfer
 
 import (
 	"github.com/pkg/errors"
-	"go.opentelemetry.io/otel/propagation"
 	"log"
 	"net"
 	"net/url"
@@ -51,16 +50,4 @@ func (s Cache) apply(request *Request) {
 	if !s.bool {
 		request.SuperAgent.Header.Del("x-hduhelp-cache")
 	}
-}
-
-type PropagatorManager struct {
-	propagator propagation.TextMapPropagator
-}
-
-func WithPropagator(propagator propagation.TextMapPropagator) interface{ apply() } {
-	return PropagatorManager{propagator: propagator}
-}
-
-func (p PropagatorManager) apply() {
-	instance.propagator = p.propagator
 }

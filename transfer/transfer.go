@@ -141,7 +141,7 @@ func (r *Request) EndStruct(data interface{}) error {
 	defer span.End()
 
 	r.make() // 会把 SuperAgent 清空
-	instance.getPropagator().Inject(newCtx, propagation.HeaderCarrier(r.SuperAgent.Header))
+	otel.GetTextMapPropagator().Inject(newCtx, propagation.HeaderCarrier(r.SuperAgent.Header))
 
 	var bytes []byte
 	r.ResponseData = new(Response)
