@@ -105,7 +105,7 @@ func (t *Template) Send() error {
 	notifier := notifierPool.Get().(*gorequest.SuperAgent)
 	defer notifierPool.Put(notifier)
 
-	if t.ctx == nil {
+	if t.ctx != nil {
 		// Add tracing information to the request header.
 		propagator := otel.GetTextMapPropagator()
 		propagator.Inject(t.ctx, propagation.HeaderCarrier(notifier.Header))
