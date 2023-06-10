@@ -1,6 +1,7 @@
 package teachingv1
 
 import (
+	"context"
 	"errors"
 
 	"github.com/hduhelp/api_open_sdk/campusapis/schoolTime"
@@ -8,6 +9,8 @@ import (
 )
 
 type CourseQuery struct {
+	ctx context.Context
+
 	QueryStaff *staff.Staff
 	Queries    []Queryable
 
@@ -30,7 +33,7 @@ func (q CourseQuery) GetOptionShowMemberOption() OptionShowMember {
 }
 
 type Queryable interface {
-	GetCourses(staff *staff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
+	GetCourses(ctx context.Context, staff *staff.Staff, semester *schoolTime.Semester, schoolYear *schoolTime.SchoolYear) ([]CourseReader, error)
 }
 
 func NewCourseQuery(staff *staff.Staff, st *schoolTime.SchoolDate, q ...Queryable) *CourseQuery {
@@ -55,7 +58,7 @@ func (q *CourseQuery) GetCourses() (*CourseQuery, error) {
 	//从课程信息接口查询对应学期课程信息
 	q.Courses = make([]CourseReader, 0)
 	for _, v := range q.Queries {
-		courses, err := v.GetCourses(q.QueryStaff, q.SchoolDate.Semester, q.SchoolDate.SchoolYear)
+		courses, err := v.GetCourses(q.ctx, q.QueryStaff, q.SchoolDate.Semester, q.SchoolDate.SchoolYear)
 		if err != nil {
 			return q, err
 		}
