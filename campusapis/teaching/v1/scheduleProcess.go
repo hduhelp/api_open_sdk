@@ -58,7 +58,7 @@ func (courses *Courses) FilterBySchedule(remains ...RemainFunc) *Courses {
 //	return courses.FilterBySchedule(RemainByWeekdays(weekdays...))
 //}
 
-const timeStart = 1677427200 // 2023-02-27 00:00:00
+const timeStart = 1694361600 // 2023-09-11 00:00:00
 
 // RemainThisWeek 留下本星期的课程
 func RemainThisWeek(day time.Time) RemainFunc {
