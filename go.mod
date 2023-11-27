@@ -15,9 +15,11 @@ require (
 	github.com/parnurzeal/gorequest v0.2.16
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pkg/errors v0.9.1
+	github.com/rabbitmq/amqp091-go v1.9.0
 	github.com/samber/lo v1.38.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sethvargo/go-envconfig v0.9.0
+	github.com/silenceper/wechat/v2 v2.1.6
 	github.com/soheilhy/cmux v0.1.5
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.42.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.42.0
