@@ -17,12 +17,12 @@ func TestSendNotify(t *testing.T) {
 		SetData("keyword4", "通知内容", "")                           // 通知内容
 	notice.Receiver("12345678")
 
-	p, err := NewProducer("sdk_test", "amqpURL")
+	p, err := NewProducer("sdk_test", "amqpURL") // 创建一个MQ连接负责消息生产
 	if err != nil {
 		t.Error(err)
 	}
 
-	err = p.PublishNotice(context.Background(), notice)
+	err = p.PublishNotice(context.Background(), notice) // 发送消息
 	if err != nil {
 		t.Error(err)
 	}

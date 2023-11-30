@@ -5,6 +5,7 @@ import (
 	"crypto/md5"
 	"fmt"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"go.opentelemetry.io/otel"
 )
 
 type Producer struct {
@@ -86,6 +87,10 @@ func parseOptions(options []string) map[string]string {
 
 func (p *Producer) publish(ctx context.Context, key string, msg []byte, opts map[string]string) error {
 
+	carrier := RabbitMQHeaderCarrier{}
+	otel.GetTextMapPropagator().Inject(ctx, carrier)
+	headers := amqp.Table(carrier)
+
 	err := p.Channel.PublishWithContext(
 		ctx,
 		exchangeName,
@@ -99,6 +104,7 @@ func (p *Producer) publish(ctx context.Context, key string, msg []byte, opts map
 			AppId:        p.appId,
 			UserId:       opts[UserIdKey],
 			MessageId:    fmt.Sprintf("%x", md5.Sum(msg)),
+			Headers:      headers,
 		})
 
 	return err
