@@ -1448,6 +1448,10 @@
         "selectedStatus": {
           "type": "string",
           "title": "选课情况（人数信息）"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注"
         }
       }
     },
