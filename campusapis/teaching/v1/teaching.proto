@@ -586,6 +586,7 @@ message ClassQuerySearchClass {
   string examinationMethod = 14; // 考核方式,需要映射
   string classList = 15; // 班级列表
   string selectedStatus = 16; // 选课情况（人数信息）
+  string remark = 17; // 备注
 }
 
 message ClassQueryMapResponse {
