@@ -489,6 +489,8 @@ message GetUnusedClassroomsRequest {
   int32 week = 4;
   //节次
   int32 section = 5;
+  //教学楼
+  int32 buildingID = 6;
 }
 
 message GetClassroomsResponse {
