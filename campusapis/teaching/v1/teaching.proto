@@ -490,7 +490,7 @@ message GetUnusedClassroomsRequest {
   //节次
   int32 section = 5;
   //教学楼
-  int32 buildingID = 6;
+  string buildingID = 6;
 }
 
 message GetClassroomsResponse {
