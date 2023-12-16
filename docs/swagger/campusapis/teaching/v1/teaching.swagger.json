@@ -501,8 +501,7 @@
             "description": "教学楼",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         ],
         "tags": [
@@ -938,8 +937,7 @@
             "description": "教学楼",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         ],
         "tags": [
