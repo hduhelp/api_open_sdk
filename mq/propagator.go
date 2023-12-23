@@ -14,7 +14,8 @@ func (hc RabbitMQHeaderCarrier) Get(key string) string {
 
 // Set stores the key-value pair.
 func (hc RabbitMQHeaderCarrier) Set(key string, value string) {
-	hc.Set(key, value)
+	//hc.Set(key, value)
+	hc[key] = value
 }
 
 // Keys lists the keys stored in this carrier.
