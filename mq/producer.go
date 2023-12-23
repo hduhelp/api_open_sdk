@@ -62,7 +62,7 @@ func (p *Producer) PublishNotice(ctx context.Context, data *NoticeTemplate, opti
 			if staffId == "" {
 				continue
 			}
-			body, err := MarshalWechatBody(staffId, data.WeChat)
+			body, err := MarshalDingTalkBody(staffId, data.DingTalk)
 			if err != nil {
 				return err
 			}
