@@ -109,7 +109,7 @@ service CampusService {
   // 获取全局成绩，用于推送成绩信息，仅内部使用
   rpc GetGlobalStudentGrade(GetGlobalStudentGradeRequest) returns (GetGlobalStudentGradeResponse) {
     option (google.api.http) = {
-      get: "/private/staff/v1/global/student/grade"
+      get: "/staff/v1/global/student/grade"
     };
   }
 
@@ -223,6 +223,10 @@ message GetGlobalStudentGradeRequest {
   string schoolYear = 1;
   //学期，枚举：第一学期 | 第二学期
   string semester = 2;
+  //时间戳
+  int64 timestamp = 3;
+  //时长范围
+  int64 duration = 4;
 }
 
 message GetStudentExamRequest {
@@ -479,22 +483,14 @@ message GlobalStudentGrade {
   string schoolYear = 1;
   //学期
   string semester = 2;
-  //选课号
-  string selectCode = 3;
-  //最后分数
-  string score = 4;
   //课程号
-  string courseCode = 5;
+  string courseCode = 3;
   //课程名
-  string course = 6;
+  string course = 4;
   //学号
-  string staffId = 7;
-  //学分
-  string credit = 8;
-  //GPA
-  string GPA = 9;
+  string staffId = 5;
   //操作时间
-  string updateAt = 10;
+  string updateAt = 6;
 }
 
 // 查询学生考试返回体
