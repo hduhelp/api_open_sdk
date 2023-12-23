@@ -1394,7 +1394,7 @@ func RegisterCampusServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade", runtime.WithHTTPPathPattern("/private/staff/v1/global/student/grade"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/global/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2179,7 +2179,7 @@ func RegisterCampusServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade", runtime.WithHTTPPathPattern("/private/staff/v1/global/student/grade"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/global/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2521,7 +2521,7 @@ var (
 
 	pattern_CampusService_GetStudentGrade_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "grade"}, ""))
 
-	pattern_CampusService_GetGlobalStudentGrade_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"private", "staff", "v1", "global", "student", "grade"}, ""))
+	pattern_CampusService_GetGlobalStudentGrade_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"staff", "v1", "global", "student", "grade"}, ""))
 
 	pattern_CampusService_GetStudentExam_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "exam"}, ""))
 

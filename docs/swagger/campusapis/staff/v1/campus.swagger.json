@@ -177,45 +177,6 @@
         ]
       }
     },
-    "/private/staff/v1/global/student/grade": {
-      "get": {
-        "summary": "获取全局成绩，用于推送成绩信息，仅内部使用",
-        "operationId": "CampusService_GetGlobalStudentGrade",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetGlobalStudentGradeResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "schoolYear",
-            "description": "学年，只支持一种格式，例：2021-2022学年，应传 2021",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "description": "学期，枚举：第一学期 | 第二学期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "CampusService"
-        ]
-      }
-    },
     "/staff/v1/freshman/base": {
       "get": {
         "summary": "获取新生基本信息",
@@ -347,6 +308,61 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/global/student/grade": {
+      "get": {
+        "summary": "获取全局成绩，用于推送成绩信息，仅内部使用",
+        "operationId": "CampusService_GetGlobalStudentGrade",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetGlobalStudentGradeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolYear",
+            "description": "学年，只支持一种格式，例：2021-2022学年，应传 2021",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semester",
+            "description": "学期，枚举：第一学期 | 第二学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "description": "时间戳",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "duration",
+            "description": "时长范围",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -1628,14 +1644,6 @@
           "type": "string",
           "title": "学期"
         },
-        "selectCode": {
-          "type": "string",
-          "title": "选课号"
-        },
-        "score": {
-          "type": "string",
-          "title": "最后分数"
-        },
         "courseCode": {
           "type": "string",
           "title": "课程号"
@@ -1647,14 +1655,6 @@
         "staffId": {
           "type": "string",
           "title": "学号"
-        },
-        "credit": {
-          "type": "string",
-          "title": "学分"
-        },
-        "GPA": {
-          "type": "string",
-          "title": "GPA"
         },
         "updateAt": {
           "type": "string",
