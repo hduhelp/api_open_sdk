@@ -489,12 +489,10 @@ message GlobalStudentGrade {
   string course = 4;
   //学号
   string staffId = 5;
-  //姓名
-  string staffName = 6;
   //总成绩
-  string score = 7;
+  string score = 6;
   //操作时间
-  string updateAt = 8;
+  string updateAt = 7;
 }
 
 // 查询学生考试返回体
