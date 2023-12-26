@@ -109,7 +109,7 @@ service CampusService {
   // 获取全局成绩，用于推送成绩信息，仅内部使用
   rpc GetGlobalStudentGrade(GetGlobalStudentGradeRequest) returns (GetGlobalStudentGradeResponse) {
     option (google.api.http) = {
-      get: "/staff/v1/global/student/grade"
+      get: "/private/staff/v1/global/student/grade"
     };
   }
 
@@ -489,8 +489,12 @@ message GlobalStudentGrade {
   string course = 4;
   //学号
   string staffId = 5;
+  //姓名
+  string staffName = 6;
+  //总成绩
+  string score = 7;
   //操作时间
-  string updateAt = 6;
+  string updateAt = 8;
 }
 
 // 查询学生考试返回体
