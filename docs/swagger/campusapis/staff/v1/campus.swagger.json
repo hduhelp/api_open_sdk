@@ -1656,10 +1656,6 @@
           "type": "string",
           "title": "学号"
         },
-        "staffName": {
-          "type": "string",
-          "title": "姓名"
-        },
         "score": {
           "type": "string",
           "title": "总成绩"
