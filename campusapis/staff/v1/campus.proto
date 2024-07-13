@@ -195,6 +195,8 @@ message PersonInfo {
   string staffType = 4;
   //学院代码
   string unitCode = 5;
+  // 年级
+  string grade = 6;
 }
 
 message GetStudentRewardsRequest {
