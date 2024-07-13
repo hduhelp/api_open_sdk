@@ -1689,6 +1689,10 @@
         "unitCode": {
           "type": "string",
           "title": "学院代码"
+        },
+        "grade": {
+          "type": "string",
+          "title": "年级"
         }
       }
     },
