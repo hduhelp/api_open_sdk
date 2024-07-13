@@ -38,6 +38,8 @@ message Info {
   string unitCode = 5;
   // 学院名称
   string unitName = 6;
+  // 年级
+  string grade = 7;
 }
 
 // 人员列表
