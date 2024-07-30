@@ -394,7 +394,7 @@ message GetScheduleNowV3Response {
   repeated Data data = 3;
 
   message Data {
-    string Date = 1;
+    string date = 1;
     repeated GetScheduleNowResponse_Course classes = 2;
   }
 }
