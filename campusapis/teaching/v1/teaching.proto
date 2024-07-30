@@ -345,30 +345,30 @@ message GetScheduleNowResponse {
 
   message Data {
     // 今天课表
-    repeated Course today = 1;
+    repeated GetScheduleNowResponse_Course today = 1;
     // 明天课表
-    repeated Course tomorrow = 2;
+    repeated GetScheduleNowResponse_Course tomorrow = 2;
   }
+}
 
-  // 课表
-  message Course {
-    // 开始节次
-    int32 start_section = 1;
-    // 结束节次
-    int32 end_section = 2;
-    // 上课时间
-    string start_time = 3;
-    // 下课时间
-    string end_time = 4;
-    // 课程名
-    string course_name = 5;
-    // 教室
-    string classroom = 6;
-    // 老师
-    string teacher = 7;
-    // 时长
-    string duration = 8;
-  }
+// 课表
+message GetScheduleNowResponse_Course {
+  // 开始节次
+  int32 start_section = 1;
+  // 结束节次
+  int32 end_section = 2;
+  // 上课时间
+  string start_time = 3;
+  // 下课时间
+  string end_time = 4;
+  // 课程名
+  string course_name = 5;
+  // 教室
+  string classroom = 6;
+  // 老师
+  string teacher = 7;
+  // 时长
+  string duration = 8;
 }
 
 // GetScheduleNowV2Response 今天，明天课表信息返回体
@@ -395,7 +395,7 @@ message GetScheduleNowV3Response {
 
   message Data {
     string Date = 1;
-    repeated ScheduleResponseCourse classes = 2;
+    repeated GetScheduleNowResponse_Course classes = 2;
   }
 }
 
