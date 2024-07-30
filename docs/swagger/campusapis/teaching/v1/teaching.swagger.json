@@ -1763,7 +1763,7 @@
     "v1GetScheduleNowV3ResponseData": {
       "type": "object",
       "properties": {
-        "Date": {
+        "date": {
           "type": "string"
         },
         "classes": {
