@@ -63,6 +63,13 @@ service TeachingService {
     };
   }
 
+  // 获取学生/教师当前课程表
+  rpc GetScheduleNowV3(google.protobuf.Empty) returns (GetScheduleNowV3Response) {
+    option (google.api.http) = {
+      get: "/student/schedule/now/v3"
+    };
+  }
+
   // 获取全局课表，用于推送课程信息，仅内部使用
   rpc GetGlobalSchedule(GetGlobalScheduleRequest) returns (GetGlobalScheduleResponse) {
     option (google.api.http) = {
@@ -377,6 +384,18 @@ message GetScheduleNowV2Response {
     repeated ScheduleResponseCourse Tomorrow = 2;
     // 近期有无课程
     bool HasCourseRecently = 3;
+  }
+}
+
+// GetScheduleNowV3Response 未来n天课表信息返回体
+message GetScheduleNowV3Response {
+  int32 error = 1;
+  string msg = 2;
+  repeated Data data = 3;
+
+  message Data {
+    string Date = 1;
+    repeated ScheduleResponseCourse classes = 2;
   }
 }
 
