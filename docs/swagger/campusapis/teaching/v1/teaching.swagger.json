@@ -1125,46 +1125,6 @@
     }
   },
   "definitions": {
-    "GetScheduleNowResponseCourse": {
-      "type": "object",
-      "properties": {
-        "startSection": {
-          "type": "integer",
-          "format": "int32",
-          "title": "开始节次"
-        },
-        "endSection": {
-          "type": "integer",
-          "format": "int32",
-          "title": "结束节次"
-        },
-        "startTime": {
-          "type": "string",
-          "title": "上课时间"
-        },
-        "endTime": {
-          "type": "string",
-          "title": "下课时间"
-        },
-        "courseName": {
-          "type": "string",
-          "title": "课程名"
-        },
-        "classroom": {
-          "type": "string",
-          "title": "教室"
-        },
-        "teacher": {
-          "type": "string",
-          "title": "老师"
-        },
-        "duration": {
-          "type": "string",
-          "title": "时长"
-        }
-      },
-      "title": "课表"
-    },
     "ScheduleResponseCourseScheduleInfo": {
       "type": "object",
       "properties": {
@@ -1685,7 +1645,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/GetScheduleNowResponseCourse"
+            "$ref": "#/definitions/v1GetScheduleNowResponse_Course"
           },
           "title": "今天课表"
         },
@@ -1693,11 +1653,51 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/GetScheduleNowResponseCourse"
+            "$ref": "#/definitions/v1GetScheduleNowResponse_Course"
           },
           "title": "明天课表"
         }
       }
+    },
+    "v1GetScheduleNowResponse_Course": {
+      "type": "object",
+      "properties": {
+        "startSection": {
+          "type": "integer",
+          "format": "int32",
+          "title": "开始节次"
+        },
+        "endSection": {
+          "type": "integer",
+          "format": "int32",
+          "title": "结束节次"
+        },
+        "startTime": {
+          "type": "string",
+          "title": "上课时间"
+        },
+        "endTime": {
+          "type": "string",
+          "title": "下课时间"
+        },
+        "courseName": {
+          "type": "string",
+          "title": "课程名"
+        },
+        "classroom": {
+          "type": "string",
+          "title": "教室"
+        },
+        "teacher": {
+          "type": "string",
+          "title": "老师"
+        },
+        "duration": {
+          "type": "string",
+          "title": "时长"
+        }
+      },
+      "title": "课表"
     },
     "v1GetScheduleNowV2Response": {
       "type": "object",
@@ -1770,7 +1770,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1ScheduleResponseCourse"
+            "$ref": "#/definitions/v1GetScheduleNowResponse_Course"
           }
         }
       }
