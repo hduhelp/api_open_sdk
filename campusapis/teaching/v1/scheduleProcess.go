@@ -1,6 +1,7 @@
 package teachingv1
 
 import (
+	"github.com/hduhelp/api_open_sdk/schoolConst"
 	"math"
 	"sort"
 	"time"
@@ -58,7 +59,7 @@ func (courses *Courses) FilterBySchedule(remains ...RemainFunc) *Courses {
 //	return courses.FilterBySchedule(RemainByWeekdays(weekdays...))
 //}
 
-const timeStart = 1709481600 // 2023-03-04 00:00:00
+const timeStart = schoolConst.SemesterStartTimestamp
 
 // RemainThisWeek 留下本星期的课程
 func RemainThisWeek(day time.Time) RemainFunc {
