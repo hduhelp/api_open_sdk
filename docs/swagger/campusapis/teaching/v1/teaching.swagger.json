@@ -93,6 +93,29 @@
         ]
       }
     },
+    "/student/schedule/now/v3": {
+      "get": {
+        "summary": "获取学生/教师当前课程表",
+        "operationId": "TeachingService_GetScheduleNowV3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetScheduleNowV3Response"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TeachingService"
+        ]
+      }
+    },
     "/student/v2/schedule": {
       "get": {
         "summary": "获取学生/教师课程表",
@@ -1714,6 +1737,41 @@
         "HasCourseRecently": {
           "type": "boolean",
           "title": "近期有无课程"
+        }
+      }
+    },
+    "v1GetScheduleNowV3Response": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1GetScheduleNowV3ResponseData"
+          }
+        }
+      },
+      "title": "GetScheduleNowV3Response 未来n天课表信息返回体"
+    },
+    "v1GetScheduleNowV3ResponseData": {
+      "type": "object",
+      "properties": {
+        "Date": {
+          "type": "string"
+        },
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ScheduleResponseCourse"
+          }
         }
       }
     },

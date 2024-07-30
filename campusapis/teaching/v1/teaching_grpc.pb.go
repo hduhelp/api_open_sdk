@@ -23,6 +23,7 @@ const (
 	TeachingService_GetSchedule_FullMethodName         = "/campusapis.teaching.v1.TeachingService/GetSchedule"
 	TeachingService_GetScheduleNow_FullMethodName      = "/campusapis.teaching.v1.TeachingService/GetScheduleNow"
 	TeachingService_GetScheduleNowV2_FullMethodName    = "/campusapis.teaching.v1.TeachingService/GetScheduleNowV2"
+	TeachingService_GetScheduleNowV3_FullMethodName    = "/campusapis.teaching.v1.TeachingService/GetScheduleNowV3"
 	TeachingService_GetGlobalSchedule_FullMethodName   = "/campusapis.teaching.v1.TeachingService/GetGlobalSchedule"
 	TeachingService_GetClassDetail_FullMethodName      = "/campusapis.teaching.v1.TeachingService/GetClassDetail"
 	TeachingService_GetClassrooms_FullMethodName       = "/campusapis.teaching.v1.TeachingService/GetClassrooms"
@@ -46,6 +47,8 @@ type TeachingServiceClient interface {
 	GetScheduleNow(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetScheduleNowResponse, error)
 	// 获取学生/教师当前课程表V2 返回更详细的信息
 	GetScheduleNowV2(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetScheduleNowV2Response, error)
+	// 获取学生/教师当前课程表
+	GetScheduleNowV3(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetScheduleNowV3Response, error)
 	// 获取全局课表，用于推送课程信息，仅内部使用
 	GetGlobalSchedule(ctx context.Context, in *GetGlobalScheduleRequest, opts ...grpc.CallOption) (*GetGlobalScheduleResponse, error)
 	// 通过CLASS_ID获取学生老师列表
@@ -99,6 +102,15 @@ func (c *teachingServiceClient) GetScheduleNow(ctx context.Context, in *emptypb.
 func (c *teachingServiceClient) GetScheduleNowV2(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetScheduleNowV2Response, error) {
 	out := new(GetScheduleNowV2Response)
 	err := c.cc.Invoke(ctx, TeachingService_GetScheduleNowV2_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teachingServiceClient) GetScheduleNowV3(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetScheduleNowV3Response, error) {
+	out := new(GetScheduleNowV3Response)
+	err := c.cc.Invoke(ctx, TeachingService_GetScheduleNowV3_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -214,6 +226,8 @@ type TeachingServiceServer interface {
 	GetScheduleNow(context.Context, *emptypb.Empty) (*GetScheduleNowResponse, error)
 	// 获取学生/教师当前课程表V2 返回更详细的信息
 	GetScheduleNowV2(context.Context, *emptypb.Empty) (*GetScheduleNowV2Response, error)
+	// 获取学生/教师当前课程表
+	GetScheduleNowV3(context.Context, *emptypb.Empty) (*GetScheduleNowV3Response, error)
 	// 获取全局课表，用于推送课程信息，仅内部使用
 	GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error)
 	// 通过CLASS_ID获取学生老师列表
@@ -251,6 +265,9 @@ func (UnimplementedTeachingServiceServer) GetScheduleNow(context.Context, *empty
 }
 func (UnimplementedTeachingServiceServer) GetScheduleNowV2(context.Context, *emptypb.Empty) (*GetScheduleNowV2Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetScheduleNowV2 not implemented")
+}
+func (UnimplementedTeachingServiceServer) GetScheduleNowV3(context.Context, *emptypb.Empty) (*GetScheduleNowV3Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScheduleNowV3 not implemented")
 }
 func (UnimplementedTeachingServiceServer) GetGlobalSchedule(context.Context, *GetGlobalScheduleRequest) (*GetGlobalScheduleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGlobalSchedule not implemented")
@@ -348,6 +365,24 @@ func _TeachingService_GetScheduleNowV2_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TeachingServiceServer).GetScheduleNowV2(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeachingService_GetScheduleNowV3_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeachingServiceServer).GetScheduleNowV3(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeachingService_GetScheduleNowV3_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeachingServiceServer).GetScheduleNowV3(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -568,6 +603,10 @@ var TeachingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetScheduleNowV2",
 			Handler:    _TeachingService_GetScheduleNowV2_Handler,
+		},
+		{
+			MethodName: "GetScheduleNowV3",
+			Handler:    _TeachingService_GetScheduleNowV3_Handler,
 		},
 		{
 			MethodName: "GetGlobalSchedule",
