@@ -1,33 +1,10 @@
 syntax = "proto3";
 
-package campusapis.sklInfo.v1;
+package campusapis.skl.v1;
 
 import "google/api/annotations.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "./campusapis/sklInfo/v1";
-
-option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-  info: {
-    title: "SklInfo API";
-    version: "0.1";
-    description: "SklInfo API";
-    contact: {
-      name: "hduhelp salmon base project";
-      url: "https://github.com/hduhelp/salmon_api_base";
-      email: "none@example.com";
-    };
-    license: {
-      name: "BSD 3-Clause License";
-      url: "https://github.com/grpc-ecosystem/grpc-gateway/blob/master/LICENSE.txt";
-    };
-  };
-  schemes: HTTPS;
-  consumes: "application/json";
-  produces: "application/json";
-};
-
-
+option go_package = "./campusapis/skl/v1";
 
 
 //// Skl 数据库中的student_history_info表
@@ -67,13 +44,13 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 //  string StudentId = 11; // 学号
 //}
 
-service SklInfoService {
+service SklService {
   // 获取某学院某年级的学生信息
-  rpc GetSklUnitInfo(SklUnitInfoRequest) returns (SklUnitInfo) {
+  rpc GetStaffUnitInfo(StaffUnitInfoRequest) returns (StaffUnitInfoResponse) {
     option (google.api.http) = {
-      get: "/v1/sklInfo/unitInfo"
+      get: "/skl/unitInfo"
       additional_bindings {
-        get: "/sklInfo/unitInfo"
+        get: "/skl/v1/unitInfo"
       }
     };
   }
@@ -81,21 +58,21 @@ service SklInfoService {
 
 // 用于从Skl数据库中筛选某年级某学院的学生
 message SklUnitInfo {
-  string UnitId = 1; // 学院ID
-  string UnitName = 2; // 学院名称
-  string Grade = 3; // 年级
-  repeated string Teachers = 4; // 辅导员
-  repeated string Students = 5; // 学生
+  string unitId = 1; // 学院ID
+  string unitName = 2; // 学院名称
+  string grade = 3; // 年级
+  repeated string teachers = 4; // 辅导员
+  repeated string classNos = 5;
 }
 
-message SklUnitInfoRequest {
+message StaffUnitInfoRequest {
   string StaffId = 1; // 学/工号
 }
 
-message SklUnitInfoResponse {
+message StaffUnitInfoResponse {
   int32 error = 1;
   string msg = 2;
-  SklUnitInfo sklUnitInfo = 3;
+  repeated SklUnitInfo data = 3;
 }
 
 
