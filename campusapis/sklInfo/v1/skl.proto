@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package campusapis.sklInfo.v1;
+
+import "campusapis/schoolTime/defined.proto";
+import "campusapis/staff/base.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "./campusapis/sklInfo/v1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "SklInfo API";
+    version: "0.1";
+    description: "SklInfo API";
+    contact: {
+      name: "hduhelp salmon base project";
+      url: "https://github.com/hduhelp/salmon_api_base";
+      email: "none@example.com";
+    };
+    license: {
+      name: "BSD 3-Clause License";
+      url: "https://github.com/grpc-ecosystem/grpc-gateway/blob/master/LICENSE.txt";
+    };
+  };
+  schemes: HTTPS;
+  consumes: "application/json";
+  produces: "application/json";
+};
+
+
+
+
+// Skl 数据库中的student_history_info表
+message SklStudentHistoryInfo {
+  string StudentName = 1; // 学生姓名
+  string UnitId = 2; // 学院ID
+  //18,卓越学院
+  //27,网络空间安全学院（浙江保密学院）
+  //14,会计学院
+  //06,自动化学院（人工智能学院）
+  //15,经济学院
+  //01,机械工程学院
+  //07,理学院
+  //03,管理学院
+  //05,计算机学院（软件学院）
+  //34,法学院
+  //11,外国语学院
+  //08,通信工程学院
+  //33,人文艺术与数字媒体学院
+  //20,材料与环境工程学院
+  //12,人文与法学院
+  //17,国际教育学院
+  //28,人文艺术与数字媒体学院、法学院
+  //22,数字媒体与艺术设计学院
+  //32,圣光机联合学院
+  //31,继续教育学院
+  //04,电子信息学院（集成电路科学与工程学院）
+  //19,生命信息与仪器工程学院
+  string UnitName = 3; // 学院名称
+  string MajorCode = 4; // 专业代码
+  string Major = 5; // 专业名称
+  string ClassNo = 6; // 班级
+  string Grade = 7; // 年级
+  string TeacherId = 8; // 辅导员工号
+  string SchoolYear = 9; // 学年
+  string Semester = 10; // 学期
+  string StudentId = 11; // 学号
+}
+
+service SklInfoService {
+  // 获取某学院某年级的学生信息
+  rpc GetSklUnitInfo(SklUnitInfoRequest) returns (SklUnitInfo) {
+    option (google.api.http) = {
+      get: "/v1/sklInfo/unitInfo"
+      additional_bindings {
+        get: "/sklInfo/unitInfo"
+      }
+    };
+  }
+}
+
+// 用于从Skl数据库中筛选某年级某学院的学生
+message SklUnitInfo {
+  string UnitId = 1; // 学院ID
+  string UnitName = 2; // 学院名称
+  string Grade = 3; // 年级
+  repeated string Teachers = 4; // 辅导员
+  repeated string Students = 5; // 学生
+}
+
+message SklUnitInfoRequest {
+  string StaffId = 1; // 学/工号
+}
+
+message SklUnitInfoResponse {
+  int32 error = 1;
+  string msg = 2;
+  SklUnitInfo sklUnitInfo = 3;
+}
+
+
+
