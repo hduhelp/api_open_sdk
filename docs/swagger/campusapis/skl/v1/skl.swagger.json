@@ -1,0 +1,164 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "campusapis/skl/v1/skl.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "SklService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/skl/unitInfo": {
+      "get": {
+        "summary": "获取某学院某年级的学生信息",
+        "operationId": "SklService_GetStaffUnitInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1StaffUnitInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "StaffId",
+            "description": "学/工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SklService"
+        ]
+      }
+    },
+    "/skl/v1/unitInfo": {
+      "get": {
+        "summary": "获取某学院某年级的学生信息",
+        "operationId": "SklService_GetStaffUnitInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1StaffUnitInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "StaffId",
+            "description": "学/工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SklService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1SklUnitInfo": {
+      "type": "object",
+      "properties": {
+        "unitId": {
+          "type": "string",
+          "title": "学院ID"
+        },
+        "unitName": {
+          "type": "string",
+          "title": "学院名称"
+        },
+        "grade": {
+          "type": "string",
+          "title": "年级"
+        },
+        "teachers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "辅导员"
+        },
+        "classNos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "用于从Skl数据库中筛选某年级某学院的学生"
+    },
+    "v1StaffUnitInfoResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1SklUnitInfo"
+          }
+        }
+      }
+    }
+  }
+}
