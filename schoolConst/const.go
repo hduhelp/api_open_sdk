@@ -13,7 +13,13 @@ const (
 
 func getWeekNum() int {
 	timeStart := SemesterStartTimestamp
-	return int(math.Floor(float64(time.Now().Unix()-timeStart)/(86400*7))) + 1
+	timeNow := time.Now().Unix()
+
+	if timeNow < timeStart {
+		return 1
+	}
+
+	return int(math.Floor(float64(timeNow-timeStart)/(86400*7))) + 1
 }
 
 func getWeekDay() int {
