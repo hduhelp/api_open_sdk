@@ -46,7 +46,7 @@ option go_package = "./campusapis/skl/v1";
 
 service SklService {
   // 获取某学院某年级的学生信息
-  rpc GetStaffUnitInfo(StaffUnitInfoRequest) returns (StaffUnitInfoResponse) {
+  rpc GetStaffUnitInfo(google.protobuf.Empty) returns (StaffUnitInfoResponse) {
     option (google.api.http) = {
       get: "/skl/unitInfo"
       additional_bindings {
@@ -63,10 +63,6 @@ message SklUnitInfo {
   string grade = 3; // 年级
   repeated string teachers = 4; // 辅导员
   repeated string classNos = 5;
-}
-
-message StaffUnitInfoRequest {
-  string StaffId = 1; // 学/工号
 }
 
 message StaffUnitInfoResponse {
