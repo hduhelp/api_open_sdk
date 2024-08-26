@@ -3,6 +3,7 @@ syntax = "proto3";
 package campusapis.skl.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = "./campusapis/skl/v1";
 
