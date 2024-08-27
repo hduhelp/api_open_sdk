@@ -31,6 +31,7 @@ const (
 	CampusService_GetStudentGrade_FullMethodName            = "/campusapis.staff.v1.CampusService/GetStudentGrade"
 	CampusService_GetGlobalStudentGrade_FullMethodName      = "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade"
 	CampusService_GetStudentExam_FullMethodName             = "/campusapis.staff.v1.CampusService/GetStudentExam"
+	CampusService_GetDailyExam_FullMethodName               = "/campusapis.staff.v1.CampusService/GetDailyExam"
 	CampusService_GetStudentGPA_FullMethodName              = "/campusapis.staff.v1.CampusService/GetStudentGPA"
 	CampusService_PostStudentGateAccess_FullMethodName      = "/campusapis.staff.v1.CampusService/PostStudentGateAccess"
 	CampusService_GetStudentStaySchoolInfo_FullMethodName   = "/campusapis.staff.v1.CampusService/GetStudentStaySchoolInfo"
@@ -76,6 +77,8 @@ type CampusServiceClient interface {
 	GetGlobalStudentGrade(ctx context.Context, in *GetGlobalStudentGradeRequest, opts ...grpc.CallOption) (*GetGlobalStudentGradeResponse, error)
 	// 获取学生考试信息
 	GetStudentExam(ctx context.Context, in *GetStudentExamRequest, opts ...grpc.CallOption) (*GetStudentExamResponse, error)
+	// 获取某一天的考试信息
+	GetDailyExam(ctx context.Context, in *GetDailyExamRequest, opts ...grpc.CallOption) (*GetDailyExamResponse, error)
 	// 获取学生GPA信息
 	GetStudentGPA(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentGPAResponse, error)
 	// 推送学生门禁通行信息
@@ -197,6 +200,15 @@ func (c *campusServiceClient) GetStudentExam(ctx context.Context, in *GetStudent
 	return out, nil
 }
 
+func (c *campusServiceClient) GetDailyExam(ctx context.Context, in *GetDailyExamRequest, opts ...grpc.CallOption) (*GetDailyExamResponse, error) {
+	out := new(GetDailyExamResponse)
+	err := c.cc.Invoke(ctx, CampusService_GetDailyExam_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *campusServiceClient) GetStudentGPA(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentGPAResponse, error) {
 	out := new(GetStudentGPAResponse)
 	err := c.cc.Invoke(ctx, CampusService_GetStudentGPA_FullMethodName, in, out, opts...)
@@ -288,6 +300,8 @@ type CampusServiceServer interface {
 	GetGlobalStudentGrade(context.Context, *GetGlobalStudentGradeRequest) (*GetGlobalStudentGradeResponse, error)
 	// 获取学生考试信息
 	GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error)
+	// 获取某一天的考试信息
+	GetDailyExam(context.Context, *GetDailyExamRequest) (*GetDailyExamResponse, error)
 	// 获取学生GPA信息
 	GetStudentGPA(context.Context, *emptypb.Empty) (*GetStudentGPAResponse, error)
 	// 推送学生门禁通行信息
@@ -339,6 +353,9 @@ func (UnimplementedCampusServiceServer) GetGlobalStudentGrade(context.Context, *
 }
 func (UnimplementedCampusServiceServer) GetStudentExam(context.Context, *GetStudentExamRequest) (*GetStudentExamResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentExam not implemented")
+}
+func (UnimplementedCampusServiceServer) GetDailyExam(context.Context, *GetDailyExamRequest) (*GetDailyExamResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDailyExam not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentGPA(context.Context, *emptypb.Empty) (*GetStudentGPAResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentGPA not implemented")
@@ -569,6 +586,24 @@ func _CampusService_GetStudentExam_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_GetDailyExam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDailyExamRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetDailyExam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_GetDailyExam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetDailyExam(ctx, req.(*GetDailyExamRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CampusService_GetStudentGPA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -727,6 +762,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStudentExam",
 			Handler:    _CampusService_GetStudentExam_Handler,
+		},
+		{
+			MethodName: "GetDailyExam",
+			Handler:    _CampusService_GetDailyExam_Handler,
 		},
 		{
 			MethodName: "GetStudentGPA",

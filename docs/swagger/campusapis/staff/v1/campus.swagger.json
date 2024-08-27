@@ -471,6 +471,38 @@
         ]
       }
     },
+    "/staff/v1/student/dailyExam": {
+      "get": {
+        "summary": "获取某一天的考试信息",
+        "operationId": "CampusService_GetDailyExam",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDailyExamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "description": "日期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/student/dorm": {
       "get": {
         "summary": "迁移至校外部分\n //获取学生贫困生申请记录\n rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/student/needy\"\n     additional_bindings {\n       get: \"/student/needy\"\n     }\n   };\n }\n获取学生宿舍信息",
@@ -813,6 +845,38 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/dailyExam": {
+      "get": {
+        "summary": "获取某一天的考试信息",
+        "operationId": "CampusService_GetDailyExam2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDailyExamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "description": "日期",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -1342,6 +1406,26 @@
         "staffID": {
           "type": "string",
           "title": "学号"
+        }
+      }
+    },
+    "v1GetDailyExamResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1StudentExam"
+          },
+          "title": "考试详情列表"
         }
       }
     },
