@@ -243,11 +243,7 @@
           "type": "string"
         },
         "data": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1SklUnitDetail"
-          }
+          "$ref": "#/definitions/v1SklUnitDetail"
         }
       }
     },
