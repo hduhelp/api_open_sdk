@@ -98,7 +98,7 @@ message SklUnitDetail {
 message StaffUnitDetailResponse {
   int32 error = 1;
   string msg = 2;
-  repeated SklUnitDetail data = 3;
+  SklUnitDetail data = 3;
 }
 
 
