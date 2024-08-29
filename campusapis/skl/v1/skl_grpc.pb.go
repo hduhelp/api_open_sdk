@@ -20,7 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SklService_GetStaffUnitInfo_FullMethodName = "/campusapis.skl.v1.SklService/GetStaffUnitInfo"
+	SklService_GetStaffUnitInfo_FullMethodName   = "/campusapis.skl.v1.SklService/GetStaffUnitInfo"
+	SklService_GetStaffUnitDetail_FullMethodName = "/campusapis.skl.v1.SklService/GetStaffUnitDetail"
 )
 
 // SklServiceClient is the client API for SklService service.
@@ -29,6 +30,7 @@ const (
 type SklServiceClient interface {
 	// 获取某学院某年级的学生信息
 	GetStaffUnitInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StaffUnitInfoResponse, error)
+	GetStaffUnitDetail(ctx context.Context, in *StaffUnitDetailRequest, opts ...grpc.CallOption) (*StaffUnitDetailResponse, error)
 }
 
 type sklServiceClient struct {
@@ -48,12 +50,22 @@ func (c *sklServiceClient) GetStaffUnitInfo(ctx context.Context, in *emptypb.Emp
 	return out, nil
 }
 
+func (c *sklServiceClient) GetStaffUnitDetail(ctx context.Context, in *StaffUnitDetailRequest, opts ...grpc.CallOption) (*StaffUnitDetailResponse, error) {
+	out := new(StaffUnitDetailResponse)
+	err := c.cc.Invoke(ctx, SklService_GetStaffUnitDetail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SklServiceServer is the server API for SklService service.
 // All implementations must embed UnimplementedSklServiceServer
 // for forward compatibility
 type SklServiceServer interface {
 	// 获取某学院某年级的学生信息
 	GetStaffUnitInfo(context.Context, *emptypb.Empty) (*StaffUnitInfoResponse, error)
+	GetStaffUnitDetail(context.Context, *StaffUnitDetailRequest) (*StaffUnitDetailResponse, error)
 	mustEmbedUnimplementedSklServiceServer()
 }
 
@@ -63,6 +75,9 @@ type UnimplementedSklServiceServer struct {
 
 func (UnimplementedSklServiceServer) GetStaffUnitInfo(context.Context, *emptypb.Empty) (*StaffUnitInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStaffUnitInfo not implemented")
+}
+func (UnimplementedSklServiceServer) GetStaffUnitDetail(context.Context, *StaffUnitDetailRequest) (*StaffUnitDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStaffUnitDetail not implemented")
 }
 func (UnimplementedSklServiceServer) mustEmbedUnimplementedSklServiceServer() {}
 
@@ -95,6 +110,24 @@ func _SklService_GetStaffUnitInfo_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SklService_GetStaffUnitDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StaffUnitDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SklServiceServer).GetStaffUnitDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SklService_GetStaffUnitDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SklServiceServer).GetStaffUnitDetail(ctx, req.(*StaffUnitDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SklService_ServiceDesc is the grpc.ServiceDesc for SklService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -105,6 +138,10 @@ var SklService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStaffUnitInfo",
 			Handler:    _SklService_GetStaffUnitInfo_Handler,
+		},
+		{
+			MethodName: "GetStaffUnitDetail",
+			Handler:    _SklService_GetStaffUnitDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
