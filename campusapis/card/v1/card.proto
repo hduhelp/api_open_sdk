@@ -49,6 +49,7 @@ message CardInfo {
   float remaining = 1;
   //交易记录
   repeated Consumption flow = 2;
+  float todayFee =3;
 }
 
 message Consumption {
