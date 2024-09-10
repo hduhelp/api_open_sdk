@@ -55,15 +55,24 @@ service SklService {
       }
     };
   }
+
+  rpc GetStaffUnitDetail(StaffUnitDetailRequest) returns (StaffUnitDetailResponse) {
+    option (google.api.http) = {
+      get: "/skl/unitDetail"
+      additional_bindings {
+        get: "/skl/v1/unitDetail"
+      }
+    };
+  }
 }
 
-// 用于从Skl数据库中筛选某年级某学院的学生
+// 用于从Skl数据库中筛选某年级某学院的信息
 message SklUnitInfo {
   string unitId = 1; // 学院ID
   string unitName = 2; // 学院名称
   string grade = 3; // 年级
   repeated string teachers = 4; // 辅导员
-  repeated string classNos = 5;
+  repeated string classNos = 5; // 班级列表
 }
 
 message StaffUnitInfoResponse {
@@ -71,6 +80,28 @@ message StaffUnitInfoResponse {
   string msg = 2;
   repeated SklUnitInfo data = 3;
 }
+
+message StaffUnitDetailRequest {
+  string unitId = 1; // 学院ID
+  string grade = 2; // 年级
+}
+
+// 用于从skl数据库中筛选某年级某学院的学生信息
+message SklUnitDetail {
+  repeated string studentIDs = 1; // 学号
+  repeated string teacherIDs = 2; // 辅导员工号
+  string unitId = 3; // 学院ID
+  string unitName = 4; // 学院名称
+  string grade = 5; // 年级
+}
+
+message StaffUnitDetailResponse {
+  int32 error = 1;
+  string msg = 2;
+  SklUnitDetail data = 3;
+}
+
+
 
 
 

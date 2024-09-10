@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,7 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SklService_GetStaffUnitInfo_FullMethodName = "/campusapis.skl.v1.SklService/GetStaffUnitInfo"
+	SklService_GetStaffUnitInfo_FullMethodName   = "/campusapis.skl.v1.SklService/GetStaffUnitInfo"
+	SklService_GetStaffUnitDetail_FullMethodName = "/campusapis.skl.v1.SklService/GetStaffUnitDetail"
 )
 
 // SklServiceClient is the client API for SklService service.
@@ -27,7 +29,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SklServiceClient interface {
 	// 获取某学院某年级的学生信息
-	GetStaffUnitInfo(ctx context.Context, in *StaffUnitInfoRequest, opts ...grpc.CallOption) (*StaffUnitInfoResponse, error)
+	GetStaffUnitInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StaffUnitInfoResponse, error)
+	GetStaffUnitDetail(ctx context.Context, in *StaffUnitDetailRequest, opts ...grpc.CallOption) (*StaffUnitDetailResponse, error)
 }
 
 type sklServiceClient struct {
@@ -38,9 +41,18 @@ func NewSklServiceClient(cc grpc.ClientConnInterface) SklServiceClient {
 	return &sklServiceClient{cc}
 }
 
-func (c *sklServiceClient) GetStaffUnitInfo(ctx context.Context, in *StaffUnitInfoRequest, opts ...grpc.CallOption) (*StaffUnitInfoResponse, error) {
+func (c *sklServiceClient) GetStaffUnitInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StaffUnitInfoResponse, error) {
 	out := new(StaffUnitInfoResponse)
 	err := c.cc.Invoke(ctx, SklService_GetStaffUnitInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sklServiceClient) GetStaffUnitDetail(ctx context.Context, in *StaffUnitDetailRequest, opts ...grpc.CallOption) (*StaffUnitDetailResponse, error) {
+	out := new(StaffUnitDetailResponse)
+	err := c.cc.Invoke(ctx, SklService_GetStaffUnitDetail_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +64,8 @@ func (c *sklServiceClient) GetStaffUnitInfo(ctx context.Context, in *StaffUnitIn
 // for forward compatibility
 type SklServiceServer interface {
 	// 获取某学院某年级的学生信息
-	GetStaffUnitInfo(context.Context, *StaffUnitInfoRequest) (*StaffUnitInfoResponse, error)
+	GetStaffUnitInfo(context.Context, *emptypb.Empty) (*StaffUnitInfoResponse, error)
+	GetStaffUnitDetail(context.Context, *StaffUnitDetailRequest) (*StaffUnitDetailResponse, error)
 	mustEmbedUnimplementedSklServiceServer()
 }
 
@@ -60,8 +73,11 @@ type SklServiceServer interface {
 type UnimplementedSklServiceServer struct {
 }
 
-func (UnimplementedSklServiceServer) GetStaffUnitInfo(context.Context, *StaffUnitInfoRequest) (*StaffUnitInfoResponse, error) {
+func (UnimplementedSklServiceServer) GetStaffUnitInfo(context.Context, *emptypb.Empty) (*StaffUnitInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStaffUnitInfo not implemented")
+}
+func (UnimplementedSklServiceServer) GetStaffUnitDetail(context.Context, *StaffUnitDetailRequest) (*StaffUnitDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStaffUnitDetail not implemented")
 }
 func (UnimplementedSklServiceServer) mustEmbedUnimplementedSklServiceServer() {}
 
@@ -77,7 +93,7 @@ func RegisterSklServiceServer(s grpc.ServiceRegistrar, srv SklServiceServer) {
 }
 
 func _SklService_GetStaffUnitInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StaffUnitInfoRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -89,7 +105,25 @@ func _SklService_GetStaffUnitInfo_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: SklService_GetStaffUnitInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SklServiceServer).GetStaffUnitInfo(ctx, req.(*StaffUnitInfoRequest))
+		return srv.(SklServiceServer).GetStaffUnitInfo(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SklService_GetStaffUnitDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StaffUnitDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SklServiceServer).GetStaffUnitDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SklService_GetStaffUnitDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SklServiceServer).GetStaffUnitDetail(ctx, req.(*StaffUnitDetailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -104,6 +138,10 @@ var SklService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStaffUnitInfo",
 			Handler:    _SklService_GetStaffUnitInfo_Handler,
+		},
+		{
+			MethodName: "GetStaffUnitDetail",
+			Handler:    _SklService_GetStaffUnitDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

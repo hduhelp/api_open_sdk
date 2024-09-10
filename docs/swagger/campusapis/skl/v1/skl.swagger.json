@@ -16,6 +16,44 @@
     "application/json"
   ],
   "paths": {
+    "/skl/unitDetail": {
+      "get": {
+        "operationId": "SklService_GetStaffUnitDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1StaffUnitDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "unitId",
+            "description": "学院ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "grade",
+            "description": "年级",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SklService"
+        ]
+      }
+    },
     "/skl/unitInfo": {
       "get": {
         "summary": "获取某学院某年级的学生信息",
@@ -34,10 +72,39 @@
             }
           }
         },
+        "tags": [
+          "SklService"
+        ]
+      }
+    },
+    "/skl/v1/unitDetail": {
+      "get": {
+        "operationId": "SklService_GetStaffUnitDetail2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1StaffUnitDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "parameters": [
           {
-            "name": "StaffId",
-            "description": "学/工号",
+            "name": "unitId",
+            "description": "学院ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "grade",
+            "description": "年级",
             "in": "query",
             "required": false,
             "type": "string"
@@ -66,15 +133,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "StaffId",
-            "description": "学/工号",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "SklService"
         ]
@@ -110,6 +168,38 @@
         }
       }
     },
+    "v1SklUnitDetail": {
+      "type": "object",
+      "properties": {
+        "studentIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "学号"
+        },
+        "teacherIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "辅导员工号"
+        },
+        "unitId": {
+          "type": "string",
+          "title": "学院ID"
+        },
+        "unitName": {
+          "type": "string",
+          "title": "学院名称"
+        },
+        "grade": {
+          "type": "string",
+          "title": "年级"
+        }
+      },
+      "title": "用于从skl数据库中筛选某年级某学院的学生信息"
+    },
     "v1SklUnitInfo": {
       "type": "object",
       "properties": {
@@ -136,10 +226,26 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "title": "班级列表"
         }
       },
-      "title": "用于从Skl数据库中筛选某年级某学院的学生"
+      "title": "用于从Skl数据库中筛选某年级某学院的信息"
+    },
+    "v1StaffUnitDetailResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1SklUnitDetail"
+        }
+      }
     },
     "v1StaffUnitInfoResponse": {
       "type": "object",
