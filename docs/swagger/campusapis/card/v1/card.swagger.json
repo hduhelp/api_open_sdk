@@ -199,6 +199,10 @@
             "$ref": "#/definitions/v1Consumption"
           },
           "title": "交易记录"
+        },
+        "todayFee": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
