@@ -31,6 +31,31 @@ service DingTalkService {
       get: "/dingtalk/chat/v1/sync"
     };
   }
+
+  rpc CreateGradeChatGroup(CreateGradeChatGroupRequest) returns (CreateGradeChatGroupResponse) {
+    option (google.api.http) = {
+      post: "/dingtalk/chat/v1/create-grade"
+      body: "body"
+    };
+  }
+
+  rpc GetGradeChatGroup(GetGradeChatGroupRequest) returns (GetGradeChatGroupResponse) {
+    option (google.api.http) = {
+      get: "/dingtalk/chat/v1/get-grade"
+    };
+  }
+
+  rpc MergeGradeChatGroup(MergeGradeChatGroupRequest) returns (MergeGradeChatGroupResponse) {
+    option (google.api.http) = {
+      get: "/dingtalk/chat/v1/merge-grade"
+    };
+  }
+
+  rpc SyncGradeChatGroup(SyncGradeChatGroupRequest) returns (SyncGradeChatGroupResponse) {
+    option (google.api.http) = {
+      get: "/dingtalk/chat/v1/sync-grade"
+    };
+  }
 }
 
 message CreateClassChatGroupRequest {
@@ -75,5 +100,55 @@ message SyncClassChatGroupRequest {
 }
 
 message SyncClassChatGroupResponse {
+  string message = 1;
+}
+
+
+message CreateGradeChatGroupRequest {
+  string unitId = 1; // 学院ID
+  string grade = 2; // 年级
+  Body body = 3;
+
+  message Body {
+    string name = 1;
+  }
+}
+
+message CreateGradeChatGroupResponse {
+  string chat_id = 1;
+  string openConversationId = 2;
+  string invite_url = 3;
+}
+
+message MergeGradeChatGroupRequest {
+  string unitId = 1;
+  string grade = 2;
+  string openConversationId = 3;
+}
+
+message MergeGradeChatGroupResponse {}
+
+message GetGradeChatGroupRequest {
+  string unitId = 1;
+  string grade = 2;
+}
+
+message GetGradeChatGroupResponse {
+  repeated Chat chats = 1;
+
+  message Chat {
+    string chat_id = 1;
+    string openConversationId = 2;
+    string invite_url = 3;
+    int64 created_at = 4;
+  }
+}
+
+message SyncGradeChatGroupRequest {
+  string unitId = 1;
+  string grade = 2;
+}
+
+message SyncGradeChatGroupResponse {
   string message = 1;
 }
