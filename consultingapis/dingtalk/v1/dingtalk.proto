@@ -101,11 +101,6 @@ message SyncClassChatGroupResponse {
 message CreateGradeChatGroupRequest {
   string unitId = 1; // 学院ID
   string grade = 2; // 年级
-  Body body = 3;
-
-  message Body {
-    string name = 1;
-  }
 }
 
 message CreateGradeChatGroupResponse {
