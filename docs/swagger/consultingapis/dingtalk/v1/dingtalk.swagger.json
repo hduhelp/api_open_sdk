@@ -54,52 +54,6 @@
         ]
       }
     },
-    "/dingtalk/chat/v1/create-grade": {
-      "post": {
-        "operationId": "DingTalkService_CreateGradeChatGroup",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateGradeChatGroupResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateGradeChatGroupRequestBody"
-            }
-          },
-          {
-            "name": "unitId",
-            "description": "学院ID",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "grade",
-            "description": "年级",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "DingTalkService"
-        ]
-      }
-    },
     "/dingtalk/chat/v1/get": {
       "get": {
         "operationId": "DingTalkService_GetClassChatGroup",
@@ -120,42 +74,6 @@
         "parameters": [
           {
             "name": "classId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "DingTalkService"
-        ]
-      }
-    },
-    "/dingtalk/chat/v1/get-grade": {
-      "get": {
-        "operationId": "DingTalkService_GetGradeChatGroup",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetGradeChatGroupResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "unitId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "grade",
             "in": "query",
             "required": false,
             "type": "string"
@@ -202,48 +120,6 @@
         ]
       }
     },
-    "/dingtalk/chat/v1/merge-grade": {
-      "get": {
-        "operationId": "DingTalkService_MergeGradeChatGroup",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1MergeGradeChatGroupResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "unitId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "grade",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "openConversationId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "DingTalkService"
-        ]
-      }
-    },
     "/dingtalk/chat/v1/sync": {
       "get": {
         "operationId": "DingTalkService_SyncClassChatGroup",
@@ -274,7 +150,89 @@
         ]
       }
     },
-    "/dingtalk/chat/v1/sync-grade": {
+    "/dingtalk/chat/v1/unit/create": {
+      "post": {
+        "operationId": "DingTalkService_CreateGradeChatGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateGradeChatGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateGradeChatGroupRequestBody"
+            }
+          },
+          {
+            "name": "unitId",
+            "description": "学院ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "grade",
+            "description": "年级",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DingTalkService"
+        ]
+      }
+    },
+    "/dingtalk/chat/v1/unit/get": {
+      "get": {
+        "operationId": "DingTalkService_GetGradeChatGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetGradeChatGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "unitId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "grade",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DingTalkService"
+        ]
+      }
+    },
+    "/dingtalk/chat/v1/unit/sync": {
       "get": {
         "operationId": "DingTalkService_SyncGradeChatGroup",
         "responses": {
@@ -445,9 +403,6 @@
       }
     },
     "v1MergeClassChatGroupResponse": {
-      "type": "object"
-    },
-    "v1MergeGradeChatGroupResponse": {
       "type": "object"
     },
     "v1SyncClassChatGroupResponse": {
