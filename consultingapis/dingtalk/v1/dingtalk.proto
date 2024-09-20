@@ -35,7 +35,6 @@ service DingTalkService {
   rpc CreateGradeChatGroup(CreateGradeChatGroupRequest) returns (CreateGradeChatGroupResponse) {
     option (google.api.http) = {
       post: "/dingtalk/chat/v1/unit/create"
-      body: "body"
     };
   }
 
