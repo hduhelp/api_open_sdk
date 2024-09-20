@@ -34,26 +34,20 @@ service DingTalkService {
 
   rpc CreateGradeChatGroup(CreateGradeChatGroupRequest) returns (CreateGradeChatGroupResponse) {
     option (google.api.http) = {
-      post: "/dingtalk/chat/v1/create-grade"
+      post: "/dingtalk/chat/v1/unit/create"
       body: "body"
     };
   }
 
   rpc GetGradeChatGroup(GetGradeChatGroupRequest) returns (GetGradeChatGroupResponse) {
     option (google.api.http) = {
-      get: "/dingtalk/chat/v1/get-grade"
-    };
-  }
-
-  rpc MergeGradeChatGroup(MergeGradeChatGroupRequest) returns (MergeGradeChatGroupResponse) {
-    option (google.api.http) = {
-      get: "/dingtalk/chat/v1/merge-grade"
+      get: "/dingtalk/chat/v1/unit/get"
     };
   }
 
   rpc SyncGradeChatGroup(SyncGradeChatGroupRequest) returns (SyncGradeChatGroupResponse) {
     option (google.api.http) = {
-      get: "/dingtalk/chat/v1/sync-grade"
+      get: "/dingtalk/chat/v1/unit/sync"
     };
   }
 }
@@ -119,14 +113,6 @@ message CreateGradeChatGroupResponse {
   string openConversationId = 2;
   string invite_url = 3;
 }
-
-message MergeGradeChatGroupRequest {
-  string unitId = 1;
-  string grade = 2;
-  string openConversationId = 3;
-}
-
-message MergeGradeChatGroupResponse {}
 
 message GetGradeChatGroupRequest {
   string unitId = 1;
