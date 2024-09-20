@@ -39,7 +39,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateClassChatGroupRequestBody"
+              "$ref": "#/definitions/CreateClassChatGroupRequestBody"
             }
           },
           {
@@ -169,14 +169,6 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateGradeChatGroupRequestBody"
-            }
-          },
-          {
             "name": "unitId",
             "description": "学院ID",
             "in": "query",
@@ -270,6 +262,14 @@
     }
   },
   "definitions": {
+    "CreateClassChatGroupRequestBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -298,14 +298,6 @@
         }
       }
     },
-    "v1CreateClassChatGroupRequestBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
     "v1CreateClassChatGroupResponse": {
       "type": "object",
       "properties": {
@@ -316,14 +308,6 @@
           "type": "string"
         },
         "inviteUrl": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateGradeChatGroupRequestBody": {
-      "type": "object",
-      "properties": {
-        "name": {
           "type": "string"
         }
       }
