@@ -50,7 +50,7 @@ service DingTalkService {
     };
   }
 
-  rpc CreateRecruitChatGroup(CreateClassChatGroupRequest) returns (CreateClassChatGroupResponse) {
+  rpc CreateRecruitChatGroup(CreateRecruitChatGroupRequest) returns (CreateRecruitChatGroupRequest) {
     option (google.api.http) = {
       post: "/dingtalk/chat/v1/Recruit/create"
     };
