@@ -300,12 +300,20 @@ func local_request_DingTalkService_SyncGradeChatGroup_0(ctx context.Context, mar
 }
 
 var (
-	filter_DingTalkService_CreateRecruitChatGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_DingTalkService_CreateRecruitChatGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{"body": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_DingTalkService_CreateRecruitChatGroup_0(ctx context.Context, marshaler runtime.Marshaler, client DingTalkServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateRecruitChatGroupRequest
 	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Body); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -322,6 +330,14 @@ func request_DingTalkService_CreateRecruitChatGroup_0(ctx context.Context, marsh
 func local_request_DingTalkService_CreateRecruitChatGroup_0(ctx context.Context, marshaler runtime.Marshaler, server DingTalkServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateRecruitChatGroupRequest
 	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Body); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -524,7 +540,7 @@ func RegisterDingTalkServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/CreateRecruitChatGroup", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/Recruit/create"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/CreateRecruitChatGroup", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/recruit/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -742,7 +758,7 @@ func RegisterDingTalkServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/CreateRecruitChatGroup", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/Recruit/create"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/consultingapis.dingtalk.v1.DingTalkService/CreateRecruitChatGroup", runtime.WithHTTPPathPattern("/dingtalk/chat/v1/recruit/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -776,7 +792,7 @@ var (
 
 	pattern_DingTalkService_SyncGradeChatGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"dingtalk", "chat", "v1", "unit", "sync"}, ""))
 
-	pattern_DingTalkService_CreateRecruitChatGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"dingtalk", "chat", "v1", "Recruit", "create"}, ""))
+	pattern_DingTalkService_CreateRecruitChatGroup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"dingtalk", "chat", "v1", "recruit", "create"}, ""))
 )
 
 var (

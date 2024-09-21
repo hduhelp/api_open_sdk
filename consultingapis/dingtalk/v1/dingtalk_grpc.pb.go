@@ -40,7 +40,7 @@ type DingTalkServiceClient interface {
 	CreateGradeChatGroup(ctx context.Context, in *CreateGradeChatGroupRequest, opts ...grpc.CallOption) (*CreateGradeChatGroupResponse, error)
 	GetGradeChatGroup(ctx context.Context, in *GetGradeChatGroupRequest, opts ...grpc.CallOption) (*GetGradeChatGroupResponse, error)
 	SyncGradeChatGroup(ctx context.Context, in *SyncGradeChatGroupRequest, opts ...grpc.CallOption) (*SyncGradeChatGroupResponse, error)
-	CreateRecruitChatGroup(ctx context.Context, in *CreateRecruitChatGroupRequest, opts ...grpc.CallOption) (*CreateRecruitChatGroupRequest, error)
+	CreateRecruitChatGroup(ctx context.Context, in *CreateRecruitChatGroupRequest, opts ...grpc.CallOption) (*CreateRecruitChatGroupResponse, error)
 }
 
 type dingTalkServiceClient struct {
@@ -114,8 +114,8 @@ func (c *dingTalkServiceClient) SyncGradeChatGroup(ctx context.Context, in *Sync
 	return out, nil
 }
 
-func (c *dingTalkServiceClient) CreateRecruitChatGroup(ctx context.Context, in *CreateRecruitChatGroupRequest, opts ...grpc.CallOption) (*CreateRecruitChatGroupRequest, error) {
-	out := new(CreateRecruitChatGroupRequest)
+func (c *dingTalkServiceClient) CreateRecruitChatGroup(ctx context.Context, in *CreateRecruitChatGroupRequest, opts ...grpc.CallOption) (*CreateRecruitChatGroupResponse, error) {
+	out := new(CreateRecruitChatGroupResponse)
 	err := c.cc.Invoke(ctx, DingTalkService_CreateRecruitChatGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -134,7 +134,7 @@ type DingTalkServiceServer interface {
 	CreateGradeChatGroup(context.Context, *CreateGradeChatGroupRequest) (*CreateGradeChatGroupResponse, error)
 	GetGradeChatGroup(context.Context, *GetGradeChatGroupRequest) (*GetGradeChatGroupResponse, error)
 	SyncGradeChatGroup(context.Context, *SyncGradeChatGroupRequest) (*SyncGradeChatGroupResponse, error)
-	CreateRecruitChatGroup(context.Context, *CreateRecruitChatGroupRequest) (*CreateRecruitChatGroupRequest, error)
+	CreateRecruitChatGroup(context.Context, *CreateRecruitChatGroupRequest) (*CreateRecruitChatGroupResponse, error)
 	mustEmbedUnimplementedDingTalkServiceServer()
 }
 
@@ -163,7 +163,7 @@ func (UnimplementedDingTalkServiceServer) GetGradeChatGroup(context.Context, *Ge
 func (UnimplementedDingTalkServiceServer) SyncGradeChatGroup(context.Context, *SyncGradeChatGroupRequest) (*SyncGradeChatGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SyncGradeChatGroup not implemented")
 }
-func (UnimplementedDingTalkServiceServer) CreateRecruitChatGroup(context.Context, *CreateRecruitChatGroupRequest) (*CreateRecruitChatGroupRequest, error) {
+func (UnimplementedDingTalkServiceServer) CreateRecruitChatGroup(context.Context, *CreateRecruitChatGroupRequest) (*CreateRecruitChatGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRecruitChatGroup not implemented")
 }
 func (UnimplementedDingTalkServiceServer) mustEmbedUnimplementedDingTalkServiceServer() {}

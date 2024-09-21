@@ -16,40 +16,6 @@
     "application/json"
   ],
   "paths": {
-    "/dingtalk/chat/v1/Recruit/create": {
-      "post": {
-        "operationId": "DingTalkService_CreateRecruitChatGroup",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateRecruitChatGroupRequest"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "memberId",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "DingTalkService"
-        ]
-      }
-    },
     "/dingtalk/chat/v1/create": {
       "post": {
         "operationId": "DingTalkService_CreateClassChatGroup",
@@ -73,7 +39,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CreateClassChatGroupRequestBody"
+              "$ref": "#/definitions/v1CreateClassChatGroupRequestBody"
             }
           },
           {
@@ -147,6 +113,48 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "DingTalkService"
+        ]
+      }
+    },
+    "/dingtalk/chat/v1/recruit/create": {
+      "post": {
+        "operationId": "DingTalkService_CreateRecruitChatGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateRecruitChatGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateRecruitChatGroupRequestBody"
+            }
+          },
+          {
+            "name": "memberId",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           }
         ],
         "tags": [
@@ -296,14 +304,6 @@
     }
   },
   "definitions": {
-    "CreateClassChatGroupRequestBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -329,6 +329,14 @@
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
+        }
+      }
+    },
+    "v1CreateClassChatGroupRequestBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
         }
       }
     },
@@ -360,14 +368,25 @@
         }
       }
     },
-    "v1CreateRecruitChatGroupRequest": {
+    "v1CreateRecruitChatGroupRequestBody": {
       "type": "object",
       "properties": {
-        "memberId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateRecruitChatGroupResponse": {
+      "type": "object",
+      "properties": {
+        "chatId": {
+          "type": "string"
+        },
+        "openConversationId": {
+          "type": "string"
+        },
+        "inviteUrl": {
+          "type": "string"
         }
       }
     },
