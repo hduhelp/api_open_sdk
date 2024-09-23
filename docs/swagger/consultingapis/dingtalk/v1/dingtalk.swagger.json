@@ -39,7 +39,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateClassChatGroupRequestBody"
+              "$ref": "#/definitions/CreateClassChatGroupRequestBody"
             }
           },
           {
@@ -143,18 +143,8 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateRecruitChatGroupRequestBody"
+              "$ref": "#/definitions/v1CreateRecruitChatGroupRequest"
             }
-          },
-          {
-            "name": "memberId",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
           }
         ],
         "tags": [
@@ -304,6 +294,14 @@
     }
   },
   "definitions": {
+    "CreateClassChatGroupRequestBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -329,14 +327,6 @@
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
-        }
-      }
-    },
-    "v1CreateClassChatGroupRequestBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
         }
       }
     },
@@ -368,9 +358,15 @@
         }
       }
     },
-    "v1CreateRecruitChatGroupRequestBody": {
+    "v1CreateRecruitChatGroupRequest": {
       "type": "object",
       "properties": {
+        "memberId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "name": {
           "type": "string"
         }
