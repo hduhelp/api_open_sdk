@@ -53,7 +53,7 @@ service DingTalkService {
   rpc CreateRecruitChatGroup(CreateRecruitChatGroupRequest) returns (CreateRecruitChatGroupResponse) {
     option (google.api.http) = {
       post: "/dingtalk/chat/v1/recruit/create"
-      body: "body"
+      body: "*"
     };
   }
 }
@@ -142,11 +142,7 @@ message SyncGradeChatGroupResponse {
 
 message CreateRecruitChatGroupRequest{
   repeated string member_id = 1;
-  Body body = 2;
-
-  message Body {
-    string name = 1;
-  }
+  string name = 2;
 }
 
 message CreateRecruitChatGroupResponse{
