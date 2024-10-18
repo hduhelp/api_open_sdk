@@ -35,11 +35,7 @@ func request_GateManagerService_PostCampusGateEventCallback_0(ctx context.Contex
 	var protoReq PostCampusGateEventCallbackRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Data); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -69,11 +65,7 @@ func local_request_GateManagerService_PostCampusGateEventCallback_0(ctx context.
 	var protoReq PostCampusGateEventCallbackRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Data); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -103,11 +95,7 @@ func request_GateManagerService_PostStudentGateAccess_0(ctx context.Context, mar
 	var protoReq PostStudentGateAccessRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -120,11 +108,7 @@ func local_request_GateManagerService_PostStudentGateAccess_0(ctx context.Contex
 	var protoReq PostStudentGateAccessRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -137,11 +121,7 @@ func request_GateManagerService_PostRegisterGateEvent_0(ctx context.Context, mar
 	var protoReq PostRegisterGateEventRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -154,11 +134,7 @@ func local_request_GateManagerService_PostRegisterGateEvent_0(ctx context.Contex
 	var protoReq PostRegisterGateEventRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -171,6 +147,7 @@ func local_request_GateManagerService_PostRegisterGateEvent_0(ctx context.Contex
 // UnaryRPC     :call GateManagerServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterGateManagerServiceHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterGateManagerServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server GateManagerServiceServer) error {
 
 	mux.Handle("POST", pattern_GateManagerService_PostCampusGateEventCallback_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -194,7 +171,7 @@ func RegisterGateManagerServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_GateManagerService_PostCampusGateEventCallback_0(annotatedContext, mux, outboundMarshaler, w, req, response_GateManagerService_PostCampusGateEventCallback_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_GateManagerService_PostCampusGateEventCallback_0(annotatedContext, mux, outboundMarshaler, w, req, response_GateManagerService_PostCampusGateEventCallback_0{resp.(*PostCampusGateEventCallbackResponse)}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -254,21 +231,21 @@ func RegisterGateManagerServiceHandlerServer(ctx context.Context, mux *runtime.S
 // RegisterGateManagerServiceHandlerFromEndpoint is same as RegisterGateManagerServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterGateManagerServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
@@ -286,7 +263,7 @@ func RegisterGateManagerServiceHandler(ctx context.Context, mux *runtime.ServeMu
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "GateManagerServiceClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "GateManagerServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "GateManagerServiceClient" to call the correct interceptors.
+// "GateManagerServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterGateManagerServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client GateManagerServiceClient) error {
 
 	mux.Handle("POST", pattern_GateManagerService_PostCampusGateEventCallback_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -307,7 +284,7 @@ func RegisterGateManagerServiceHandlerClient(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_GateManagerService_PostCampusGateEventCallback_0(annotatedContext, mux, outboundMarshaler, w, req, response_GateManagerService_PostCampusGateEventCallback_0{resp}, mux.GetForwardResponseOptions()...)
+		forward_GateManagerService_PostCampusGateEventCallback_0(annotatedContext, mux, outboundMarshaler, w, req, response_GateManagerService_PostCampusGateEventCallback_0{resp.(*PostCampusGateEventCallbackResponse)}, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -359,12 +336,11 @@ func RegisterGateManagerServiceHandlerClient(ctx context.Context, mux *runtime.S
 }
 
 type response_GateManagerService_PostCampusGateEventCallback_0 struct {
-	proto.Message
+	*PostCampusGateEventCallbackResponse
 }
 
 func (m response_GateManagerService_PostCampusGateEventCallback_0) XXX_ResponseBody() interface{} {
-	response := m.Message.(*PostCampusGateEventCallbackResponse)
-	return response.Message
+	return m.Message
 }
 
 var (

@@ -5,12 +5,29 @@
 
 ## 前置步骤
 
+#### linux
+
 ```shell
 //安装 编译所需的插件
 //包括 buf protoc-gen-grpc-gateway protoc-gen-openapiv2 protoc-gen-go-grpc protoc-gen-go
 //在 tools.go 中控制 要安装的插件列表，使用 go module 管理插件版本
 make install-tools
 ```
+
+#### windows
+
+如果使用goland，建议安装插件：buf、Protocol Buffers Support，以消除proto无法识别到的报警。
+
+```
+go mod tidy
+buf generate
+```
+
+
+
+### 配置网络
+
+https://goproxy.cn/
 
 ## 依赖
 

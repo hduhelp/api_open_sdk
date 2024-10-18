@@ -35,11 +35,7 @@ func request_FAQService_CreateFAQ_0(ctx context.Context, marshaler runtime.Marsh
 	var protoReq CreateFAQRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Data); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -52,11 +48,7 @@ func local_request_FAQService_CreateFAQ_0(ctx context.Context, marshaler runtime
 	var protoReq CreateFAQRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Data); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -102,18 +94,14 @@ func local_request_FAQService_GetFAQ_0(ctx context.Context, marshaler runtime.Ma
 }
 
 var (
-	filter_FAQService_UpdateFAQ_0 = &utilities.DoubleArray{Encoding: map[string]int{"data": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+	filter_FAQService_UpdateFAQ_0 = &utilities.DoubleArray{Encoding: map[string]int{"data": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
 func request_FAQService_UpdateFAQ_0(ctx context.Context, marshaler runtime.Marshaler, client FAQServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateFAQRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Data); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -133,11 +121,7 @@ func local_request_FAQService_UpdateFAQ_0(ctx context.Context, marshaler runtime
 	var protoReq UpdateFAQRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Data); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -265,6 +249,7 @@ func local_request_FAQService_SearchFAQAnswerRichtext_0(ctx context.Context, mar
 // UnaryRPC     :call FAQServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterFAQServiceHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server FAQServiceServer) error {
 
 	mux.Handle("POST", pattern_FAQService_CreateFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -423,21 +408,21 @@ func RegisterFAQServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 // RegisterFAQServiceHandlerFromEndpoint is same as RegisterFAQServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterFAQServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
@@ -455,7 +440,7 @@ func RegisterFAQServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn 
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "FAQServiceClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "FAQServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "FAQServiceClient" to call the correct interceptors.
+// "FAQServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterFAQServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client FAQServiceClient) error {
 
 	mux.Handle("POST", pattern_FAQService_CreateFAQ_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

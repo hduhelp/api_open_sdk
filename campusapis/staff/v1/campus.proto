@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 
 option go_package = "./campusapis/staff/v1";
 
+// debug:搜索请求体可以快速定位到请求体。
 service CampusService {
   //获取员工信息
   rpc GetPersonInfo(google.protobuf.Empty) returns (GetPersonInfoResponse) {
@@ -30,6 +31,21 @@ service CampusService {
       }
     };
   }
+// todo: 未实现
+//  //获取全体学生基本信息
+//  rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {
+//    option (google.api.http) = {
+//      get: "/staff/v1/all/student/info"
+//    };
+//  }
+//
+//  // 获取每个学院和专业的学生人数，按年级过滤
+//  rpc GetStudentCountByDivision(GetStudentCountRequest) returns (GetStudentCountByDivisionResponse) {
+//    option (google.api.http) = {
+//      get: "/staff/v1/student/count/by-division"
+//    };
+//  }
+
 
   //获取学生学籍状态
   rpc GetStudentSchoolRollStatus(google.protobuf.Empty) returns (GetStudentSchoolRollStatusResponse) {
@@ -188,6 +204,10 @@ service CampusService {
   }
 }
 
+//下面为返回体和请求体
+
+
+
 //查询人员信息返回体
 message GetPersonInfoResponse {
   int32 error = 1;
@@ -268,6 +288,14 @@ message GetStudentInfoResponse {
   string msg = 2;
   StudentInfo data = 3;
 }
+
+// todo
+//// GetStudentInfoResponse 查询全体学生信息列表返回体
+//message GetAllStudentInfoResponse {
+//  int32 error = 1;
+//  string msg = 2;
+//  repeated StudentInfo data = 3;
+//}
 
 message StudentInfo {
   //学号
@@ -789,3 +817,30 @@ message FreshmanRoommate {
   string qq = 2;
   string phone = 3;
 }
+
+//todo
+//// 请求消息，添加年级筛选条件
+//message GetStudentCountRequest {
+//  repeated string grade = 1; // 年级:如 2022
+//}
+//
+//// 定义响应消息
+//message GetStudentCountByDivisionResponse {
+//  int32 error = 1;
+//  string msg = 2;
+//  // 学院信息列表
+//  repeated CollegeInfo data = 3;
+//}
+//
+//message CollegeInfo {
+//  //学院代码
+//  string unitCode = 1;
+//  string name = 2;  // 学院名称
+//  repeated MajorInfo majors = 3;
+//}
+//
+//message MajorInfo {
+//  //学院代码
+//  string name = 1;  // 专业名称
+//  int32 count = 2;  // 学生人数
+//}
