@@ -831,10 +831,5 @@ message GetStudentCountByDivisionRequest {
 message NiceResponse {
   int32 error = 1;
   string msg = 2;
-  map<string, string> externalData = 3;
-  google.protobuf.Any data = 4;
-}
-
-message Count{
-  int32 count = 1;
+  string data = 3;
 }

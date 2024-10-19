@@ -1837,14 +1837,8 @@
         "msg": {
           "type": "string"
         },
-        "externalData": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
         "data": {
-          "$ref": "#/definitions/protobufAny"
+          "type": "string"
         }
       },
       "title": "定义响应消息"

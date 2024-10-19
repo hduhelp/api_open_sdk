@@ -11,7 +11,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	anypb "google.golang.org/protobuf/types/known/anypb"
+	_ "google.golang.org/protobuf/types/known/anypb"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
@@ -3968,10 +3968,9 @@ type NiceResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Error        int32             `protobuf:"varint,1,opt,name=error,proto3" json:"error,omitempty"`
-	Msg          string            `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
-	ExternalData map[string]string `protobuf:"bytes,3,rep,name=externalData,proto3" json:"externalData,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Data         *anypb.Any        `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
+	Error int32  `protobuf:"varint,1,opt,name=error,proto3" json:"error,omitempty"`
+	Msg   string `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	Data  string `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *NiceResponse) Reset() {
@@ -4018,63 +4017,11 @@ func (x *NiceResponse) GetMsg() string {
 	return ""
 }
 
-func (x *NiceResponse) GetExternalData() map[string]string {
-	if x != nil {
-		return x.ExternalData
-	}
-	return nil
-}
-
-func (x *NiceResponse) GetData() *anypb.Any {
+func (x *NiceResponse) GetData() string {
 	if x != nil {
 		return x.Data
 	}
-	return nil
-}
-
-type Count struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Count int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
-}
-
-func (x *Count) Reset() {
-	*x = Count{}
-	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[52]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Count) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Count) ProtoMessage() {}
-
-func (x *Count) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[52]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Count.ProtoReflect.Descriptor instead.
-func (*Count) Descriptor() ([]byte, []int) {
-	return file_campusapis_staff_v1_campus_proto_rawDescGZIP(), []int{52}
-}
-
-func (x *Count) GetCount() int32 {
-	if x != nil {
-		return x.Count
-	}
-	return 0
+	return ""
 }
 
 // 某年贫困详情
@@ -4091,7 +4038,7 @@ type StudentNeedyInfo_Nested struct {
 
 func (x *StudentNeedyInfo_Nested) Reset() {
 	*x = StudentNeedyInfo_Nested{}
-	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[53]
+	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4103,7 +4050,7 @@ func (x *StudentNeedyInfo_Nested) String() string {
 func (*StudentNeedyInfo_Nested) ProtoMessage() {}
 
 func (x *StudentNeedyInfo_Nested) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[53]
+	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4144,7 +4091,7 @@ type PostStudentGateAccessResponse_Data struct {
 
 func (x *PostStudentGateAccessResponse_Data) Reset() {
 	*x = PostStudentGateAccessResponse_Data{}
-	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[54]
+	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4156,7 +4103,7 @@ func (x *PostStudentGateAccessResponse_Data) String() string {
 func (*PostStudentGateAccessResponse_Data) ProtoMessage() {}
 
 func (x *PostStudentGateAccessResponse_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[54]
+	mi := &file_campusapis_staff_v1_campus_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4727,25 +4674,12 @@ var file_campusapis_staff_v1_campus_proto_rawDesc = []byte{
 	0x47, 0x65, 0x74, 0x53, 0x74, 0x75, 0x64, 0x65, 0x6e, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42,
 	0x79, 0x44, 0x69, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x12, 0x14, 0x0a, 0x05, 0x67, 0x72, 0x61, 0x64, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52,
-	0x05, 0x67, 0x72, 0x61, 0x64, 0x65, 0x22, 0xfa, 0x01, 0x0a, 0x0c, 0x4e, 0x69, 0x63, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x10, 0x0a,
-	0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12,
-	0x57, 0x0a, 0x0c, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x44, 0x61, 0x74, 0x61, 0x18,
-	0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x33, 0x2e, 0x63, 0x61, 0x6d, 0x70, 0x75, 0x73, 0x61, 0x70,
-	0x69, 0x73, 0x2e, 0x73, 0x74, 0x61, 0x66, 0x66, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x69, 0x63, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x45, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61,
-	0x6c, 0x44, 0x61, 0x74, 0x61, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x0c, 0x65, 0x78, 0x74, 0x65,
-	0x72, 0x6e, 0x61, 0x6c, 0x44, 0x61, 0x74, 0x61, 0x12, 0x28, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x41, 0x6e, 0x79, 0x52, 0x04, 0x64, 0x61,
-	0x74, 0x61, 0x1a, 0x3f, 0x0a, 0x11, 0x45, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x44, 0x61,
-	0x74, 0x61, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c,
-	0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a,
-	0x02, 0x38, 0x01, 0x22, 0x1d, 0x0a, 0x05, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05,
-	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75,
-	0x6e, 0x74, 0x32, 0xb1, 0x18, 0x0a, 0x0d, 0x43, 0x61, 0x6d, 0x70, 0x75, 0x73, 0x53, 0x65, 0x72,
+	0x05, 0x67, 0x72, 0x61, 0x64, 0x65, 0x22, 0x4a, 0x0a, 0x0c, 0x4e, 0x69, 0x63, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x10, 0x0a, 0x03,
+	0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x12,
+	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61,
+	0x74, 0x61, 0x32, 0xb1, 0x18, 0x0a, 0x0d, 0x43, 0x61, 0x6d, 0x70, 0x75, 0x73, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x12, 0x82, 0x01, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x50, 0x65, 0x72, 0x73,
 	0x6f, 0x6e, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x2a,
@@ -4969,7 +4903,7 @@ func file_campusapis_staff_v1_campus_proto_rawDescGZIP() []byte {
 	return file_campusapis_staff_v1_campus_proto_rawDescData
 }
 
-var file_campusapis_staff_v1_campus_proto_msgTypes = make([]protoimpl.MessageInfo, 56)
+var file_campusapis_staff_v1_campus_proto_msgTypes = make([]protoimpl.MessageInfo, 54)
 var file_campusapis_staff_v1_campus_proto_goTypes = []any{
 	(*GetPersonInfoResponse)(nil),              // 0: campusapis.staff.v1.GetPersonInfoResponse
 	(*PersonInfo)(nil),                         // 1: campusapis.staff.v1.PersonInfo
@@ -5023,23 +4957,20 @@ var file_campusapis_staff_v1_campus_proto_goTypes = []any{
 	(*FreshmanRoommate)(nil),                   // 49: campusapis.staff.v1.FreshmanRoommate
 	(*GetStudentCountByDivisionRequest)(nil),   // 50: campusapis.staff.v1.GetStudentCountByDivisionRequest
 	(*NiceResponse)(nil),                       // 51: campusapis.staff.v1.NiceResponse
-	(*Count)(nil),                              // 52: campusapis.staff.v1.Count
-	(*StudentNeedyInfo_Nested)(nil),            // 53: campusapis.staff.v1.StudentNeedyInfo.Nested
-	(*PostStudentGateAccessResponse_Data)(nil), // 54: campusapis.staff.v1.PostStudentGateAccessResponse.Data
-	nil,                   // 55: campusapis.staff.v1.NiceResponse.ExternalDataEntry
-	(staff.Type)(0),       // 56: campusapis.staff.Type
-	(*anypb.Any)(nil),     // 57: google.protobuf.Any
-	(*emptypb.Empty)(nil), // 58: google.protobuf.Empty
+	(*StudentNeedyInfo_Nested)(nil),            // 52: campusapis.staff.v1.StudentNeedyInfo.Nested
+	(*PostStudentGateAccessResponse_Data)(nil), // 53: campusapis.staff.v1.PostStudentGateAccessResponse.Data
+	(staff.Type)(0),                            // 54: campusapis.staff.Type
+	(*emptypb.Empty)(nil),                      // 55: google.protobuf.Empty
 }
 var file_campusapis_staff_v1_campus_proto_depIdxs = []int32{
 	1,  // 0: campusapis.staff.v1.GetPersonInfoResponse.data:type_name -> campusapis.staff.v1.PersonInfo
 	10, // 1: campusapis.staff.v1.GetStudentInfoResponse.data:type_name -> campusapis.staff.v1.StudentInfo
 	12, // 2: campusapis.staff.v1.GetStudentSchoolRollStatusResponse.data:type_name -> campusapis.staff.v1.StudentSchoolRollStatus
 	14, // 3: campusapis.staff.v1.GetStudentNeedyInfoResponse.data:type_name -> campusapis.staff.v1.StudentNeedyInfo
-	53, // 4: campusapis.staff.v1.StudentNeedyInfo.items:type_name -> campusapis.staff.v1.StudentNeedyInfo.Nested
+	52, // 4: campusapis.staff.v1.StudentNeedyInfo.items:type_name -> campusapis.staff.v1.StudentNeedyInfo.Nested
 	16, // 5: campusapis.staff.v1.GetStudentDormInfoResponse.data:type_name -> campusapis.staff.v1.DormInfo
 	18, // 6: campusapis.staff.v1.GetStudentBirthdayInfoResponse.data:type_name -> campusapis.staff.v1.StudentBirthdayInfo
-	56, // 7: campusapis.staff.v1.GetStudentBirthdaysInRequest.type:type_name -> campusapis.staff.Type
+	54, // 7: campusapis.staff.v1.GetStudentBirthdaysInRequest.type:type_name -> campusapis.staff.Type
 	18, // 8: campusapis.staff.v1.GetStudentBirthdaysInResponse.data:type_name -> campusapis.staff.v1.StudentBirthdayInfo
 	22, // 9: campusapis.staff.v1.GetStudentRewardsResponse.data:type_name -> campusapis.staff.v1.StudentReward
 	24, // 10: campusapis.staff.v1.GetStudentCourseSelectionsResponse.data:type_name -> campusapis.staff.v1.StudentCourseSelection
@@ -5050,56 +4981,54 @@ var file_campusapis_staff_v1_campus_proto_depIdxs = []int32{
 	33, // 15: campusapis.staff.v1.GetStudentGPAResponse.data:type_name -> campusapis.staff.v1.StudentGPA
 	34, // 16: campusapis.staff.v1.StudentGPA.perSemester:type_name -> campusapis.staff.v1.GPAPerSemester
 	35, // 17: campusapis.staff.v1.StudentGPA.total:type_name -> campusapis.staff.v1.GPATotal
-	54, // 18: campusapis.staff.v1.PostStudentGateAccessResponse.data:type_name -> campusapis.staff.v1.PostStudentGateAccessResponse.Data
+	53, // 18: campusapis.staff.v1.PostStudentGateAccessResponse.data:type_name -> campusapis.staff.v1.PostStudentGateAccessResponse.Data
 	39, // 19: campusapis.staff.v1.GetStudentStaySchoolInfoResponse.data:type_name -> campusapis.staff.v1.StudentStaySchoolInfo
 	45, // 20: campusapis.staff.v1.GetFreshmanBaseInfoResponse.data:type_name -> campusapis.staff.v1.FreshmanBaseInfo
 	47, // 21: campusapis.staff.v1.GetFreshmanDetailResponse.data:type_name -> campusapis.staff.v1.FreshmanDetail
 	49, // 22: campusapis.staff.v1.GetFreshmanRoommatesResponse.data:type_name -> campusapis.staff.v1.FreshmanRoommate
-	55, // 23: campusapis.staff.v1.NiceResponse.externalData:type_name -> campusapis.staff.v1.NiceResponse.ExternalDataEntry
-	57, // 24: campusapis.staff.v1.NiceResponse.data:type_name -> google.protobuf.Any
-	58, // 25: campusapis.staff.v1.CampusService.GetPersonInfo:input_type -> google.protobuf.Empty
-	58, // 26: campusapis.staff.v1.CampusService.GetStudentInfo:input_type -> google.protobuf.Empty
-	50, // 27: campusapis.staff.v1.CampusService.GetStudentCountByDivision:input_type -> campusapis.staff.v1.GetStudentCountByDivisionRequest
-	58, // 28: campusapis.staff.v1.CampusService.GetStudentSchoolRollStatus:input_type -> google.protobuf.Empty
-	58, // 29: campusapis.staff.v1.CampusService.GetStudentDormInfo:input_type -> google.protobuf.Empty
-	58, // 30: campusapis.staff.v1.CampusService.GetStudentBirthdayInfo:input_type -> google.protobuf.Empty
-	19, // 31: campusapis.staff.v1.CampusService.GetStudentBirthdaysIn:input_type -> campusapis.staff.v1.GetStudentBirthdaysInRequest
-	2,  // 32: campusapis.staff.v1.CampusService.GetStudentRewards:input_type -> campusapis.staff.v1.GetStudentRewardsRequest
-	3,  // 33: campusapis.staff.v1.CampusService.GetStudentCourseSelections:input_type -> campusapis.staff.v1.GetStudentCourseSelectionsRequest
-	4,  // 34: campusapis.staff.v1.CampusService.GetStudentGrade:input_type -> campusapis.staff.v1.GetStudentGradeRequest
-	5,  // 35: campusapis.staff.v1.CampusService.GetGlobalStudentGrade:input_type -> campusapis.staff.v1.GetGlobalStudentGradeRequest
-	6,  // 36: campusapis.staff.v1.CampusService.GetStudentExam:input_type -> campusapis.staff.v1.GetStudentExamRequest
-	7,  // 37: campusapis.staff.v1.CampusService.GetDailyExam:input_type -> campusapis.staff.v1.GetDailyExamRequest
-	58, // 38: campusapis.staff.v1.CampusService.GetStudentGPA:input_type -> google.protobuf.Empty
-	36, // 39: campusapis.staff.v1.CampusService.PostStudentGateAccess:input_type -> campusapis.staff.v1.PostStudentGateAccessRequest
-	58, // 40: campusapis.staff.v1.CampusService.GetStudentStaySchoolInfo:input_type -> google.protobuf.Empty
-	40, // 41: campusapis.staff.v1.CampusService.GetFreshmanBaseInfo:input_type -> campusapis.staff.v1.GetFreshmanBaseInfoRequest
-	41, // 42: campusapis.staff.v1.CampusService.GetFreshmanDetail:input_type -> campusapis.staff.v1.GetFreshmanDetailRequest
-	42, // 43: campusapis.staff.v1.CampusService.GetFreshmanRoommates:input_type -> campusapis.staff.v1.GetFreshmanRoommatesRequest
-	0,  // 44: campusapis.staff.v1.CampusService.GetPersonInfo:output_type -> campusapis.staff.v1.GetPersonInfoResponse
-	9,  // 45: campusapis.staff.v1.CampusService.GetStudentInfo:output_type -> campusapis.staff.v1.GetStudentInfoResponse
-	51, // 46: campusapis.staff.v1.CampusService.GetStudentCountByDivision:output_type -> campusapis.staff.v1.NiceResponse
-	11, // 47: campusapis.staff.v1.CampusService.GetStudentSchoolRollStatus:output_type -> campusapis.staff.v1.GetStudentSchoolRollStatusResponse
-	15, // 48: campusapis.staff.v1.CampusService.GetStudentDormInfo:output_type -> campusapis.staff.v1.GetStudentDormInfoResponse
-	17, // 49: campusapis.staff.v1.CampusService.GetStudentBirthdayInfo:output_type -> campusapis.staff.v1.GetStudentBirthdayInfoResponse
-	20, // 50: campusapis.staff.v1.CampusService.GetStudentBirthdaysIn:output_type -> campusapis.staff.v1.GetStudentBirthdaysInResponse
-	21, // 51: campusapis.staff.v1.CampusService.GetStudentRewards:output_type -> campusapis.staff.v1.GetStudentRewardsResponse
-	23, // 52: campusapis.staff.v1.CampusService.GetStudentCourseSelections:output_type -> campusapis.staff.v1.GetStudentCourseSelectionsResponse
-	25, // 53: campusapis.staff.v1.CampusService.GetStudentGrade:output_type -> campusapis.staff.v1.GetStudentGradeResponse
-	27, // 54: campusapis.staff.v1.CampusService.GetGlobalStudentGrade:output_type -> campusapis.staff.v1.GetGlobalStudentGradeResponse
-	30, // 55: campusapis.staff.v1.CampusService.GetStudentExam:output_type -> campusapis.staff.v1.GetStudentExamResponse
-	28, // 56: campusapis.staff.v1.CampusService.GetDailyExam:output_type -> campusapis.staff.v1.GetDailyExamResponse
-	32, // 57: campusapis.staff.v1.CampusService.GetStudentGPA:output_type -> campusapis.staff.v1.GetStudentGPAResponse
-	37, // 58: campusapis.staff.v1.CampusService.PostStudentGateAccess:output_type -> campusapis.staff.v1.PostStudentGateAccessResponse
-	38, // 59: campusapis.staff.v1.CampusService.GetStudentStaySchoolInfo:output_type -> campusapis.staff.v1.GetStudentStaySchoolInfoResponse
-	44, // 60: campusapis.staff.v1.CampusService.GetFreshmanBaseInfo:output_type -> campusapis.staff.v1.GetFreshmanBaseInfoResponse
-	46, // 61: campusapis.staff.v1.CampusService.GetFreshmanDetail:output_type -> campusapis.staff.v1.GetFreshmanDetailResponse
-	48, // 62: campusapis.staff.v1.CampusService.GetFreshmanRoommates:output_type -> campusapis.staff.v1.GetFreshmanRoommatesResponse
-	44, // [44:63] is the sub-list for method output_type
-	25, // [25:44] is the sub-list for method input_type
-	25, // [25:25] is the sub-list for extension type_name
-	25, // [25:25] is the sub-list for extension extendee
-	0,  // [0:25] is the sub-list for field type_name
+	55, // 23: campusapis.staff.v1.CampusService.GetPersonInfo:input_type -> google.protobuf.Empty
+	55, // 24: campusapis.staff.v1.CampusService.GetStudentInfo:input_type -> google.protobuf.Empty
+	50, // 25: campusapis.staff.v1.CampusService.GetStudentCountByDivision:input_type -> campusapis.staff.v1.GetStudentCountByDivisionRequest
+	55, // 26: campusapis.staff.v1.CampusService.GetStudentSchoolRollStatus:input_type -> google.protobuf.Empty
+	55, // 27: campusapis.staff.v1.CampusService.GetStudentDormInfo:input_type -> google.protobuf.Empty
+	55, // 28: campusapis.staff.v1.CampusService.GetStudentBirthdayInfo:input_type -> google.protobuf.Empty
+	19, // 29: campusapis.staff.v1.CampusService.GetStudentBirthdaysIn:input_type -> campusapis.staff.v1.GetStudentBirthdaysInRequest
+	2,  // 30: campusapis.staff.v1.CampusService.GetStudentRewards:input_type -> campusapis.staff.v1.GetStudentRewardsRequest
+	3,  // 31: campusapis.staff.v1.CampusService.GetStudentCourseSelections:input_type -> campusapis.staff.v1.GetStudentCourseSelectionsRequest
+	4,  // 32: campusapis.staff.v1.CampusService.GetStudentGrade:input_type -> campusapis.staff.v1.GetStudentGradeRequest
+	5,  // 33: campusapis.staff.v1.CampusService.GetGlobalStudentGrade:input_type -> campusapis.staff.v1.GetGlobalStudentGradeRequest
+	6,  // 34: campusapis.staff.v1.CampusService.GetStudentExam:input_type -> campusapis.staff.v1.GetStudentExamRequest
+	7,  // 35: campusapis.staff.v1.CampusService.GetDailyExam:input_type -> campusapis.staff.v1.GetDailyExamRequest
+	55, // 36: campusapis.staff.v1.CampusService.GetStudentGPA:input_type -> google.protobuf.Empty
+	36, // 37: campusapis.staff.v1.CampusService.PostStudentGateAccess:input_type -> campusapis.staff.v1.PostStudentGateAccessRequest
+	55, // 38: campusapis.staff.v1.CampusService.GetStudentStaySchoolInfo:input_type -> google.protobuf.Empty
+	40, // 39: campusapis.staff.v1.CampusService.GetFreshmanBaseInfo:input_type -> campusapis.staff.v1.GetFreshmanBaseInfoRequest
+	41, // 40: campusapis.staff.v1.CampusService.GetFreshmanDetail:input_type -> campusapis.staff.v1.GetFreshmanDetailRequest
+	42, // 41: campusapis.staff.v1.CampusService.GetFreshmanRoommates:input_type -> campusapis.staff.v1.GetFreshmanRoommatesRequest
+	0,  // 42: campusapis.staff.v1.CampusService.GetPersonInfo:output_type -> campusapis.staff.v1.GetPersonInfoResponse
+	9,  // 43: campusapis.staff.v1.CampusService.GetStudentInfo:output_type -> campusapis.staff.v1.GetStudentInfoResponse
+	51, // 44: campusapis.staff.v1.CampusService.GetStudentCountByDivision:output_type -> campusapis.staff.v1.NiceResponse
+	11, // 45: campusapis.staff.v1.CampusService.GetStudentSchoolRollStatus:output_type -> campusapis.staff.v1.GetStudentSchoolRollStatusResponse
+	15, // 46: campusapis.staff.v1.CampusService.GetStudentDormInfo:output_type -> campusapis.staff.v1.GetStudentDormInfoResponse
+	17, // 47: campusapis.staff.v1.CampusService.GetStudentBirthdayInfo:output_type -> campusapis.staff.v1.GetStudentBirthdayInfoResponse
+	20, // 48: campusapis.staff.v1.CampusService.GetStudentBirthdaysIn:output_type -> campusapis.staff.v1.GetStudentBirthdaysInResponse
+	21, // 49: campusapis.staff.v1.CampusService.GetStudentRewards:output_type -> campusapis.staff.v1.GetStudentRewardsResponse
+	23, // 50: campusapis.staff.v1.CampusService.GetStudentCourseSelections:output_type -> campusapis.staff.v1.GetStudentCourseSelectionsResponse
+	25, // 51: campusapis.staff.v1.CampusService.GetStudentGrade:output_type -> campusapis.staff.v1.GetStudentGradeResponse
+	27, // 52: campusapis.staff.v1.CampusService.GetGlobalStudentGrade:output_type -> campusapis.staff.v1.GetGlobalStudentGradeResponse
+	30, // 53: campusapis.staff.v1.CampusService.GetStudentExam:output_type -> campusapis.staff.v1.GetStudentExamResponse
+	28, // 54: campusapis.staff.v1.CampusService.GetDailyExam:output_type -> campusapis.staff.v1.GetDailyExamResponse
+	32, // 55: campusapis.staff.v1.CampusService.GetStudentGPA:output_type -> campusapis.staff.v1.GetStudentGPAResponse
+	37, // 56: campusapis.staff.v1.CampusService.PostStudentGateAccess:output_type -> campusapis.staff.v1.PostStudentGateAccessResponse
+	38, // 57: campusapis.staff.v1.CampusService.GetStudentStaySchoolInfo:output_type -> campusapis.staff.v1.GetStudentStaySchoolInfoResponse
+	44, // 58: campusapis.staff.v1.CampusService.GetFreshmanBaseInfo:output_type -> campusapis.staff.v1.GetFreshmanBaseInfoResponse
+	46, // 59: campusapis.staff.v1.CampusService.GetFreshmanDetail:output_type -> campusapis.staff.v1.GetFreshmanDetailResponse
+	48, // 60: campusapis.staff.v1.CampusService.GetFreshmanRoommates:output_type -> campusapis.staff.v1.GetFreshmanRoommatesResponse
+	42, // [42:61] is the sub-list for method output_type
+	23, // [23:42] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_campusapis_staff_v1_campus_proto_init() }
@@ -5113,7 +5042,7 @@ func file_campusapis_staff_v1_campus_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_campusapis_staff_v1_campus_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   56,
+			NumMessages:   54,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
