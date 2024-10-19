@@ -61,7 +61,7 @@ type CampusServiceClient interface {
 	//	}
 	//
 	// 获取每个学院和专业的学生人数，按年级过滤
-	GetStudentCountByDivision(ctx context.Context, in *GetStudentCountByDivisionRequest, opts ...grpc.CallOption) (*NiceResponse, error)
+	GetStudentCountByDivision(ctx context.Context, in *GetStudentCountByDivisionRequest, opts ...grpc.CallOption) (*GetStudentCountByDivisionResponse, error)
 	// 获取学生学籍状态
 	GetStudentSchoolRollStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error)
 	//	迁移至校外部分
@@ -135,9 +135,9 @@ func (c *campusServiceClient) GetStudentInfo(ctx context.Context, in *emptypb.Em
 	return out, nil
 }
 
-func (c *campusServiceClient) GetStudentCountByDivision(ctx context.Context, in *GetStudentCountByDivisionRequest, opts ...grpc.CallOption) (*NiceResponse, error) {
+func (c *campusServiceClient) GetStudentCountByDivision(ctx context.Context, in *GetStudentCountByDivisionRequest, opts ...grpc.CallOption) (*GetStudentCountByDivisionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(NiceResponse)
+	out := new(GetStudentCountByDivisionResponse)
 	err := c.cc.Invoke(ctx, CampusService_GetStudentCountByDivision_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -325,7 +325,7 @@ type CampusServiceServer interface {
 	//	}
 	//
 	// 获取每个学院和专业的学生人数，按年级过滤
-	GetStudentCountByDivision(context.Context, *GetStudentCountByDivisionRequest) (*NiceResponse, error)
+	GetStudentCountByDivision(context.Context, *GetStudentCountByDivisionRequest) (*GetStudentCountByDivisionResponse, error)
 	// 获取学生学籍状态
 	GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error)
 	//	迁移至校外部分
@@ -385,7 +385,7 @@ func (UnimplementedCampusServiceServer) GetPersonInfo(context.Context, *emptypb.
 func (UnimplementedCampusServiceServer) GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentInfo not implemented")
 }
-func (UnimplementedCampusServiceServer) GetStudentCountByDivision(context.Context, *GetStudentCountByDivisionRequest) (*NiceResponse, error) {
+func (UnimplementedCampusServiceServer) GetStudentCountByDivision(context.Context, *GetStudentCountByDivisionRequest) (*GetStudentCountByDivisionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentCountByDivision not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error) {
