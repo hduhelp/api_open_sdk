@@ -4032,6 +4032,7 @@ func (x *NiceResponse) GetData() *anypb.Any {
 	return nil
 }
 
+// 学生统计结构体
 type StudentCountData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

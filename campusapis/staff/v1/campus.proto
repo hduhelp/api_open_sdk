@@ -835,6 +835,7 @@ message NiceResponse {
   google.protobuf.Any data = 4;
 }
 
+// 学生统计结构体
 message StudentCountData {
   message Degree {
     string degree_name = 1;
