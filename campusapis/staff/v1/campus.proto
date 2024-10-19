@@ -835,26 +835,6 @@ message NiceResponse {
   google.protobuf.Any data = 4;
 }
 
-// 学生统计结构体
-message StudentCountData {
-  message Degree {
-    string degree_name = 1;
-    message Grade {
-      string grade_name = 1;
-      int32 count = 2;
-      message College {
-        string college_name = 1;
-        int32 count = 2;
-        message Major {
-          string major_name = 1;
-          int32 count = 2;
-        }
-        repeated Major majors = 3;
-      }
-      repeated College colleges = 3;
-    }
-    repeated Grade grades = 2;
-  }
-  repeated Degree degrees = 1;
+message Count{
+  int32 count = 1;
 }
-
