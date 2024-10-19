@@ -480,7 +480,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetStudentCountByDivisionResponse"
+              "$ref": "#/definitions/v1NiceResponse"
             }
           },
           "default": {
@@ -898,7 +898,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetStudentCountByDivisionResponse"
+              "$ref": "#/definitions/v1NiceResponse"
             }
           },
           "default": {
@@ -1626,22 +1626,6 @@
       },
       "title": "GetStudentBirthdaysInResponse 查询某天生日所有人员-返回体"
     },
-    "v1GetStudentCountByDivisionResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "type": "string"
-        }
-      },
-      "title": "定义响应消息"
-    },
     "v1GetStudentCourseSelectionsResponse": {
       "type": "object",
       "properties": {
@@ -1840,6 +1824,22 @@
         }
       },
       "title": "成绩详情"
+    },
+    "v1NiceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "定义响应消息"
     },
     "v1PersonInfo": {
       "type": "object",

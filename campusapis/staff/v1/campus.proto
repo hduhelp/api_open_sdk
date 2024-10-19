@@ -40,7 +40,7 @@ service CampusService {
 //  }
 //
   // 获取每个学院和专业的学生人数，按年级过滤
-  rpc GetStudentCountByDivision(GetStudentCountByDivisionRequest) returns( GetStudentCountByDivisionResponse  ) {
+  rpc GetStudentCountByDivision(GetStudentCountByDivisionRequest) returns( NiceResponse  ) {
     option (google.api.http) = {
       get: "/staff/v1/student/count"
       additional_bindings{
@@ -827,7 +827,7 @@ message GetStudentCountByDivisionRequest {
 }
 
 // 定义响应消息
-message GetStudentCountByDivisionResponse {
+message NiceResponse {
   int32 error = 1;
   string msg = 2;
   string data = 3;
