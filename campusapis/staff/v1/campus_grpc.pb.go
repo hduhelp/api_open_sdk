@@ -22,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	CampusService_GetPersonInfo_FullMethodName              = "/campusapis.staff.v1.CampusService/GetPersonInfo"
 	CampusService_GetStudentInfo_FullMethodName             = "/campusapis.staff.v1.CampusService/GetStudentInfo"
+	CampusService_GetStudentCountByDivision_FullMethodName  = "/campusapis.staff.v1.CampusService/GetStudentCountByDivision"
 	CampusService_GetStudentSchoolRollStatus_FullMethodName = "/campusapis.staff.v1.CampusService/GetStudentSchoolRollStatus"
 	CampusService_GetStudentDormInfo_FullMethodName         = "/campusapis.staff.v1.CampusService/GetStudentDormInfo"
 	CampusService_GetStudentBirthdayInfo_FullMethodName     = "/campusapis.staff.v1.CampusService/GetStudentBirthdayInfo"
@@ -50,6 +51,17 @@ type CampusServiceClient interface {
 	GetPersonInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetPersonInfoResponse, error)
 	// 获取学生基本信息
 	GetStudentInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentInfoResponse, error)
+	// todo: 未实现
+	//
+	//	//获取全体学生基本信息
+	//	rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {
+	//	  option (google.api.http) = {
+	//	    get: "/staff/v1/all/student/info"
+	//	  };
+	//	}
+	//
+	// 获取每个学院和专业的学生人数，按年级过滤
+	GetStudentCountByDivision(ctx context.Context, in *GetStudentCountByDivisionRequest, opts ...grpc.CallOption) (*GetStudentCountByDivisionResponse, error)
 	// 获取学生学籍状态
 	GetStudentSchoolRollStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetStudentSchoolRollStatusResponse, error)
 	//	迁移至校外部分
@@ -117,6 +129,16 @@ func (c *campusServiceClient) GetStudentInfo(ctx context.Context, in *emptypb.Em
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetStudentInfoResponse)
 	err := c.cc.Invoke(ctx, CampusService_GetStudentInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *campusServiceClient) GetStudentCountByDivision(ctx context.Context, in *GetStudentCountByDivisionRequest, opts ...grpc.CallOption) (*GetStudentCountByDivisionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStudentCountByDivisionResponse)
+	err := c.cc.Invoke(ctx, CampusService_GetStudentCountByDivision_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -293,6 +315,17 @@ type CampusServiceServer interface {
 	GetPersonInfo(context.Context, *emptypb.Empty) (*GetPersonInfoResponse, error)
 	// 获取学生基本信息
 	GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error)
+	// todo: 未实现
+	//
+	//	//获取全体学生基本信息
+	//	rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {
+	//	  option (google.api.http) = {
+	//	    get: "/staff/v1/all/student/info"
+	//	  };
+	//	}
+	//
+	// 获取每个学院和专业的学生人数，按年级过滤
+	GetStudentCountByDivision(context.Context, *GetStudentCountByDivisionRequest) (*GetStudentCountByDivisionResponse, error)
 	// 获取学生学籍状态
 	GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error)
 	//	迁移至校外部分
@@ -351,6 +384,9 @@ func (UnimplementedCampusServiceServer) GetPersonInfo(context.Context, *emptypb.
 }
 func (UnimplementedCampusServiceServer) GetStudentInfo(context.Context, *emptypb.Empty) (*GetStudentInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentInfo not implemented")
+}
+func (UnimplementedCampusServiceServer) GetStudentCountByDivision(context.Context, *GetStudentCountByDivisionRequest) (*GetStudentCountByDivisionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudentCountByDivision not implemented")
 }
 func (UnimplementedCampusServiceServer) GetStudentSchoolRollStatus(context.Context, *emptypb.Empty) (*GetStudentSchoolRollStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStudentSchoolRollStatus not implemented")
@@ -453,6 +489,24 @@ func _CampusService_GetStudentInfo_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CampusServiceServer).GetStudentInfo(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CampusService_GetStudentCountByDivision_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStudentCountByDivisionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetStudentCountByDivision(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_GetStudentCountByDivision_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetStudentCountByDivision(ctx, req.(*GetStudentCountByDivisionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -759,6 +813,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStudentInfo",
 			Handler:    _CampusService_GetStudentInfo_Handler,
+		},
+		{
+			MethodName: "GetStudentCountByDivision",
+			Handler:    _CampusService_GetStudentCountByDivision_Handler,
 		},
 		{
 			MethodName: "GetStudentSchoolRollStatus",

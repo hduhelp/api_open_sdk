@@ -471,6 +471,43 @@
         ]
       }
     },
+    "/staff/v1/student/count": {
+      "get": {
+        "summary": "todo: 未实现\n //获取全体学生基本信息\n rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/all/student/info\"\n   };\n }",
+        "description": "获取每个学院和专业的学生人数，按年级过滤",
+        "operationId": "CampusService_GetStudentCountByDivision",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentCountByDivisionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "grade",
+            "description": "年级:如 2022",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/student/dailyExam": {
       "get": {
         "summary": "获取某一天的考试信息",
@@ -852,6 +889,43 @@
         ]
       }
     },
+    "/student/count": {
+      "get": {
+        "summary": "todo: 未实现\n //获取全体学生基本信息\n rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/all/student/info\"\n   };\n }",
+        "description": "获取每个学院和专业的学生人数，按年级过滤",
+        "operationId": "CampusService_GetStudentCountByDivision2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStudentCountByDivisionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "grade",
+            "description": "年级:如 2022",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/student/dailyExam": {
       "get": {
         "summary": "获取某一天的考试信息",
@@ -1210,6 +1284,26 @@
         }
       }
     },
+    "v1CollegeInfo": {
+      "type": "object",
+      "properties": {
+        "unitCode": {
+          "type": "string",
+          "title": "学院代码"
+        },
+        "name": {
+          "type": "string",
+          "title": "学院名称"
+        },
+        "majors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1MajorInfo"
+          }
+        }
+      }
+    },
     "v1DormInfo": {
       "type": "object",
       "properties": {
@@ -1552,6 +1646,27 @@
       },
       "title": "GetStudentBirthdaysInResponse 查询某天生日所有人员-返回体"
     },
+    "v1GetStudentCountByDivisionResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1CollegeInfo"
+          },
+          "title": "学院信息列表"
+        }
+      },
+      "title": "定义响应消息"
+    },
     "v1GetStudentCourseSelectionsResponse": {
       "type": "object",
       "properties": {
@@ -1750,6 +1865,24 @@
         }
       },
       "title": "成绩详情"
+    },
+    "v1MajorInfo": {
+      "type": "object",
+      "properties": {
+        "majorId": {
+          "type": "string",
+          "title": "学生专业编号"
+        },
+        "name": {
+          "type": "string",
+          "title": "专业名称"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "title": "学生人数"
+        }
+      }
     },
     "v1PersonInfo": {
       "type": "object",

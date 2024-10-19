@@ -3,9 +3,15 @@
 ![Goproxy.cn](https://goproxy.cn/stats/github.com/hduhelp/api_open_sdk/badges/download-count.svg)
 ![buf lint](https://github.com/hduhelp/api_open_sdk/actions/workflows/buf.yml/badge.svg)
 
+### 配置网络
+
+https://goproxy.cn/
+
+
+
 ## 前置步骤
 
-#### linux
+### linux
 
 ```shell
 //安装 编译所需的插件
@@ -14,9 +20,21 @@
 make install-tools
 ```
 
-#### windows
+### windows
 
 如果使用goland，建议安装插件：buf、Protocol Buffers Support，以消除proto无法识别到的报警。
+
+以下操作，开发前或开发后执行皆可
+
+```
+go get github.com/bufbuild/buf/cmd/buf@latest
+go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+go get google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+go get google.golang.org/protobuf/cmd/protoc-gen-go@latest
+```
+
+然后刷新一下。
 
 ```
 go mod tidy
@@ -25,9 +43,7 @@ buf generate
 
 
 
-### 配置网络
 
-https://goproxy.cn/
 
 ## 依赖
 
@@ -39,6 +55,8 @@ https://goproxy.cn/
 1. 修改 proto 文件
 2. 运行 `buf generate`
 3. 开启 swagger-ui 实时预览
+
+
 
 ## 预览 swagger 效果 (多数情况下没必要预览) (感觉还有更简单的)
 
@@ -70,8 +88,6 @@ http://localhost:8080/campusapis/staff/v1/freshman.swagger.json
 点击 Explore 按钮，即可看到 swagger 文档
 
 4. 每次改动 proto 后需要重新运行 `buf generate`，并且「清空缓存并进行硬刷新」网页
-
-## Code Lint
 
 
 
