@@ -1498,6 +1498,10 @@
         "available": {
           "type": "boolean",
           "title": "是否被使用"
+        },
+        "selfStudy": {
+          "type": "boolean",
+          "title": "是否自习室"
         }
       },
       "title": "教室信息"
