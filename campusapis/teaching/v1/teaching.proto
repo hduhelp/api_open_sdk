@@ -334,6 +334,7 @@ message StaffInfo {
   string StaffName = 2;
   // 备注
   // todo 有空改成 Comment?
+  // 不知道什么时候有空
   string Commit = 3;
 }
 
@@ -543,6 +544,8 @@ message Classroom {
   string buildingName = 6;
   // 是否被使用
   bool available = 7;
+  // 是否自习室
+  bool selfStudy = 8;
 }
 
 // GetClassroomUsagesResponse 教室使用情况返回体
