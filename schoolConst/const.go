@@ -7,8 +7,8 @@ import (
 
 const (
 	SchoolYear             = 2024
-	Semester               = 1
-	SemesterStartTimestamp = int64(1725811200) // 2024-09-09 00:00:00
+	Semester               = 2
+	SemesterStartTimestamp = int64(1740326400) // 2025-02-24 00:00:00(CST)
 )
 
 func getWeekNum() int {
