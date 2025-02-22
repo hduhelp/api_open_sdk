@@ -10,6 +10,7 @@ package gatev1
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,123 +25,104 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_GateManagerService_PostCampusGateEventCallback_0(ctx context.Context, marshaler runtime.Marshaler, client GateManagerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostCampusGateEventCallbackRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && err != io.EOF {
+	var (
+		protoReq PostCampusGateEventCallbackRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["service"]
+	val, ok := pathParams["service"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "service")
 	}
-
 	protoReq.Service, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "service", err)
 	}
-
 	msg, err := client.PostCampusGateEventCallback(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_GateManagerService_PostCampusGateEventCallback_0(ctx context.Context, marshaler runtime.Marshaler, server GateManagerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostCampusGateEventCallbackRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && err != io.EOF {
+	var (
+		protoReq PostCampusGateEventCallbackRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Data); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["service"]
+	val, ok := pathParams["service"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "service")
 	}
-
 	protoReq.Service, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "service", err)
 	}
-
 	msg, err := server.PostCampusGateEventCallback(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_GateManagerService_PostStudentGateAccess_0(ctx context.Context, marshaler runtime.Marshaler, client GateManagerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostStudentGateAccessRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostStudentGateAccessRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.PostStudentGateAccess(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_GateManagerService_PostStudentGateAccess_0(ctx context.Context, marshaler runtime.Marshaler, server GateManagerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostStudentGateAccessRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostStudentGateAccessRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.PostStudentGateAccess(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_GateManagerService_PostRegisterGateEvent_0(ctx context.Context, marshaler runtime.Marshaler, client GateManagerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegisterGateEventRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostRegisterGateEventRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.PostRegisterGateEvent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_GateManagerService_PostRegisterGateEvent_0(ctx context.Context, marshaler runtime.Marshaler, server GateManagerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegisterGateEventRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostRegisterGateEventRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.PostRegisterGateEvent(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterGateManagerServiceHandlerServer registers the http handlers for service GateManagerService to "mux".
@@ -149,16 +131,13 @@ func local_request_GateManagerService_PostRegisterGateEvent_0(ctx context.Contex
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterGateManagerServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterGateManagerServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server GateManagerServiceServer) error {
-
-	mux.Handle("POST", pattern_GateManagerService_PostCampusGateEventCallback_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_GateManagerService_PostCampusGateEventCallback_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostCampusGateEventCallback", runtime.WithHTTPPathPattern("/gate/v1/callback/{service}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostCampusGateEventCallback", runtime.WithHTTPPathPattern("/gate/v1/callback/{service}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -170,20 +149,15 @@ func RegisterGateManagerServiceHandlerServer(ctx context.Context, mux *runtime.S
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_GateManagerService_PostCampusGateEventCallback_0(annotatedContext, mux, outboundMarshaler, w, req, response_GateManagerService_PostCampusGateEventCallback_0{resp.(*PostCampusGateEventCallbackResponse)}, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_GateManagerService_PostStudentGateAccess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_GateManagerService_PostStudentGateAccess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostStudentGateAccess", runtime.WithHTTPPathPattern("/campusapis.gate.v1.GateManagerService/PostStudentGateAccess"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostStudentGateAccess", runtime.WithHTTPPathPattern("/campusapis.gate.v1.GateManagerService/PostStudentGateAccess"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -195,20 +169,15 @@ func RegisterGateManagerServiceHandlerServer(ctx context.Context, mux *runtime.S
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_GateManagerService_PostStudentGateAccess_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_GateManagerService_PostRegisterGateEvent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_GateManagerService_PostRegisterGateEvent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostRegisterGateEvent", runtime.WithHTTPPathPattern("/campusapis.gate.v1.GateManagerService/PostRegisterGateEvent"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostRegisterGateEvent", runtime.WithHTTPPathPattern("/campusapis.gate.v1.GateManagerService/PostRegisterGateEvent"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -220,9 +189,7 @@ func RegisterGateManagerServiceHandlerServer(ctx context.Context, mux *runtime.S
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_GateManagerService_PostRegisterGateEvent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -249,7 +216,6 @@ func RegisterGateManagerServiceHandlerFromEndpoint(ctx context.Context, mux *run
 			}
 		}()
 	}()
-
 	return RegisterGateManagerServiceHandler(ctx, mux, conn)
 }
 
@@ -265,14 +231,11 @@ func RegisterGateManagerServiceHandler(ctx context.Context, mux *runtime.ServeMu
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "GateManagerServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterGateManagerServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client GateManagerServiceClient) error {
-
-	mux.Handle("POST", pattern_GateManagerService_PostCampusGateEventCallback_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_GateManagerService_PostCampusGateEventCallback_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostCampusGateEventCallback", runtime.WithHTTPPathPattern("/gate/v1/callback/{service}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostCampusGateEventCallback", runtime.WithHTTPPathPattern("/gate/v1/callback/{service}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -283,18 +246,13 @@ func RegisterGateManagerServiceHandlerClient(ctx context.Context, mux *runtime.S
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_GateManagerService_PostCampusGateEventCallback_0(annotatedContext, mux, outboundMarshaler, w, req, response_GateManagerService_PostCampusGateEventCallback_0{resp.(*PostCampusGateEventCallbackResponse)}, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_GateManagerService_PostStudentGateAccess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_GateManagerService_PostStudentGateAccess_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostStudentGateAccess", runtime.WithHTTPPathPattern("/campusapis.gate.v1.GateManagerService/PostStudentGateAccess"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostStudentGateAccess", runtime.WithHTTPPathPattern("/campusapis.gate.v1.GateManagerService/PostStudentGateAccess"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -305,18 +263,13 @@ func RegisterGateManagerServiceHandlerClient(ctx context.Context, mux *runtime.S
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_GateManagerService_PostStudentGateAccess_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_GateManagerService_PostRegisterGateEvent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_GateManagerService_PostRegisterGateEvent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostRegisterGateEvent", runtime.WithHTTPPathPattern("/campusapis.gate.v1.GateManagerService/PostRegisterGateEvent"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.gate.v1.GateManagerService/PostRegisterGateEvent", runtime.WithHTTPPathPattern("/campusapis.gate.v1.GateManagerService/PostRegisterGateEvent"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -327,11 +280,8 @@ func RegisterGateManagerServiceHandlerClient(ctx context.Context, mux *runtime.S
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_GateManagerService_PostRegisterGateEvent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
@@ -345,16 +295,12 @@ func (m response_GateManagerService_PostCampusGateEventCallback_0) XXX_ResponseB
 
 var (
 	pattern_GateManagerService_PostCampusGateEventCallback_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"gate", "v1", "callback", "service"}, ""))
-
-	pattern_GateManagerService_PostStudentGateAccess_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.gate.v1.GateManagerService", "PostStudentGateAccess"}, ""))
-
-	pattern_GateManagerService_PostRegisterGateEvent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.gate.v1.GateManagerService", "PostRegisterGateEvent"}, ""))
+	pattern_GateManagerService_PostStudentGateAccess_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.gate.v1.GateManagerService", "PostStudentGateAccess"}, ""))
+	pattern_GateManagerService_PostRegisterGateEvent_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"campusapis.gate.v1.GateManagerService", "PostRegisterGateEvent"}, ""))
 )
 
 var (
 	forward_GateManagerService_PostCampusGateEventCallback_0 = runtime.ForwardResponseMessage
-
-	forward_GateManagerService_PostStudentGateAccess_0 = runtime.ForwardResponseMessage
-
-	forward_GateManagerService_PostRegisterGateEvent_0 = runtime.ForwardResponseMessage
+	forward_GateManagerService_PostStudentGateAccess_0       = runtime.ForwardResponseMessage
+	forward_GateManagerService_PostRegisterGateEvent_0       = runtime.ForwardResponseMessage
 )

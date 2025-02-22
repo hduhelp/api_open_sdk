@@ -10,6 +10,7 @@ package serverv1
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,89 +25,86 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_ServerRegisterService_PostRegistServiceInstance_0(ctx context.Context, marshaler runtime.Marshaler, client ServerRegisterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegistServiceInstanceRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostRegistServiceInstanceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.PostRegistServiceInstance(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ServerRegisterService_PostRegistServiceInstance_0(ctx context.Context, marshaler runtime.Marshaler, server ServerRegisterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegistServiceInstanceRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostRegistServiceInstanceRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.PostRegistServiceInstance(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ServerRegisterService_PostRegistHTTPRouters_0(ctx context.Context, marshaler runtime.Marshaler, client ServerRegisterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegistHTTPRoutersRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostRegistHTTPRoutersRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.PostRegistHTTPRouters(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ServerRegisterService_PostRegistHTTPRouters_0(ctx context.Context, marshaler runtime.Marshaler, server ServerRegisterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegistHTTPRoutersRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostRegistHTTPRoutersRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.PostRegistHTTPRouters(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ServerRegisterService_PostRegistGRPCMethods_0(ctx context.Context, marshaler runtime.Marshaler, client ServerRegisterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegistGRPCMethodsRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostRegistGRPCMethodsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.PostRegistGRPCMethods(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ServerRegisterService_PostRegistGRPCMethods_0(ctx context.Context, marshaler runtime.Marshaler, server ServerRegisterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PostRegistGRPCMethodsRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq PostRegistGRPCMethodsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.PostRegistGRPCMethods(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterServerRegisterServiceHandlerServer registers the http handlers for service ServerRegisterService to "mux".
@@ -115,16 +113,13 @@ func local_request_ServerRegisterService_PostRegistGRPCMethods_0(ctx context.Con
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterServerRegisterServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterServerRegisterServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ServerRegisterServiceServer) error {
-
-	mux.Handle("POST", pattern_ServerRegisterService_PostRegistServiceInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ServerRegisterService_PostRegistServiceInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -136,20 +131,15 @@ func RegisterServerRegisterServiceHandlerServer(ctx context.Context, mux *runtim
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ServerRegisterService_PostRegistServiceInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ServerRegisterService_PostRegistHTTPRouters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ServerRegisterService_PostRegistHTTPRouters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -161,20 +151,15 @@ func RegisterServerRegisterServiceHandlerServer(ctx context.Context, mux *runtim
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ServerRegisterService_PostRegistHTTPRouters_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ServerRegisterService_PostRegistGRPCMethods_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ServerRegisterService_PostRegistGRPCMethods_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -186,9 +171,7 @@ func RegisterServerRegisterServiceHandlerServer(ctx context.Context, mux *runtim
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ServerRegisterService_PostRegistGRPCMethods_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -215,7 +198,6 @@ func RegisterServerRegisterServiceHandlerFromEndpoint(ctx context.Context, mux *
 			}
 		}()
 	}()
-
 	return RegisterServerRegisterServiceHandler(ctx, mux, conn)
 }
 
@@ -231,14 +213,11 @@ func RegisterServerRegisterServiceHandler(ctx context.Context, mux *runtime.Serv
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ServerRegisterServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterServerRegisterServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ServerRegisterServiceClient) error {
-
-	mux.Handle("POST", pattern_ServerRegisterService_PostRegistServiceInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ServerRegisterService_PostRegistServiceInstance_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistServiceInstance"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -249,18 +228,13 @@ func RegisterServerRegisterServiceHandlerClient(ctx context.Context, mux *runtim
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ServerRegisterService_PostRegistServiceInstance_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ServerRegisterService_PostRegistHTTPRouters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ServerRegisterService_PostRegistHTTPRouters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistHTTPRouters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -271,18 +245,13 @@ func RegisterServerRegisterServiceHandlerClient(ctx context.Context, mux *runtim
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ServerRegisterService_PostRegistHTTPRouters_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ServerRegisterService_PostRegistGRPCMethods_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ServerRegisterService_PostRegistGRPCMethods_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods", runtime.WithHTTPPathPattern("/gatewayapis.server.v1.ServerRegisterService/PostRegistGRPCMethods"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -293,26 +262,19 @@ func RegisterServerRegisterServiceHandlerClient(ctx context.Context, mux *runtim
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ServerRegisterService_PostRegistGRPCMethods_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
 	pattern_ServerRegisterService_PostRegistServiceInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"gatewayapis.server.v1.ServerRegisterService", "PostRegistServiceInstance"}, ""))
-
-	pattern_ServerRegisterService_PostRegistHTTPRouters_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"gatewayapis.server.v1.ServerRegisterService", "PostRegistHTTPRouters"}, ""))
-
-	pattern_ServerRegisterService_PostRegistGRPCMethods_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"gatewayapis.server.v1.ServerRegisterService", "PostRegistGRPCMethods"}, ""))
+	pattern_ServerRegisterService_PostRegistHTTPRouters_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"gatewayapis.server.v1.ServerRegisterService", "PostRegistHTTPRouters"}, ""))
+	pattern_ServerRegisterService_PostRegistGRPCMethods_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"gatewayapis.server.v1.ServerRegisterService", "PostRegistGRPCMethods"}, ""))
 )
 
 var (
 	forward_ServerRegisterService_PostRegistServiceInstance_0 = runtime.ForwardResponseMessage
-
-	forward_ServerRegisterService_PostRegistHTTPRouters_0 = runtime.ForwardResponseMessage
-
-	forward_ServerRegisterService_PostRegistGRPCMethods_0 = runtime.ForwardResponseMessage
+	forward_ServerRegisterService_PostRegistHTTPRouters_0     = runtime.ForwardResponseMessage
+	forward_ServerRegisterService_PostRegistGRPCMethods_0     = runtime.ForwardResponseMessage
 )

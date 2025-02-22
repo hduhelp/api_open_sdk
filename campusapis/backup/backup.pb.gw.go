@@ -10,6 +10,7 @@ package backup
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -26,263 +27,250 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_CampusBackupService_GetPersonInfo_0(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetPersonInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetPersonInfo_0(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetPersonInfo(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_CampusBackupService_GetPersonInfo_1(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetPersonInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetPersonInfo_1(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetPersonInfo(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_CampusBackupService_GetStudentInfo_0(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetStudentInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetStudentInfo_0(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetStudentInfo(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_CampusBackupService_GetStudentInfo_1(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetStudentInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetStudentInfo_1(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetStudentInfo(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_CampusBackupService_GetStudentGrade_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_CampusBackupService_GetStudentGrade_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_CampusBackupService_GetStudentGrade_0(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq staffv1.GetStudentGradeRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq staffv1.GetStudentGradeRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CampusBackupService_GetStudentGrade_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStudentGrade(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetStudentGrade_0(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq staffv1.GetStudentGradeRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq staffv1.GetStudentGradeRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CampusBackupService_GetStudentGrade_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStudentGrade(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_CampusBackupService_GetStudentGrade_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_CampusBackupService_GetStudentGrade_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_CampusBackupService_GetStudentGrade_1(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq staffv1.GetStudentGradeRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq staffv1.GetStudentGradeRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CampusBackupService_GetStudentGrade_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStudentGrade(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetStudentGrade_1(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq staffv1.GetStudentGradeRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq staffv1.GetStudentGradeRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CampusBackupService_GetStudentGrade_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStudentGrade(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_CampusBackupService_GetStudentExam_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_CampusBackupService_GetStudentExam_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_CampusBackupService_GetStudentExam_0(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq staffv1.GetStudentExamRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq staffv1.GetStudentExamRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CampusBackupService_GetStudentExam_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStudentExam(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetStudentExam_0(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq staffv1.GetStudentExamRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq staffv1.GetStudentExamRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CampusBackupService_GetStudentExam_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStudentExam(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_CampusBackupService_GetStudentExam_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_CampusBackupService_GetStudentExam_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_CampusBackupService_GetStudentExam_1(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq staffv1.GetStudentExamRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq staffv1.GetStudentExamRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CampusBackupService_GetStudentExam_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStudentExam(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetStudentExam_1(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq staffv1.GetStudentExamRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq staffv1.GetStudentExamRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CampusBackupService_GetStudentExam_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStudentExam(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_CampusBackupService_GetScheduleNowV2_0(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetScheduleNowV2(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetScheduleNowV2_0(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetScheduleNowV2(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_CampusBackupService_GetScheduleNowV2_1(ctx context.Context, marshaler runtime.Marshaler, client CampusBackupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetScheduleNowV2(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_CampusBackupService_GetScheduleNowV2_1(ctx context.Context, marshaler runtime.Marshaler, server CampusBackupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetScheduleNowV2(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterCampusBackupServiceHandlerServer registers the http handlers for service CampusBackupService to "mux".
@@ -291,16 +279,13 @@ func local_request_CampusBackupService_GetScheduleNowV2_1(ctx context.Context, m
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCampusBackupServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CampusBackupServiceServer) error {
-
-	mux.Handle("GET", pattern_CampusBackupService_GetPersonInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetPersonInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetPersonInfo", runtime.WithHTTPPathPattern("/staff/v1/person/info"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetPersonInfo", runtime.WithHTTPPathPattern("/staff/v1/person/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -312,20 +297,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetPersonInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetPersonInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetPersonInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetPersonInfo", runtime.WithHTTPPathPattern("/person/info"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetPersonInfo", runtime.WithHTTPPathPattern("/person/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -337,20 +317,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetPersonInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentInfo", runtime.WithHTTPPathPattern("/staff/v1/student/info"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentInfo", runtime.WithHTTPPathPattern("/staff/v1/student/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -362,20 +337,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentInfo", runtime.WithHTTPPathPattern("/student/info"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentInfo", runtime.WithHTTPPathPattern("/student/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -387,20 +357,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentGrade_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentGrade_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/student/grade"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -412,20 +377,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentGrade_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentGrade_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentGrade_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentGrade", runtime.WithHTTPPathPattern("/student/grade"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentGrade", runtime.WithHTTPPathPattern("/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -437,20 +397,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentGrade_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentExam_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentExam_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentExam", runtime.WithHTTPPathPattern("/staff/v1/student/exam"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentExam", runtime.WithHTTPPathPattern("/staff/v1/student/exam"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -462,20 +417,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentExam_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentExam_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentExam_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentExam", runtime.WithHTTPPathPattern("/student/exam"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentExam", runtime.WithHTTPPathPattern("/student/exam"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -487,20 +437,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentExam_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetScheduleNowV2_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetScheduleNowV2_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/teaching/v1/schedule/v2/now"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/teaching/v1/schedule/v2/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -512,20 +457,15 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetScheduleNowV2_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetScheduleNowV2_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetScheduleNowV2_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/student/v2/schedule/now"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/student/v2/schedule/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -537,9 +477,7 @@ func RegisterCampusBackupServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetScheduleNowV2_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -566,7 +504,6 @@ func RegisterCampusBackupServiceHandlerFromEndpoint(ctx context.Context, mux *ru
 			}
 		}()
 	}()
-
 	return RegisterCampusBackupServiceHandler(ctx, mux, conn)
 }
 
@@ -582,14 +519,11 @@ func RegisterCampusBackupServiceHandler(ctx context.Context, mux *runtime.ServeM
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "CampusBackupServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client CampusBackupServiceClient) error {
-
-	mux.Handle("GET", pattern_CampusBackupService_GetPersonInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetPersonInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetPersonInfo", runtime.WithHTTPPathPattern("/staff/v1/person/info"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetPersonInfo", runtime.WithHTTPPathPattern("/staff/v1/person/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -600,18 +534,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetPersonInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetPersonInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetPersonInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetPersonInfo", runtime.WithHTTPPathPattern("/person/info"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetPersonInfo", runtime.WithHTTPPathPattern("/person/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -622,18 +551,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetPersonInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentInfo", runtime.WithHTTPPathPattern("/staff/v1/student/info"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentInfo", runtime.WithHTTPPathPattern("/staff/v1/student/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -644,18 +568,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentInfo", runtime.WithHTTPPathPattern("/student/info"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentInfo", runtime.WithHTTPPathPattern("/student/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -666,18 +585,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentGrade_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentGrade_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/student/grade"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentGrade", runtime.WithHTTPPathPattern("/staff/v1/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -688,18 +602,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentGrade_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentGrade_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentGrade_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentGrade", runtime.WithHTTPPathPattern("/student/grade"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentGrade", runtime.WithHTTPPathPattern("/student/grade"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -710,18 +619,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentGrade_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentExam_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentExam_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentExam", runtime.WithHTTPPathPattern("/staff/v1/student/exam"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentExam", runtime.WithHTTPPathPattern("/staff/v1/student/exam"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -732,18 +636,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentExam_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetStudentExam_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetStudentExam_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentExam", runtime.WithHTTPPathPattern("/student/exam"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetStudentExam", runtime.WithHTTPPathPattern("/student/exam"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -754,18 +653,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetStudentExam_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetScheduleNowV2_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetScheduleNowV2_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/teaching/v1/schedule/v2/now"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/teaching/v1/schedule/v2/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -776,18 +670,13 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetScheduleNowV2_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_CampusBackupService_GetScheduleNowV2_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_CampusBackupService_GetScheduleNowV2_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/student/v2/schedule/now"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.backup.CampusBackupService/GetScheduleNowV2", runtime.WithHTTPPathPattern("/student/v2/schedule/now"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -798,54 +687,33 @@ func RegisterCampusBackupServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_CampusBackupService_GetScheduleNowV2_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_CampusBackupService_GetPersonInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "person", "info"}, ""))
-
-	pattern_CampusBackupService_GetPersonInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"person", "info"}, ""))
-
-	pattern_CampusBackupService_GetStudentInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "info"}, ""))
-
-	pattern_CampusBackupService_GetStudentInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "info"}, ""))
-
-	pattern_CampusBackupService_GetStudentGrade_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "grade"}, ""))
-
-	pattern_CampusBackupService_GetStudentGrade_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "grade"}, ""))
-
-	pattern_CampusBackupService_GetStudentExam_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "exam"}, ""))
-
-	pattern_CampusBackupService_GetStudentExam_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "exam"}, ""))
-
+	pattern_CampusBackupService_GetPersonInfo_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "person", "info"}, ""))
+	pattern_CampusBackupService_GetPersonInfo_1    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"person", "info"}, ""))
+	pattern_CampusBackupService_GetStudentInfo_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "info"}, ""))
+	pattern_CampusBackupService_GetStudentInfo_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "info"}, ""))
+	pattern_CampusBackupService_GetStudentGrade_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "grade"}, ""))
+	pattern_CampusBackupService_GetStudentGrade_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "grade"}, ""))
+	pattern_CampusBackupService_GetStudentExam_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "exam"}, ""))
+	pattern_CampusBackupService_GetStudentExam_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "exam"}, ""))
 	pattern_CampusBackupService_GetScheduleNowV2_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"teaching", "v1", "schedule", "v2", "now"}, ""))
-
 	pattern_CampusBackupService_GetScheduleNowV2_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"student", "v2", "schedule", "now"}, ""))
 )
 
 var (
-	forward_CampusBackupService_GetPersonInfo_0 = runtime.ForwardResponseMessage
-
-	forward_CampusBackupService_GetPersonInfo_1 = runtime.ForwardResponseMessage
-
-	forward_CampusBackupService_GetStudentInfo_0 = runtime.ForwardResponseMessage
-
-	forward_CampusBackupService_GetStudentInfo_1 = runtime.ForwardResponseMessage
-
-	forward_CampusBackupService_GetStudentGrade_0 = runtime.ForwardResponseMessage
-
-	forward_CampusBackupService_GetStudentGrade_1 = runtime.ForwardResponseMessage
-
-	forward_CampusBackupService_GetStudentExam_0 = runtime.ForwardResponseMessage
-
-	forward_CampusBackupService_GetStudentExam_1 = runtime.ForwardResponseMessage
-
+	forward_CampusBackupService_GetPersonInfo_0    = runtime.ForwardResponseMessage
+	forward_CampusBackupService_GetPersonInfo_1    = runtime.ForwardResponseMessage
+	forward_CampusBackupService_GetStudentInfo_0   = runtime.ForwardResponseMessage
+	forward_CampusBackupService_GetStudentInfo_1   = runtime.ForwardResponseMessage
+	forward_CampusBackupService_GetStudentGrade_0  = runtime.ForwardResponseMessage
+	forward_CampusBackupService_GetStudentGrade_1  = runtime.ForwardResponseMessage
+	forward_CampusBackupService_GetStudentExam_0   = runtime.ForwardResponseMessage
+	forward_CampusBackupService_GetStudentExam_1   = runtime.ForwardResponseMessage
 	forward_CampusBackupService_GetScheduleNowV2_0 = runtime.ForwardResponseMessage
-
 	forward_CampusBackupService_GetScheduleNowV2_1 = runtime.ForwardResponseMessage
 )

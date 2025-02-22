@@ -10,6 +10,7 @@ package needyv1
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -25,47 +26,50 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_NeedyService_GetStudentNeedyInfo_0(ctx context.Context, marshaler runtime.Marshaler, client NeedyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetStudentNeedyInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_NeedyService_GetStudentNeedyInfo_0(ctx context.Context, marshaler runtime.Marshaler, server NeedyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetStudentNeedyInfo(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_NeedyService_GetStudentNeedyInfo_1(ctx context.Context, marshaler runtime.Marshaler, client NeedyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetStudentNeedyInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_NeedyService_GetStudentNeedyInfo_1(ctx context.Context, marshaler runtime.Marshaler, server NeedyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetStudentNeedyInfo(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterNeedyServiceHandlerServer registers the http handlers for service NeedyService to "mux".
@@ -74,16 +78,13 @@ func local_request_NeedyService_GetStudentNeedyInfo_1(ctx context.Context, marsh
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterNeedyServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterNeedyServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server NeedyServiceServer) error {
-
-	mux.Handle("GET", pattern_NeedyService_GetStudentNeedyInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_NeedyService_GetStudentNeedyInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.needy.v1.NeedyService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/student/needy"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.needy.v1.NeedyService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/student/needy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -95,20 +96,15 @@ func RegisterNeedyServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_NeedyService_GetStudentNeedyInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_NeedyService_GetStudentNeedyInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_NeedyService_GetStudentNeedyInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.needy.v1.NeedyService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/staff/v1/student/needy"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.needy.v1.NeedyService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/staff/v1/student/needy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -120,9 +116,7 @@ func RegisterNeedyServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_NeedyService_GetStudentNeedyInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -149,7 +143,6 @@ func RegisterNeedyServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.S
 			}
 		}()
 	}()
-
 	return RegisterNeedyServiceHandler(ctx, mux, conn)
 }
 
@@ -165,14 +158,11 @@ func RegisterNeedyServiceHandler(ctx context.Context, mux *runtime.ServeMux, con
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "NeedyServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterNeedyServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client NeedyServiceClient) error {
-
-	mux.Handle("GET", pattern_NeedyService_GetStudentNeedyInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_NeedyService_GetStudentNeedyInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.needy.v1.NeedyService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/student/needy"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.needy.v1.NeedyService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/student/needy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -183,18 +173,13 @@ func RegisterNeedyServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_NeedyService_GetStudentNeedyInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_NeedyService_GetStudentNeedyInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_NeedyService_GetStudentNeedyInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.needy.v1.NeedyService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/staff/v1/student/needy"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.needy.v1.NeedyService/GetStudentNeedyInfo", runtime.WithHTTPPathPattern("/staff/v1/student/needy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -205,22 +190,17 @@ func RegisterNeedyServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_NeedyService_GetStudentNeedyInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
 	pattern_NeedyService_GetStudentNeedyInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"student", "needy"}, ""))
-
 	pattern_NeedyService_GetStudentNeedyInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"staff", "v1", "student", "needy"}, ""))
 )
 
 var (
 	forward_NeedyService_GetStudentNeedyInfo_0 = runtime.ForwardResponseMessage
-
 	forward_NeedyService_GetStudentNeedyInfo_1 = runtime.ForwardResponseMessage
 )

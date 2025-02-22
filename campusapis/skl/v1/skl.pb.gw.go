@@ -10,6 +10,7 @@ package sklv1
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -25,119 +26,114 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_SklService_GetStaffUnitInfo_0(ctx context.Context, marshaler runtime.Marshaler, client SklServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetStaffUnitInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SklService_GetStaffUnitInfo_0(ctx context.Context, marshaler runtime.Marshaler, server SklServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetStaffUnitInfo(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SklService_GetStaffUnitInfo_1(ctx context.Context, marshaler runtime.Marshaler, client SklServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetStaffUnitInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SklService_GetStaffUnitInfo_1(ctx context.Context, marshaler runtime.Marshaler, server SklServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetStaffUnitInfo(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_SklService_GetStaffUnitDetail_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_SklService_GetStaffUnitDetail_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_SklService_GetStaffUnitDetail_0(ctx context.Context, marshaler runtime.Marshaler, client SklServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StaffUnitDetailRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq StaffUnitDetailRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SklService_GetStaffUnitDetail_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStaffUnitDetail(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SklService_GetStaffUnitDetail_0(ctx context.Context, marshaler runtime.Marshaler, server SklServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StaffUnitDetailRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq StaffUnitDetailRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SklService_GetStaffUnitDetail_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStaffUnitDetail(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_SklService_GetStaffUnitDetail_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_SklService_GetStaffUnitDetail_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_SklService_GetStaffUnitDetail_1(ctx context.Context, marshaler runtime.Marshaler, client SklServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StaffUnitDetailRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq StaffUnitDetailRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SklService_GetStaffUnitDetail_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStaffUnitDetail(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SklService_GetStaffUnitDetail_1(ctx context.Context, marshaler runtime.Marshaler, server SklServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StaffUnitDetailRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq StaffUnitDetailRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SklService_GetStaffUnitDetail_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStaffUnitDetail(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterSklServiceHandlerServer registers the http handlers for service SklService to "mux".
@@ -146,16 +142,13 @@ func local_request_SklService_GetStaffUnitDetail_1(ctx context.Context, marshale
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSklServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterSklServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SklServiceServer) error {
-
-	mux.Handle("GET", pattern_SklService_GetStaffUnitInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SklService_GetStaffUnitInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitInfo", runtime.WithHTTPPathPattern("/skl/unitInfo"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitInfo", runtime.WithHTTPPathPattern("/skl/unitInfo"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -167,20 +160,15 @@ func RegisterSklServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SklService_GetStaffUnitInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SklService_GetStaffUnitInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SklService_GetStaffUnitInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitInfo", runtime.WithHTTPPathPattern("/skl/v1/unitInfo"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitInfo", runtime.WithHTTPPathPattern("/skl/v1/unitInfo"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -192,20 +180,15 @@ func RegisterSklServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SklService_GetStaffUnitInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SklService_GetStaffUnitDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SklService_GetStaffUnitDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitDetail", runtime.WithHTTPPathPattern("/skl/unitDetail"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitDetail", runtime.WithHTTPPathPattern("/skl/unitDetail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -217,20 +200,15 @@ func RegisterSklServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SklService_GetStaffUnitDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SklService_GetStaffUnitDetail_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SklService_GetStaffUnitDetail_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitDetail", runtime.WithHTTPPathPattern("/skl/v1/unitDetail"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitDetail", runtime.WithHTTPPathPattern("/skl/v1/unitDetail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -242,9 +220,7 @@ func RegisterSklServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SklService_GetStaffUnitDetail_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -271,7 +247,6 @@ func RegisterSklServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.Ser
 			}
 		}()
 	}()
-
 	return RegisterSklServiceHandler(ctx, mux, conn)
 }
 
@@ -287,14 +262,11 @@ func RegisterSklServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn 
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "SklServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterSklServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SklServiceClient) error {
-
-	mux.Handle("GET", pattern_SklService_GetStaffUnitInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SklService_GetStaffUnitInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitInfo", runtime.WithHTTPPathPattern("/skl/unitInfo"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitInfo", runtime.WithHTTPPathPattern("/skl/unitInfo"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -305,18 +277,13 @@ func RegisterSklServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SklService_GetStaffUnitInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SklService_GetStaffUnitInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SklService_GetStaffUnitInfo_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitInfo", runtime.WithHTTPPathPattern("/skl/v1/unitInfo"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitInfo", runtime.WithHTTPPathPattern("/skl/v1/unitInfo"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -327,18 +294,13 @@ func RegisterSklServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SklService_GetStaffUnitInfo_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SklService_GetStaffUnitDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SklService_GetStaffUnitDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitDetail", runtime.WithHTTPPathPattern("/skl/unitDetail"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitDetail", runtime.WithHTTPPathPattern("/skl/unitDetail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -349,18 +311,13 @@ func RegisterSklServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SklService_GetStaffUnitDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SklService_GetStaffUnitDetail_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SklService_GetStaffUnitDetail_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitDetail", runtime.WithHTTPPathPattern("/skl/v1/unitDetail"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.skl.v1.SklService/GetStaffUnitDetail", runtime.WithHTTPPathPattern("/skl/v1/unitDetail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -371,30 +328,21 @@ func RegisterSklServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SklService_GetStaffUnitDetail_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_SklService_GetStaffUnitInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"skl", "unitInfo"}, ""))
-
-	pattern_SklService_GetStaffUnitInfo_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"skl", "v1", "unitInfo"}, ""))
-
+	pattern_SklService_GetStaffUnitInfo_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"skl", "unitInfo"}, ""))
+	pattern_SklService_GetStaffUnitInfo_1   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"skl", "v1", "unitInfo"}, ""))
 	pattern_SklService_GetStaffUnitDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"skl", "unitDetail"}, ""))
-
 	pattern_SklService_GetStaffUnitDetail_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"skl", "v1", "unitDetail"}, ""))
 )
 
 var (
-	forward_SklService_GetStaffUnitInfo_0 = runtime.ForwardResponseMessage
-
-	forward_SklService_GetStaffUnitInfo_1 = runtime.ForwardResponseMessage
-
+	forward_SklService_GetStaffUnitInfo_0   = runtime.ForwardResponseMessage
+	forward_SklService_GetStaffUnitInfo_1   = runtime.ForwardResponseMessage
 	forward_SklService_GetStaffUnitDetail_0 = runtime.ForwardResponseMessage
-
 	forward_SklService_GetStaffUnitDetail_1 = runtime.ForwardResponseMessage
 )

@@ -10,6 +10,7 @@ package timev1
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -25,29 +26,32 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_TimeService_GetTime_0(ctx context.Context, marshaler runtime.Marshaler, client TimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetTime(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_TimeService_GetTime_0(ctx context.Context, marshaler runtime.Marshaler, server TimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq emptypb.Empty
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetTime(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterTimeServiceHandlerServer registers the http handlers for service TimeService to "mux".
@@ -56,16 +60,13 @@ func local_request_TimeService_GetTime_0(ctx context.Context, marshaler runtime.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTimeServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterTimeServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server TimeServiceServer) error {
-
-	mux.Handle("GET", pattern_TimeService_GetTime_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_TimeService_GetTime_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aggregatingapis.time.v1.TimeService/GetTime", runtime.WithHTTPPathPattern("/time/v1"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/aggregatingapis.time.v1.TimeService/GetTime", runtime.WithHTTPPathPattern("/time/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -77,9 +78,7 @@ func RegisterTimeServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_TimeService_GetTime_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -106,7 +105,6 @@ func RegisterTimeServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.Se
 			}
 		}()
 	}()
-
 	return RegisterTimeServiceHandler(ctx, mux, conn)
 }
 
@@ -122,14 +120,11 @@ func RegisterTimeServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "TimeServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterTimeServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client TimeServiceClient) error {
-
-	mux.Handle("GET", pattern_TimeService_GetTime_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_TimeService_GetTime_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aggregatingapis.time.v1.TimeService/GetTime", runtime.WithHTTPPathPattern("/time/v1"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/aggregatingapis.time.v1.TimeService/GetTime", runtime.WithHTTPPathPattern("/time/v1"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -140,11 +135,8 @@ func RegisterTimeServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_TimeService_GetTime_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
