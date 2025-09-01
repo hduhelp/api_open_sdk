@@ -204,7 +204,12 @@ message GetScheduleRequest {
 message GetScheduleResponse {
   int32 error = 1;
   string msg = 2;
-  repeated ScheduleResponseCourse data = 3;
+  ScheduleResponseData data = 3;
+}
+
+message ScheduleResponseData {
+  int64 semester_start_timestamp = 1;
+  repeated ScheduleResponseCourse course = 2;
 }
 
 // ScheduleResponseCourse 单课程返回体（如高等数学课）

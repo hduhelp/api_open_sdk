@@ -1793,11 +1793,7 @@
           "type": "string"
         },
         "data": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1ScheduleResponseCourse"
-          }
+          "$ref": "#/definitions/v1ScheduleResponseData"
         }
       },
       "title": "GetScheduleResponse 课表列表返回体"
@@ -1937,6 +1933,22 @@
         }
       },
       "title": "人员信息"
+    },
+    "v1ScheduleResponseData": {
+      "type": "object",
+      "properties": {
+        "semesterStartTimestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "course": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ScheduleResponseCourse"
+          }
+        }
+      }
     }
   }
 }

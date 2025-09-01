@@ -1,10 +1,16 @@
 package teachingv1
 
-import "github.com/hduhelp/api_open_sdk/campusapis/staff"
+import (
+	"github.com/hduhelp/api_open_sdk/campusapis/staff"
+	"github.com/hduhelp/api_open_sdk/schoolConst"
+)
 
 func (x *Courses) ToGetScheduleResponse() *GetScheduleResponse {
 	return &GetScheduleResponse{
-		Data: x.GetScheduleResponseCourse(),
+		Data: &ScheduleResponseData{
+			Course:                 x.GetScheduleResponseCourse(),
+			SemesterStartTimestamp: schoolConst.SemesterStartTimestamp,
+		},
 	}
 }
 
