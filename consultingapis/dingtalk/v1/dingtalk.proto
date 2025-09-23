@@ -152,4 +152,5 @@ message CreateRecruitChatGroupResponse{
   string chat_id = 1;
   string openConversationId = 2;
   string invite_url = 3;
+  string failed_member_ids = 4;
 }
