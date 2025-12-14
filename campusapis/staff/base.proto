@@ -5,42 +5,6 @@ import "google/api/annotations.proto";
 
 option go_package = "./campusapis/staff";
 
-// 人员服务
-service StaffService {
-  // 获取人员信息
-  rpc GetPreviousSchoolInfo(GetStaffPreviousSchoolInfoRequest) returns (GetStaffPreviousSchoolInfoResponse) {
-    option (google.api.http) = {
-      get: "/staff/v1/previous/school/info"
-      additional_bindings {
-        get: "/staff/previous/school/info"
-      }
-      additional_bindings {
-        get: "/staff/v2/previous/school/info"
-      }
-    };
-  }
-}
-
-message GetStaffPreviousSchoolInfoRequest {
-  // 学工号
-  string staffID = 1;
-}
-
-message GetStaffPreviousSchoolInfoResponse {
-  // 人员信息
-  StaffSchoolInfo info = 1;
-}
-
-
-message StaffSchoolInfo {
-  string StaffID = 1;
-  string StaffName = 2;
-  string PreviousSchoolName = 3;
-}
-
-
-
-
 // 人员
 message Staff {
   // 学工号

@@ -16,328 +16,6 @@
     "application/json"
   ],
   "paths": {
-    "/fitness/score": {
-      "delete": {
-        "summary": "删除体测成绩",
-        "operationId": "CampusService_DeleteFitnessScore2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1DeleteFitnessScoreResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "staffId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "CampusService"
-        ]
-      },
-      "post": {
-        "summary": "新增或更新体测成绩",
-        "operationId": "CampusService_StoreFitnessScore2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1StoreFitnessScoreResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "staffId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "gender",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "grade",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "height",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "weight",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "bmi",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run50m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "standingLongJump",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "sitAndReach",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run800m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run1000m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "sitUps",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "pullUps",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "lungCapacity",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "totalScore",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          }
-        ],
-        "tags": [
-          "CampusService"
-        ]
-      },
-      "patch": {
-        "summary": "更新体测成绩",
-        "operationId": "CampusService_UpdateFitnessScore2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateFitnessScoreResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "staffId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "gender",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "grade",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "height",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "weight",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "bmi",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run50m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "standingLongJump",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "sitAndReach",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run800m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run1000m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "sitUps",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "pullUps",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "lungCapacity",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "totalScore",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          }
-        ],
-        "tags": [
-          "CampusService"
-        ]
-      }
-    },
     "/freshman/base": {
       "get": {
         "summary": "获取新生基本信息",
@@ -554,15 +232,15 @@
         ]
       }
     },
-    "/staff/v1/fitness/score": {
-      "delete": {
-        "summary": "删除体测成绩",
-        "operationId": "CampusService_DeleteFitnessScore",
+    "/staff/previous/school/info": {
+      "get": {
+        "summary": "获取新生毕业学校信息",
+        "operationId": "CampusService_GetPreviousSchoolInfo2",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1DeleteFitnessScoreResponse"
+              "$ref": "#/definitions/v1GetStaffPreviousSchoolInfoResponse"
             }
           },
           "default": {
@@ -574,85 +252,11 @@
         },
         "parameters": [
           {
-            "name": "staffId",
+            "name": "staffID",
+            "description": "学工号",
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "CampusService"
-        ]
-      },
-      "post": {
-        "summary": "新增或更新体测成绩",
-        "operationId": "CampusService_StoreFitnessScore",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1StoreFitnessScoreResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1StoreFitnessScoreRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CampusService"
-        ]
-      },
-      "patch": {
-        "summary": "更新体测成绩",
-        "operationId": "CampusService_UpdateFitnessScore",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateFitnessScoreResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateFitnessScoreRequest"
-            }
           }
         ],
         "tags": [
@@ -816,6 +420,38 @@
             }
           }
         },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/previous/school/info": {
+      "get": {
+        "summary": "获取新生毕业学校信息",
+        "operationId": "CampusService_GetPreviousSchoolInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStaffPreviousSchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffID",
+            "description": "学工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "CampusService"
         ]
@@ -1229,6 +865,38 @@
           {
             "name": "semester",
             "description": "学期，枚举：第一学期 | 第二学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v2/previous/school/info": {
+      "get": {
+        "summary": "获取新生毕业学校信息",
+        "operationId": "CampusService_GetPreviousSchoolInfo3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStaffPreviousSchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffID",
+            "description": "学工号",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1712,19 +1380,6 @@
         }
       }
     },
-    "v1DeleteFitnessScoreResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        }
-      },
-      "title": "DeleteFitnessScoreResponse 删除体测成绩响应"
-    },
     "v1DormInfo": {
       "type": "object",
       "properties": {
@@ -1741,77 +1396,6 @@
           "title": "寝室号"
         }
       }
-    },
-    "v1FitnessScore": {
-      "type": "object",
-      "properties": {
-        "staffId": {
-          "type": "string"
-        },
-        "schoolYear": {
-          "type": "string"
-        },
-        "semester": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "gender": {
-          "type": "string"
-        },
-        "grade": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "height": {
-          "type": "number",
-          "format": "float"
-        },
-        "weight": {
-          "type": "number",
-          "format": "float"
-        },
-        "bmi": {
-          "type": "number",
-          "format": "float"
-        },
-        "run50m": {
-          "type": "number",
-          "format": "float"
-        },
-        "standingLongJump": {
-          "type": "number",
-          "format": "float"
-        },
-        "sitAndReach": {
-          "type": "number",
-          "format": "float"
-        },
-        "run800m": {
-          "type": "number",
-          "format": "float"
-        },
-        "run1000m": {
-          "type": "number",
-          "format": "float"
-        },
-        "sitUps": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "pullUps": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "lungCapacity": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "totalScore": {
-          "type": "number",
-          "format": "float"
-        }
-      },
-      "title": "FitnessScore 体测成绩信息"
     },
     "v1FreshmanBaseInfo": {
       "type": "object",
@@ -2100,6 +1684,15 @@
         }
       },
       "title": "查询人员信息返回体"
+    },
+    "v1GetStaffPreviousSchoolInfoResponse": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/v1StaffSchoolInfo",
+          "title": "人员信息"
+        }
+      }
     },
     "v1GetStudentBirthdayInfoResponse": {
       "type": "object",
@@ -2398,92 +1991,19 @@
       },
       "title": "PostStudentGateAccessResponse  推送学生门禁通行信息"
     },
-    "v1StoreFitnessScoreRequest": {
+    "v1StaffSchoolInfo": {
       "type": "object",
       "properties": {
-        "staffId": {
+        "StaffID": {
           "type": "string"
         },
-        "schoolYear": {
+        "StaffName": {
           "type": "string"
         },
-        "semester": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "gender": {
+        "PreviousSchoolName": {
           "type": "string"
-        },
-        "grade": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "height": {
-          "type": "number",
-          "format": "float"
-        },
-        "weight": {
-          "type": "number",
-          "format": "float"
-        },
-        "bmi": {
-          "type": "number",
-          "format": "float"
-        },
-        "run50m": {
-          "type": "number",
-          "format": "float"
-        },
-        "standingLongJump": {
-          "type": "number",
-          "format": "float"
-        },
-        "sitAndReach": {
-          "type": "number",
-          "format": "float"
-        },
-        "run800m": {
-          "type": "number",
-          "format": "float"
-        },
-        "run1000m": {
-          "type": "number",
-          "format": "float"
-        },
-        "sitUps": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "pullUps": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "lungCapacity": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "totalScore": {
-          "type": "number",
-          "format": "float"
         }
-      },
-      "title": "StoreFitnessScoreRequest 新增或更新体测成绩请求"
-    },
-    "v1StoreFitnessScoreResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1FitnessScore"
-        }
-      },
-      "title": "StoreFitnessScoreResponse 新增或更新体测成绩响应"
+      }
     },
     "v1StudentBirthdayInfo": {
       "type": "object",
@@ -2837,93 +2357,6 @@
         }
       },
       "title": "留校生信息"
-    },
-    "v1UpdateFitnessScoreRequest": {
-      "type": "object",
-      "properties": {
-        "staffId": {
-          "type": "string"
-        },
-        "schoolYear": {
-          "type": "string"
-        },
-        "semester": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "gender": {
-          "type": "string"
-        },
-        "grade": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "height": {
-          "type": "number",
-          "format": "float"
-        },
-        "weight": {
-          "type": "number",
-          "format": "float"
-        },
-        "bmi": {
-          "type": "number",
-          "format": "float"
-        },
-        "run50m": {
-          "type": "number",
-          "format": "float"
-        },
-        "standingLongJump": {
-          "type": "number",
-          "format": "float"
-        },
-        "sitAndReach": {
-          "type": "number",
-          "format": "float"
-        },
-        "run800m": {
-          "type": "number",
-          "format": "float"
-        },
-        "run1000m": {
-          "type": "number",
-          "format": "float"
-        },
-        "sitUps": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "pullUps": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "lungCapacity": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "totalScore": {
-          "type": "number",
-          "format": "float"
-        }
-      },
-      "title": "UpdateFitnessScoreRequest 更新体测成绩请求"
-    },
-    "v1UpdateFitnessScoreResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1FitnessScore"
-        }
-      },
-      "title": "UpdateFitnessScoreResponse 更新体测成绩响应"
     }
   }
 }

@@ -39,9 +39,7 @@ const (
 	CampusService_GetFreshmanBaseInfo_FullMethodName        = "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo"
 	CampusService_GetFreshmanDetail_FullMethodName          = "/campusapis.staff.v1.CampusService/GetFreshmanDetail"
 	CampusService_GetFreshmanRoommates_FullMethodName       = "/campusapis.staff.v1.CampusService/GetFreshmanRoommates"
-	CampusService_StoreFitnessScore_FullMethodName          = "/campusapis.staff.v1.CampusService/StoreFitnessScore"
-	CampusService_UpdateFitnessScore_FullMethodName         = "/campusapis.staff.v1.CampusService/UpdateFitnessScore"
-	CampusService_DeleteFitnessScore_FullMethodName         = "/campusapis.staff.v1.CampusService/DeleteFitnessScore"
+	CampusService_GetPreviousSchoolInfo_FullMethodName      = "/campusapis.staff.v1.CampusService/GetPreviousSchoolInfo"
 )
 
 // CampusServiceClient is the client API for CampusService service.
@@ -108,12 +106,8 @@ type CampusServiceClient interface {
 	GetFreshmanDetail(ctx context.Context, in *GetFreshmanDetailRequest, opts ...grpc.CallOption) (*GetFreshmanDetailResponse, error)
 	// 获取新生宿舍信息
 	GetFreshmanRoommates(ctx context.Context, in *GetFreshmanRoommatesRequest, opts ...grpc.CallOption) (*GetFreshmanRoommatesResponse, error)
-	// 新增或更新体测成绩
-	StoreFitnessScore(ctx context.Context, in *StoreFitnessScoreRequest, opts ...grpc.CallOption) (*StoreFitnessScoreResponse, error)
-	// 更新体测成绩
-	UpdateFitnessScore(ctx context.Context, in *UpdateFitnessScoreRequest, opts ...grpc.CallOption) (*UpdateFitnessScoreResponse, error)
-	// 删除体测成绩
-	DeleteFitnessScore(ctx context.Context, in *DeleteFitnessScoreRequest, opts ...grpc.CallOption) (*DeleteFitnessScoreResponse, error)
+	// 获取新生毕业学校信息
+	GetPreviousSchoolInfo(ctx context.Context, in *GetStaffPreviousSchoolInfoRequest, opts ...grpc.CallOption) (*GetStaffPreviousSchoolInfoResponse, error)
 }
 
 type campusServiceClient struct {
@@ -314,30 +308,10 @@ func (c *campusServiceClient) GetFreshmanRoommates(ctx context.Context, in *GetF
 	return out, nil
 }
 
-func (c *campusServiceClient) StoreFitnessScore(ctx context.Context, in *StoreFitnessScoreRequest, opts ...grpc.CallOption) (*StoreFitnessScoreResponse, error) {
+func (c *campusServiceClient) GetPreviousSchoolInfo(ctx context.Context, in *GetStaffPreviousSchoolInfoRequest, opts ...grpc.CallOption) (*GetStaffPreviousSchoolInfoResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StoreFitnessScoreResponse)
-	err := c.cc.Invoke(ctx, CampusService_StoreFitnessScore_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *campusServiceClient) UpdateFitnessScore(ctx context.Context, in *UpdateFitnessScoreRequest, opts ...grpc.CallOption) (*UpdateFitnessScoreResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateFitnessScoreResponse)
-	err := c.cc.Invoke(ctx, CampusService_UpdateFitnessScore_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *campusServiceClient) DeleteFitnessScore(ctx context.Context, in *DeleteFitnessScoreRequest, opts ...grpc.CallOption) (*DeleteFitnessScoreResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteFitnessScoreResponse)
-	err := c.cc.Invoke(ctx, CampusService_DeleteFitnessScore_FullMethodName, in, out, cOpts...)
+	out := new(GetStaffPreviousSchoolInfoResponse)
+	err := c.cc.Invoke(ctx, CampusService_GetPreviousSchoolInfo_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -408,12 +382,8 @@ type CampusServiceServer interface {
 	GetFreshmanDetail(context.Context, *GetFreshmanDetailRequest) (*GetFreshmanDetailResponse, error)
 	// 获取新生宿舍信息
 	GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error)
-	// 新增或更新体测成绩
-	StoreFitnessScore(context.Context, *StoreFitnessScoreRequest) (*StoreFitnessScoreResponse, error)
-	// 更新体测成绩
-	UpdateFitnessScore(context.Context, *UpdateFitnessScoreRequest) (*UpdateFitnessScoreResponse, error)
-	// 删除体测成绩
-	DeleteFitnessScore(context.Context, *DeleteFitnessScoreRequest) (*DeleteFitnessScoreResponse, error)
+	// 获取新生毕业学校信息
+	GetPreviousSchoolInfo(context.Context, *GetStaffPreviousSchoolInfoRequest) (*GetStaffPreviousSchoolInfoResponse, error)
 	mustEmbedUnimplementedCampusServiceServer()
 }
 
@@ -481,14 +451,8 @@ func (UnimplementedCampusServiceServer) GetFreshmanDetail(context.Context, *GetF
 func (UnimplementedCampusServiceServer) GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFreshmanRoommates not implemented")
 }
-func (UnimplementedCampusServiceServer) StoreFitnessScore(context.Context, *StoreFitnessScoreRequest) (*StoreFitnessScoreResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StoreFitnessScore not implemented")
-}
-func (UnimplementedCampusServiceServer) UpdateFitnessScore(context.Context, *UpdateFitnessScoreRequest) (*UpdateFitnessScoreResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateFitnessScore not implemented")
-}
-func (UnimplementedCampusServiceServer) DeleteFitnessScore(context.Context, *DeleteFitnessScoreRequest) (*DeleteFitnessScoreResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteFitnessScore not implemented")
+func (UnimplementedCampusServiceServer) GetPreviousSchoolInfo(context.Context, *GetStaffPreviousSchoolInfoRequest) (*GetStaffPreviousSchoolInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPreviousSchoolInfo not implemented")
 }
 func (UnimplementedCampusServiceServer) mustEmbedUnimplementedCampusServiceServer() {}
 func (UnimplementedCampusServiceServer) testEmbeddedByValue()                       {}
@@ -853,56 +817,20 @@ func _CampusService_GetFreshmanRoommates_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CampusService_StoreFitnessScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StoreFitnessScoreRequest)
+func _CampusService_GetPreviousSchoolInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStaffPreviousSchoolInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CampusServiceServer).StoreFitnessScore(ctx, in)
+		return srv.(CampusServiceServer).GetPreviousSchoolInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CampusService_StoreFitnessScore_FullMethodName,
+		FullMethod: CampusService_GetPreviousSchoolInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).StoreFitnessScore(ctx, req.(*StoreFitnessScoreRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CampusService_UpdateFitnessScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateFitnessScoreRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CampusServiceServer).UpdateFitnessScore(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CampusService_UpdateFitnessScore_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).UpdateFitnessScore(ctx, req.(*UpdateFitnessScoreRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CampusService_DeleteFitnessScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteFitnessScoreRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CampusServiceServer).DeleteFitnessScore(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CampusService_DeleteFitnessScore_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CampusServiceServer).DeleteFitnessScore(ctx, req.(*DeleteFitnessScoreRequest))
+		return srv.(CampusServiceServer).GetPreviousSchoolInfo(ctx, req.(*GetStaffPreviousSchoolInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -991,16 +919,8 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CampusService_GetFreshmanRoommates_Handler,
 		},
 		{
-			MethodName: "StoreFitnessScore",
-			Handler:    _CampusService_StoreFitnessScore_Handler,
-		},
-		{
-			MethodName: "UpdateFitnessScore",
-			Handler:    _CampusService_UpdateFitnessScore_Handler,
-		},
-		{
-			MethodName: "DeleteFitnessScore",
-			Handler:    _CampusService_DeleteFitnessScore_Handler,
+			MethodName: "GetPreviousSchoolInfo",
+			Handler:    _CampusService_GetPreviousSchoolInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
