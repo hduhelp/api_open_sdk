@@ -4,13 +4,115 @@
     "title": "campusapis/staff/base.proto",
     "version": "version not set"
   },
+  "tags": [
+    {
+      "name": "StaffService"
+    }
+  ],
   "consumes": [
     "application/json"
   ],
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/staff/previous/school/info": {
+      "get": {
+        "summary": "获取人员信息",
+        "operationId": "StaffService_GetPreviousSchoolInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/staffGetStaffPreviousSchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffID",
+            "description": "学工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StaffService"
+        ]
+      }
+    },
+    "/staff/v1/previous/school/info": {
+      "get": {
+        "summary": "获取人员信息",
+        "operationId": "StaffService_GetPreviousSchoolInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/staffGetStaffPreviousSchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffID",
+            "description": "学工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StaffService"
+        ]
+      }
+    },
+    "/staff/v2/previous/school/info": {
+      "get": {
+        "summary": "获取人员信息",
+        "operationId": "StaffService_GetPreviousSchoolInfo3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/staffGetStaffPreviousSchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffID",
+            "description": "学工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StaffService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "protobufAny": {
       "type": "object",
@@ -37,6 +139,29 @@
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
+        }
+      }
+    },
+    "staffGetStaffPreviousSchoolInfoResponse": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/staffStaffSchoolInfo",
+          "title": "人员信息"
+        }
+      }
+    },
+    "staffStaffSchoolInfo": {
+      "type": "object",
+      "properties": {
+        "StaffID": {
+          "type": "string"
+        },
+        "StaffName": {
+          "type": "string"
+        },
+        "PreviousSchoolName": {
+          "type": "string"
         }
       }
     }
