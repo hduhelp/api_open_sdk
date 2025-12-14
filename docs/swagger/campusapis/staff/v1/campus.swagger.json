@@ -232,6 +232,38 @@
         ]
       }
     },
+    "/staff/previous/school/info": {
+      "get": {
+        "summary": "获取新生毕业学校信息",
+        "operationId": "CampusService_GetPreviousSchoolInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStaffPreviousSchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffID",
+            "description": "学工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/freshman/base": {
       "get": {
         "summary": "获取新生基本信息",
@@ -388,6 +420,38 @@
             }
           }
         },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/previous/school/info": {
+      "get": {
+        "summary": "获取新生毕业学校信息",
+        "operationId": "CampusService_GetPreviousSchoolInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStaffPreviousSchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffID",
+            "description": "学工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "CampusService"
         ]
@@ -801,6 +865,38 @@
           {
             "name": "semester",
             "description": "学期，枚举：第一学期 | 第二学期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v2/previous/school/info": {
+      "get": {
+        "summary": "获取新生毕业学校信息",
+        "operationId": "CampusService_GetPreviousSchoolInfo3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStaffPreviousSchoolInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "staffID",
+            "description": "学工号",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1589,6 +1685,15 @@
       },
       "title": "查询人员信息返回体"
     },
+    "v1GetStaffPreviousSchoolInfoResponse": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/v1StaffSchoolInfo",
+          "title": "人员信息"
+        }
+      }
+    },
     "v1GetStudentBirthdayInfoResponse": {
       "type": "object",
       "properties": {
@@ -1885,6 +1990,20 @@
         }
       },
       "title": "PostStudentGateAccessResponse  推送学生门禁通行信息"
+    },
+    "v1StaffSchoolInfo": {
+      "type": "object",
+      "properties": {
+        "StaffID": {
+          "type": "string"
+        },
+        "StaffName": {
+          "type": "string"
+        },
+        "PreviousSchoolName": {
+          "type": "string"
+        }
+      }
     },
     "v1StudentBirthdayInfo": {
       "type": "object",

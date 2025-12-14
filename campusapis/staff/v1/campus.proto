@@ -205,9 +205,41 @@ service CampusService {
       }
     };
   }
+
+  //获取新生毕业学校信息
+  rpc GetPreviousSchoolInfo(GetStaffPreviousSchoolInfoRequest) returns (GetStaffPreviousSchoolInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/previous/school/info"
+      additional_bindings {
+        get: "/staff/previous/school/info"
+      }
+      additional_bindings {
+        get: "/staff/v2/previous/school/info"
+      }
+    };
+  }
 }
 
 //下面为返回体和请求体
+
+message GetStaffPreviousSchoolInfoRequest {
+  // 学工号
+  string staffID = 1;
+}
+
+message GetStaffPreviousSchoolInfoResponse {
+  // 人员信息
+  StaffSchoolInfo info = 1;
+}
+
+
+message StaffSchoolInfo {
+  string StaffID = 1;
+  string StaffName = 2;
+  string PreviousSchoolName = 3;
+}
+
+
 
 
 

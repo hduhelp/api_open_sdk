@@ -39,6 +39,7 @@ const (
 	CampusService_GetFreshmanBaseInfo_FullMethodName        = "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo"
 	CampusService_GetFreshmanDetail_FullMethodName          = "/campusapis.staff.v1.CampusService/GetFreshmanDetail"
 	CampusService_GetFreshmanRoommates_FullMethodName       = "/campusapis.staff.v1.CampusService/GetFreshmanRoommates"
+	CampusService_GetPreviousSchoolInfo_FullMethodName      = "/campusapis.staff.v1.CampusService/GetPreviousSchoolInfo"
 )
 
 // CampusServiceClient is the client API for CampusService service.
@@ -105,6 +106,8 @@ type CampusServiceClient interface {
 	GetFreshmanDetail(ctx context.Context, in *GetFreshmanDetailRequest, opts ...grpc.CallOption) (*GetFreshmanDetailResponse, error)
 	// 获取新生宿舍信息
 	GetFreshmanRoommates(ctx context.Context, in *GetFreshmanRoommatesRequest, opts ...grpc.CallOption) (*GetFreshmanRoommatesResponse, error)
+	// 获取新生毕业学校信息
+	GetPreviousSchoolInfo(ctx context.Context, in *GetStaffPreviousSchoolInfoRequest, opts ...grpc.CallOption) (*GetStaffPreviousSchoolInfoResponse, error)
 }
 
 type campusServiceClient struct {
@@ -305,6 +308,16 @@ func (c *campusServiceClient) GetFreshmanRoommates(ctx context.Context, in *GetF
 	return out, nil
 }
 
+func (c *campusServiceClient) GetPreviousSchoolInfo(ctx context.Context, in *GetStaffPreviousSchoolInfoRequest, opts ...grpc.CallOption) (*GetStaffPreviousSchoolInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStaffPreviousSchoolInfoResponse)
+	err := c.cc.Invoke(ctx, CampusService_GetPreviousSchoolInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CampusServiceServer is the server API for CampusService service.
 // All implementations must embed UnimplementedCampusServiceServer
 // for forward compatibility.
@@ -369,6 +382,8 @@ type CampusServiceServer interface {
 	GetFreshmanDetail(context.Context, *GetFreshmanDetailRequest) (*GetFreshmanDetailResponse, error)
 	// 获取新生宿舍信息
 	GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error)
+	// 获取新生毕业学校信息
+	GetPreviousSchoolInfo(context.Context, *GetStaffPreviousSchoolInfoRequest) (*GetStaffPreviousSchoolInfoResponse, error)
 	mustEmbedUnimplementedCampusServiceServer()
 }
 
@@ -435,6 +450,9 @@ func (UnimplementedCampusServiceServer) GetFreshmanDetail(context.Context, *GetF
 }
 func (UnimplementedCampusServiceServer) GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFreshmanRoommates not implemented")
+}
+func (UnimplementedCampusServiceServer) GetPreviousSchoolInfo(context.Context, *GetStaffPreviousSchoolInfoRequest) (*GetStaffPreviousSchoolInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPreviousSchoolInfo not implemented")
 }
 func (UnimplementedCampusServiceServer) mustEmbedUnimplementedCampusServiceServer() {}
 func (UnimplementedCampusServiceServer) testEmbeddedByValue()                       {}
@@ -799,6 +817,24 @@ func _CampusService_GetFreshmanRoommates_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_GetPreviousSchoolInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStaffPreviousSchoolInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetPreviousSchoolInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_GetPreviousSchoolInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetPreviousSchoolInfo(ctx, req.(*GetStaffPreviousSchoolInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CampusService_ServiceDesc is the grpc.ServiceDesc for CampusService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -881,6 +917,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFreshmanRoommates",
 			Handler:    _CampusService_GetFreshmanRoommates_Handler,
+		},
+		{
+			MethodName: "GetPreviousSchoolInfo",
+			Handler:    _CampusService_GetPreviousSchoolInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
