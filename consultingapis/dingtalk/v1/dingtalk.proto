@@ -56,6 +56,28 @@ service DingTalkService {
       body: "body"
     };
   }
+
+  rpc GetPreviousSchoolChatGroup(GetPreviousSchoolChatGroupRequest) returns (GetPreviousSchoolChatGroupResponse) {
+    option (google.api.http) = {
+      get: "/dingtalk/chat/v1/previous_school/get"
+    };
+  }
+}
+
+message GetPreviousSchoolChatGroupRequest {
+  string school_name = 1;
+  string grade = 2;
+}
+
+message GetPreviousSchoolChatGroupResponse {
+  ChatGroup chat_group = 1;
+}
+
+message ChatGroup {
+  string chat_id = 1;
+  string openConversationId = 2;
+  string invite_url = 3;
+  int64 created_at = 4;
 }
 
 message CreateClassChatGroupRequest {

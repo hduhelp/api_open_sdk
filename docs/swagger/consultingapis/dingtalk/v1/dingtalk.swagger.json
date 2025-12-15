@@ -120,6 +120,42 @@
         ]
       }
     },
+    "/dingtalk/chat/v1/previous_school/get": {
+      "get": {
+        "operationId": "DingTalkService_GetPreviousSchoolChatGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPreviousSchoolChatGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "schoolName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "grade",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DingTalkService"
+        ]
+      }
+    },
     "/dingtalk/chat/v1/recruit/create": {
       "post": {
         "operationId": "DingTalkService_CreateRecruitChatGroup",
@@ -322,6 +358,24 @@
         }
       }
     },
+    "v1ChatGroup": {
+      "type": "object",
+      "properties": {
+        "chatId": {
+          "type": "string"
+        },
+        "openConversationId": {
+          "type": "string"
+        },
+        "inviteUrl": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateClassChatGroupRequestBody": {
       "type": "object",
       "properties": {
@@ -446,6 +500,14 @@
         "createdAt": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "v1GetPreviousSchoolChatGroupResponse": {
+      "type": "object",
+      "properties": {
+        "chatGroup": {
+          "$ref": "#/definitions/v1ChatGroup"
         }
       }
     },

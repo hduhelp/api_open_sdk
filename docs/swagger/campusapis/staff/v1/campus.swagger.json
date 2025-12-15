@@ -2000,6 +2000,9 @@
         "StaffName": {
           "type": "string"
         },
+        "Grade": {
+          "type": "string"
+        },
         "PreviousSchoolName": {
           "type": "string"
         }
