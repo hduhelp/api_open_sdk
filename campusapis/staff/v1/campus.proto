@@ -236,7 +236,8 @@ message GetStaffPreviousSchoolInfoResponse {
 message StaffSchoolInfo {
   string StaffID = 1;
   string StaffName = 2;
-  string PreviousSchoolName = 3;
+  string Grade = 3;
+  string PreviousSchoolName = 4;
 }
 
 

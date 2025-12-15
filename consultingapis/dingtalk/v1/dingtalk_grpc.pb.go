@@ -19,14 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DingTalkService_CreateClassChatGroup_FullMethodName   = "/consultingapis.dingtalk.v1.DingTalkService/CreateClassChatGroup"
-	DingTalkService_GetClassChatGroup_FullMethodName      = "/consultingapis.dingtalk.v1.DingTalkService/GetClassChatGroup"
-	DingTalkService_MergeClassChatGroup_FullMethodName    = "/consultingapis.dingtalk.v1.DingTalkService/MergeClassChatGroup"
-	DingTalkService_SyncClassChatGroup_FullMethodName     = "/consultingapis.dingtalk.v1.DingTalkService/SyncClassChatGroup"
-	DingTalkService_CreateGradeChatGroup_FullMethodName   = "/consultingapis.dingtalk.v1.DingTalkService/CreateGradeChatGroup"
-	DingTalkService_GetGradeChatGroup_FullMethodName      = "/consultingapis.dingtalk.v1.DingTalkService/GetGradeChatGroup"
-	DingTalkService_SyncGradeChatGroup_FullMethodName     = "/consultingapis.dingtalk.v1.DingTalkService/SyncGradeChatGroup"
-	DingTalkService_CreateRecruitChatGroup_FullMethodName = "/consultingapis.dingtalk.v1.DingTalkService/CreateRecruitChatGroup"
+	DingTalkService_CreateClassChatGroup_FullMethodName       = "/consultingapis.dingtalk.v1.DingTalkService/CreateClassChatGroup"
+	DingTalkService_GetClassChatGroup_FullMethodName          = "/consultingapis.dingtalk.v1.DingTalkService/GetClassChatGroup"
+	DingTalkService_MergeClassChatGroup_FullMethodName        = "/consultingapis.dingtalk.v1.DingTalkService/MergeClassChatGroup"
+	DingTalkService_SyncClassChatGroup_FullMethodName         = "/consultingapis.dingtalk.v1.DingTalkService/SyncClassChatGroup"
+	DingTalkService_CreateGradeChatGroup_FullMethodName       = "/consultingapis.dingtalk.v1.DingTalkService/CreateGradeChatGroup"
+	DingTalkService_GetGradeChatGroup_FullMethodName          = "/consultingapis.dingtalk.v1.DingTalkService/GetGradeChatGroup"
+	DingTalkService_SyncGradeChatGroup_FullMethodName         = "/consultingapis.dingtalk.v1.DingTalkService/SyncGradeChatGroup"
+	DingTalkService_CreateRecruitChatGroup_FullMethodName     = "/consultingapis.dingtalk.v1.DingTalkService/CreateRecruitChatGroup"
+	DingTalkService_GetPreviousSchoolChatGroup_FullMethodName = "/consultingapis.dingtalk.v1.DingTalkService/GetPreviousSchoolChatGroup"
 )
 
 // DingTalkServiceClient is the client API for DingTalkService service.
@@ -41,6 +42,7 @@ type DingTalkServiceClient interface {
 	GetGradeChatGroup(ctx context.Context, in *GetGradeChatGroupRequest, opts ...grpc.CallOption) (*GetGradeChatGroupResponse, error)
 	SyncGradeChatGroup(ctx context.Context, in *SyncGradeChatGroupRequest, opts ...grpc.CallOption) (*SyncGradeChatGroupResponse, error)
 	CreateRecruitChatGroup(ctx context.Context, in *CreateRecruitChatGroupRequest, opts ...grpc.CallOption) (*CreateRecruitChatGroupResponse, error)
+	GetPreviousSchoolChatGroup(ctx context.Context, in *GetPreviousSchoolChatGroupRequest, opts ...grpc.CallOption) (*GetPreviousSchoolChatGroupResponse, error)
 }
 
 type dingTalkServiceClient struct {
@@ -131,6 +133,16 @@ func (c *dingTalkServiceClient) CreateRecruitChatGroup(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *dingTalkServiceClient) GetPreviousSchoolChatGroup(ctx context.Context, in *GetPreviousSchoolChatGroupRequest, opts ...grpc.CallOption) (*GetPreviousSchoolChatGroupResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPreviousSchoolChatGroupResponse)
+	err := c.cc.Invoke(ctx, DingTalkService_GetPreviousSchoolChatGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DingTalkServiceServer is the server API for DingTalkService service.
 // All implementations must embed UnimplementedDingTalkServiceServer
 // for forward compatibility.
@@ -143,6 +155,7 @@ type DingTalkServiceServer interface {
 	GetGradeChatGroup(context.Context, *GetGradeChatGroupRequest) (*GetGradeChatGroupResponse, error)
 	SyncGradeChatGroup(context.Context, *SyncGradeChatGroupRequest) (*SyncGradeChatGroupResponse, error)
 	CreateRecruitChatGroup(context.Context, *CreateRecruitChatGroupRequest) (*CreateRecruitChatGroupResponse, error)
+	GetPreviousSchoolChatGroup(context.Context, *GetPreviousSchoolChatGroupRequest) (*GetPreviousSchoolChatGroupResponse, error)
 	mustEmbedUnimplementedDingTalkServiceServer()
 }
 
@@ -176,6 +189,9 @@ func (UnimplementedDingTalkServiceServer) SyncGradeChatGroup(context.Context, *S
 }
 func (UnimplementedDingTalkServiceServer) CreateRecruitChatGroup(context.Context, *CreateRecruitChatGroupRequest) (*CreateRecruitChatGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRecruitChatGroup not implemented")
+}
+func (UnimplementedDingTalkServiceServer) GetPreviousSchoolChatGroup(context.Context, *GetPreviousSchoolChatGroupRequest) (*GetPreviousSchoolChatGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPreviousSchoolChatGroup not implemented")
 }
 func (UnimplementedDingTalkServiceServer) mustEmbedUnimplementedDingTalkServiceServer() {}
 func (UnimplementedDingTalkServiceServer) testEmbeddedByValue()                         {}
@@ -342,6 +358,24 @@ func _DingTalkService_CreateRecruitChatGroup_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DingTalkService_GetPreviousSchoolChatGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPreviousSchoolChatGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DingTalkServiceServer).GetPreviousSchoolChatGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DingTalkService_GetPreviousSchoolChatGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DingTalkServiceServer).GetPreviousSchoolChatGroup(ctx, req.(*GetPreviousSchoolChatGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DingTalkService_ServiceDesc is the grpc.ServiceDesc for DingTalkService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -380,6 +414,10 @@ var DingTalkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateRecruitChatGroup",
 			Handler:    _DingTalkService_CreateRecruitChatGroup_Handler,
+		},
+		{
+			MethodName: "GetPreviousSchoolChatGroup",
+			Handler:    _DingTalkService_GetPreviousSchoolChatGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
