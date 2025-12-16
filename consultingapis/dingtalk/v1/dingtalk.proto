@@ -62,6 +62,45 @@ service DingTalkService {
       get: "/dingtalk/chat/v1/previous_school/get"
     };
   }
+
+  rpc CreatePreviousSchoolChatGroup(CreatePreviousSchoolChatGroupRequest) returns (CreatePreviousSchoolChatGroupResponse) {
+    option (google.api.http) = {
+      post: "/dingtalk/chat/v1/previous_school/create"
+      body: "body"
+    };
+  }
+
+  rpc JoinPreviousSchoolChatGroup(JoinPreviousSchoolChatGroupRequest) returns (JoinPreviousSchoolChatGroupResponse) {
+    option (google.api.http) = {
+      post: "/dingtalk/chat/v1/previous_school/join"
+      body: "body"
+    };
+  }
+}
+
+message CreatePreviousSchoolChatGroupRequest {
+  Body body = 1;
+
+  message Body {
+    string school_name = 1;
+    string grade = 2;
+  }
+}
+
+message CreatePreviousSchoolChatGroupResponse {
+  ChatGroup chat_group = 1;
+}
+
+message JoinPreviousSchoolChatGroupRequest {
+  Body body = 1;
+
+  message Body {
+    string chat_id = 1;
+  }
+}
+
+message JoinPreviousSchoolChatGroupResponse {
+  string message = 1;
 }
 
 message GetPreviousSchoolChatGroupRequest {
