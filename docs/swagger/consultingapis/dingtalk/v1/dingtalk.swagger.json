@@ -589,8 +589,12 @@
     "v1GetPreviousSchoolChatGroupResponse": {
       "type": "object",
       "properties": {
-        "chatGroup": {
-          "$ref": "#/definitions/v1ChatGroup"
+        "chatGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ChatGroup"
+          }
         }
       }
     },

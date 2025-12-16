@@ -109,7 +109,7 @@ message GetPreviousSchoolChatGroupRequest {
 }
 
 message GetPreviousSchoolChatGroupResponse {
-  ChatGroup chat_group = 1;
+  repeated ChatGroup chat_groups = 1;
 }
 
 message ChatGroup {
