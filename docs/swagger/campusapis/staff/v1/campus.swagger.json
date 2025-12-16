@@ -177,6 +177,45 @@
         ]
       }
     },
+    "/previous/school/detail": {
+      "get": {
+        "summary": "根据年级和学校名称获取学校信息",
+        "operationId": "CampusService_GetPreviousSchoolDetailInfo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPreviousSchoolDetailInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "grade",
+            "description": "年级",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolName",
+            "description": "学校名称",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/private/staff/v1/global/student/grade": {
       "get": {
         "summary": "获取全局成绩，用于推送成绩信息，仅内部使用",
@@ -420,6 +459,45 @@
             }
           }
         },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/previous/school/detail": {
+      "get": {
+        "summary": "根据年级和学校名称获取学校信息",
+        "operationId": "CampusService_GetPreviousSchoolDetailInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPreviousSchoolDetailInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "grade",
+            "description": "年级",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "schoolName",
+            "description": "学校名称",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "CampusService"
         ]
@@ -1685,6 +1763,18 @@
       },
       "title": "查询人员信息返回体"
     },
+    "v1GetPreviousSchoolDetailInfoResponse": {
+      "type": "object",
+      "properties": {
+        "gradeSchoolInfos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1GradeSchoolInfo"
+          }
+        }
+      }
+    },
     "v1GetStaffPreviousSchoolInfoResponse": {
       "type": "object",
       "properties": {
@@ -1929,6 +2019,24 @@
         }
       },
       "title": "成绩详情"
+    },
+    "v1GradeSchoolInfo": {
+      "type": "object",
+      "properties": {
+        "grade": {
+          "type": "string",
+          "title": "年级"
+        },
+        "schoolName": {
+          "type": "string",
+          "title": "学校名称"
+        },
+        "studentCount": {
+          "type": "string",
+          "format": "int64",
+          "title": "人数"
+        }
+      }
     },
     "v1NiceResponse": {
       "type": "object",
