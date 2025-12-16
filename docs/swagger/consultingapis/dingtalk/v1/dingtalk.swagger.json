@@ -601,7 +601,7 @@
     "v1JoinPreviousSchoolChatGroupRequestBody": {
       "type": "object",
       "properties": {
-        "chatId": {
+        "openConversationId": {
           "type": "string"
         }
       }

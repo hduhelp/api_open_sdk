@@ -95,7 +95,7 @@ message JoinPreviousSchoolChatGroupRequest {
   Body body = 1;
 
   message Body {
-    string chat_id = 1;
+    string openConversationId = 1;
   }
 }
 
