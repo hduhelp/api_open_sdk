@@ -120,6 +120,38 @@
         ]
       }
     },
+    "/dingtalk/chat/v1/previous_school/create": {
+      "post": {
+        "operationId": "DingTalkService_CreatePreviousSchoolChatGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreatePreviousSchoolChatGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreatePreviousSchoolChatGroupRequestBody"
+            }
+          }
+        ],
+        "tags": [
+          "DingTalkService"
+        ]
+      }
+    },
     "/dingtalk/chat/v1/previous_school/get": {
       "get": {
         "operationId": "DingTalkService_GetPreviousSchoolChatGroup",
@@ -149,6 +181,38 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "DingTalkService"
+        ]
+      }
+    },
+    "/dingtalk/chat/v1/previous_school/join": {
+      "post": {
+        "operationId": "DingTalkService_JoinPreviousSchoolChatGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1JoinPreviousSchoolChatGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1JoinPreviousSchoolChatGroupRequestBody"
+            }
           }
         ],
         "tags": [
@@ -412,6 +476,25 @@
         }
       }
     },
+    "v1CreatePreviousSchoolChatGroupRequestBody": {
+      "type": "object",
+      "properties": {
+        "schoolName": {
+          "type": "string"
+        },
+        "grade": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreatePreviousSchoolChatGroupResponse": {
+      "type": "object",
+      "properties": {
+        "chatGroup": {
+          "$ref": "#/definitions/v1ChatGroup"
+        }
+      }
+    },
     "v1CreateRecruitChatGroupRequestBody": {
       "type": "object",
       "properties": {
@@ -508,6 +591,22 @@
       "properties": {
         "chatGroup": {
           "$ref": "#/definitions/v1ChatGroup"
+        }
+      }
+    },
+    "v1JoinPreviousSchoolChatGroupRequestBody": {
+      "type": "object",
+      "properties": {
+        "chatId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1JoinPreviousSchoolChatGroupResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
         }
       }
     },
