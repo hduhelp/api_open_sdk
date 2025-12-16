@@ -218,9 +218,40 @@ service CampusService {
       }
     };
   }
+  //根据年级和学校名称获取学校信息
+  rpc GetPreviousSchoolDetailInfo(GetPreviousSchoolDetailInfoRequest) returns (GetPreviousSchoolDetailInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/previous/school/detail"
+      additional_bindings {
+        get: "/previous/school/detail"
+      }
+    };
+  }
 }
 
 //下面为返回体和请求体
+
+//根据年级和学校名称获取学校详细信息
+message GetPreviousSchoolDetailInfoRequest {
+  // 年级
+  string grade = 1;
+  // 学校名称
+  string school_name = 2;
+}
+
+message GetPreviousSchoolDetailInfoResponse {
+  repeated GradeSchoolInfo grade_school_infos = 1;
+}
+
+message GradeSchoolInfo {
+  // 年级
+  string grade = 1;
+  // 学校名称
+  string school_name = 2;
+  //人数
+  int64 student_count = 3;
+}
+
 
 message GetStaffPreviousSchoolInfoRequest {
   // 学工号

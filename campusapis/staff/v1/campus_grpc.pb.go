@@ -20,26 +20,27 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CampusService_GetPersonInfo_FullMethodName              = "/campusapis.staff.v1.CampusService/GetPersonInfo"
-	CampusService_GetStudentInfo_FullMethodName             = "/campusapis.staff.v1.CampusService/GetStudentInfo"
-	CampusService_GetStudentCountByDivision_FullMethodName  = "/campusapis.staff.v1.CampusService/GetStudentCountByDivision"
-	CampusService_GetStudentSchoolRollStatus_FullMethodName = "/campusapis.staff.v1.CampusService/GetStudentSchoolRollStatus"
-	CampusService_GetStudentDormInfo_FullMethodName         = "/campusapis.staff.v1.CampusService/GetStudentDormInfo"
-	CampusService_GetStudentBirthdayInfo_FullMethodName     = "/campusapis.staff.v1.CampusService/GetStudentBirthdayInfo"
-	CampusService_GetStudentBirthdaysIn_FullMethodName      = "/campusapis.staff.v1.CampusService/GetStudentBirthdaysIn"
-	CampusService_GetStudentRewards_FullMethodName          = "/campusapis.staff.v1.CampusService/GetStudentRewards"
-	CampusService_GetStudentCourseSelections_FullMethodName = "/campusapis.staff.v1.CampusService/GetStudentCourseSelections"
-	CampusService_GetStudentGrade_FullMethodName            = "/campusapis.staff.v1.CampusService/GetStudentGrade"
-	CampusService_GetGlobalStudentGrade_FullMethodName      = "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade"
-	CampusService_GetStudentExam_FullMethodName             = "/campusapis.staff.v1.CampusService/GetStudentExam"
-	CampusService_GetDailyExam_FullMethodName               = "/campusapis.staff.v1.CampusService/GetDailyExam"
-	CampusService_GetStudentGPA_FullMethodName              = "/campusapis.staff.v1.CampusService/GetStudentGPA"
-	CampusService_PostStudentGateAccess_FullMethodName      = "/campusapis.staff.v1.CampusService/PostStudentGateAccess"
-	CampusService_GetStudentStaySchoolInfo_FullMethodName   = "/campusapis.staff.v1.CampusService/GetStudentStaySchoolInfo"
-	CampusService_GetFreshmanBaseInfo_FullMethodName        = "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo"
-	CampusService_GetFreshmanDetail_FullMethodName          = "/campusapis.staff.v1.CampusService/GetFreshmanDetail"
-	CampusService_GetFreshmanRoommates_FullMethodName       = "/campusapis.staff.v1.CampusService/GetFreshmanRoommates"
-	CampusService_GetPreviousSchoolInfo_FullMethodName      = "/campusapis.staff.v1.CampusService/GetPreviousSchoolInfo"
+	CampusService_GetPersonInfo_FullMethodName               = "/campusapis.staff.v1.CampusService/GetPersonInfo"
+	CampusService_GetStudentInfo_FullMethodName              = "/campusapis.staff.v1.CampusService/GetStudentInfo"
+	CampusService_GetStudentCountByDivision_FullMethodName   = "/campusapis.staff.v1.CampusService/GetStudentCountByDivision"
+	CampusService_GetStudentSchoolRollStatus_FullMethodName  = "/campusapis.staff.v1.CampusService/GetStudentSchoolRollStatus"
+	CampusService_GetStudentDormInfo_FullMethodName          = "/campusapis.staff.v1.CampusService/GetStudentDormInfo"
+	CampusService_GetStudentBirthdayInfo_FullMethodName      = "/campusapis.staff.v1.CampusService/GetStudentBirthdayInfo"
+	CampusService_GetStudentBirthdaysIn_FullMethodName       = "/campusapis.staff.v1.CampusService/GetStudentBirthdaysIn"
+	CampusService_GetStudentRewards_FullMethodName           = "/campusapis.staff.v1.CampusService/GetStudentRewards"
+	CampusService_GetStudentCourseSelections_FullMethodName  = "/campusapis.staff.v1.CampusService/GetStudentCourseSelections"
+	CampusService_GetStudentGrade_FullMethodName             = "/campusapis.staff.v1.CampusService/GetStudentGrade"
+	CampusService_GetGlobalStudentGrade_FullMethodName       = "/campusapis.staff.v1.CampusService/GetGlobalStudentGrade"
+	CampusService_GetStudentExam_FullMethodName              = "/campusapis.staff.v1.CampusService/GetStudentExam"
+	CampusService_GetDailyExam_FullMethodName                = "/campusapis.staff.v1.CampusService/GetDailyExam"
+	CampusService_GetStudentGPA_FullMethodName               = "/campusapis.staff.v1.CampusService/GetStudentGPA"
+	CampusService_PostStudentGateAccess_FullMethodName       = "/campusapis.staff.v1.CampusService/PostStudentGateAccess"
+	CampusService_GetStudentStaySchoolInfo_FullMethodName    = "/campusapis.staff.v1.CampusService/GetStudentStaySchoolInfo"
+	CampusService_GetFreshmanBaseInfo_FullMethodName         = "/campusapis.staff.v1.CampusService/GetFreshmanBaseInfo"
+	CampusService_GetFreshmanDetail_FullMethodName           = "/campusapis.staff.v1.CampusService/GetFreshmanDetail"
+	CampusService_GetFreshmanRoommates_FullMethodName        = "/campusapis.staff.v1.CampusService/GetFreshmanRoommates"
+	CampusService_GetPreviousSchoolInfo_FullMethodName       = "/campusapis.staff.v1.CampusService/GetPreviousSchoolInfo"
+	CampusService_GetPreviousSchoolDetailInfo_FullMethodName = "/campusapis.staff.v1.CampusService/GetPreviousSchoolDetailInfo"
 )
 
 // CampusServiceClient is the client API for CampusService service.
@@ -108,6 +109,8 @@ type CampusServiceClient interface {
 	GetFreshmanRoommates(ctx context.Context, in *GetFreshmanRoommatesRequest, opts ...grpc.CallOption) (*GetFreshmanRoommatesResponse, error)
 	// 获取新生毕业学校信息
 	GetPreviousSchoolInfo(ctx context.Context, in *GetStaffPreviousSchoolInfoRequest, opts ...grpc.CallOption) (*GetStaffPreviousSchoolInfoResponse, error)
+	// 根据年级和学校名称获取学校信息
+	GetPreviousSchoolDetailInfo(ctx context.Context, in *GetPreviousSchoolDetailInfoRequest, opts ...grpc.CallOption) (*GetPreviousSchoolDetailInfoResponse, error)
 }
 
 type campusServiceClient struct {
@@ -318,6 +321,16 @@ func (c *campusServiceClient) GetPreviousSchoolInfo(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *campusServiceClient) GetPreviousSchoolDetailInfo(ctx context.Context, in *GetPreviousSchoolDetailInfoRequest, opts ...grpc.CallOption) (*GetPreviousSchoolDetailInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPreviousSchoolDetailInfoResponse)
+	err := c.cc.Invoke(ctx, CampusService_GetPreviousSchoolDetailInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CampusServiceServer is the server API for CampusService service.
 // All implementations must embed UnimplementedCampusServiceServer
 // for forward compatibility.
@@ -384,6 +397,8 @@ type CampusServiceServer interface {
 	GetFreshmanRoommates(context.Context, *GetFreshmanRoommatesRequest) (*GetFreshmanRoommatesResponse, error)
 	// 获取新生毕业学校信息
 	GetPreviousSchoolInfo(context.Context, *GetStaffPreviousSchoolInfoRequest) (*GetStaffPreviousSchoolInfoResponse, error)
+	// 根据年级和学校名称获取学校信息
+	GetPreviousSchoolDetailInfo(context.Context, *GetPreviousSchoolDetailInfoRequest) (*GetPreviousSchoolDetailInfoResponse, error)
 	mustEmbedUnimplementedCampusServiceServer()
 }
 
@@ -453,6 +468,9 @@ func (UnimplementedCampusServiceServer) GetFreshmanRoommates(context.Context, *G
 }
 func (UnimplementedCampusServiceServer) GetPreviousSchoolInfo(context.Context, *GetStaffPreviousSchoolInfoRequest) (*GetStaffPreviousSchoolInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPreviousSchoolInfo not implemented")
+}
+func (UnimplementedCampusServiceServer) GetPreviousSchoolDetailInfo(context.Context, *GetPreviousSchoolDetailInfoRequest) (*GetPreviousSchoolDetailInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPreviousSchoolDetailInfo not implemented")
 }
 func (UnimplementedCampusServiceServer) mustEmbedUnimplementedCampusServiceServer() {}
 func (UnimplementedCampusServiceServer) testEmbeddedByValue()                       {}
@@ -835,6 +853,24 @@ func _CampusService_GetPreviousSchoolInfo_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_GetPreviousSchoolDetailInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPreviousSchoolDetailInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetPreviousSchoolDetailInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_GetPreviousSchoolDetailInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetPreviousSchoolDetailInfo(ctx, req.(*GetPreviousSchoolDetailInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CampusService_ServiceDesc is the grpc.ServiceDesc for CampusService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -921,6 +957,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPreviousSchoolInfo",
 			Handler:    _CampusService_GetPreviousSchoolInfo_Handler,
+		},
+		{
+			MethodName: "GetPreviousSchoolDetailInfo",
+			Handler:    _CampusService_GetPreviousSchoolDetailInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
