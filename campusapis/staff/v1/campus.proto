@@ -240,7 +240,11 @@ message GetPreviousSchoolDetailInfoRequest {
 }
 
 message GetPreviousSchoolDetailInfoResponse {
-  repeated GradeSchoolInfo grade_school_infos = 1;
+  // 错误码
+  int32 error = 1;
+  // 错误信息
+  string msg = 2;
+  repeated GradeSchoolInfo data = 3;
 }
 
 message GradeSchoolInfo {
@@ -260,7 +264,9 @@ message GetStaffPreviousSchoolInfoRequest {
 
 message GetStaffPreviousSchoolInfoResponse {
   // 人员信息
-  StaffSchoolInfo info = 1;
+  int32 error = 1;
+  string msg = 2;
+  StaffSchoolInfo data = 3;
 }
 
 

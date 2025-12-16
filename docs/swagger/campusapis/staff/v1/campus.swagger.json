@@ -1766,7 +1766,16 @@
     "v1GetPreviousSchoolDetailInfoResponse": {
       "type": "object",
       "properties": {
-        "gradeSchoolInfos": {
+        "error": {
+          "type": "integer",
+          "format": "int32",
+          "title": "错误码"
+        },
+        "msg": {
+          "type": "string",
+          "title": "错误信息"
+        },
+        "data": {
           "type": "array",
           "items": {
             "type": "object",
@@ -1778,9 +1787,16 @@
     "v1GetStaffPreviousSchoolInfoResponse": {
       "type": "object",
       "properties": {
-        "info": {
-          "$ref": "#/definitions/v1StaffSchoolInfo",
+        "error": {
+          "type": "integer",
+          "format": "int32",
           "title": "人员信息"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1StaffSchoolInfo"
         }
       }
     },
