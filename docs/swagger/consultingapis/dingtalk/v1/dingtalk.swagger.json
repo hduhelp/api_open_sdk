@@ -422,27 +422,6 @@
         }
       }
     },
-    "v1ChatGroup": {
-      "type": "object",
-      "properties": {
-        "chatId": {
-          "type": "string"
-        },
-        "openConversationId": {
-          "type": "string"
-        },
-        "inviteUrl": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "int64"
-        },
-        "chatName": {
-          "type": "string"
-        }
-      }
-    },
     "v1CreateClassChatGroupRequestBody": {
       "type": "object",
       "properties": {
@@ -494,7 +473,7 @@
       "type": "object",
       "properties": {
         "chatGroup": {
-          "$ref": "#/definitions/v1ChatGroup"
+          "$ref": "#/definitions/v1PreviousSchoolChatGroup"
         }
       }
     },
@@ -596,7 +575,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1ChatGroup"
+            "$ref": "#/definitions/v1PreviousSchoolChatGroup"
           }
         }
       }
@@ -619,6 +598,33 @@
     },
     "v1MergeClassChatGroupResponse": {
       "type": "object"
+    },
+    "v1PreviousSchoolChatGroup": {
+      "type": "object",
+      "properties": {
+        "chatId": {
+          "type": "string"
+        },
+        "openConversationId": {
+          "type": "string"
+        },
+        "inviteUrl": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "int64"
+        },
+        "chatName": {
+          "type": "string"
+        },
+        "grade": {
+          "type": "string"
+        },
+        "schoolName": {
+          "type": "string"
+        }
+      }
     },
     "v1SyncClassChatGroupResponse": {
       "type": "object",
