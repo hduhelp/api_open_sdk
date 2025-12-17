@@ -88,7 +88,7 @@ message CreatePreviousSchoolChatGroupRequest {
 }
 
 message CreatePreviousSchoolChatGroupResponse {
-  ChatGroup chat_group = 1;
+  PreviousSchoolChatGroup chat_group = 1;
 }
 
 message JoinPreviousSchoolChatGroupRequest {
@@ -109,15 +109,17 @@ message GetPreviousSchoolChatGroupRequest {
 }
 
 message GetPreviousSchoolChatGroupResponse {
-  repeated ChatGroup chat_groups = 1;
+  repeated PreviousSchoolChatGroup chat_groups = 1;
 }
 
-message ChatGroup {
+message PreviousSchoolChatGroup {
   string chat_id = 1;
   string openConversationId = 2;
   string invite_url = 3;
   int64 created_at = 4;
   string chat_name = 5;
+  string grade = 6;
+  string school_name = 7;
 }
 
 message CreateClassChatGroupRequest {
