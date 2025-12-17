@@ -1776,11 +1776,7 @@
           "title": "错误信息"
         },
         "data": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1GradeSchoolInfo"
-          }
+          "$ref": "#/definitions/v1SchoolInfo"
         }
       }
     },
@@ -2114,6 +2110,21 @@
         }
       },
       "title": "PostStudentGateAccessResponse  推送学生门禁通行信息"
+    },
+    "v1SchoolInfo": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "gradeSchoolInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1GradeSchoolInfo"
+          }
+        }
+      }
     },
     "v1StaffSchoolInfo": {
       "type": "object",
