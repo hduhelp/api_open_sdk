@@ -117,6 +117,7 @@ message ChatGroup {
   string openConversationId = 2;
   string invite_url = 3;
   int64 created_at = 4;
+  string chat_name = 5;
 }
 
 message CreateClassChatGroupRequest {
