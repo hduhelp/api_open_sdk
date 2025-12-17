@@ -244,10 +244,15 @@ message GetPreviousSchoolDetailInfoResponse {
   int32 error = 1;
   // 错误信息
   string msg = 2;
-  repeated GradeSchoolInfo data = 3;
+  SchoolInfo data = 3;
 }
 
-message GradeSchoolInfo {
+message SchoolInfo {
+  string city = 1;
+  repeated GradeSchoolInfo grade_school_info = 2;
+}
+
+message GradeSchoolInfo{
   // 年级
   string grade = 1;
   // 学校名称
@@ -255,7 +260,6 @@ message GradeSchoolInfo {
   //人数
   int64 student_count = 3;
 }
-
 
 message GetStaffPreviousSchoolInfoRequest {
   // 学工号
