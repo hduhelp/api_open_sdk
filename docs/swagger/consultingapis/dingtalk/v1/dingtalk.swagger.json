@@ -437,6 +437,9 @@
         "createdAt": {
           "type": "string",
           "format": "int64"
+        },
+        "chatName": {
+          "type": "string"
         }
       }
     },
