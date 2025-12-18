@@ -16,6 +16,38 @@
     "application/json"
   ],
   "paths": {
+    "/dingtalk/chat/v1/city/create": {
+      "post": {
+        "operationId": "DingTalkService_CreateCityChatGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateCityChatGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateCityChatGroupRequestBody"
+            }
+          }
+        ],
+        "tags": [
+          "DingTalkService"
+        ]
+      }
+    },
     "/dingtalk/chat/v1/create": {
       "post": {
         "operationId": "DingTalkService_CreateClassChatGroup",
@@ -419,6 +451,28 @@
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
+        }
+      }
+    },
+    "v1CreateCityChatGroupRequestBody": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateCityChatGroupResponse": {
+      "type": "object",
+      "properties": {
+        "chatId": {
+          "type": "string"
+        },
+        "openConversationId": {
+          "type": "string"
+        },
+        "inviteUrl": {
+          "type": "string"
         }
       }
     },
