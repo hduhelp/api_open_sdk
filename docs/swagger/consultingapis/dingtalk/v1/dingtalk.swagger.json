@@ -48,6 +48,36 @@
         ]
       }
     },
+    "/dingtalk/chat/v1/city/get": {
+      "get": {
+        "operationId": "DingTalkService_GetCityChatGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCityChatGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DingTalkService"
+        ]
+      }
+    },
     "/dingtalk/chat/v1/create": {
       "post": {
         "operationId": "DingTalkService_CreateClassChatGroup",
@@ -454,6 +484,29 @@
         }
       }
     },
+    "v1CityChatGroup": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "chatId": {
+          "type": "string"
+        },
+        "openConversationId": {
+          "type": "string"
+        },
+        "inviteUrl": {
+          "type": "string"
+        },
+        "chatName": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateCityChatGroupRequestBody": {
       "type": "object",
       "properties": {
@@ -559,6 +612,14 @@
         },
         "failedMemberIds": {
           "type": "string"
+        }
+      }
+    },
+    "v1GetCityChatGroupResponse": {
+      "type": "object",
+      "properties": {
+        "chatGroup": {
+          "$ref": "#/definitions/v1CityChatGroup"
         }
       }
     },
