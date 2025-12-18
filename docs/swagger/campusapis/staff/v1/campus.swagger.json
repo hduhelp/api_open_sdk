@@ -2117,6 +2117,9 @@
         "city": {
           "type": "string"
         },
+        "cityCount": {
+          "type": "string"
+        },
         "gradeSchoolInfo": {
           "type": "array",
           "items": {

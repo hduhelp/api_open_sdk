@@ -249,7 +249,8 @@ message GetPreviousSchoolDetailInfoResponse {
 
 message SchoolInfo {
   string city = 1;
-  repeated GradeSchoolInfo grade_school_info = 2;
+  string city_count  = 2;
+  repeated GradeSchoolInfo grade_school_info = 3;
 }
 
 message GradeSchoolInfo{
