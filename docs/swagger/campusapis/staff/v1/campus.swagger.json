@@ -613,6 +613,29 @@
         ]
       }
     },
+    "/staff/v1/student/city": {
+      "get": {
+        "summary": "根据学号获取城市名称",
+        "operationId": "CampusService_GetCityByStudentID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCityByStudentIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/student/count": {
       "get": {
         "summary": "todo: 未实现\n //获取全体学生基本信息\n rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/all/student/info\"\n   };\n }",
@@ -1058,6 +1081,29 @@
             "format": "int32"
           }
         ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/student/city": {
+      "get": {
+        "summary": "根据学号获取城市名称",
+        "operationId": "CampusService_GetCityByStudentID2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCityByStudentIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "CampusService"
         ]
@@ -1654,6 +1700,15 @@
         "staffID": {
           "type": "string",
           "title": "学号"
+        }
+      }
+    },
+    "v1GetCityByStudentIDResponse": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "title": "城市名称"
         }
       }
     },
