@@ -76,7 +76,31 @@ service DingTalkService {
       body: "body"
     };
   }
+
+  rpc CreateCityChatGroup(CreateCityChatGroupRequest) returns (CreateCityChatGroupResponse) {
+    option (google.api.http) = {
+      post: "/dingtalk/chat/v1/city/create"
+      body: "body"
+    };
+  }
 }
+
+message CreateCityChatGroupRequest {
+  Body body = 1;
+
+  message Body {
+    string city = 1;
+  }
+}
+
+
+message CreateCityChatGroupResponse {
+  string chat_id = 1;
+  string openConversationId = 2;
+  string invite_url = 3;
+}
+
+
 
 message CreatePreviousSchoolChatGroupRequest {
   Body body = 1;

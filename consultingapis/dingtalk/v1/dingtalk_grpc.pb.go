@@ -30,6 +30,7 @@ const (
 	DingTalkService_GetPreviousSchoolChatGroup_FullMethodName    = "/consultingapis.dingtalk.v1.DingTalkService/GetPreviousSchoolChatGroup"
 	DingTalkService_CreatePreviousSchoolChatGroup_FullMethodName = "/consultingapis.dingtalk.v1.DingTalkService/CreatePreviousSchoolChatGroup"
 	DingTalkService_JoinPreviousSchoolChatGroup_FullMethodName   = "/consultingapis.dingtalk.v1.DingTalkService/JoinPreviousSchoolChatGroup"
+	DingTalkService_CreateCityChatGroup_FullMethodName           = "/consultingapis.dingtalk.v1.DingTalkService/CreateCityChatGroup"
 )
 
 // DingTalkServiceClient is the client API for DingTalkService service.
@@ -47,6 +48,7 @@ type DingTalkServiceClient interface {
 	GetPreviousSchoolChatGroup(ctx context.Context, in *GetPreviousSchoolChatGroupRequest, opts ...grpc.CallOption) (*GetPreviousSchoolChatGroupResponse, error)
 	CreatePreviousSchoolChatGroup(ctx context.Context, in *CreatePreviousSchoolChatGroupRequest, opts ...grpc.CallOption) (*CreatePreviousSchoolChatGroupResponse, error)
 	JoinPreviousSchoolChatGroup(ctx context.Context, in *JoinPreviousSchoolChatGroupRequest, opts ...grpc.CallOption) (*JoinPreviousSchoolChatGroupResponse, error)
+	CreateCityChatGroup(ctx context.Context, in *CreateCityChatGroupRequest, opts ...grpc.CallOption) (*CreateCityChatGroupResponse, error)
 }
 
 type dingTalkServiceClient struct {
@@ -167,6 +169,16 @@ func (c *dingTalkServiceClient) JoinPreviousSchoolChatGroup(ctx context.Context,
 	return out, nil
 }
 
+func (c *dingTalkServiceClient) CreateCityChatGroup(ctx context.Context, in *CreateCityChatGroupRequest, opts ...grpc.CallOption) (*CreateCityChatGroupResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateCityChatGroupResponse)
+	err := c.cc.Invoke(ctx, DingTalkService_CreateCityChatGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DingTalkServiceServer is the server API for DingTalkService service.
 // All implementations must embed UnimplementedDingTalkServiceServer
 // for forward compatibility.
@@ -182,6 +194,7 @@ type DingTalkServiceServer interface {
 	GetPreviousSchoolChatGroup(context.Context, *GetPreviousSchoolChatGroupRequest) (*GetPreviousSchoolChatGroupResponse, error)
 	CreatePreviousSchoolChatGroup(context.Context, *CreatePreviousSchoolChatGroupRequest) (*CreatePreviousSchoolChatGroupResponse, error)
 	JoinPreviousSchoolChatGroup(context.Context, *JoinPreviousSchoolChatGroupRequest) (*JoinPreviousSchoolChatGroupResponse, error)
+	CreateCityChatGroup(context.Context, *CreateCityChatGroupRequest) (*CreateCityChatGroupResponse, error)
 	mustEmbedUnimplementedDingTalkServiceServer()
 }
 
@@ -224,6 +237,9 @@ func (UnimplementedDingTalkServiceServer) CreatePreviousSchoolChatGroup(context.
 }
 func (UnimplementedDingTalkServiceServer) JoinPreviousSchoolChatGroup(context.Context, *JoinPreviousSchoolChatGroupRequest) (*JoinPreviousSchoolChatGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method JoinPreviousSchoolChatGroup not implemented")
+}
+func (UnimplementedDingTalkServiceServer) CreateCityChatGroup(context.Context, *CreateCityChatGroupRequest) (*CreateCityChatGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCityChatGroup not implemented")
 }
 func (UnimplementedDingTalkServiceServer) mustEmbedUnimplementedDingTalkServiceServer() {}
 func (UnimplementedDingTalkServiceServer) testEmbeddedByValue()                         {}
@@ -444,6 +460,24 @@ func _DingTalkService_JoinPreviousSchoolChatGroup_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DingTalkService_CreateCityChatGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCityChatGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DingTalkServiceServer).CreateCityChatGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DingTalkService_CreateCityChatGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DingTalkServiceServer).CreateCityChatGroup(ctx, req.(*CreateCityChatGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DingTalkService_ServiceDesc is the grpc.ServiceDesc for DingTalkService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -494,6 +528,10 @@ var DingTalkService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "JoinPreviousSchoolChatGroup",
 			Handler:    _DingTalkService_JoinPreviousSchoolChatGroup_Handler,
+		},
+		{
+			MethodName: "CreateCityChatGroup",
+			Handler:    _DingTalkService_CreateCityChatGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
