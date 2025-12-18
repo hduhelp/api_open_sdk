@@ -1504,6 +1504,14 @@
         }
       }
     },
+    "v1CityInfo": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        }
+      }
+    },
     "v1DormInfo": {
       "type": "object",
       "properties": {
@@ -1706,9 +1714,16 @@
     "v1GetCityByStudentIDResponse": {
       "type": "object",
       "properties": {
-        "city": {
-          "type": "string",
+        "error": {
+          "type": "integer",
+          "format": "int32",
           "title": "城市名称"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1CityInfo"
         }
       }
     },
