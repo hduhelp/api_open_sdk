@@ -41,6 +41,7 @@ const (
 	CampusService_GetFreshmanRoommates_FullMethodName        = "/campusapis.staff.v1.CampusService/GetFreshmanRoommates"
 	CampusService_GetPreviousSchoolInfo_FullMethodName       = "/campusapis.staff.v1.CampusService/GetPreviousSchoolInfo"
 	CampusService_GetPreviousSchoolDetailInfo_FullMethodName = "/campusapis.staff.v1.CampusService/GetPreviousSchoolDetailInfo"
+	CampusService_GetCityByStudentID_FullMethodName          = "/campusapis.staff.v1.CampusService/GetCityByStudentID"
 )
 
 // CampusServiceClient is the client API for CampusService service.
@@ -111,6 +112,8 @@ type CampusServiceClient interface {
 	GetPreviousSchoolInfo(ctx context.Context, in *GetStaffPreviousSchoolInfoRequest, opts ...grpc.CallOption) (*GetStaffPreviousSchoolInfoResponse, error)
 	// 根据年级和学校名称获取学校信息
 	GetPreviousSchoolDetailInfo(ctx context.Context, in *GetPreviousSchoolDetailInfoRequest, opts ...grpc.CallOption) (*GetPreviousSchoolDetailInfoResponse, error)
+	// 根据学号获取城市名称
+	GetCityByStudentID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCityByStudentIDResponse, error)
 }
 
 type campusServiceClient struct {
@@ -331,6 +334,16 @@ func (c *campusServiceClient) GetPreviousSchoolDetailInfo(ctx context.Context, i
 	return out, nil
 }
 
+func (c *campusServiceClient) GetCityByStudentID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCityByStudentIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCityByStudentIDResponse)
+	err := c.cc.Invoke(ctx, CampusService_GetCityByStudentID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CampusServiceServer is the server API for CampusService service.
 // All implementations must embed UnimplementedCampusServiceServer
 // for forward compatibility.
@@ -399,6 +412,8 @@ type CampusServiceServer interface {
 	GetPreviousSchoolInfo(context.Context, *GetStaffPreviousSchoolInfoRequest) (*GetStaffPreviousSchoolInfoResponse, error)
 	// 根据年级和学校名称获取学校信息
 	GetPreviousSchoolDetailInfo(context.Context, *GetPreviousSchoolDetailInfoRequest) (*GetPreviousSchoolDetailInfoResponse, error)
+	// 根据学号获取城市名称
+	GetCityByStudentID(context.Context, *emptypb.Empty) (*GetCityByStudentIDResponse, error)
 	mustEmbedUnimplementedCampusServiceServer()
 }
 
@@ -471,6 +486,9 @@ func (UnimplementedCampusServiceServer) GetPreviousSchoolInfo(context.Context, *
 }
 func (UnimplementedCampusServiceServer) GetPreviousSchoolDetailInfo(context.Context, *GetPreviousSchoolDetailInfoRequest) (*GetPreviousSchoolDetailInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPreviousSchoolDetailInfo not implemented")
+}
+func (UnimplementedCampusServiceServer) GetCityByStudentID(context.Context, *emptypb.Empty) (*GetCityByStudentIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCityByStudentID not implemented")
 }
 func (UnimplementedCampusServiceServer) mustEmbedUnimplementedCampusServiceServer() {}
 func (UnimplementedCampusServiceServer) testEmbeddedByValue()                       {}
@@ -871,6 +889,24 @@ func _CampusService_GetPreviousSchoolDetailInfo_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_GetCityByStudentID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).GetCityByStudentID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_GetCityByStudentID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).GetCityByStudentID(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CampusService_ServiceDesc is the grpc.ServiceDesc for CampusService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -961,6 +997,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPreviousSchoolDetailInfo",
 			Handler:    _CampusService_GetPreviousSchoolDetailInfo_Handler,
+		},
+		{
+			MethodName: "GetCityByStudentID",
+			Handler:    _CampusService_GetCityByStudentID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
