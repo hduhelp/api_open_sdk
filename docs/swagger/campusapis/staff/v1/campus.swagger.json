@@ -177,6 +177,38 @@
         ]
       }
     },
+    "/previous/school/city": {
+      "post": {
+        "operationId": "CampusService_ModifyCityForPreviousSchool2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ModifyCityForPreviousSchoolResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModifyCityForPreviousSchoolRequestBody"
+            }
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/previous/school/detail": {
       "get": {
         "summary": "根据年级和学校名称获取学校信息",
@@ -459,6 +491,37 @@
             }
           }
         },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/previous/school/city": {
+      "post": {
+        "operationId": "CampusService_ModifyCityForPreviousSchool",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ModifyCityForPreviousSchoolResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body.cityCode",
+            "description": "城市代码（六位）",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "CampusService"
         ]
@@ -1451,6 +1514,15 @@
     }
   },
   "definitions": {
+    "ModifyCityForPreviousSchoolRequestBody": {
+      "type": "object",
+      "properties": {
+        "cityCode": {
+          "type": "string",
+          "title": "城市代码（六位）"
+        }
+      }
+    },
     "PostStudentGateAccessResponseData": {
       "type": "object",
       "properties": {
@@ -1508,6 +1580,9 @@
       "type": "object",
       "properties": {
         "city": {
+          "type": "string"
+        },
+        "modifiedCity": {
           "type": "string"
         }
       }
@@ -2117,6 +2192,20 @@
           "type": "string",
           "format": "int64",
           "title": "人数"
+        }
+      }
+    },
+    "v1ModifyCityForPreviousSchoolResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32",
+          "title": "错误码"
+        },
+        "msg": {
+          "type": "string",
+          "title": "错误信息"
         }
       }
     },

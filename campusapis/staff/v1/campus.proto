@@ -236,10 +236,35 @@ service CampusService {
       }
     };
   }
+  rpc ModifyCityForPreviousSchool(ModifyCityForPreviousSchoolRequest) returns (ModifyCityForPreviousSchoolResponse) {
+    option (google.api.http) = {
+      post: "/staff/v1/previous/school/city"
+      additional_bindings {
+        post: "/previous/school/city"
+        body: "body"
+      }
+    };
+  }
 }
 
 
 //下面为返回体和请求体
+
+message ModifyCityForPreviousSchoolRequest {
+  Body body = 1;
+
+  message Body {
+    // 城市代码（六位）
+    string city_code = 1;
+  }
+}
+
+message ModifyCityForPreviousSchoolResponse {
+  // 错误码
+  int32 error = 1;
+  // 错误信息
+  string msg = 2;
+}
 
 message GetCityByStudentIDResponse{
   // 城市名称
@@ -250,6 +275,7 @@ message GetCityByStudentIDResponse{
 
 message CityInfo {
   string city = 1;
+  string modified_city = 2;
 }
 
 //根据年级和学校名称获取学校详细信息
