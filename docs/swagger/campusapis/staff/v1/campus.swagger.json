@@ -16,6 +16,36 @@
     "application/json"
   ],
   "paths": {
+    "/code/city": {
+      "get": {
+        "operationId": "CampusService_GetCityByCode2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCityByCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/freshman/base": {
       "get": {
         "summary": "获取新生基本信息",
@@ -325,6 +355,36 @@
           {
             "name": "staffID",
             "description": "学工号",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
+    "/staff/v1/code/city": {
+      "get": {
+        "operationId": "CampusService_GetCityByCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCityByCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1514,6 +1574,14 @@
     }
   },
   "definitions": {
+    "GetCityByCodeResponseCity": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        }
+      }
+    },
     "ModifyCityForPreviousSchoolRequestBody": {
       "type": "object",
       "properties": {
@@ -1783,6 +1851,21 @@
         "staffID": {
           "type": "string",
           "title": "学号"
+        }
+      }
+    },
+    "v1GetCityByCodeResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetCityByCodeResponseCity"
         }
       }
     },

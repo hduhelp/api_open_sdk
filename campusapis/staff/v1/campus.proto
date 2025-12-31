@@ -245,10 +245,32 @@ service CampusService {
       }
     };
   }
+
+  rpc GetCityByCode(GetCityByCodeRequest)returns (GetCityByCodeResponse){
+    option (google.api.http) = {
+      get: "/staff/v1/code/city"
+      additional_bindings {
+        get: "/code/city"
+      }
+    };
+  }
 }
 
 
 //下面为返回体和请求体
+message GetCityByCodeRequest{
+  string code = 1;
+}
+
+message GetCityByCodeResponse{
+  int32 error = 1;
+  string msg = 2;
+  City data = 3;
+
+  message City {
+    string city = 1;
+  }
+}
 
 message ModifyCityForPreviousSchoolRequest {
   Body body = 1;
