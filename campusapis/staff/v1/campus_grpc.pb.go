@@ -44,6 +44,9 @@ const (
 	CampusService_GetCityByStudentID_FullMethodName          = "/campusapis.staff.v1.CampusService/GetCityByStudentID"
 	CampusService_ModifyCityForPreviousSchool_FullMethodName = "/campusapis.staff.v1.CampusService/ModifyCityForPreviousSchool"
 	CampusService_GetCityByCode_FullMethodName               = "/campusapis.staff.v1.CampusService/GetCityByCode"
+	CampusService_StoreFitnessScore_FullMethodName           = "/campusapis.staff.v1.CampusService/StoreFitnessScore"
+	CampusService_UpdateFitnessScore_FullMethodName          = "/campusapis.staff.v1.CampusService/UpdateFitnessScore"
+	CampusService_DeleteFitnessScore_FullMethodName          = "/campusapis.staff.v1.CampusService/DeleteFitnessScore"
 )
 
 // CampusServiceClient is the client API for CampusService service.
@@ -118,6 +121,12 @@ type CampusServiceClient interface {
 	GetCityByStudentID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCityByStudentIDResponse, error)
 	ModifyCityForPreviousSchool(ctx context.Context, in *ModifyCityForPreviousSchoolRequest, opts ...grpc.CallOption) (*ModifyCityForPreviousSchoolResponse, error)
 	GetCityByCode(ctx context.Context, in *GetCityByCodeRequest, opts ...grpc.CallOption) (*GetCityByCodeResponse, error)
+	// 新增或更新体测成绩
+	StoreFitnessScore(ctx context.Context, in *FitnessScoreRequest, opts ...grpc.CallOption) (*FitnessScoreResponse, error)
+	// 更新体测成绩
+	UpdateFitnessScore(ctx context.Context, in *FitnessScoreRequest, opts ...grpc.CallOption) (*FitnessScoreResponse, error)
+	// 删除体测成绩
+	DeleteFitnessScore(ctx context.Context, in *DeleteFitnessScoreRequest, opts ...grpc.CallOption) (*DeleteFitnessScoreResponse, error)
 }
 
 type campusServiceClient struct {
@@ -368,6 +377,36 @@ func (c *campusServiceClient) GetCityByCode(ctx context.Context, in *GetCityByCo
 	return out, nil
 }
 
+func (c *campusServiceClient) StoreFitnessScore(ctx context.Context, in *FitnessScoreRequest, opts ...grpc.CallOption) (*FitnessScoreResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FitnessScoreResponse)
+	err := c.cc.Invoke(ctx, CampusService_StoreFitnessScore_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *campusServiceClient) UpdateFitnessScore(ctx context.Context, in *FitnessScoreRequest, opts ...grpc.CallOption) (*FitnessScoreResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FitnessScoreResponse)
+	err := c.cc.Invoke(ctx, CampusService_UpdateFitnessScore_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *campusServiceClient) DeleteFitnessScore(ctx context.Context, in *DeleteFitnessScoreRequest, opts ...grpc.CallOption) (*DeleteFitnessScoreResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteFitnessScoreResponse)
+	err := c.cc.Invoke(ctx, CampusService_DeleteFitnessScore_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CampusServiceServer is the server API for CampusService service.
 // All implementations must embed UnimplementedCampusServiceServer
 // for forward compatibility.
@@ -440,6 +479,12 @@ type CampusServiceServer interface {
 	GetCityByStudentID(context.Context, *emptypb.Empty) (*GetCityByStudentIDResponse, error)
 	ModifyCityForPreviousSchool(context.Context, *ModifyCityForPreviousSchoolRequest) (*ModifyCityForPreviousSchoolResponse, error)
 	GetCityByCode(context.Context, *GetCityByCodeRequest) (*GetCityByCodeResponse, error)
+	// 新增或更新体测成绩
+	StoreFitnessScore(context.Context, *FitnessScoreRequest) (*FitnessScoreResponse, error)
+	// 更新体测成绩
+	UpdateFitnessScore(context.Context, *FitnessScoreRequest) (*FitnessScoreResponse, error)
+	// 删除体测成绩
+	DeleteFitnessScore(context.Context, *DeleteFitnessScoreRequest) (*DeleteFitnessScoreResponse, error)
 	mustEmbedUnimplementedCampusServiceServer()
 }
 
@@ -521,6 +566,15 @@ func (UnimplementedCampusServiceServer) ModifyCityForPreviousSchool(context.Cont
 }
 func (UnimplementedCampusServiceServer) GetCityByCode(context.Context, *GetCityByCodeRequest) (*GetCityByCodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCityByCode not implemented")
+}
+func (UnimplementedCampusServiceServer) StoreFitnessScore(context.Context, *FitnessScoreRequest) (*FitnessScoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StoreFitnessScore not implemented")
+}
+func (UnimplementedCampusServiceServer) UpdateFitnessScore(context.Context, *FitnessScoreRequest) (*FitnessScoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFitnessScore not implemented")
+}
+func (UnimplementedCampusServiceServer) DeleteFitnessScore(context.Context, *DeleteFitnessScoreRequest) (*DeleteFitnessScoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFitnessScore not implemented")
 }
 func (UnimplementedCampusServiceServer) mustEmbedUnimplementedCampusServiceServer() {}
 func (UnimplementedCampusServiceServer) testEmbeddedByValue()                       {}
@@ -975,6 +1029,60 @@ func _CampusService_GetCityByCode_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_StoreFitnessScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FitnessScoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).StoreFitnessScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_StoreFitnessScore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).StoreFitnessScore(ctx, req.(*FitnessScoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CampusService_UpdateFitnessScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FitnessScoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).UpdateFitnessScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_UpdateFitnessScore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).UpdateFitnessScore(ctx, req.(*FitnessScoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CampusService_DeleteFitnessScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFitnessScoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).DeleteFitnessScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_DeleteFitnessScore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).DeleteFitnessScore(ctx, req.(*DeleteFitnessScoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CampusService_ServiceDesc is the grpc.ServiceDesc for CampusService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1077,6 +1185,18 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCityByCode",
 			Handler:    _CampusService_GetCityByCode_Handler,
+		},
+		{
+			MethodName: "StoreFitnessScore",
+			Handler:    _CampusService_StoreFitnessScore_Handler,
+		},
+		{
+			MethodName: "UpdateFitnessScore",
+			Handler:    _CampusService_UpdateFitnessScore_Handler,
+		},
+		{
+			MethodName: "DeleteFitnessScore",
+			Handler:    _CampusService_DeleteFitnessScore_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
