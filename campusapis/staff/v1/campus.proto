@@ -1015,23 +1015,23 @@ message NiceResponse {
 
 // FitnessScoreRequest 体测成绩请求（用于新增和更新）
 message FitnessScoreRequest {
-  string staff_id = 1;
-  string school_year = 2;
-  int32 semester = 3;
+  string staffId = 1;
+  string schoolYear = 2;
+  string semester = 3;
   string gender = 4;
   int32 grade = 5;
   float height = 6;
   float weight = 7;
   float bmi = 8;
-  float run_50m = 9;
-  float standing_long_jump = 10;
-  float sit_and_reach = 11;
-  float run_800m = 12;
-  float run_1000m = 13;
-  int32 sit_ups = 14;
-  int32 pull_ups = 15;
-  int32 lung_capacity = 16;
-  float total_score = 17;
+  float run50m = 9;
+  float standingLongJump = 10;
+  float sitAndReach = 11;
+  float run800m = 12;
+  float run1000m = 13;
+  int32 sitUps = 14;
+  int32 pullUps = 15;
+  int32 lungCapacity = 16;
+  float totalScore = 17;
 }
 
 // FitnessScoreResponse 体测成绩响应（用于新增和更新）
@@ -1043,9 +1043,9 @@ message FitnessScoreResponse {
 
 // DeleteFitnessScoreRequest 删除体测成绩请求
 message DeleteFitnessScoreRequest {
-  string staff_id = 1;
-  string school_year = 2;
-  int32 semester = 3;
+  string staffId = 1;
+  string schoolYear = 2;
+  string semester = 3;
 }
 
 // DeleteFitnessScoreResponse 删除体测成绩响应
@@ -1056,21 +1056,21 @@ message DeleteFitnessScoreResponse {
 
 // FitnessScore 体测成绩信息
 message FitnessScore {
-  string staff_id = 1;
-  string school_year = 2;
-  int32 semester = 3;
+  string staffId = 1;
+  string schoolYear = 2;
+  string semester = 3;
   string gender = 4;
   int32 grade = 5;
   float height = 6;
   float weight = 7;
   float bmi = 8;
-  float run_50m = 9;
-  float standing_long_jump = 10;
-  float sit_and_reach = 11;
-  float run_800m = 12;
-  float run_1000m = 13;
-  int32 sit_ups = 14;
-  int32 pull_ups = 15;
-  int32 lung_capacity = 16;
-  float total_score = 17;
+  float run50m = 9;
+  float standingLongJump = 10;
+  float sitAndReach = 11;
+  float run800m = 12;
+  float run1000m = 13;
+  int32 sitUps = 14;
+  int32 pullUps = 15;
+  int32 lungCapacity = 16;
+  float totalScore = 17;
 }

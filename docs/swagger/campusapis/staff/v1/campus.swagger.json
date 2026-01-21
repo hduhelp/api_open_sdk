@@ -81,8 +81,7 @@
             "name": "semester",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         ],
         "tags": [
@@ -123,8 +122,7 @@
             "name": "semester",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "gender",
@@ -262,8 +260,7 @@
             "name": "semester",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "gender",
@@ -752,8 +749,7 @@
             "name": "semester",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         ],
         "tags": [
@@ -2123,8 +2119,7 @@
           "type": "string"
         },
         "semester": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "gender": {
           "type": "string"
@@ -2194,8 +2189,7 @@
           "type": "string"
         },
         "semester": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "gender": {
           "type": "string"
