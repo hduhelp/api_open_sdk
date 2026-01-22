@@ -68,19 +68,19 @@
           {
             "name": "staffId",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           },
           {
             "name": "schoolYear",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           },
           {
             "name": "semester",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           }
         ],
@@ -107,119 +107,12 @@
         },
         "parameters": [
           {
-            "name": "staffId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "gender",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "grade",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "height",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "weight",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "bmi",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run50m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "standingLongJump",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "sitAndReach",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run800m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run1000m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "sitUps",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "pullUps",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "lungCapacity",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "totalScore",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1FitnessScoreRequest"
+            }
           }
         ],
         "tags": [
@@ -245,119 +138,12 @@
         },
         "parameters": [
           {
-            "name": "staffId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "schoolYear",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "semester",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "gender",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "grade",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "height",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "weight",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "bmi",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run50m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "standingLongJump",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "sitAndReach",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run800m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "run1000m",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
-          {
-            "name": "sitUps",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "pullUps",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "lungCapacity",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "totalScore",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1FitnessScoreRequest"
+            }
           }
         ],
         "tags": [
@@ -736,19 +522,19 @@
           {
             "name": "staffId",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           },
           {
             "name": "schoolYear",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           },
           {
             "name": "semester",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           }
         ],

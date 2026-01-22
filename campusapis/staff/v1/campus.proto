@@ -5,6 +5,7 @@ package campusapis.staff.v1;
 import "campusapis/staff/base.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "./campusapis/staff/v1";
 
@@ -264,6 +265,7 @@ service CampusService {
       body: "*"
       additional_bindings {
         post: "/fitness/score"
+        body: "*"
       }
     };
   }
@@ -275,6 +277,7 @@ service CampusService {
       body: "*"
       additional_bindings {
         patch: "/fitness/score"
+        body: "*"
       }
     };
   }
@@ -1043,6 +1046,17 @@ message FitnessScoreResponse {
 
 // DeleteFitnessScoreRequest 删除体测成绩请求
 message DeleteFitnessScoreRequest {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      title: "DeleteFitnessScoreRequest"
+      description: "删除体测成绩请求体"
+      required: [
+        "staffId",
+        "schoolYear",
+        "semester"
+      ]
+    }
+  };
   string staffId = 1;
   string schoolYear = 2;
   string semester = 3;
