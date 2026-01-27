@@ -470,6 +470,29 @@
         ]
       }
     },
+    "/staff/v1/all/student/info": {
+      "get": {
+        "summary": "获取全体学生基本信息",
+        "operationId": "CampusService_GetAllStudentInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAllStudentInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CampusService"
+        ]
+      }
+    },
     "/staff/v1/code/city": {
       "get": {
         "operationId": "CampusService_GetCityByCode",
@@ -971,8 +994,7 @@
     },
     "/staff/v1/student/count": {
       "get": {
-        "summary": "todo: 未实现\n //获取全体学生基本信息\n rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/all/student/info\"\n   };\n }",
-        "description": "获取每个学院和专业的学生人数，按年级过滤",
+        "summary": "获取每个学院和专业的学生人数，按年级过滤",
         "operationId": "CampusService_GetStudentCountByDivision",
         "responses": {
           "200": {
@@ -1040,7 +1062,7 @@
     },
     "/staff/v1/student/dorm": {
       "get": {
-        "summary": "迁移至校外部分\n //获取学生贫困生申请记录\n rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/student/needy\"\n     additional_bindings {\n       get: \"/student/needy\"\n     }\n   };\n }\n获取学生宿舍信息",
+        "summary": "获取学生宿舍信息",
         "operationId": "CampusService_GetStudentDormInfo",
         "responses": {
           "200": {
@@ -1444,8 +1466,7 @@
     },
     "/student/count": {
       "get": {
-        "summary": "todo: 未实现\n //获取全体学生基本信息\n rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/all/student/info\"\n   };\n }",
-        "description": "获取每个学院和专业的学生人数，按年级过滤",
+        "summary": "获取每个学院和专业的学生人数，按年级过滤",
         "operationId": "CampusService_GetStudentCountByDivision2",
         "responses": {
           "200": {
@@ -1513,7 +1534,7 @@
     },
     "/student/dorm": {
       "get": {
-        "summary": "迁移至校外部分\n //获取学生贫困生申请记录\n rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {\n   option (google.api.http) = {\n     get: \"/staff/v1/student/needy\"\n     additional_bindings {\n       get: \"/student/needy\"\n     }\n   };\n }\n获取学生宿舍信息",
+        "summary": "获取学生宿舍信息",
         "operationId": "CampusService_GetStudentDormInfo2",
         "responses": {
           "200": {
@@ -2230,6 +2251,25 @@
         "staffID": {
           "type": "string",
           "title": "学号"
+        }
+      }
+    },
+    "v1GetAllStudentInfoResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1StudentInfo"
+          }
         }
       }
     },

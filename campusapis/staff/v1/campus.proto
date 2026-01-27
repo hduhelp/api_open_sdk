@@ -32,14 +32,14 @@ service CampusService {
       }
     };
   }
-// todo: 未实现
-//  //获取全体学生基本信息
-//  rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {
-//    option (google.api.http) = {
-//      get: "/staff/v1/all/student/info"
-//    };
-//  }
-//
+
+  //获取全体学生基本信息
+  rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/all/student/info"
+    };
+  }
+
   // 获取每个学院和专业的学生人数，按年级过滤
   rpc GetStudentCountByDivision(GetStudentCountByDivisionRequest) returns( NiceResponse  ) {
     option (google.api.http) = {
@@ -61,16 +61,6 @@ service CampusService {
     };
   }
 
-//  迁移至校外部分
-//  //获取学生贫困生申请记录
-//  rpc GetStudentNeedyInfo(google.protobuf.Empty) returns (GetStudentNeedyInfoResponse) {
-//    option (google.api.http) = {
-//      get: "/staff/v1/student/needy"
-//      additional_bindings {
-//        get: "/student/needy"
-//      }
-//    };
-//  }
   //获取学生宿舍信息
   rpc GetStudentDormInfo(google.protobuf.Empty) returns (GetStudentDormInfoResponse) {
     option (google.api.http) = {
@@ -247,7 +237,7 @@ service CampusService {
     };
   }
 
-  rpc GetCityByCode(GetCityByCodeRequest)returns (GetCityByCodeResponse){
+  rpc GetCityByCode(GetCityByCodeRequest) returns (GetCityByCodeResponse){
     option (google.api.http) = {
       get: "/staff/v1/code/city"
       additional_bindings {
@@ -428,6 +418,13 @@ message GetStudentCourseSelectionsRequest {
   string semester = 2;
 }
 
+message GetAllStudentInfoResponse {
+  int32 error = 1;
+  string msg = 2;
+  repeated StudentInfo data = 3;
+}
+
+
 message GetStudentGradeRequest {
   //学年，只支持一种格式，例：2021-2022学年，应传 2021
   string schoolYear = 1;
@@ -473,13 +470,6 @@ message GetStudentInfoResponse {
   StudentInfo data = 3;
 }
 
-// todo
-//// GetStudentInfoResponse 查询全体学生信息列表返回体
-//message GetAllStudentInfoResponse {
-//  int32 error = 1;
-//  string msg = 2;
-//  repeated StudentInfo data = 3;
-//}
 
 message StudentInfo {
   //学号
