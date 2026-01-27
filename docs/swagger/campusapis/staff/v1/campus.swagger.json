@@ -470,15 +470,15 @@
         ]
       }
     },
-    "/staff/v1/all/student/info": {
+    "/staff/v1/all/person/info": {
       "get": {
         "summary": "获取全体学生基本信息",
-        "operationId": "CampusService_GetAllStudentInfo",
+        "operationId": "CampusService_GetAllPersonInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetAllStudentInfoResponse"
+              "$ref": "#/definitions/v1GetAllPersonInfoResponse"
             }
           },
           "default": {
@@ -2254,7 +2254,7 @@
         }
       }
     },
-    "v1GetAllStudentInfoResponse": {
+    "v1GetAllPersonInfoResponse": {
       "type": "object",
       "properties": {
         "error": {
@@ -2268,7 +2268,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1StudentInfo"
+            "$ref": "#/definitions/v1PersonInfo"
           }
         }
       }

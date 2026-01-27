@@ -34,9 +34,9 @@ service CampusService {
   }
 
   //获取全体学生基本信息
-  rpc GetAllStudentInfo(google.protobuf.Empty) returns (GetAllStudentInfoResponse) {
+  rpc GetAllPersonInfo(google.protobuf.Empty) returns (GetAllPersonInfoResponse) {
     option (google.api.http) = {
-      get: "/staff/v1/all/student/info"
+      get: "/staff/v1/all/person/info"
     };
   }
 
@@ -418,10 +418,10 @@ message GetStudentCourseSelectionsRequest {
   string semester = 2;
 }
 
-message GetAllStudentInfoResponse {
+message GetAllPersonInfoResponse {
   int32 error = 1;
   string msg = 2;
-  repeated StudentInfo data = 3;
+  repeated PersonInfo data = 3;
 }
 
 
