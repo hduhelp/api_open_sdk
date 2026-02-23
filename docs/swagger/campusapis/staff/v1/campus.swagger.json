@@ -47,27 +47,6 @@
       }
     },
     "/fitness/score": {
-      "get": {
-        "summary": "查询已保存体测成绩列表",
-        "operationId": "CampusService_ListFitnessScores2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListFitnessScoresResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "CampusService"
-        ]
-      },
       "delete": {
         "summary": "删除体测成绩",
         "operationId": "CampusService_DeleteFitnessScore2",
@@ -545,27 +524,6 @@
       }
     },
     "/staff/v1/fitness/score": {
-      "get": {
-        "summary": "查询已保存体测成绩列表",
-        "operationId": "CampusService_ListFitnessScores",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListFitnessScoresResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "CampusService"
-        ]
-      },
       "delete": {
         "summary": "删除体测成绩",
         "operationId": "CampusService_DeleteFitnessScore",
@@ -2738,26 +2696,6 @@
           "title": "人数"
         }
       }
-    },
-    "v1ListFitnessScoresResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1FitnessScore"
-          }
-        }
-      },
-      "title": "ListFitnessScoresResponse 查询已保存体测成绩列表响应"
     },
     "v1ModifyCityForPreviousSchoolResponse": {
       "type": "object",
