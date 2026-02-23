@@ -281,6 +281,16 @@ service CampusService {
       }
     };
   }
+
+  //查询已保存体测成绩列表
+  rpc ListFitnessScores(google.protobuf.Empty) returns (ListFitnessScoresResponse) {
+    option (google.api.http) = {
+      get: "/staff/v1/fitness/score"
+      additional_bindings {
+        get: "/fitness/score"
+      }
+    };
+  }
 }
 
 
@@ -1077,4 +1087,11 @@ message FitnessScore {
   int32 pullUps = 15;
   int32 lungCapacity = 16;
   float totalScore = 17;
+}
+
+// ListFitnessScoresResponse 查询已保存体测成绩列表响应
+message ListFitnessScoresResponse {
+  int32 error = 1;
+  string msg = 2;
+  repeated FitnessScore data = 3;
 }
