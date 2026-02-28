@@ -48,6 +48,7 @@ const (
 	CampusService_StoreFitnessScore_FullMethodName           = "/campusapis.staff.v1.CampusService/StoreFitnessScore"
 	CampusService_UpdateFitnessScore_FullMethodName          = "/campusapis.staff.v1.CampusService/UpdateFitnessScore"
 	CampusService_DeleteFitnessScore_FullMethodName          = "/campusapis.staff.v1.CampusService/DeleteFitnessScore"
+	CampusService_ModifyFitnessScore_FullMethodName          = "/campusapis.staff.v1.CampusService/ModifyFitnessScore"
 	CampusService_ListFitnessScores_FullMethodName           = "/campusapis.staff.v1.CampusService/ListFitnessScores"
 )
 
@@ -111,6 +112,8 @@ type CampusServiceClient interface {
 	UpdateFitnessScore(ctx context.Context, in *FitnessScoreRequest, opts ...grpc.CallOption) (*FitnessScoreResponse, error)
 	// 删除体测成绩
 	DeleteFitnessScore(ctx context.Context, in *DeleteFitnessScoreRequest, opts ...grpc.CallOption) (*DeleteFitnessScoreResponse, error)
+	// 修改已保存体测成绩
+	ModifyFitnessScore(ctx context.Context, in *ModifyFitnessScoreRequest, opts ...grpc.CallOption) (*FitnessScoreResponse, error)
 	// 查询已保存体测成绩列表
 	ListFitnessScores(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListFitnessScoresResponse, error)
 }
@@ -403,6 +406,16 @@ func (c *campusServiceClient) DeleteFitnessScore(ctx context.Context, in *Delete
 	return out, nil
 }
 
+func (c *campusServiceClient) ModifyFitnessScore(ctx context.Context, in *ModifyFitnessScoreRequest, opts ...grpc.CallOption) (*FitnessScoreResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FitnessScoreResponse)
+	err := c.cc.Invoke(ctx, CampusService_ModifyFitnessScore_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *campusServiceClient) ListFitnessScores(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListFitnessScoresResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListFitnessScoresResponse)
@@ -473,6 +486,8 @@ type CampusServiceServer interface {
 	UpdateFitnessScore(context.Context, *FitnessScoreRequest) (*FitnessScoreResponse, error)
 	// 删除体测成绩
 	DeleteFitnessScore(context.Context, *DeleteFitnessScoreRequest) (*DeleteFitnessScoreResponse, error)
+	// 修改已保存体测成绩
+	ModifyFitnessScore(context.Context, *ModifyFitnessScoreRequest) (*FitnessScoreResponse, error)
 	// 查询已保存体测成绩列表
 	ListFitnessScores(context.Context, *emptypb.Empty) (*ListFitnessScoresResponse, error)
 	mustEmbedUnimplementedCampusServiceServer()
@@ -568,6 +583,9 @@ func (UnimplementedCampusServiceServer) UpdateFitnessScore(context.Context, *Fit
 }
 func (UnimplementedCampusServiceServer) DeleteFitnessScore(context.Context, *DeleteFitnessScoreRequest) (*DeleteFitnessScoreResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFitnessScore not implemented")
+}
+func (UnimplementedCampusServiceServer) ModifyFitnessScore(context.Context, *ModifyFitnessScoreRequest) (*FitnessScoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ModifyFitnessScore not implemented")
 }
 func (UnimplementedCampusServiceServer) ListFitnessScores(context.Context, *emptypb.Empty) (*ListFitnessScoresResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFitnessScores not implemented")
@@ -1097,6 +1115,24 @@ func _CampusService_DeleteFitnessScore_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CampusService_ModifyFitnessScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ModifyFitnessScoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CampusServiceServer).ModifyFitnessScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CampusService_ModifyFitnessScore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CampusServiceServer).ModifyFitnessScore(ctx, req.(*ModifyFitnessScoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CampusService_ListFitnessScores_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -1233,6 +1269,10 @@ var CampusService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteFitnessScore",
 			Handler:    _CampusService_DeleteFitnessScore_Handler,
+		},
+		{
+			MethodName: "ModifyFitnessScore",
+			Handler:    _CampusService_ModifyFitnessScore_Handler,
 		},
 		{
 			MethodName: "ListFitnessScores",
