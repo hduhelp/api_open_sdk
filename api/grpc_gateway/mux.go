@@ -22,7 +22,28 @@ var DefaultServeMuxOption = []runtime.ServeMuxOption{
 	runtime.WithErrorHandler(DefaultErrorHandler),
 	runtime.WithRoutingErrorHandler(DefaultRoutingErrorHandler),
 	runtime.WithIncomingHeaderMatcher(DefaultHeaderWarp),
+	// 标准 JSON 格式
+	runtime.WithMarshalerOption("application/json", &runtime.JSONPb{
+		MarshalOptions: protojson.MarshalOptions{
+			EmitUnpopulated: true,
+			UseProtoNames:   true,
+		},
+		UnmarshalOptions: protojson.UnmarshalOptions{
+			DiscardUnknown: false,
+		},
+	}),
+	// Protobuf JSON 格式
 	runtime.WithMarshalerOption("application/jsonpb", &runtime.JSONPb{
+		MarshalOptions: protojson.MarshalOptions{
+			EmitUnpopulated: true,
+			UseProtoNames:   true,
+		},
+		UnmarshalOptions: protojson.UnmarshalOptions{
+			DiscardUnknown: false,
+		},
+	}),
+	// 兜底方案：客户端没明确指定 Content-Type 时用这个
+	runtime.WithMarshalerOption(runtime.MIMEWildcard, &runtime.JSONPb{
 		MarshalOptions: protojson.MarshalOptions{
 			EmitUnpopulated: true,
 			UseProtoNames:   true,
