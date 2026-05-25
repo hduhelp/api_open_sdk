@@ -93,6 +93,12 @@ service LibraryService {
     };
   }
 
+  rpc GetUnreturnedBooks(google.protobuf.Empty) returns (GetUnreturnedBooksResponse) {
+    option (google.api.http) = {
+      get: "/library/v1/read/unreturned"
+    };
+  }
+
   rpc GetShareID(google.protobuf.Empty) returns (GetShareIDResponse) {
     option (google.api.http) = {
       get: "/library/v1/share"
@@ -263,6 +269,12 @@ message GetAllReadDataResponse {
   FlatReadData data = 3;
 }
 
+message GetUnreturnedBooksResponse {
+  int32 error = 1;
+  string msg = 2;
+  BorrowList data = 3;
+}
+
 message GetShareIDResponse {
   int32 error = 1;
   string msg = 2;
@@ -273,6 +285,12 @@ message GetStaffIDByShareIDResponse {
   int32 error = 1;
   string msg = 2;
   string data = 3;
+}
+
+message GetReturnDateResponse {
+  int32 error = 1;
+  string msg = 2;
+  string returnDate = 3;
 }
 
 message AttendanceStats {
@@ -350,6 +368,7 @@ message BookList {
   string bookBarcode = 2;
   google.protobuf.Timestamp borrowDate = 3;
   google.protobuf.Timestamp returnDate = 4;
+  google.protobuf.Timestamp dueDate = 5;
 }
 
 message BorrowList {

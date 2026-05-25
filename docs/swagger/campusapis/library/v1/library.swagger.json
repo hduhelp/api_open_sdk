@@ -534,6 +534,28 @@
         ]
       }
     },
+    "/library/v1/read/unreturned": {
+      "get": {
+        "operationId": "LibraryService_GetUnreturnedBooks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUnreturnedBooksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
     "/library/v1/share": {
       "get": {
         "operationId": "LibraryService_GetShareID",
@@ -679,6 +701,10 @@
           "format": "date-time"
         },
         "returnDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dueDate": {
           "type": "string",
           "format": "date-time"
         }
@@ -1076,6 +1102,21 @@
         },
         "data": {
           "$ref": "#/definitions/v1Total"
+        }
+      }
+    },
+    "v1GetUnreturnedBooksResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1BorrowList"
         }
       }
     },

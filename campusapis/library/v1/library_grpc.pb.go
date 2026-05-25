@@ -34,6 +34,7 @@ const (
 	LibraryService_GetBorrowList_FullMethodName       = "/campusapis.library.v1.LibraryService/GetBorrowList"
 	LibraryService_CheckReadNewer_FullMethodName      = "/campusapis.library.v1.LibraryService/CheckReadNewer"
 	LibraryService_GetAllReadData_FullMethodName      = "/campusapis.library.v1.LibraryService/GetAllReadData"
+	LibraryService_GetUnreturnedBooks_FullMethodName  = "/campusapis.library.v1.LibraryService/GetUnreturnedBooks"
 	LibraryService_GetShareID_FullMethodName          = "/campusapis.library.v1.LibraryService/GetShareID"
 	LibraryService_GetStaffIDByShareID_FullMethodName = "/campusapis.library.v1.LibraryService/GetStaffIDByShareID"
 )
@@ -56,6 +57,7 @@ type LibraryServiceClient interface {
 	GetBorrowList(ctx context.Context, in *GetBorrowListRequest, opts ...grpc.CallOption) (*GetBorrowListResponse, error)
 	CheckReadNewer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CheckReadNewerResponse, error)
 	GetAllReadData(ctx context.Context, in *GetAllReadDataRequest, opts ...grpc.CallOption) (*GetAllReadDataResponse, error)
+	GetUnreturnedBooks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error)
 	GetShareID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetShareIDResponse, error)
 	GetStaffIDByShareID(ctx context.Context, in *GetStaffIDByShareIDRequest, opts ...grpc.CallOption) (*GetStaffIDByShareIDResponse, error)
 }
@@ -208,6 +210,16 @@ func (c *libraryServiceClient) GetAllReadData(ctx context.Context, in *GetAllRea
 	return out, nil
 }
 
+func (c *libraryServiceClient) GetUnreturnedBooks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUnreturnedBooksResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetUnreturnedBooks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *libraryServiceClient) GetShareID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetShareIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetShareIDResponse)
@@ -246,6 +258,7 @@ type LibraryServiceServer interface {
 	GetBorrowList(context.Context, *GetBorrowListRequest) (*GetBorrowListResponse, error)
 	CheckReadNewer(context.Context, *emptypb.Empty) (*CheckReadNewerResponse, error)
 	GetAllReadData(context.Context, *GetAllReadDataRequest) (*GetAllReadDataResponse, error)
+	GetUnreturnedBooks(context.Context, *emptypb.Empty) (*GetUnreturnedBooksResponse, error)
 	GetShareID(context.Context, *emptypb.Empty) (*GetShareIDResponse, error)
 	GetStaffIDByShareID(context.Context, *GetStaffIDByShareIDRequest) (*GetStaffIDByShareIDResponse, error)
 	mustEmbedUnimplementedLibraryServiceServer()
@@ -299,6 +312,9 @@ func (UnimplementedLibraryServiceServer) CheckReadNewer(context.Context, *emptyp
 }
 func (UnimplementedLibraryServiceServer) GetAllReadData(context.Context, *GetAllReadDataRequest) (*GetAllReadDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllReadData not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetUnreturnedBooks(context.Context, *emptypb.Empty) (*GetUnreturnedBooksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnreturnedBooks not implemented")
 }
 func (UnimplementedLibraryServiceServer) GetShareID(context.Context, *emptypb.Empty) (*GetShareIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetShareID not implemented")
@@ -579,6 +595,24 @@ func _LibraryService_GetAllReadData_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LibraryService_GetUnreturnedBooks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetUnreturnedBooks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetUnreturnedBooks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetUnreturnedBooks(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _LibraryService_GetShareID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -677,6 +711,10 @@ var LibraryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAllReadData",
 			Handler:    _LibraryService_GetAllReadData_Handler,
+		},
+		{
+			MethodName: "GetUnreturnedBooks",
+			Handler:    _LibraryService_GetUnreturnedBooks_Handler,
 		},
 		{
 			MethodName: "GetShareID",
