@@ -16,15 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/library/v1/book/info": {
+    "/library/v1/attendance/floors": {
       "get": {
-        "summary": "查询书本信息",
-        "operationId": "LibraryService_GetBookInfo",
+        "operationId": "LibraryService_GetFloorStats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetBookInfoResponse"
+              "$ref": "#/definitions/v1GetFloorStatsResponse"
             }
           },
           "default": {
@@ -36,8 +35,13 @@
         },
         "parameters": [
           {
-            "name": "propNo",
-            "description": "书本编号",
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
             "in": "query",
             "required": false,
             "type": "string"
@@ -48,15 +52,14 @@
         ]
       }
     },
-    "/library/v1/book/info/list": {
+    "/library/v1/attendance/months": {
       "get": {
-        "summary": "查询书本信息列表，只能查询一个书籍的书本信息",
-        "operationId": "LibraryService_GetBookInfoList",
+        "operationId": "LibraryService_GetMonthlyStats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetBookInfoListResponse"
+              "$ref": "#/definitions/v1GetMonthlyStatsResponse"
             }
           },
           "default": {
@@ -68,8 +71,13 @@
         },
         "parameters": [
           {
-            "name": "marcRecNo",
-            "description": "书籍编号",
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
             "in": "query",
             "required": false,
             "type": "string"
@@ -80,15 +88,14 @@
         ]
       }
     },
-    "/library/v1/book/lend/history": {
+    "/library/v1/attendance/stats": {
       "get": {
-        "summary": "查询历史图书借阅记录",
-        "operationId": "LibraryService_GetBookLendHistory",
+        "operationId": "LibraryService_GetAttendanceStats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetBookLendHistoryResponse"
+              "$ref": "#/definitions/v1GetAttendanceStatsResponse"
             }
           },
           "default": {
@@ -100,84 +107,13 @@
         },
         "parameters": [
           {
-            "name": "startTime",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "endTime",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "LibraryService"
-        ]
-      }
-    },
-    "/library/v1/book/lend/last": {
-      "get": {
-        "summary": "查询当前图书借阅记录",
-        "operationId": "LibraryService_GetBookLendLast",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetBookLendLastResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "startTime",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "LibraryService"
-        ]
-      }
-    },
-    "/library/v1/book/marc": {
-      "get": {
-        "summary": "查询书籍信息",
-        "operationId": "LibraryService_GetBookMARC",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetBookMARCResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "propNo",
+            "name": "start",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "marcRecNo",
+            "name": "end",
             "in": "query",
             "required": false,
             "type": "string"
@@ -188,15 +124,14 @@
         ]
       }
     },
-    "/library/v1/book/marc/list": {
+    "/library/v1/attendance/time-slots": {
       "get": {
-        "summary": "查询书籍信息列表",
-        "operationId": "LibraryService_GetBookMARCList",
+        "operationId": "LibraryService_GetTimeSlotStats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetBookMARCListResponse"
+              "$ref": "#/definitions/v1GetTimeSlotStatsResponse"
             }
           },
           "default": {
@@ -208,164 +143,442 @@
         },
         "parameters": [
           {
-            "name": "marc.marcRecNo",
-            "description": "书籍编号",
+            "name": "start",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "marc.marcUseFlag",
-            "description": "书籍使用标志",
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/all": {
+      "get": {
+        "operationId": "LibraryService_GetAllReadData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAllReadDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "marc.marcType",
-            "description": "书籍类型",
+            "name": "end",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "marc.cataOper",
-            "description": "目录操作",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.cataDate",
-            "description": "编目日期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.langCode",
-            "description": "语种",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.countryCode",
-            "description": "国家代码",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.docTypeCode",
-            "description": "文献类型",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.callNo",
-            "description": "中图法分类号",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.title",
-            "description": "书名",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.author",
-            "description": "作者",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.publisher",
-            "description": "出版社",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.mPubYear",
-            "description": "出版年月",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.ISBN",
-            "description": "ISBN编码",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.createOper",
-            "description": "创建人",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.createDate",
-            "description": "创建日期",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.pubYear",
-            "description": "出版年月",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.opacFlag",
-            "description": "是否允许在图书馆显示",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "marc.catalogLevel",
-            "description": "分类级别",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "searchKeys",
-            "description": "模糊查询关键字，当前仅允许查询作者，书名，出版社",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          },
-          {
-            "name": "limit",
-            "description": "限制条数，允许为0-100之间",
+            "name": "page",
             "in": "query",
             "required": false,
             "type": "integer",
             "format": "int32"
           },
           {
-            "name": "offset",
-            "description": "偏移",
+            "name": "size",
             "in": "query",
             "required": false,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/borrows": {
+      "get": {
+        "operationId": "LibraryService_GetBorrowList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBorrowListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/first-book": {
+      "get": {
+        "operationId": "LibraryService_GetFirstBook",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFirstBookResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/least-popular": {
+      "get": {
+        "operationId": "LibraryService_GetLeastPopular",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetLeastPopularResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/max-month": {
+      "get": {
+        "operationId": "LibraryService_GetMaxMonth",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMaxMonthResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/months": {
+      "get": {
+        "operationId": "LibraryService_GetMonthStats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMonthStatsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/newer": {
+      "get": {
+        "operationId": "LibraryService_CheckReadNewer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CheckReadNewerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/preference": {
+      "get": {
+        "operationId": "LibraryService_GetPreference",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPreferenceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/summary": {
+      "get": {
+        "operationId": "LibraryService_GetReadingSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetReadingSummaryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/total-time": {
+      "get": {
+        "operationId": "LibraryService_GetTotalTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTotalTimeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/share": {
+      "get": {
+        "operationId": "LibraryService_GetShareID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetShareIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/share/{shareId}/staff": {
+      "get": {
+        "operationId": "LibraryService_GetStaffIDByShareID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetStaffIDByShareIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shareId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -403,255 +616,285 @@
         }
       }
     },
-    "v1BookInfo": {
+    "v1AttendanceStats": {
       "type": "object",
       "properties": {
-        "propNo": {
+        "staffId": {
+          "type": "string"
+        },
+        "firstVisitTime": {
           "type": "string",
-          "title": "书本编号"
+          "format": "date-time"
         },
-        "marcRecNo": {
-          "type": "string",
-          "title": "书籍编号"
-        },
-        "barCode": {
-          "type": "string",
-          "title": "书本条码"
-        },
-        "bookStatCode": {
-          "type": "string",
-          "title": "书籍状态"
-        },
-        "bookLendFlag": {
-          "type": "string",
-          "title": "是否可借"
-        },
-        "year": {
-          "type": "string",
-          "title": "年份"
-        },
-        "price": {
-          "type": "number",
-          "format": "float",
-          "title": "价格"
-        },
-        "inDate": {
-          "type": "string",
-          "title": "收录时间"
-        },
-        "yearCircTimes": {
-          "type": "integer",
-          "format": "int32",
-          "title": "年累计借阅次数"
-        },
-        "totalCircTimes": {
-          "type": "integer",
-          "format": "int32",
-          "title": "总累计借阅次数"
-        },
-        "firstUseDate": {
-          "type": "string",
-          "format": "int64",
-          "title": "首次借阅时间"
-        },
-        "lastUseDate": {
-          "type": "string",
-          "format": "int64",
-          "title": "最后借阅时间"
-        },
-        "recFlagUptDate": {
-          "type": "string",
-          "format": "int64",
-          "title": "记录标志更新时间"
-        },
-        "regDay": {
-          "type": "string",
-          "format": "int64",
-          "title": "登记日期"
-        },
-        "location": {
-          "type": "string",
-          "title": "馆藏地"
-        },
-        "callNo": {
-          "type": "string",
-          "title": "中图法分类号"
-        },
-        "marc": {
-          "$ref": "#/definitions/v1BookMARC",
-          "title": "书籍信息"
-        }
-      },
-      "title": "书本信息"
-    },
-    "v1BookMARC": {
-      "type": "object",
-      "properties": {
-        "marcRecNo": {
-          "type": "string",
-          "title": "书籍编号"
-        },
-        "marcUseFlag": {
-          "type": "string",
-          "title": "书籍使用标志"
-        },
-        "marcType": {
-          "type": "string",
-          "title": "书籍类型"
-        },
-        "cataOper": {
-          "type": "string",
-          "title": "目录操作"
-        },
-        "cataDate": {
-          "type": "string",
-          "title": "编目日期"
-        },
-        "langCode": {
-          "type": "string",
-          "title": "语种"
-        },
-        "countryCode": {
-          "type": "string",
-          "title": "国家代码"
-        },
-        "docTypeCode": {
-          "type": "string",
-          "title": "文献类型"
-        },
-        "callNo": {
-          "type": "string",
-          "title": "中图法分类号"
-        },
-        "title": {
-          "type": "string",
-          "title": "书名"
-        },
-        "author": {
-          "type": "string",
-          "title": "作者"
-        },
-        "publisher": {
-          "type": "string",
-          "title": "出版社"
-        },
-        "mPubYear": {
-          "type": "string",
-          "title": "出版年月"
-        },
-        "ISBN": {
-          "type": "string",
-          "title": "ISBN编码"
-        },
-        "createOper": {
-          "type": "string",
-          "title": "创建人"
-        },
-        "createDate": {
-          "type": "string",
-          "title": "创建日期"
-        },
-        "pubYear": {
-          "type": "string",
-          "title": "出版年月"
-        },
-        "opacFlag": {
-          "type": "string",
-          "title": "是否允许在图书馆显示"
-        },
-        "catalogLevel": {
-          "type": "string",
-          "title": "分类级别"
-        }
-      }
-    },
-    "v1GetBookInfoListResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
+        "totalStayDays": {
           "type": "integer",
           "format": "int32"
         },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1BookInfo"
-          }
-        }
-      }
-    },
-    "v1GetBookInfoResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
+        "totalStayHours": {
           "type": "integer",
           "format": "int32"
         },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1BookInfo"
-        }
-      }
-    },
-    "v1GetBookLendHistoryResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
+        "totalVisitCount": {
           "type": "integer",
           "format": "int32"
         },
-        "msg": {
-          "type": "string"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1GetBookLendHistoryResponseNested"
-          }
-        }
-      }
-    },
-    "v1GetBookLendHistoryResponseNested": {
-      "type": "object",
-      "properties": {
-        "book": {
-          "$ref": "#/definitions/v1BookInfo"
-        },
-        "staffID": {
-          "type": "string"
-        },
-        "lendDate": {
+        "earliestTime": {
           "type": "string",
-          "format": "int64"
+          "format": "date-time"
+        },
+        "latestTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mostFrequentTimeSlot": {
+          "type": "string"
+        },
+        "mostVisitedMonth": {
+          "type": "string"
+        },
+        "mostVisitedMonthCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mostFrequentFloor": {
+          "type": "string"
+        },
+        "mostFrequentFloorCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1BookList": {
+      "type": "object",
+      "properties": {
+        "bookName": {
+          "type": "string"
+        },
+        "bookBarcode": {
+          "type": "string"
+        },
+        "borrowDate": {
+          "type": "string",
+          "format": "date-time"
         },
         "returnDate": {
           "type": "string",
-          "format": "int64"
-        },
-        "renewDate": {
-          "type": "string",
-          "format": "int64"
-        },
-        "renewTimes": {
-          "type": "string",
-          "format": "int64"
-        },
-        "location": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/v1LendStatus"
+          "format": "date-time"
         }
       }
     },
-    "v1GetBookLendLastResponse": {
+    "v1BookStats": {
+      "type": "object",
+      "properties": {
+        "bookName": {
+          "type": "string"
+        },
+        "borrowCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1BorrowList": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "books": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1BookList"
+          }
+        }
+      }
+    },
+    "v1CheckReadNewerResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1FirstBook": {
+      "type": "object",
+      "properties": {
+        "bookName": {
+          "type": "string"
+        },
+        "borrowTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1FlatReadData": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalBooks": {
+          "type": "string",
+          "format": "int64"
+        },
+        "percentile": {
+          "type": "number",
+          "format": "double"
+        },
+        "hasRecord": {
+          "type": "boolean"
+        },
+        "bookName": {
+          "type": "string"
+        },
+        "borrowTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "maxMonth": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxMonthCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "leastPopularBook": {
+          "type": "string"
+        },
+        "leastPopularBorrowCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "longestBook": {
+          "type": "string"
+        },
+        "favoriteCategory": {
+          "type": "string"
+        },
+        "topPublisher": {
+          "type": "string"
+        },
+        "borrowedCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "days": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hours": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "books": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1BookList"
+          }
+        },
+        "isNewer": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1FloorStats": {
+      "type": "object",
+      "properties": {
+        "floor": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1GetAllReadDataResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1FlatReadData"
+        }
+      }
+    },
+    "v1GetAttendanceStatsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1AttendanceStats"
+        }
+      }
+    },
+    "v1GetBorrowListResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1BorrowList"
+        }
+      }
+    },
+    "v1GetFirstBookResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1FirstBook"
+        }
+      }
+    },
+    "v1GetFloorStatsResponse": {
       "type": "object",
       "properties": {
         "error": {
@@ -665,45 +908,12 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1GetBookLendLastResponseNested"
+            "$ref": "#/definitions/v1FloorStats"
           }
         }
       }
     },
-    "v1GetBookLendLastResponseNested": {
-      "type": "object",
-      "properties": {
-        "book": {
-          "$ref": "#/definitions/v1BookInfo"
-        },
-        "staffID": {
-          "type": "string"
-        },
-        "lendDate": {
-          "type": "string",
-          "format": "int64"
-        },
-        "normalReturnDate": {
-          "type": "string",
-          "format": "int64"
-        },
-        "renewDate": {
-          "type": "string",
-          "format": "int64"
-        },
-        "renewTimes": {
-          "type": "string",
-          "format": "int64"
-        },
-        "location": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/v1LendStatus"
-        }
-      }
-    },
-    "v1GetBookMARCListResponse": {
+    "v1GetLeastPopularResponse": {
       "type": "object",
       "properties": {
         "error": {
@@ -717,12 +927,12 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1BookMARC"
+            "$ref": "#/definitions/v1BookStats"
           }
         }
       }
     },
-    "v1GetBookMARCResponse": {
+    "v1GetMaxMonthResponse": {
       "type": "object",
       "properties": {
         "error": {
@@ -733,19 +943,246 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/v1BookMARC"
+          "$ref": "#/definitions/v1MaxMonth"
         }
       }
     },
-    "v1LendStatus": {
-      "type": "string",
-      "enum": [
-        "LEND_STATUS_UNSPECIFIED",
-        "LEND_STATUS_LENDING",
-        "LEND_STATUS_RETURNED"
-      ],
-      "default": "LEND_STATUS_UNSPECIFIED",
-      "title": "- LEND_STATUS_UNSPECIFIED: 未知\n - LEND_STATUS_LENDING: 借阅中\n - LEND_STATUS_RETURNED: 已归还"
+    "v1GetMonthStatsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1MonthStats"
+          }
+        }
+      }
+    },
+    "v1GetMonthlyStatsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1MonthlyStats"
+          }
+        }
+      }
+    },
+    "v1GetPreferenceResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1Preference"
+        }
+      }
+    },
+    "v1GetReadingSummaryResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1ReadingSummary"
+        }
+      }
+    },
+    "v1GetShareIDResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetStaffIDByShareIDResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetTimeSlotStatsResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TimeSlotStats"
+          }
+        }
+      }
+    },
+    "v1GetTotalTimeResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1Total"
+        }
+      }
+    },
+    "v1MaxMonth": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1MonthStats": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1MonthlyStats": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1Preference": {
+      "type": "object",
+      "properties": {
+        "longestBook": {
+          "type": "string"
+        },
+        "favoriteCategory": {
+          "type": "string"
+        },
+        "topPublisher": {
+          "type": "string"
+        },
+        "borrowedCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1ReadingSummary": {
+      "type": "object",
+      "properties": {
+        "staffId": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalBooks": {
+          "type": "string",
+          "format": "int64"
+        },
+        "percentile": {
+          "type": "number",
+          "format": "double"
+        },
+        "hasRecord": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1TimeSlotStats": {
+      "type": "object",
+      "properties": {
+        "hour": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1Total": {
+      "type": "object",
+      "properties": {
+        "days": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hours": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
     }
   }
 }
