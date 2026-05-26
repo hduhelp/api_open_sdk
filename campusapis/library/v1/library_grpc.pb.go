@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,30 +20,46 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	LibraryService_GetBookInfo_FullMethodName        = "/campusapis.library.v1.LibraryService/GetBookInfo"
-	LibraryService_GetBookInfoList_FullMethodName    = "/campusapis.library.v1.LibraryService/GetBookInfoList"
-	LibraryService_GetBookMARC_FullMethodName        = "/campusapis.library.v1.LibraryService/GetBookMARC"
-	LibraryService_GetBookMARCList_FullMethodName    = "/campusapis.library.v1.LibraryService/GetBookMARCList"
-	LibraryService_GetBookLendLast_FullMethodName    = "/campusapis.library.v1.LibraryService/GetBookLendLast"
-	LibraryService_GetBookLendHistory_FullMethodName = "/campusapis.library.v1.LibraryService/GetBookLendHistory"
+	LibraryService_GetAttendanceStats_FullMethodName  = "/campusapis.library.v1.LibraryService/GetAttendanceStats"
+	LibraryService_GetTimeSlotStats_FullMethodName    = "/campusapis.library.v1.LibraryService/GetTimeSlotStats"
+	LibraryService_GetFloorStats_FullMethodName       = "/campusapis.library.v1.LibraryService/GetFloorStats"
+	LibraryService_GetMonthlyStats_FullMethodName     = "/campusapis.library.v1.LibraryService/GetMonthlyStats"
+	LibraryService_GetReadingSummary_FullMethodName   = "/campusapis.library.v1.LibraryService/GetReadingSummary"
+	LibraryService_GetFirstBook_FullMethodName        = "/campusapis.library.v1.LibraryService/GetFirstBook"
+	LibraryService_GetMonthStats_FullMethodName       = "/campusapis.library.v1.LibraryService/GetMonthStats"
+	LibraryService_GetMaxMonth_FullMethodName         = "/campusapis.library.v1.LibraryService/GetMaxMonth"
+	LibraryService_GetLeastPopular_FullMethodName     = "/campusapis.library.v1.LibraryService/GetLeastPopular"
+	LibraryService_GetPreference_FullMethodName       = "/campusapis.library.v1.LibraryService/GetPreference"
+	LibraryService_GetTotalTime_FullMethodName        = "/campusapis.library.v1.LibraryService/GetTotalTime"
+	LibraryService_GetBorrowList_FullMethodName       = "/campusapis.library.v1.LibraryService/GetBorrowList"
+	LibraryService_CheckReadNewer_FullMethodName      = "/campusapis.library.v1.LibraryService/CheckReadNewer"
+	LibraryService_GetAllReadData_FullMethodName      = "/campusapis.library.v1.LibraryService/GetAllReadData"
+	LibraryService_GetUnreturnedBooks_FullMethodName  = "/campusapis.library.v1.LibraryService/GetUnreturnedBooks"
+	LibraryService_GetShareID_FullMethodName          = "/campusapis.library.v1.LibraryService/GetShareID"
+	LibraryService_GetStaffIDByShareID_FullMethodName = "/campusapis.library.v1.LibraryService/GetStaffIDByShareID"
 )
 
 // LibraryServiceClient is the client API for LibraryService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type LibraryServiceClient interface {
-	// 查询书本信息
-	GetBookInfo(ctx context.Context, in *GetBookInfoRequest, opts ...grpc.CallOption) (*GetBookInfoResponse, error)
-	// 查询书本信息列表，只能查询一个书籍的书本信息
-	GetBookInfoList(ctx context.Context, in *GetBookInfoListRequest, opts ...grpc.CallOption) (*GetBookInfoListResponse, error)
-	// 查询书籍信息
-	GetBookMARC(ctx context.Context, in *GetBookMARCRequest, opts ...grpc.CallOption) (*GetBookMARCResponse, error)
-	// 查询书籍信息列表
-	GetBookMARCList(ctx context.Context, in *GetBookMARCListRequest, opts ...grpc.CallOption) (*GetBookMARCListResponse, error)
-	// 查询当前图书借阅记录
-	GetBookLendLast(ctx context.Context, in *GetBookLendLastRequest, opts ...grpc.CallOption) (*GetBookLendLastResponse, error)
-	// 查询历史图书借阅记录
-	GetBookLendHistory(ctx context.Context, in *GetBookLendHistoryRequest, opts ...grpc.CallOption) (*GetBookLendHistoryResponse, error)
+	GetAttendanceStats(ctx context.Context, in *GetAttendanceStatsRequest, opts ...grpc.CallOption) (*GetAttendanceStatsResponse, error)
+	GetTimeSlotStats(ctx context.Context, in *GetTimeSlotStatsRequest, opts ...grpc.CallOption) (*GetTimeSlotStatsResponse, error)
+	GetFloorStats(ctx context.Context, in *GetFloorStatsRequest, opts ...grpc.CallOption) (*GetFloorStatsResponse, error)
+	GetMonthlyStats(ctx context.Context, in *GetMonthlyStatsRequest, opts ...grpc.CallOption) (*GetMonthlyStatsResponse, error)
+	GetReadingSummary(ctx context.Context, in *GetReadingSummaryRequest, opts ...grpc.CallOption) (*GetReadingSummaryResponse, error)
+	GetFirstBook(ctx context.Context, in *GetFirstBookRequest, opts ...grpc.CallOption) (*GetFirstBookResponse, error)
+	GetMonthStats(ctx context.Context, in *GetMonthStatsRequest, opts ...grpc.CallOption) (*GetMonthStatsResponse, error)
+	GetMaxMonth(ctx context.Context, in *GetMaxMonthRequest, opts ...grpc.CallOption) (*GetMaxMonthResponse, error)
+	GetLeastPopular(ctx context.Context, in *GetLeastPopularRequest, opts ...grpc.CallOption) (*GetLeastPopularResponse, error)
+	GetPreference(ctx context.Context, in *GetPreferenceRequest, opts ...grpc.CallOption) (*GetPreferenceResponse, error)
+	GetTotalTime(ctx context.Context, in *GetTotalTimeRequest, opts ...grpc.CallOption) (*GetTotalTimeResponse, error)
+	GetBorrowList(ctx context.Context, in *GetBorrowListRequest, opts ...grpc.CallOption) (*GetBorrowListResponse, error)
+	CheckReadNewer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CheckReadNewerResponse, error)
+	GetAllReadData(ctx context.Context, in *GetAllReadDataRequest, opts ...grpc.CallOption) (*GetAllReadDataResponse, error)
+	GetUnreturnedBooks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error)
+	GetShareID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetShareIDResponse, error)
+	GetStaffIDByShareID(ctx context.Context, in *GetStaffIDByShareIDRequest, opts ...grpc.CallOption) (*GetStaffIDByShareIDResponse, error)
 }
 
 type libraryServiceClient struct {
@@ -53,60 +70,170 @@ func NewLibraryServiceClient(cc grpc.ClientConnInterface) LibraryServiceClient {
 	return &libraryServiceClient{cc}
 }
 
-func (c *libraryServiceClient) GetBookInfo(ctx context.Context, in *GetBookInfoRequest, opts ...grpc.CallOption) (*GetBookInfoResponse, error) {
+func (c *libraryServiceClient) GetAttendanceStats(ctx context.Context, in *GetAttendanceStatsRequest, opts ...grpc.CallOption) (*GetAttendanceStatsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBookInfoResponse)
-	err := c.cc.Invoke(ctx, LibraryService_GetBookInfo_FullMethodName, in, out, cOpts...)
+	out := new(GetAttendanceStatsResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetAttendanceStats_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *libraryServiceClient) GetBookInfoList(ctx context.Context, in *GetBookInfoListRequest, opts ...grpc.CallOption) (*GetBookInfoListResponse, error) {
+func (c *libraryServiceClient) GetTimeSlotStats(ctx context.Context, in *GetTimeSlotStatsRequest, opts ...grpc.CallOption) (*GetTimeSlotStatsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBookInfoListResponse)
-	err := c.cc.Invoke(ctx, LibraryService_GetBookInfoList_FullMethodName, in, out, cOpts...)
+	out := new(GetTimeSlotStatsResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetTimeSlotStats_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *libraryServiceClient) GetBookMARC(ctx context.Context, in *GetBookMARCRequest, opts ...grpc.CallOption) (*GetBookMARCResponse, error) {
+func (c *libraryServiceClient) GetFloorStats(ctx context.Context, in *GetFloorStatsRequest, opts ...grpc.CallOption) (*GetFloorStatsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBookMARCResponse)
-	err := c.cc.Invoke(ctx, LibraryService_GetBookMARC_FullMethodName, in, out, cOpts...)
+	out := new(GetFloorStatsResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetFloorStats_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *libraryServiceClient) GetBookMARCList(ctx context.Context, in *GetBookMARCListRequest, opts ...grpc.CallOption) (*GetBookMARCListResponse, error) {
+func (c *libraryServiceClient) GetMonthlyStats(ctx context.Context, in *GetMonthlyStatsRequest, opts ...grpc.CallOption) (*GetMonthlyStatsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBookMARCListResponse)
-	err := c.cc.Invoke(ctx, LibraryService_GetBookMARCList_FullMethodName, in, out, cOpts...)
+	out := new(GetMonthlyStatsResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetMonthlyStats_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *libraryServiceClient) GetBookLendLast(ctx context.Context, in *GetBookLendLastRequest, opts ...grpc.CallOption) (*GetBookLendLastResponse, error) {
+func (c *libraryServiceClient) GetReadingSummary(ctx context.Context, in *GetReadingSummaryRequest, opts ...grpc.CallOption) (*GetReadingSummaryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBookLendLastResponse)
-	err := c.cc.Invoke(ctx, LibraryService_GetBookLendLast_FullMethodName, in, out, cOpts...)
+	out := new(GetReadingSummaryResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetReadingSummary_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *libraryServiceClient) GetBookLendHistory(ctx context.Context, in *GetBookLendHistoryRequest, opts ...grpc.CallOption) (*GetBookLendHistoryResponse, error) {
+func (c *libraryServiceClient) GetFirstBook(ctx context.Context, in *GetFirstBookRequest, opts ...grpc.CallOption) (*GetFirstBookResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBookLendHistoryResponse)
-	err := c.cc.Invoke(ctx, LibraryService_GetBookLendHistory_FullMethodName, in, out, cOpts...)
+	out := new(GetFirstBookResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetFirstBook_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetMonthStats(ctx context.Context, in *GetMonthStatsRequest, opts ...grpc.CallOption) (*GetMonthStatsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMonthStatsResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetMonthStats_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetMaxMonth(ctx context.Context, in *GetMaxMonthRequest, opts ...grpc.CallOption) (*GetMaxMonthResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMaxMonthResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetMaxMonth_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetLeastPopular(ctx context.Context, in *GetLeastPopularRequest, opts ...grpc.CallOption) (*GetLeastPopularResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLeastPopularResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetLeastPopular_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetPreference(ctx context.Context, in *GetPreferenceRequest, opts ...grpc.CallOption) (*GetPreferenceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPreferenceResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetPreference_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetTotalTime(ctx context.Context, in *GetTotalTimeRequest, opts ...grpc.CallOption) (*GetTotalTimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTotalTimeResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetTotalTime_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetBorrowList(ctx context.Context, in *GetBorrowListRequest, opts ...grpc.CallOption) (*GetBorrowListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBorrowListResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetBorrowList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) CheckReadNewer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CheckReadNewerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckReadNewerResponse)
+	err := c.cc.Invoke(ctx, LibraryService_CheckReadNewer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetAllReadData(ctx context.Context, in *GetAllReadDataRequest, opts ...grpc.CallOption) (*GetAllReadDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAllReadDataResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetAllReadData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetUnreturnedBooks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUnreturnedBooksResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetUnreturnedBooks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetShareID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetShareIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetShareIDResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetShareID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetStaffIDByShareID(ctx context.Context, in *GetStaffIDByShareIDRequest, opts ...grpc.CallOption) (*GetStaffIDByShareIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStaffIDByShareIDResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetStaffIDByShareID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -117,18 +244,23 @@ func (c *libraryServiceClient) GetBookLendHistory(ctx context.Context, in *GetBo
 // All implementations must embed UnimplementedLibraryServiceServer
 // for forward compatibility.
 type LibraryServiceServer interface {
-	// 查询书本信息
-	GetBookInfo(context.Context, *GetBookInfoRequest) (*GetBookInfoResponse, error)
-	// 查询书本信息列表，只能查询一个书籍的书本信息
-	GetBookInfoList(context.Context, *GetBookInfoListRequest) (*GetBookInfoListResponse, error)
-	// 查询书籍信息
-	GetBookMARC(context.Context, *GetBookMARCRequest) (*GetBookMARCResponse, error)
-	// 查询书籍信息列表
-	GetBookMARCList(context.Context, *GetBookMARCListRequest) (*GetBookMARCListResponse, error)
-	// 查询当前图书借阅记录
-	GetBookLendLast(context.Context, *GetBookLendLastRequest) (*GetBookLendLastResponse, error)
-	// 查询历史图书借阅记录
-	GetBookLendHistory(context.Context, *GetBookLendHistoryRequest) (*GetBookLendHistoryResponse, error)
+	GetAttendanceStats(context.Context, *GetAttendanceStatsRequest) (*GetAttendanceStatsResponse, error)
+	GetTimeSlotStats(context.Context, *GetTimeSlotStatsRequest) (*GetTimeSlotStatsResponse, error)
+	GetFloorStats(context.Context, *GetFloorStatsRequest) (*GetFloorStatsResponse, error)
+	GetMonthlyStats(context.Context, *GetMonthlyStatsRequest) (*GetMonthlyStatsResponse, error)
+	GetReadingSummary(context.Context, *GetReadingSummaryRequest) (*GetReadingSummaryResponse, error)
+	GetFirstBook(context.Context, *GetFirstBookRequest) (*GetFirstBookResponse, error)
+	GetMonthStats(context.Context, *GetMonthStatsRequest) (*GetMonthStatsResponse, error)
+	GetMaxMonth(context.Context, *GetMaxMonthRequest) (*GetMaxMonthResponse, error)
+	GetLeastPopular(context.Context, *GetLeastPopularRequest) (*GetLeastPopularResponse, error)
+	GetPreference(context.Context, *GetPreferenceRequest) (*GetPreferenceResponse, error)
+	GetTotalTime(context.Context, *GetTotalTimeRequest) (*GetTotalTimeResponse, error)
+	GetBorrowList(context.Context, *GetBorrowListRequest) (*GetBorrowListResponse, error)
+	CheckReadNewer(context.Context, *emptypb.Empty) (*CheckReadNewerResponse, error)
+	GetAllReadData(context.Context, *GetAllReadDataRequest) (*GetAllReadDataResponse, error)
+	GetUnreturnedBooks(context.Context, *emptypb.Empty) (*GetUnreturnedBooksResponse, error)
+	GetShareID(context.Context, *emptypb.Empty) (*GetShareIDResponse, error)
+	GetStaffIDByShareID(context.Context, *GetStaffIDByShareIDRequest) (*GetStaffIDByShareIDResponse, error)
 	mustEmbedUnimplementedLibraryServiceServer()
 }
 
@@ -139,23 +271,56 @@ type LibraryServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedLibraryServiceServer struct{}
 
-func (UnimplementedLibraryServiceServer) GetBookInfo(context.Context, *GetBookInfoRequest) (*GetBookInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBookInfo not implemented")
+func (UnimplementedLibraryServiceServer) GetAttendanceStats(context.Context, *GetAttendanceStatsRequest) (*GetAttendanceStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAttendanceStats not implemented")
 }
-func (UnimplementedLibraryServiceServer) GetBookInfoList(context.Context, *GetBookInfoListRequest) (*GetBookInfoListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBookInfoList not implemented")
+func (UnimplementedLibraryServiceServer) GetTimeSlotStats(context.Context, *GetTimeSlotStatsRequest) (*GetTimeSlotStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTimeSlotStats not implemented")
 }
-func (UnimplementedLibraryServiceServer) GetBookMARC(context.Context, *GetBookMARCRequest) (*GetBookMARCResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBookMARC not implemented")
+func (UnimplementedLibraryServiceServer) GetFloorStats(context.Context, *GetFloorStatsRequest) (*GetFloorStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFloorStats not implemented")
 }
-func (UnimplementedLibraryServiceServer) GetBookMARCList(context.Context, *GetBookMARCListRequest) (*GetBookMARCListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBookMARCList not implemented")
+func (UnimplementedLibraryServiceServer) GetMonthlyStats(context.Context, *GetMonthlyStatsRequest) (*GetMonthlyStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMonthlyStats not implemented")
 }
-func (UnimplementedLibraryServiceServer) GetBookLendLast(context.Context, *GetBookLendLastRequest) (*GetBookLendLastResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBookLendLast not implemented")
+func (UnimplementedLibraryServiceServer) GetReadingSummary(context.Context, *GetReadingSummaryRequest) (*GetReadingSummaryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReadingSummary not implemented")
 }
-func (UnimplementedLibraryServiceServer) GetBookLendHistory(context.Context, *GetBookLendHistoryRequest) (*GetBookLendHistoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBookLendHistory not implemented")
+func (UnimplementedLibraryServiceServer) GetFirstBook(context.Context, *GetFirstBookRequest) (*GetFirstBookResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFirstBook not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetMonthStats(context.Context, *GetMonthStatsRequest) (*GetMonthStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMonthStats not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetMaxMonth(context.Context, *GetMaxMonthRequest) (*GetMaxMonthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMaxMonth not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetLeastPopular(context.Context, *GetLeastPopularRequest) (*GetLeastPopularResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLeastPopular not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetPreference(context.Context, *GetPreferenceRequest) (*GetPreferenceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPreference not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetTotalTime(context.Context, *GetTotalTimeRequest) (*GetTotalTimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTotalTime not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetBorrowList(context.Context, *GetBorrowListRequest) (*GetBorrowListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBorrowList not implemented")
+}
+func (UnimplementedLibraryServiceServer) CheckReadNewer(context.Context, *emptypb.Empty) (*CheckReadNewerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckReadNewer not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetAllReadData(context.Context, *GetAllReadDataRequest) (*GetAllReadDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllReadData not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetUnreturnedBooks(context.Context, *emptypb.Empty) (*GetUnreturnedBooksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnreturnedBooks not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetShareID(context.Context, *emptypb.Empty) (*GetShareIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShareID not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetStaffIDByShareID(context.Context, *GetStaffIDByShareIDRequest) (*GetStaffIDByShareIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStaffIDByShareID not implemented")
 }
 func (UnimplementedLibraryServiceServer) mustEmbedUnimplementedLibraryServiceServer() {}
 func (UnimplementedLibraryServiceServer) testEmbeddedByValue()                        {}
@@ -178,110 +343,308 @@ func RegisterLibraryServiceServer(s grpc.ServiceRegistrar, srv LibraryServiceSer
 	s.RegisterService(&LibraryService_ServiceDesc, srv)
 }
 
-func _LibraryService_GetBookInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBookInfoRequest)
+func _LibraryService_GetAttendanceStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAttendanceStatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LibraryServiceServer).GetBookInfo(ctx, in)
+		return srv.(LibraryServiceServer).GetAttendanceStats(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LibraryService_GetBookInfo_FullMethodName,
+		FullMethod: LibraryService_GetAttendanceStats_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetBookInfo(ctx, req.(*GetBookInfoRequest))
+		return srv.(LibraryServiceServer).GetAttendanceStats(ctx, req.(*GetAttendanceStatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LibraryService_GetBookInfoList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBookInfoListRequest)
+func _LibraryService_GetTimeSlotStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTimeSlotStatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LibraryServiceServer).GetBookInfoList(ctx, in)
+		return srv.(LibraryServiceServer).GetTimeSlotStats(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LibraryService_GetBookInfoList_FullMethodName,
+		FullMethod: LibraryService_GetTimeSlotStats_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetBookInfoList(ctx, req.(*GetBookInfoListRequest))
+		return srv.(LibraryServiceServer).GetTimeSlotStats(ctx, req.(*GetTimeSlotStatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LibraryService_GetBookMARC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBookMARCRequest)
+func _LibraryService_GetFloorStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFloorStatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LibraryServiceServer).GetBookMARC(ctx, in)
+		return srv.(LibraryServiceServer).GetFloorStats(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LibraryService_GetBookMARC_FullMethodName,
+		FullMethod: LibraryService_GetFloorStats_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetBookMARC(ctx, req.(*GetBookMARCRequest))
+		return srv.(LibraryServiceServer).GetFloorStats(ctx, req.(*GetFloorStatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LibraryService_GetBookMARCList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBookMARCListRequest)
+func _LibraryService_GetMonthlyStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMonthlyStatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LibraryServiceServer).GetBookMARCList(ctx, in)
+		return srv.(LibraryServiceServer).GetMonthlyStats(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LibraryService_GetBookMARCList_FullMethodName,
+		FullMethod: LibraryService_GetMonthlyStats_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetBookMARCList(ctx, req.(*GetBookMARCListRequest))
+		return srv.(LibraryServiceServer).GetMonthlyStats(ctx, req.(*GetMonthlyStatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LibraryService_GetBookLendLast_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBookLendLastRequest)
+func _LibraryService_GetReadingSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReadingSummaryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LibraryServiceServer).GetBookLendLast(ctx, in)
+		return srv.(LibraryServiceServer).GetReadingSummary(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LibraryService_GetBookLendLast_FullMethodName,
+		FullMethod: LibraryService_GetReadingSummary_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetBookLendLast(ctx, req.(*GetBookLendLastRequest))
+		return srv.(LibraryServiceServer).GetReadingSummary(ctx, req.(*GetReadingSummaryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LibraryService_GetBookLendHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBookLendHistoryRequest)
+func _LibraryService_GetFirstBook_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFirstBookRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LibraryServiceServer).GetBookLendHistory(ctx, in)
+		return srv.(LibraryServiceServer).GetFirstBook(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LibraryService_GetBookLendHistory_FullMethodName,
+		FullMethod: LibraryService_GetFirstBook_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetBookLendHistory(ctx, req.(*GetBookLendHistoryRequest))
+		return srv.(LibraryServiceServer).GetFirstBook(ctx, req.(*GetFirstBookRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetMonthStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMonthStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetMonthStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetMonthStats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetMonthStats(ctx, req.(*GetMonthStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetMaxMonth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMaxMonthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetMaxMonth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetMaxMonth_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetMaxMonth(ctx, req.(*GetMaxMonthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetLeastPopular_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLeastPopularRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetLeastPopular(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetLeastPopular_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetLeastPopular(ctx, req.(*GetLeastPopularRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetPreference_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPreferenceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetPreference(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetPreference_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetPreference(ctx, req.(*GetPreferenceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetTotalTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTotalTimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetTotalTime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetTotalTime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetTotalTime(ctx, req.(*GetTotalTimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetBorrowList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBorrowListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetBorrowList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetBorrowList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetBorrowList(ctx, req.(*GetBorrowListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_CheckReadNewer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).CheckReadNewer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_CheckReadNewer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).CheckReadNewer(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetAllReadData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllReadDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetAllReadData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetAllReadData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetAllReadData(ctx, req.(*GetAllReadDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetUnreturnedBooks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetUnreturnedBooks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetUnreturnedBooks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetUnreturnedBooks(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetShareID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetShareID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetShareID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetShareID(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetStaffIDByShareID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStaffIDByShareIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetStaffIDByShareID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetStaffIDByShareID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetStaffIDByShareID(ctx, req.(*GetStaffIDByShareIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -294,28 +657,72 @@ var LibraryService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*LibraryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetBookInfo",
-			Handler:    _LibraryService_GetBookInfo_Handler,
+			MethodName: "GetAttendanceStats",
+			Handler:    _LibraryService_GetAttendanceStats_Handler,
 		},
 		{
-			MethodName: "GetBookInfoList",
-			Handler:    _LibraryService_GetBookInfoList_Handler,
+			MethodName: "GetTimeSlotStats",
+			Handler:    _LibraryService_GetTimeSlotStats_Handler,
 		},
 		{
-			MethodName: "GetBookMARC",
-			Handler:    _LibraryService_GetBookMARC_Handler,
+			MethodName: "GetFloorStats",
+			Handler:    _LibraryService_GetFloorStats_Handler,
 		},
 		{
-			MethodName: "GetBookMARCList",
-			Handler:    _LibraryService_GetBookMARCList_Handler,
+			MethodName: "GetMonthlyStats",
+			Handler:    _LibraryService_GetMonthlyStats_Handler,
 		},
 		{
-			MethodName: "GetBookLendLast",
-			Handler:    _LibraryService_GetBookLendLast_Handler,
+			MethodName: "GetReadingSummary",
+			Handler:    _LibraryService_GetReadingSummary_Handler,
 		},
 		{
-			MethodName: "GetBookLendHistory",
-			Handler:    _LibraryService_GetBookLendHistory_Handler,
+			MethodName: "GetFirstBook",
+			Handler:    _LibraryService_GetFirstBook_Handler,
+		},
+		{
+			MethodName: "GetMonthStats",
+			Handler:    _LibraryService_GetMonthStats_Handler,
+		},
+		{
+			MethodName: "GetMaxMonth",
+			Handler:    _LibraryService_GetMaxMonth_Handler,
+		},
+		{
+			MethodName: "GetLeastPopular",
+			Handler:    _LibraryService_GetLeastPopular_Handler,
+		},
+		{
+			MethodName: "GetPreference",
+			Handler:    _LibraryService_GetPreference_Handler,
+		},
+		{
+			MethodName: "GetTotalTime",
+			Handler:    _LibraryService_GetTotalTime_Handler,
+		},
+		{
+			MethodName: "GetBorrowList",
+			Handler:    _LibraryService_GetBorrowList_Handler,
+		},
+		{
+			MethodName: "CheckReadNewer",
+			Handler:    _LibraryService_CheckReadNewer_Handler,
+		},
+		{
+			MethodName: "GetAllReadData",
+			Handler:    _LibraryService_GetAllReadData_Handler,
+		},
+		{
+			MethodName: "GetUnreturnedBooks",
+			Handler:    _LibraryService_GetUnreturnedBooks_Handler,
+		},
+		{
+			MethodName: "GetShareID",
+			Handler:    _LibraryService_GetShareID_Handler,
+		},
+		{
+			MethodName: "GetStaffIDByShareID",
+			Handler:    _LibraryService_GetStaffIDByShareID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
