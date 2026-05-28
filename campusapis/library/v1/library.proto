@@ -107,7 +107,7 @@ service LibraryService {
 
   rpc GetStaffIDByShareID(GetStaffIDByShareIDRequest) returns (GetStaffIDByShareIDResponse) {
     option (google.api.http) = {
-      get: "/library/v1/share/{shareId}/staff"
+      get: "/library/v1/share/staff"
     };
   }
 }

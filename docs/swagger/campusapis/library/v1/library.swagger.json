@@ -578,7 +578,7 @@
         ]
       }
     },
-    "/library/v1/share/{shareId}/staff": {
+    "/library/v1/share/staff": {
       "get": {
         "operationId": "LibraryService_GetStaffIDByShareID",
         "responses": {
@@ -598,8 +598,8 @@
         "parameters": [
           {
             "name": "shareId",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
