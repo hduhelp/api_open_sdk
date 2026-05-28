@@ -574,7 +574,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetTimeSlotStats", runtime.WithHTTPPathPattern("/library/v1/attendance/time-slots"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetTimeSlotStats", runtime.WithHTTPPathPattern("/library/v1/attendance/time_slots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -654,7 +654,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetFirstBook", runtime.WithHTTPPathPattern("/library/v1/read/first-book"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetFirstBook", runtime.WithHTTPPathPattern("/library/v1/read/first_book"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -694,7 +694,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetMaxMonth", runtime.WithHTTPPathPattern("/library/v1/read/max-month"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetMaxMonth", runtime.WithHTTPPathPattern("/library/v1/read/max_month"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -714,7 +714,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetLeastPopular", runtime.WithHTTPPathPattern("/library/v1/read/least-popular"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetLeastPopular", runtime.WithHTTPPathPattern("/library/v1/read/least_popular"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -754,7 +754,7 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetTotalTime", runtime.WithHTTPPathPattern("/library/v1/read/total-time"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetTotalTime", runtime.WithHTTPPathPattern("/library/v1/read/total_time"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -949,7 +949,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetTimeSlotStats", runtime.WithHTTPPathPattern("/library/v1/attendance/time-slots"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetTimeSlotStats", runtime.WithHTTPPathPattern("/library/v1/attendance/time_slots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1017,7 +1017,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetFirstBook", runtime.WithHTTPPathPattern("/library/v1/read/first-book"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetFirstBook", runtime.WithHTTPPathPattern("/library/v1/read/first_book"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1051,7 +1051,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetMaxMonth", runtime.WithHTTPPathPattern("/library/v1/read/max-month"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetMaxMonth", runtime.WithHTTPPathPattern("/library/v1/read/max_month"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1068,7 +1068,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetLeastPopular", runtime.WithHTTPPathPattern("/library/v1/read/least-popular"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetLeastPopular", runtime.WithHTTPPathPattern("/library/v1/read/least_popular"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1102,7 +1102,7 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetTotalTime", runtime.WithHTTPPathPattern("/library/v1/read/total-time"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetTotalTime", runtime.WithHTTPPathPattern("/library/v1/read/total_time"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1222,16 +1222,16 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 var (
 	pattern_LibraryService_GetAttendanceStats_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "stats"}, ""))
-	pattern_LibraryService_GetTimeSlotStats_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "time-slots"}, ""))
+	pattern_LibraryService_GetTimeSlotStats_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "time_slots"}, ""))
 	pattern_LibraryService_GetFloorStats_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "floors"}, ""))
 	pattern_LibraryService_GetMonthlyStats_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "months"}, ""))
 	pattern_LibraryService_GetReadingSummary_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "summary"}, ""))
-	pattern_LibraryService_GetFirstBook_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "first-book"}, ""))
+	pattern_LibraryService_GetFirstBook_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "first_book"}, ""))
 	pattern_LibraryService_GetMonthStats_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "months"}, ""))
-	pattern_LibraryService_GetMaxMonth_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "max-month"}, ""))
-	pattern_LibraryService_GetLeastPopular_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "least-popular"}, ""))
+	pattern_LibraryService_GetMaxMonth_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "max_month"}, ""))
+	pattern_LibraryService_GetLeastPopular_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "least_popular"}, ""))
 	pattern_LibraryService_GetPreference_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "preference"}, ""))
-	pattern_LibraryService_GetTotalTime_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "total-time"}, ""))
+	pattern_LibraryService_GetTotalTime_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "total_time"}, ""))
 	pattern_LibraryService_GetBorrowList_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "borrows"}, ""))
 	pattern_LibraryService_CheckReadNewer_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "newer"}, ""))
 	pattern_LibraryService_GetAllReadData_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "all"}, ""))

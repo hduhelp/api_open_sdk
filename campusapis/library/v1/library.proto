@@ -17,7 +17,7 @@ service LibraryService {
 
   rpc GetTimeSlotStats(GetTimeSlotStatsRequest) returns (GetTimeSlotStatsResponse) {
     option (google.api.http) = {
-      get: "/library/v1/attendance/time-slots"
+      get: "/library/v1/attendance/time_slots"
     };
   }
 
@@ -41,7 +41,7 @@ service LibraryService {
 
   rpc GetFirstBook(GetFirstBookRequest) returns (GetFirstBookResponse) {
     option (google.api.http) = {
-      get: "/library/v1/read/first-book"
+      get: "/library/v1/read/first_book"
     };
   }
 
@@ -53,13 +53,13 @@ service LibraryService {
 
   rpc GetMaxMonth(GetMaxMonthRequest) returns (GetMaxMonthResponse) {
     option (google.api.http) = {
-      get: "/library/v1/read/max-month"
+      get: "/library/v1/read/max_month"
     };
   }
 
   rpc GetLeastPopular(GetLeastPopularRequest) returns (GetLeastPopularResponse) {
     option (google.api.http) = {
-      get: "/library/v1/read/least-popular"
+      get: "/library/v1/read/least_popular"
     };
   }
 
@@ -71,7 +71,7 @@ service LibraryService {
 
   rpc GetTotalTime(GetTotalTimeRequest) returns (GetTotalTimeResponse) {
     option (google.api.http) = {
-      get: "/library/v1/read/total-time"
+      get: "/library/v1/read/total_time"
     };
   }
 

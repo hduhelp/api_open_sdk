@@ -124,7 +124,7 @@
         ]
       }
     },
-    "/library/v1/attendance/time-slots": {
+    "/library/v1/attendance/time_slots": {
       "get": {
         "operationId": "LibraryService_GetTimeSlotStats",
         "responses": {
@@ -260,7 +260,7 @@
         ]
       }
     },
-    "/library/v1/read/first-book": {
+    "/library/v1/read/first_book": {
       "get": {
         "operationId": "LibraryService_GetFirstBook",
         "responses": {
@@ -296,7 +296,7 @@
         ]
       }
     },
-    "/library/v1/read/least-popular": {
+    "/library/v1/read/least_popular": {
       "get": {
         "operationId": "LibraryService_GetLeastPopular",
         "responses": {
@@ -332,7 +332,7 @@
         ]
       }
     },
-    "/library/v1/read/max-month": {
+    "/library/v1/read/max_month": {
       "get": {
         "operationId": "LibraryService_GetMaxMonth",
         "responses": {
@@ -498,7 +498,7 @@
         ]
       }
     },
-    "/library/v1/read/total-time": {
+    "/library/v1/read/total_time": {
       "get": {
         "operationId": "LibraryService_GetTotalTime",
         "responses": {
