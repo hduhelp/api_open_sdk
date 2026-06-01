@@ -93,9 +93,16 @@ service LibraryService {
     };
   }
 
-  rpc GetUnreturnedBooks(google.protobuf.Empty) returns (GetUnreturnedBooksResponse) {
+  rpc GetUnreturnedBooksByStaffID(google.protobuf.Empty) returns (GetUnreturnedBooksResponse) {
     option (google.api.http) = {
       get: "/library/v1/read/unreturned"
+    };
+  }
+
+  rpc GetUnreturnedBooksList(GetUnreturnedBooksRequest) returns (GetUnreturnedBooksResponse) {
+    option (google.api.http) = {
+      post: "/library/v1/read/unreturned/list"
+      body: "*"
     };
   }
 
@@ -179,6 +186,10 @@ message GetAllReadDataRequest {
   string end = 2;
   int32 page = 3;
   int32 size = 4;
+}
+
+message GetUnreturnedBooksRequest {
+  repeated string staffIds = 1;
 }
 
 message GetStaffIDByShareIDRequest {
@@ -272,7 +283,7 @@ message GetAllReadDataResponse {
 message GetUnreturnedBooksResponse {
   int32 error = 1;
   string msg = 2;
-  BorrowList data = 3;
+  repeated BorrowList data = 3;
 }
 
 message GetShareIDResponse {

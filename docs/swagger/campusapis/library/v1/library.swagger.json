@@ -536,7 +536,7 @@
     },
     "/library/v1/read/unreturned": {
       "get": {
-        "operationId": "LibraryService_GetUnreturnedBooks",
+        "operationId": "LibraryService_GetUnreturnedBooksByStaffID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -551,6 +551,38 @@
             }
           }
         },
+        "tags": [
+          "LibraryService"
+        ]
+      }
+    },
+    "/library/v1/read/unreturned/list": {
+      "post": {
+        "operationId": "LibraryService_GetUnreturnedBooksList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUnreturnedBooksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetUnreturnedBooksRequest"
+            }
+          }
+        ],
         "tags": [
           "LibraryService"
         ]
@@ -1105,6 +1137,17 @@
         }
       }
     },
+    "v1GetUnreturnedBooksRequest": {
+      "type": "object",
+      "properties": {
+        "staffIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "v1GetUnreturnedBooksResponse": {
       "type": "object",
       "properties": {
@@ -1116,7 +1159,11 @@
           "type": "string"
         },
         "data": {
-          "$ref": "#/definitions/v1BorrowList"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1BorrowList"
+          }
         }
       }
     },

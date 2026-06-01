@@ -470,21 +470,45 @@ func local_request_LibraryService_GetAllReadData_0(ctx context.Context, marshale
 	return msg, metadata, err
 }
 
-func request_LibraryService_GetUnreturnedBooks_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LibraryService_GetUnreturnedBooksByStaffID_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	msg, err := client.GetUnreturnedBooks(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetUnreturnedBooksByStaffID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_LibraryService_GetUnreturnedBooks_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LibraryService_GetUnreturnedBooksByStaffID_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	msg, err := server.GetUnreturnedBooks(ctx, &protoReq)
+	msg, err := server.GetUnreturnedBooksByStaffID(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_LibraryService_GetUnreturnedBooksList_0(ctx context.Context, marshaler runtime.Marshaler, client LibraryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetUnreturnedBooksRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.GetUnreturnedBooksList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_LibraryService_GetUnreturnedBooksList_0(ctx context.Context, marshaler runtime.Marshaler, server LibraryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetUnreturnedBooksRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetUnreturnedBooksList(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -824,25 +848,45 @@ func RegisterLibraryServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		}
 		forward_LibraryService_GetAllReadData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_LibraryService_GetUnreturnedBooks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_LibraryService_GetUnreturnedBooksByStaffID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetUnreturnedBooks", runtime.WithHTTPPathPattern("/library/v1/read/unreturned"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetUnreturnedBooksByStaffID", runtime.WithHTTPPathPattern("/library/v1/read/unreturned"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_LibraryService_GetUnreturnedBooks_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LibraryService_GetUnreturnedBooksByStaffID_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_LibraryService_GetUnreturnedBooks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetUnreturnedBooksByStaffID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_LibraryService_GetUnreturnedBooksList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetUnreturnedBooksList", runtime.WithHTTPPathPattern("/library/v1/read/unreturned/list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_LibraryService_GetUnreturnedBooksList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_LibraryService_GetUnreturnedBooksList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_LibraryService_GetShareID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1162,22 +1206,39 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		}
 		forward_LibraryService_GetAllReadData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_LibraryService_GetUnreturnedBooks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_LibraryService_GetUnreturnedBooksByStaffID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetUnreturnedBooks", runtime.WithHTTPPathPattern("/library/v1/read/unreturned"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetUnreturnedBooksByStaffID", runtime.WithHTTPPathPattern("/library/v1/read/unreturned"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_LibraryService_GetUnreturnedBooks_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LibraryService_GetUnreturnedBooksByStaffID_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_LibraryService_GetUnreturnedBooks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LibraryService_GetUnreturnedBooksByStaffID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_LibraryService_GetUnreturnedBooksList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/campusapis.library.v1.LibraryService/GetUnreturnedBooksList", runtime.WithHTTPPathPattern("/library/v1/read/unreturned/list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_LibraryService_GetUnreturnedBooksList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_LibraryService_GetUnreturnedBooksList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_LibraryService_GetShareID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1217,41 +1278,43 @@ func RegisterLibraryServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_LibraryService_GetAttendanceStats_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "stats"}, ""))
-	pattern_LibraryService_GetTimeSlotStats_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "time_slots"}, ""))
-	pattern_LibraryService_GetFloorStats_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "floors"}, ""))
-	pattern_LibraryService_GetMonthlyStats_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "months"}, ""))
-	pattern_LibraryService_GetReadingSummary_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "summary"}, ""))
-	pattern_LibraryService_GetFirstBook_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "first_book"}, ""))
-	pattern_LibraryService_GetMonthStats_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "months"}, ""))
-	pattern_LibraryService_GetMaxMonth_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "max_month"}, ""))
-	pattern_LibraryService_GetLeastPopular_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "least_popular"}, ""))
-	pattern_LibraryService_GetPreference_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "preference"}, ""))
-	pattern_LibraryService_GetTotalTime_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "total_time"}, ""))
-	pattern_LibraryService_GetBorrowList_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "borrows"}, ""))
-	pattern_LibraryService_CheckReadNewer_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "newer"}, ""))
-	pattern_LibraryService_GetAllReadData_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "all"}, ""))
-	pattern_LibraryService_GetUnreturnedBooks_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "unreturned"}, ""))
-	pattern_LibraryService_GetShareID_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"library", "v1", "share"}, ""))
-	pattern_LibraryService_GetStaffIDByShareID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "share", "staff"}, ""))
+	pattern_LibraryService_GetAttendanceStats_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "stats"}, ""))
+	pattern_LibraryService_GetTimeSlotStats_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "time_slots"}, ""))
+	pattern_LibraryService_GetFloorStats_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "floors"}, ""))
+	pattern_LibraryService_GetMonthlyStats_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "attendance", "months"}, ""))
+	pattern_LibraryService_GetReadingSummary_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "summary"}, ""))
+	pattern_LibraryService_GetFirstBook_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "first_book"}, ""))
+	pattern_LibraryService_GetMonthStats_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "months"}, ""))
+	pattern_LibraryService_GetMaxMonth_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "max_month"}, ""))
+	pattern_LibraryService_GetLeastPopular_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "least_popular"}, ""))
+	pattern_LibraryService_GetPreference_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "preference"}, ""))
+	pattern_LibraryService_GetTotalTime_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "total_time"}, ""))
+	pattern_LibraryService_GetBorrowList_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "borrows"}, ""))
+	pattern_LibraryService_CheckReadNewer_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "newer"}, ""))
+	pattern_LibraryService_GetAllReadData_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "all"}, ""))
+	pattern_LibraryService_GetUnreturnedBooksByStaffID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "read", "unreturned"}, ""))
+	pattern_LibraryService_GetUnreturnedBooksList_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"library", "v1", "read", "unreturned", "list"}, ""))
+	pattern_LibraryService_GetShareID_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"library", "v1", "share"}, ""))
+	pattern_LibraryService_GetStaffIDByShareID_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"library", "v1", "share", "staff"}, ""))
 )
 
 var (
-	forward_LibraryService_GetAttendanceStats_0  = runtime.ForwardResponseMessage
-	forward_LibraryService_GetTimeSlotStats_0    = runtime.ForwardResponseMessage
-	forward_LibraryService_GetFloorStats_0       = runtime.ForwardResponseMessage
-	forward_LibraryService_GetMonthlyStats_0     = runtime.ForwardResponseMessage
-	forward_LibraryService_GetReadingSummary_0   = runtime.ForwardResponseMessage
-	forward_LibraryService_GetFirstBook_0        = runtime.ForwardResponseMessage
-	forward_LibraryService_GetMonthStats_0       = runtime.ForwardResponseMessage
-	forward_LibraryService_GetMaxMonth_0         = runtime.ForwardResponseMessage
-	forward_LibraryService_GetLeastPopular_0     = runtime.ForwardResponseMessage
-	forward_LibraryService_GetPreference_0       = runtime.ForwardResponseMessage
-	forward_LibraryService_GetTotalTime_0        = runtime.ForwardResponseMessage
-	forward_LibraryService_GetBorrowList_0       = runtime.ForwardResponseMessage
-	forward_LibraryService_CheckReadNewer_0      = runtime.ForwardResponseMessage
-	forward_LibraryService_GetAllReadData_0      = runtime.ForwardResponseMessage
-	forward_LibraryService_GetUnreturnedBooks_0  = runtime.ForwardResponseMessage
-	forward_LibraryService_GetShareID_0          = runtime.ForwardResponseMessage
-	forward_LibraryService_GetStaffIDByShareID_0 = runtime.ForwardResponseMessage
+	forward_LibraryService_GetAttendanceStats_0          = runtime.ForwardResponseMessage
+	forward_LibraryService_GetTimeSlotStats_0            = runtime.ForwardResponseMessage
+	forward_LibraryService_GetFloorStats_0               = runtime.ForwardResponseMessage
+	forward_LibraryService_GetMonthlyStats_0             = runtime.ForwardResponseMessage
+	forward_LibraryService_GetReadingSummary_0           = runtime.ForwardResponseMessage
+	forward_LibraryService_GetFirstBook_0                = runtime.ForwardResponseMessage
+	forward_LibraryService_GetMonthStats_0               = runtime.ForwardResponseMessage
+	forward_LibraryService_GetMaxMonth_0                 = runtime.ForwardResponseMessage
+	forward_LibraryService_GetLeastPopular_0             = runtime.ForwardResponseMessage
+	forward_LibraryService_GetPreference_0               = runtime.ForwardResponseMessage
+	forward_LibraryService_GetTotalTime_0                = runtime.ForwardResponseMessage
+	forward_LibraryService_GetBorrowList_0               = runtime.ForwardResponseMessage
+	forward_LibraryService_CheckReadNewer_0              = runtime.ForwardResponseMessage
+	forward_LibraryService_GetAllReadData_0              = runtime.ForwardResponseMessage
+	forward_LibraryService_GetUnreturnedBooksByStaffID_0 = runtime.ForwardResponseMessage
+	forward_LibraryService_GetUnreturnedBooksList_0      = runtime.ForwardResponseMessage
+	forward_LibraryService_GetShareID_0                  = runtime.ForwardResponseMessage
+	forward_LibraryService_GetStaffIDByShareID_0         = runtime.ForwardResponseMessage
 )

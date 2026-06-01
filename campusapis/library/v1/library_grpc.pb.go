@@ -20,23 +20,24 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	LibraryService_GetAttendanceStats_FullMethodName  = "/campusapis.library.v1.LibraryService/GetAttendanceStats"
-	LibraryService_GetTimeSlotStats_FullMethodName    = "/campusapis.library.v1.LibraryService/GetTimeSlotStats"
-	LibraryService_GetFloorStats_FullMethodName       = "/campusapis.library.v1.LibraryService/GetFloorStats"
-	LibraryService_GetMonthlyStats_FullMethodName     = "/campusapis.library.v1.LibraryService/GetMonthlyStats"
-	LibraryService_GetReadingSummary_FullMethodName   = "/campusapis.library.v1.LibraryService/GetReadingSummary"
-	LibraryService_GetFirstBook_FullMethodName        = "/campusapis.library.v1.LibraryService/GetFirstBook"
-	LibraryService_GetMonthStats_FullMethodName       = "/campusapis.library.v1.LibraryService/GetMonthStats"
-	LibraryService_GetMaxMonth_FullMethodName         = "/campusapis.library.v1.LibraryService/GetMaxMonth"
-	LibraryService_GetLeastPopular_FullMethodName     = "/campusapis.library.v1.LibraryService/GetLeastPopular"
-	LibraryService_GetPreference_FullMethodName       = "/campusapis.library.v1.LibraryService/GetPreference"
-	LibraryService_GetTotalTime_FullMethodName        = "/campusapis.library.v1.LibraryService/GetTotalTime"
-	LibraryService_GetBorrowList_FullMethodName       = "/campusapis.library.v1.LibraryService/GetBorrowList"
-	LibraryService_CheckReadNewer_FullMethodName      = "/campusapis.library.v1.LibraryService/CheckReadNewer"
-	LibraryService_GetAllReadData_FullMethodName      = "/campusapis.library.v1.LibraryService/GetAllReadData"
-	LibraryService_GetUnreturnedBooks_FullMethodName  = "/campusapis.library.v1.LibraryService/GetUnreturnedBooks"
-	LibraryService_GetShareID_FullMethodName          = "/campusapis.library.v1.LibraryService/GetShareID"
-	LibraryService_GetStaffIDByShareID_FullMethodName = "/campusapis.library.v1.LibraryService/GetStaffIDByShareID"
+	LibraryService_GetAttendanceStats_FullMethodName          = "/campusapis.library.v1.LibraryService/GetAttendanceStats"
+	LibraryService_GetTimeSlotStats_FullMethodName            = "/campusapis.library.v1.LibraryService/GetTimeSlotStats"
+	LibraryService_GetFloorStats_FullMethodName               = "/campusapis.library.v1.LibraryService/GetFloorStats"
+	LibraryService_GetMonthlyStats_FullMethodName             = "/campusapis.library.v1.LibraryService/GetMonthlyStats"
+	LibraryService_GetReadingSummary_FullMethodName           = "/campusapis.library.v1.LibraryService/GetReadingSummary"
+	LibraryService_GetFirstBook_FullMethodName                = "/campusapis.library.v1.LibraryService/GetFirstBook"
+	LibraryService_GetMonthStats_FullMethodName               = "/campusapis.library.v1.LibraryService/GetMonthStats"
+	LibraryService_GetMaxMonth_FullMethodName                 = "/campusapis.library.v1.LibraryService/GetMaxMonth"
+	LibraryService_GetLeastPopular_FullMethodName             = "/campusapis.library.v1.LibraryService/GetLeastPopular"
+	LibraryService_GetPreference_FullMethodName               = "/campusapis.library.v1.LibraryService/GetPreference"
+	LibraryService_GetTotalTime_FullMethodName                = "/campusapis.library.v1.LibraryService/GetTotalTime"
+	LibraryService_GetBorrowList_FullMethodName               = "/campusapis.library.v1.LibraryService/GetBorrowList"
+	LibraryService_CheckReadNewer_FullMethodName              = "/campusapis.library.v1.LibraryService/CheckReadNewer"
+	LibraryService_GetAllReadData_FullMethodName              = "/campusapis.library.v1.LibraryService/GetAllReadData"
+	LibraryService_GetUnreturnedBooksByStaffID_FullMethodName = "/campusapis.library.v1.LibraryService/GetUnreturnedBooksByStaffID"
+	LibraryService_GetUnreturnedBooksList_FullMethodName      = "/campusapis.library.v1.LibraryService/GetUnreturnedBooksList"
+	LibraryService_GetShareID_FullMethodName                  = "/campusapis.library.v1.LibraryService/GetShareID"
+	LibraryService_GetStaffIDByShareID_FullMethodName         = "/campusapis.library.v1.LibraryService/GetStaffIDByShareID"
 )
 
 // LibraryServiceClient is the client API for LibraryService service.
@@ -57,7 +58,8 @@ type LibraryServiceClient interface {
 	GetBorrowList(ctx context.Context, in *GetBorrowListRequest, opts ...grpc.CallOption) (*GetBorrowListResponse, error)
 	CheckReadNewer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CheckReadNewerResponse, error)
 	GetAllReadData(ctx context.Context, in *GetAllReadDataRequest, opts ...grpc.CallOption) (*GetAllReadDataResponse, error)
-	GetUnreturnedBooks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error)
+	GetUnreturnedBooksByStaffID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error)
+	GetUnreturnedBooksList(ctx context.Context, in *GetUnreturnedBooksRequest, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error)
 	GetShareID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetShareIDResponse, error)
 	GetStaffIDByShareID(ctx context.Context, in *GetStaffIDByShareIDRequest, opts ...grpc.CallOption) (*GetStaffIDByShareIDResponse, error)
 }
@@ -210,10 +212,20 @@ func (c *libraryServiceClient) GetAllReadData(ctx context.Context, in *GetAllRea
 	return out, nil
 }
 
-func (c *libraryServiceClient) GetUnreturnedBooks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error) {
+func (c *libraryServiceClient) GetUnreturnedBooksByStaffID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUnreturnedBooksResponse)
-	err := c.cc.Invoke(ctx, LibraryService_GetUnreturnedBooks_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, LibraryService_GetUnreturnedBooksByStaffID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libraryServiceClient) GetUnreturnedBooksList(ctx context.Context, in *GetUnreturnedBooksRequest, opts ...grpc.CallOption) (*GetUnreturnedBooksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUnreturnedBooksResponse)
+	err := c.cc.Invoke(ctx, LibraryService_GetUnreturnedBooksList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -258,7 +270,8 @@ type LibraryServiceServer interface {
 	GetBorrowList(context.Context, *GetBorrowListRequest) (*GetBorrowListResponse, error)
 	CheckReadNewer(context.Context, *emptypb.Empty) (*CheckReadNewerResponse, error)
 	GetAllReadData(context.Context, *GetAllReadDataRequest) (*GetAllReadDataResponse, error)
-	GetUnreturnedBooks(context.Context, *emptypb.Empty) (*GetUnreturnedBooksResponse, error)
+	GetUnreturnedBooksByStaffID(context.Context, *emptypb.Empty) (*GetUnreturnedBooksResponse, error)
+	GetUnreturnedBooksList(context.Context, *GetUnreturnedBooksRequest) (*GetUnreturnedBooksResponse, error)
 	GetShareID(context.Context, *emptypb.Empty) (*GetShareIDResponse, error)
 	GetStaffIDByShareID(context.Context, *GetStaffIDByShareIDRequest) (*GetStaffIDByShareIDResponse, error)
 	mustEmbedUnimplementedLibraryServiceServer()
@@ -313,8 +326,11 @@ func (UnimplementedLibraryServiceServer) CheckReadNewer(context.Context, *emptyp
 func (UnimplementedLibraryServiceServer) GetAllReadData(context.Context, *GetAllReadDataRequest) (*GetAllReadDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllReadData not implemented")
 }
-func (UnimplementedLibraryServiceServer) GetUnreturnedBooks(context.Context, *emptypb.Empty) (*GetUnreturnedBooksResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUnreturnedBooks not implemented")
+func (UnimplementedLibraryServiceServer) GetUnreturnedBooksByStaffID(context.Context, *emptypb.Empty) (*GetUnreturnedBooksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnreturnedBooksByStaffID not implemented")
+}
+func (UnimplementedLibraryServiceServer) GetUnreturnedBooksList(context.Context, *GetUnreturnedBooksRequest) (*GetUnreturnedBooksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnreturnedBooksList not implemented")
 }
 func (UnimplementedLibraryServiceServer) GetShareID(context.Context, *emptypb.Empty) (*GetShareIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetShareID not implemented")
@@ -595,20 +611,38 @@ func _LibraryService_GetAllReadData_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LibraryService_GetUnreturnedBooks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _LibraryService_GetUnreturnedBooksByStaffID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LibraryServiceServer).GetUnreturnedBooks(ctx, in)
+		return srv.(LibraryServiceServer).GetUnreturnedBooksByStaffID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LibraryService_GetUnreturnedBooks_FullMethodName,
+		FullMethod: LibraryService_GetUnreturnedBooksByStaffID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LibraryServiceServer).GetUnreturnedBooks(ctx, req.(*emptypb.Empty))
+		return srv.(LibraryServiceServer).GetUnreturnedBooksByStaffID(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibraryService_GetUnreturnedBooksList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUnreturnedBooksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibraryServiceServer).GetUnreturnedBooksList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibraryService_GetUnreturnedBooksList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibraryServiceServer).GetUnreturnedBooksList(ctx, req.(*GetUnreturnedBooksRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -713,8 +747,12 @@ var LibraryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _LibraryService_GetAllReadData_Handler,
 		},
 		{
-			MethodName: "GetUnreturnedBooks",
-			Handler:    _LibraryService_GetUnreturnedBooks_Handler,
+			MethodName: "GetUnreturnedBooksByStaffID",
+			Handler:    _LibraryService_GetUnreturnedBooksByStaffID_Handler,
+		},
+		{
+			MethodName: "GetUnreturnedBooksList",
+			Handler:    _LibraryService_GetUnreturnedBooksList_Handler,
 		},
 		{
 			MethodName: "GetShareID",
